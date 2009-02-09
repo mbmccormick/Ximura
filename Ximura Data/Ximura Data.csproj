@@ -1,0 +1,311 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7727E180-73B7-474B-84F6-BF0C6FFB181E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Ximura.Data</RootNamespace>
+    <AssemblyName>XimuraData</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>ximura.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>XimuraData.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>bin\x86\Debug\XimuraData.xml</DocumentationFile>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>XIMSData.XML</DocumentationFile>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Attributes\XimuraContentCachePolicyAttribute.cs" />
+    <Compile Include="Attributes\XimuraContentIDAttribute.cs" />
+    <Compile Include="Attributes\XimuraContentReferenceAttribute.cs" />
+    <Compile Include="Attributes\XimuraContentSerializationAttribute.cs" />
+    <Compile Include="Attributes\XimuraContentTypeIDAttribute.cs" />
+    <Compile Include="Attributes\XimuraDataContentBaseMappingAttribute.cs" />
+    <Compile Include="Attributes\XimuraDataContentDefaultAttribute.cs" />
+    <Compile Include="Attributes\XimuraDataContentFragmentAttribute.cs" />
+    <Compile Include="Attributes\XimuraDataContentIDMappingAttribute.cs" />
+    <Compile Include="Attributes\XimuraDataContentSchemaAttribute.cs" />
+    <Compile Include="Attributes\XimuraDataContentSchemaReferenceAttribute.cs" />
+    <Compile Include="Attributes\XimuraDataContentSummaryAttribute.cs" />
+    <Compile Include="Attributes\XimuraDataContentVersionMappingAttribute.cs" />
+    <Compile Include="Attributes\XimuraSchemaAttribute.cs" />
+    <Compile Include="Content\Content.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Content\Content_Attributes.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Content\Content_Cache.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Content\Content_Fragmentation.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Content\Content_Helper.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Content\Content_IEquatable.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Content\Content_Load.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Content\Content_Pooling.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Content\Content_Properties.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Content\Content_Serialization.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Content\Content_Static.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Content\Exceptions\ContentException.cs" />
+    <Compile Include="Content\Exceptions\ContentLoadException.cs" />
+    <Compile Include="Content\Serialization\ContentFormatter.cs" />
+    <Compile Include="Content\Serialization\ContentFormatterCapabilities.cs" />
+    <Compile Include="Content\Serialization\ContentSerializationReaderWriter.cs" />
+    <Compile Include="Content\Serialization\Exceptions\ContentFormatterCapabilitiesException.cs" />
+    <Compile Include="Content\Serialization\Exceptions\ContentFormatterException.cs" />
+    <Compile Include="Content\Serialization\FormatterBase.cs" />
+    <Compile Include="Content\Serialization\Interfaces\IXIMSFormatter.cs" />
+    <Compile Include="Data\Atom\AtomBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Data\Atom\AtomEntry.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Data\Atom\AtomFeed.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Data\Atom\AtomTextType.cs" />
+    <Compile Include="Data\DataContent\DataContent.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Data\DataContent\DataContent_Attributes.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Data\DataContent\DataContent_Events.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Data\DataContent\DataContent_Helper.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Data\DataContent\DataContent_IDataContentSummary.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Data\DataContent\DataContent_IListSource.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Data\DataContent\DataContent_IXIMSDataContentLinkage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Data\DataContent\DataContent_Load.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Data\DataContent\DataContent_MappingHelper.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Data\DataContent\DataContent_Pooling.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Data\DataContent\DataContent_Properties.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Data\DataContent\DataContent_Serialization.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Data\DataContent\DataContent_Static.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Data\DataContent\Events\DataChangedEventArgs.cs" />
+    <Compile Include="Data\DataContent\Interfaces\IXimuraDataEntityServer.cs" />
+    <Compile Include="Data\XContent\XContent.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Data\XContent\XContent_Attributes.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Data\XContent\XContent_Helper.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Data\XContent\XContent_Load.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Data\XContent\XContent_Serialization.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Data\XimuraCore\XimuraCore.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Data\XmlContentBase\XmlContentBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Data\XmlContentBase\XmlContentBase_Attributes.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Data\XmlContentBase\XmlContentBase_Helper.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Data\XmlContentBase\XmlContentBase_Load.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Data\XmlContentBase\XmlContentBase_Mapping.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Data\XmlContentBase\XmlContentBase_Pooling.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Data\XmlContent\XmlContent.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Data\XmlContent\XmlContent_Load.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Data\XmlContent\XmlContent_Serialization.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Helper\ArrayHelper\Exists.cs" />
+    <Compile Include="Helper\ArrayHelper\MatchCollection.cs" />
+    <Compile Include="Helper\ArrayHelper\MatchCollectionState.cs" />
+    <Compile Include="Helper\ArrayHelper\MatchSequence.cs" />
+    <Compile Include="Helper\ArrayHelper\FindPosition.cs" />
+    <Compile Include="Helper\ArrayHelper\MatchState.cs" />
+    <Compile Include="Helper\ArrayHelper\MatchTerminator.cs" />
+    <Compile Include="Helper\ArrayHelper\Range.cs" />
+    <Compile Include="Helper\XsdResolver\ContentXsdResolver.cs" />
+    <Compile Include="Helper\XsdResolver\ContentXsdResolver_Static.cs" />
+    <Compile Include="Messaging\Exceptions\MaxSizeMessageException.cs" />
+    <Compile Include="Messaging\Exceptions\MessageException.cs" />
+    <Compile Include="Messaging\Exceptions\MessageLoadException.cs" />
+    <Compile Include="Messaging\HeaderFragment.cs" />
+    <Compile Include="Messaging\HeaderBodyMessage.cs" />
+    <Compile Include="Messaging\Message.cs" />
+    <Compile Include="Messaging\MessageBase.cs" />
+    <Compile Include="Messaging\MessageCRLFFragment.cs" />
+    <Compile Include="Messaging\MessageFragment.cs" />
+    <Compile Include="Messaging\MessageStreamBase.cs" />
+    <Compile Include="Messaging\Termination\FragmentTerminationType.cs" />
+    <Compile Include="Messaging\Termination\MessageTerminatorBase.cs" />
+    <Compile Include="Messaging\Termination\MessageTerminatorCRLF.cs" />
+    <Compile Include="Messaging\Termination\State\CRLFMatchCollectionState.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ximura Base\Ximura Base.csproj">
+      <Project>{7C2684DD-A055-4A7A-88D6-EC5BAE28AEB2}</Project>
+      <Name>Ximura Base</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Content.resx">
+      <DependentUpon>Content.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Data\DataContent\DataContent.resx">
+      <DependentUpon>DataContent.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Ximura.xsd" />
+    <EmbeddedResource Include="Data\Atom\Atom.xsd" />
+    <None Include="Data\Atom\Atom.xsx">
+      <DependentUpon>Atom.xsd</DependentUpon>
+    </None>
+    <None Include="Resources\Ximura.xsx">
+      <DependentUpon>Ximura.xsd</DependentUpon>
+    </None>
+    <EmbeddedResource Include="Resources\Xml.xsd" />
+    <None Include="Resources\Xml.xsx">
+      <DependentUpon>Xml.xsd</DependentUpon>
+    </None>
+    <None Include="ximura.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Properties\epl-v10.html" />
+    <Content Include="Properties\Release Notes.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Exceptions\" />
+    <Folder Include="_Documentation\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,4081 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>XimuraData</name>
+    </assembly>
+    <members>
+        <member name="T:Ximura.Data.MessageFragment`1">
+            <summary>
+            This is the base fragment class that implements fragment functionality.
+            </summary>
+        </member>
+        <member name="T:Ximura.Data.MessageStreamBase">
+            <summary>
+            The MessageStreamBase is for messages that implement a streaming functionality 
+            </summary>
+        </member>
+        <member name="T:Ximura.Data.MessageBase">
+            <summary>
+            This is the base class for the various message derivations.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.MessageBase.#ctor">
+            <summary>
+            This is the default constructor.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.MessageBase.Reset">
+            <summary>
+            This is the reset method to set the content.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.MessageBase.CanLoad">
+            <summary>
+            This property identifies whether the message can be loaded.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.MessageBase.Loaded">
+            <summary>
+            This method returns true if the message has been loaded.
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.MessageStreamBase.mCanRead">
+            <summary>
+            This protected variable defines whether the message can be read.
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.MessageStreamBase.mCanWrite">
+            <summary>
+            This protected variable defines whether the message can be written to.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.MessageStreamBase.#ctor">
+            <summary>
+            The default constructor
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.MessageStreamBase.Reset">
+            <summary>
+            This is the reset method to set the content.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.MessageStreamBase.Read(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            This method reads bytes from the buffer in to the message.
+            </summary>
+            <param name="buffer">The buffer.</param>
+            <param name="offset">The buffer offset.</param>
+            <param name="count">The data length.</param>
+            <returns>Returns the number of bytes that have been copied tothe buffer.</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Ximura.Data.MessageStreamBase.Write(System.Byte[],System.Int32,System.Int32)" -->
+        <member name="M:Ximura.Data.MessageStreamBase.WriteByte(System.Byte)">
+            <summary>
+            This method writes 1 byte to the message
+            </summary>
+            <param name="value">The byte value to write</param>
+            <returns>Returns the number of bytes actually read by the message.</returns>
+        </member>
+        <member name="M:Ximura.Data.MessageStreamBase.WriteComplete">
+            <summary>
+            This method is called when the write status is changed to false and was previously true.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.MessageStreamBase.Close">
+            <summary>
+            Close returns this object to the pool. You should not reference this object after you have closed it.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.MessageStreamBase.Flush">
+            <summary>
+            Flush does nothing in the default message.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.MessageStreamBase.ByteBufferChecks(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            This method does a set of buffer checks for the incoming data.
+            </summary>
+            <param name="buffer">The buffer.</param>
+            <param name="offset">The offset.</param>
+            <param name="count">The count.</param>
+        </member>
+        <member name="M:Ximura.Data.MessageStreamBase.Load">
+            <summary>
+            This creates a message with the maximum permissible size.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.MessageStreamBase.Load(System.Int64)">
+            <summary>
+            This method initializes the message for writing to the maximum default size.
+            </summary>
+            <param name="maxSize">The amximum permissible size for the message base.</param>
+        </member>
+        <member name="M:Ximura.Data.MessageStreamBase.Load(System.String)">
+            <summary>
+            This method initializes the fragment with the default string data.
+            </summary>
+            <param name="data">The string.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ximura.Data.MessageStreamBase.BeginInit">
+            <summary>
+            This method begin the load process for the message. During the initialization phase, fragments can be
+            added and removed from the collection. Initialization cannot be started once the message has completed
+            loading.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.MessageStreamBase.EndInit">
+            <summary>
+            This method completes the initialization phase and completes the loading process.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.MessageStreamBase.EndInitCustom">
+            <summary>
+            This method should be overriden to provide any custom initialization completion code.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.MessageStreamBase.Direction">
+            <summary>
+            This is the message direction
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.MessageStreamBase.Position">
+            <summary>
+            This is the data position for the stream.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.MessageStreamBase.Length">
+            <summary>
+            This method returns the length of the current message.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.MessageStreamBase.BodyLength">
+            <summary>
+            This is the length of the body. This may be less than the length 
+            if there are termination bytes at the end of the message
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.MessageStreamBase.MaxLength">
+            <summary>
+            This is the maximum length for the message.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.MessageStreamBase.CanRead">
+            <summary>
+            Then this value is set to true the message stream can be read from.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.MessageStreamBase.CanWrite">
+            <summary>
+            When this property is set to true, the message stream can be written to.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.MessageStreamBase.DebugString">
+            <summary>
+            This string provides a ASCII representation of the byte buffer.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.MessageStreamBase.IsTerminator">
+            <summary>
+            This method returns true if the fragment has completed and is exactly equal to the termination string.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.MessageStreamBase.BufferSizeInitial">
+            <summary>
+            This property determines in initial incoming buffer size.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.MessageStreamBase.BufferSizeGrow">
+            <summary>
+            This property determines the incremental growth size when the buffer needs to grow.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.MessageStreamBase.BufferSizePrefer">
+            <summary>
+            This property determines the prefered size for the buffer. Should the buffer exceed this value, the
+            byte array will be recycled once the object returns to the pool.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.MessageStreamBase.BufferSizeMax">
+            <summary>
+            This property determines the incremental growth size when the buffer needs to grow.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.MessageStreamBase.Initializing">
+            <summary>
+            This property indicates whether the message is in an initialization phase.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.MessageStreamBase.SupportsInitialization">
+            <summary>
+            This property indicates whether the fragment supports initialization.
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.MessageFragment`1.mTerminator">
+            <summary>
+            This is terminator for the fragment.
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.MessageFragment`1.mBuffer">
+            <summary>
+            This is the byte buffer for the fragment.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.MessageFragment`1.#ctor">
+            <summary>
+            The default constructor
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.MessageFragment`1.Reset">
+            <summary>
+            This is the reset method to set the content.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.MessageFragment`1.ResetBuffer">
+            <summary>
+            This method resets the buffer to its default size.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.MessageFragment`1.EnsureCapacity(System.Int32)">
+            <summary>
+            This method ensures that the internal buffer has the necessary write capacity.
+            </summary>
+            <param name="length">The length of bytes to write.</param>
+        </member>
+        <member name="M:Ximura.Data.MessageFragment`1.CalculateCapacity(System.Int32)">
+            <summary>
+            This method calculates the new size of the buffer.
+            </summary>
+            <param name="length">The full length.</param>
+            <returns>Returns the length rounded up to the nearest growth factor.</returns>
+        </member>
+        <member name="M:Ximura.Data.MessageFragment`1.ResetTerminator">
+            <summary>
+            This method resets the terminator and returns it to the object pool. For messages that have a fixed terminator, 
+            this method should be overrided and should create the default terminator if the terminator is null, or reset the terminator.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.MessageFragment`1.Read(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            This method reads from the fragment.
+            </summary>
+            <param name="buffer">The buffer.</param>
+            <param name="offset">The buffer offset.</param>
+            <param name="count">The data length.</param>
+            <returns>The number of byte written in to the buffer.</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Ximura.Data.MessageFragment`1.Write(System.Byte[],System.Int32,System.Int32)" -->
+        <member name="M:Ximura.Data.MessageFragment`1.WriteProcessTerminator(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            This method searches writes the incoming stream to the buffer, but terminates when it reaches 
+            the termination characters.
+            </summary>
+            <param name="buffer">The incoming buffer.</param>
+            <param name="offset">The offset</param>
+            <param name="count">The number of bytes available.</param>
+            <returns>Returns the number of bytes read from the incoming buffer.</returns>
+        </member>
+        <member name="M:Ximura.Data.MessageFragment`1.Load(System.IO.Stream)">
+            <summary>
+            This method loads the fragment with the initial data from a stream.
+            </summary>
+            <param name="strmData">THe stream to read from.</param>
+            <returns>Returns the number of bytes read from the stream.</returns>
+        </member>
+        <member name="M:Ximura.Data.MessageFragment`1.Load(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            This method loads the fragment with the initial data.
+            </summary>
+            <param name="buffer">The buffer.</param>
+            <param name="offset">The offset.</param>
+            <param name="count">The count of the number of bytes.</param>
+            <returns>Returns the number of bytes read from the buffer.</returns>
+        </member>
+        <member name="M:Ximura.Data.MessageFragment`1.ToArray">
+            <summary>
+            This method outputs a copy of the current byte array.
+            </summary>
+            <returns>Returns a copy of the internal byte array.</returns>
+        </member>
+        <member name="M:Ximura.Data.MessageFragment`1.ToArray(System.Boolean)">
+            <summary>
+            This method outputs the current byte array.
+            </summary>
+            <param name="Copy">The boolean value should be set to true if you require a copy 
+            of the internal array, or the actual array.</param>
+            <returns>Returns a byte array.</returns>
+        </member>
+        <member name="M:Ximura.Data.MessageFragment`1.Dispose(System.Boolean)">
+            <summary>
+            This is the dispose override.
+            </summary>
+            <param name="disposing"></param>
+        </member>
+        <member name="P:Ximura.Data.MessageFragment`1.Terminator">
+            <summary>
+            This is the fragment terminator used to close off the fragment.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.MessageFragment`1.IsTerminator">
+            <summary>
+            This method returns true if the fragment has completed and is exactly equal to the termination string.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.MessageFragment`1.TerminationType">
+            <summary>
+            This method specifiies the termination logic for the fragment.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.MessageFragment`1.DebugString">
+            <summary>
+            This string provides a ASCII representation of the byte buffer.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.MessageFragment.#ctor">
+            <summary>
+            The default constructor
+            </summary>
+        </member>
+        <member name="T:Ximura.Data.XmlContentBase">
+            <summary>
+            This abstract class contains support for XML schema caching.
+            </summary>
+            <summary>
+            This abstract class contains support for XML schema caching.
+            </summary>
+            <summary>
+            This abstract class contains support for XML schema caching.
+            </summary>
+            <summary>
+            These are the pooling methods for the XmlContentBase.
+            </summary>
+            <summary>
+            The XMLContent object wraps basic persistence functionality around the XMl Data object.
+            </summary>
+        </member>
+        <member name="T:Ximura.Data.Content">
+            <summary>
+            This is the base abstract Ximura Content object. 
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.Content.Equals(System.Object)">
+            <summary>
+            This is an override of the equals method for the content object.
+            This returns true if the object is derived from Content and the ID and Version
+            and the dirty flag are the same.
+            </summary>
+            <param name="obj">The object to compare with this object.</param>
+            <returns>A boolean value indicating whether the content is the same object.</returns>
+        </member>
+        <member name="M:Ximura.Data.Content.Equals(Ximura.Data.IXimuraContent)">
+            <summary>
+            This is the generic equals method.
+            </summary>
+            <param name="cObj">The object to compare.</param>
+            <returns>Returns true if the objects are the same.</returns>
+        </member>
+        <member name="M:Ximura.Data.Content.GetHashCode">
+            <summary>
+            This method gets the hash code for the content object.
+            </summary>
+            <returns>The content hash code.</returns>
+        </member>
+        <member name="F:Ximura.Data.Content.rndUse">
+            <summary>
+            This random generator is used to assist export the content with a unique id.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.Content.DumpXML">
+            <summary>
+            This method dumps xml to the current user's desktop folder.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.Content.DumpXML(System.String)">
+            <summary>
+            This method is used in debug to dump the internal contents of the xml object to a file
+            </summary>
+            <param name="filename">The filename to save the file to.</param>
+        </member>
+        <member name="F:Ximura.Data.Content.attrsContentReference">
+            <summary>
+            This collection holds the content reference attributes.
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.Content.attrContentCachePolicy">
+            <summary>
+            This is the cache policy for the content.
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.Content.attrContentFragment">
+            <summary>
+            This is the fragmentation attribute.
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.Content.attrContentMappingContentID">
+            <summary>
+            This is the ID mapping attribute
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.Content.attrContentMappingVersionID">
+            <summary>
+            This is the version mapping attribute
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.Content.SetAttributes">
+            <summary>
+            This protected method sets the mapping attributes for the content.
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.Content.mTrackID">
+            <summary>
+            This is the unique track id for the content used for pooling.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.Content.Reset">
+            <summary>
+            This is the reset method to set the content to it's default state.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.Content.Dispose(System.Boolean)">
+            <summary>
+            This is the dispose override.
+            </summary>
+            <param name="disposing">True when this is called by the dispose method.</param>
+        </member>
+        <member name="M:Ximura.Data.Content.Reset(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            This is the reset method to set the content to the state specified in the
+            deserialization paramters.
+            </summary>
+            <param name="info">The serialization info.</param>
+            <param name="context">The serialization context.</param>
+        </member>
+        <member name="M:Ximura.Data.Content.ObjectPoolReturn">
+            <summary>
+            This method returns the object to the pool.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.Content.PoolGet(System.Type)">
+            <summary>
+            This method returns the specific pool manager for the type.
+            </summary>
+            <param name="objectType"></param>
+            <returns>Returns the pool for the object type.</returns>
+        </member>
+        <member name="M:Ximura.Data.Content.PoolGetObject(System.Type)">
+            <summary>
+            Returns a new object of the type specified.
+            </summary>
+            <param name="objectType">The object type required.</param>
+            <returns>Returns a poolable object of the type defined.</returns>
+        </member>
+        <member name="M:Ximura.Data.Content.PoolGetReturn(System.Object)">
+            <summary>
+            This method returns the object to the appropriate pool.
+            </summary>
+            <param name="poolObject">The object to return.</param>
+        </member>
+        <member name="F:Ximura.Data.Content.mInfo">
+            <summary>
+            This is the deserialization information
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.Content.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            This is the deserialization constructor. 
+            </summary>
+            <param name="info">The Serialization info object that contains all the relevant data.</param>
+            <param name="context">The serialization context.</param>
+        </member>
+        <member name="M:Ximura.Data.Content.DeserializeIncoming(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            This protected method can be overriden by inherited data classes to handle the deserialization
+            process without the need to add code within the constructor method.
+            </summary>
+            <param name="info">The Serialization info object that contains all the relevant data.</param>
+            <param name="context">The serialization context.</param>
+        </member>
+        <member name="M:Ximura.Data.Content.OnDeserialization(System.Object)">
+            <summary>
+            This method is called to complete the deserialization.
+            </summary>
+            <param name="sender">The sender object.</param>
+        </member>
+        <member name="M:Ximura.Data.Content.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            This code adds each of the content components to the serialization object. 
+            This function should be overriden by derived objects that have specific serialization
+            requirements.
+            </summary>
+            <param name="info"></param>
+            <param name="context"></param>
+        </member>
+        <member name="M:Ximura.Data.Content.GetBodyData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            This is the default constructor. It does not include any content.
+            </summary>
+            <param name="info">The Serialization info.</param>
+            <param name="context">The serialization context.</param>
+        </member>
+        <member name="M:Ximura.Data.Content.ToArray">
+            <summary>
+            This method returns the content body as a byte array.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ximura.Data.Content.Clone">
+            <summary>
+            This method clones the current object in to a new object from the same
+            object pool. If the current object is not a member of an object pool then
+            a new object is created.
+            
+            This method serializes and then deserializes the object to provide a copy.
+            You can override this method to provide more efficient cloning for custom object.
+            </summary>
+            <returns>Returns a copy of the current object.</returns>
+        </member>
+        <member name="M:Ximura.Data.Content.SerializeToStream(Ximura.Data.Content,System.IO.Stream)">
+            <summary>
+            This method serializes an entity to a stream.
+            </summary>
+            <param name="content">The content to serialize.</param>
+            <param name="stream">The stream to serialize to.</param>
+        </member>
+        <member name="M:Ximura.Data.Content.SerializeToStream(Ximura.Data.Content,System.IO.Stream,System.Runtime.Serialization.IFormatter)">
+            <summary>
+            This method serializes an entity to a stream.
+            </summary>
+            <param name="content">The content to serialize.</param>
+            <param name="stream">The stream to serialize to.</param>
+            <param name="formatter">The formatter to use for the serialization.</param>
+        </member>
+        <member name="M:Ximura.Data.Content.SerializeEntity(Ximura.Data.Content)">
+            <summary>
+            This method serializes an entity in to a blob.
+            </summary>
+            <param name="content">The content to serialize.</param>
+            <returns>A byte array containing the serialized entity.</returns>
+        </member>
+        <member name="M:Ximura.Data.Content.SerializeEntity(Ximura.Data.Content,System.Runtime.Serialization.IFormatter)">
+            <summary>
+            This method serializes an entity in to a blob.
+            </summary>
+            <param name="content">The content to serialize.</param>
+            <param name="formatter">The formatter to serialize the entity with.</param>
+            <returns>A byte array containing the serialized entity.</returns>
+        </member>
+        <member name="M:Ximura.Data.Content.DeserializeEntity(System.Byte[],Ximura.IXimuraPoolManager)">
+            <summary>
+            This method deserializes a blob in to the correct content entity.
+            </summary>
+            <param name="blob">The binary blob to deserialize.</param>
+            <returns>A content object</returns>
+        </member>
+        <member name="M:Ximura.Data.Content.DeserializeEntity(System.Byte[],Ximura.Data.IXimuraFormatter,Ximura.IXimuraPoolManager)">
+            <summary>
+            This method deserializes a blob in to the correct content entity.
+            </summary>
+            <param name="blob">The binary blob to deserialize.</param>
+            <param name="formatter">The formatter to use.</param>
+            <returns>A content object</returns>
+        </member>
+        <member name="M:Ximura.Data.Content.DeserializeEntity(System.Byte[],System.Int32,System.Int32,Ximura.IXimuraPoolManager)">
+            <summary>
+            This method deserializes a blob in to the correct content entity.
+            </summary>
+            <param name="blob">The binary blob to deserialize.</param>
+            <param name="index">The index.</param>
+            <param name="length">The length.</param>
+            <returns>A content object</returns>
+        </member>
+        <member name="M:Ximura.Data.Content.DeserializeEntity(System.Byte[],System.Int32,System.Int32,Ximura.Data.IXimuraFormatter,Ximura.IXimuraPoolManager)">
+            <summary>
+            This method deserializes a blob in to the correct content entity.
+            </summary>
+            <param name="blob">The binary blob to deserialize.</param>
+            <param name="index">The index.</param>
+            <param name="length">The length.</param>
+            <param name="formatter">The formatter to use.</param>
+            <returns>A content object</returns>
+        </member>
+        <member name="M:Ximura.Data.Content.DeserializeEntity(System.IO.Stream,Ximura.IXimuraPoolManager)">
+            <summary>
+            This method deserializes the stream in to the correct content entity.
+            </summary>
+            <param name="stream">The stream to deserialize from.</param>
+            <returns>The content entity.</returns>
+        </member>
+        <member name="M:Ximura.Data.Content.DeserializeEntity(System.IO.Stream,Ximura.Data.IXimuraFormatter,Ximura.IXimuraPoolManager)">
+            <summary>
+            This method deserializes the stream in to the correct content entity.
+            </summary>
+            <param name="stream">The stream to deserialize from.</param>
+            <param name="formatter">The formatter.</param>
+            <param name="pMan">The pool manager to retrieve a new object.</param>
+            <returns>The content entity.</returns>
+        </member>
+        <member name="M:Ximura.Data.Content.ResolveFormatter(System.Type)">
+            <summary>
+            This method resolves the correct formatter for the content and the blob.
+            </summary>
+            <param name="contentType"></param>
+            <returns>Returns the formatter if it can be found.</returns>
+        </member>
+        <member name="M:Ximura.Data.Content.ResolveFormatter(Ximura.Data.Content)">
+            <summary>
+            This method resolves the formatter for the content.
+            </summary>
+            <param name="content">The content.</param>
+            <returns>Returns the formatter if it can be found.</returns>
+        </member>
+        <member name="M:Ximura.Data.Content.ResolveFormatter(System.Byte[])">
+            <summary>
+            This method resolves the formatter for the blob.
+            </summary>
+            <param name="blob">The blob.</param>
+            <returns>Returns the formatter if it can be found.</returns>
+        </member>
+        <member name="M:Ximura.Data.Content.ResolveFormatter(System.IO.Stream)">
+            <summary>
+            This method resolves the formatter for the blob.
+            </summary>
+            <param name="stream">The stream to check.</param>
+            <returns>Returns the formatter if it can be found.</returns>
+        </member>
+        <member name="M:Ximura.Data.Content.GetContentTypeAttributeID">
+            <summary>
+            This method returns the content Type ID for the current content.
+            </summary>
+            <returns>Returns the content type ID.</returns>
+        </member>
+        <member name="M:Ximura.Data.Content.GetContentAttributeID">
+            <summary>
+            This method returns the content ID for the current content
+            </summary>
+            <returns>Returns the content type ID, or null if no attribute is defined.</returns>
+        </member>
+        <member name="M:Ximura.Data.Content.GetContentTypeAttributeID(System.Type)">
+            <summary>
+            This method returns the content Type ID from the itemType.
+            </summary>
+            <param name="itemType">The content type.</param>
+            <returns>Returns the content type ID.</returns>
+        </member>
+        <member name="M:Ximura.Data.Content.GetContentAttributeID(System.Type)">
+            <summary>
+            This method returns the content Type ID from the itemType.
+            </summary>
+            <param name="itemType">The content type.</param>
+            <returns>Returns the content type ID, or null if no attribute is defined.</returns>
+        </member>
+        <member name="M:Ximura.Data.Content.GetContentTypeAttributeID``1">
+            <summary>
+            This method returns the content Type ID as defined in the XimuraContentTypeIDAttribute.
+            </summary>
+            <typeparam name="T">The Content type.</typeparam>
+            <returns>Returns a Guid containing the content type.</returns>
+        </member>
+        <member name="M:Ximura.Data.Content.GetContentAttributeID``1">
+            <summary>
+            This method returns the content ID as defined in the XimuraContentIDAttribute.
+            </summary>
+            <typeparam name="T">The Content type.</typeparam>
+            <returns>Returns a Guid or null if the attribute is not defined.</returns>
+        </member>
+        <member name="M:Ximura.Data.Content.GetContentTypeAttributeKeyPair(System.Type)">
+            <summary>
+            This method returns both the content Type ID and content ID as defined 
+            in the XimuraContentTypeIDAttribute and XimuraContentIDAttribute.
+            </summary>
+            <param name="itemType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ximura.Data.Content.#ctor">
+            <summary>
+            This is the default constructor for the Content object.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.Content.#ctor(System.ComponentModel.IContainer)">
+            <summary>
+            This constructor is called by .NET when it added as new to a container.
+            </summary>
+            <param name="container">The container this component should be added to.</param>
+        </member>
+        <member name="F:Ximura.Data.Content.mCanLoad">
+            <summary>
+            This boolean property identifies whether the content can load.
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.Content.mInitializing">
+            <summary>
+            This boolean value identifies whether the data content is currently initializing
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.Content.mInitialized">
+            <summary>
+            This boolean value identifies if the content is initialized
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.Content.BeginInit">
+            <summary>
+            This method is used by the component model to inform the DataContent that 
+            the initialization process has begun
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.Content.EndInit">
+            <summary>
+            This method is used to inform the DataContent that the initialization is complete
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.Content.OnInitialized">
+            <summary>
+            This protected method can be overriden to add additional code on the completion
+            of initialization.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.Content.LoadCheck">
+            <summary>
+            This helper method will throw an exception if the content has not been loaded.
+            </summary>
+            <exception cref="T:Ximura.Data.ContentLoadException">This exception is thrown if the content has not been loaded.</exception>
+        </member>
+        <member name="F:Ximura.Data.Content.mDirty">
+            <summary>
+            This is the protected field used to record the dirty state of the Leaf.
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.Content.mEntityType">
+            <summary>
+            This is the type name used for serialization.
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.Content.mEntitySubType">
+            <summary>
+            This is the entity subtype string.
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.Content.mCID">
+            <summary>
+            This is the protected property that stores the content instance ID
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.Content.mVer">
+            <summary>
+            This is the protected property that stores the version ID of the Entity.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.Content.IsDirty">
+            <summary>
+            This is a public function that indicated whether the object
+            internal data has been changed since it was created or last saved.
+            </summary>
+            <returns>A boolean value - true indicates the object has been changed.</returns>
+        </member>
+        <member name="M:Ximura.Data.Content.IsFragment">
+            <summary>
+            This property identifies whether the content is a fragment type.
+            </summary>
+            <returns>Returns true if the object is a fragment, or supports fragmentation.</returns>
+        </member>
+        <member name="M:Ximura.Data.Content.FragmentBaseType">
+            <summary>
+            This is the fragment base type. If this property is supported the persistence manager 
+            will store this property in the serialization blob. Should the original type be unavailable 
+            the content will be deserialized using this type.
+            </summary>
+            <returns>Return the base content type if supported.</returns>
+        </member>
+        <member name="M:Ximura.Data.Content.SupportsFragmentBaseType">
+            <summary>
+            This method identifies whether the content supports the base type content.
+            </summary>
+            <returns>Returns true if this property is supported.</returns>
+        </member>
+        <member name="M:Ximura.Data.Content.CanConvertToPrimaryEntity">
+            <summary>
+            This boolean property identifies whether a fragment can convert to a primary entity.
+            </summary>
+            <returns>Returns true if the entity can convert.</returns>
+        </member>
+        <member name="M:Ximura.Data.Content.ConvertFragmentToPrimaryEntity">
+            <summary>
+            This method converts the fragment entity to the primary entity.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.Content.MergeContent(Ximura.Data.IXimuraContent)">
+            <summary>
+            This method is implemented by the fragment content and will be used to merge any
+            changes back in to the root content.
+            </summary>
+            <param name="baseContent">The base content to merge in to.</param>
+        </member>
+        <member name="M:Ximura.Data.Content.AddBaseContent">
+            <summary>
+            This method is implemented by the fragment content and will be used to convert any
+            changes back in to the root content.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.Content.UpdateBaseContent(Ximura.Data.IXimuraContent)">
+            <summary>
+            This method is implemented by the fragment content and will be used to update any
+            changes back in to the root content.
+            </summary>
+            <param name="baseContent">The base content to merge in to.</param>
+        </member>
+        <member name="M:Ximura.Data.Content.DeleteBaseContent(Ximura.Data.IXimuraContent)">
+            <summary>
+            This method is implemented by the fragment content and will be used to
+            delete the root content.
+            </summary>
+            <param name="baseContent">The base content to merge in to.</param>
+        </member>
+        <member name="M:Ximura.Data.Content.FragmentIDIsByReference">
+            <summary>
+            this method tells whether the fragment id is a by-reference id or not
+            </summary>
+            <returns>Returns turs if the fragment id is by-reference</returns>
+        </member>
+        <member name="M:Ximura.Data.Content.FragmentReferenceType">
+            <summary>
+            this method returns the fragment reference type
+            </summary>
+            <returns>fragment reference type</returns>
+        </member>
+        <member name="M:Ximura.Data.Content.SetFragmentReferenceType(System.String)">
+            <summary>
+            this method set the fragment reference type 
+            </summary>
+            <param name="referenceType"></param>
+        </member>
+        <member name="M:Ximura.Data.Content.FragmentReferenceID">
+            <summary>
+            this method returns the fragment reference id
+            </summary>
+            <returns>fragment reference id</returns>
+        </member>
+        <member name="M:Ximura.Data.Content.SetFragmentReferenceID(System.String)">
+            <summary>
+            this method set the fragment reference id 
+            </summary>
+            <param name="referenceID"></param>
+        </member>
+        <member name="P:Ximura.Data.Content.CanPool">
+            <summary>
+            This method indicates whether the object can be pooled. By default this is set to true. 
+            You should override this method to return false if you do not wish your content object to be poolable.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.Content.TrackID">
+            <summary>
+            This is the tracking ID for the object.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.Content.CanResetWithDeserialization">
+            <summary>
+            This property indicates whether the object support a deserialization reset.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.Content.ObjectPool">
+            <summary>
+            This is the object pool that the message belongs to.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.Content.ObjectPoolCanReturn">
+            <summary>
+            This property specifices whether the object can be returns to the pool.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.Content.PoolManager">
+            <summary>
+            This is the pool manager that can be used by the IXimuraPoolManagerDirectAccess interface.
+            Although the methods and properties are implemented in the base class the actual interface is
+            not implemented.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.Content.ContentBody">
+            <summary>
+            This property gets the content body as a byte array.
+            </summary>
+        </member>
+        <member name="E:Ximura.Data.Content.Initialized">
+            <summary>
+            This event is used to signal the completion of initialization.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.Content.IsInitialized">
+            <summary>
+            This property returns true if the content has been initialized.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.Content.CacheOptions">
+            <summary>
+            This is the cache options as specified by the ContentCachePolicy attribute.
+            You can override this method for more fine-grained caching functionality.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.Content.CacheExpiry">
+            <summary>
+            This is the cache expiry time in milliseconds.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.Content.ID">
+            <summary>
+            This is the ID of the Entity.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.Content.Version">
+            <summary>
+            This is the version ID of the entity.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.Content.TypeID">
+            <summary>
+            This is the TypeID of the content. If not specified in the constructor the TypeID 
+            will be taken from the XimuraContentTypeID Attribute.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.Content.Dirty">
+            <summary>
+            This boolean property indicates whether the object has been changed.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.Content.EntityType">
+            <summary>
+            This is the entity type used for searching.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.Content.EntitySubtype">
+            <summary>
+            This is the entity subtype used for searching
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.Content.EntityAQN">
+            <summary>
+            This is the assembly qualified name used for seaching. This
+            may differ from the actual name as it will not have the specific
+            version number to enable consistency across multiple version.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.Content.EntityName">
+            <summary>
+            This is the entity name used for search display.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.Content.EntityDescription">
+            <summary>
+            This is the entity description used for search display.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.XmlContentBase.#ctor">
+            <summary>
+            This is the default constructor for the Content object.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.XmlContentBase.#ctor(System.ComponentModel.IContainer)">
+            <summary>
+            This constructor is called by .NET when it added as new to a container.
+            </summary>
+            <param name="container">The container this component should be added to.</param>
+        </member>
+        <member name="M:Ximura.Data.XmlContentBase.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            This is the deserialization constructor. 
+            </summary>
+            <param name="info">The Serialization info object that contains all the relevant data.</param>
+            <param name="context">The serialization context.</param>
+        </member>
+        <member name="M:Ximura.Data.XmlContentBase.Load">
+            <summary>
+            This method resets the entity to it's default value.
+            </summary>
+            <returns>True is the entity is reset.</returns>
+        </member>
+        <member name="M:Ximura.Data.XmlContentBase.Load(System.Boolean)">
+            <summary>
+            This method resets the entity to it's default value.
+            </summary>
+            <param name="force">Set this to true if you wish to lose any data changes.</param>
+            <returns>True is the entity is reset.</returns>
+        </member>
+        <member name="M:Ximura.Data.XmlContentBase.Load(System.IO.Stream)">
+            <summary>
+            This method loads the dataset from a stream.
+            </summary>
+            <param name="strmData">The data stream to read.</param>
+            <returns>Returns the number of bytes read from the stream.</returns>
+        </member>
+        <member name="M:Ximura.Data.XmlContentBase.SchemaAdd(System.Xml.Schema.XmlSchemaSet)">
+            <summary>
+            This default method will add the schemas defined in the metadata, you should override this
+            method to add specific schemas not covered in the attributes.
+            </summary>
+            <param name="set">The schema set.</param>
+        </member>
+        <member name="F:Ximura.Data.XmlContentBase.attrSchemaPrimary">
+            <summary>
+            This is the Schema attribute.
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.XmlContentBase.attrDefaultData">
+            <summary>
+            This is the default data attribute.
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.XmlContentBase.attrsSchemaReference">
+            <summary>
+            This is the collection of reference schemas for the object.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.XmlContentBase.SetAttributes">
+            <summary>
+            This protected method sets the mapping attributes for the content.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.XmlContentBase.Reset">
+            <summary>
+            This method resets the data content.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.XmlContentBase.Dispose(System.Boolean)">
+            <summary>
+            This is the dispose override.
+            </summary>
+            <param name="disposing">True when this is called by the dispose method.</param>
+        </member>
+        <member name="M:Ximura.Data.XmlContentBase.ResetAutoLoadCheck">
+            <summary>
+            This method will autoload the content object based on the Default Data set in the 
+            attribute when the content is reset. If you want to change this behaviour, you can
+            override this method.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.XmlContentBase.DumpXML(System.String)">
+            <summary>
+            This method is used in debug to dump the internal contents of the xml object to a file
+            </summary>
+            <param name="filename">The filename to save the file to.</param>
+        </member>
+        <member name="M:Ximura.Data.XmlContentBase.XPScBuild">
+            <summary>
+            This method creates the XPath shorcut collection.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.XmlContentBase.XPScAdd(System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            This method adds the XPath shortcuts in to the collection. You should
+            override this method to add your own shorcuts.
+            </summary>
+            <param name="mappingShortcuts">The mapping shorcut collection.</param>
+        </member>
+        <member name="M:Ximura.Data.XmlContentBase.NamespaceManagerBuild">
+            <summary>
+            This method is called by the constructor, and is used to construct the default 
+            namespace manager.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.XmlContentBase.NamespaceManagerAdd(System.Xml.XmlNamespaceManager)">
+            <summary>
+            This method add the namespaces for the document. You can add custom namespaces by overriding 
+            this method.
+            </summary>
+            <param name="nsm">The namespace manager for the document.</param>
+        </member>
+        <member name="M:Ximura.Data.XmlContentBase.CreateFragment(Ximura.Data.XmlContentBase.CreateFragmentAction)">
+            <summary>
+            This method is used to create a specific element for the document.
+            </summary>
+            <param name="action">The action for the particular element.</param>
+            <returns>Returns a new element.</returns>
+        </member>
+        <member name="P:Ximura.Data.XmlContentBase.XmlDataDoc">
+            <summary>
+            This is the base XML data document.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.XmlContentBase.SchemaXmlReaderSettings">
+            <summary>
+            This is the XMLReader setting used when loading the XSD file. You should override this class
+            to add any specific namespace XSD files.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.XmlContentBase.NSM">
+            <summary>
+            This is the default namespace manager for the content.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.XmlContentBase.NamespaceDefault">
+            <summary>
+            This is the default namespace for the document.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.XmlContentBase.NamespaceDefaultShortName">
+            <summary>
+            This is the short name used in the namespace manager to refer to the root namespace.
+            </summary>
+        </member>
+        <member name="T:Ximura.Data.XmlContentBase.CreateFragmentAction">
+            <summary>
+            This delegate is used to provide a generic framework for creating elements.
+            </summary>
+            <param name="writer">The writer the new element will be written to.</param>
+        </member>
+        <member name="T:Ximura.Data.DataContent">
+            <summary>
+            This is the default data content object. A data content object 
+            differs from a content object as it is specifically designed to be loaded 
+            and saved from a database based on the ID and Version number.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.DataContent.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            This is the deserialization constructor. 
+            </summary>
+            <param name="info">The Serialization info object that contains all the relevant data.</param>
+            <param name="context">The serialization context.</param>
+        </member>
+        <member name="M:Ximura.Data.DataContent.OnDeserialization(System.Object)">
+            <summary>
+            This is deserialization callback method.
+            </summary>
+            <param name="sender">The sender.</param>
+        </member>
+        <member name="F:Ximura.Data.DataContent.evhOnRowChanging">
+            <summary>
+            This event is fired when a row is changing within a table.
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.DataContent.evhOnRowChanged">
+            <summary>
+            This event is fired when a row is changed in a table.
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.DataContent.evhOnRowDeleted">
+            <summary>
+            This event is fired when a row is deleted in a table.
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.DataContent.evhOnRowDeleting">
+            <summary>
+            This event is fired when a row is being deleted in a table.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.DataContent.SetTableShortcuts">
+            <summary>
+            This method sets the table shortcuts.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.DataContent.InitTableListeners">
+            <summary>
+            This method creates the DataTable event handlers
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.DataContent.attrsSummary">
+            <summary>
+            This is the Schema attribute.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.DataContent.SetAttributes">
+            <summary>
+            This protected method sets the mapping attributes for the content.
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.DataContent.mIsNewRecord">
+            <summary>
+            Property that defines whether the record set is a new record.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.DataContent.#ctor">
+            <summary>
+            This is the default constructor for the Content object.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.DataContent.#ctor(System.ComponentModel.IContainer)">
+            <summary>
+            This constructor is called by .NET when it added as new to a container.
+            </summary>
+            <param name="container">The container this component should be added to.</param>
+        </member>
+        <member name="M:Ximura.Data.DataContent.Reset">
+            <summary>
+            This method resets the data content.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.DataContent.Dispose(System.Boolean)">
+            <summary>
+            This is the dispose override.
+            </summary>
+            <param name="disposing">True when this is called by the dispose method.</param>
+        </member>
+        <member name="M:Ximura.Data.DataContent.GetDataSummary">
+            <summary>
+            This protected method will return a text summary of the data
+            if a stylesheet has been defined.
+            </summary>
+            <returns>
+            A string containing a text summary, or null if a stylesheet is
+            not defined.
+            </returns>
+        </member>
+        <member name="M:Ximura.Data.DataContent.MappingHelperObjectGet(System.String,System.String)">
+            <summary>
+            This method returns the field as an object.
+            </summary>
+            <param name="table">The table name.</param>
+            <param name="field">The field.</param>
+            <returns>Returns the object.</returns>
+        </member>
+        <member name="M:Ximura.Data.DataContent.MappingHelperObjectGet(System.String,System.String,System.Object)">
+            <summary>
+            This method returns the field as an object.
+            </summary>
+            <param name="table">The table name.</param>
+            <param name="field">The field.</param>
+            <param name="DBNullValue">The value to return if the field cannot be found.</param>
+            <returns>Returns the object or the null value if this cannot be found.</returns>
+        </member>
+        <member name="M:Ximura.Data.DataContent.MappingHelperObjectGet(System.Data.DataTable,System.String)">
+            <summary>
+            This method returns the field as an object.
+            </summary>
+            <param name="theTable">The table object.</param>
+            <param name="field">The field.</param>
+            <returns>Returns the object.</returns>
+        </member>
+        <member name="M:Ximura.Data.DataContent.MappingHelperObjectGet(System.Data.DataTable,System.String,System.Object)">
+            <summary>
+            This method returns the field as an object.
+            </summary>
+            <param name="theTable">The table object.</param>
+            <param name="field">The field.</param>
+            <param name="DBNullValue">The value to return if the field cannot be found.</param>
+            <returns>Returns the object or the null value if this cannot be found.</returns>
+        </member>
+        <member name="M:Ximura.Data.DataContent.MappingHelperObjectGet(System.Data.DataRow,System.String)">
+            <summary>
+            This method returns the field as an object.
+            </summary>
+            <param name="theRow">The row object.</param>
+            <param name="field">The field.</param>
+            <returns>Returns the object.</returns>
+        </member>
+        <member name="M:Ximura.Data.DataContent.MappingHelperObjectGet(System.Data.DataRow,System.String,System.Object)">
+            <summary>
+            This method returns the field as an object.
+            </summary>
+            <param name="theRow">The row object.</param>
+            <param name="field">The field.</param>
+            <param name="DBNullValue">The value to return if the field cannot be found.</param>
+            <returns>Returns the object or the null value if this cannot be found.</returns>
+        </member>
+        <member name="M:Ximura.Data.DataContent.MappingHelperObjectSet(System.String,System.String,System.Object)">
+            <summary>
+            This method sets the dataset field with the object.
+            </summary>
+            <param name="table">The table name.</param>
+            <param name="field">The field.</param>
+            <param name="value">The value to set.</param>
+        </member>
+        <member name="M:Ximura.Data.DataContent.MappingHelperObjectSet(System.Data.DataTable,System.String,System.Object)">
+            <summary>
+            This method sets the dataset field with the object.
+            </summary>
+            <param name="theTable">The DataTable object.</param>
+            <param name="field">The field.</param>
+            <param name="value">The value to set.</param>
+        </member>
+        <member name="M:Ximura.Data.DataContent.MappingHelperObjectSet(System.Data.DataRow,System.String,System.Object)">
+            <summary>
+            This method sets the dataset field with the object.
+            </summary>
+            <param name="theRow">The row object.</param>
+            <param name="field">The field.</param>
+            <param name="value">The value to set.</param>
+        </member>
+        <member name="M:Ximura.Data.DataContent.MappingHelperGuidGet(System.String,System.String)">
+            <summary>
+            This protected method gets a Guid grom a dataset record.
+            </summary>
+            <param name="table">The table.</param>
+            <param name="field">The field</param>
+            <returns>The guid value or Guid.Empty if not present.</returns>
+        </member>
+        <member name="M:Ximura.Data.DataContent.MappingHelperGuidSet(System.String,System.String,System.Guid)">
+            <summary>
+            This protected method sets a Guid in to a dataset record.
+            </summary>
+            <param name="table">The table.</param>
+            <param name="field">The field</param>
+            <param name="value">The guid value.</param>
+        </member>
+        <member name="M:Ximura.Data.DataContent.MappingHelperGet(Ximura.Data.XimuraDataContentBaseMappingAttribute)">
+            <summary>
+            This method returns the Guid value specified in the attribute.
+            </summary>
+            <param name="attr">The attribute.</param>
+            <returns>The Guid valu, or</returns>
+        </member>
+        <member name="M:Ximura.Data.DataContent.MappingHelperSet(Ximura.Data.XimuraDataContentBaseMappingAttribute,System.Guid)">
+            <summary>
+            This method is used to set the selected property within the dataset.
+            </summary>
+            <param name="attr">The attribute containing the db parameters</param>
+            <param name="value">The GUID value to set.</param>
+        </member>
+        <member name="M:Ximura.Data.DataContent.MappingHelperGet``1(System.String,System.String)">
+            <summary>
+            This method returns the field as an object.
+            </summary>
+            <param name="table">The table name.</param>
+            <param name="field">The field.</param>
+            <returns>Returns the object.</returns>
+        </member>
+        <member name="M:Ximura.Data.DataContent.MappingHelperGet``1(System.String,System.String,``0)">
+            <summary>
+            This method returns the field as an object.
+            </summary>
+            <param name="table">The table name.</param>
+            <param name="field">The field.</param>
+            <param name="DBNullValue">The value to return if the field cannot be found.</param>
+            <returns>Returns the object or the null value if this cannot be found.</returns>
+        </member>
+        <member name="M:Ximura.Data.DataContent.MappingHelperGet``1(System.Data.DataTable,System.String)">
+            <summary>
+            This method returns the field as an object.
+            </summary>
+            <param name="theTable">The table object.</param>
+            <param name="field">The field.</param>
+            <returns>Returns the object.</returns>
+        </member>
+        <member name="M:Ximura.Data.DataContent.MappingHelperGet``1(System.Data.DataTable,System.String,``0)">
+            <summary>
+            This method returns the field as an object.
+            </summary>
+            <param name="theTable">The table object.</param>
+            <param name="field">The field.</param>
+            <param name="DBNullValue">The value to return if the field cannot be found.</param>
+            <returns>Returns the object or the null value if this cannot be found.</returns>
+        </member>
+        <member name="M:Ximura.Data.DataContent.MappingHelperGet``1(System.Data.DataRow,System.String)">
+            <summary>
+            This method returns the field as an object.
+            </summary>
+            <param name="theRow">The row object.</param>
+            <param name="field">The field.</param>
+            <returns>Returns the object.</returns>
+        </member>
+        <member name="M:Ximura.Data.DataContent.MappingHelperGet``1(System.Data.DataRow,System.String,``0)">
+            <summary>
+            This method returns the field as an object.
+            </summary>
+            <param name="theRow">The row object.</param>
+            <param name="field">The field.</param>
+            <param name="DBNullValue">The value to return if the field cannot be found.</param>
+            <returns>Returns the object or the null value if this cannot be found.</returns>
+        </member>
+        <member name="F:Ximura.Data.DataContent.mSatelliteEntity">
+            <summary>
+            This boolean value identifies whether the content is chained to a parent dataset
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.DataContent.LoadFromParentEntityServer">
+            <summary>
+            This method is used to load the entity from the IXimuraDataEntityServer
+            contained in the current Site object.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ximura.Data.DataContent.LoadFromParentEntityServer(Ximura.Server.IXimuraDataEntityServer)">
+            <summary>
+            This method loads the entity from the parent server.
+            </summary>
+            <param name="parentDataServer"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ximura.Data.DataContent.GetList">
+            <summary>
+            This method gets the IList object for databinding
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ximura.Data.DataContent.Load(System.Data.DataSet)">
+            <summary>
+            This method loads the DataContent from a DataSet.
+            </summary>
+            <param name="data">The DataSet this content should hold.</param>
+        </member>
+        <member name="M:Ximura.Data.DataContent.Load(System.Data.DataSet,System.Boolean)">
+            <summary>
+            This method loads the DataContent from a DataSet.
+            </summary>
+            <param name="data">The DataSet this content should hold.</param>
+            <param name="replace">This method will replace the dataset.</param>
+        </member>
+        <member name="M:Ximura.Data.DataContent.Load(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            This method converts the byte buffer in to a dataset and loads it in to the object.
+            </summary>
+            <param name="buffer">The byte incoming buffer.</param>
+            <param name="offset">The offset.</param>
+            <param name="count">The number of bytes to read from the buffer.</param>
+            <returns>Returns the number of bytes read from the buffer.</returns>
+        </member>
+        <member name="M:Ximura.Data.DataContent.Load(System.Xml.XmlDataDocument,System.Boolean)">
+            <summary>
+            This method loads the DataContent from a DataSet.
+            </summary>
+            <param name="data">The DataSet this content should hold.</param>
+            <param name="replace">This method will replace the dataset.</param>
+        </member>
+        <member name="M:Ximura.Data.DataContent.InitializeDataset">
+            <summary>
+            This method is used to initialize the dataset with any 
+            predefined value for a new record.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.DataContent.ContentBody">
+            <summary>
+            This method returns the content body as an byte array blob.
+            </summary>
+        </member>
+        <member name="E:Ximura.Data.DataContent.DataChanged">
+            <summary>
+            This event will be fired when the data has changed.
+            </summary>
+        </member>
+        <member name="E:Ximura.Data.DataContent.DataChanging">
+            <summary>
+            This event is fired when data within the entity is changing.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.DataContent.LinkType">
+            <summary>
+            This is the link type.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.DataContent.LinkTypeIdentifier">
+            <summary>
+            This property identifies the specific object to link to, when the LinkType property
+            is set to Link.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.DataContent.SatelliteEntity">
+            <summary>
+            This property defines whether the content is a satellite entity
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.DataContent.ContainsListCollection">
+            <summary>
+            This property identifies whether the object supports the IList
+            interface for databinding
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.DataContent.DumpTables">
+            <summary>
+            This helper method dumps the tables and columns in the data set to a string.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Ximura.Data.DataContent.Dirty">
+            <summary>
+            This overriden method ties the dataset to the content state.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.DataContent.ID">
+            <summary>
+            This is the DataContent ID.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.DataContent.Version">
+            <summary>
+            This is the DataContent Version ID
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.DataContent.GetDataSet">
+            <summary>
+            This is the internal dataset for the binding
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.DataContent.mDataContentSet">
+            <summary>
+            This is the internal DataSet that hold the internal data for the 
+            DataContent object.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.DataContent.IsNewRecord">
+            <summary>
+            Returns true if this is a new record.
+            </summary>
+        </member>
+        <member name="T:Ximura.Data.IXimuraFormatter">
+            <summary>
+            This interface extends the standard formatter interface and adds the support for object pools.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.IXimuraFormatter.Deserialize(System.IO.Stream,Ximura.IXimuraPoolManager)">
+            <summary>
+            This method deserializes the object in the stream and returns the appropriate content object from the pool
+            provided. If the pool manager is null, then a new object is created.
+            </summary>
+            <param name="serializationStream">The stream to deserialize from.</param>
+            <param name="pMan">The pool manager to retrieve the new object. This can be null.</param>
+            <returns>Returns an object specified in the stream.</returns>
+        </member>
+        <member name="T:Ximura.Data.CRLFMatchCollectionState">
+            <summary>
+            This class matches on CRLF
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.MatchCollectionState`2.#ctor">
+            <summary>
+            The default constructor.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.MatchCollectionState`2.ResetMatchCounters">
+            <summary>
+            This method resets the match counter between calls to the MatchCollection method.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.MatchCollectionState`2.SlidingWindow">
+            <summary>
+            The sliding window queue.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.MatchCollectionState`2.IsTerminator">
+            <summary>
+            Indicates whether the match is a terminator. This additional functionality is needed for complex matches.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.MatchCollectionState`2.Status">
+            <summary>
+            Identifies when there is a match.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.MatchCollectionState`2.DebugTrace">
+            <summary>
+            Identifies when there is a match.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.MatchCollectionState`2.DebugTraceCollection">
+            <summary>
+            This collection should be used to debug the tract route for the collection.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Ximura.Data.MatchCollectionState`2.Start">
+            <summary>
+            Identifies the start of a match.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.MatchCollectionState`2.Length">
+            <summary>
+            Identifies the position in the data, including the terminator.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.MatchCollectionState`2.MatchPosition">
+            <summary>
+            This is the match position for the collection.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.MatchCollectionState`2.CurrentEnumerator">
+            <summary>
+            This method holds the current enumerator during a partial match
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.CRLFMatchCollectionState.#ctor">
+            <summary>
+            This is the default constructor.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.CRLFMatchCollectionState.#ctor(System.Boolean)">
+            <summary>
+            This is the extended constructor.
+            </summary>
+            <param name="boundary"></param>
+        </member>
+        <member name="M:Ximura.Data.CRLFMatchCollectionState.GetEnumerator">
+            <summary>
+            This method returns a new MimeMatchCollection enumerator.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Ximura.Data.CRLFMatchCollectionState.CRLFFoldingMatchCollection">
+            <summary>
+            The class contains the match terminators.
+            </summary>
+        </member>
+        <member name="T:Ximura.Data.MatchCollection`2">
+            <summary>
+            This structure is used to hold the match terminator collection.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.MatchCollection`2.#ctor(System.Collections.Generic.IEnumerator{Ximura.Data.MatchTerminator{`0,`1}})">
+            <summary>
+            This protected constructor initializes the collection.
+            </summary>
+            <param name="terminators">The terminators enumerator.</param>
+        </member>
+        <member name="M:Ximura.Data.MatchCollection`2.Dispose">
+            <summary>
+            This method disposes the collection.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.MatchCollection`2.MoveNext">
+            <summary>
+            This method moves the enumerator to the next position.
+            </summary>
+            <returns>Returns true if successful, or false if the end of the collection has been reached.</returns>
+        </member>
+        <member name="M:Ximura.Data.MatchCollection`2.Reset">
+            <summary>
+            This method resets the collection to before the first record.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.MatchCollection`2.Current">
+            <summary>
+            This property returns the current record.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.MatchCollection`2.Position">
+            <summary>
+            This is the current position in the match collection.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.MatchCollection`2.Item(System.Int32)">
+            <summary>
+            This method returns the specified item for the collection. You should override this indexer.
+            </summary>
+            <param name="index">The position index.</param>
+            <returns></returns>
+        </member>
+        <member name="P:Ximura.Data.MatchCollection`2.Count">
+            <summary>
+            This property returns the number of items in the collection. You should override this property.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.CRLFMatchCollectionState.CRLFFoldingMatchCollection.#ctor(System.Boolean)">
+            <summary>
+            This constructor initializes the collection with the boundary.
+            </summary>
+            <param name="boundary"></param>
+        </member>
+        <member name="M:Ximura.Data.CRLFMatchCollectionState.CRLFFoldingMatchCollection.Dispose(System.Boolean)">
+            <summary>
+            This method disposes the collection.
+            </summary>
+            <param name="disposing"></param>
+        </member>
+        <member name="P:Ximura.Data.CRLFMatchCollectionState.CRLFFoldingMatchCollection.Item(System.Int32)">
+            <summary>
+            This method returns the specified item for the collection. You should override this indexer.
+            </summary>
+            <param name="index">The position index.</param>
+            <returns></returns>
+        </member>
+        <member name="P:Ximura.Data.CRLFMatchCollectionState.CRLFFoldingMatchCollection.Count">
+            <summary>
+            This property returns the number of items in the collection. You should override this property.
+            </summary>
+        </member>
+        <member name="T:Ximura.Data.CRLFMatchCollectionState.CRLFTerminatorWithReset">
+            <summary>
+            This termination class specifically matches on CRLF and resets the match buffer when
+            a termination character has been found.
+            </summary>
+        </member>
+        <member name="T:Ximura.Data.MatchTerminator`2">
+            <summary>
+            This structure is used to hold the matching array.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.MatchTerminator`2.Match(System.Collections.Generic.IEnumerator{`0},System.Collections.Generic.Queue{`0},System.Int64)">
+            <summary>
+            The predicate used to match the source and the match collection. By the default the equals parameter is passed.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.MatchTerminator`2.Reset">
+            <summary>
+            This method resets the terminator to the beginning.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.MatchTerminator`2.Terminator">
+            <summary>
+            This is the current terminator.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.MatchTerminator`2.CurrentTerminator">
+            <summary>
+            This is the current terminator.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.MatchTerminator`2.CanScan">
+            <summary>
+            This property determines whether the terminator can scan through the source 
+            for a match.
+            </summary>
+        </member>
+        <member name="T:Ximura.Data.MessageLoadException">
+            <summary>
+            This exception is thrown should the message exceed the maximum permitted size.
+            </summary>
+        </member>
+        <member name="T:Ximura.Data.MessageException">
+            <summary>
+            This is the base exception for the Message class.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.MessageException.#ctor">
+            <summary>
+            Initializes a new instance of the XimuraException class.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.MessageException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the XimuraException class.
+            </summary>
+            <param name="message">The error message.</param>
+        </member>
+        <member name="M:Ximura.Data.MessageException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the XimuraException class.
+            </summary>
+            <param name="message">The error message.</param>
+            <param name="ex">The base exception.</param>
+        </member>
+        <member name="M:Ximura.Data.MessageException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            This exception is used for deserialization.
+            </summary>
+            <param name="info">The serialization info.</param>
+            <param name="context">The serialization context.</param>
+        </member>
+        <member name="M:Ximura.Data.MessageLoadException.#ctor">
+            <summary>
+            Initializes a new instance of the XimuraException class.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.MessageLoadException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the XimuraException class.
+            </summary>
+            <param name="message">The error message.</param>
+        </member>
+        <member name="M:Ximura.Data.MessageLoadException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the XimuraException class.
+            </summary>
+            <param name="message">The error message.</param>
+            <param name="ex">The base exception.</param>
+        </member>
+        <member name="M:Ximura.Data.MessageLoadException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            This exception is used for deserialization.
+            </summary>
+            <param name="info">The serialization info.</param>
+            <param name="context">The serialization context.</param>
+        </member>
+        <member name="T:Ximura.Data.XimuraDataContentIDMappingAttribute">
+            <summary>
+            The DataContentIDMappingAttribute is used to map the primary ID of the entity to the relevant field
+            and table in the DataContent collection.
+            </summary>
+        </member>
+        <member name="T:Ximura.Data.XimuraDataContentBaseMappingAttribute">
+            <summary>
+            XimuraDataContentBaseMappingAttribute is the astract class for the DataContent 
+            table mapping attributes.
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.XimuraDataContentBaseMappingAttribute.mTable">
+            <summary>
+            The table.
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.XimuraDataContentBaseMappingAttribute.mField">
+            <summary>
+            The field
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.XimuraDataContentBaseMappingAttribute.#ctor(System.String,System.String)">
+            <summary>
+            This is the primary constructor.
+            </summary>
+            <param name="table">The ID table.</param>
+            <param name="field">The ID field.</param>
+        </member>
+        <member name="P:Ximura.Data.XimuraDataContentBaseMappingAttribute.Table">
+            <summary>
+            This is the dataset table name.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.XimuraDataContentBaseMappingAttribute.Field">
+            <summary>
+            This is the table field.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.XimuraDataContentIDMappingAttribute.#ctor(System.String,System.String)">
+            <summary>
+            This is the primary constructor.
+            </summary>
+            <param name="table">The ID primary table.</param>
+            <param name="field">The ID field.</param>
+        </member>
+        <member name="P:Ximura.Data.XimuraDataContentIDMappingAttribute.listenEvents">
+            <summary>
+            This property determines whether the DataContent should signal
+            changes to this table.
+            </summary>
+        </member>
+        <member name="T:Ximura.Data.XimuraDataContentDefaultAttribute">
+            <summary>
+            This attribute is used to define the default content for DataContent.
+            </summary>
+        </member>
+        <member name="T:Ximura.Data.XimuraSchemaAttribute">
+            <summary>
+            This base class provides the base attribute functionality for Ximura Attributes that have to load
+            data from the assembly.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.XimuraSchemaAttribute.#ctor(System.String)">
+            <summary>
+            This is the default constructor.
+            </summary>
+            <param name="resPath">The resource path of the default data for the DataContent.</param>
+        </member>
+        <member name="P:Ximura.Data.XimuraSchemaAttribute.ResPath">
+            <summary>
+            This is the Uri of the corresponding internal resource for the external path.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.XimuraSchemaAttribute.ResPathData">
+            <summary>
+            This property resolves the embedded resource and returns it as a byte array.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.XimuraDataContentDefaultAttribute.#ctor(System.String)">
+            <summary>
+            This is the default constructor.
+            </summary>
+            <param name="resPath">The resource path of the default data for the DataContent.</param>
+        </member>
+        <member name="M:Ximura.Data.XimuraDataContentDefaultAttribute.#ctor(System.String,System.Boolean)">
+            <summary>
+            This is the default constructor.
+            </summary>
+            <param name="resPath">The resource path of the default data for the DataContent.</param>
+            <param name="autoLoad">This property specifies if the data should load the default data automatically
+            when the object is first created.</param>
+        </member>
+        <member name="P:Ximura.Data.XimuraDataContentDefaultAttribute.AutoLoad">
+            <summary>
+            This property informs the content on whether it should autoload the default content when the 
+            object is first created.
+            </summary>
+        </member>
+        <member name="T:Ximura.Data.XimuraContentSerializationAttribute">
+            <summary>
+            This attribute can be used to specify a specific formatter 
+            for a content class serialization.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.XimuraContentSerializationAttribute.#ctor(System.String)">
+            <summary>
+            This is the default constructor for the class.
+            </summary>
+            <param name="serializer">The serializer formatter.</param>
+        </member>
+        <member name="P:Ximura.Data.XimuraContentSerializationAttribute.FormatterName">
+            <summary>
+            This is the name of the formatter.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.XimuraContentSerializationAttribute.Formatter">
+            <summary>
+            This is the formatter for the specific attribute. This formatter
+            is taken from the flywight threadpool for formatters.
+            </summary>
+        </member>
+        <member name="T:Ximura.Data.FragmentTerminationType">
+            <summary>
+            This enumeration determines the termination style for the fragment.
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.FragmentTerminationType.ByteLength">
+            <summary>
+            The fragment has a fixed number of bytes.
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.FragmentTerminationType.Terminator">
+            <summary>
+            The fragment will terminate when the byte array end matches the termination array.
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.FragmentTerminationType.Custom">
+            <summary>
+            The fragment will terminate when the byte array end matches the delimiter structure.
+            </summary>
+        </member>
+        <member name="T:Ximura.Data.Serialization.ContentFormatterCapabilities">
+            <summary>
+            The ContentFormatterCapabilities is used to read and write the serialized 
+            data header.
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.Serialization.ContentFormatterCapabilities.cMaxHeaderLength">
+            <summary>
+            This is the max incoming length for variable byte arrays.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.Serialization.ContentFormatterCapabilities.#ctor">
+            <summary>
+            This is the default constructor.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.Serialization.ContentFormatterCapabilities.SetDefaultProperties">
+            <summary>
+            This method sets the formatter revision number.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.Serialization.ContentFormatterCapabilities.HeaderSetBits(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            This method sets the header bits.
+            </summary>
+            <param name="value">The value</param>
+            <param name="range">The range</param>
+            <param name="bitMarker">The begining bit marker.</param>
+        </member>
+        <member name="M:Ximura.Data.Serialization.ContentFormatterCapabilities.HeaderSetBit(System.Int32,System.Boolean)">
+            <summary>
+            This method sets the capability bit for the value.
+            </summary>
+            <param name="bit">The bit to set.</param>
+            <param name="value">The boolean value to set.</param>
+        </member>
+        <member name="M:Ximura.Data.Serialization.ContentFormatterCapabilities.HeaderGetBits(System.Int32,System.Int32)">
+            <summary>
+            The method gets a range of bytes from the header.
+            </summary>
+            <param name="range"></param>
+            <param name="bitMarker"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ximura.Data.Serialization.ContentFormatterCapabilities.HeaderGetBit(System.Int32)">
+            <summary>
+            This method gets the boolean value from the header bit.
+            </summary>
+            <param name="bit">The bit.</param>
+            <returns>Returns the boolean value for the bit.</returns>
+        </member>
+        <member name="M:Ximura.Data.Serialization.ContentFormatterCapabilities.Load(System.IO.Stream)">
+            <summary>
+            This method loads the header from the stream.
+            </summary>
+            <param name="inStream">The stream to read from.</param>
+        </member>
+        <member name="M:Ximura.Data.Serialization.ContentFormatterCapabilities.Output(System.IO.Stream,Ximura.Data.IXimuraContent,System.Runtime.Serialization.SerializationInfo)">
+            <summary>
+            This method outputs the header for the stream.
+            </summary>
+            <param name="outStream">The stream to write to.</param>
+            <param name="entity">The entity specified.</param>
+            <param name="info">The SerializationInfo object.</param>
+        </member>
+        <member name="M:Ximura.Data.Serialization.ContentFormatterCapabilities.SetContentHeaderProperties(Ximura.Data.IXimuraContent)">
+            <summary>
+            This method is used to set any specific header properties based on the entity type.
+            </summary>
+            <param name="entity">The entity being serialized.</param>
+        </member>
+        <member name="M:Ximura.Data.Serialization.ContentFormatterCapabilities.ContentDetailsWrite(Ximura.Data.IXimuraContent,System.Runtime.Serialization.SerializationInfo)">
+            <summary>
+            This method writes the content details from the serialization info in 
+            to the stream.
+            </summary>
+            <param name="entity">The entity.</param>
+            <param name="info">The serialization info.</param>
+        </member>
+        <member name="M:Ximura.Data.Serialization.ContentFormatterCapabilities.ContentDetailsRead">
+            <summary>
+            This method reads the content details from the stream.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.Serialization.ContentFormatterCapabilities.HeaderRead">
+            <summary>
+            This method reads the header from the stream.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.Serialization.ContentFormatterCapabilities.HeaderWrite">
+            <summary>
+            This method writes the header to the stream
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.Serialization.ContentFormatterCapabilities.ReadExtendedCapabilityBytes(System.Int32)">
+            <summary>
+            This method should be overriden to process any extra capability 
+            bytes specified in the header.
+            </summary>
+            <param name="extendedCapabilityBytes">The number of capability bytes to read</param>
+        </member>
+        <member name="P:Ximura.Data.Serialization.ContentFormatterCapabilities.Max">
+            <summary>
+            The maximum version value up to a maximum of 63.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.Serialization.ContentFormatterCapabilities.Min">
+            <summary>
+            The minimum version number, between 0 and 63.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.Serialization.ContentFormatterCapabilities.Revision">
+            <summary>
+            The revision number between 0 and 63.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.Serialization.ContentFormatterCapabilities.TypeID">
+            <summary>
+            The Type ID
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.Serialization.ContentFormatterCapabilities.ContentID">
+            <summary>
+            The Content ID
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.Serialization.ContentFormatterCapabilities.VersionID">
+            <summary>
+            The Version ID
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.Serialization.ContentFormatterCapabilities.ContentType">
+            <summary>
+            The content type specified.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.Serialization.ContentFormatterCapabilities.ContentBaseType">
+            <summary>
+            The content type specified.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.Serialization.ContentFormatterCapabilities.UTCWriteTime">
+            <summary>
+            This is the time the header was written to the stream.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.Serialization.ContentFormatterCapabilities.HeaderObjectName">
+            <summary>
+            This is the name of the object that created the header.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.Serialization.ContentFormatterCapabilities.SupportsBaseType">
+            <summary>
+            This method identifies whether the content supports a base type.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.Serialization.ContentFormatterCapabilities.AllowRelativeType">
+            <summary>
+            This specifies whether the deserializer can use the best match for creating
+            the object from the type.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.Serialization.ContentFormatterCapabilities.StreamCompressed">
+            <summary>
+            This property specifies that the following stream is compressed.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.Serialization.ContentFormatterCapabilities.HeaderName">
+            <summary>
+            This property indicates whether the object will write its name in the header.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.Serialization.ContentFormatterCapabilities.WriteDate">
+            <summary>
+            This property indicates whether the header will write the UTC date in the header
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.Serialization.ContentFormatterCapabilities.RWHelper">
+            <summary>
+            This is the read write helper for the stream.
+            </summary>
+        </member>
+        <member name="T:Ximura.Data.XimuraDataContentSchemaReferenceAttribute">
+            <summary>
+            This attribute is used to specify the path to embedded resources.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.XimuraDataContentSchemaReferenceAttribute.#ctor(System.String,System.String)">
+            <summary>
+            This is extended constructor that should be used when you want to 
+            provide a new record.
+            </summary>
+            <param name="uriPath">The schema name.</param>
+            <param name="resPath">The name of the default content.</param>
+        </member>
+        <member name="P:Ximura.Data.XimuraDataContentSchemaReferenceAttribute.UriPath">
+            <summary>
+            This is the Uri of the external path.
+            </summary>
+        </member>
+        <member name="T:Ximura.Data.ArrayHelper">
+            <summary>
+            This static class provides a number of extension method for array objects.
+            </summary>
+            <summary>
+            This static class provides a number of extension method for array objects.
+            </summary>
+            <summary>
+            This static class provides a number of extension method for array objects.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.ArrayHelper.MatchSequence``2(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1},Ximura.Data.MatchState{``0})">
+            <summary>
+            This method matches the sequence against the source array.
+            </summary>
+            <typeparam name="TSource">The source array type.</typeparam>
+            <typeparam name="TMatch">The match array type.</typeparam>
+            <param name="source">The source array.</param>
+            <param name="match">The source array.</param>
+            <param name="state">The current match state. This can be passed in when matching chucks of data from multiple source arrays.</param>
+            <returns>The outgoing match state. This will indicate whether the match was successful or partially successful, i.e. there
+            is a partial match at the end of the array that cannot be fully resolved.</returns>
+        </member>
+        <member name="M:Ximura.Data.ArrayHelper.MatchSequence``2(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1},System.Func{``0,``1,System.Boolean},Ximura.Data.MatchState{``0})">
+            <summary>
+            This method matches the sequence against the source array.
+            </summary>
+            <typeparam name="TSource">The source array type.</typeparam>
+            <typeparam name="TMatch">The match array type.</typeparam>
+            <param name="source">The source array.</param>
+            <param name="match">The source array.</param>
+            <param name="predicate">The prediciate used to match the source and match array elements.</param>
+            <param name="state">The current match state. This can be passed in when matching chucks of data from multiple source arrays.</param>
+            <returns>The outgoing match state. This will indicate whether the match was successful or partially successful, i.e. there
+            is a partial match at the end of the array that cannot be fully resolved.</returns>
+        </member>
+        <member name="M:Ximura.Data.ArrayHelper.ValidateSlidingWindow``2(Ximura.Data.MatchState{``0},System.Collections.Generic.IEnumerator{``1},System.Func{``0,``1,System.Boolean})">
+            <summary>
+            This method validates the sliding windows of previous records. This is needed because
+            there may be partial matches in the previous array records. This is especially important
+            when the match array is long.
+            </summary>
+            <typeparam name="TSource">The source array type.</typeparam>
+            <typeparam name="TMatch">The match array type.</typeparam>
+            <param name="state">The current match state.</param>
+            <param name="matchEnum">The match enumerator.</param>
+            <param name="predicate">The predicate used to validate the source and match items.</param>
+            <returns>The match position or 0 if there is no match.</returns>
+        </member>
+        <member name="M:Ximura.Data.ArrayHelper.SlidingWindowMatch``2(System.Func{``0,``1,System.Boolean},System.Collections.Generic.Queue{``0},System.Collections.Generic.IEnumerator{``1})">
+            <summary>
+            This method matches the sliding window with the match.
+            </summary>
+            <typeparam name="TSource">The source array type.</typeparam>
+            <typeparam name="TMatch">The match array type.</typeparam>
+            <param name="predicate">The predicate used to validate the source and match items.</param>
+            <param name="queue">The sliding window queue.</param>
+            <param name="matchEnum">The match enumerator.</param>
+            <returns>Returns true if there is a partial match.</returns>
+        </member>
+        <member name="M:Ximura.Data.ArrayHelper.GetEnumeratorAtPosition``1(System.Collections.Generic.IEnumerable{``0},System.Int32)">
+            <summary>
+            This method gets a enumerator for the IEnumerable object and moves it forward 
+            by the required number of places.
+            </summary>
+            <typeparam name="T">The enumeration type.</typeparam>
+            <param name="source">The boject source.</param>
+            <param name="pos">The number of positions to move forward.</param>
+            <returns>Returns the object or null if the method has moved passed the end of the collection.</returns>
+        </member>
+        <member name="M:Ximura.Data.ArrayHelper.Range``1(System.Collections.Generic.IList{``0},System.Int32,System.Int32)">
+            <summary>
+            This extension selects a range of array values based on the offset and the count value.
+            </summary>
+            <typeparam name="TSource">This extension method can be applied to any object that implements the IList interface.</typeparam>
+            <param name="source">The array source.</param>
+            <param name="offset">The offset value.</param>
+            <param name="count">The number of records to process.</param>
+            <returns>Returns a enumerable collection containing the records.</returns>
+        </member>
+        <member name="M:Ximura.Data.ArrayHelper.FindFirstPosition``1(System.Collections.Generic.IList{``0},System.Func{``0,System.Boolean})">
+            <summary>
+            This extension method will find the first position in the list based on the predicate.
+            </summary>
+            <typeparam name="TSource">The object type.</typeparam>
+            <param name="source">The array list.</param>
+            <param name="predicate">The match condition.</param>
+            <returns>Return the position in the list, or -1 if the predicate cannot be matched.</returns>
+        </member>
+        <member name="M:Ximura.Data.ArrayHelper.FindFirstPosition``1(System.Collections.Generic.IList{``0},System.Int32,System.Int32,System.Func{``0,System.Boolean})">
+            <summary>
+            This extension method will find the first position in the list based on the predicate.
+            </summary>
+            <typeparam name="TSource">The object type.</typeparam>
+            <param name="source">The array list.</param>
+            <param name="offset">The list offset.</param>
+            <param name="count">The number of items to process.</param>
+            <param name="predicate">The match condition.</param>
+            <returns>Return the position in the list, or -1 if the predicate cannot be matched.</returns>
+        </member>
+        <member name="T:Ximura.Data.XmlContent">
+            <summary>
+            The XMLContent object wraps basic persistence functionality around the XMl Data object.
+            </summary>
+            <summary>
+            The XMLContent object wraps basic persistence functionality around the XMl Data object.
+            </summary>
+            <summary>
+            The XMLContent object wraps basic persistence functionality around the XMl Data object.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.XmlContent.Load(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            This method converts the byte buffer in to a dataset and loads it in to the object.
+            </summary>
+            <param name="buffer">The byte incoming buffer.</param>
+            <param name="offset">The offset.</param>
+            <param name="count">The number of bytes to read from the buffer.</param>
+            <returns>Returns the number of bytes read from the buffer.</returns>
+        </member>
+        <member name="M:Ximura.Data.XmlContent.Load(System.Xml.XmlDocument,System.Boolean)">
+            <summary>
+            This method loads the DataContent from a DataSet.
+            </summary>
+            <param name="data">The DataSet this content should hold.</param>
+            <param name="replace">This method will replace the dataset.</param>
+        </member>
+        <member name="M:Ximura.Data.XmlContent.#ctor">
+            <summary>
+            This is the default constructor for the Content object.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.XmlContent.#ctor(System.ComponentModel.IContainer)">
+            <summary>
+            This constructor is called by .NET when it added as new to a container.
+            </summary>
+            <param name="container">The container this component should be added to.</param>
+        </member>
+        <member name="M:Ximura.Data.XmlContent.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            This is the deserialization constructor. 
+            </summary>
+            <param name="info">The Serialization info object that contains all the relevant data.</param>
+            <param name="context">The serialization context.</param>
+        </member>
+        <member name="M:Ximura.Data.XmlContent.OnDeserialization(System.Object)">
+            <summary>
+            This is deserialization callback method.
+            </summary>
+            <param name="sender">The sender.</param>
+        </member>
+        <member name="P:Ximura.Data.XmlContent.ContentBody">
+            <summary>
+            This method returns the content body as an byte array blob.
+            </summary>
+        </member>
+        <member name="T:Ximura.Data.DataContentDataChange">
+            <summary>
+            This delegate is used to signal a data change
+            </summary>
+        </member>
+        <member name="T:Ximura.Data.DataChangeEventArgs">
+            <summary>
+            DataChangedEventArgs is used to transmit data change details..
+            </summary>
+        </member>
+        <member name="T:Ximura.Data.MaxSizeMessageException">
+            <summary>
+            This exception is thrown should the message exceed the maximum permitted size.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.MaxSizeMessageException.#ctor">
+            <summary>
+            Initializes a new instance of the XimuraException class.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.MaxSizeMessageException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the XimuraException class.
+            </summary>
+            <param name="message">The error message.</param>
+        </member>
+        <member name="M:Ximura.Data.MaxSizeMessageException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the XimuraException class.
+            </summary>
+            <param name="message">The error message.</param>
+            <param name="ex">The base exception.</param>
+        </member>
+        <member name="M:Ximura.Data.MaxSizeMessageException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            This exception is used for deserialization.
+            </summary>
+            <param name="info">The serialization info.</param>
+            <param name="context">The serialization context.</param>
+        </member>
+        <member name="T:Ximura.Data.Linq.XContent">
+            <summary>
+            This is the base XML content class using the new .NET 3.5 Linq XML classes.
+            </summary>
+            <summary>
+            This is the base XML content class using the new .NET 3.5 Linq XML classes.
+            </summary>
+            <summary>
+            This is the base XML content class using the new .NET 3.5 Linq XML classes.
+            </summary>
+            <summary>
+            This is the base XML content class using the new .NET 3.5 Linq XML classes.
+            </summary>
+            <summary>
+            This is the base XML content class using the new .NET 3.5 Linq XML classes.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.Linq.XContent.#ctor">
+            <summary>
+            This is the default constructor for the Content object.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.Linq.XContent.#ctor(System.ComponentModel.IContainer)">
+            <summary>
+            This constructor is called by .NET when it added as new to a container.
+            </summary>
+            <param name="container">The container this component should be added to.</param>
+        </member>
+        <member name="M:Ximura.Data.Linq.XContent.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            This is the deserialization constructor. 
+            </summary>
+            <param name="info">The Serialization info object that contains all the relevant data.</param>
+            <param name="context">The serialization context.</param>
+        </member>
+        <member name="M:Ximura.Data.Linq.XContent.Reset">
+            <summary>
+            This method resets the XmlContent object to its initial state.
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.Linq.XContent.attrSchemaPrimary">
+            <summary>
+            This is the Schema attribute.
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.Linq.XContent.attrDefaultData">
+            <summary>
+            This is the default data attribute.
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.Linq.XContent.attrsSchemaReference">
+            <summary>
+            This is the collection of reference schemas for the object.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.Linq.XContent.SetAttributes">
+            <summary>
+            This protected method sets the mapping attributes for the content.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.Linq.XContent.DumpXML(System.String)">
+            <summary>
+            This method is used in debug to dump the internal contents of the xml object to a file
+            </summary>
+            <param name="filename">The filename to save the file to.</param>
+        </member>
+        <member name="M:Ximura.Data.Linq.XContent.XPScBuild">
+            <summary>
+            This method creates the XPath shorcut collection.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.Linq.XContent.XPScAdd(System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            This method adds the XPath shortcuts in to the collection. You should
+            override this method to add your own shorcuts.
+            </summary>
+            <param name="mappingShortcuts">The mapping shorcut collection.</param>
+        </member>
+        <member name="P:Ximura.Data.Linq.XContent.XDataDoc">
+            <summary>
+            This is the base XML data document.
+            </summary>
+        </member>
+        <member name="T:Ximura.Data.Serialization.ContentFormatter">
+            <summary>
+            Summary description for ContentFormatter.
+            </summary>
+        </member>
+        <member name="T:Ximura.Data.FormatterBase">
+            <summary>
+            FormatterBase is the base formatter class for Content based entities.
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.FormatterBase.myBinder">
+            <summary>
+            The Serialization binder.
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.FormatterBase.myContext">
+            <summary>
+            The default context which is set to persistence.
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.FormatterBase.mySurrogateSelector">
+            <summary>
+            The surrogate selector.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.FormatterBase.#ctor">
+            <summary>
+            The default constructor
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.FormatterBase.Serialize(System.IO.Stream,System.Object)">
+            <summary>
+            This method serializes the object to the stream.
+            </summary>
+            <param name="serializationStream">The stream to serialize the object to.</param>
+            <param name="graph">The object.</param>
+        </member>
+        <member name="M:Ximura.Data.FormatterBase.Deserialize(System.IO.Stream)">
+            <summary>
+            This method deserializes the stream and returns the object.
+            </summary>
+            <param name="serializationStream">The stream to deserialize.</param>
+            <returns>A object.</returns>
+        </member>
+        <member name="M:Ximura.Data.FormatterBase.Deserialize(System.IO.Stream,Ximura.IXimuraPoolManager)">
+            <summary>
+            This method deserializes the stream and returns the object from the pool if supplied.
+            </summary>
+            <param name="serializationStream">The stream to deserialize.</param>
+            <param name="pMan">The pool manager. This can be null, in which case, a new object will be created.</param>
+            <returns>The content object</returns>
+        </member>
+        <member name="P:Ximura.Data.FormatterBase.Binder">
+            <summary>
+            The binder object which is initially set to null.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.FormatterBase.Context">
+            <summary>
+            The streaming context. The initial value is set to persistence.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.FormatterBase.SurrogateSelector">
+            <summary>
+            The surrogate selector. This is initially set to null.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.Serialization.ContentFormatter.#ctor">
+            <summary>
+            The default constructor.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.Serialization.ContentFormatter.Serialize(System.IO.Stream,System.Object)">
+            <summary>
+            This method serializes the content to the stream.
+            </summary>
+            <param name="outStream">The stream.</param>
+            <param name="graph">The content.</param>
+        </member>
+        <member name="M:Ximura.Data.Serialization.ContentFormatter.Deserialize(System.IO.Stream)">
+            <summary>
+            This method deserializes the stream to a content object.
+            </summary>
+            <param name="inStream">The stream containing the data.</param>
+            <returns>The deserialized object.</returns>
+        </member>
+        <member name="M:Ximura.Data.Serialization.ContentFormatter.Deserialize(System.IO.Stream,Ximura.IXimuraPoolManager)">
+            <summary>
+            This method deserializes the stream to a content object.
+            </summary>
+            <param name="inStream">The stream containing the data.</param>
+            <param name="pMan">The pool manaer containing the required pool.</param>
+            <returns>The deserialized object.</returns>
+        </member>
+        <member name="M:Ximura.Data.Serialization.ContentFormatter.GetHeader">
+            <summary>
+            This method is used to get the header object which can 
+            parse or write to the stream.
+            </summary>
+            <returns>A header object.</returns>
+        </member>
+        <member name="M:Ximura.Data.Serialization.ContentFormatter.GetHeader(Ximura.Data.Content)">
+            <summary>
+            This method is used to get the header object which can 
+            parse or write to the stream.
+            </summary>
+            <param name="entity">The entity type.</param>
+            <returns>A header object.</returns>
+        </member>
+        <member name="M:Ximura.Data.Serialization.ContentFormatter.ContentSerializeInternal(Ximura.Data.Serialization.IXimuraContentFormatterCapabilities,Ximura.Data.Content,System.Runtime.Serialization.SerializationInfo)">
+            <summary>
+            This method serializes the serialization info.
+            </summary>
+            <param name="header">The header.</param>
+            <param name="entity">The entity.</param>
+            <param name="info">The serialization info.</param>
+        </member>
+        <member name="M:Ximura.Data.Serialization.ContentFormatter.ContentDeserializeInternal(Ximura.Data.Serialization.IXimuraContentFormatterCapabilities,Ximura.IXimuraPoolManager)">
+            <summary>
+            This method deserializes the stream in to a content object.
+            </summary>
+            <param name="header">The header</param>
+            <param name="pMan">The pool manaer containing the required pool.</param>
+            <returns>Returns a deserialized object.</returns>
+        </member>
+        <member name="M:Ximura.Data.Serialization.ContentFormatter.PrepareSerializationInfo(Ximura.Data.Serialization.IXimuraContentFormatterCapabilities,System.Type)">
+            <summary>
+            This method prepares the serialization info.
+            </summary>
+            <param name="header"></param>
+            <param name="contentType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ximura.Data.Serialization.ContentFormatter.WriteByteMarkers(System.IO.Stream)">
+            <summary>
+            This protected method writes the initial byte headers that identify the start
+            of the DataContent serialization stream.
+            </summary>
+            <param name="outStream"></param>
+        </member>
+        <member name="M:Ximura.Data.Serialization.ContentFormatter.VerifyByteMarkers(System.IO.Stream)">
+            <summary>
+            This method returns true if it has found the start of the serialization 
+            byte stream which is identified by the 2 bytes D8 B4. This method will
+            read 1 or 2 bytes from the stream, depending on whether the first byte
+            is equal to D8.
+            </summary>
+            <param name="inStream">The stream to read from.</param>
+            <returns>True if the two byte header marker has been found.</returns>
+        </member>
+        <member name="T:Ximura.Data.ContentLoadException">
+            <summary>
+            This exception is thrown should the message exceed the maximum permitted size.
+            </summary>
+        </member>
+        <member name="T:Ximura.Data.ContentException">
+            <summary>
+            This exception is thrown should the message exceed the maximum permitted size.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.ContentException.#ctor">
+            <summary>
+            Initializes a new instance of the XimuraException class.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.ContentException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the XimuraException class.
+            </summary>
+            <param name="message">The error message.</param>
+        </member>
+        <member name="M:Ximura.Data.ContentException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the XimuraException class.
+            </summary>
+            <param name="message">The error message.</param>
+            <param name="ex">The base exception.</param>
+        </member>
+        <member name="M:Ximura.Data.ContentException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            This exception is used for deserialization.
+            </summary>
+            <param name="info">The serialization info.</param>
+            <param name="context">The serialization context.</param>
+        </member>
+        <member name="M:Ximura.Data.ContentLoadException.#ctor">
+            <summary>
+            Initializes a new instance of the XimuraException class.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.ContentLoadException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the XimuraException class.
+            </summary>
+            <param name="message">The error message.</param>
+        </member>
+        <member name="M:Ximura.Data.ContentLoadException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the XimuraException class.
+            </summary>
+            <param name="message">The error message.</param>
+            <param name="ex">The base exception.</param>
+        </member>
+        <member name="M:Ximura.Data.ContentLoadException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            This exception is used for deserialization.
+            </summary>
+            <param name="info">The serialization info.</param>
+            <param name="context">The serialization context.</param>
+        </member>
+        <member name="T:Ximura.Data.XimuraDataContentSchemaAttribute">
+            <summary>
+            The DataContentSchema attribute is used to specify a data schema for 
+            design time integration.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.XimuraDataContentSchemaAttribute.#ctor(System.String,System.String)">
+            <summary>
+            This is extended constructor that should be used when you want to 
+            provide a new record.
+            </summary>
+            <param name="schemaName">The schema name.</param>
+            <param name="dataName">The name of the default content.</param>
+        </member>
+        <member name="T:Ximura.Data.Message">
+            <summary>
+            The message contect class is used to receive data using specific byte markers.
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.Message.mMessageParts">
+            <summary>
+            This collection holds the fragments for the message.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.Message.#ctor">
+            <summary>
+            The default constructor
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.Message.Reset">
+            <summary>
+            This is the reset method to set the content.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.Message.ReturnPoolableChildObjects">
+            <summary>
+            This method is called by the object reset. Any poolable child objects should be returned to the pool.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.Message.Close">
+            <summary>
+            Close returns this object to the pool. You should not reference this object after you have closed it.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.Message.CompletionCheck">
+            <summary>
+            This method should be called after each fragment is processed to
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.Message.FragmentReadNext">
+            <summary>
+            This method moves to the next fragment.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.Message.FragmentSetNext">
+            <summary>
+            This method returns a new fragment object for the type specified.
+            </summary>
+            <param name="fragmentType">The fragment type required.</param>
+            <returns>Returns the fragment object specified.</returns>
+        </member>
+        <member name="M:Ximura.Data.Message.FragmentSetNext(System.Type)">
+            <summary>
+            This method returns a new fragment object for the type specified.
+            </summary>
+            <param name="fragmentType">The fragment type required.</param>
+        </member>
+        <member name="M:Ximura.Data.Message.FragmentSetNext(System.Type,System.Int64)">
+            <summary>
+            This method returns a new fragment object for the type specified.
+            </summary>
+            <param name="fragmentType">The fragment type required.</param>
+            <param name="maxLength">The maximum permitted length for the fragment.</param>
+        </member>
+        <member name="M:Ximura.Data.Message.FragmentAddInternal(Ximura.Data.IXimuraMessage)">
+            <summary>
+            This method adds the fragment to the internal collection.
+            </summary>
+            <param name="fragment">The fragment to add to the collection.</param>
+        </member>
+        <member name="M:Ximura.Data.Message.Load(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            This method loads the message for read access.
+            </summary>
+            <param name="buffer">The buffer to load from.</param>
+            <param name="offset">The offset.</param>
+            <param name="count">The data length.</param>
+        </member>
+        <member name="M:Ximura.Data.Message.Load(System.Int64)">
+            <summary>
+            This load method creates an empty message ready for writing.
+            </summary>
+            <param name="maxSize">This is the maximum permitted size for the message.</param>
+        </member>
+        <member name="M:Ximura.Data.Message.EndInitCustom">
+            <summary>
+            This method builds the fragment collection.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.Message.FragmentCollectionComplete">
+            <summary>
+            This method is used to complete the header collection organization once the initialization phase has ended.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.Message.FragmentCollectionBuild">
+            <summary>
+            This method splits the instruction header in to its constituent parts.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.Message.FragmentCollectionBuild(System.Boolean)">
+            <summary>
+            This method splits the instruction header in to its constituent parts.
+            </summary>
+            <param name="force">Set this parameter to true if you wish to force a rebuild.</param>
+        </member>
+        <member name="P:Ximura.Data.Message.Length">
+            <summary>
+            This method returns the length of the current message.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.Message.FragmentCanReadNext">
+            <summary>
+            This method returns true
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.Message.FragmentReadPointer">
+            <summary>
+            This pointer sets the current fragment.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.Message.FragmentFirst">
+            <summary>
+            This is the first fragment.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.Message.FragmentCurrent">
+            <summary>
+            This is the last or current fragment.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.Message.FragmentHeaderInitialType">
+            <summary>
+            This property is the initial incoming fragment type.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.Message.Fragments">
+            <summary>
+            These are the fragments in the message.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.Message.DebugString">
+            <summary>
+            This override combines the base DebugStrings in to a common string to aid with debugging.
+            </summary>
+        </member>
+        <member name="T:Ximura.Data.MatchState`1">
+            <summary>
+            This class contains the match state.
+            </summary>
+            <typeparam name="TSource">The source type.</typeparam>
+        </member>
+        <member name="M:Ximura.Data.MatchState`1.#ctor">
+            <summary>
+            The default constructor.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.MatchState`1.#ctor(System.Int32,System.Int32)">
+            <summary>
+            The constructor.
+            </summary>
+            <param name="Position">The current position.</param>
+            <param name="CarryOver">The current carry over position.</param>
+        </member>
+        <member name="M:Ximura.Data.MatchState`1.SetMatch(System.Int32)">
+            <summary>
+            This method sets the match at the specific position.
+            </summary>
+            <param name="Position">The position in the source array.</param>
+        </member>
+        <member name="M:Ximura.Data.MatchState`1.SetPartialMatch(System.Int32,System.Int32)">
+            <summary>
+            This method sets a partial match.
+            </summary>
+            <param name="Position">The position in the source array.</param>
+            <param name="CarryOver">The carry over position.</param>
+        </member>
+        <member name="P:Ximura.Data.MatchState`1.SlidingWindow">
+            <summary>
+            The sliding window queue.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.MatchState`1.MatchPosition">
+            <summary>
+            The match position in the source array
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.MatchState`1.Position">
+            <summary>
+            The match position in the source array
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.MatchState`1.Length">
+            <summary>
+            The length of the match. This is needed because some matches are of a variable length.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.MatchState`1.CarryOver">
+            <summary>
+            The number of carry over position in the match array.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.MatchState`1.MultipartMatch">
+            <summary>
+            The multipart match informs the routine that this is only part of a maultiple match.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.MatchState`1.Success">
+            <summary>
+            Indicates whether the match is a success.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.MatchState`1.IsTerminator">
+            <summary>
+            Indicates whether the match is a terminator. This additional functionality is needed for complex matches.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.MatchState`1.IsPartialMatch">
+            <summary>
+            Indicates whether we are currently processing a partial match.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.MatchState`1.IsMatch">
+            <summary>
+            Identifies when there is a match.
+            </summary>
+        </member>
+        <member name="T:Ximura.Data.MessageTerminatorBase">
+            <summary>
+            This is base class for message termination. This class is used to provide custom termination logic for messages
+            that use specific characters to signal completion when reading from a stream.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.MessageTerminatorBase.#ctor">
+            <summary>
+            The default constructor
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.MessageTerminatorBase.Reset">
+            <summary>
+            This method resets the terminator to its original values
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.MessageTerminatorBase.ValidateBoundaryPartCondition(System.Byte[],System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            ValidateBoundaryPartCondition is used to check that the boundary condition is valid based on the current buffer.
+            </summary>
+            <param name="buffer">The buffer.</param>
+            <param name="offset">The offset.</param>
+            <param name="count">The count.</param>
+            <param name="carryOver">The carry over bytes.</param>
+            <param name="bytesRead">The bytes read.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ximura.Data.MessageTerminatorBase.TerminatorHolderGetFirst">
+            <summary>
+            This method returns the first terminator. This will reset the terminator count to 0 and then call TerminatorHolderGetCurrent().
+            </summary>
+            <returns>Returns a TerminatorHolder structure.</returns>
+        </member>
+        <member name="M:Ximura.Data.MessageTerminatorBase.TerminatorHolderGetCurrent">
+            <summary>
+            This method returns the current terminator. You should override this method.
+            </summary>
+            <returns>Returns a TerminatorHolder structure.</returns>
+        </member>
+        <member name="M:Ximura.Data.MessageTerminatorBase.TerminatorHolderGetNext">
+            <summary>
+            This method returns the next terminator in the chain. If there is only one terminator, this method
+            should return null.
+            </summary>
+            <returns>Returns a TerminatorHolder structure or null.</returns>
+        </member>
+        <member name="M:Ximura.Data.MessageTerminatorBase.Match(System.Byte[],System.Int32,System.Int32,System.Int32@,System.Nullable{System.Int64}@)">
+            <summary>
+            This method scans the incoming byte array and returns true when the specific termination characteristics have been met.
+            </summary>
+            <param name="buffer">The incoming buffer.</param>
+            <param name="offset">The buffer offset.</param>
+            <param name="count">The available bytes.</param>
+            <param name="bytesToRead">Returns the numbers of bytes that should be read in to the fragment.</param>
+            <returns>Returns true if the termination characteristics have been met.</returns>
+        </member>
+        <member name="M:Ximura.Data.MessageTerminatorBase.IndexOf(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            This method searches the buffer for the first instance of the value byte.
+            </summary>
+            <param name="buffer">The buffer to search.</param>
+            <param name="offset">The buffer offset.</param>
+            <param name="count">The number of bytes to search.</param>
+            <param name="value">The value of the byte to search for.</param>
+            <returns>The position of the byte in the buffer, or -1 if the byte cannot be found.</returns>
+        </member>
+        <member name="M:Ximura.Data.MessageTerminatorBase.MatchTerminator(System.Byte[],System.Int32,System.Int32,System.Int32,System.Int32@,System.Int32@,System.Boolean@)">
+            <summary>
+            This method matches a the teminator in the byte buffer provided.
+            </summary>
+            <param name="buffer">The byte buffer.</param>
+            <param name="offset">The offset position in the byte buffer that the search should begin.</param>
+            <param name="count">The number of bytes in the buffer to search.</param>
+            <param name="terminatorOffset">The offset parameter within the terminator.</param>
+            <param name="carryOver">The carry over value. This is needed when there is a partial match to
+            the terminator at the end of the byte buffer, it will be passed as the terminatorOffset when the 
+            next set of data is received from the data stream.</param>
+            <param name="bytesRead">This is the number of bytes to be read from the buffer.</param>
+            <returns>Returns true if there is a full match, or true along with a carryOver value greater than 
+            0 when there is a partial match at the end of the byte buffer.</returns>
+        </member>
+        <member name="P:Ximura.Data.MessageTerminatorBase.CurrentSection">
+            <summary>
+            This property identifies the current match section.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.MessageTerminatorBase.Length">
+            <summary>
+            This property shows the number of bytes read in the stream.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.MessageTerminatorBase.Initialized">
+            <summary>
+            This property identifies whether the terminator has been initialized with the boundary.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.MessageTerminatorBase.CarryOver">
+            <summary>
+            This is carry-over value. This value is used to set the current position in the terminator. This is needed because
+            terminators can be split across multiple writes. 
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.MessageTerminatorBase.BoundaryPartCondition">
+            <summary>
+            This is carry-over value. This value is used to set the current position in the terminator. This is needed because
+            terminators can be split across multiple writes. 
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.MessageTerminatorBase.IsTerminator">
+            <summary>
+            This property is set to true whenever the byte array has reached predetermined termination characteristics.
+            These characteristics will differ depending on the termination type. 
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.MessageTerminatorBase.Matched">
+            <summary>
+            This property indicates when the termination character has been matched.
+            </summary>
+        </member>
+        <member name="T:Ximura.Data.MessageTerminatorBase.TerminatorHolderMatchType">
+            <summary>
+            This enumeration specifies the match type.
+            </summary>
+        </member>
+        <member name="T:Ximura.Data.MessageTerminatorBase.TerminatorHolderActionType">
+            <summary>
+            This enumeration specifies the action type.
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.MessageTerminatorBase.TerminatorHolderActionType.Termination">
+            <summary>
+            This option specifies that the incoming byte array should be matched in the same order as the terminator.
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.MessageTerminatorBase.TerminatorHolderActionType.Exception">
+            <summary>
+            This option specifies that the incoming byte array can be matched with any character that appears in the array and
+            that signals a continuation.
+            </summary>
+        </member>
+        <member name="T:Ximura.Data.MessageTerminatorBase.TerminatorHolder">
+            <summary>
+            This structure is used to hold the matching array.
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.MessageTerminatorBase.TerminatorHolder.CRLF">
+            <summary>
+            This is the default CRLF match.
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.MessageTerminatorBase.TerminatorHolder.LWSPEx">
+            <summary>
+            This is the default optional whitespace.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.MessageTerminatorBase.TerminatorHolder.#cctor">
+            <summary>
+            This is the static constructor.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.MessageTerminatorBase.TerminatorHolder.Terminator">
+            <summary>
+            The terminator byte array.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.MessageTerminatorBase.TerminatorHolder.MatchType">
+            <summary>
+            The match type.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.MessageTerminatorBase.TerminatorHolder.ActionType">
+            <summary>
+            The action type.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.MessageGenericTerminatorBase`1.#ctor">
+            <summary>
+            The default constructor
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.MessageGenericTerminatorBase`1.Reset">
+            <summary>
+            This method resets the state.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.MessageGenericTerminatorBase`1.Match(System.Byte[],System.Int32,System.Int32,System.Int32@,System.Nullable{System.Int64}@)">
+            <summary>
+            This is the match method. This method maps the incoming buffer to the match parameters.
+            </summary>
+            <param name="buffer">The byte buffer.</param>
+            <param name="offset">The byte offset/</param>
+            <param name="count">The number of bytes that can be read.</param>
+            <param name="length">The length of the bytes read.</param>
+            <returns>Returns true if a match has been found.</returns>
+        </member>
+        <member name="P:Ximura.Data.MessageGenericTerminatorBase`1.Initialized">
+            <summary>
+            This property identifies whether the terminator has been initialized with the boundary.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.MessageGenericTerminatorBase`1.IsTerminator">
+            <summary>
+            Returns true if the fragment is a termination setting.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.MessageGenericTerminatorBase`1.CarryOver">
+            <summary>
+            The number of carry over bytes in the buffer.
+            </summary>
+        </member>
+        <member name="T:Ximura.Data.XimuraDataContentVersionMappingAttribute">
+            <summary>
+            The XimuraDataContentVersionMappingAttribute is used to map the version ID of the entity 
+            to the relevant field and table in the DataContent collection.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.XimuraDataContentVersionMappingAttribute.#ctor(System.String,System.String)">
+            <summary>
+            This is the primary constructor.
+            </summary>
+            <param name="table">The Version ID primary table.</param>
+            <param name="field">The Version ID field.</param>
+        </member>
+        <member name="T:Ximura.Data.XimuraCore">
+            <summary>
+            The ximura core content has the necessary overrides to automatically implement
+            the ximura:entity namespace overrides for the TypeID, ID and Version attributes.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.XimuraCore.#ctor">
+            <summary>
+            The default constructor
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.XimuraCore.#ctor(System.ComponentModel.IContainer)">
+            <summary>
+            This constructor is called by .NET when it added as new to a container.
+            </summary>
+            <param name="container">The container this component should be added to.</param>
+        </member>
+        <member name="M:Ximura.Data.XimuraCore.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            This is the deserialization constructor. 
+            </summary>
+            <param name="info">The Serialization info object that contains all the relevant data.</param>
+            <param name="context">The serialization context.</param>
+        </member>
+        <member name="M:Ximura.Data.XimuraCore.NamespaceManagerAdd(System.Xml.XmlNamespaceManager)">
+            <summary>
+            This override adds the ximura namespace to the default Namespace manager.
+            </summary>
+            <param name="nsm">The system default namespace manager.</param>
+        </member>
+        <member name="M:Ximura.Data.XimuraCore.EntityNodeCreate(System.Guid,System.Guid,System.Guid)">
+            <summary>
+            This method creates the entity node. You should override this method if want to alter the behaviour.
+            </summary>
+            <param name="tid">The type id.</param>
+            <param name="cid">The content id.</param>
+            <param name="vid">The version id.</param>
+        </member>
+        <member name="P:Ximura.Data.XimuraCore.TypeID">
+            <summary>
+            This is the TypeID of the entity.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.XimuraCore.ID">
+            <summary>
+            This is the ID of the entity.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.XimuraCore.Version">
+            <summary>
+            This is the version of the entity.
+            </summary>
+        </member>
+        <member name="T:Ximura.Data.Serialization.ContentSerializationReaderWriter">
+            <summary>
+            Summary description for BinaryReaderWriter.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.Serialization.ContentSerializationReaderWriter.Dispose(System.Boolean)">
+            <summary>
+            This is the dispose constructor.
+            </summary>
+            <param name="disposing"></param>
+        </member>
+        <member name="M:Ximura.Data.Serialization.ContentSerializationReaderWriter.SetEncoding">
+            <summary>
+            This method sets the default string encoding for the header which is UTF8.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.Serialization.ContentSerializationReaderWriter.FillBuffer(System.IO.Stream,System.Int32)">
+            <summary>
+            This method fills the buffer with the required number of bytes. 
+            The default buffer will be used.
+            </summary>
+            <param name="inStream">The stream.</param>
+            <param name="numBytes">The number of bytes.</param>
+        </member>
+        <member name="M:Ximura.Data.Serialization.ContentSerializationReaderWriter.FillBuffer(System.IO.Stream,System.Int32,System.Byte[])">
+            <summary>
+            This method fills the buffer with the required number of bytes,
+            </summary>
+            <param name="inStream">The stream.</param>
+            <param name="numBytes">The number of bytes.</param>
+            <param name="buffer">The buffer to use.</param>
+        </member>
+        <member name="M:Ximura.Data.Serialization.ContentSerializationReaderWriter.Close">
+            <summary>
+            This method closes the object.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.Serialization.ContentSerializationReaderWriter.Flush">
+            <summary>
+            This method flushes the stream.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.Serialization.ContentSerializationReaderWriter.BaseStream">
+            <summary>
+            This is the base stream that will be used when a stream is not specified.
+            </summary>
+        </member>
+        <member name="T:Ximura.Data.XimuraEntityType">
+            <summary>
+            This enumeration specifies the type of content.
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.XimuraEntityType.Entity">
+            <summary>
+            The entity is full content.
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.XimuraEntityType.EntityFragment">
+            <summary>
+            The entity is partial content.
+            </summary>
+        </member>
+        <member name="T:Ximura.Data.XimuraContentIDAttribute">
+            <summary>
+            The XimuraContentTypeID attribute uniquely identifies a content type. This is useful
+            as it allows the Ximura to identify different content implementations within the system.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.XimuraContentIDAttribute.#ctor(System.String)">
+            <summary>
+            The attribute constructor.
+            </summary>
+            <param name="ContentID">The content GUID string.</param>
+        </member>
+        <member name="M:Ximura.Data.XimuraContentIDAttribute.#ctor(System.String,System.String)">
+            <summary>
+            The attribute constructor.
+            </summary>
+            <param name="ContentID">The content GUID string.</param>
+            <param name="ContentDescription">The content description.</param>
+        </member>
+        <member name="M:Ximura.Data.XimuraContentIDAttribute.#ctor(System.String,Ximura.Data.XimuraEntityType)">
+            <summary>
+            The attribute constructor.
+            </summary>
+            <param name="ContentID">The content GUID string.</param>
+            <param name="entityType">The entity type. This specifies whether the content is an
+            entity in its own right, or just a fragment of a bigger entity. This is useful for caching
+            purposes.</param>
+        </member>
+        <member name="M:Ximura.Data.XimuraContentIDAttribute.#ctor(System.String,System.String,Ximura.Data.XimuraEntityType)">
+            <summary>
+            The attribute constructor.
+            </summary>
+            <param name="ContentID">The content GUID string.</param>
+            <param name="ContentDescription">The content description.</param>
+            <param name="entityType">The entity type. This specifies whether the content is an
+            entity in its own right, or just a fragment of a bigger entity. This is useful for caching
+            purposes.</param>
+        </member>
+        <member name="P:Ximura.Data.XimuraContentIDAttribute.ID">
+            <summary>
+            This is the ID of the content.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.XimuraContentIDAttribute.Description">
+            <summary>
+            This is the description fo the content type. This description may be output during debugging.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.XimuraContentIDAttribute.EntityType">
+            <summary>
+            This is the content type of
+            </summary>
+        </member>
+        <member name="T:Ximura.Data.AtomTextType">
+            <summary>
+            This enumeration defines the type of text to be written.
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.AtomTextType.Text">
+            <summary>
+            Plain text, xml encoded.
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.AtomTextType.Html">
+            <summary>
+            HTML, xml encoded.
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.AtomTextType.Xhtml">
+            <summary>
+            Well formed XHTML.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:Ximura.Data.AtomBase" -->
+        <member name="M:Ximura.Data.AtomBase.#ctor">
+            <summary>
+            The default constructor
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.AtomBase.#ctor(System.ComponentModel.IContainer)">
+            <summary>
+            This constructor is called by .NET when it added as new to a container.
+            </summary>
+            <param name="container">The container this component should be added to.</param>
+        </member>
+        <member name="M:Ximura.Data.AtomBase.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            This is the deserialization constructor. 
+            </summary>
+            <param name="info">The Serialization info object that contains all the relevant data.</param>
+            <param name="context">The serialization context.</param>
+        </member>
+        <member name="M:Ximura.Data.AtomBase.AtomConstructAdd(System.String,System.Boolean,Ximura.Data.XmlContentBase.CreateFragmentAction)">
+            <summary>
+            This method adds a custom action to the entry documents.
+            </summary>
+            <param name="xPath">The xpath of the reference node.</param>
+            <param name="append">This boolean property determines whether the node should be appended or replaced.</param>
+            <param name="action">The action delegate that writes the node XML.</param>
+            <returns>Returns true if the node is created successfully.</returns>
+        </member>
+        <member name="M:Ximura.Data.AtomBase.UriConstructWrite(System.Xml.XmlWriter,System.String,System.Uri,System.String,System.String)">
+             <summary>
+             
+             </summary>
+             <param name="writer"></param>
+             <param name="text"></param>
+             <param name="uri"></param>
+             <param name="version"></param>
+             <value>
+            atomGenerator = element atom:generator {
+               atomCommonAttributes,
+               attribute uri { atomUri }?,
+               attribute version { text }?,
+               text
+            }
+             </value>
+        </member>
+        <member name="M:Ximura.Data.AtomBase.GeneratorWrite(System.Xml.XmlWriter,System.String,System.Uri,System.String,System.String,System.String)">
+             <summary>
+             
+             </summary>
+             <param name="writer"></param>
+             <param name="text"></param>
+             <param name="uri"></param>
+             <param name="version"></param>
+             <value>
+            atomGenerator = element atom:generator {
+               atomCommonAttributes,
+               attribute uri { atomUri }?,
+               attribute version { text }?,
+               text
+            }
+             </value>
+        </member>
+        <member name="M:Ximura.Data.AtomBase.CategoryWrite(System.Xml.XmlWriter,System.String,System.Uri,System.String,System.String,System.String)">
+             <summary>
+             
+             </summary>
+             <param name="writer"></param>
+             <param name="term"></param>
+             <param name="scheme"></param>
+             <param name="label"></param>
+             <param name="baseUri"></param>
+             <param name="lang"></param>
+             <remarks>
+            atomCategory =
+               element atom:category {
+                  atomCommonAttributes,
+                  attribute term { text },
+                  attribute scheme { atomUri }?,
+                  attribute label { text }?,
+                  undefinedContent
+               }
+             </remarks>
+        </member>
+        <member name="M:Ximura.Data.AtomBase.LinkWrite(System.Xml.XmlWriter,System.Uri,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="writer"></param>
+            <param name="href"></param>
+            <param name="rel"></param>
+            <param name="type"></param>
+            <param name="hreflang"></param>
+            <param name="title"></param>
+            <param name="length"></param>
+            <param name="baseUri"></param>
+            <param name="lang"></param>
+            <remarks>
+            atomLink =
+              element atom:link {
+                 atomCommonAttributes,
+                 attribute href { atomUri },
+                 attribute rel { atomNCName | atomUri }?,
+                 attribute type { atomMediaType }?,
+                 attribute hreflang { atomLanguageTag }?,
+                 attribute title { text }?,
+                 attribute length { text }?,
+                 undefinedContent
+              }
+            </remarks>
+        </member>
+        <member name="M:Ximura.Data.AtomBase.TextConstructWrite(System.Xml.XmlWriter,System.String,Ximura.Data.AtomTextType,System.String,System.String,System.String)">
+             <summary>
+             
+             </summary>
+             <param name="writer"></param>
+             <param name="elementName"></param>
+             <param name="type"></param>
+             <param name="text"></param>
+             <param name="baseUri"></param>
+             <param name="lang"></param>
+             <remarks>
+             atomPlainTextConstruct =
+               atomCommonAttributes,
+               attribute type { "text" | "html" }?,
+               text
+            
+             atomXHTMLTextConstruct =
+               atomCommonAttributes,
+               attribute type { "xhtml" },
+               xhtmlDiv
+            
+             atomTextConstruct = atomPlainTextConstruct | atomXHTMLTextConstruct
+             </remarks>
+        </member>
+        <member name="M:Ximura.Data.AtomBase.DateConstructWrite(System.Xml.XmlWriter,System.String,System.DateTime,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="writer"></param>
+            <param name="identifier"></param>
+            <param name="time"></param>
+            <param name="baseUri"></param>
+            <param name="lang"></param>
+            <remarks>
+            atomDateConstruct =
+              atomCommonAttributes,
+              xsd:dateTime
+            </remarks>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Ximura.Data.AtomBase.PersonConstructWrite(System.Xml.XmlWriter,System.String,System.String,System.Uri,System.Net.Mail.MailAddress,System.String,System.String)" -->
+        <member name="M:Ximura.Data.AtomBase.CommonAttributesWrite(System.Xml.XmlWriter,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="writer"></param>
+            <param name="baseUri"></param>
+            <param name="lang"></param>
+            <remarks>
+            atomCommonAttributes =
+              attribute xml:base { atomUri }?,
+              attribute xml:lang { atomLanguageTag }?,
+              undefinedAttribute*
+            </remarks>
+        </member>
+        <member name="P:Ximura.Data.AtomBase.AtomXmlLang">
+            <summary>
+            This property sets the base language declaration for the atom entity.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.AtomBase.AtomXmlBase">
+            <summary>
+            This property sets the base uri declaration for the atom entity.
+            </summary>
+        </member>
+        <member name="T:Ximura.Data.MessageCRLFFragment`1">
+            <summary>
+            This is the base generic CRLF fragment. You can set the folding characteristics by setting the 
+            generic term parameter to either TerminatorCRLF or TerminatorCRLFNoFolding.
+            </summary>
+            <typeparam name="TERM"></typeparam>
+        </member>
+        <member name="M:Ximura.Data.MessageCRLFFragment`1.#ctor">
+            <summary>
+            The default constructor
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.MessageCRLFFragment`1.Reset">
+            <summary>
+            This override resets the default encoding.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.MessageCRLFFragment`1.DataString">
+            <summary>
+            This is the string representation of the data using the default encoding.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.MessageCRLFFragment`1.DefaultEncoding">
+            <summary>
+            This is the default encoding for the message
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.IXimuraHeaderFragment.Field">
+            <summary>
+            This property contains the field name.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.IXimuraHeaderFragment.FieldData">
+            <summary>
+            This property contains the field data.
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.HeaderFragment`1.mField">
+            <summary>
+            This property contains the field name.
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.HeaderFragment`1.mFieldData">
+            <summary>
+            This property contains the field data.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.HeaderFragment`1.#ctor">
+            <summary>
+            The default constructor
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.HeaderFragment`1.Reset">
+            <summary>
+            This method resets the data.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.HeaderFragment`1.MessagePartsBuild">
+            <summary>
+            This method breaks the DataString in to its constituent parts.
+            </summary>
+            <param name="force"></param>
+        </member>
+        <member name="M:Ximura.Data.HeaderFragment`1.EndInitCustom">
+            <summary>
+            This override sets the DataString at the end of the message initialization.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.HeaderFragment`1.Field">
+            <summary>
+            This property contains the field name.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.HeaderFragment`1.FieldData">
+            <summary>
+            This property contains the field data.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.HeaderFragment.#ctor">
+            <summary>
+            The default constructor
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.HeaderFragmentMultiPart.#ctor">
+            <summary>
+            The default constructor
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.HeaderFragmentMultiPart.Reset">
+            <summary>
+            This method resets the data.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.HeaderFragmentMultiPart.MessagePartsBuild">
+            <summary>
+            This method breaks the DataString in to its constituent parts.
+            </summary>
+            <param name="force"></param>
+        </member>
+        <member name="M:Ximura.Data.HeaderFragmentMultiPart.EndInitCustom">
+            <summary>
+            This override sets the DataString at the end of the message initialization.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.HeaderFragmentMultiPart.AddMultipart(System.String,System.String)">
+            <summary>
+            This method will add a key-value pair to the multipart values.
+            </summary>
+            <param name="key"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Ximura.Data.ContentXsdResolver.GetResolver(System.Type)">
+            <summary>
+            This is the factory constructor for the resolver.
+            </summary>
+            <param name="dataContentType">The object type to resolve.</param>
+            <returns>Returns the resolver containing the object cache.</returns>
+        </member>
+        <member name="M:Ximura.Data.ContentXsdResolver.ResolveEmbeddedResourceToStream(System.Uri,System.Type)">
+            <summary>
+            This static method resolves an internal resource and returns it as a string.
+            </summary>
+            <param name="ResourceID">The resource identifier.</param>
+            <returns>Returns a stream or null if the stream cannot be resolved.</returns>
+        </member>
+        <member name="F:Ximura.Data.ContentXsdResolver.attrSchemaPrimary">
+            <summary>
+            This is the Schema attribute.
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.ContentXsdResolver.attrsSchemaReference">
+            <summary>
+            This is the collection of reference schemas for the object.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.ContentXsdResolver.#ctor(System.Type)">
+            <summary>
+            This class is used to resolve the system resources.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.ContentXsdResolver.DataContentType">
+            <summary>
+            This is the resolver base object type.
+            </summary>
+        </member>
+        <member name="T:Ximura.Data.Serialization.ContentFormatterCapabilitiesException">
+            <summary>
+            Summary description for ISOMessageException.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.Serialization.ContentFormatterCapabilitiesException.#ctor">
+            <summary>
+            Initializes a new instance of the ISOMessageException class.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.Serialization.ContentFormatterCapabilitiesException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the ISOMessageException class.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:Ximura.Data.Serialization.ContentFormatterCapabilitiesException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the ISOMessageException class.
+            </summary>
+            <param name="message"></param>
+            <param name="ex"></param>
+        </member>
+        <member name="M:Ximura.Data.Serialization.ContentFormatterCapabilitiesException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            This is the serialized constructor.
+            </summary>
+            <param name="info">The serialization info.</param>
+            <param name="context">The context.</param>
+        </member>
+        <member name="T:Ximura.Data.XimuraDataContentFragmentAttribute">
+            <summary>
+            Summary description for XimuraDataContentFragmentAttribute.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.XimuraDataContentFragmentAttribute.#ctor">
+            <summary>
+            This is the default constructor.
+            </summary>
+        </member>
+        <member name="T:Ximura.Data.XimuraContentReferenceAttribute">
+            <summary>
+            The XimuraContentReference attribute uniquely identifies a content. This is useful
+            as it allows the Ximura to identify different content implementations within the system.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.XimuraContentReferenceAttribute.#ctor(System.String,System.String)">
+            <summary>
+            The attribute constructor.
+            </summary>
+            <param name="ReferenceType">The Reference Type string.</param>
+            <param name="ReferenceField">The Reference Field string.</param>
+        </member>
+        <member name="P:Ximura.Data.XimuraContentReferenceAttribute.ReferenceType">
+            <summary>
+            This is the Reference Type of the content.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.XimuraContentReferenceAttribute.ReferenceField">
+            <summary>
+            This is the Reference Field use for reference which field reflecting the Reference Value.
+            </summary>
+        </member>
+        <member name="T:Ximura.Data.MessageCRLFFragment">
+            <summary>
+            This is the default CRLF fragment that does not support folding.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.MessageCRLFFragment.#ctor">
+            <summary>
+            The default constructor
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:Ximura.Data.AtomFeed" -->
+        <member name="M:Ximura.Data.AtomFeed.#ctor">
+            <summary>
+            The default constructor
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.AtomFeed.#ctor(System.ComponentModel.IContainer)">
+            <summary>
+            This constructor is called by .NET when it added as new to a container.
+            </summary>
+            <param name="container">The container this component should be added to.</param>
+        </member>
+        <member name="M:Ximura.Data.AtomFeed.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            This is the deserialization constructor. 
+            </summary>
+            <param name="info">The Serialization info object that contains all the relevant data.</param>
+            <param name="context">The serialization context.</param>
+        </member>
+        <member name="M:Ximura.Data.AtomFeed.XPScAdd(System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            This method adds the XPath shortcuts in to the collection. You should
+            override this method to add your own shorcuts.
+            </summary>
+            <param name="mappingShortcuts">The mapping shorcut collection.</param>
+        </member>
+        <member name="M:Ximura.Data.AtomFeed.EntryAdd(Ximura.Data.AtomEntry)">
+            <summary>
+            This method adds an entry record to an existing feed.
+            </summary>
+            <param name="entry">The entry to add.</param>
+        </member>
+        <member name="M:Ximura.Data.AtomFeed.EntryCollection``1(System.Boolean)">
+            <summary>
+            This property returns the entry collection from the feed document.
+            </summary>
+            <param name="objectPoolAutoReturn">Set this value to true if you want the iteration loop
+            to automatically return the entry object back to the pool.</param>
+            <returns>Returns an entry collection.</returns>
+        </member>
+        <member name="M:Ximura.Data.AtomFeed.EntryCollectionGetEntry``1(System.Xml.XmlNode)">
+            <summary>
+            This method returns a new entry abject from the object pool.
+            </summary>
+            <param name="node">The node containing the data for the entry object.</param>
+            <returns>An AtomEntry object.</returns>
+        </member>
+        <member name="M:Ximura.Data.AtomFeed.EntryGet``1(System.Int32)">
+            <summary>
+            This method returns the node at the specific position.
+            </summary>
+            <typeparam name="T">The entry object type.</typeparam>
+            <param name="ordinal">The entry record position.</param>
+            <returns>Returns the entry object.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">The ArgumentOutOfRangeException will be thrown if the ordinal value cannot be found in the collection.</exception>
+        </member>
+        <member name="P:Ximura.Data.AtomFeed.NamespaceDefaultShortName">
+            <summary>
+            This override sets the default namespace to "r"
+            </summary>
+        </member>
+        <member name="T:Ximura.Data.ContentCacheOptions">
+            <summary>
+            Summary description for ContentAttributes.
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.ContentCacheOptions.Cacheable">
+            <summary>
+            The content object is always cacheable
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.ContentCacheOptions.VersionCheck">
+            <summary>
+            Each individual content object should be polled to check the cache status.
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.ContentCacheOptions.CannotCache">
+            <summary>
+            The content cannot be cached under any circumstances.
+            </summary>
+        </member>
+        <member name="T:Ximura.Data.XimuraContentCachePolicyAttribute">
+            <summary>
+            This attribute sets the cache metadata properties for particular content objects.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.XimuraContentCachePolicyAttribute.#ctor(Ximura.Data.ContentCacheOptions)">
+            <summary>
+            This is the default constructor.
+            </summary>
+            <param name="CacheStyle">The cache policy for the content object.</param>
+        </member>
+        <member name="M:Ximura.Data.XimuraContentCachePolicyAttribute.#ctor(Ximura.Data.ContentCacheOptions,System.Int32)">
+            <summary>
+            This is the default constructor.
+            </summary>
+            <param name="CacheStyle">The cache policy for the content object.</param>
+            <param name="TimeOut">The time out in seconds.</param>
+        </member>
+        <member name="P:Ximura.Data.XimuraContentCachePolicyAttribute.CacheStyle">
+            <summary>
+            This is cache policy.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.XimuraContentCachePolicyAttribute.TimeOut">
+            <summary>
+            This is the time in seconds that the item can remain in the cache
+            without expiring, or being version checked against the CDS.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:Ximura.Data.AtomEntry" -->
+        <member name="M:Ximura.Data.AtomEntry.#ctor">
+            <summary>
+            The default constructor
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.AtomEntry.#ctor(System.ComponentModel.IContainer)">
+            <summary>
+            This constructor is called by .NET when it added as new to a container.
+            </summary>
+            <param name="container">The container this component should be added to.</param>
+        </member>
+        <member name="M:Ximura.Data.AtomEntry.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            This is the deserialization constructor. 
+            </summary>
+            <param name="info">The Serialization info object that contains all the relevant data.</param>
+            <param name="context">The serialization context.</param>
+        </member>
+        <member name="M:Ximura.Data.AtomEntry.XPScAdd(System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            This method adds the XPath shortcuts in to the collection. You should
+            override this method to add your own shorcuts.
+            </summary>
+            <param name="mappingShortcuts">The mapping shorcut collection.</param>
+        </member>
+        <member name="M:Ximura.Data.AtomEntry.AtomSummarySet(Ximura.Data.AtomTextType,System.String)">
+            <summary>
+            This is the feed subtitle.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.AtomEntry.AtomContentSet(Ximura.Data.AtomTextType,System.String)">
+            <summary>
+            This is the feed subtitle.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.AtomEntry.ContentConstructWrite(System.Xml.XmlWriter,Ximura.Data.AtomTextType,System.String,System.String,System.String)">
+             <summary>
+             
+             </summary>
+             <param name="writer"></param>
+             <param name="elementName"></param>
+             <param name="type"></param>
+             <param name="text"></param>
+             <param name="baseUri"></param>
+             <param name="lang"></param>
+             <remarks>
+             atomInlineTextContent =
+               element atom:content {
+                  atomCommonAttributes,
+                  attribute type { "text" | "html" }?,
+                  (text)*
+               }
+            
+             atomInlineXHTMLContent =
+               element atom:content {
+                  atomCommonAttributes,
+                  attribute type { "xhtml" },
+                  xhtmlDiv
+               }
+            
+             atomInlineOtherContent =
+               element atom:content {
+                  atomCommonAttributes,
+                  attribute type { atomMediaType }?,
+                  (text|anyElement)*
+               }
+            
+             atomOutOfLineContent =
+               element atom:content {
+                  atomCommonAttributes,
+                  attribute type { atomMediaType }?,
+                  attribute src { atomUri },
+                  empty
+               }
+            
+             atomContent = atomInlineTextContent
+              | atomInlineXHTMLContent
+              | atomInlineOtherContent
+              | atomOutOfLineContent
+             </remarks>
+        </member>
+        <member name="P:Ximura.Data.AtomEntry.NamespaceDefaultShortName">
+            <summary>
+            This override sets the default namespace to "r"
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.AtomEntry.AtomPublished">
+            <summary>
+            The published date
+            </summary>
+        </member>
+        <member name="T:Ximura.Data.XimuraContentTypeIDAttribute">
+            <summary>
+            The XimuraContentTypeID attribute uniquely identifies a content type. This is useful
+            as it allows the Ximura to identify different content implementations within the system.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.XimuraContentTypeIDAttribute.#ctor(System.String)">
+            <summary>
+            The attribute constructor.
+            </summary>
+            <param name="ContentID">The content GUID string.</param>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Ximura.Data.XimuraContentTypeIDAttribute.#ctor(System.String,System.String)" -->
+        <member name="P:Ximura.Data.XimuraContentTypeIDAttribute.ID">
+            <summary>
+            This is the ID of the content.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.XimuraContentTypeIDAttribute.Description">
+            <summary>
+            This is the description fo the content type. This description may be output during debugging.
+            </summary>
+        </member>
+        <member name="T:Ximura.Server.IXimuraDataEntityServer">
+            <summary>
+            IXimuraDataEntityServer is used by DataContent Entities to load
+            their datasets from a parent container.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.IXimuraDataEntityServer.getParentDataSet(System.Type)">
+            <summary>
+            This method allows satelite DataContent to retrieve the 
+            parent dataset.
+            </summary>
+            <param name="dataContentType">The content type.</param>
+            <returns>The parent dataset or null if it does not exist.</returns>
+        </member>
+        <member name="M:Ximura.Server.IXimuraDataEntityServer.getParentDataSet(Ximura.Data.DataContent)">
+            <summary>
+            This method will link the DataContent with it's parent 
+            content in the model folder.
+            </summary>
+            <param name="item">The DataContent Entity to link.</param>
+        </member>
+        <member name="T:Ximura.Data.MessageTerminatorCRLFFolding">
+            <summary>
+            This is the default terminator for the MessageCRLFFragment message class.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.MessageTerminatorCRLFFolding.#ctor">
+            <summary>
+            The default constructor
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.MessageTerminatorCRLFFolding.Reset">
+            <summary>
+            This method resets the terminator.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.MessageTerminatorCRLFFolding.AllowFolding">
+            <summary>
+            This property specifies whether the message allows folding, that is a CRLF followed by a TAB or SPC character
+            is not a termination. Otherwise the terminator will signal a match on CRLF.
+            </summary>
+        </member>
+        <member name="T:Ximura.Data.MessageTerminatorCRLFNoFolding">
+            <summary>
+            This is the default terminator for the MessageCRLFFragment message class.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.MessageTerminatorCRLFNoFolding.#ctor">
+            <summary>
+            The default constructor
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.MessageTerminatorCRLFNoFolding.AllowFolding">
+            <summary>
+            This property specifies whether the message allows folding, that is a CRLF followed by a TAB or SPC character
+            is not a termination. Otherwise the terminator will signal a match on CRLF.
+            </summary>
+        </member>
+        <member name="T:Ximura.Data.HeaderBodyMessage">
+            <summary>
+            This message class is used for body type that have a set of headers and a single body that
+            is defined by a specific delimiter. Examples of this are internet and mime based messages.
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.HeaderBodyMessage.mHeaderCollection">
+            <summary>
+            This is the collection of header positions within the message. This is required because certain
+            headers may appears multiple times.
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.HeaderBodyMessage.mBody">
+            <summary>
+            This is the main body fragment.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.HeaderBodyMessage.#ctor">
+            <summary>
+            The default constructor
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.HeaderBodyMessage.Reset">
+            <summary>
+            This is the reset method to set the content.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.HeaderBodyMessage.HeaderFragments">
+            <summary>
+            This method extracts the header value for the particular key.
+            </summary>
+            <param name="keyValue">The key to retrieve.</param>
+            <returns>The collection of strings.</returns>
+        </member>
+        <member name="M:Ximura.Data.HeaderBodyMessage.Headers(System.String)">
+            <summary>
+            This method extracts the header value for the particular key.
+            </summary>
+            <param name="keyValue">The key to retrieve.</param>
+            <returns>The collection of strings.</returns>
+        </member>
+        <member name="M:Ximura.Data.HeaderBodyMessage.HeaderExists(System.String)">
+            <summary>
+            This method returns true if the header is already in the message.
+            </summary>
+            <param name="key">The header key to check.</param>
+            <returns>Returns true if the header exists.</returns>
+        </member>
+        <member name="M:Ximura.Data.HeaderBodyMessage.HeaderCollectionBuild">
+            <summary>
+            This method builds the header collection based on the header field. 
+            The collection is built based on the lower case definition of the header.
+            Multiple identical headers are supported, with the header position stored as an integer collection.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.HeaderBodyMessage.HeaderSingle(System.String)">
+            <summary>
+            This is the header host.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.HeaderBodyMessage.FragmentHeaderType">
+            <summary>
+            This method returns the generic fragment header type.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.HeaderBodyMessage.FragmentHeaderInitialType">
+            <summary>
+            This is the fragment type for the outgoing message.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.HeaderBodyMessage.FragmentBodyType">
+            <summary>
+            This is the fragment body type for the message. 
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.HeaderBodyMessage.Body">
+            <summary>
+            This message is the last fragment in the message that contains the message body. 
+            If there is no body in the message this property will be blank.
+            </summary>
+        </member>
+        <member name="T:Ximura.Data.Serialization.ContentFormatterException">
+            <summary>
+            The ContentFormatterException is used by the Content Formatter when an exception is encountered.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.Serialization.ContentFormatterException.#ctor">
+            <summary>
+            Initializes a new instance of the ISOMessageException class.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.Serialization.ContentFormatterException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the ISOMessageException class.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:Ximura.Data.Serialization.ContentFormatterException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the ISOMessageException class.
+            </summary>
+            <param name="message"></param>
+            <param name="ex"></param>
+        </member>
+        <member name="M:Ximura.Data.Serialization.ContentFormatterException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            This is the serialized constructor.
+            </summary>
+            <param name="info">The serialization info.</param>
+            <param name="context">The context.</param>
+        </member>
+        <member name="T:Ximura.Data.XimuraDataContentSummaryAttribute">
+            <summary>
+            The DataContentSchema attribute is used to specify a data schema for 
+            design time integration.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.XimuraDataContentSummaryAttribute.#ctor(System.String)">
+            <summary>
+            This is extended constructor that should be used when you want to 
+            provide a new record.
+            </summary>
+            <param name="styleSheet">The schema name.</param>
+        </member>
+        <member name="M:Ximura.Data.XimuraDataContentSummaryAttribute.#ctor(Ximura.Data.DataContentSummaryType,System.String)">
+            <summary>
+            This is extended constructor that should be used when you want to 
+            provide a new record.
+            </summary>
+            <param name="summaryType">The schema name.</param>
+            <param name="styleSheet">The name of the default content.</param>
+        </member>
+        <member name="M:Ximura.Data.XimuraDataContentSummaryAttribute.#ctor(Ximura.Data.DataContentSummaryType,System.String,System.String)">
+            <summary>
+            This is extended constructor that should be used when you want to 
+            provide a new record.
+            </summary>
+            <param name="summaryType">The schema name.</param>
+            <param name="styleSheet">The name of the default content.</param>
+            <param name="id">The id.</param>
+        </member>
+        <member name="P:Ximura.Data.XimuraDataContentSummaryAttribute.Id">
+            <summary>
+            This is the schema name for the DataContent object.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.XimuraDataContentSummaryAttribute.SummaryType">
+            <summary>
+            The new record content location.
+            </summary>
+        </member>
+    </members>
+</doc>
