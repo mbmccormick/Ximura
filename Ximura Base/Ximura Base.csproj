@@ -178,11 +178,11 @@
     <Compile Include="Applications\DJobType.cs" />
     <Compile Include="Applications\JobPriority.cs" />
     <Compile Include="Applications\SCMJobCompletionType.cs" />
-    <Compile Include="Attributes\XIMSAppConfigurationAttribute.cs" />
-    <Compile Include="Attributes\XIMSAppModuleAttribute.cs">
+    <Compile Include="Attributes\XimuraAppConfigurationAttribute.cs" />
+    <Compile Include="Attributes\XimuraAppModuleAttribute.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Attributes\XIMSAppModuleConfigAttribute.cs">
+    <Compile Include="Attributes\XimuraAppModuleConfigAttribute.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Command\CommandCallbacks.cs" />
@@ -206,13 +206,13 @@
     </Compile>
     <Compile Include="Helper\Linq\Option.cs" />
     <Compile Include="Helper\Linq\Tuple.cs" />
-    <Compile Include="Exceptions\XIMSException.cs">
+    <Compile Include="Exceptions\XimuraException.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Exceptions\XIMSRemotingException.cs">
+    <Compile Include="Exceptions\XimuraRemotingException.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Exceptions\XIMSServiceException.cs">
+    <Compile Include="Exceptions\XimuraServiceException.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Helper\Attribute.cs" />
@@ -223,15 +223,15 @@
     <Compile Include="Helper\StreamCounter.cs" />
     <Compile Include="Helper\String.cs" />
     <Compile Include="Helper\XML.cs" />
-    <Compile Include="Interfaces\Application\IXIMSApplication.cs" />
-    <Compile Include="Interfaces\Application\IXIMSApplicationDefinition.cs" />
-    <Compile Include="Interfaces\Application\IXIMSAppServer.cs" />
-    <Compile Include="Interfaces\Command\IXIMSCommand.cs" />
-    <Compile Include="Interfaces\Command\IXIMSCommandKnownService.cs" />
-    <Compile Include="Interfaces\Command\IXIMSCommandPermissions.cs" />
-    <Compile Include="Interfaces\Command\IXIMSCommandProcessConfigSH.cs" />
-    <Compile Include="Interfaces\Command\IXIMSCommandScheduleProcessConfigSH.cs" />
-    <Compile Include="Interfaces\Command\IXIMSSchedulerCommandRegister.cs" />
+    <Compile Include="Interfaces\Application\IXimuraApplication.cs" />
+    <Compile Include="Interfaces\Application\IXimuraApplicationDefinition.cs" />
+    <Compile Include="Interfaces\Application\IXimuraAppServer.cs" />
+    <Compile Include="Interfaces\Command\IXimuraCommand.cs" />
+    <Compile Include="Interfaces\Command\IXimuraCommandKnownService.cs" />
+    <Compile Include="Interfaces\Command\IXimuraCommandPermissions.cs" />
+    <Compile Include="Interfaces\Command\IXimuraCommandProcessConfigSH.cs" />
+    <Compile Include="Interfaces\Command\IXimuraCommandScheduleProcessConfigSH.cs" />
+    <Compile Include="Interfaces\Command\IXimuraSchedulerCommandRegister.cs" />
     <Compile Include="Interfaces\Configuration\IXIMSConfigurationManager.cs" />
     <Compile Include="Interfaces\Config\IXIMSConfigSH.cs" />
     <Compile Include="Interfaces\Data\DataContentLinkType.cs" />
