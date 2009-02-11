@@ -201,6 +201,7 @@
     <Compile Include="Component\ElementSite.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Interfaces\Component\IXimuraServiceContainer.cs" />
     <Compile Include="Component\ServiceContainer.cs">
       <SubType>Code</SubType>
     </Compile>

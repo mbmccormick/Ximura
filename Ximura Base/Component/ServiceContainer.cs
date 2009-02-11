@@ -14,7 +14,7 @@
 using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
-using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.Design;
 
@@ -27,11 +27,12 @@ namespace Ximura
 	/// <summary>
 	/// Summary description for ServiceContainer.
 	/// </summary>
-	public class XimuraServiceContainer: IServiceContainer
+    public class XimuraServiceContainer : IServiceContainer
 	{
 		#region Declarations
 		private IServiceProvider mParentProvider;
-		private Hashtable services;
+		private Dictionary<Type,object> mServices = null;
+        private object syncObject = new object();
 		#endregion // Declarations
 		#region Constructors
 		/// <summary>
@@ -73,24 +74,28 @@ namespace Ximura
 			get
 			{
 				IServiceContainer container1 = null;
-				if (this.mParentProvider != null)
+				if (mParentProvider != null)
 				{
-					container1 = (IServiceContainer) this.mParentProvider.GetService(typeof(IServiceContainer));
+					container1 = (IServiceContainer) mParentProvider.GetService(typeof(IServiceContainer));
 				}
 				return container1;
 			}
 		}
 		#endregion // Container
 		#region Services
-		private Hashtable Services
+        private Dictionary<Type, object> Services
 		{
 			get
 			{
-				if (this.services == null)
+				if (mServices == null)
 				{
-					this.services = new Hashtable();
+                    lock (syncObject)
+                    {
+                        if (mServices == null)
+                            mServices = new Dictionary<Type, object>();
+                    }
 				}
-				return this.services;
+				return mServices;
 			}
 		}
 		#endregion // Services
@@ -98,25 +103,27 @@ namespace Ximura
 		#region RemoveService
 		public void RemoveService(Type serviceType)
 		{
-			this.RemoveService(serviceType, false);
+			RemoveService(serviceType, false);
 		}
 
 		public void RemoveService(Type serviceType, bool promote)
 		{
 			if (promote)
 			{
-				IServiceContainer container1 = this.Container;
+				IServiceContainer container1 = Container;
 				if (container1 != null)
 				{
 					container1.RemoveService(serviceType, promote);
 					return;
 				}
 			}
+
 			if (serviceType == null)
 			{
 				throw new ArgumentNullException("serviceType");
 			}
-			this.Services.Remove(serviceType);
+
+			Services.Remove(serviceType);
 		}
 		#endregion // RemoveService
 		#region AddService
@@ -127,7 +134,7 @@ namespace Ximura
 		/// <param name="callback">A callback delegate the create the service.</param>
 		public void AddService(Type serviceType, ServiceCreatorCallback callback)
 		{
-			this.AddService(serviceType, callback, false);
+			AddService(serviceType, callback, false);
 		}
 		/// <summary>
 		/// Adds the service specified to the service container.
@@ -136,7 +143,7 @@ namespace Ximura
 		/// <param name="serviceInstance">The service.</param>
 		public void AddService(Type serviceType, object serviceInstance)
 		{
-			this.AddService(serviceType, serviceInstance, false);
+			AddService(serviceType, serviceInstance, false);
 		}
 		/// <summary>
 		/// Adds the service specified to the service container.
@@ -148,7 +155,7 @@ namespace Ximura
 		{
 			if (promote)
 			{
-				IServiceContainer container1 = this.Container;
+				IServiceContainer container1 = Container;
 				if (container1 != null)
 				{
 					container1.AddService(serviceType, callback, promote);
@@ -159,15 +166,18 @@ namespace Ximura
 			{
 				throw new ArgumentNullException("serviceType");
 			}
+
 			if (callback == null)
 			{
 				throw new ArgumentNullException("callback");
 			}
-			if (this.Services.ContainsKey(serviceType))
+
+			if (Services.ContainsKey(serviceType))
 			{
 				throw new ArgumentException("ErrorServiceExists: " + serviceType.FullName, "serviceType");
 			}
-			this.Services[serviceType] = callback;
+
+			Services[serviceType] = callback;
 		}
 		/// <summary>
 		/// Adds the service specified to the service container.
@@ -179,29 +189,35 @@ namespace Ximura
 		{
 			if (promote)
 			{
-				IServiceContainer container1 = this.Container;
+				IServiceContainer container1 = Container;
+
 				if (container1 != null)
 				{
 					container1.AddService(serviceType, serviceInstance, promote);
 					return;
 				}
 			}
+
 			if (serviceType == null)
 			{
 				throw new ArgumentNullException("serviceType");
 			}
+
 			if (serviceInstance == null)
 			{
 				throw new ArgumentNullException("serviceInstance");
 			}
+
 			if ((!(serviceInstance is ServiceCreatorCallback) && !serviceInstance.GetType().IsCOMObject) && !serviceType.IsAssignableFrom(serviceInstance.GetType()))
 			{
 				throw new ArgumentException("ErrorInvalidServiceInstance: " + serviceType.FullName);
 			}
+
 			if (this.Services.ContainsKey(serviceType))
 			{
 				throw new ArgumentException("ErrorServiceExists: " +serviceType.FullName, "serviceType");
 			}
+
 			this.Services[serviceType] = serviceInstance;
 		}
 		#endregion // AddService
@@ -223,16 +239,21 @@ namespace Ximura
 			if (serviceObj is ServiceCreatorCallback)
 			{
 				serviceObj = ((ServiceCreatorCallback) serviceObj)(this, serviceType);
-				if (((serviceObj != null) && !serviceObj.GetType().IsCOMObject) && !serviceType.IsAssignableFrom(serviceObj.GetType()))
+
+				if (((serviceObj != null) 
+                    && !serviceObj.GetType().IsCOMObject) 
+                    && !serviceType.IsAssignableFrom(serviceObj.GetType()))
 				{
 					serviceObj = null;
 				}
-				this.Services[serviceType] = serviceObj;
+				Services[serviceType] = serviceObj;
 			}
+
 			if ((serviceObj == null) && (this.mParentProvider != null))
 			{
-				serviceObj = this.mParentProvider.GetService(serviceType);
+				serviceObj = mParentProvider.GetService(serviceType);
 			}
+
 			return serviceObj;
 		}
 
