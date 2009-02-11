@@ -139,25 +139,6 @@ namespace Ximura.Data
         }
         #endregion // Version
 
-        //#region ResetAutoLoadCheck()
-        ///// <summary>
-        ///// This method will autoload the content object based on the Default Data set in the 
-        ///// attribute when the content is reset. If you want to change this behaviour, you can
-        ///// override this method.
-        ///// </summary>
-        //protected override void ResetAutoLoadCheck()
-        //{
-        //    base.ResetAutoLoadCheck();
-
-        //    if (this.XmlDataDoc != null)
-        //    {
-        //        this.TypeID = GetContentTypeAttributeID();
-        //        this.ID = GetContentAttributeID().HasValue ? GetContentAttributeID().Value : Guid.NewGuid();
-        //        this.Version = Guid.NewGuid();
-        //    }
-        //}
-        //#endregion // ResetAutoLoadCheck()
-
         #region NamespaceManagerAdd(XmlNamespaceManager nsm)
         /// <summary>
         /// This override adds the ximura namespace to the default Namespace manager.
