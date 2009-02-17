@@ -37,22 +37,45 @@ namespace Ximura.Helper
     public static class Common
     {
         #region Command Parsing
-
-        public static SortedList ParseArgs(string[] Args)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Args"></param>
+        /// <returns>Returns a dictionary containing the collection of parameters and values.</returns>
+        public static Dictionary<string, string> ParseArgs(string[] Args)
         {
             return ParseArgs(Args, false);
         }
-        public static SortedList ParseArgs(string[] Args, bool throwErrors)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Args"></param>
+        /// <param name="throwErrors"></param>
+        /// <returns>Returns a dictionary containing the collection of parameters and values.</returns>
+        public static Dictionary<string, string> ParseArgs(string[] Args, bool throwErrors)
         {
             return ParseArgs(Args, @"/", @":", throwErrors);
         }
-
-        public static SortedList ParseArgs(string[] Args, string strStart, bool throwErrors)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Args"></param>
+        /// <param name="strStart"></param>
+        /// <param name="throwErrors"></param>
+        /// <returns>Returns a dictionary containing the collection of parameters and values.</returns>
+        public static Dictionary<string, string> ParseArgs(string[] Args, string strStart, bool throwErrors)
         {
             return ParseArgs(Args, strStart, @":", throwErrors);
         }
-
-        public static SortedList ParseArgs(string[] Args, string strStart, string strDelim, bool throwErrors)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Args"></param>
+        /// <param name="strStart"></param>
+        /// <param name="strDelim"></param>
+        /// <param name="throwErrors"></param>
+        /// <returns>Returns a dictionary containing the collection of parameters and values.</returns>
+        public static Dictionary<string, string> ParseArgs(string[] Args, string strStart, string strDelim, bool throwErrors)
         {
             //	This function parses the command line arguments to find the correct type
             //	based on the syntax /strOption:[strReturnData]
@@ -60,8 +83,10 @@ namespace Ximura.Helper
             //	to search through a list, there will only be a limited number of 
             //	items so this has not been optimized. 
 
-            SortedList data = new SortedList();
-            if (Args == null) return data;
+            Dictionary<string, string> data = new Dictionary<string, string>();
+
+            if (Args == null) 
+                return data;
 
             string strKey, strValue;
 
@@ -70,13 +95,15 @@ namespace Ximura.Helper
                 try
                 {
                     ParseData(strData, out strKey, out strValue, strStart, strDelim);
+
                     if (!data.ContainsKey(strKey))
                     {
                         data.Add(strKey, strValue);
                     }
                     else
                     {
-                        if (throwErrors) throw new ArgumentException("Multiple keys found.", strKey);
+                        if (throwErrors) 
+                            throw new ArgumentException("Multiple keys found.", strKey);
                     }
                 }
                 catch
@@ -193,6 +220,7 @@ namespace Ximura.Helper
         {
             return FindCharCaseInsensitive(byData, byteSearch, intStart, false);
         }
+
         private static int FindCharCaseInsensitive(byte[] byData,
             byte byteSearch, int intStart, bool blnCaseInsensitive)
         {
@@ -224,12 +252,14 @@ namespace Ximura.Helper
         {
             return BinarySearchExt(byData, bySearch, intSearchPosition, byData.Length, false);
         }
+
         public static int BinarySearchExt(byte[] byData,
             byte[] bySearch, int intSearchPosition,
             int intLength)
         {
             return BinarySearchExt(byData, bySearch, intSearchPosition, intLength, false);
         }
+
         public static int BinarySearchExt(byte[] byData,
             byte[] bySearch, int intSearchPosition,
             int intLength, bool blnIgnoreCase)
