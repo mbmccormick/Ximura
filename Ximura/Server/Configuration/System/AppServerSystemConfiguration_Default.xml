@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<AppServerSystemConfiguration xmlns="http://schema.ximura.org/server/configuration/system/1.0"
+  xmlns:cmd="http://schema.ximura.org/configuration/command/1.0" xmlns:ximura="http://schema.ximura.org/core">
+
+  <ximura:entity>
+    <ximura:tid>28C52546-68E7-4847-AD03-C7BEA2E17C8D</ximura:tid>
+    <ximura:cid></ximura:cid>
+    <ximura:vid></ximura:vid>
+  </ximura:entity>
+
+  <name></name>
+
+  <description></description>
+
+  <settings useperfcounters="true" />
+
+  <threadpool min="10" prefer="100" max="500" timeoutinms="100000"/>
+
+  <jobqueue max="5000" timeoutinms="10000">
+    <level id="Realtime" threadreserve="4">500</level>
+    <level id="High">500</level>
+    <level id="AboveNormal">500</level>
+    <level id="Normal">500</level>
+    <level id="BelowNormal">500</level>
+    <level id="Low">500</level>
+  </jobqueue>
+
+  <cmd:childconfigurations>
+
+    <cmd:configgroup id="performance">
+      <cmd:config id="performance">
+        <PerformanceManager>
+          
+        </PerformanceManager>
+
+      </cmd:config>
+    </cmd:configgroup>
+
+    <cmd:config id="logging">
+      <LoggingManager>
+        <ExtensibleLoggingManager>
+          <trace autoflush="false" indentsize="0">
+            <listeners>
+              <!--add name="W3CExtendedLogger" type="Aegea.Connect.W3CExtendedLogger, AegeaConnectCMS" /-->
+            </listeners>
+            <listenersConfig>
+              <DebugLogger>
+                <settings loglevel="0"></settings>
+                <switches>
+                </switches>
+              </DebugLogger>
+              <EventLogLogger>
+                <settings loglevel="1"></settings>
+                <switches>
+                </switches>
+              </EventLogLogger>
+            </listenersConfig>
+          </trace>
+        </ExtensibleLoggingManager>
+      </LoggingManager>
+
+    </cmd:config>
+
+    <cmd:config id="session">
+      <SessionManager>
+        <SystemSessionManager>
+          <settings defaultRealm="system">
+            <Realms>
+              <add name="RealmSystem" type="Ximura.Server.SessionManagerConfigSH, Ximura" />
+              <add name="RealmUser" type="Ximura.Server.SessionManagerConfigSH, Ximura" />
+            </Realms>
+          </settings>
+          <RealmSystem realm="system">
+            <settings maxattempts="5" lockout="600"></settings>
+            <users>
+              <user name="system" stype="string" seed="3939" dtype="password" data="hello123" />
+            </users>
+          </RealmSystem>
+          <RealmUser realm="admin.budubu.com">
+            <settings maxattempts="5" lockout="600" allowblank="true"></settings>
+            <users>
+              <user name="paul.stancer" stype="string" dtype="securedigest"
+                data="6dd8a4bc29c6e2d3ecdcbe40046b1b4ca8a7b5551bc327720015dc859efb2029" />
+            </users>
+          </RealmUser>
+          <RealmUser realm="budubu.com">
+            <settings maxattempts="5" lockout="600" allowblank="true"></settings>
+            <users>
+              <user name="paul.stancer" stype="string" dtype="securedigest"
+                data="a2b0c10e525bbe3acf9a4a38194c11802da6b1003cee2af15bac48fbe6f30646" />
+            </users>
+          </RealmUser>
+        </SystemSessionManager>
+      </SessionManager>
+    </cmd:config>
+
+  </cmd:childconfigurations>
+
+</AppServerSystemConfiguration>

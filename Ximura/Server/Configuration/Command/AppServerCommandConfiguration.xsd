@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:cmd="http://schema.ximura.org/server/configuration/command/1.0"
+           attributeFormDefault="unqualified" elementFormDefault="qualified"
+           targetNamespace="http://schema.ximura.org/server/configuration/command/1.0"
+           xmlns:ximura="http://schema.ximura.org/core"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:import namespace="http://schema.ximura.org/core" />
+  <xs:import namespace="http://schema.ximura.org/configuration/command/1.0" />
+
+
+</xs:schema>

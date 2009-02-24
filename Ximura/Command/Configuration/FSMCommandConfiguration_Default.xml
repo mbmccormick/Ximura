@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<FSMConfiguration xmlns="http://schema.ximura.org/configuration/fsm/1.0"
+  xmlns:cmd="http://schema.ximura.org/configuration/command/1.0" xmlns:ximura="http://schema.ximura.org/core">
+  
+  <ximura:entity>
+    <ximura:tid>0EA3DF27-4268-4dbc-A2AB-58C0A6D63FDA</ximura:tid>
+    <ximura:cid></ximura:cid>
+    <ximura:vid></ximura:vid>
+  </ximura:entity>
+
+  <commandconfig xmlns="http://schema.ximura.org/configuration/command/1.0">
+    <id></id>
+    <name></name>
+    <description></description>
+    <enabled>true</enabled>
+    <priority>normal</priority>
+    <usersessionrealm></usersessionrealm>
+    <processsession required="true" usesystemcredentials="true"/>
+  </commandconfig>
+
+  <cmd:settings/>
+  
+  <cmd:timerpoll enabled="false" polltimeenabled="false" autostart="false" polltimerepeatvalue ="1" polltimerepeattype ="s"/>
+
+  <pool min="5" prefer="20" max="200" />
+
+</FSMConfiguration>
