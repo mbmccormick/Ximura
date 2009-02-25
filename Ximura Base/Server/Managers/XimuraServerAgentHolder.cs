@@ -12,17 +12,31 @@
 #endregion
 #region using
 using System;
-using System.Collections.Generic;
-using System.Text;
-#endregion
+
+using Ximura;
+using Ximura.Helper;
+
+using CH = Ximura.Helper.Common;
+using RH = Ximura.Helper.Reflection;
+#endregion // using
 namespace Ximura.Server
 {
     /// <summary>
-    /// The IXimuraPerformanceAgent interface is implemented by class that recieve 
-    /// performance information from the performance counters.
+    /// The agent holder class is used by the agent based attributes to pass common information to the 
+    /// server processes.
     /// </summary>
-    public interface IXimuraPerformanceAgent: IXimuraServerAgent
+    public class XimuraServerAgentHolder
     {
+        public Type AgentType;
+        public string AgentID;
+        public string AgentName;
+
+        public XimuraServerAgentHolder(Type type, string ID, string Name)
+        {
+            this.AgentType = type;
+            this.AgentID = ID;
+            this.AgentName = Name;
+        }
 
     }
 }

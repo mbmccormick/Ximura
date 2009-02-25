@@ -12,17 +12,25 @@
 #endregion
 #region using
 using System;
+using System.Linq;
 using System.Collections.Generic;
-using System.Text;
-#endregion
+using System.ComponentModel;
+using System.Diagnostics;
+
+using Ximura;
+using Ximura.Command;
+using Ximura.Server;
+using Ximura.Data;
+using Ximura.Helper;
+
+using RH = Ximura.Helper.Reflection;
+#endregion // using
 namespace Ximura.Server
 {
     /// <summary>
-    /// The IXimuraPerformanceAgent interface is implemented by class that recieve 
-    /// performance information from the performance counters.
+    /// This interface is registered by the logging manager in the control container.
     /// </summary>
-    public interface IXimuraPerformanceAgent: IXimuraServerAgent
+    public interface IXimuraLoggingManagerService : IXimuraAppServerAgentService
     {
-
     }
 }

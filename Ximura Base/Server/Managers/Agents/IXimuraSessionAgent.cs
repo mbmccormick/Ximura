@@ -12,17 +12,25 @@
 #endregion
 #region using
 using System;
+using System.Linq;
+using System.Collections;
 using System.Collections.Generic;
-using System.Text;
-#endregion
+using System.Runtime.Serialization;
+using System.ComponentModel;
+using System.ComponentModel.Design;
+using System.ComponentModel.Design.Serialization;
+using System.Security;
+using System.Security.Cryptography;
+using System.Security.Principal;
+
+using Ximura;
+using Ximura.Helper;
+using Ximura.Server;
+using Ximura.Command;
+#endregion // using
 namespace Ximura.Server
 {
-    /// <summary>
-    /// The IXimuraPerformanceAgent interface is implemented by class that recieve 
-    /// performance information from the performance counters.
-    /// </summary>
-    public interface IXimuraPerformanceAgent: IXimuraServerAgent
+    public interface IXimuraSessionAgent: IXimuraServerAgent
     {
-
     }
 }

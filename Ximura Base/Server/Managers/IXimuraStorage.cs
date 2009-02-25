@@ -10,19 +10,32 @@
 //     Paul Stancer - initial implementation
 // *******************************************************************************
 #endregion
-#region using
+﻿#region using
 using System;
+using System.Linq;
+using System.Data;
+using System.Data.SqlClient;
+using System.Collections;
 using System.Collections.Generic;
-using System.Text;
-#endregion
+using System.ComponentModel;
+using System.Diagnostics;
+
+using Ximura;
+using Ximura.Data;
+using Ximura.Helper;
+using CH = Ximura.Helper.Common;
+using RH = Ximura.Helper.Reflection;
+using Ximura.Server;
+
+
+using Ximura.Command;
+#endregion // using
 namespace Ximura.Server
 {
     /// <summary>
-    /// The IXimuraPerformanceAgent interface is implemented by class that recieve 
-    /// performance information from the performance counters.
+    /// This interface is implemented by storage manager.
     /// </summary>
-    public interface IXimuraPerformanceAgent: IXimuraServerAgent
+    public interface IXimuraStorage
     {
-
     }
 }
