@@ -1,0 +1,46 @@
+﻿<Window x:Class="Ximura.Windows.WindowAppServers"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    WindowStartupLocation="CenterScreen"
+    Title="Application Servers" Height="500" Width="400"
+    xmlns:local="clr-namespace:Ximura.Windows"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		mc:Ignorable="d"
+		WindowStyle="SingleBorderWindow" ResizeMode="CanResize">
+  
+	<Window.Background>
+		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+			<GradientStop Color="#FF000000" Offset="0"/>
+      <GradientStop Color="#FFF0F8FB" Offset="1"/>
+      <GradientStop Color="#FF4498BC" Offset="1"/>
+      <GradientStop Color="#FFFFFFFF" Offset="0"/>
+			<GradientStop Color="#FF080808" Offset="1"/>
+			<GradientStop Color="#FF1654E7" Offset="0"/>
+		</LinearGradientBrush>
+	</Window.Background>
+  
+  <Window.DataContext>
+    <ObjectDataProvider ObjectType="{x:Type local:AppServerHolder}"/>
+  </Window.DataContext>
+
+  <Grid>
+
+    <Button HorizontalAlignment="Left" Margin="8,0,0,8" VerticalAlignment="Bottom" Content="Start Services" IsDefault="True" d:LayoutOverrides="Height" x:Name="btStart"/>
+    <Button HorizontalAlignment="Left" Margin="104,0,0,8" VerticalAlignment="Bottom" Content="Stop Services" IsEnabled="False" x:Name="btStop"/>
+    <Button Margin="0,0,8,8" VerticalAlignment="Bottom" Content="Exit" HorizontalAlignment="Right" IsDefault="False" IsCancel="True" Width="36" x:Name="btExit"/>
+
+    <ScrollViewer Margin="8,8,8,56" x:Name="bordAppServers" ScrollViewer.IsDeferredScrollingEnabled="False" VerticalScrollBarVisibility="Auto">
+
+      <ItemsControl x:Name="contAppServers" ItemsSource="{Binding}">
+        <ItemsControl.ItemTemplate>
+          <DataTemplate>
+            <local:AppServerControl />
+          </DataTemplate>
+        </ItemsControl.ItemTemplate>
+      </ItemsControl>
+
+    </ScrollViewer>
+  </Grid>
+
+</Window>

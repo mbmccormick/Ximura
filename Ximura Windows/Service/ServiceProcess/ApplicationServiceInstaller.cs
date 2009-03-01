@@ -339,7 +339,7 @@ namespace Ximura.Server
                 //Process the installer attributes.
                 AppServerType.GetCustomAttributes(typeof(XimuraEventLoggerInstallerAttribute), true)
                     .OfType<XimuraEventLoggerInstallerAttribute>()
-                    .Where(a => a.LoggerType.IsAssignableFrom(typeof(EventLogLogger)))
+                    .Where(a => { return a.LoggerType.IsAssignableFrom(typeof(EventLogLogger)); })
                     .ForEach(a => EventLoggerAdd(a, loggers));
             }
             catch (Exception ex1)

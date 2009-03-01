@@ -1,0 +1,180 @@
+﻿<UserControl 
+    x:Class="Ximura.Windows.AppServerControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Height="80" Width="Auto"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    ToolTip="{Binding Path=ToolTip}">
+  <UserControl.Resources>
+    
+    <Style x:Key="AnimatedBorderStyle" TargetType="Border">
+      
+      <Style.Resources>
+        <LinearGradientBrush x:Key="PendingBrush" EndPoint="0.5,1" StartPoint="0.5,0">
+          <GradientStop Color="#FFADECC8" Offset="0"/>
+          <GradientStop Color="#FFEEEEAD" Offset="1"/>
+        </LinearGradientBrush>
+        <LinearGradientBrush x:Key="StandardBrush" EndPoint="0.5,1" StartPoint="0.5,0">
+          <GradientStop Color="#FFF5DEB3" Offset="0"/>
+          <GradientStop Color="#FFFFFFFF" Offset="1"/>
+        </LinearGradientBrush>
+        <LinearGradientBrush x:Key="DisabledBrush" StartPoint="0.5,0" EndPoint="0.5,1">
+          <GradientStop Color="#FFADECC8" Offset="0.1" />
+          <GradientStop Color="#11FFFF00" Offset="0.9" />
+        </LinearGradientBrush>
+        <LinearGradientBrush x:Key="FailedBrush" StartPoint="0.5,0" EndPoint="0.5,1">
+          <GradientStop Color="#FFFF0000" Offset="0.1" />
+          <GradientStop Color="#1100FF00" Offset="0.9" />
+        </LinearGradientBrush>
+        <LinearGradientBrush x:Key="RunningBrush" StartPoint="0,0.5" EndPoint="1,0.5">
+          <GradientStop Color="#1100CC22" Offset="0" />
+          <GradientStop Color="#8800CC22" Offset="0.97" />
+          <GradientStop Color="#AA10FF18" Offset="0.999" />
+          <GradientStop Color="#44FFFFFF" Offset="1" />
+        </LinearGradientBrush>
+      </Style.Resources>
+
+      <Setter Property="Background" Value="{StaticResource StandardBrush}" />
+
+      <Style.Triggers>
+
+        <MultiDataTrigger>
+          <MultiDataTrigger.Conditions>
+            <Condition Binding="{Binding Status}" Value="Started" />
+          </MultiDataTrigger.Conditions>
+          <MultiDataTrigger.EnterActions>
+            <BeginStoryboard>
+              <Storyboard>
+                <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0.6" Duration="0:0:0.75" />
+              </Storyboard>
+            </BeginStoryboard>
+          </MultiDataTrigger.EnterActions>
+
+          <Setter Property="Background" Value="{StaticResource RunningBrush}" />
+
+          <MultiDataTrigger.ExitActions>
+            <BeginStoryboard>
+              <Storyboard FillBehavior="Stop">
+                <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.25" />
+              </Storyboard>
+            </BeginStoryboard>
+          </MultiDataTrigger.ExitActions>
+        </MultiDataTrigger>
+
+        <MultiDataTrigger>
+          <MultiDataTrigger.Conditions>
+            <Condition Binding="{Binding Status}" Value="Disabled" />
+          </MultiDataTrigger.Conditions>
+          <MultiDataTrigger.EnterActions>
+            <BeginStoryboard>
+              <Storyboard>
+                <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0.6" Duration="0:0:0.75" />
+              </Storyboard>
+            </BeginStoryboard>
+          </MultiDataTrigger.EnterActions>
+          <Setter Property="Background" Value="{StaticResource DisabledBrush}" />
+          <MultiDataTrigger.ExitActions>
+            <BeginStoryboard>
+              <Storyboard FillBehavior="Stop">
+                <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.25" />
+              </Storyboard>
+            </BeginStoryboard>
+          </MultiDataTrigger.ExitActions>
+        </MultiDataTrigger>
+
+        <MultiDataTrigger>
+          <MultiDataTrigger.Conditions>
+            <Condition Binding="{Binding Status}" Value="Failed" />
+          </MultiDataTrigger.Conditions>
+          <MultiDataTrigger.EnterActions>
+            <BeginStoryboard>
+              <Storyboard>
+                <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0.6" Duration="0:0:0.75" />
+              </Storyboard>
+            </BeginStoryboard>
+          </MultiDataTrigger.EnterActions>
+          <Setter Property="Background" Value="{StaticResource FailedBrush}" />
+          <MultiDataTrigger.ExitActions>
+            <BeginStoryboard>
+              <Storyboard FillBehavior="Stop">
+                <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.25" />
+              </Storyboard>
+            </BeginStoryboard>
+          </MultiDataTrigger.ExitActions>
+        </MultiDataTrigger>
+
+        <MultiDataTrigger>
+          <MultiDataTrigger.Conditions>
+            <Condition Binding="{Binding Status}" Value="Starting" />
+          </MultiDataTrigger.Conditions>
+          <MultiDataTrigger.EnterActions>
+            <BeginStoryboard>
+              <Storyboard>
+                <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0.6" Duration="0:0:0.75" />
+              </Storyboard>
+            </BeginStoryboard>
+          </MultiDataTrigger.EnterActions>
+          <Setter Property="Background" Value="{StaticResource PendingBrush}" />
+          <MultiDataTrigger.ExitActions>
+            <BeginStoryboard>
+              <Storyboard FillBehavior="Stop">
+                <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.25" />
+              </Storyboard>
+            </BeginStoryboard>
+          </MultiDataTrigger.ExitActions>
+        </MultiDataTrigger>
+
+      </Style.Triggers>
+
+    </Style>
+    
+  </UserControl.Resources>
+
+  <Border
+    Style="{DynamicResource AnimatedBorderStyle}"
+    Padding="5,5,5,5" CornerRadius="10,10,10,10"
+    BorderBrush="Black"
+    BorderThickness="1,1,1,1"
+    Margin="2"
+    SnapsToDevicePixels="True" x:Name="bdService" IsEnabled="True" >
+
+    <Grid Height="80" VerticalAlignment="Top">
+      <Label x:Name="lbID"
+             HorizontalAlignment="Left"
+             Width="119"
+             Foreground="Crimson"
+             FontSize="80"
+             FontFamily="Arial Black"
+             VerticalAlignment="Stretch" 
+             Opacity="0.1" 
+             IsEnabled="False"
+             Padding="0" 
+             MaxHeight="80" 
+             Margin="0,-12.5,0,12.5" 
+             Content="{Binding Priority}"/>
+      <Label x:Name="lbServiceName"
+             Margin="8,0,16,0" FontSize="18"
+             Content="{Binding Path=Name}"
+             Height="32" 
+             VerticalAlignment="Top" 
+             />
+      <CheckBox x:Name="cbStart"
+                Margin="49,29,0,31"
+                Content="Start Service"
+                IsChecked="{Binding Path=CanStart}"
+                IsEnabled="{Binding Path=CanEdit}"
+                Width="93"
+                HorizontalAlignment="Left" 
+                d:LayoutOverrides="VerticalAlignment"/>
+      <Label x:Name="lbError"
+             Margin="8,45.25,8,12.25"
+             Foreground="Red"
+             FontSize="9" FontFamily="Arial Rounded MT"
+             d:LayoutOverrides="VerticalAlignment"
+             Content="{Binding Path=ErrorDescription}" 
+             HorizontalAlignment="Center" />
+    </Grid>
+  </Border>
+</UserControl>
