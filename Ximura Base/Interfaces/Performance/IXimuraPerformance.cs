@@ -20,7 +20,32 @@ using Ximura.Server;
 #endregion // using
 namespace Ximura
 {
+    /// <summary>
+    /// THis is the base interface for the performance architecture.
+    /// </summary>
     public interface IXimuraPerformance
     {
+        /// <summary>
+        /// The unique performance counter ID.
+        /// </summary>
+        Guid PCID { get; set; }
+
+        /// <summary>
+        /// This is the application ID for the counter.
+        /// </summary>
+        Guid AppID { get; set; }
+        /// <summary>
+        /// The container id.
+        /// </summary>
+        Guid ID { get; set; }
+
+        /// <summary>
+        /// The friendly name.
+        /// </summary>
+        string Name { get; set; }
+        /// <summary>
+        /// The category.
+        /// </summary>
+        string Category { get; set; }
     }
 }

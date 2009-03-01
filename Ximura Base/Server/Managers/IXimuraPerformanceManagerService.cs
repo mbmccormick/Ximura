@@ -31,7 +31,7 @@ using Ximura.Command;
 namespace Ximura.Server
 {
     /// <summary>
-    /// This interface is implemented by storage manager.
+    /// This interface is implemented by performance manager service.
     /// </summary>
     public interface IXimuraPerformanceManagerService : IXimuraAppServerAgentService
     {

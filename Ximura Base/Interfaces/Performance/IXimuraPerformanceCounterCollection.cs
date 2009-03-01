@@ -22,24 +22,7 @@ namespace Ximura
     /// <summary>
     /// This interface is used by classes that provide performance counter consolidation.
     /// </summary>
-    public interface IXimuraPerformanceCounterCollection : ICollection<IXimuraPerformanceCounter>
+    public interface IXimuraPerformanceCounterCollection : IXimuraPerformance, ICollection<IXimuraPerformanceCounter>
     {
-        /// <summary>
-        /// The command id.
-        /// </summary>
-        Guid CommandID { get; set; }
-        /// <summary>
-        /// The parent command id.
-        /// </summary>
-        Guid PCID { get; set; }
-        /// <summary>
-        /// The counter name.
-        /// </summary>
-        string Name { get; set; }
-        /// <summary>
-        /// The category name.
-        /// </summary>
-        string Category { get; set; }
-
     }
 }

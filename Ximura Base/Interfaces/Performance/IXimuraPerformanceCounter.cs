@@ -22,25 +22,40 @@ namespace Ximura
     /// <summary>
     /// This interface is used by performance counter classes.
     /// </summary>
-    public interface IXimuraPerformanceCounter
+    public interface IXimuraPerformanceCounter: IXimuraPerformance
     {
-        Guid AppID { get;}
-        Guid CommandID { get;}
-        Guid PCID { get;}
+        /// <summary>
+        /// This is the system counter type.
+        /// </summary>
+        PerformanceCounterType CounterType { get;}
 
-        string Name { get;}
-        string Category { get;}
-
-        PerformanceCounterType CatType { get;}
-
+        /// <summary>
+        /// This method increments the counter by 1.
+        /// </summary>
+        /// <returns></returns>
         long Increment();
+        /// <summary>
+        /// This method increments or decrements the counter by the value specified.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns>Returns the new value of the counter.</returns>
         long IncrementBy(long value);
+        /// <summary>
+        /// This method decrements the counter by 1.
+        /// </summary>
+        /// <returns>Returns the new value of the counter.</returns>
         long Decrement();
-
+        /// <summary>
+        /// This property gets or sets the raw value of the counter directly.
+        /// </summary>
         long RawValue { get; set; }
-
+        /// <summary>
+        /// This property indicates whether the counter is active.
+        /// </summary>
         bool Active { get;set; }
-
+        /// <summary>
+        /// This readonly property determines whether the counter has been read since it was last changed.
+        /// </summary>
         bool Dirty { get;}
 
     }
