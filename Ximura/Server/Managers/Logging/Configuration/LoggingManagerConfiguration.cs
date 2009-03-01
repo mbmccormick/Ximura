@@ -30,6 +30,9 @@ using Ximura.Command;
 #endregion // using
 namespace Ximura.Server
 {
+    /// <summary>
+    /// This class holds the default configuration for the logging manager.
+    /// </summary>
     public class LoggingManagerConfiguration: CommandConfiguration
     {
         #region Constructor

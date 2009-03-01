@@ -33,8 +33,6 @@ using Ximura.Data;
 using Ximura.Helper;
 using Ximura.Server;
 using Ximura.Command;
-
-using Ximura.Performance;
 using AH = Ximura.Helper.AttributeHelper;
 using RH = Ximura.Helper.Reflection;
 using CH = Ximura.Helper.Common;
@@ -63,9 +61,6 @@ namespace Ximura.Server
                 if (!ConfigurationStart())
                     throw new AppServerException("Configuration error - the configuration cannot be loaded.");
 
-                //Register the configuration services with the necessary service containers
-                SystemServicesStart();
-
                 //This method creates the default pool manager for the application.
                 PoolManagerStart();
 
@@ -77,6 +72,9 @@ namespace Ximura.Server
 
                 //This methos starts the agent services such as the storage and session managers.
                 AgentServicesStart();
+
+                //Create the session manager
+                SessionManagerStart();
 
                 //Start the Security components
                 JobProcessStart();
@@ -158,6 +156,9 @@ namespace Ximura.Server
                 ThreadPoolStop();
                 JobProcessStop();
 
+                //Create the session manager
+                SessionManagerStop();
+
                 AgentServicesStop();
 
                 PerformanceStop();
@@ -166,9 +167,7 @@ namespace Ximura.Server
 
                 PoolManagerStop();
 
-                SystemServicesStop();
-
-                ApplicationServicesStart();
+                ApplicationServicesStop();
             }
             catch (Exception ex)
             {

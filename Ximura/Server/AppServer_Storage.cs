@@ -33,8 +33,6 @@ using Ximura.Data;
 using Ximura.Helper;
 using Ximura.Server;
 using Ximura.Command;
-
-using Ximura.Performance;
 using AH = Ximura.Helper.AttributeHelper;
 using RH = Ximura.Helper.Reflection;
 using CH = Ximura.Helper.Common;
@@ -47,7 +45,7 @@ namespace Ximura.Server
         /// <summary>
         /// This is the storage manager for the application.
         /// </summary>
-        protected virtual StorageManager Storage
+        protected virtual StorageManager StorageService
         {
             get;
             set;
@@ -61,14 +59,14 @@ namespace Ximura.Server
         /// </summary>
         protected virtual void StorageStart()
         {
-            Storage = new StorageManager(ControlContainer);
+            StorageService = new StorageManager(ControlContainer);
 
-            //Add the loggers.
-            //AgentsAdd<XimuraAppServerStorageAttribute>(StorageDefault, mStorageMan);
+            //Add the storage agents.
+            AgentsAdd<XimuraAppServerStorageAttribute>(StorageDefault, StorageService);
 
             //We wait until here to start the services as they have reference to themselves.
-            if (((IXimuraService)Storage).ServiceStatus != XimuraServiceStatus.Started)
-                ((IXimuraService)Storage).Start();
+            if (((IXimuraService)StorageService).ServiceStatus != XimuraServiceStatus.Started)
+                ((IXimuraService)StorageService).Start();
         }
         #endregion
         #region StorageStop()
@@ -78,9 +76,8 @@ namespace Ximura.Server
         protected virtual void StorageStop()
         {
             //Remove the loggers.
-            //AgentsRemove<XimuraAppServerStorageAttribute>(StorageDefault, mStorageMan);
+            AgentsRemove<XimuraAppServerStorageAttribute>(StorageDefault, StorageService);
 
-            //XimuraAppTrace.Close();
         }
         #endregion
 

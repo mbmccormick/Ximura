@@ -33,15 +33,13 @@ using Ximura.Data;
 using Ximura.Helper;
 using Ximura.Server;
 using Ximura.Command;
-
-using Ximura.Performance;
 using AH = Ximura.Helper.AttributeHelper;
 using RH = Ximura.Helper.Reflection;
 using CH = Ximura.Helper.Common;
 #endregion
 namespace Ximura.Server
 {
-    public interface IXimuraPerformanceService : IXimuraPerformanceManager, IXimuraAppServerAgentService
+    public interface IXimuraPerformanceService : IXimuraPerformanceManagerService, IXimuraAppServerAgentService
     {
     }
 }

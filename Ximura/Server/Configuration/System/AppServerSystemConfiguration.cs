@@ -30,8 +30,6 @@ using System.Runtime.Serialization;
 using Ximura;
 using Ximura.Server;
 using Ximura.Command;
-
-using Ximura.Performance;
 using Ximura.Data;
 using Ximura.Helper;
 using AH = Ximura.Helper.AttributeHelper;

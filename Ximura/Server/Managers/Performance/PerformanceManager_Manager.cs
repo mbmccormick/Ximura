@@ -36,26 +36,36 @@ using Ximura.Command;
 #endregion // using
 namespace Ximura.Server
 {
-    /// <summary>
-    /// This is the base class for performance agents.
-    /// </summary>
-    public class PerformanceAgentBase<CONF> : 
-        AppServerAgentBase<CONF, PerformanceCounterCollection>, IXimuraPerformanceAgent
-         where CONF : ConfigurationBase, new()
+    public partial class PerformanceManager
     {
-        #region Constructor
-		/// <summary>
-		/// This is the default constructor
-		/// </summary>
-		public PerformanceAgentBase():this(null){}
-		/// <summary>
-		/// This is the base constructor for a Ximura command
-		/// </summary>
-		/// <param name="container">The container to be added to</param>
-        public PerformanceAgentBase(System.ComponentModel.IContainer container)
-            : base(container) 
+        PerformanceCounterCollection mCounterCollection;
+
+
+        protected class PerformanceCounterCollection: IXimuraPerformanceManager
         {
+            protected internal PerformanceCounterCollection()
+            {
+
+            }
+
+            #region IXimuraPerformanceManager Members
+
+            public void PerformanceCounterCollectionRegister(IXimuraPerformanceCounterCollection collection)
+            {
+                throw new NotImplementedException();
+            }
+
+            public void PerformanceCounterCollectionUnregister(IXimuraPerformanceCounterCollection collection)
+            {
+                throw new NotImplementedException();
+            }
+
+            #endregion
+
+            internal void Clear()
+            {
+
+            }
         }
-        #endregion
     }
 }

@@ -17,6 +17,9 @@ using System.Configuration;
 #endregion // using
 namespace Ximura.Server
 {
+    /// <summary>
+    /// This method allows control services to add services to the command bridge.
+    /// </summary>
     public interface IXimuraCommandBridgeService
     {
         /// <summary>

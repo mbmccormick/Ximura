@@ -33,8 +33,6 @@ using Ximura.Data;
 using Ximura.Helper;
 using Ximura.Server;
 using Ximura.Command;
-
-using Ximura.Performance;
 using AH = Ximura.Helper.AttributeHelper;
 using RH = Ximura.Helper.Reflection;
 using CH = Ximura.Helper.Common;
@@ -53,37 +51,6 @@ namespace Ximura.Server
         /// </summary>
         protected XimuraAppServerConfigSystemAttribute mAttrConfigSystem = null;
         #endregion // Declarations
-
-        #region SystemServicesStart()/SystemServicesStop()
-        /// <summary>
-        /// This method registers the configuration settings services in the relevant containers.
-        /// </summary>
-        protected virtual void SystemServicesStart()
-        {
-            //This service allows components to retrieve their settings from the application
-            ControlServiceContainer.AddService(typeof(IXimuraConfigurationManager), ConfigurationSystem, false);
-
-            //This service allows components to retrieve their settings from the application
-            ControlServiceContainer.AddService(typeof(IXimuraPerformanceManager), PerformanceManager, false);
-
-            //Register the base application definition parameters.
-            ControlServiceContainer.AddService(typeof(IXimuraApplicationDefinition), mApplicationDefinition, true);
-        }
-        /// <summary>
-        /// This method removes the configuration settings services in the relevant containers.
-        /// </summary>
-        protected virtual void SystemServicesStop()
-        {
-            //Remove the base application definition parameters.
-            ControlServiceContainer.RemoveService(typeof(IXimuraApplicationDefinition));
-
-            //Remove the base application definition parameters.
-            ControlServiceContainer.RemoveService(typeof(IXimuraPerformanceManager));
-
-            //Remove the application settings
-            ControlServiceContainer.RemoveService(typeof(IXimuraConfigurationManager));
-        }
-        #endregion
 
         #region ConfigurationAttributesGet()
         /// <summary>

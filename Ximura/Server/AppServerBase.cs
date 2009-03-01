@@ -10,59 +10,56 @@
 //     Paul Stancer - initial implementation
 // *******************************************************************************
 #endregion
-﻿#region using
+#region using
 using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.Design;
 using System.ComponentModel.Design.Serialization;
 using System.Drawing;
 using System.Threading;
 using System.Reflection;
+using System.Linq;
 using System.IO;
 using System.IO.Compression;
 using System.Xml;
 using System.Security.Cryptography;
-using System.Runtime.Serialization;
 
 using Ximura;
-using Ximura.Server;
-using Ximura.Command;
 using Ximura.Data;
 using Ximura.Helper;
+using Ximura.Server;
+using Ximura.Command;
 using AH = Ximura.Helper.AttributeHelper;
 using RH = Ximura.Helper.Reflection;
 using CH = Ximura.Helper.Common;
-
 #endregion
 namespace Ximura.Server
 {
-    public class AppServerCommandConfiguration : CommandConfiguration, IXimuraConfigurationManager
+    /// <summary>
+    /// The AppServerBase class is the class that all server applications derive from.
+    /// </summary>
+    public class AppServer : AppServer<AppServerSystemConfiguration, AppServerCommandConfiguration, AppServerPerformance>
     {
-        #region Constructor
+        #region Constructors
         /// <summary>
-        /// The default constructor
+        /// This is the default constructor for the service.
         /// </summary>
-        public AppServerCommandConfiguration() : this((IContainer)null) { }
+        public AppServer()
+            : this((IContainer)null)
+        {
+        }
         /// <summary>
-        /// This constructor is called by .NET when it added as new to a container.
+        /// This constructor is called by the .Net component model when adding it to a container
         /// </summary>
-        /// <param name="container">The container this component should be added to.</param>
-        public AppServerCommandConfiguration(System.ComponentModel.IContainer container)
-            :
-            base(container) { }
-        /// <summary>
-        /// This is the deserialization constructor. 
-        /// </summary>
-        /// <param name="info">The Serialization info object that contains all the relevant data.</param>
-        /// <param name="context">The serialization context.</param>
-        public AppServerCommandConfiguration(SerializationInfo info, StreamingContext context)
-            :
-            base(info, context) { }
+        /// <param name="container">The container to add the component to.</param>
+        public AppServer(IContainer container)
+            : base(container)
+        {
+        }
         #endregion
-
-
     }
 }

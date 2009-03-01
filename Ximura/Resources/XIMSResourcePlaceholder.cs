@@ -10,6 +10,7 @@
 //     Paul Stancer - initial implementation
 // *******************************************************************************
 #endregion
+
 /// <summary>
 /// The XimuraResourcePlaceholder class is used to set the base for resource namespaces. 
 /// This is a bug with .NET, but it's something we have to live with.

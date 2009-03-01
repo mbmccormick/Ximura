@@ -36,11 +36,17 @@ using CH = Ximura.Helper.Common;
 #endregion // using
 namespace Ximura.Server
 {
+    /// <summary>
+    /// This class provides common fucntionality for agent based process services.
+    /// </summary>
+    /// <typeparam name="AGENT"></typeparam>
+    /// <typeparam name="CONF"></typeparam>
+    /// <typeparam name="PERF"></typeparam>
     public abstract class AppServerAgentManager<AGENT, CONF, PERF> : 
         AppServerProcessBase<CONF, PERF>, IXimuraAppServerAgentService
         where AGENT : class, IXimuraServerAgent
         where CONF : ConfigurationBase, new()
-        where PERF : PerformanceBase, new()
+        where PERF : PerformanceCounterCollection, new()
     {
         #region Declarations
         /// <summary>
@@ -65,15 +71,21 @@ namespace Ximura.Server
         }
         #endregion
 
-        #region IXimuraAppServerAgentService Members
-
+        #region AgentAdd/AgentRemove
+        /// <summary>
+        /// This method creates an agent based on the type passed in the holder and adds it to the agent collection.
+        /// </summary>
+        /// <param name="holder">The agent metadata holder.</param>
         public void AgentAdd(XimuraServerAgentHolder holder)
         {
             AGENT agent = AgentCreate(holder);
 
             mAgents.Add(holder.AgentID, agent);
         }
-
+        /// <summary>
+        /// This method removes the agent from the service.
+        /// </summary>
+        /// <param name="holder">The agent metadata holder.</param>
         public void AgentRemove(XimuraServerAgentHolder holder)
         {
             if (mAgents.ContainsKey(holder.AgentID))
@@ -84,21 +96,15 @@ namespace Ximura.Server
 
             throw new NotSupportedException();
         }
-
         #endregion
 
+        #region AgentCreate(XimuraServerAgentHolder holder);
         /// <summary>
         /// This abstract method creates the specific agent.
         /// </summary>
         /// <param name="holder">THe agent holder information.</param>
         /// <returns>Returns an agent class.</returns>
         protected abstract AGENT AgentCreate(XimuraServerAgentHolder holder);
-        //{
-        //    if (!holder.AgentType.IsSubclassOf(typeof(AGENT)))
-        //        throw new ArgumentOutOfRangeException("type is not supported.");
-
-        //    return (AGENT)RH.CreateObjectFromType(holder.AgentType);
-        //}
-
+        #endregion // AgentCreate(XimuraServerAgentHolder holder);
     }
 }

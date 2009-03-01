@@ -10,7 +10,7 @@
 //     Paul Stancer - initial implementation
 // *******************************************************************************
 #endregion
-﻿#region using
+#region using
 using System;
 using System.Data;
 using System.Drawing;
@@ -40,49 +40,73 @@ using Ximura.Server;
 
 
 #endregion // using
-namespace Ximura.Command
+namespace Ximura
 {
     /// <summary>
-    /// This method holds the standard performance indicators the a command.
+    /// This is the base class for the performance counter architecture.
     /// </summary>
-    public class CommandPerformance : PerformanceCounterCollection
+    public class PerformanceBase : IXimuraPerformance
     {
-        #region Declarations
-        private long mRequestCallbacks;
-        private long mRequestCallbacksCurrent;
-        private long mRequest;
-        private long mRequestCurrent;
-        #endregion // Declarations
 		#region Constructors
 		/// <summary>
 		/// This is the default constructor for the Content object.
 		/// </summary>
-		public CommandPerformance()
+        public PerformanceBase()
         {
         }
 		#endregion
 
-        public virtual void RequestCallbackStart(Guid ID)
+        #region PCID
+        /// <summary>
+        /// The performance counter id.
+        /// </summary>
+        public virtual Guid PCID
         {
-            Interlocked.Increment(ref mRequestCallbacks);
-            Interlocked.Increment(ref mRequestCallbacksCurrent);
+            get;
+            set;
         }
+        #endregion // PCID
+        #region AppID
+        /// <summary>
+        /// The command id.
+        /// </summary>
+        public virtual Guid AppID
+        {
+            get;
+            set;
+        }
+        #endregion // CommandID
+        #region ID
+        /// <summary>
+        /// The command id.
+        /// </summary>
+        public virtual Guid ID
+        {
+            get;
+            set;
+        }
+        #endregion // CommandID
 
-        public virtual void RequestCallbackEnd(Guid ID)
+        #region Name
+        /// <summary>
+        /// The counter name.
+        /// </summary>
+        public virtual string Name
         {
-            Interlocked.Decrement(ref mRequestCallbacksCurrent);
+            get;
+            set;
         }
-
-        public virtual void RequestStart(Guid ID)
+        #endregion // Name
+        #region Category
+        /// <summary>
+        /// The category name.
+        /// </summary>
+        public virtual string Category
         {
-            Interlocked.Increment(ref mRequest);
-            Interlocked.Increment(ref mRequestCurrent);
+            get;
+            set;
         }
-
-        public virtual void RequestEnd(Guid ID)
-        {
-            Interlocked.Decrement(ref mRequestCurrent);
-        }
+        #endregion // Category
 
     }
 }

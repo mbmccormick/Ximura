@@ -201,16 +201,18 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Command\AppBase.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Command\Interfaces\IXimuraCommandRQ.cs" />
     <Compile Include="Command\Permission\CommandPermission.cs" />
     <Compile Include="Command\Permission\CommandPermissionSet.cs" />
+    <Compile Include="Component\AppBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Configuration\ConfigurationBase.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Performance\PerformanceBase.cs" />
+    <Compile Include="Server\AppServerBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Server\AppServer_CommandBridge.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -241,16 +243,21 @@
     <Compile Include="Server\AppServer_Threading.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Server\Managers\Logging\XimuraAppTrace.cs" />
     <Compile Include="Server\Managers\Performance\Agents\Configuration\PerformanceAgentConfiguration.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Server\Managers\Session\Agents\IXimuraSessionAgent.cs" />
+    <Compile Include="Server\Managers\Performance\Counters\PerformanceBase.cs" />
+    <Compile Include="Server\Managers\Performance\Counters\PerformanceCounter.cs" />
+    <Compile Include="Server\Managers\Performance\Counters\PerformanceCounterCollection.cs" />
+    <Compile Include="Server\Managers\Performance\Counters\PerformanceCounterNotificationType.cs" />
+    <Compile Include="Server\Managers\Performance\PerformanceManager_Manager.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Server\Managers\Session\Agents\Performance\SessionAgentPerformance.cs" />
     <Compile Include="Server\Managers\Storage\Agents\FileSystem\FileSystemStorageAgent.cs" />
-    <Compile Include="Server\Managers\Storage\Agents\IXimuraStorageAgent.cs" />
     <Compile Include="Server\Managers\Storage\Agents\Resource\ResourceStorageAgent.cs" />
     <Compile Include="Server\Managers\Storage\Agents\SQLServer\SQLServerStorageAgent.cs" />
-    <Compile Include="Server\Managers\XimuraServerAgentHolder.cs" />
     <Compile Include="Server\Managers\XimuraAppServerAgentAttributeBase.cs" />
     <Compile Include="Server\Configuration\XimuraAppServerConfigurationAttribute.cs" />
     <Compile Include="Server\Managers\Performance\XimuraAppServerPerformanceAgentAttribute.cs" />
@@ -269,11 +276,9 @@
     <Compile Include="Server\Exceptions\SessionException.cs" />
     <Compile Include="Server\Exceptions\SessionSecurityException.cs" />
     <Compile Include="Server\Interfaces\AppServerConfigSettingsType.cs" />
-    <Compile Include="Server\Interfaces\IXimuraAppServerAgentService.cs" />
     <Compile Include="Server\Interfaces\IXimuraAppSettings.cs" />
     <Compile Include="Server\Interfaces\IXimuraCommandBridgeService.cs" />
     <Compile Include="Server\Interfaces\IXimuraConfigurationSystemExtended.cs" />
-    <Compile Include="Server\Interfaces\IXimuraPerformance.cs" />
     <Compile Include="Server\Interfaces\IXimuraPerformanceService.cs" />
     <Compile Include="Server\Interfaces\IXimuraSecurityManagerSession.cs" />
     <Compile Include="Server\Interfaces\IXimuraSessionManagerAccess.cs" />
@@ -283,7 +288,6 @@
     <Compile Include="Server\Managers\AppServerAgentManager.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Server\Managers\IXimuraServerAgent.cs" />
     <Compile Include="Server\Managers\Performance\AppServerPerformance.cs" />
     <Compile Include="Server\Delegates\Delegates.cs" />
     <Compile Include="Server\Delegates\CompletionJobCallBack.cs" />
@@ -407,7 +411,6 @@
     <Compile Include="Server\Managers\Storage\Configuration\StorageManagerConfiguration.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Server\Managers\Storage\IXimuraStorage.cs" />
     <Compile Include="Persistence\CDS\Performance\CDSPerformance.cs" />
     <Compile Include="Persistence\CDS\Configuration\PersistenceManagerConfigSH.cs">
       <SubType>Code</SubType>
@@ -479,22 +482,18 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Server\Managers\Logging\Performance\LoggingManagerPerformance.cs" />
-    <Compile Include="Logging\XimuraAppTrace.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Server\Managers\Performance\Agents\PerformanceAgentBase.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Performance\Counters\PerformanceCounterBase.cs" />
-    <Compile Include="Performance\Counters\PerformanceCounterCollectionBase.cs" />
-    <Compile Include="Performance\Counters\PerformanceCounterNotificationType.cs" />
     <Compile Include="Server\CommandBridge\CommandBridge.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Server\Managers\Performance\Configuration\PerformanceManagerConfiguration.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Server\Managers\Performance\PerformanceManager.cs" />
+    <Compile Include="Server\Managers\Performance\PerformanceManager.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Server\Managers\Session\Agents\SessionAgentBase.cs">
       <SubType>Component</SubType>
     </Compile>

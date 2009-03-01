@@ -52,7 +52,7 @@ namespace Ximura.Server
         #endregion
     }
 
-    public abstract class SessionAgentBase<CONF> : AppServerAgentBase<CONF, SessionAgentPerformance>
+    public abstract class SessionAgentBase<CONF> : AppServerAgentBase<CONF, SessionAgentPerformance>, IXimuraSessionAgent
         where CONF : ConfigurationBase, new()
     {
         #region Constructor

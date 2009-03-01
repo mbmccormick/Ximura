@@ -31,8 +31,9 @@ using Ximura.Command;
 #endregion // using
 namespace Ximura.Server
 {
+    [XimuraAppModule("834F904B-21B2-4721-ACCA-F2B3D67FF311", "StorageManager")]
     public class StorageManager : 
-        AppServerAgentManager<StorageAgentBase, StorageManagerConfiguration, StorageManagerPerformance>
+        AppServerAgentManager<StorageAgentBase, StorageManagerConfiguration, StorageManagerPerformance>, IXimuraStorageManagerService
         //where CONF : CommandConfiguration, new()<CONF>
     {
 		#region Constructors
@@ -53,5 +54,26 @@ namespace Ximura.Server
         {
             throw new NotImplementedException();
         }
+
+        #region ServicesProvide/ServicesRemove
+        /// <summary>
+        /// This override adds the IXimuraLoggingManager service to the control container.
+        /// </summary>
+        protected override void ServicesProvide()
+        {
+            base.ServicesProvide();
+
+            AddService<IXimuraStorageManagerService>(this);
+        }
+        /// <summary>
+        /// This override removes the IXimuraLoggingManager service to the control container.
+        /// </summary>
+        protected override void ServicesRemove()
+        {
+            RemoveService<IXimuraStorageManagerService>();
+
+            base.ServicesRemove();
+        }
+        #endregion // ServicesProvide/ServicesRemove
     }
 }

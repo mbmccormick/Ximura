@@ -141,7 +141,7 @@ namespace Ximura.Command
         where CBRQ : RQRSFolder, new()
         where CBRS : RQRSFolder, new()
         where CONF : CommandConfiguration, new()
-        where PERF : CommandPerformance, IXimuraCommandPerformance, new()
+        where PERF : CommandPerformance, new()
     {
 		#region Declarations
 

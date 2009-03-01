@@ -33,8 +33,6 @@ using Ximura.Data;
 using Ximura.Helper;
 using Ximura.Server;
 using Ximura.Command;
-
-using Ximura.Performance;
 using AH = Ximura.Helper.AttributeHelper;
 using RH = Ximura.Helper.Reflection;
 using CH = Ximura.Helper.Common;
@@ -43,6 +41,17 @@ namespace Ximura.Server
 {
     public partial class AppServer<CONFSYS, CONFCOM, PERF>
     {
+        #region PerformanceService
+        /// <summary>
+        /// This is the performance manager for the application.
+        /// </summary>
+        protected virtual PerformanceManager PerformanceService
+        {
+            get;
+            set;
+        }
+        #endregion // Logging
+
         #region PerformanceStart()
         /// <summary>
         /// This protected method checks whether a Logging and Performance manager is active
@@ -52,8 +61,19 @@ namespace Ximura.Server
         {
             base.PerformanceStart();
 
-            AgentsAdd<XimuraAppServerPerformanceAgentAttribute>(PerformanceAgentsDefault, (IXimuraPerformanceService)PerformanceManager);
+            PerformanceService = new PerformanceManager(ControlContainer);
 
+            AgentsAdd<XimuraAppServerPerformanceAgentAttribute>(PerformanceAgentsDefault, PerformanceService);
+
+            PerformanceService.Start();
+
+            //Performance.CommandID = this.ApplicationID;
+            //Performance.PCID = this.ApplicationID;
+            //Performance.Name = this.ApplicationIDAttribute.;
+            //Performance.Category = "Command";
+
+            //if (PerformanceManager != null)
+            //    PerformanceManager.PerformanceCounterCollectionRegister(Performance);
         }
         #endregion
         #region PerformanceStop()
@@ -62,20 +82,20 @@ namespace Ximura.Server
         /// </summary>
         protected override void PerformanceStop()
         {
-            AgentsRemove<XimuraAppServerPerformanceAgentAttribute>(PerformanceAgentsDefault, (IXimuraPerformanceService)PerformanceManager);
+            AgentsRemove<XimuraAppServerPerformanceAgentAttribute>(PerformanceAgentsDefault, PerformanceService);
 
             base.PerformanceStop();
         }
         #endregion
         #region PerformanceManager
         /// <summary>
-        /// This is the performance manager for the application.
+        /// This is the performance manager for the application which commands and services can register their performance counters with,
         /// </summary>
         protected override IXimuraPerformanceManager PerformanceManager
         {
             get
             {
-                return Performance;
+                return PerformanceService.Manager;
             }
             set
             {
@@ -83,6 +103,7 @@ namespace Ximura.Server
             }
         }
         #endregion // PerformanceManager
+
 
         #region PerformanceAgentsDefault
         /// <summary>

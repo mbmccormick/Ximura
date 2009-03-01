@@ -36,7 +36,80 @@ using Ximura.Command;
 #endregion // using
 namespace Ximura.Server
 {
-    public class PerformanceManager//: AppServerAgentManager<PerformanceAgentBase,
-    {
+    [XimuraAppModule("5E609DAA-AD76-4eb5-B0CC-18C3A3ECD9C0", "PerformanceManager")]
+    public partial class PerformanceManager:
+        AppServerAgentManager<IXimuraPerformanceAgent, PerformanceManagerConfiguration, PerformanceCounterCollection>, IXimuraPerformanceManagerService
+	{
+		#region Declarations
+
+		#endregion
+		#region Constructors / Destructor
+		/// <summary>
+		/// The default Ximura Application constructor
+		/// </summary>
+		/// <param name="container">The container the services should be added to.</param>
+        public PerformanceManager(System.ComponentModel.IContainer container)
+            : base(container) 
+        {
+        }
+		#endregion
+
+        #region ServicesProvide/ServicesRemove
+        /// <summary>
+        /// This override adds the IXimuraLoggingManager service to the control container.
+        /// </summary>
+        protected override void ServicesProvide()
+        {
+            base.ServicesProvide();
+
+            AddService<IXimuraPerformanceManagerService>(this);
+        }
+        /// <summary>
+        /// This override removes the IXimuraLoggingManager service to the control container.
+        /// </summary>
+        protected override void ServicesRemove()
+        {
+            RemoveService<IXimuraPerformanceManagerService>();
+
+            base.ServicesRemove();
+        }
+        #endregion // ServicesProvide/ServicesRemove
+
+        protected override void InternalStart()
+        {
+            base.InternalStart();
+
+            ManagerInternal = new PerformanceCounterCollection();
+        }
+
+        protected override void InternalStop()
+        {
+            ManagerInternal.Clear();
+            ManagerInternal = null;
+
+            base.InternalStop();
+        }
+
+		#region Provider Handling
+
+        protected override IXimuraPerformanceAgent AgentCreate(XimuraServerAgentHolder holder)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        protected PerformanceCounterCollection ManagerInternal
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// This is the performance manager used to register performance services.
+        /// </summary>
+        public IXimuraPerformanceManager Manager
+        {
+            get { return ManagerInternal; }
+        }
     }
 }

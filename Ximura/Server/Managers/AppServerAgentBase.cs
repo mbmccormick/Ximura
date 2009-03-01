@@ -43,7 +43,7 @@ namespace Ximura.Server
     /// <typeparam name="PERF">The agent performance class.</typeparam>
     public class AppServerAgentBase<CONF, PERF> : AppBase<CONF, PERF>, IXimuraServerAgent
         where CONF : ConfigurationBase, new()
-        where PERF : PerformanceBase, new()
+        where PERF : PerformanceCounterCollection, new()
     {
         #region Constructor
 		/// <summary>

@@ -33,8 +33,6 @@ using Ximura.Data;
 using Ximura.Helper;
 using Ximura.Server;
 using Ximura.Command;
-
-using Ximura.Performance;
 using AH = Ximura.Helper.AttributeHelper;
 using RH = Ximura.Helper.Reflection;
 using CH = Ximura.Helper.Common;
@@ -106,6 +104,8 @@ namespace Ximura.Server
 
             //Register the base application definition parameters.
             AddService<IXimuraApplicationDefinition>(mApplicationDefinition, true);
+
+            ControlServiceContainer.AddService(typeof(IXimuraApplicationDefinition),mApplicationDefinition);
         }
         #endregion
         #region ApplicationServicesStop()
@@ -114,6 +114,8 @@ namespace Ximura.Server
         /// </summary>
         protected virtual void ApplicationServicesStop()
         {
+            ControlServiceContainer.RemoveService(typeof(IXimuraApplicationDefinition));
+
             //Remove the base application definition parameters.
             RemoveService<IXimuraApplicationDefinition>();
         }
@@ -147,9 +149,6 @@ namespace Ximura.Server
         {
             //Start the storage next, as the session managers may depend on the storage engine.
             StorageStart();
-
-            //Create the session manager
-            SessionManagerStart();
         }
         #endregion // AgentServicesStart()
         #region AgentServicesStop()
@@ -158,9 +157,6 @@ namespace Ximura.Server
         /// </summary>
         protected virtual void AgentServicesStop()
         {
-            //Create the session manager
-            SessionManagerStop();
-
             //Start the storage next, as the session managers may depend on the storage engine.
             StorageStop();
         }

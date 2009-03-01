@@ -10,41 +10,30 @@
 //     Paul Stancer - initial implementation
 // *******************************************************************************
 #endregion
-﻿#region using
+#region using
 using System;
-using System.Collections;
-using System.Configuration;
-using System.Collections.Generic;
-using System.IO;
 using System.ComponentModel;
-using System.ComponentModel.Design;
-using System.Drawing;
+using System.Diagnostics;
 
 using Ximura;
-using Ximura.Data;
-using Ximura.Helper;
-using CH = Ximura.Helper.Common;
-using RH = Ximura.Helper.Reflection;
-
 using Ximura.Server;
-
-
-
 #endregion // using
-namespace Ximura.Command
+namespace Ximura
 {
     /// <summary>
-    /// This is the base performance object for
+    /// This method is used to determine the notification logic that the counter wishes to use.
     /// </summary>
-    public class CommandContainerPerformance : CommandPerformance
+    public enum PerformanceCounterNotificationType
     {
-        #region Constructors
-		/// <summary>
-		/// This is the default constructor for the Content object.
-		/// </summary>
-        public CommandContainerPerformance()
-        {
-        }
-		#endregion
+        /// <summary>
+        /// The counter will fire an event when the value changes. Generally this should only
+        /// be used for counters that change infrequently.
+        /// </summary>
+        EventDriven,
+        /// <summary>
+        /// The timer poll method should be used for counters that need to be updated at a regular
+        /// interval.
+        /// </summary>
+        TimerPoll
     }
 }

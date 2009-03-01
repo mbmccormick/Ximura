@@ -26,6 +26,8 @@ using System.Security.Principal;
 
 using Ximura;
 using Ximura.Helper;
+using AH=Ximura.Helper.AttributeHelper;
+using RH=Ximura.Helper.Reflection;
 using Ximura.Server;
 using Ximura.Command;
 #endregion // using
@@ -37,13 +39,16 @@ namespace Ximura.Server
 	/// session objects to requesting parties.
 	/// </summary>
 	[ToolboxBitmap(typeof(XimuraResourcePlaceholder),"Ximura.Resources.SessionManager.bmp")]
-	public partial class SessionManager :
-        AppServerAgentManager<IXimuraSessionAgent, SSMConfiguration, SSMPerformance>, IXimuraSessionManager
+    [XimuraAppModule("0C3768DE-DB2D-4da7-80F2-11D2C8264D71", "SessionManager")]
+    public partial class SessionManager :
+        AppServerAgentManager<IXimuraSessionAgent, SSMConfiguration, SSMPerformance>, IXimuraSessionManagerService
 	{
 		#region Declarations
         private PoolInvocator<SessionJob> mPoolSessionJob = null;
         private Dictionary<Guid, SessionToken> mSessionTokens = null;
         private PoolInvocator<SessionToken> mSessionTokenPool = null;
+
+        IContainer parentContainer;
         #endregion
 		#region Constructor
 		/// <summary>
@@ -52,10 +57,14 @@ namespace Ximura.Server
 		/// <param name="container">The control container.</param>
         public SessionManager(IContainer container): base(container)
         {
-
+            parentContainer = container;
         }
 		#endregion
 
+        #region InternalStart()/InternalStop()
+        /// <summary>
+        /// This override creates the session token collection and pools.
+        /// </summary>
         protected override void InternalStart()
         {
             base.InternalStart();
@@ -64,7 +73,9 @@ namespace Ximura.Server
 
             mSessionTokens = new Dictionary<Guid, SessionToken>();
         }
-
+        /// <summary>
+        /// This override cleats the session token collection and session token pool.
+        /// </summary>
         protected override void InternalStop()
         {
             mSessionTokenPool.Clear();
@@ -75,18 +86,41 @@ namespace Ximura.Server
 
             base.InternalStop();
         }
+        #endregion // InternalStop()
+
+
+        #region ServicesProvide/ServicesRemove
+        /// <summary>
+        /// This override adds the IXimuraSessionManagerService service to the control container.
+        /// </summary>
+        protected override void ServicesProvide()
+        {
+            base.ServicesProvide();
+
+            AddService<IXimuraSessionManagerService>(this);
+        }
+        /// <summary>
+        /// This override removes the IXimuraSessionManagerService service to the control container.
+        /// </summary>
+        protected override void ServicesRemove()
+        {
+            RemoveService<IXimuraSessionManagerService>();
+
+            base.ServicesRemove();
+        }
+        #endregion // ServicesProvide/ServicesRemove
 
 
         #region IXimuraSessionManager Members
 
         IXimuraSession IXimuraSessionManager.SessionCreate()
         {
-            throw new NotImplementedException();
+            return ((IXimuraSessionManager)this).SessionCreate(null, null);
         }
 
         IXimuraSession IXimuraSessionManager.SessionCreate(string username)
         {
-            throw new NotImplementedException();
+            return ((IXimuraSessionManager)this).SessionCreate(null, username);
         }
 
         IXimuraSession IXimuraSessionManager.SessionCreate(string domain, string username)
@@ -96,9 +130,15 @@ namespace Ximura.Server
 
         #endregion
 
+        /// <summary>
+        /// This override created the session agent.
+        /// </summary>
+        /// <param name="holder"></param>
+        /// <returns></returns>
         protected override IXimuraSessionAgent AgentCreate(XimuraServerAgentHolder holder)
         {
-            throw new NotImplementedException();
+            IXimuraSessionAgent agent = (IXimuraSessionAgent)RH.CreateObjectFromType(holder.AgentType,new object[]{parentContainer});
+            return agent;
         }
     }
 }

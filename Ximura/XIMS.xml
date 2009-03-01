@@ -419,26 +419,20 @@
             This property specifies whether the permission has been set.
             </summary>
         </member>
-        <member name="T:Ximura.Performance.PerformanceCounterNotificationType">
-            <summary>
-            This method is used to determine the notification logic that the counter wishes to use.
-            </summary>
-        </member>
-        <member name="F:Ximura.Performance.PerformanceCounterNotificationType.EventDriven">
-            <summary>
-            The counter will fire an event when the value changes. Generally this should only
-            be used for counters that change infrequently.
-            </summary>
-        </member>
-        <member name="F:Ximura.Performance.PerformanceCounterNotificationType.TimerPoll">
-            <summary>
-            The timer poll method should be used for counters that need to be updated at a regular
-            interval.
-            </summary>
-        </member>
         <member name="T:Ximura.Command.CommandPerformance">
             <summary>
             This method holds the standard performance indicators the a command.
+            </summary>
+        </member>
+        <member name="T:Ximura.PerformanceCounterCollection">
+            <summary>
+            The PerformanceCounterCollection class provides group functionality
+            for related performance counters.
+            </summary>
+        </member>
+        <member name="T:Ximura.PerformanceBase">
+            <summary>
+            This is the base class for the performance counter architecture.
             </summary>
         </member>
         <member name="M:Ximura.PerformanceBase.#ctor">
@@ -446,29 +440,108 @@
             This is the default constructor for the Content object.
             </summary>
         </member>
-        <member name="M:Ximura.Command.CommandPerformance.#ctor">
+        <member name="P:Ximura.PerformanceBase.PCID">
             <summary>
-            This is the default constructor for the Content object.
+            The performance counter id.
             </summary>
         </member>
-        <member name="P:Ximura.Command.CommandPerformance.CommandID">
+        <member name="P:Ximura.PerformanceBase.AppID">
             <summary>
             The command id.
             </summary>
         </member>
-        <member name="P:Ximura.Command.CommandPerformance.PCID">
+        <member name="P:Ximura.PerformanceBase.ID">
             <summary>
-            The parent command id.
+            The command id.
             </summary>
         </member>
-        <member name="P:Ximura.Command.CommandPerformance.Name">
+        <member name="P:Ximura.PerformanceBase.Name">
             <summary>
             The counter name.
             </summary>
         </member>
-        <member name="P:Ximura.Command.CommandPerformance.Category">
+        <member name="P:Ximura.PerformanceBase.Category">
             <summary>
             The category name.
+            </summary>
+        </member>
+        <member name="F:Ximura.PerformanceCounterCollection.mPerformanceCounters">
+            <summary>
+            This is the base performance counter collection.
+            </summary>
+        </member>
+        <member name="F:Ximura.PerformanceCounterCollection.syncObject">
+            <summary>
+            This is the base synchronization object.
+            </summary>
+        </member>
+        <member name="M:Ximura.PerformanceCounterCollection.#ctor">
+            <summary>
+            This is the default constructor.
+            </summary>
+        </member>
+        <member name="M:Ximura.PerformanceCounterCollection.PerformanceCountersCreate">
+            <summary>
+            This method creates the performance counters for the collection. You should override this method to add your own counters.
+            </summary>
+        </member>
+        <member name="M:Ximura.PerformanceCounterCollection.Add(Ximura.IXimuraPerformanceCounter)">
+            <summary>
+            This method adds a counter to the collection.
+            </summary>
+            <param name="item"></param>
+        </member>
+        <member name="M:Ximura.PerformanceCounterCollection.Clear">
+            <summary>
+            This method clears the collection.
+            </summary>
+        </member>
+        <member name="M:Ximura.PerformanceCounterCollection.Contains(Ximura.IXimuraPerformanceCounter)">
+            <summary>
+            This method returns true if the item in in the collection.
+            </summary>
+            <param name="item">The item to check.</param>
+            <returns>Returns true if the item is in the collection.</returns>
+        </member>
+        <member name="M:Ximura.PerformanceCounterCollection.CopyTo(Ximura.IXimuraPerformanceCounter[],System.Int32)">
+            <summary>
+            This method copies the collection to the array passed.
+            </summary>
+            <param name="array">The array.</param>
+            <param name="arrayIndex">The position in the index to begin copying.</param>
+        </member>
+        <member name="M:Ximura.PerformanceCounterCollection.Remove(Ximura.IXimuraPerformanceCounter)">
+            <summary>
+            This method removes an item from the collection.
+            </summary>
+            <param name="item">The item to remove.</param>
+            <returns>Return true if the item is successfully removed.</returns>
+        </member>
+        <member name="M:Ximura.PerformanceCounterCollection.GetEnumerator">
+            <summary>
+            This is the generic enumerator for the collection.
+            </summary>
+            <returns>Returns an lock-free enumerator for the collection.</returns>
+        </member>
+        <member name="M:Ximura.PerformanceCounterCollection.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            This is the standard enumerator.
+            </summary>
+            <returns>Returns an lock-free enumerator for the collection.</returns>
+        </member>
+        <member name="P:Ximura.PerformanceCounterCollection.Count">
+            <summary>
+            This is the collection length.
+            </summary>
+        </member>
+        <member name="P:Ximura.PerformanceCounterCollection.IsReadOnly">
+            <summary>
+            This method returns false as the performance counter collection is not locked.
+            </summary>
+        </member>
+        <member name="M:Ximura.Command.CommandPerformance.#ctor">
+            <summary>
+            This is the default constructor for the Content object.
             </summary>
         </member>
         <member name="M:Ximura.Persistence.CDSStatePerformance.#ctor">
@@ -1563,6 +1636,16 @@
             This method initializes the 
             </summary>
         </member>
+        <member name="M:Ximura.AppBase`2.InternalStart">
+            <summary>
+            This method starts the AppServerProcess and registers any services
+            </summary>
+        </member>
+        <member name="M:Ximura.AppBase`2.InternalStop">
+            <summary>
+            The method stops the AppServerProcess and unregisters and services
+            </summary>
+        </member>
         <member name="M:Ximura.AppBase`2.ConfigurationStart">
             <summary>
             This method creates and registers the configuration data object.
@@ -1759,16 +1842,6 @@
         <member name="M:Ximura.Command.AppCommandBase`2.GetSettingsProvider">
             <summary>
             This method gets the settings for the command.
-            </summary>
-        </member>
-        <member name="M:Ximura.Command.AppCommandBase`2.InternalStart">
-            <summary>
-            This method starts the AppServerProcess and registers any services
-            </summary>
-        </member>
-        <member name="M:Ximura.Command.AppCommandBase`2.InternalStop">
-            <summary>
-            The method stops the AppServerProcess and unregisters and services
             </summary>
         </member>
         <member name="M:Ximura.Command.AppCommandBase`2.ConfigurationLoad(`0)">
@@ -2316,6 +2389,11 @@
             The 401 HTTP response code.
             </summary>
         </member>
+        <member name="T:Ximura.Command.CommandContainerPerformance">
+            <summary>
+            This is the base performance object for
+            </summary>
+        </member>
         <member name="M:Ximura.Command.CommandContainerPerformance.#ctor">
             <summary>
             This is the default constructor for the Content object.
@@ -2450,23 +2528,13 @@
             This is the public accessor for the extended properties.
             </summary>
         </member>
-        <member name="T:Ximura.Server.IXimuraAppServerAgentService">
+        <member name="T:Ximura.Server.AppServerAgentManager`3">
             <summary>
-            THis interface is implemented by application server components that need the ability to register specific agents, 
-            such as logging providers, session managers etc.
+            This class provides common fucntionality for agent based process services.
             </summary>
-        </member>
-        <member name="M:Ximura.Server.IXimuraAppServerAgentService.AgentAdd(Ximura.Server.XimuraServerAgentHolder)">
-            <summary>
-            This method adds an agent to the service.
-            </summary>
-            <param name="holder">The agent identifying information.</param>
-        </member>
-        <member name="M:Ximura.Server.IXimuraAppServerAgentService.AgentRemove(Ximura.Server.XimuraServerAgentHolder)">
-            <summary>
-            This method removes an agent from the service.
-            </summary>
-            <param name="holder">The agent identifying information.</param>
+            <typeparam name="AGENT"></typeparam>
+            <typeparam name="CONF"></typeparam>
+            <typeparam name="PERF"></typeparam>
         </member>
         <member name="F:Ximura.Server.AppServerAgentManager`3.mAgents">
             <summary>
@@ -2483,6 +2551,18 @@
             The Ximura Application component model constructor
             </summary>
             <param name="container">The container that the services should be added to.</param>
+        </member>
+        <member name="M:Ximura.Server.AppServerAgentManager`3.AgentAdd(Ximura.Server.XimuraServerAgentHolder)">
+            <summary>
+            This method creates an agent based on the type passed in the holder and adds it to the agent collection.
+            </summary>
+            <param name="holder">The agent metadata holder.</param>
+        </member>
+        <member name="M:Ximura.Server.AppServerAgentManager`3.AgentRemove(Ximura.Server.XimuraServerAgentHolder)">
+            <summary>
+            This method removes the agent from the service.
+            </summary>
+            <param name="holder">The agent metadata holder.</param>
         </member>
         <member name="M:Ximura.Server.AppServerAgentManager`3.AgentCreate(Ximura.Server.XimuraServerAgentHolder)">
             <summary>
@@ -2544,6 +2624,648 @@
             <summary>Initializes the exception with serialized information.</summary>
             <param name="info">Serialization information.</param>
             <param name="context">Streaming context.</param>
+        </member>
+        <member name="T:Ximura.Server.AppServer">
+            <summary>
+            The AppServerBase class is the class that all server applications derive from.
+            </summary>
+        </member>
+        <member name="T:Ximura.Server.AppServer`3">
+            <summary>
+            The AppServerBase class is the class that all server applications derive from.
+            </summary>
+        </member>
+        <member name="F:Ximura.Server.AppServer`3.mAppServerAttribute">
+            <summary>
+            This method holds the appserver attribute settings.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.#ctor">
+            <summary>
+            This is the default constructor for the service.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.#ctor(System.ComponentModel.IContainer)">
+            <summary>
+            This constructor is called by the .Net component model when adding it to a container
+            </summary>
+            <param name="container">The container to add the component to.</param>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.Dispose(System.Boolean)">
+            <summary> 
+            This is an override of the IDisposable method which cleans up any resources being used.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.InitializeControlContainer">
+            <summary>
+            This method initializes the base components container 
+            and the Application control container
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.SiteBeforeChange(System.ComponentModel.ISite,System.ComponentModel.ISite)">
+            <summary>
+            This overriden method does nothing. AppServer does not care about the site property.
+            </summary>
+            <param name="newSite">The new site value.</param>
+            <param name="oldSite">The old site value.</param>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.SiteChanged(System.ComponentModel.ISite,System.ComponentModel.ISite)">
+            <summary>
+            This overriden method does nothing. AppServer does not care about the site property.
+            </summary>
+            <param name="oldSite">The old site.</param>
+            <param name="newSite">The new site.</param>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.AgentsAdd``1(System.Collections.Generic.IEnumerable{Ximura.Server.XimuraServerAgentHolder},Ximura.Server.IXimuraAppServerAgentService)">
+            <summary>
+            This method is used to add a collection of agent holders with a particular service.
+            </summary>
+            <typeparam name="A">The agent attribute type.</typeparam>
+            <param name="AgentsDefault">The default agent collection.</param>
+            <param name="Service">The service to add the agent holder to.</param>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.AgentsRemove``1(System.Collections.Generic.IEnumerable{Ximura.Server.XimuraServerAgentHolder},Ximura.Server.IXimuraAppServerAgentService)">
+            <summary>
+            This method is used to remove a collection of agent holders from a particular service.
+            </summary>
+            <typeparam name="A">The agent attribute type.</typeparam>
+            <param name="AgentsDefault">The default agent collection.</param>
+            <param name="Service">The service to remove the agent holder from.</param>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.ApplicationServicesStart">
+            <summary>
+            This method registers specific application information.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.ApplicationServicesStop">
+            <summary>
+            This method removes specific application information.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.PoolManagerStart">
+            <summary>
+            This protected method creates the default pool manager for the application.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.PoolManagerStop">
+            <summary>
+            This protected method disposes of the default pool manager for the application.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.AgentServicesStart">
+            <summary>
+            This method starts the storage and session managers. You can override this method to add additional service managers.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.AgentServicesStop">
+            <summary>
+            This method stops the storage and session managers. You can override this method to add additional service managers.
+            </summary>
+        </member>
+        <member name="F:Ximura.Server.AppServer`3.syncThreadPool">
+            <summary>
+            List of all worker threads at the disposal of the thread pool.
+            </summary>
+        </member>
+        <member name="F:Ximura.Server.AppServer`3.mWaitingJobs">
+            <summary>
+            Queue of all the callbacks waiting to be executed.
+            </summary>
+        </member>
+        <member name="F:Ximura.Server.AppServer`3.mWorkerThreadNeeded">
+            <summary>
+            Used to signal that a worker thread is needed for processing.  Note that multiple
+            threads may be needed simultaneously and as such we use a semaphore instead of
+            an auto reset event.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.ThreadPoolStart">
+            <summary>
+            This method initializes the thread pool
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.ThreadPoolStop">
+            <summary>
+            This method shuts down the thread pool.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.PerformanceUpdateCounters">
+            <summary>
+            This method is used to update the performance counter
+            after the status has changed.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.ThreadRemove">
+            <summary>
+            This method aborts a thread pool thread. We use abort because this method 
+            will only be called by a thread that is not executing.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.QueuedItemsClear">
+            <summary>
+            This method empties the work queue of any queued work items.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.QueuedItemsProcess">
+            <summary>
+            A thread worker function that processes items from the work queue.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.JobPriorityQueueCreate">
+            <summary>
+            This method returns a new job priority queue class.
+            </summary>
+        </member>
+        <member name="F:Ximura.Server.AppServer`3.mAttrConfigCommand">
+            <summary>
+            This attribute contains the command configuration settings.
+            </summary>
+        </member>
+        <member name="F:Ximura.Server.AppServer`3.mAttrConfigSystem">
+            <summary>
+            This attribute contains the system configuration settings.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.ConfigurationAttributesGet">
+            <summary>
+            This method gets the app server configuration attributes.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.ConfigurationStart">
+            <summary>
+            This protected method checks whether the configuration service is active, 
+            and if not creates a default one.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.ConfigurationStop">
+            <summary>
+            This method stops the configuration manager.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.ConfigurationLoadGeneric(Ximura.ConfigurationBase,Ximura.Server.XimuraAppServerConfigurationAttribute,System.Func{System.IO.Stream})">
+            <summary>
+            This method loads the configuration based on the attribute settings.
+            </summary>
+            <param name="config">The configuration to load.</param>
+            <param name="configAttr">The attribute settings.</param>
+            <param name="delDefaultStream">The delegate to the default stream.</param>
+            <returns>Returns true if the configuration was loaded successfully.</returns>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.ConfigurationLoad(`1)">
+            <summary>
+            This override loads the server command configuration.
+            </summary>
+            <param name="commandConfiguration">The command configuration.</param>
+            <returns>Returns true if the configuration was loaded successfully.</returns>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.ConfigurationDefault">
+            <summary>
+            This method returns the default command configuration as a stream.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.ConfigurationSystemLoad(`0)">
+            <summary>
+            This method loads the system configuration.
+            </summary>
+            <param name="systemConfiguration">The system configuration.</param>
+            <returns>Returns true if the configuration was loaded successfully.</returns>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.ConfigurationSystemDefault">
+            <summary>
+            This method returns the default system configuration as a stream.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.LoadConfigFile(Ximura.Server.XimuraAppServerConfigurationAttribute,System.Func{System.IO.Stream})">
+            <summary>
+            This method loads and verifies the application settings for the 
+            application. This method can be overriden by derived classes.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.LoadConfigFromAssembly(System.String)">
+            <summary>
+            This method loads a config file from a Assembly
+            </summary>
+            <param name="resourceFileName">The file name of the config file.</param>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.LoadConfigFromAssembly(System.String,System.Boolean)">
+            <summary>
+            This method loads a config file from a Assembly
+            </summary>
+            <param name="resourceFileName">The file name of the config file.</param>
+            <param name="SearchLoadedAssemblies">A boolean value indicating whether the server 
+            should search loaded assemblies should be searched if the resource cannot be found
+            in the current assembly.</param>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.LoadConfigFromFile(System.String,System.Boolean)">
+            <summary>
+            This method loads a config file from known application paths
+            </summary>
+            <param name="fileName">The file name of the config file.</param>
+            <param name="verifySignature">A boolean value indicating whether the system should 
+            verify the file content using a digital signature</param>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.ResolveFileLocationPath(System.String)">
+            <summary>
+            This method check the relevant location paths for a valid configuration file.
+            </summary>
+            <param name="fileName">The file to search for.</param>
+            <returns>The full file path.</returns>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.CommandBridgeStart">
+            <summary>
+            This method register the command bridge with the command collection.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.CommandBridgeStop">
+            <summary>
+            This method removes the command bridge services
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.CommandBridgeServiceAdd(System.Type,System.Object)">
+            <summary>
+            This method adds a service to the command bridge
+            </summary>
+            <param name="service">The service type</param>
+            <param name="serviceobj">The service object.</param>
+            <returns>Returns true is the service was added successfully.</returns>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.CommandBridgeServiceGet(System.Type)">
+            <summary>
+            This method returns a command bridge service.
+            </summary>
+            <param name="service">The service type.</param>
+            <returns>The service object, or null is the service is not present.</returns>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.CommandBridgeServiceRemove(System.Type)">
+            <summary>
+            This method removes a service from the command bridge.
+            </summary>
+            <param name="service">The service type to remove.</param>
+            <returns>Returns true if the service was removed successfully.</returns>
+        </member>
+        <member name="F:Ximura.Server.AppServer`3.mJobActiveCollection">
+            <summary>
+            The active job collection.
+            </summary>
+        </member>
+        <member name="F:Ximura.Server.AppServer`3.mPoolJob">
+            <summary>
+            The job pool.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.JobProcessStart">
+            <summary>
+            This method creates the job pools for the security manager.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.JobProcessStop">
+            <summary>
+            This method clears and disposes of the job pools for the security manager.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.JobProcess(Ximura.Server.JobBase,System.Boolean)">
+            <summary>
+            This method is used to submit jobs to the security manager.
+            </summary>
+            <param name="jobRQ">The job.</param>
+            <param name="async">If this is set the true, the job will be processed using
+            the thread pool; otherwise the job will be processed using the current thread.</param>
+            <returns>The job Guid.</returns>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.JobCancel(System.Guid)">
+            <summary>
+            This method cancels a pending request.
+            </summary>
+            <param name="jobID">The job ID to cancel.</param>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.JobProcessCommand(Ximura.Server.SecurityManagerJob)">
+            <summary>
+            This method calls the command directly to process the job.
+            </summary>
+            <param name="scmJob">The security manager job.</param>
+            <returns>Returns the job id.</returns>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.JobProcessDispatcher(Ximura.Server.SecurityManagerJob)">
+            <summary>
+            This method queues the job for processing by the dispatcher
+            </summary>
+            <param name="scmJob"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.JobComplete(Ximura.Server.SecurityManagerJob)">
+            <summary>
+            This method signals to the calling session that the job is complete.
+            </summary>
+            <param name="jobRS">The dispatcher job that is complete.</param>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.JobComplete(Ximura.Server.SecurityManagerJob,System.Boolean)">
+            <summary>
+            This method signals to the calling session that the job is complete.
+            </summary>
+            <param name="jobRS">The dispatcher job that is complete.</param>
+            <param name="signal">Set this to true to manually complete a job.</param>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.JobException(Ximura.Server.SecurityManagerJob,System.Exception,System.Threading.Thread)">
+            <summary>
+            This method is used to signal an unexpected exception on an executing 
+            thread in the job pool.
+            </summary>
+            <param name="job">The job that has caused the errors.</param>
+            <param name="ex">The exception.</param>
+            <param name="thread">The thread.</param>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.JobValidate(Ximura.Server.JobBase)">
+            <summary>
+            This method validate the job request and checks that it is valid.
+            </summary>
+            <param name="jobRQ">The job request.</param>
+            <returns>The SessionToken object for the request.</returns>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.JobPermissionsVerify(Ximura.Server.SecurityManagerJob,Ximura.Server.SessionToken)">
+            <summary>
+            This method verifies a job's permissions.
+            </summary>
+            <param name="scmJob">The job.</param>
+            <param name="token">The session token.</param>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.PurgeExistingJobs(Ximura.Server.SessionToken)">
+            <summary>
+            This method should purge any existing jobs for a session.
+            </summary>
+            <param name="token"></param>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.StorageStart">
+            <summary>
+            This private method checks whether a Logging and Performance manager is active
+            in the application, and if not creates a default one.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.StorageStop">
+            <summary>
+            This method is used to cleanup and stop logging.
+            </summary>
+        </member>
+        <member name="F:Ximura.Server.AppServer`3.mSessionTokens">
+            <summary>
+            This dictionary holds the session tokens.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.SessionManagerStart">
+            <summary>
+            This method starts the session managers, and related services.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.SessionManagerStop">
+            <summary>
+            This method stops the session managers and related services.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.SessionManagerAction(Ximura.Server.SessionActionType,Ximura.Server.IXimuraSessionManager,Ximura.IXimuraSessionSCM,System.Object)">
+            <summary>
+            This method is used to process actions from the session manager.
+            </summary>
+            <param name="actionType"></param>
+            <param name="sessionManager"></param>
+            <param name="session"></param>
+            <param name="data"></param>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.SessionRegister(Ximura.Server.IXimuraSessionManager,Ximura.IXimuraSessionSCM)">
+            <summary>
+            This method registers a new session with the Security Manager
+            </summary>
+            <param name="theSession">The session</param>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.SessionRelease(Ximura.Server.IXimuraSessionManager,Ximura.IXimuraSessionSCM)">
+            <summary>
+            This method releases a session from the Session Manager
+            </summary>
+            <param name="theSession">The session</param>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.SessionProfileChanged(Ximura.Server.IXimuraSessionManager,Ximura.IXimuraSessionSCM,Ximura.Server.SessionProfileLevel)">
+            <summary>
+            
+            </summary>
+            <param name="theSession"></param>
+            <param name="theLevel"></param>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.SessionCreateRemote(System.String,System.String)">
+            <summary>
+            This command is called by the Command bridge delegate initiated by 
+            commands that wish to create a session object.
+            </summary>
+            <param name="domain">The domain for the session or null for the default domain.</param>
+            <param name="username">The username for the session or null.</param>
+            <returns>A session object, or null if the session manager cannot be resolved.</returns>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.PerformanceStart">
+            <summary>
+            This protected method checks whether a Logging and Performance manager is active
+            in the application, and if not creates a default one.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.PerformanceStop">
+            <summary>
+            This method stops and performance related logging.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.InternalStart">
+            <summary>
+            This method is called by the ServiceProcess parent object.
+            </summary>
+            <exception cref="T:Ximura.Server.AppServerException">An exception is thrown detailing 
+            the error encountered when starting the application.</exception>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.InternalStop">
+            <summary>
+            This method stops the AppServer
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.InternalPause">
+            <summary>
+            This method pauses the AppServer
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.InternalContinue">
+            <summary>
+            This method continues the AppServer after it has been paused
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.LoggingStart">
+            <summary>
+            This private method checks whether a Logging and Performance manager is active
+            in the application, and if not creates a default one.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.LoggingStop">
+            <summary>
+            This method is used to cleanup and stop logging.
+            </summary>
+        </member>
+        <member name="P:Ximura.Server.AppServer`3.ControlServiceContainer">
+            <summary>
+            This is the control service container.
+            </summary>
+        </member>
+        <member name="P:Ximura.Server.AppServer`3.ControlContainer">
+            <summary>
+            This is the control container.
+            </summary>
+        </member>
+        <member name="P:Ximura.Server.AppServer`3.ApplicationID">
+            <summary>
+            This property returns the internal application ID
+            </summary>
+        </member>
+        <member name="P:Ximura.Server.AppServer`3.AppServerAttribute">
+            <summary>
+            This property is the XimuraAppServerAttribute applied to the application.
+            </summary>
+        </member>
+        <member name="P:Ximura.Server.AppServer`3.ApplicationIDAttribute">
+            <summary>
+            This property is the XimuraApplicationIDAttribute applied to the application.
+            </summary>
+        </member>
+        <member name="P:Ximura.Server.AppServer`3.ThreadNeedNew">
+            <summary>
+            This property returns true if the number of active threads reaches
+            the total number of threads in the pool.
+            </summary>
+        </member>
+        <member name="P:Ximura.Server.AppServer`3.ConfigurationSystem">
+            <summary>
+            The system configuration object.
+            </summary>
+        </member>
+        <member name="P:Ximura.Server.AppServer`3.CommandBridge">
+            <summary>
+            The is the command bridge which links the security manager with the command collection.
+            </summary>
+        </member>
+        <member name="P:Ximura.Server.AppServer`3.StorageService">
+            <summary>
+            This is the storage manager for the application.
+            </summary>
+        </member>
+        <member name="P:Ximura.Server.AppServer`3.StorageDefault">
+            <summary>
+            This property returns default loggers for the application. 
+            </summary>
+        </member>
+        <member name="P:Ximura.Server.AppServer`3.SessionService">
+            <summary>
+            This is the session manager for the application.
+            </summary>
+        </member>
+        <member name="P:Ximura.Server.AppServer`3.SessionAgentsDefault">
+            <summary>
+            This property returns a collection of default session managers for the system. Typically this collection only
+            contains the SessionManagerSystem. You should override this method if you require additional session managers.
+            </summary>
+        </member>
+        <member name="P:Ximura.Server.AppServer`3.PerformanceService">
+            <summary>
+            This is the performance manager for the application.
+            </summary>
+        </member>
+        <member name="P:Ximura.Server.AppServer`3.PerformanceManager">
+            <summary>
+            This is the performance manager for the application which commands and services can register their performance counters with,
+            </summary>
+        </member>
+        <member name="P:Ximura.Server.AppServer`3.PerformanceAgentsDefault">
+            <summary>
+            This property returns default performance agents for the application.
+            </summary>
+        </member>
+        <member name="P:Ximura.Server.AppServer`3.LoggingService">
+            <summary>
+            This is the logging manager for the application.
+            </summary>
+        </member>
+        <member name="P:Ximura.Server.AppServer`3.LoggersDefault">
+            <summary>
+            This property returns default loggers for the application. 
+            </summary>
+        </member>
+        <member name="T:Ximura.Server.AppServer`3.AppServerDefinition">
+            <summary>
+            This class copies application specific data from the application and makes it available 
+            to any requesting parties without any security risk of having the base object directly accessible.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.AppServerDefinition.#ctor(Ximura.Server.XimuraApplicationIDAttribute,Ximura.Server.XimuraAppServerAttribute)">
+            <summary>
+            This is the public constructor that copies the required values from the application.
+            </summary>
+        </member>
+        <member name="P:Ximura.Server.AppServer`3.AppServerDefinition.ApplicationName">
+            <summary>
+            This is the application name.
+            </summary>
+        </member>
+        <member name="P:Ximura.Server.AppServer`3.AppServerDefinition.ApplicationDescription">
+            <summary>
+            This is the application description.
+            </summary>
+        </member>
+        <member name="P:Ximura.Server.AppServer`3.AppServerDefinition.ApplicationID">
+            <summary>
+            This is the application ID.
+            </summary>
+        </member>
+        <member name="T:Ximura.Server.AppServer`3.Semaphore">
+            <summary>
+            Implementation of Dijkstra's PV Semaphore based on the Monitor class.
+            </summary>
+        </member>
+        <member name="F:Ximura.Server.AppServer`3.Semaphore.m_count">
+            <summary>
+            The number of units alloted by this semaphore.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.Semaphore.#ctor">
+            <overloads>
+            Initializes the semaphore.
+            </overloads>
+            <summary>
+            Initialize the semaphore as a binary semaphore.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.Semaphore.#ctor(System.Int32)">
+            <summary>
+            Initialize the semaphore as a counting semaphore.
+            </summary>
+            <param name="count">Initial number of threads that can take out units from this semaphore.</param>
+            <exception cref="T:System.ArgumentException">Throws if the count argument is less than 1.</exception>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.Semaphore.WaitOne">
+            <summary>
+            P the semaphore (take out 1 unit from it).
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.Semaphore.AddOne">
+            <summary>
+            V the semaphore (add 1 unit to it).
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.Semaphore.Reset(System.Int32)">
+            <summary>
+            Resets the semaphore to the specified count. Should be used cautiously.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.AppServer.#ctor">
+            <summary>
+            This is the default constructor for the service.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.AppServer.#ctor(System.ComponentModel.IContainer)">
+            <summary>
+            This constructor is called by the .Net component model when adding it to a container
+            </summary>
+            <param name="container">The container to add the component to.</param>
         </member>
         <member name="T:Ximura.Server.IXimuraSecurityManagerConfigSH">
             <summary>
@@ -2969,663 +3691,6 @@
             </summary>
             <param name="info"></param>
             <param name="context"></param>
-        </member>
-        <member name="T:Ximura.Server.AppServer">
-            <summary>
-            The AppServerBase class is the class that all server applications derive from.
-            </summary>
-        </member>
-        <member name="T:Ximura.Server.AppServer`3">
-            <summary>
-            The AppServerBase class is the class that all server applications derive from.
-            </summary>
-        </member>
-        <member name="F:Ximura.Server.AppServer`3.mControlContainer">
-            <summary>
-            This is the container for the control classes.
-            </summary>
-        </member>
-        <member name="F:Ximura.Server.AppServer`3.mControlServiceContainer">
-            <summary>
-            The service container contains all the components for the container.
-            </summary>
-        </member>
-        <member name="F:Ximura.Server.AppServer`3.mAppServerAttribute">
-            <summary>
-            This method holds the appserver attribute settings.
-            </summary>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.#ctor">
-            <summary>
-            This is the default constructor for the service.
-            </summary>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.#ctor(System.ComponentModel.IContainer)">
-            <summary>
-            This constructor is called by the .Net component model when adding it to a container
-            </summary>
-            <param name="container">The container to add the component to.</param>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.Dispose(System.Boolean)">
-            <summary> 
-            This is an override of the IDisposable method which cleans up any resources being used.
-            </summary>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.InitializeControlContainer">
-            <summary>
-            This method initializes the base components container 
-            and the Application control container
-            </summary>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.SiteBeforeChange(System.ComponentModel.ISite,System.ComponentModel.ISite)">
-            <summary>
-            This overriden method does nothing. AppServer does not care about the site property.
-            </summary>
-            <param name="newSite">The new site value.</param>
-            <param name="oldSite">The old site value.</param>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.SiteChanged(System.ComponentModel.ISite,System.ComponentModel.ISite)">
-            <summary>
-            This overriden method does nothing. AppServer does not care about the site property.
-            </summary>
-            <param name="oldSite">The old site.</param>
-            <param name="newSite">The new site.</param>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.AgentsAdd``1(System.Collections.Generic.IEnumerable{Ximura.Server.XimuraServerAgentHolder},Ximura.Server.IXimuraAppServerAgentService)">
-            <summary>
-            This method is used to add a collection of agent holders with a particular service.
-            </summary>
-            <typeparam name="A">The agent attribute type.</typeparam>
-            <param name="AgentsDefault">The default agent collection.</param>
-            <param name="Service">The service to add the agent holder to.</param>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.AgentsRemove``1(System.Collections.Generic.IEnumerable{Ximura.Server.XimuraServerAgentHolder},Ximura.Server.IXimuraAppServerAgentService)">
-            <summary>
-            This method is used to remove a collection of agent holders from a particular service.
-            </summary>
-            <typeparam name="A">The agent attribute type.</typeparam>
-            <param name="AgentsDefault">The default agent collection.</param>
-            <param name="Service">The service to remove the agent holder from.</param>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.ApplicationServicesStart">
-            <summary>
-            This method registers specific application information.
-            </summary>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.ApplicationServicesStop">
-            <summary>
-            This method removes specific application information.
-            </summary>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.PoolManagerStart">
-            <summary>
-            This protected method creates the default pool manager for the application.
-            </summary>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.PoolManagerStop">
-            <summary>
-            This protected method disposes of the default pool manager for the application.
-            </summary>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.AgentServicesStart">
-            <summary>
-            This method starts the storage and session managers. You can override this method to add additional service managers.
-            </summary>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.AgentServicesStop">
-            <summary>
-            This method stops the storage and session managers. You can override this method to add additional service managers.
-            </summary>
-        </member>
-        <member name="F:Ximura.Server.AppServer`3.syncThreadPool">
-            <summary>
-            List of all worker threads at the disposal of the thread pool.
-            </summary>
-        </member>
-        <member name="F:Ximura.Server.AppServer`3.mWaitingJobs">
-            <summary>
-            Queue of all the callbacks waiting to be executed.
-            </summary>
-        </member>
-        <member name="F:Ximura.Server.AppServer`3.mWorkerThreadNeeded">
-            <summary>
-            Used to signal that a worker thread is needed for processing.  Note that multiple
-            threads may be needed simultaneously and as such we use a semaphore instead of
-            an auto reset event.
-            </summary>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.ThreadPoolStart">
-            <summary>
-            This method initializes the thread pool
-            </summary>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.ThreadPoolStop">
-            <summary>
-            This method shuts down the thread pool.
-            </summary>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.PerformanceUpdateCounters">
-            <summary>
-            This method is used to update the performance counter
-            after the status has changed.
-            </summary>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.ThreadRemove">
-            <summary>
-            This method aborts a thread pool thread. We use abort because this method 
-            will only be called by a thread that is not executing.
-            </summary>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.QueuedItemsClear">
-            <summary>
-            This method empties the work queue of any queued work items.
-            </summary>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.QueuedItemsProcess">
-            <summary>
-            A thread worker function that processes items from the work queue.
-            </summary>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.JobPriorityQueueCreate">
-            <summary>
-            This method returns a new job priority queue class.
-            </summary>
-        </member>
-        <member name="F:Ximura.Server.AppServer`3.mAttrConfigCommand">
-            <summary>
-            This attribute contains the command configuration settings.
-            </summary>
-        </member>
-        <member name="F:Ximura.Server.AppServer`3.mAttrConfigSystem">
-            <summary>
-            This attribute contains the system configuration settings.
-            </summary>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.SystemServicesStart">
-            <summary>
-            This method registers the configuration settings services in the relevant containers.
-            </summary>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.SystemServicesStop">
-            <summary>
-            This method removes the configuration settings services in the relevant containers.
-            </summary>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.ConfigurationAttributesGet">
-            <summary>
-            This method gets the app server configuration attributes.
-            </summary>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.ConfigurationStart">
-            <summary>
-            This protected method checks whether the configuration service is active, 
-            and if not creates a default one.
-            </summary>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.ConfigurationStop">
-            <summary>
-            This method stops the configuration manager.
-            </summary>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.ConfigurationLoadGeneric(Ximura.ConfigurationBase,Ximura.Server.XimuraAppServerConfigurationAttribute,System.Func{System.IO.Stream})">
-            <summary>
-            This method loads the configuration based on the attribute settings.
-            </summary>
-            <param name="config">The configuration to load.</param>
-            <param name="configAttr">The attribute settings.</param>
-            <param name="delDefaultStream">The delegate to the default stream.</param>
-            <returns>Returns true if the configuration was loaded successfully.</returns>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.ConfigurationLoad(`1)">
-            <summary>
-            This override loads the server command configuration.
-            </summary>
-            <param name="commandConfiguration">The command configuration.</param>
-            <returns>Returns true if the configuration was loaded successfully.</returns>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.ConfigurationDefault">
-            <summary>
-            This method returns the default command configuration as a stream.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.ConfigurationSystemLoad(`0)">
-            <summary>
-            This method loads the system configuration.
-            </summary>
-            <param name="systemConfiguration">The system configuration.</param>
-            <returns>Returns true if the configuration was loaded successfully.</returns>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.ConfigurationSystemDefault">
-            <summary>
-            This method returns the default system configuration as a stream.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.LoadConfigFile(Ximura.Server.XimuraAppServerConfigurationAttribute,System.Func{System.IO.Stream})">
-            <summary>
-            This method loads and verifies the application settings for the 
-            application. This method can be overriden by derived classes.
-            </summary>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.LoadConfigFromAssembly(System.String)">
-            <summary>
-            This method loads a config file from a Assembly
-            </summary>
-            <param name="resourceFileName">The file name of the config file.</param>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.LoadConfigFromAssembly(System.String,System.Boolean)">
-            <summary>
-            This method loads a config file from a Assembly
-            </summary>
-            <param name="resourceFileName">The file name of the config file.</param>
-            <param name="SearchLoadedAssemblies">A boolean value indicating whether the server 
-            should search loaded assemblies should be searched if the resource cannot be found
-            in the current assembly.</param>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.LoadConfigFromFile(System.String,System.Boolean)">
-            <summary>
-            This method loads a config file from known application paths
-            </summary>
-            <param name="fileName">The file name of the config file.</param>
-            <param name="verifySignature">A boolean value indicating whether the system should 
-            verify the file content using a digital signature</param>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.ResolveFileLocationPath(System.String)">
-            <summary>
-            This method check the relevant location paths for a valid configuration file.
-            </summary>
-            <param name="fileName">The file to search for.</param>
-            <returns>The full file path.</returns>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.CommandBridgeStart">
-            <summary>
-            This method register the command bridge with the command collection.
-            </summary>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.CommandBridgeStop">
-            <summary>
-            This method removes the command bridge services
-            </summary>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.CommandBridgeServiceAdd(System.Type,System.Object)">
-            <summary>
-            This method adds a service to the command bridge
-            </summary>
-            <param name="service">The service type</param>
-            <param name="serviceobj">The service object.</param>
-            <returns>Returns true is the service was added successfully.</returns>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.CommandBridgeServiceGet(System.Type)">
-            <summary>
-            This method returns a command bridge service.
-            </summary>
-            <param name="service">The service type.</param>
-            <returns>The service object, or null is the service is not present.</returns>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.CommandBridgeServiceRemove(System.Type)">
-            <summary>
-            This method removes a service from the command bridge.
-            </summary>
-            <param name="service">The service type to remove.</param>
-            <returns>Returns true if the service was removed successfully.</returns>
-        </member>
-        <member name="F:Ximura.Server.AppServer`3.mJobActiveCollection">
-            <summary>
-            The active job collection.
-            </summary>
-        </member>
-        <member name="F:Ximura.Server.AppServer`3.mPoolJob">
-            <summary>
-            The job pool.
-            </summary>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.JobProcessStart">
-            <summary>
-            This method creates the job pools for the security manager.
-            </summary>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.JobProcessStop">
-            <summary>
-            This method clears and disposes of the job pools for the security manager.
-            </summary>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.JobProcess(Ximura.Server.JobBase,System.Boolean)">
-            <summary>
-            This method is used to submit jobs to the security manager.
-            </summary>
-            <param name="jobRQ">The job.</param>
-            <param name="async">If this is set the true, the job will be processed using
-            the thread pool; otherwise the job will be processed using the current thread.</param>
-            <returns>The job Guid.</returns>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.JobCancel(System.Guid)">
-            <summary>
-            This method cancels a pending request.
-            </summary>
-            <param name="jobID">The job ID to cancel.</param>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.JobProcessCommand(Ximura.Server.SecurityManagerJob)">
-            <summary>
-            This method calls the command directly to process the job.
-            </summary>
-            <param name="scmJob">The security manager job.</param>
-            <returns>Returns the job id.</returns>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.JobProcessDispatcher(Ximura.Server.SecurityManagerJob)">
-            <summary>
-            This method queues the job for processing by the dispatcher
-            </summary>
-            <param name="scmJob"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.JobComplete(Ximura.Server.SecurityManagerJob)">
-            <summary>
-            This method signals to the calling session that the job is complete.
-            </summary>
-            <param name="jobRS">The dispatcher job that is complete.</param>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.JobComplete(Ximura.Server.SecurityManagerJob,System.Boolean)">
-            <summary>
-            This method signals to the calling session that the job is complete.
-            </summary>
-            <param name="jobRS">The dispatcher job that is complete.</param>
-            <param name="signal">Set this to true to manually complete a job.</param>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.JobException(Ximura.Server.SecurityManagerJob,System.Exception,System.Threading.Thread)">
-            <summary>
-            This method is used to signal an unexpected exception on an executing 
-            thread in the job pool.
-            </summary>
-            <param name="job">The job that has caused the errors.</param>
-            <param name="ex">The exception.</param>
-            <param name="thread">The thread.</param>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.JobValidate(Ximura.Server.JobBase)">
-            <summary>
-            This method validate the job request and checks that it is valid.
-            </summary>
-            <param name="jobRQ">The job request.</param>
-            <returns>The SessionToken object for the request.</returns>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.JobPermissionsVerify(Ximura.Server.SecurityManagerJob,Ximura.Server.SessionToken)">
-            <summary>
-            This method verifies a job's permissions.
-            </summary>
-            <param name="scmJob">The job.</param>
-            <param name="token">The session token.</param>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.PurgeExistingJobs(Ximura.Server.SessionToken)">
-            <summary>
-            This method should purge any existing jobs for a session.
-            </summary>
-            <param name="token"></param>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.StorageStart">
-            <summary>
-            This private method checks whether a Logging and Performance manager is active
-            in the application, and if not creates a default one.
-            </summary>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.StorageStop">
-            <summary>
-            This method is used to cleanup and stop logging.
-            </summary>
-        </member>
-        <member name="F:Ximura.Server.AppServer`3.mSessionTokens">
-            <summary>
-            This dictionary holds the session tokens.
-            </summary>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.SessionManagerStart">
-            <summary>
-            This method starts the session managers, and related services.
-            </summary>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.SessionManagerStop">
-            <summary>
-            This method stops the session managers and related services.
-            </summary>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.SessionManagerAction(Ximura.Server.SessionActionType,Ximura.Server.IXimuraSessionManager,Ximura.IXimuraSessionSCM,System.Object)">
-            <summary>
-            This method is used to process actions from the session manager.
-            </summary>
-            <param name="actionType"></param>
-            <param name="sessionManager"></param>
-            <param name="session"></param>
-            <param name="data"></param>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.SessionRegister(Ximura.Server.IXimuraSessionManager,Ximura.IXimuraSessionSCM)">
-            <summary>
-            This method registers a new session with the Security Manager
-            </summary>
-            <param name="theSession">The session</param>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.SessionRelease(Ximura.Server.IXimuraSessionManager,Ximura.IXimuraSessionSCM)">
-            <summary>
-            This method releases a session from the Session Manager
-            </summary>
-            <param name="theSession">The session</param>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.SessionProfileChanged(Ximura.Server.IXimuraSessionManager,Ximura.IXimuraSessionSCM,Ximura.Server.SessionProfileLevel)">
-            <summary>
-            
-            </summary>
-            <param name="theSession"></param>
-            <param name="theLevel"></param>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.SessionCreateRemote(System.String,System.String)">
-            <summary>
-            This command is called by the Command bridge delegate initiated by 
-            commands that wish to create a session object.
-            </summary>
-            <param name="domain">The domain for the session or null for the default domain.</param>
-            <param name="username">The username for the session or null.</param>
-            <returns>A session object, or null if the session manager cannot be resolved.</returns>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.PerformanceStart">
-            <summary>
-            This protected method checks whether a Logging and Performance manager is active
-            in the application, and if not creates a default one.
-            </summary>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.PerformanceStop">
-            <summary>
-            This method stops and performance related logging.
-            </summary>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.InternalStart">
-            <summary>
-            This method is called by the ServiceProcess parent object.
-            </summary>
-            <exception cref="T:Ximura.Server.AppServerException">An exception is thrown detailing 
-            the error encountered when starting the application.</exception>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.InternalStop">
-            <summary>
-            This method stops the AppServer
-            </summary>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.InternalPause">
-            <summary>
-            This method pauses the AppServer
-            </summary>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.InternalContinue">
-            <summary>
-            This method continues the AppServer after it has been paused
-            </summary>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.LoggingStart">
-            <summary>
-            This private method checks whether a Logging and Performance manager is active
-            in the application, and if not creates a default one.
-            </summary>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.LoggingStop">
-            <summary>
-            This method is used to cleanup and stop logging.
-            </summary>
-        </member>
-        <member name="P:Ximura.Server.AppServer`3.ControlServiceContainer">
-            <summary>
-            This is the control service container.
-            </summary>
-        </member>
-        <member name="P:Ximura.Server.AppServer`3.ControlContainer">
-            <summary>
-            This is the control container.
-            </summary>
-        </member>
-        <member name="P:Ximura.Server.AppServer`3.ApplicationID">
-            <summary>
-            This property returns the internal application ID
-            </summary>
-        </member>
-        <member name="P:Ximura.Server.AppServer`3.AppServerAttribute">
-            <summary>
-            This property is the XimuraAppServerAttribute applied to the application.
-            </summary>
-        </member>
-        <member name="P:Ximura.Server.AppServer`3.ApplicationIDAttribute">
-            <summary>
-            This property is the XimuraApplicationIDAttribute applied to the application.
-            </summary>
-        </member>
-        <member name="P:Ximura.Server.AppServer`3.ThreadNeedNew">
-            <summary>
-            This property returns true if the number of active threads reaches
-            the total number of threads in the pool.
-            </summary>
-        </member>
-        <member name="P:Ximura.Server.AppServer`3.ConfigurationSystem">
-            <summary>
-            The system configuration object.
-            </summary>
-        </member>
-        <member name="P:Ximura.Server.AppServer`3.CommandBridge">
-            <summary>
-            The is the command bridge which links the security manager with the command collection.
-            </summary>
-        </member>
-        <member name="P:Ximura.Server.AppServer`3.Storage">
-            <summary>
-            This is the storage manager for the application.
-            </summary>
-        </member>
-        <member name="P:Ximura.Server.AppServer`3.StorageDefault">
-            <summary>
-            This property returns default loggers for the application. 
-            </summary>
-        </member>
-        <member name="P:Ximura.Server.AppServer`3.Sessions">
-            <summary>
-            This is the session manager for the application.
-            </summary>
-        </member>
-        <member name="P:Ximura.Server.AppServer`3.SessionAgentsDefault">
-            <summary>
-            This property returns a collection of default session managers for the system. Typically this collection only
-            contains the SessionManagerSystem. You should override this method if you require additional session managers.
-            </summary>
-        </member>
-        <member name="P:Ximura.Server.AppServer`3.PerformanceManager">
-            <summary>
-            This is the performance manager for the application.
-            </summary>
-        </member>
-        <member name="P:Ximura.Server.AppServer`3.PerformanceAgentsDefault">
-            <summary>
-            This property returns default performance agents for the application.
-            </summary>
-        </member>
-        <member name="P:Ximura.Server.AppServer`3.Logging">
-            <summary>
-            This is the logging manager for the application.
-            </summary>
-        </member>
-        <member name="P:Ximura.Server.AppServer`3.LoggersDefault">
-            <summary>
-            This property returns default loggers for the application. 
-            </summary>
-        </member>
-        <member name="T:Ximura.Server.AppServer`3.AppServerDefinition">
-            <summary>
-            This class copies application specific data from the application and makes it available 
-            to any requesting parties without any security risk of having the base object directly accessible.
-            </summary>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.AppServerDefinition.#ctor(Ximura.Server.XimuraApplicationIDAttribute,Ximura.Server.XimuraAppServerAttribute)">
-            <summary>
-            This is the public constructor that copies the required values from the application.
-            </summary>
-        </member>
-        <member name="P:Ximura.Server.AppServer`3.AppServerDefinition.ApplicationName">
-            <summary>
-            This is the application name.
-            </summary>
-        </member>
-        <member name="P:Ximura.Server.AppServer`3.AppServerDefinition.ApplicationDescription">
-            <summary>
-            This is the application description.
-            </summary>
-        </member>
-        <member name="P:Ximura.Server.AppServer`3.AppServerDefinition.ApplicationID">
-            <summary>
-            This is the application ID.
-            </summary>
-        </member>
-        <member name="T:Ximura.Server.AppServer`3.Semaphore">
-            <summary>
-            Implementation of Dijkstra's PV Semaphore based on the Monitor class.
-            </summary>
-        </member>
-        <member name="F:Ximura.Server.AppServer`3.Semaphore.m_count">
-            <summary>
-            The number of units alloted by this semaphore.
-            </summary>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.Semaphore.#ctor">
-            <overloads>
-            Initializes the semaphore.
-            </overloads>
-            <summary>
-            Initialize the semaphore as a binary semaphore.
-            </summary>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.Semaphore.#ctor(System.Int32)">
-            <summary>
-            Initialize the semaphore as a counting semaphore.
-            </summary>
-            <param name="count">Initial number of threads that can take out units from this semaphore.</param>
-            <exception cref="T:System.ArgumentException">Throws if the count argument is less than 1.</exception>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.Semaphore.WaitOne">
-            <summary>
-            P the semaphore (take out 1 unit from it).
-            </summary>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.Semaphore.AddOne">
-            <summary>
-            V the semaphore (add 1 unit to it).
-            </summary>
-        </member>
-        <member name="M:Ximura.Server.AppServer`3.Semaphore.Reset(System.Int32)">
-            <summary>
-            Resets the semaphore to the specified count. Should be used cautiously.
-            </summary>
-        </member>
-        <member name="M:Ximura.Server.AppServer.#ctor">
-            <summary>
-            This is the default constructor for the service.
-            </summary>
-        </member>
-        <member name="M:Ximura.Server.AppServer.#ctor(System.ComponentModel.IContainer)">
-            <summary>
-            This constructor is called by the .Net component model when adding it to a container
-            </summary>
-            <param name="container">The container to add the component to.</param>
         </member>
         <member name="T:Ximura.Server.XimuraAppServerAgentAttributeBase">
             <summary>
@@ -4153,6 +4218,27 @@
         <member name="T:Ximura.Server.CommandRequestCallback">
             <summary>
             This delegate is used to call back commands with specific jobs.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.PerformanceManager.#ctor(System.ComponentModel.IContainer)">
+            <summary>
+            The default Ximura Application constructor
+            </summary>
+            <param name="container">The container the services should be added to.</param>
+        </member>
+        <member name="M:Ximura.Server.PerformanceManager.ServicesProvide">
+            <summary>
+            This override adds the IXimuraLoggingManager service to the control container.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.PerformanceManager.ServicesRemove">
+            <summary>
+            This override removes the IXimuraLoggingManager service to the control container.
+            </summary>
+        </member>
+        <member name="P:Ximura.Server.PerformanceManager.Manager">
+            <summary>
+            This is the performance manager used to register performance services.
             </summary>
         </member>
         <member name="T:Ximura.Server.CommandBridge">
@@ -5613,11 +5699,6 @@
             This text property contains thebreakdown of cached entities in the cache manager.
             </summary>
         </member>
-        <member name="T:Ximura.Server.IXimuraStorage">
-            <summary>
-            This interface is implemented by storage manager.
-            </summary>
-        </member>
         <member name="M:Ximura.Command.FSMCommandConfiguration.#ctor">
             <summary>
             The default constructor
@@ -5996,9 +6077,91 @@
             This delegate is used to signal the completion of a set of jobs.
             </summary>
         </member>
+        <member name="T:Ximura.Server.AppServerAgentBase`2">
+            <summary>
+            This is the base class for the application system agents.
+            </summary>
+            <typeparam name="CONF">The agent configuration class.</typeparam>
+            <typeparam name="PERF">The agent performance class.</typeparam>
+        </member>
+        <member name="M:Ximura.Server.AppServerAgentBase`2.#ctor">
+            <summary>
+            This is the default constructor
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.AppServerAgentBase`2.#ctor(System.ComponentModel.IContainer)">
+            <summary>
+            This is the base constructor for a Ximura command
+            </summary>
+            <param name="container">The container to be added to</param>
+        </member>
         <member name="T:Ximura.Server.SessionSecurityException">
             <summary>
             Summary description for SessionExceptions.
+            </summary>
+        </member>
+        <member name="T:Ximura.PerformanceCounter">
+            <summary>
+            This class is the default class for the performance counters.
+            </summary>
+        </member>
+        <member name="F:Ximura.PerformanceCounter.mInternalValue">
+            <summary>
+            The internal value.
+            </summary>
+        </member>
+        <member name="F:Ximura.PerformanceCounter.mCatType">
+            <summary>
+            The performance counter type.
+            </summary>
+        </member>
+        <member name="M:Ximura.PerformanceCounter.#ctor">
+            <summary>
+            This is the default constructor for the performance counter.
+            </summary>
+        </member>
+        <member name="M:Ximura.PerformanceCounter.Increment">
+            <summary>
+            This method increments the internal counter by 1.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ximura.PerformanceCounter.IncrementBy(System.Int64)">
+            <summary>
+            This method increments or decrements the internal counter by the value specified.
+            </summary>
+            <param name="value">The positive or negative value.</param>
+            <returns>Returns the new value of the counter.</returns>
+        </member>
+        <member name="M:Ximura.PerformanceCounter.Decrement">
+            <summary>
+            This method decrements the internal counter by 1.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Ximura.PerformanceCounter.CounterType">
+            <summary>
+            This is the performance counter type.
+            </summary>
+        </member>
+        <member name="P:Ximura.PerformanceCounter.RawValue">
+            <summary>
+            This is the performance counter raw value.
+            </summary>
+        </member>
+        <member name="P:Ximura.PerformanceCounter.Active">
+            <summary>
+            This property identifies whether the counter is active.
+            </summary>
+        </member>
+        <member name="P:Ximura.PerformanceCounter.Dirty">
+            <summary>
+            This property identifies whether the counter is dirty and needs updating.
+            </summary>
+        </member>
+        <member name="T:Ximura.Command.FSMCommandPerformance">
+            <summary>
+            This is the base performance counter for the Finite State Machine.
             </summary>
         </member>
         <member name="M:Ximura.Command.FSMCommandPerformance.#ctor">
@@ -6189,11 +6352,6 @@
             <param name="info">The Serialization info object that contains all the relevant data.</param>
             <param name="context">The serialization context.</param>
         </member>
-        <member name="T:Ximura.Server.IXimuraServerAgent">
-            <summary>
-            This is the base interface implemented by all server agents.
-            </summary>
-        </member>
         <member name="T:Ximura.IXimuraFSMExtenderBase">
             <summary>
             IXimuraFSMExtenderBase is used to provide services for the base service.
@@ -6258,24 +6416,6 @@
             </summary>
             <param name="info">The serialization info.</param>
             <param name="context">The serialization context.</param>
-        </member>
-        <member name="T:Ximura.Server.AppServerAgentBase`2">
-            <summary>
-            This is the base class for the application system agents.
-            </summary>
-            <typeparam name="CONF">The agent configuration class.</typeparam>
-            <typeparam name="PERF">The agent performance class.</typeparam>
-        </member>
-        <member name="M:Ximura.Server.AppServerAgentBase`2.#ctor">
-            <summary>
-            This is the default constructor
-            </summary>
-        </member>
-        <member name="M:Ximura.Server.AppServerAgentBase`2.#ctor(System.ComponentModel.IContainer)">
-            <summary>
-            This is the base constructor for a Ximura command
-            </summary>
-            <param name="container">The container to be added to</param>
         </member>
         <member name="M:Ximura.Server.SessionAgentBase`1.#ctor">
             <summary>
@@ -6607,17 +6747,6 @@
         <member name="P:Ximura.Server.CompletionJobWrapperBase.ParentJob">
             <summary>
             This is the parent security manager job
-            </summary>
-        </member>
-        <member name="T:Ximura.Performance.PerformanceCounterCollectionBase">
-            <summary>
-            The abstract PerformanceCounterCollectionBase class is used to provide group functionality
-            for related performance counters.
-            </summary>
-        </member>
-        <member name="M:Ximura.Performance.PerformanceCounterCollectionBase.#ctor">
-            <summary>
-            This is the default constructor.
             </summary>
         </member>
         <member name="M:Ximura.Persistence.CDSPerformance.#ctor">
@@ -7811,12 +7940,13 @@
         </member>
         <member name="T:Ximura.Server.LoggingManagerPerformance">
             <summary>
-            This is the performance counter for the logging system command.
+            This is the performance counter for the logging system command. By default the logging manager does not connect
+            to the performance architecture due to the fact that this service starts before the performance manager. This class is a stub.
             </summary>
         </member>
         <member name="M:Ximura.Server.LoggingManagerPerformance.#ctor">
             <summary>
-            This is the default constructor for the Content object.
+            This is the default constructor for the performance object.
             </summary>
         </member>
         <member name="M:Ximura.Persistence.FileSystemPersistenceManager`3.#ctor">
@@ -8657,6 +8787,33 @@
             </summary>
             <param name="container">The control container.</param>
         </member>
+        <member name="M:Ximura.Server.SessionManager.InternalStart">
+            <summary>
+            This override creates the session token collection and pools.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.SessionManager.InternalStop">
+            <summary>
+            This override cleats the session token collection and session token pool.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.SessionManager.ServicesProvide">
+            <summary>
+            This override adds the IXimuraSessionManagerService service to the control container.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.SessionManager.ServicesRemove">
+            <summary>
+            This override removes the IXimuraSessionManagerService service to the control container.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.SessionManager.AgentCreate(Ximura.Server.XimuraServerAgentHolder)">
+            <summary>
+            This override created the session agent.
+            </summary>
+            <param name="holder"></param>
+            <returns></returns>
+        </member>
         <member name="M:Ximura.Server.SessionAgentSQLServer`1.#ctor(System.ComponentModel.IContainer)">
             <summary>
             This is the constructor used by the Ximura Application model.
@@ -8801,159 +8958,6 @@
         <member name="P:Ximura.Server.JobHolder.DependencyID">
             <summary>
             This is the job holder dependency ID.
-            </summary>
-        </member>
-        <member name="T:Ximura.XimuraAppTrace">
-            <summary>
-            XimuraAppTrace is the static trace object for the Ximura Application framework.
-            </summary>
-        </member>
-        <member name="F:Ximura.XimuraAppTrace.categoryLogger">
-            <summary>
-            categoryLogger contains the collection of active loggers
-            </summary>
-        </member>
-        <member name="F:Ximura.XimuraAppTrace.CategoryLog">
-            <summary>
-            CategoryLog contains a lookup table based on category with an array list stored
-            against the value for each logger that accepts 
-            </summary>
-        </member>
-        <member name="M:Ximura.XimuraAppTrace.Start">
-            <summary>
-            This method starts the logger. If the logger is active this method has no effect.
-            </summary>
-        </member>
-        <member name="M:Ximura.XimuraAppTrace.Close">
-            <summary>
-            This method closes the logger and flushes any messages from the buffer. If the logger is 
-            not active this method has no effect.
-            </summary>
-        </member>
-        <member name="M:Ximura.XimuraAppTrace.FlushInternal">
-            <summary>
-            This method flushes all the current loggers.
-            </summary>
-        </member>
-        <member name="M:Ximura.XimuraAppTrace.Flush">
-            <summary>
-            This method flushes all the current loggers.
-            </summary>
-        </member>
-        <member name="M:Ximura.XimuraAppTrace.LogItem(Ximura.XimuraAppTrace.QueueItem)">
-            <summary>
-            This method logs the specific item.
-            </summary>
-            <param name="item">The item to log.</param>
-        </member>
-        <member name="M:Ximura.XimuraAppTrace.LoggerAdd(Ximura.IXimuraLogging)">
-            <summary>
-            This method adds a logger to the logging collection.
-            </summary>
-            <param name="logger">The logger to add.</param>
-        </member>
-        <member name="M:Ximura.XimuraAppTrace.LoggerRemove(Ximura.IXimuraLogging)">
-            <summary>
-            This method removes a logger from the logging collection.
-            </summary>
-            <param name="logger">The logger to remove.</param>
-        </member>
-        <member name="M:Ximura.XimuraAppTrace.CategoryToLog(System.String)">
-            <summary>
-            This method returns true if there is a category to log.
-            </summary>
-            <param name="category">The category to check.</param>
-            <returns>Returns true if the category is found.</returns>
-        </member>
-        <member name="M:Ximura.XimuraAppTrace.Resolve(Ximura.XimuraAppTrace.QueueItem)">
-            <summary>
-            This method is used to resolve the application loggers for a particular logging
-            event.
-            </summary>
-            <param name="item">The logging QueueItem.</param>
-            <returns>Returns an array list containing the logger collection.</returns>
-        </member>
-        <member name="M:Ximura.XimuraAppTrace.Write(System.Object,System.String,System.Diagnostics.EventLogEntryType,System.String)">
-            <summary>
-            This method writes to the selected loggers with the message object specified.
-            </summary>
-            <param name="value">The message object.</param>
-            <param name="category">The message category.</param>
-            <param name="type">The entry type.</param>
-            <param name="DebugSwitch">The applicable debug switch.</param>
-        </member>
-        <member name="M:Ximura.XimuraAppTrace.Write(System.String,System.String,System.Diagnostics.EventLogEntryType,System.String)">
-            <summary>
-            This method writes to the selected loggers with the message specified.
-            </summary>
-            <param name="message">The message.</param>
-            <param name="category">The message category.</param>
-            <param name="type">The entry type.</param>
-            <param name="DebugSwitch">The applicable debug switch.</param>
-        </member>
-        <member name="M:Ximura.XimuraAppTrace.WriteLine(System.Object,System.String,System.Diagnostics.EventLogEntryType,System.String)">
-            <summary>
-            This method writes to the selected loggers with the message object specified.
-            For loggers that support multiline entry, this method will append a new line to the message.
-            </summary>
-            <param name="value">The message object.</param>
-            <param name="category">The message category.</param>
-            <param name="type">The entry type.</param>
-            <param name="DebugSwitch">The applicable debug switch.</param>
-        </member>
-        <member name="M:Ximura.XimuraAppTrace.WriteLine(System.String,System.String,System.Diagnostics.EventLogEntryType,System.String)">
-            <summary>
-            This method writes to the selected loggers with the message specified. 
-            For loggers that support multiline entry, this method will append a new line to the message.
-            </summary>
-            <param name="message">The message.</param>
-            <param name="category">The message category.</param>
-            <param name="type">The entry type.</param>
-            <param name="DebugSwitch">The applicable debug switch.</param>
-        </member>
-        <member name="M:Ximura.XimuraAppTrace.Indent">
-            <summary>
-            This method increase the indent
-            </summary>
-        </member>
-        <member name="M:Ximura.XimuraAppTrace.Unindent">
-            <summary>
-            This method decreases the indent
-            </summary>
-        </member>
-        <member name="P:Ximura.XimuraAppTrace.Active">
-            <summary>
-            This method identifies whether the logger is active.
-            </summary>
-        </member>
-        <member name="P:Ximura.XimuraAppTrace.AutoFlush">
-            <summary>
-            This method determines whether the logger will flush automatically
-            </summary>
-        </member>
-        <member name="P:Ximura.XimuraAppTrace.DefaultLogger">
-            <summary>
-            This property gets the default logger
-            </summary>
-        </member>
-        <member name="P:Ximura.XimuraAppTrace.IndentLevel">
-            <summary>
-            This property returns the current indent level
-            </summary>
-        </member>
-        <member name="P:Ximura.XimuraAppTrace.IndentSize">
-            <summary>
-            This property detemines the indent size in characters
-            </summary>
-        </member>
-        <member name="P:Ximura.XimuraAppTrace.Listeners">
-            <summary>
-            This method is not implemented.
-            </summary>
-        </member>
-        <member name="T:Ximura.XimuraAppTrace.QueueItem">
-            <summary>
-            The QueueItem class holds a log item.
             </summary>
         </member>
         <member name="T:Ximura.Server.NullLoggerAgent">
@@ -9136,14 +9140,14 @@
             </summary>
             <param name="container">The container the services should be added to.</param>
         </member>
-        <member name="M:Ximura.Server.LoggingManager.InternalStart">
+        <member name="M:Ximura.Server.LoggingManager.ServicesProvide">
             <summary>
-            This override adds the loggers to the collection.
+            This override adds the IXimuraLoggingManager service to the control container.
             </summary>
         </member>
-        <member name="M:Ximura.Server.LoggingManager.InternalStop">
+        <member name="M:Ximura.Server.LoggingManager.ServicesRemove">
             <summary>
-            This override removes the loggers.
+            This override removes the IXimuraLoggingManager service to the control container.
             </summary>
         </member>
         <member name="T:Ximura.Persistence.CDSCacheManagerBridge">
@@ -9499,6 +9503,11 @@
             This method cancels a pending request.
             </summary>
             <param name="jobID">The job ID to cancel.</param>
+        </member>
+        <member name="T:Ximura.Server.IXimuraCommandBridgeService">
+            <summary>
+            This method allows control services to add services to the command bridge.
+            </summary>
         </member>
         <member name="M:Ximura.Server.IXimuraCommandBridgeService.CommandBridgeServiceAdd(System.Type,System.Object)">
             <summary>
@@ -10291,6 +10300,11 @@
             The friendly description of the module.
             </summary>
         </member>
+        <member name="T:Ximura.IXimuraCommandPerformance">
+            <summary>
+            This is the base interface for performance counters for the command architecture.
+            </summary>
+        </member>
         <member name="M:Ximura.Command.CommandConfiguration`1.#ctor">
             <summary>
             The default constructor
@@ -10394,6 +10408,23 @@
             <param name="ConfigOptions">The configuration options.</param>
             <param name="ConfigName">The configuration name.</param>
         </member>
+        <member name="T:Ximura.PerformanceCounterNotificationType">
+            <summary>
+            This method is used to determine the notification logic that the counter wishes to use.
+            </summary>
+        </member>
+        <member name="F:Ximura.PerformanceCounterNotificationType.EventDriven">
+            <summary>
+            The counter will fire an event when the value changes. Generally this should only
+            be used for counters that change infrequently.
+            </summary>
+        </member>
+        <member name="F:Ximura.PerformanceCounterNotificationType.TimerPoll">
+            <summary>
+            The timer poll method should be used for counters that need to be updated at a regular
+            interval.
+            </summary>
+        </member>
         <member name="M:Ximura.Server.StorageManager.#ctor">
             <summary>
             This is the default constructor.
@@ -10404,6 +10435,16 @@
             The Ximura Application component model constructor
             </summary>
             <param name="container">The container that the services should be added to.</param>
+        </member>
+        <member name="M:Ximura.Server.StorageManager.ServicesProvide">
+            <summary>
+            This override adds the IXimuraLoggingManager service to the control container.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.StorageManager.ServicesRemove">
+            <summary>
+            This override removes the IXimuraLoggingManager service to the control container.
+            </summary>
         </member>
         <member name="T:XimuraResourcePlaceholder">
             <summary>
@@ -10584,63 +10625,9 @@
             <param name="info"></param>
             <param name="context"></param>
         </member>
-        <member name="T:Ximura.Performance.PerformanceCounterBase">
+        <member name="T:Ximura.Server.LoggingManagerConfiguration">
             <summary>
-            This class is the default class for the performance counters.
-            </summary>
-        </member>
-        <member name="M:Ximura.Performance.PerformanceCounterBase.#ctor">
-            <summary>
-            This is the default constructor for the performance counter.
-            </summary>
-        </member>
-        <member name="M:Ximura.Performance.PerformanceCounterBase.Increment">
-            <summary>
-            This method increments the internal counter by 1.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Ximura.Performance.PerformanceCounterBase.IncrementBy(System.Int64)">
-            <summary>
-            This method increments or decrements the internal counter by the value specified.
-            </summary>
-            <param name="value">The positive or negative value.</param>
-            <returns>Returns the new value of the counter.</returns>
-        </member>
-        <member name="M:Ximura.Performance.PerformanceCounterBase.Decrement">
-            <summary>
-            This method decrements the internal counter by 1.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="P:Ximura.Performance.PerformanceCounterBase.Name">
-            <summary>
-            This property is the performance counter name.
-            </summary>
-        </member>
-        <member name="P:Ximura.Performance.PerformanceCounterBase.Category">
-            <summary>
-            This property is the performance counter category.
-            </summary>
-        </member>
-        <member name="P:Ximura.Performance.PerformanceCounterBase.CatType">
-            <summary>
-            This is the performance counter type.
-            </summary>
-        </member>
-        <member name="P:Ximura.Performance.PerformanceCounterBase.RawValue">
-            <summary>
-            This is the performance counter raw value.
-            </summary>
-        </member>
-        <member name="P:Ximura.Performance.PerformanceCounterBase.Active">
-            <summary>
-            This property identifies whether the counter is active.
-            </summary>
-        </member>
-        <member name="P:Ximura.Performance.PerformanceCounterBase.Dirty">
-            <summary>
-            This property identifies whether the counter is dirty and needs updating.
+            This class holds the default configuration for the logging manager.
             </summary>
         </member>
         <member name="M:Ximura.Server.LoggingManagerConfiguration.#ctor">
@@ -10694,18 +10681,6 @@
             This is the default constructor for the Content object.
             </summary>
         </member>
-        <member name="M:Ximura.Server.AppServerPerformance.PerformanceCounterCollectionRegister(Ximura.IXimuraPerformanceCounterCollection)">
-            <summary>
-            This method registers a performance collection.
-            </summary>
-            <param name="collection">The collection to add.</param>
-        </member>
-        <member name="M:Ximura.Server.AppServerPerformance.PerformanceCounterCollectionUnregister(Ximura.IXimuraPerformanceCounterCollection)">
-            <summary>
-            This method unregisters the performance collection.
-            </summary>
-            <param name="collection">The collection to remove.</param>
-        </member>
         <member name="M:Ximura.Server.AppServerSystemConfiguration.#ctor">
             <summary>
             The default constructor
@@ -10727,6 +10702,159 @@
         <member name="M:Ximura.Server.SessionAgentPerformance.#ctor">
             <summary>
             This is the default constructor for the Content object.
+            </summary>
+        </member>
+        <member name="T:Ximura.XimuraAppTrace">
+            <summary>
+            XimuraAppTrace is the static trace object for the Ximura Application framework.
+            </summary>
+        </member>
+        <member name="F:Ximura.XimuraAppTrace.categoryLogger">
+            <summary>
+            categoryLogger contains the collection of active loggers
+            </summary>
+        </member>
+        <member name="F:Ximura.XimuraAppTrace.CategoryLog">
+            <summary>
+            CategoryLog contains a lookup table based on category with an array list stored
+            against the value for each logger that accepts 
+            </summary>
+        </member>
+        <member name="M:Ximura.XimuraAppTrace.Start">
+            <summary>
+            This method starts the logger. If the logger is active this method has no effect.
+            </summary>
+        </member>
+        <member name="M:Ximura.XimuraAppTrace.Close">
+            <summary>
+            This method closes the logger and flushes any messages from the buffer. If the logger is 
+            not active this method has no effect.
+            </summary>
+        </member>
+        <member name="M:Ximura.XimuraAppTrace.FlushInternal">
+            <summary>
+            This method flushes all the current loggers.
+            </summary>
+        </member>
+        <member name="M:Ximura.XimuraAppTrace.Flush">
+            <summary>
+            This method flushes all the current loggers.
+            </summary>
+        </member>
+        <member name="M:Ximura.XimuraAppTrace.LogItem(Ximura.XimuraAppTrace.QueueItem)">
+            <summary>
+            This method logs the specific item.
+            </summary>
+            <param name="item">The item to log.</param>
+        </member>
+        <member name="M:Ximura.XimuraAppTrace.LoggerAdd(Ximura.IXimuraLogging)">
+            <summary>
+            This method adds a logger to the logging collection.
+            </summary>
+            <param name="logger">The logger to add.</param>
+        </member>
+        <member name="M:Ximura.XimuraAppTrace.LoggerRemove(Ximura.IXimuraLogging)">
+            <summary>
+            This method removes a logger from the logging collection.
+            </summary>
+            <param name="logger">The logger to remove.</param>
+        </member>
+        <member name="M:Ximura.XimuraAppTrace.CategoryToLog(System.String)">
+            <summary>
+            This method returns true if there is a category to log.
+            </summary>
+            <param name="category">The category to check.</param>
+            <returns>Returns true if the category is found.</returns>
+        </member>
+        <member name="M:Ximura.XimuraAppTrace.Resolve(Ximura.XimuraAppTrace.QueueItem)">
+            <summary>
+            This method is used to resolve the application loggers for a particular logging
+            event.
+            </summary>
+            <param name="item">The logging QueueItem.</param>
+            <returns>Returns an array list containing the logger collection.</returns>
+        </member>
+        <member name="M:Ximura.XimuraAppTrace.Write(System.Object,System.String,System.Diagnostics.EventLogEntryType,System.String)">
+            <summary>
+            This method writes to the selected loggers with the message object specified.
+            </summary>
+            <param name="value">The message object.</param>
+            <param name="category">The message category.</param>
+            <param name="type">The entry type.</param>
+            <param name="DebugSwitch">The applicable debug switch.</param>
+        </member>
+        <member name="M:Ximura.XimuraAppTrace.Write(System.String,System.String,System.Diagnostics.EventLogEntryType,System.String)">
+            <summary>
+            This method writes to the selected loggers with the message specified.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="category">The message category.</param>
+            <param name="type">The entry type.</param>
+            <param name="DebugSwitch">The applicable debug switch.</param>
+        </member>
+        <member name="M:Ximura.XimuraAppTrace.WriteLine(System.Object,System.String,System.Diagnostics.EventLogEntryType,System.String)">
+            <summary>
+            This method writes to the selected loggers with the message object specified.
+            For loggers that support multiline entry, this method will append a new line to the message.
+            </summary>
+            <param name="value">The message object.</param>
+            <param name="category">The message category.</param>
+            <param name="type">The entry type.</param>
+            <param name="DebugSwitch">The applicable debug switch.</param>
+        </member>
+        <member name="M:Ximura.XimuraAppTrace.WriteLine(System.String,System.String,System.Diagnostics.EventLogEntryType,System.String)">
+            <summary>
+            This method writes to the selected loggers with the message specified. 
+            For loggers that support multiline entry, this method will append a new line to the message.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="category">The message category.</param>
+            <param name="type">The entry type.</param>
+            <param name="DebugSwitch">The applicable debug switch.</param>
+        </member>
+        <member name="M:Ximura.XimuraAppTrace.Indent">
+            <summary>
+            This method increase the indent
+            </summary>
+        </member>
+        <member name="M:Ximura.XimuraAppTrace.Unindent">
+            <summary>
+            This method decreases the indent
+            </summary>
+        </member>
+        <member name="P:Ximura.XimuraAppTrace.Active">
+            <summary>
+            This method identifies whether the logger is active.
+            </summary>
+        </member>
+        <member name="P:Ximura.XimuraAppTrace.AutoFlush">
+            <summary>
+            This method determines whether the logger will flush automatically
+            </summary>
+        </member>
+        <member name="P:Ximura.XimuraAppTrace.DefaultLogger">
+            <summary>
+            This property gets the default logger
+            </summary>
+        </member>
+        <member name="P:Ximura.XimuraAppTrace.IndentLevel">
+            <summary>
+            This property returns the current indent level
+            </summary>
+        </member>
+        <member name="P:Ximura.XimuraAppTrace.IndentSize">
+            <summary>
+            This property detemines the indent size in characters
+            </summary>
+        </member>
+        <member name="P:Ximura.XimuraAppTrace.Listeners">
+            <summary>
+            This method is not implemented.
+            </summary>
+        </member>
+        <member name="T:Ximura.XimuraAppTrace.QueueItem">
+            <summary>
+            The QueueItem class holds a log item.
             </summary>
         </member>
         <member name="M:Ximura.Server.SessionAgentSystem.#ctor(System.ComponentModel.IContainer)">
@@ -10836,12 +10964,6 @@
         <member name="M:Ximura.Server.SQLServerStorageAgent.VerifyExternalConnectivity">
             <summary>
             This method verifies all the external connections.
-            </summary>
-        </member>
-        <member name="T:Ximura.Server.XimuraServerAgentHolder">
-            <summary>
-            The agent holder class is used by the agent based attributes to pass common information to the 
-            server processes.
             </summary>
         </member>
     </members>

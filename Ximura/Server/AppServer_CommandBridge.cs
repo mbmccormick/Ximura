@@ -34,7 +34,6 @@ using Ximura.Helper;
 using Ximura.Server;
 using Ximura.Command;
 
-using Ximura.Performance;
 using AH = Ximura.Helper.AttributeHelper;
 using RH = Ximura.Helper.Reflection;
 using CH = Ximura.Helper.Common;
@@ -54,7 +53,7 @@ namespace Ximura.Server
         protected virtual void CommandBridgeStart()
         {
             mCommandBridge = new CommandBridge(SessionCreateRemote, 
-                Configuration, PerformanceManager, PoolManager);
+                Configuration, PerformanceService.Manager, PoolManager);
 
             AddService<IXimuraConfigurationManager>(CommandBridge);
             AddService<IXimuraPerformanceManager>(CommandBridge);
@@ -72,7 +71,7 @@ namespace Ximura.Server
             RemoveService<IXimuraSessionManager>();
             RemoveService<IXimuraCommandBridge>();
             RemoveService<IXimuraPoolManager>();
-            RemoveService<IXimuraPerformanceManager>();
+            RemoveService<IXimuraPerformanceManagerService>();
             RemoveService<IXimuraConfigurationManager>();
         }
         #endregion

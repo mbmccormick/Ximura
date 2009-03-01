@@ -43,7 +43,7 @@ namespace Ximura.Server
     /// <typeparam name="PERF">The performance class.</typeparam>
     public class AppServerProcessBase<CONF, PERF> : AppBase<CONF, PERF>
         where CONF : ConfigurationBase, new()
-        where PERF : PerformanceBase, new()
+        where PERF : PerformanceCounterCollection, new()
     {
         #region Declarations
         /// <summary>

@@ -32,7 +32,7 @@ using RH = Ximura.Helper.Reflection;
 #endregion // using
 namespace Ximura.Server
 {
-    public class AppServerPerformance : PerformanceBase, IXimuraPerformanceService
+    public class AppServerPerformance : PerformanceCounterCollection
     {
         #region Declarations
         private Dictionary<Guid, IXimuraPerformanceCounterCollection> mCounters;
@@ -46,60 +46,6 @@ namespace Ximura.Server
             mCounters = new Dictionary<Guid, IXimuraPerformanceCounterCollection>();
         }
 		#endregion
-
-        #region PerformanceCounterCollectionRegister
-        /// <summary>
-        /// This method registers a performance collection.
-        /// </summary>
-        /// <param name="collection">The collection to add.</param>
-        public void PerformanceCounterCollectionRegister(IXimuraPerformanceCounterCollection collection)
-        {
-            try
-            {
-                if (collection.CommandID == Guid.Empty)
-                    return;
-
-                mCounters.Add(collection.CommandID, collection);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-        #endregion
-        #region PerformanceCounterCollectionUnregister
-        /// <summary>
-        /// This method unregisters the performance collection.
-        /// </summary>
-        /// <param name="collection">The collection to remove.</param>
-        public void PerformanceCounterCollectionUnregister(IXimuraPerformanceCounterCollection collection)
-        {
-            if (collection == null)
-                return;
-
-            try
-            {
-                mCounters.Remove(collection.CommandID);
-            }
-            catch (Exception ex)
-            {
-            }
-        }
-        #endregion // PerformanceCounterCollectionUnregister
-
-        #region IXimuraAppServerAgentService Members
-
-        public void AgentAdd(XimuraServerAgentHolder holder)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void AgentRemove(XimuraServerAgentHolder holder)
-        {
-            throw new NotImplementedException();
-        }
-
-        #endregion
 
  
     }

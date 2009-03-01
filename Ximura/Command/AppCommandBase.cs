@@ -331,23 +331,6 @@ namespace Ximura.Command
         }
         #endregion // BaseSettings
 
-        #region InternalStart()/InternalStop()
-        /// <summary>
-		/// This method starts the AppServerProcess and registers any services
-		/// </summary>
-		protected override void InternalStart()
-		{
-			ServicesReference();
-		}
-		/// <summary>
-		/// The method stops the AppServerProcess and unregisters and services
-		/// </summary>
-		protected override void InternalStop()
-		{
-            ServicesDereference();
-        }
-		#endregion
-
         #region ConfigurationLoad
         /// <summary>
         /// This method loads the command configuration.
@@ -413,7 +396,7 @@ namespace Ximura.Command
         {
             base.PerformanceStart();
 
-            Performance.CommandID = this.CommandID;
+            Performance.ID = this.CommandID;
             Performance.PCID = this.CommandID;
             Performance.Name = this.CommandName;
             Performance.Category = "Command";

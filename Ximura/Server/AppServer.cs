@@ -33,38 +33,12 @@ using Ximura.Data;
 using Ximura.Helper;
 using Ximura.Server;
 using Ximura.Command;
-
-using Ximura.Performance;
 using AH = Ximura.Helper.AttributeHelper;
 using RH = Ximura.Helper.Reflection;
 using CH = Ximura.Helper.Common;
 #endregion
 namespace Ximura.Server
 {
-    /// <summary>
-    /// The AppServerBase class is the class that all server applications derive from.
-    /// </summary>
-    public class AppServer : AppServer<AppServerSystemConfiguration, AppServerCommandConfiguration, AppServerPerformance>
-    {
-        #region Constructors
-        /// <summary>
-        /// This is the default constructor for the service.
-        /// </summary>
-        public AppServer()
-            : this((IContainer)null)
-        {
-        }
-        /// <summary>
-        /// This constructor is called by the .Net component model when adding it to a container
-        /// </summary>
-        /// <param name="container">The container to add the component to.</param>
-        public AppServer(IContainer container)
-            : base(container)
-        {
-        }
-        #endregion
-    }
-
     /// <summary>
     /// The AppServerBase class is the class that all server applications derive from.
     /// </summary>
@@ -78,14 +52,7 @@ namespace Ximura.Server
         #region Declarations
         #region Containers/Service containers
         private System.ComponentModel.IContainer components = null;
-        /// <summary>
-        /// This is the container for the control classes.
-        /// </summary>
-        protected XimuraAppContainer mControlContainer = null;
-        /// <summary>
-        /// The service container contains all the components for the container.
-        /// </summary>
-        protected IServiceContainer mControlServiceContainer = null;
+
         #endregion // Containers
         #region Application Components
         private IXimuraSessionManagerRegistration mSecurityMan = null;
@@ -132,10 +99,12 @@ namespace Ximura.Server
 
             if (disposing)
             {
-                if (mControlContainer != null)
+                if (ControlContainer != null)
                 {
-                    mControlContainer.Dispose();
+                    ControlContainer.Dispose();
                 }
+
+                ControlContainer = null;
 
                 XimuraAppTrace.Close();
             }
@@ -156,12 +125,10 @@ namespace Ximura.Server
         protected virtual void InitializeControlContainer()
         {
             //Set up the control container
-            if (mControlServiceContainer == null)
-                mControlServiceContainer = new XimuraServiceContainer();
+            ControlServiceContainer = new XimuraServiceContainer();
 
             //Check that we only do this once
-            if (mControlContainer == null)
-                mControlContainer = new XimuraAppContainer(mControlServiceContainer, this);
+            ControlContainer = new XimuraAppContainer(ControlServiceContainer, this);
         }
         #endregion
 
@@ -171,10 +138,8 @@ namespace Ximura.Server
         /// </summary>
         protected virtual IServiceContainer ControlServiceContainer
         {
-            get
-            {
-                return mControlServiceContainer;
-            }
+            get;
+            set;
         }
         #endregion // ControlServiceContainer
         #region ControlContainer
@@ -183,10 +148,8 @@ namespace Ximura.Server
         /// </summary>
         protected virtual IContainer ControlContainer
         {
-            get
-            {
-                return mControlContainer;
-            }
+            get;
+            set;
         }
         #endregion // ControlContainer
 

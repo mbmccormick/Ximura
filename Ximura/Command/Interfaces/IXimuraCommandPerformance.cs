@@ -31,7 +31,10 @@ using Ximura.Server;
 #endregion // using
 namespace Ximura
 {
-    public interface IXimuraCommandPerformance : IXimuraPerformanceCounterCollection, IXimuraPerformance
+    /// <summary>
+    /// This is the base interface for performance counters for the command architecture.
+    /// </summary>
+    public interface IXimuraCommandPerformance : IXimuraPerformanceCounterCollection
     {
         void RequestStart(Guid ID);
         void RequestEnd(Guid ID);

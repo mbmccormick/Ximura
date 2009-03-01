@@ -33,8 +33,6 @@ using Ximura.Data;
 using Ximura.Helper;
 using Ximura.Server;
 using Ximura.Command;
-
-using Ximura.Performance;
 using AH = Ximura.Helper.AttributeHelper;
 using RH = Ximura.Helper.Reflection;
 using CH = Ximura.Helper.Common;
@@ -47,13 +45,12 @@ namespace Ximura.Server
         /// <summary>
         /// This is the logging manager for the application.
         /// </summary>
-        protected virtual LoggingManager Logging
+        protected virtual LoggingManager LoggingService
         {
             get;
             set;
         }
         #endregion // Logging
-
 
         #region LoggingStart()
         /// <summary>
@@ -66,14 +63,14 @@ namespace Ximura.Server
             //mLoggingMan = ControlServiceContainer.GetService(typeof(IXimuraLogging)) as LoggingManager;
             ////No, then create a default one.
             //if (mLoggingMan == null)
-            Logging = new LoggingManager(ControlContainer);
+            LoggingService = new LoggingManager(ControlContainer);
 
             //Add the loggers.
-            AgentsAdd<XimuraAppServerLoggerAttribute>(LoggersDefault, Logging);
+            AgentsAdd<XimuraAppServerLoggerAttribute>(LoggersDefault, LoggingService);
 
             //We wait until here to start the services as they have reference to themselves.
-            if (((IXimuraService)Logging).ServiceStatus != XimuraServiceStatus.Started)
-                ((IXimuraService)Logging).Start();
+            if (((IXimuraService)LoggingService).ServiceStatus != XimuraServiceStatus.Started)
+                ((IXimuraService)LoggingService).Start();
 
             XimuraAppTrace.Start();
 
@@ -88,7 +85,7 @@ namespace Ximura.Server
         protected virtual void LoggingStop()
         {
             //Remove the loggers.
-            AgentsRemove<XimuraAppServerLoggerAttribute>(LoggersDefault, Logging);
+            AgentsRemove<XimuraAppServerLoggerAttribute>(LoggersDefault, LoggingService);
 
             //XimuraAppTrace.Close();
         }

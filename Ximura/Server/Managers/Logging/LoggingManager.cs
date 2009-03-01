@@ -31,16 +31,14 @@ namespace Ximura.Server
 	/// The LoggingManager object creates the set of loggers for the application
 	/// as specified in the configuration file.
 	/// </summary>
-	[XimuraAppModule("EA63F664-0AE1-4345-A1F3-CD01A1805739","ExtensibleLoggingManager")]
-    public class LoggingManager : 
-        AppServerAgentManager<LoggerAgentBase, LoggingManagerConfiguration, LoggingManagerPerformance>, IXimuraAppServerAgentService
+    [XimuraAppModule("ED2902A1-1773-4b3f-B290-49E3A470AD7E", "LoggingManager")]
+    public class LoggingManager :
+        AppServerAgentManager<LoggerAgentBase, LoggingManagerConfiguration, LoggingManagerPerformance>, IXimuraLoggingManagerService
 	{
 		#region Declarations
         private XimuraAppServerLoggerAttribute[] mAppServerLoggers = null;
-
 		private IXimuraLoggingManagerConfigSH mSettings = null;
 		private IXimuraLogging internalLogging = NullLoggerAgent.NoLog();
-
 		#endregion
 		#region Constructors / Destructor
 		/// <summary>
@@ -52,78 +50,30 @@ namespace Ximura.Server
         }
 		#endregion
 
-        #region InternalStart()
+        #region ServicesProvide/ServicesRemove
         /// <summary>
-        /// This override adds the loggers to the collection.
+        /// This override adds the IXimuraLoggingManager service to the control container.
         /// </summary>
-        protected override void InternalStart()
+        protected override void ServicesProvide()
         {
-            base.InternalStart();
+            base.ServicesProvide();
 
+            AddService<IXimuraLoggingManagerService>(this);
         }
-        #endregion // InternalStart()
-        #region InternalStop()
         /// <summary>
-        /// This override removes the loggers.
+        /// This override removes the IXimuraLoggingManager service to the control container.
         /// </summary>
-        protected override void InternalStop()
+        protected override void ServicesRemove()
         {
-            //LoggingProvidersRemove();
+            RemoveService<IXimuraLoggingManagerService>();
 
-            base.InternalStop();
+            base.ServicesRemove();
         }
-        #endregion // InternalStop()
-
-		#region Provider Handling
-
-        //public void LoggerRemove(XimuraAgentHolder agent)
-        //{
-        //    try
-        //    {
-        //        IXimuraLoggerConfigSH loggerSettings = null;// this.Settings.getLoggerSettings(loggerID);
-
-        //        LoggerAdd(loggerType, loggerSettings);
-        //    }
-        //    catch (Exception ex)
-        //    {
-
-        //    }
-        //}
-
-        //private void LoggerAdd(XimuraAgentHolder agent)
-        //{
-        //    IXimuraLoggingProvider logprov = RH.CreateObjectFromType(loggerType) as IXimuraLoggingProvider;
-        //    //If this is null then skip to the next logger or exit
-        //    if (logprov != null)
-        //    {
-        //        //If there are settings then initialize them
-        //        if (loggerSettings != null)
-        //            logprov.Initialize(loggerSettings);
-
-        //        //Add the logger to the trace collection
-        //        XimuraAppTrace.LoggerAdd(logprov);
-
-        //        //Add the logger to the internal collection. This will be used
-        //        //to remove the logger when the logging manager closes
-        //        loggers.Add(logprov);
-        //    }
-        //}
-
-        //private void LoggingProvidersRemove()
-        //{
-        //    loggers.ForEach(logger =>
-        //        {
-        //            XimuraAppTrace.LoggerRemove(logger);
-        //            logger.Deinitialize();
-        //        });
-
-        //    loggers.Clear();
-        //}
-		#endregion
+        #endregion // ServicesProvide/ServicesRemove
 
         protected override LoggerAgentBase AgentCreate(XimuraServerAgentHolder holder)
         {
-            throw new NotImplementedException();
+            return (LoggerAgentBase)RH.CreateObjectFromType(holder.AgentType);
         }
     }
 }

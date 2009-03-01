@@ -42,6 +42,9 @@ using Ximura.Command;
 #endregion // using
 namespace Ximura.Command
 {
+    /// <summary>
+    /// This is the base performance counter for the Finite State Machine.
+    /// </summary>
     public class FSMCommandPerformance: CommandPerformance
     {
 		#region Constructors

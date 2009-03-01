@@ -30,13 +30,14 @@ using Ximura.Command;
 namespace Ximura.Server
 {
     /// <summary>
-    /// This is the performance counter for the logging system command.
+    /// This is the performance counter for the logging system command. By default the logging manager does not connect
+    /// to the performance architecture due to the fact that this service starts before the performance manager. This class is a stub.
     /// </summary>
-    public class LoggingManagerPerformance: CommandPerformance
+    public class LoggingManagerPerformance : PerformanceCounterCollection
     {
 		#region Constructors
 		/// <summary>
-		/// This is the default constructor for the Content object.
+		/// This is the default constructor for the performance object.
 		/// </summary>
         public LoggingManagerPerformance()
         {

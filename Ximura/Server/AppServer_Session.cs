@@ -33,8 +33,6 @@ using Ximura.Data;
 using Ximura.Helper;
 using Ximura.Server;
 using Ximura.Command;
-
-using Ximura.Performance;
 using AH = Ximura.Helper.AttributeHelper;
 using RH = Ximura.Helper.Reflection;
 using CH = Ximura.Helper.Common;
@@ -47,7 +45,7 @@ namespace Ximura.Server
         /// <summary>
         /// This is the session manager for the application.
         /// </summary>
-        protected virtual SessionManager Sessions
+        protected virtual SessionManager SessionService
         {
             get;
             set;
@@ -82,10 +80,10 @@ namespace Ximura.Server
         protected virtual void SessionManagerStart()
         {
             mSessionTokens = new Dictionary<Guid, SessionToken>();
-            Sessions = new SessionManager(ControlContainer);
-            AgentsAdd<XimuraSessionManagerAttribute>(SessionAgentsDefault, Sessions);
+            SessionService = new SessionManager(ControlContainer);
+            AgentsAdd<XimuraSessionManagerAttribute>(SessionAgentsDefault, SessionService);
 
-            Sessions.Start();
+            SessionService.Start();
         }
         #endregion // SessionManagersStart()
         #region SessionManagerStop()
@@ -94,7 +92,7 @@ namespace Ximura.Server
         /// </summary>
         protected virtual void SessionManagerStop()
         {
-            AgentsRemove<XimuraSessionManagerAttribute>(SessionAgentsDefault, Sessions);
+            AgentsRemove<XimuraSessionManagerAttribute>(SessionAgentsDefault, SessionService);
 
             mSessionTokens.Clear();
         }
