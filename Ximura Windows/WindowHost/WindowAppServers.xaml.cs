@@ -135,13 +135,13 @@ namespace Ximura.Windows
             {
                 AppServerStop();
 
-                this.btStart.InvokeOrCallDirect(delegate() { btStart.IsEnabled = true; });
-                this.btStop.InvokeOrCallDirect(delegate() { btStop.IsEnabled = false; });
+                this.btStart.InvokeOrCallDirect(() => btStart.IsEnabled = true );
+                this.btStop.InvokeOrCallDirect(() => btStop.IsEnabled = false );
 
                 return;
             }
 
-            this.btStop.InvokeOrCallDirect(delegate() { btStop.IsEnabled = true; });
+            this.btStop.InvokeOrCallDirect(() => btStop.IsEnabled = true);
 
         }
         #endregion // AppServerStart(object stateInfo)
