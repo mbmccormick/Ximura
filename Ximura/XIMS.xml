@@ -1599,25 +1599,150 @@
             </summary>
             <typeparam name="CONF">The configuration class.</typeparam>
             <typeparam name="PERF">The performance class.</typeparam>
+            <typeparam name="PERF">The configuration class.</typeparam>
         </member>
-        <member name="F:Ximura.AppBase`2.mPerformanceManager">
+        <member name="T:Ximura.AppBase`3">
+            <summary>
+            This is the base class for both command and application objects.
+            </summary>
+            <typeparam name="CONF">The configuration class.</typeparam>
+            <typeparam name="PERF">The performance class.</typeparam>
+            <typeparam name="EXTCONF">The external configuration class.</typeparam>
+        </member>
+        <member name="F:Ximura.AppBase`3.mPerformanceManager">
             <summary>
             This is the performance manager.
             </summary>
         </member>
-        <member name="F:Ximura.AppBase`2.mConfigurationManager">
+        <member name="F:Ximura.AppBase`3.mConfigurationManager">
             <summary>
             This is the configuration manager.
             </summary>
         </member>
-        <member name="F:Ximura.AppBase`2.mApplicationDefinition">
+        <member name="F:Ximura.AppBase`3.mApplicationDefinition">
             <summary>
             This private method contains the unique application identifiers.
             </summary>
         </member>
-        <member name="F:Ximura.AppBase`2.CommandExtender">
+        <member name="F:Ximura.AppBase`3.CommandExtender">
             <summary>
             This is the AppServerCommandDataExtender used to set the command start priority.
+            </summary>
+        </member>
+        <member name="M:Ximura.AppBase`3.#ctor">
+            <summary>
+            This is the default constructor
+            </summary>
+        </member>
+        <member name="M:Ximura.AppBase`3.#ctor(System.ComponentModel.IContainer)">
+            <summary>
+            This is the base constructor for a Ximura command
+            </summary>
+            <param name="container">The container to be added to</param>
+        </member>
+        <member name="M:Ximura.AppBase`3.CommandExtenderInitialize">
+            <summary>
+            This method initializes the 
+            </summary>
+        </member>
+        <member name="M:Ximura.AppBase`3.InternalStart">
+            <summary>
+            This method starts the AppServerProcess and registers any services
+            </summary>
+        </member>
+        <member name="M:Ximura.AppBase`3.InternalStop">
+            <summary>
+            The method stops the AppServerProcess and unregisters and services
+            </summary>
+        </member>
+        <member name="M:Ximura.AppBase`3.ConfigurationStart">
+            <summary>
+            This method creates and registers the configuration data object.
+            </summary>
+        </member>
+        <member name="M:Ximura.AppBase`3.ConfigurationLoad(`0)">
+            <summary>
+            This method loads the command configuration.
+            </summary>
+            <param name="commandConfiguration"></param>
+        </member>
+        <member name="M:Ximura.AppBase`3.ConfigurationStop">
+            <summary>
+            This method unregisters and destpys the configuration data object.
+            </summary>
+        </member>
+        <member name="M:Ximura.AppBase`3.PerformanceStart">
+            <summary>
+            This method starts the performance counters.
+            </summary>
+        </member>
+        <member name="M:Ximura.AppBase`3.PerformanceStop">
+            <summary>
+            This method stops the performance counters.
+            </summary>
+        </member>
+        <member name="M:Ximura.AppBase`3.PoolManagerStart">
+            <summary>
+            This protected method creates the default pool manager for the application.
+            </summary>
+        </member>
+        <member name="M:Ximura.AppBase`3.PoolManagerStop">
+            <summary>
+            This protected method disposes of the default pool manager for the application.
+            </summary>
+        </member>
+        <member name="M:Ximura.AppBase`3.CommandsStart">
+            <summary>
+            This protected method initializes the commands
+            </summary>
+        </member>
+        <member name="M:Ximura.AppBase`3.CommandsStop">
+            <summary>
+            This protected method initializes the commands
+            </summary>
+        </member>
+        <member name="M:Ximura.AppBase`3.ComponentsStatusBeforeChange(Ximura.XimuraServiceStatusAction,Ximura.IXimuraService)">
+            <summary>
+            This overriden method checks on start whether the command has a priority set, 
+            if it does has a priority set, the command is not started.
+            </summary>
+            <param name="action">The service action.</param>
+            <param name="service">The service.</param>
+            <returns>Returns true if the service can start.</returns>
+        </member>
+        <member name="P:Ximura.AppBase`3.Configuration">
+            <summary>
+            This is the command configuration.
+            </summary>
+        </member>
+        <member name="P:Ximura.AppBase`3.ConfigurationExternal">
+            <summary>
+            This is the external configuration that contains the settings for the main configuration.
+            </summary>
+        </member>
+        <member name="P:Ximura.AppBase`3.ConfigurationManager">
+            <summary>
+            This is the application configuration manager for the command.
+            </summary>
+        </member>
+        <member name="P:Ximura.AppBase`3.Performance">
+            <summary>
+            This is the performance counter for the command.
+            </summary>
+        </member>
+        <member name="P:Ximura.AppBase`3.PerformanceManager">
+            <summary>
+            This is the application performance manager for the command.
+            </summary>
+        </member>
+        <member name="P:Ximura.AppBase`3.PoolManager">
+            <summary>
+            This is the pool manager.
+            </summary>
+        </member>
+        <member name="P:Ximura.AppBase`3.ApplicationDefinition">
+            <summary>
+            This private method contains the unique application identifiers.
             </summary>
         </member>
         <member name="M:Ximura.AppBase`2.#ctor">
@@ -1630,106 +1755,6 @@
             This is the base constructor for a Ximura command
             </summary>
             <param name="container">The container to be added to</param>
-        </member>
-        <member name="M:Ximura.AppBase`2.CommandExtenderInitialize">
-            <summary>
-            This method initializes the 
-            </summary>
-        </member>
-        <member name="M:Ximura.AppBase`2.InternalStart">
-            <summary>
-            This method starts the AppServerProcess and registers any services
-            </summary>
-        </member>
-        <member name="M:Ximura.AppBase`2.InternalStop">
-            <summary>
-            The method stops the AppServerProcess and unregisters and services
-            </summary>
-        </member>
-        <member name="M:Ximura.AppBase`2.ConfigurationStart">
-            <summary>
-            This method creates and registers the configuration data object.
-            </summary>
-        </member>
-        <member name="M:Ximura.AppBase`2.ConfigurationLoad(`0)">
-            <summary>
-            This method loads the command configuration.
-            </summary>
-            <param name="commandConfiguration"></param>
-        </member>
-        <member name="M:Ximura.AppBase`2.ConfigurationStop">
-            <summary>
-            This method unregisters and destpys the configuration data object.
-            </summary>
-        </member>
-        <member name="M:Ximura.AppBase`2.PerformanceStart">
-            <summary>
-            This method starts the performance counters.
-            </summary>
-        </member>
-        <member name="M:Ximura.AppBase`2.PerformanceStop">
-            <summary>
-            This method stops the performance counters.
-            </summary>
-        </member>
-        <member name="M:Ximura.AppBase`2.PoolManagerStart">
-            <summary>
-            This protected method creates the default pool manager for the application.
-            </summary>
-        </member>
-        <member name="M:Ximura.AppBase`2.PoolManagerStop">
-            <summary>
-            This protected method disposes of the default pool manager for the application.
-            </summary>
-        </member>
-        <member name="M:Ximura.AppBase`2.CommandsStart">
-            <summary>
-            This protected method initializes the commands
-            </summary>
-        </member>
-        <member name="M:Ximura.AppBase`2.CommandsStop">
-            <summary>
-            This protected method initializes the commands
-            </summary>
-        </member>
-        <member name="M:Ximura.AppBase`2.ComponentsStatusBeforeChange(Ximura.XimuraServiceStatusAction,Ximura.IXimuraService)">
-            <summary>
-            This overriden method checks on start whether the command has a priority set, 
-            if it does has a priority set, the command is not started.
-            </summary>
-            <param name="action">The service action.</param>
-            <param name="service">The service.</param>
-            <returns>Returns true if the service can start.</returns>
-        </member>
-        <member name="P:Ximura.AppBase`2.Configuration">
-            <summary>
-            This is the command configuration.
-            </summary>
-        </member>
-        <member name="P:Ximura.AppBase`2.ConfigurationManager">
-            <summary>
-            This is the application configuration manager for the command.
-            </summary>
-        </member>
-        <member name="P:Ximura.AppBase`2.Performance">
-            <summary>
-            This is the performance counter for the command.
-            </summary>
-        </member>
-        <member name="P:Ximura.AppBase`2.PerformanceManager">
-            <summary>
-            This is the application performance manager for the command.
-            </summary>
-        </member>
-        <member name="P:Ximura.AppBase`2.PoolManager">
-            <summary>
-            This is the pool manager.
-            </summary>
-        </member>
-        <member name="P:Ximura.AppBase`2.ApplicationDefinition">
-            <summary>
-            This private method contains the unique application identifiers.
-            </summary>
         </member>
         <member name="F:Ximura.Server.AppServerProcessBase`2.SCMRSAProvider">
             <summary>
@@ -1762,6 +1787,24 @@
             This override gets the ConfigurationManager from the IXimuraConfigurationManager service.
             </summary>
         </member>
+        <member name="M:Ximura.Server.GatewayManagerConfiguration.#ctor">
+            <summary>
+            The default constructor
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.GatewayManagerConfiguration.#ctor(System.ComponentModel.IContainer)">
+            <summary>
+            This constructor is called by .NET when it added as new to a container.
+            </summary>
+            <param name="container">The container this component should be added to.</param>
+        </member>
+        <member name="M:Ximura.Server.GatewayManagerConfiguration.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            This is the deserialization constructor. 
+            </summary>
+            <param name="info">The Serialization info object that contains all the relevant data.</param>
+            <param name="context">The serialization context.</param>
+        </member>
         <member name="T:Ximura.Persistence.SQLDBPersistenceManager`2">
             <summary>
             This is the base persistence manager for SQL based storage for the Aegea system.
@@ -1782,30 +1825,205 @@
             <summary>
             AppCommandBase is the base object for an Application command.
             </summary>
+            <typeparam name="CONF">The command configuration object.</typeparam>
+            <typeparam name="PERF">The command performance monitor object.</typeparam>
         </member>
-        <member name="F:Ximura.Command.AppCommandBase`2.mCommandBridge">
+        <member name="T:Ximura.Command.AppCommandBase`3">
+            <summary>
+            AppCommandBase is the base object for an Application command.
+            </summary>
+            <typeparam name="CONF">The command configuration object.</typeparam>
+            <typeparam name="PERF">The command performance monitor object.</typeparam>
+            <typeparam name="EXTCONF">The external command object that contains a set of user configurable settings.</typeparam>
+        </member>
+        <member name="F:Ximura.Command.AppCommandBase`3.mCommandBridge">
             <summary>
             The dispatcherCollection is the command gateway to the dispatcher. 
             </summary>
         </member>
-        <member name="F:Ximura.Command.AppCommandBase`2.mDebugName">
+        <member name="F:Ximura.Command.AppCommandBase`3.mDebugName">
             <summary>
             The debug name is used to accurately identify the command within the application.
             </summary>
         </member>
-        <member name="F:Ximura.Command.AppCommandBase`2.mName">
+        <member name="F:Ximura.Command.AppCommandBase`3.mName">
             <summary>
             This is the command name
             </summary>
         </member>
-        <member name="F:Ximura.Command.AppCommandBase`2.mDescription">
+        <member name="F:Ximura.Command.AppCommandBase`3.mDescription">
             <summary>
             This is the command description
             </summary>
         </member>
-        <member name="F:Ximura.Command.AppCommandBase`2.settingsProvider">
+        <member name="F:Ximura.Command.AppCommandBase`3.settingsProvider">
             <summary>
             The settings provider for the base command container.
+            </summary>
+        </member>
+        <member name="M:Ximura.Command.AppCommandBase`3.#ctor">
+            <summary>
+            This is the default constructor
+            </summary>
+        </member>
+        <member name="M:Ximura.Command.AppCommandBase`3.#ctor(System.ComponentModel.IContainer)">
+            <summary>
+            This is the base constructor for a Ximura command
+            </summary>
+            <param name="container">The container to be added to</param>
+        </member>
+        <member name="M:Ximura.Command.AppCommandBase`3.#ctor(System.Nullable{System.Guid},System.ComponentModel.IContainer)">
+            <summary>
+            This is the base constructor for a Ximura command
+            </summary>
+            <param name="commandID">This is the explicitly set command id</param>
+            <param name="container">The container to be added to</param>
+        </member>
+        <member name="M:Ximura.Command.AppCommandBase`3.Dispose(System.Boolean)">
+            <summary>
+            This overriden Dispose method removes any services or service references
+            </summary>
+            <param name="disposing">True is the method is disposing</param>
+        </member>
+        <member name="M:Ximura.Command.AppCommandBase`3.GetSettings(System.String)">
+            <summary>
+            This protected member returns the settings for the command
+            </summary>
+            <param name="key">The key that specifies the specific settings object</param>
+            <returns>The settings object</returns>
+        </member>
+        <member name="M:Ximura.Command.AppCommandBase`3.GetSettingsProvider">
+            <summary>
+            This method gets the settings for the command.
+            </summary>
+        </member>
+        <member name="M:Ximura.Command.AppCommandBase`3.ConfigurationLoad(`0)">
+            <summary>
+            This method loads the command configuration.
+            </summary>
+            <param name="commandConfiguration"></param>
+        </member>
+        <member name="M:Ximura.Command.AppCommandBase`3.PerformanceStart">
+            <summary>
+            This method creates and registers the command performance object.
+            </summary>
+        </member>
+        <member name="M:Ximura.Command.AppCommandBase`3.PerformanceStop">
+            <summary>
+            This method unregisters the command performance object.
+            </summary>
+        </member>
+        <member name="M:Ximura.Command.AppCommandBase`3.PoolManagerStart">
+            <summary>
+            This override gets a reference to the pool manager.
+            </summary>
+        </member>
+        <member name="M:Ximura.Command.AppCommandBase`3.Notify(System.Type,System.Object)">
+            <summary>
+            This method is called when there is a system notification.
+            </summary>
+            <param name="notificationType">The notification object type.</param>
+            <param name="notification">The notification object.</param>
+        </member>
+        <member name="M:Ximura.Command.AppCommandBase`3.CommandBridgeStart">
+            <summary>
+            This method gets a reference to the command bridge and registers the command.
+            </summary>
+        </member>
+        <member name="M:Ximura.Command.AppCommandBase`3.CommandBridgeRegister(System.Boolean)">
+            <summary>
+            This method determines whether the command is registered or unregistered with the command bridge.
+            </summary>
+            <param name="register">A boolean value indicating whether this command should be registered or unregistered.</param>
+        </member>
+        <member name="M:Ximura.Command.AppCommandBase`3.CommandBridgeStop">
+            <summary>
+            This method unregisters the command and removes the reference to the command bridge.
+            </summary>
+        </member>
+        <member name="P:Ximura.Command.AppCommandBase`3.AppCommandAttribute">
+            <summary>
+            This property is the XimuraAppCommandAttribute applied to the application.
+            </summary>
+        </member>
+        <member name="P:Ximura.Command.AppCommandBase`3.AppConfigurationAttribute">
+            <summary>
+            This property is the XimuraAppCommandAttribute applied to the application.
+            </summary>
+        </member>
+        <member name="P:Ximura.Command.AppCommandBase`3.CommandID">
+            <summary>
+            This is the command ID.
+            </summary>
+        </member>
+        <member name="P:Ximura.Command.AppCommandBase`3.CommandName">
+            <summary>
+            This is command name used to route requests to it in an application.
+            </summary>
+            		
+        </member>
+        <member name="P:Ximura.Command.AppCommandBase`3.CommandDescription">
+            <summary>
+            This is the command friendly description
+            </summary>
+        </member>
+        <member name="P:Ximura.Command.AppCommandBase`3.ConfigClass">
+            <summary>
+            This property contains the prefered config class type. If this property is set
+            the config class must inherit from this class.
+            </summary>
+        </member>
+        <member name="P:Ximura.Command.AppCommandBase`3.ConfigClassForce">
+            <summary>
+            This property determines whether the config class should be forced to a specific type.
+            </summary>
+        </member>
+        <member name="P:Ximura.Command.AppCommandBase`3.BaseSettings">
+            <summary>
+            This is the base settings class. It is primarily used when loading the configuration in hybrid mode. 
+            This default method returns null;
+            </summary>
+        </member>
+        <member name="P:Ximura.Command.AppCommandBase`3.ConfigurationManager">
+            <summary>
+            This override gets the ConfigurationManager from the IXimuraConfigurationManager service.
+            </summary>
+        </member>
+        <member name="P:Ximura.Command.AppCommandBase`3.PerformanceManager">
+            <summary>
+            This override gets the performance manager object form the IXimuraPerformanceManager service
+            </summary>
+        </member>
+        <member name="P:Ximura.Command.AppCommandBase`3.ApplicationDefinition">
+            <summary>
+            This private method contains the unique application identifiers.
+            </summary>
+        </member>
+        <member name="P:Ximura.Command.AppCommandBase`3.CommandDefinition">
+            <summary>
+            This private method contains the unique application identifiers.
+            </summary>
+        </member>
+        <member name="P:Ximura.Command.AppCommandBase`3.DebugName">
+            <summary>
+            The debug name can be used to accurately determine the unique name for the 
+            application and the command.
+            </summary>
+        </member>
+        <member name="P:Ximura.Command.AppCommandBase`3.ParentCommandName">
+            <summary>
+            This method is used by nested commands to get their command settings.
+            </summary>
+        </member>
+        <member name="P:Ximura.Command.AppCommandBase`3.SupportsNotifications">
+            <summary>
+            This base method always returns false, as notifications are not supported. Override this method and return true if you wish 
+            to support notifications.
+            </summary>
+        </member>
+        <member name="P:Ximura.Command.AppCommandBase`3.CommandBridge">
+            <summary>
+            The command bridge is the bridge to the security manager and the dispatcher.
             </summary>
         </member>
         <member name="M:Ximura.Command.AppCommandBase`2.#ctor">
@@ -1825,153 +2043,6 @@
             </summary>
             <param name="commandID">This is the explicitly set command id</param>
             <param name="container">The container to be added to</param>
-        </member>
-        <member name="M:Ximura.Command.AppCommandBase`2.Dispose(System.Boolean)">
-            <summary>
-            This overriden Dispose method removes any services or service references
-            </summary>
-            <param name="disposing">True is the method is disposing</param>
-        </member>
-        <member name="M:Ximura.Command.AppCommandBase`2.GetSettings(System.String)">
-            <summary>
-            This protected member returns the settings for the command
-            </summary>
-            <param name="key">The key that specifies the specific settings object</param>
-            <returns>The settings object</returns>
-        </member>
-        <member name="M:Ximura.Command.AppCommandBase`2.GetSettingsProvider">
-            <summary>
-            This method gets the settings for the command.
-            </summary>
-        </member>
-        <member name="M:Ximura.Command.AppCommandBase`2.ConfigurationLoad(`0)">
-            <summary>
-            This method loads the command configuration.
-            </summary>
-            <param name="commandConfiguration"></param>
-        </member>
-        <member name="M:Ximura.Command.AppCommandBase`2.PerformanceStart">
-            <summary>
-            This method creates and registers the command performance object.
-            </summary>
-        </member>
-        <member name="M:Ximura.Command.AppCommandBase`2.PerformanceStop">
-            <summary>
-            This method unregisters the command performance object.
-            </summary>
-        </member>
-        <member name="M:Ximura.Command.AppCommandBase`2.PoolManagerStart">
-            <summary>
-            This override gets a reference to the pool manager.
-            </summary>
-        </member>
-        <member name="M:Ximura.Command.AppCommandBase`2.Notify(System.Type,System.Object)">
-            <summary>
-            This method is called when there is a system notification.
-            </summary>
-            <param name="notificationType">The notification object type.</param>
-            <param name="notification">The notification object.</param>
-        </member>
-        <member name="M:Ximura.Command.AppCommandBase`2.CommandBridgeStart">
-            <summary>
-            This method gets a reference to the command bridge and registers the command.
-            </summary>
-        </member>
-        <member name="M:Ximura.Command.AppCommandBase`2.CommandBridgeRegister(System.Boolean)">
-            <summary>
-            This method determines whether the command is registered or unregistered with the command bridge.
-            </summary>
-            <param name="register">A boolean value indicating whether this command should be registered or unregistered.</param>
-        </member>
-        <member name="M:Ximura.Command.AppCommandBase`2.CommandBridgeStop">
-            <summary>
-            This method unregisters the command and removes the reference to the command bridge.
-            </summary>
-        </member>
-        <member name="P:Ximura.Command.AppCommandBase`2.AppCommandAttribute">
-            <summary>
-            This property is the XimuraAppCommandAttribute applied to the application.
-            </summary>
-        </member>
-        <member name="P:Ximura.Command.AppCommandBase`2.AppConfigurationAttribute">
-            <summary>
-            This property is the XimuraAppCommandAttribute applied to the application.
-            </summary>
-        </member>
-        <member name="P:Ximura.Command.AppCommandBase`2.CommandID">
-            <summary>
-            This is the command ID.
-            </summary>
-        </member>
-        <member name="P:Ximura.Command.AppCommandBase`2.CommandName">
-            <summary>
-            This is command name used to route requests to it in an application.
-            </summary>
-            		
-        </member>
-        <member name="P:Ximura.Command.AppCommandBase`2.CommandDescription">
-            <summary>
-            This is the command friendly description
-            </summary>
-        </member>
-        <member name="P:Ximura.Command.AppCommandBase`2.ConfigClass">
-            <summary>
-            This property contains the prefered config class type. If this property is set
-            the config class must inherit from this class.
-            </summary>
-        </member>
-        <member name="P:Ximura.Command.AppCommandBase`2.ConfigClassForce">
-            <summary>
-            This property determines whether the config class should be forced to a specific type.
-            </summary>
-        </member>
-        <member name="P:Ximura.Command.AppCommandBase`2.BaseSettings">
-            <summary>
-            This is the base settings class. It is primarily used when loading the configuration in hybrid mode. 
-            This default method returns null;
-            </summary>
-        </member>
-        <member name="P:Ximura.Command.AppCommandBase`2.ConfigurationManager">
-            <summary>
-            This override gets the ConfigurationManager from the IXimuraConfigurationManager service.
-            </summary>
-        </member>
-        <member name="P:Ximura.Command.AppCommandBase`2.PerformanceManager">
-            <summary>
-            This override gets the performance manager object form the IXimuraPerformanceManager service
-            </summary>
-        </member>
-        <member name="P:Ximura.Command.AppCommandBase`2.ApplicationDefinition">
-            <summary>
-            This private method contains the unique application identifiers.
-            </summary>
-        </member>
-        <member name="P:Ximura.Command.AppCommandBase`2.CommandDefinition">
-            <summary>
-            This private method contains the unique application identifiers.
-            </summary>
-        </member>
-        <member name="P:Ximura.Command.AppCommandBase`2.DebugName">
-            <summary>
-            The debug name can be used to accurately determine the unique name for the 
-            application and the command.
-            </summary>
-        </member>
-        <member name="P:Ximura.Command.AppCommandBase`2.ParentCommandName">
-            <summary>
-            This method is used by nested commands to get their command settings.
-            </summary>
-        </member>
-        <member name="P:Ximura.Command.AppCommandBase`2.SupportsNotifications">
-            <summary>
-            This base method always returns false, as notifications are not supported. Override this method and return true if you wish 
-            to support notifications.
-            </summary>
-        </member>
-        <member name="P:Ximura.Command.AppCommandBase`2.CommandBridge">
-            <summary>
-            The command bridge is the bridge to the security manager and the dispatcher.
-            </summary>
         </member>
         <member name="T:Ximura.Persistence.ICDSState">
             <summary>
@@ -2389,16 +2460,6 @@
             The 401 HTTP response code.
             </summary>
         </member>
-        <member name="T:Ximura.Command.CommandContainerPerformance">
-            <summary>
-            This is the base performance object for
-            </summary>
-        </member>
-        <member name="M:Ximura.Command.CommandContainerPerformance.#ctor">
-            <summary>
-            This is the default constructor for the Content object.
-            </summary>
-        </member>
         <member name="T:Ximura.Server.CommandMetadataExtender">
             <summary>
             AppServerCommandExtender is used to start commands in the order specified within a command container.
@@ -2530,11 +2591,11 @@
         </member>
         <member name="T:Ximura.Server.AppServerAgentManager`3">
             <summary>
-            This class provides common fucntionality for agent based process services.
+            This class provides common functionality for agent based process services.
             </summary>
-            <typeparam name="AGENT"></typeparam>
-            <typeparam name="CONF"></typeparam>
-            <typeparam name="PERF"></typeparam>
+            <typeparam name="AGENT">The agent type.</typeparam>
+            <typeparam name="CONF">The agent manager configuration.</typeparam>
+            <typeparam name="PERF">The performance counter type.</typeparam>
         </member>
         <member name="F:Ximura.Server.AppServerAgentManager`3.mAgents">
             <summary>
@@ -2557,6 +2618,13 @@
             This method creates an agent based on the type passed in the holder and adds it to the agent collection.
             </summary>
             <param name="holder">The agent metadata holder.</param>
+        </member>
+        <member name="M:Ximura.Server.AppServerAgentManager`3.AgentAdd(`0,System.String)">
+            <summary>
+            This method adds an agent to the collection.
+            </summary>
+            <param name="agent">The system agent.</param>
+            <param name="id">The agent id.</param>
         </member>
         <member name="M:Ximura.Server.AppServerAgentManager`3.AgentRemove(Ximura.Server.XimuraServerAgentHolder)">
             <summary>
@@ -2634,6 +2702,9 @@
             <summary>
             The AppServerBase class is the class that all server applications derive from.
             </summary>
+            <typeparam name="CONFSYS">The server system configuration.</typeparam>
+            <typeparam name="CONFCOM">The server command configuration.</typeparam>
+            <typeparam name="PERF">The performance settings for the server.</typeparam>
         </member>
         <member name="F:Ximura.Server.AppServer`3.mAppServerAttribute">
             <summary>
@@ -2774,6 +2845,16 @@
         <member name="M:Ximura.Server.AppServer`3.JobPriorityQueueCreate">
             <summary>
             This method returns a new job priority queue class.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.GatewayStart">
+            <summary>
+            This method starts the Gateway Manager
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.GatewayStop">
+            <summary>
+            This method stops the Gateway Manager.
             </summary>
         </member>
         <member name="F:Ximura.Server.AppServer`3.mAttrConfigCommand">
@@ -3132,6 +3213,16 @@
             <summary>
             This property returns true if the number of active threads reaches
             the total number of threads in the pool.
+            </summary>
+        </member>
+        <member name="P:Ximura.Server.AppServer`3.GatewayService">
+            <summary>
+            This is the gateway manager for the application.
+            </summary>
+        </member>
+        <member name="P:Ximura.Server.AppServer`3.GatewayDefault">
+            <summary>
+            This property returns default agents for the gateway manager. 
             </summary>
         </member>
         <member name="P:Ximura.Server.AppServer`3.ConfigurationSystem">
@@ -3692,6 +3783,11 @@
             <param name="info"></param>
             <param name="context"></param>
         </member>
+        <member name="T:Ximura.Server.XimuraAppServerPerformanceAgentAttribute">
+            <summary>
+            The agent is used to set the performance agents for the application.
+            </summary>
+        </member>
         <member name="T:Ximura.Server.XimuraAppServerAgentAttributeBase">
             <summary>
             This attribute class is used to identify specific agents for the application.
@@ -3699,23 +3795,49 @@
         </member>
         <member name="M:Ximura.Server.XimuraAppServerAgentAttributeBase.#ctor(System.String,System.String,System.String)">
             <summary>
-            
+            The attribute constructor.
             </summary>
-            <param name="type"></param>
-            <param name="ID"></param>
-            <param name="Name"></param>
+            <param name="type">The agent type.</param>
+            <param name="id">The agent id.</param>
+            <param name="name">The agent name.</param>
         </member>
         <member name="M:Ximura.Server.XimuraAppServerAgentAttributeBase.#ctor(System.Type,System.String,System.String)">
             <summary>
-            
+            The attribute constructor.
             </summary>
-            <param name="type"></param>
-            <param name="ID"></param>
-            <param name="Name"></param>
+            <param name="type">The agent type.</param>
+            <param name="id">The agent id.</param>
+            <param name="name">The agent name.</param>
         </member>
         <member name="P:Ximura.Server.XimuraAppServerAgentAttributeBase.Agent">
             <summary>
-            The agent.
+            The agent holder.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.XimuraAppServerPerformanceAgentAttribute.#ctor(System.String,System.String,System.String)">
+            <summary>
+            The attribute constructor.
+            </summary>
+            <param name="type">The agent type.</param>
+            <param name="id">The agent id.</param>
+            <param name="name">The agent name.</param>
+        </member>
+        <member name="M:Ximura.Server.XimuraAppServerPerformanceAgentAttribute.#ctor(System.Type,System.String,System.String)">
+            <summary>
+            The attribute constructor.
+            </summary>
+            <param name="type">The agent type.</param>
+            <param name="id">The agent id.</param>
+            <param name="name">The agent name.</param>
+        </member>
+        <member name="T:Ximura.Server.GatewayManagerPerformance">
+            <summary>
+            This class records the gateway manager performance.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.GatewayManagerPerformance.#ctor">
+            <summary>
+            This is the default constructor for the Performance object.
             </summary>
         </member>
         <member name="T:Ximura.Persistence.ResourceBasePersistenceManager`3">
@@ -4220,6 +4342,11 @@
             This delegate is used to call back commands with specific jobs.
             </summary>
         </member>
+        <member name="T:Ximura.Server.PerformanceManager">
+            <summary>
+            The performance manager manages the interaction between the performance system and the commands.
+            </summary>
+        </member>
         <member name="M:Ximura.Server.PerformanceManager.#ctor(System.ComponentModel.IContainer)">
             <summary>
             The default Ximura Application constructor
@@ -4234,6 +4361,29 @@
         <member name="M:Ximura.Server.PerformanceManager.ServicesRemove">
             <summary>
             This override removes the IXimuraLoggingManager service to the control container.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.PerformanceManager.InternalStart">
+            <summary>
+            This override creates the performance counter collection.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.PerformanceManager.InternalStop">
+            <summary>
+            This override removes the performance collection.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.PerformanceManager.AgentCreate(Ximura.Server.XimuraServerAgentHolder)">
+            <summary>
+            This method creates the performance agent.
+            </summary>
+            <param name="holder">The agent holder.</param>
+            <returns>The performance agent.</returns>
+            <exception cref="T:Ximura.Server.AgentInvalidTypeException">This exception is thrown if the agent type does not implement the IXimuraPerformanceAgent interface.</exception>
+        </member>
+        <member name="P:Ximura.Server.PerformanceManager.ManagerInternal">
+            <summary>
+            This is the performance counter collection.
             </summary>
         </member>
         <member name="P:Ximura.Server.PerformanceManager.Manager">
@@ -4426,6 +4576,11 @@
             <summary>
             This is the priority of the attribute. Higher value attributes will override lower value attributes.
             By default this value will be 0.
+            </summary>
+        </member>
+        <member name="T:Ximura.Persistence.IXimuraStorageSQLServerConnectivity">
+            <summary>
+            THis interface is implemented by the SQLServer connectivity storage agent.
             </summary>
         </member>
         <member name="M:Ximura.Persistence.SQLStorageManagerConfiguration.#ctor">
@@ -4780,6 +4935,39 @@
             <param name="info">Serialization information.</param>
             <param name="context">Streaming context.</param>
         </member>
+        <member name="T:Ximura.Server.GatewayManager">
+            <summary>
+            The gateway manager manages interactions with the external agents that interact with the system.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.GatewayManager.#ctor">
+            <summary>
+            This is the default constructor.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.GatewayManager.#ctor(System.ComponentModel.IContainer)">
+            <summary>
+            The Ximura Application component model constructor
+            </summary>
+            <param name="container">The container that the services should be added to.</param>
+        </member>
+        <member name="M:Ximura.Server.GatewayManager.AgentCreate(Ximura.Server.XimuraServerAgentHolder)">
+            <summary>
+            This method is used to create the Gateway agent.
+            </summary>
+            <param name="holder">The agent holder.</param>
+            <returns>Returns the gateway agent.</returns>
+        </member>
+        <member name="M:Ximura.Server.GatewayManager.ServicesProvide">
+            <summary>
+            This override adds the IXimuraLoggingManager service to the control container.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.GatewayManager.ServicesRemove">
+            <summary>
+            This override removes the IXimuraLoggingManager service to the control container.
+            </summary>
+        </member>
         <member name="M:Ximura.Persistence.SQLDBPMCDSConfiguration.#ctor">
             <summary>
             The default constructor
@@ -4797,610 +4985,6 @@
             </summary>
             <param name="info">The Serialization info object that contains all the relevant data.</param>
             <param name="context">The serialization context.</param>
-        </member>
-        <member name="T:Ximura.Command.FiniteStateMachine`9">
-            <summary>
-            The FiniteStateMachine is one of the root command objects. 
-            It is used to implement system that operate using a well defined system of states.
-            </summary>
-            <typeparam name="RQ">The request type.</typeparam>
-            <typeparam name="RS">The response type.</typeparam>
-            <typeparam name="CBRQ">The callback request type.</typeparam>
-            <typeparam name="CBRS">The callback response type.</typeparam>
-            <typeparam name="CNTX">The FSM context type.</typeparam>
-            <typeparam name="ST">The FSM base state type.</typeparam>
-            <typeparam name="SET">The FSM base settings.</typeparam>
-        </member>
-        <member name="T:Ximura.Command.AppCommandProcess`6">
-            <summary>
-            AppCommandProcess is the base class for Command that require a system session.
-            </summary>
-            <typeparam name="RQ">The main request RQRSFolder type.</typeparam>
-            <typeparam name="RS">The main response RQRSFolder type.</typeparam>
-            <typeparam name="CBRQ">The callback request RQRSFolder type.</typeparam>
-            <typeparam name="CBRS">The callback response RQRSFolder type.</typeparam>
-            <typeparam name="CONF">The command configuration object.</typeparam>
-            <typeparam name="PERF">The command performance monitor object.</typeparam>
-        </member>
-        <member name="T:Ximura.Command.AppCommandStandard`6">
-            <summary>
-            AppCommandStandard is the base command object that all standard commands should inherit from.
-            </summary>
-            <typeparam name="RQ">The main request RQRSFolder type.</typeparam>
-            <typeparam name="RS">The main response RQRSFolder type.</typeparam>
-            <typeparam name="CBRQ">The callback request RQRSFolder type.</typeparam>
-            <typeparam name="CBRS">The callback response RQRSFolder type.</typeparam>
-            <typeparam name="CONF">The command configuration object.</typeparam>
-            <typeparam name="PERF">The command performance monitor object.</typeparam>
-        </member>
-        <member name="M:Ximura.Command.AppCommandStandard`6.#ctor">
-            <summary>
-            This is the empty constructor
-            </summary>
-        </member>
-        <member name="M:Ximura.Command.AppCommandStandard`6.#ctor(System.ComponentModel.IContainer)">
-            <summary>
-            This is the base constructor for a Ximura command
-            </summary>
-            <param name="container">The command container to be added to.</param>
-        </member>
-        <member name="M:Ximura.Command.AppCommandStandard`6.#ctor(System.Nullable{System.Guid},System.ComponentModel.IContainer)">
-            <summary>
-            This is the base constructor for a Ximura command
-            </summary>
-            <param name="commandID">This is the explicitly set command id, leave this as null if you want to use the default id.</param>
-            <param name="container">The container to be added to</param>
-        </member>
-        <member name="M:Ximura.Command.AppCommandStandard`6.ServicesProvide">
-            <summary>
-            This override registers the command with the dispatcher commands collection
-            </summary>
-        </member>
-        <member name="M:Ximura.Command.AppCommandStandard`6.ServicesRemove">
-            <summary>
-            This overriden method removes the dispatcherCollection services
-            </summary>
-        </member>
-        <member name="M:Ximura.Command.AppCommandStandard`6.ServicesReference">
-            <summary>
-            This overriden method reference the scheduled services.
-            </summary>
-        </member>
-        <member name="M:Ximura.Command.AppCommandStandard`6.ServicesDereference">
-            <summary>
-            This overriden method unregisters the scheduled services.
-            </summary>
-        </member>
-        <member name="M:Ximura.Command.AppCommandStandard`6.Start">
-            <summary>
-            This method starts the service based on the default async settings
-            </summary>
-        </member>
-        <member name="M:Ximura.Command.AppCommandStandard`6.Stop">
-            <summary>
-            This override removes the performance and configuration.
-            </summary>
-        </member>
-        <member name="M:Ximura.Command.AppCommandStandard`6.GetSettings">
-            <summary>
-            This protected member returns the default settings for the command
-            </summary>
-            <returns>The settings object</returns>
-        </member>
-        <member name="M:Ximura.Command.AppCommandStandard`6.ProcessRequestSCM(Ximura.Server.SecurityManagerJob)">
-            <summary>
-            This is the default entry point for the job request from the security manager. By default
-            the command will track job processes and update statistics for each job.
-            </summary>
-            <param name="job">The job to process.</param>
-        </member>
-        <member name="M:Ximura.Command.AppCommandStandard`6.ProcessRequest(Ximura.Server.SecurityManagerJob)">
-            <summary>
-            This is the default command process logic. You should override this method to implement your
-            specific business logic.
-            </summary>
-            <param name="job">The job to process.</param>
-        </member>
-        <member name="M:Ximura.Command.AppCommandStandard`6.ProcessRequest(Ximura.Server.SecurityManagerJob,Ximura.Command.RQRSContract{`0,`1})">
-            <summary>
-            This is the default generic process point. This will call the non-generic method for backwards
-            compatibility.
-            </summary>
-            <param name="job"></param>
-            <param name="Data"></param>
-        </member>
-        <member name="M:Ximura.Command.AppCommandStandard`6.ProcessCallback(Ximura.Server.SecurityManagerJob,Ximura.Command.RQRSContract{`2,`3})">
-            <summary>
-            This is the standard method for processing callbacks.
-            </summary>
-            <param name="job">The job to process.</param>
-            <param name="Data">The callback data.</param>
-        </member>
-        <member name="M:Ximura.Command.AppCommandStandard`6.IsCallback(Ximura.IXimuraRQRSEnvelope)">
-            <summary>
-            The method returns true if the Data is a callback type.
-            </summary>
-            <param name="Data">The envelope to check.</param>
-            <returns>Return true if this is a callback.</returns>
-        </member>
-        <member name="M:Ximura.Command.AppCommandStandard`6.CallbackRegister">
-            <summary>
-            This method will be called when the command starts and should
-            be overriden and permitted callback commands should be registered.
-            </summary>
-        </member>
-        <member name="M:Ximura.Command.AppCommandStandard`6.CallbackRegister(System.Guid)">
-            <summary>
-            This method registers the callback.
-            </summary>
-            <param name="jobID">The command ID to be registered.</param>
-        </member>
-        <member name="M:Ximura.Command.AppCommandStandard`6.CallbackUnregister">
-            <summary>
-            This method will be called when the command stops and will automatically unregister any callback commands.
-            </summary>
-        </member>
-        <member name="M:Ximura.Command.AppCommandStandard`6.CallbackUnregister(System.Guid)">
-            <summary>
-            This method unregisters the callback.
-            </summary>
-            <param name="commandID">The commandID to unregister.</param>
-        </member>
-        <member name="M:Ximura.Command.AppCommandStandard`6.CallbackValidate(System.Guid)">
-            <summary>
-            This method validates a callback for a command ID.
-            </summary>
-            <param name="commandID">The command ID to validate</param>
-            <returns>Returns true of the command is registered.</returns>
-        </member>
-        <member name="M:Ximura.Command.AppCommandStandard`6.CallbackValidate(Ximura.Server.SecurityManagerJob)">
-            <summary>
-            This method validates a callback for a job request.
-            </summary>
-            <param name="job">The callback job to validate</param>
-            <returns>Returns true if the job is validated.</returns>
-        </member>
-        <member name="M:Ximura.Command.AppCommandStandard`6.CommandBridgeRegister(System.Boolean)">
-            <summary>
-            This method determines whether the command is registered or unregistered with the command bridge.
-            </summary>
-            <param name="register">A boolean value indicating whether this command should be registered or unregistered.</param>
-        </member>
-        <member name="M:Ximura.Command.AppCommandStandard`6.SchedulerRegister">
-            <summary>
-            Use this method registers scheduler callbacks.
-            </summary>
-        </member>
-        <member name="M:Ximura.Command.AppCommandStandard`6.SchedulerRegisterSubCommands">
-            <summary>
-            This method registers specific subcommands for the scheduler. By default this method will
-            register the blank subcommand. 
-            </summary>
-        </member>
-        <member name="M:Ximura.Command.AppCommandStandard`6.SchedulerUnregister">
-            <summary>
-            Use this method to unregister scheduler callbacks.
-            </summary>
-        </member>
-        <member name="M:Ximura.Command.AppCommandStandard`6.SchedulerStart">
-            <summary>
-            This method gets a reference to the scheduler service.
-            </summary>
-        </member>
-        <member name="M:Ximura.Command.AppCommandStandard`6.SchedulerStop">
-            <summary>
-            THis method removes and scheduler notifications and removes the scheduler reference.
-            </summary>
-        </member>
-        <member name="M:Ximura.Command.AppCommandStandard`6.Notify(System.Type,System.Object)">
-            <summary>
-            This method starts and stops the timer based on the system start/stop notification.
-            </summary>
-            <param name="notificationType">The notification type.</param>
-            <param name="notification">The notification.</param>
-        </member>
-        <member name="M:Ximura.Command.AppCommandStandard`6.TimerChange(System.TimeSpan)">
-            <summary>
-            This method is used to change the timer settings.
-            </summary>
-            <param name="span">The due time.</param>
-        </member>
-        <member name="M:Ximura.Command.AppCommandStandard`6.TimerChange(System.Int64)">
-            <summary>
-            This method is used to change the timer settings.
-            </summary>
-            <param name="dueTime">The due time.</param>
-        </member>
-        <member name="M:Ximura.Command.AppCommandStandard`6.TimerStart">
-            <summary>
-            This method initializes the timer used for pick up polling.
-            The default settings for this command is to wait indefintely, so
-            you should override this method if you require different polling.
-            </summary>
-        </member>
-        <member name="M:Ximura.Command.AppCommandStandard`6.TimerStop">
-            <summary>
-            This method stops the timer.
-            </summary>
-        </member>
-        <member name="M:Ximura.Command.AppCommandStandard`6.TimerPause">
-            <summary>
-            This method will pause the timer.
-            </summary>
-        </member>
-        <member name="M:Ximura.Command.AppCommandStandard`6.TimerResume">
-            <summary>
-            This method will resume the timer based on the settings.
-            </summary>
-        </member>
-        <member name="M:Ximura.Command.AppCommandStandard`6.InternalTimerCallback(System.Object)">
-            <summary>
-            This internal method ensures that a unhandled exception in a ontimer method called 
-            does not result in the system crashing out.
-            </summary>
-            <param name="state"></param>
-        </member>
-        <member name="M:Ximura.Command.AppCommandStandard`6.OnTimerEvent(System.Boolean)">
-            <summary>
-            This method will be called when a timer is called.
-            </summary>
-        </member>
-        <member name="M:Ximura.Command.AppCommandStandard`6.TimerPollJobExecute(Ximura.Command.TimerPollJob)">
-            <summary>
-            This method executes a timer poll job and handles the response. You should override this method to provide
-            your own logic.
-            </summary>
-            <param name="job">The timer poll job.</param>
-        </member>
-        <member name="P:Ximura.Command.AppCommandStandard`6.SupportsCallbacks">
-            <summary>
-            This property identifies whether the command supports callbacks.
-            </summary>
-        </member>
-        <member name="P:Ximura.Command.AppCommandStandard`6.Scheduler">
-            <summary>
-            This is the scheduler.
-            </summary>
-        </member>
-        <member name="P:Ximura.Command.AppCommandStandard`6.SchedulerAutoRegister">
-            <summary>
-            This property determines whether the command will automatically register with the
-            scheduler on start up.
-            </summary>
-        </member>
-        <member name="P:Ximura.Command.AppCommandStandard`6.RequestType">
-            <summary>
-            This is the command request type.
-            </summary>
-        </member>
-        <member name="P:Ximura.Command.AppCommandStandard`6.ResponseType">
-            <summary>
-            This is the command response type.
-            </summary>
-        </member>
-        <member name="P:Ximura.Command.AppCommandStandard`6.CallbackRequestType">
-            <summary>
-            This is the command callback request type.
-            </summary>
-        </member>
-        <member name="P:Ximura.Command.AppCommandStandard`6.CallbackResponseType">
-            <summary>
-            This is the command callback response type.
-            </summary>
-        </member>
-        <member name="P:Ximura.Command.AppCommandStandard`6.EnvelopeContractType">
-            <summary>
-            This is the envelope contract type. 
-            </summary>
-        </member>
-        <member name="P:Ximura.Command.AppCommandStandard`6.EnvelopeCallbackContractType">
-            <summary>
-            This is the envelope callback contract type. 
-            </summary>
-        </member>
-        <member name="P:Ximura.Command.AppCommandStandard`6.SupportsNotifications">
-            <summary>
-            This method returns true as the command uses notification to enable and disable the timer poll.
-            </summary>
-        </member>
-        <member name="P:Ximura.Command.AppCommandStandard`6.TimerEnabled">
-            <summary>
-            This method is used to override the default auto start for the timer in the base command.
-            You can override this method if you need more fine-grained timer start
-            functionality.
-            </summary>
-        </member>
-        <member name="F:Ximura.Command.AppCommandProcess`6.mProcessSession">
-            <summary>
-            This is the session that the process command will run under.
-            </summary>
-        </member>
-        <member name="F:Ximura.Command.AppCommandProcess`6.mSessionMan">
-            <summary>
-            This is a reference to the application session manager.
-            </summary>
-        </member>
-        <member name="F:Ximura.Command.AppCommandProcess`6.mSettings">
-            <summary>
-            The Command Process Settings
-            </summary>
-        </member>
-        <member name="M:Ximura.Command.AppCommandProcess`6.#ctor">
-            <summary>
-            This is the empty constructor
-            </summary>
-        </member>
-        <member name="M:Ximura.Command.AppCommandProcess`6.#ctor(System.ComponentModel.IContainer)">
-            <summary>
-            This is the constrcutor used by the Ximura Application model.
-            </summary>
-            <param name="container">The command container.</param>
-        </member>
-        <member name="M:Ximura.Command.AppCommandProcess`6.#ctor(System.Nullable{System.Guid},System.ComponentModel.IContainer)">
-            <summary>
-            This is the base constructor for a Ximura command
-            </summary>
-            <param name="commandID">This is the explicitly set command id, leave this as null if you want to use the default id.</param>
-            <param name="container">The container to be added to</param>
-        </member>
-        <member name="M:Ximura.Command.AppCommandProcess`6.InternalStart">
-            <summary>
-            This overrides the Internal start and negotiates a session for the process
-            </summary>
-        </member>
-        <member name="M:Ximura.Command.AppCommandProcess`6.InternalStop">
-            <summary>
-            This overrides the stop process and closes the process session.
-            </summary>
-        </member>
-        <member name="M:Ximura.Command.AppCommandProcess`6.ServicesReference">
-            <summary>
-            Creates a reference to the IXimuraSessionManager
-            </summary>
-        </member>
-        <member name="M:Ximura.Command.AppCommandProcess`6.ServicesDereference">
-            <summary>
-            Removes a reference to IXimuraSessionManager
-            </summary>
-        </member>
-        <member name="M:Ximura.Command.AppCommandProcess`6.ProcessSessionNegotiate">
-            <summary>
-            This method negotiates a session for the process.
-            </summary>
-        </member>
-        <member name="M:Ximura.Command.AppCommandProcess`6.ProcessSessionClose">
-            <summary>
-            This method closes a sessions for the process
-            </summary>
-        </member>
-        <member name="M:Ximura.Command.AppCommandProcess`6.PrepareJob(Ximura.Server.SecurityManagerJob,`0@,`1@)">
-            <summary>
-            This method prepares the parameters for the job request.
-            </summary>
-            <param name="job">The job.</param>
-            <param name="Request">The request.</param>
-            <param name="Response">The response.</param>
-        </member>
-        <member name="M:Ximura.Command.AppCommandProcess`6.PrepareJob(Ximura.Server.SecurityManagerJob)">
-            <summary>
-            This helper method is provides for methods that do not want to reference the Request
-            and Response methods directly.
-            </summary>
-            <param name="job">The job to prepare.</param>
-        </member>
-        <member name="M:Ximura.Command.AppCommandProcess`6.TimerPollJobExecute(Ximura.Command.TimerPollJob)">
-            <summary>
-            This method initiates a timer poll job and handles the response.
-            </summary>
-            <param name="job">The time poll job.</param>
-        </member>
-        <member name="M:Ximura.Command.AppCommandProcess`6.TimerHelperAsyncSelfCall(Ximura.Command.TimerPollJob,Ximura.CommandRSCallback)">
-            <summary>
-            This method can be used to initiate a callback.
-            </summary>
-            <param name="subCommand">The subcommand.</param>
-            <param name="callback">The callback delegate.</param>
-        </member>
-        <member name="M:Ximura.Command.AppCommandProcess`6.TimerHelperAsyncSelfCall(Ximura.Command.TimerPollJob,Ximura.CommandRSCallback,Ximura.JobPriority,System.Action{Ximura.Command.RQRSFolder})">
-            <summary>
-            This method can be used to initiate a callback.
-            </summary>
-            <param name="subCommand">The subcommand.</param>
-            <param name="callback">The callback delegate.</param>
-            <param name="priority">The request priority.</param>
-            <param name="rqFormat">The delegate used to format the request. This parameter can be null.</param>
-        </member>
-        <member name="P:Ximura.Command.AppCommandProcess`6.CDSSettings">
-            <summary>
-            This protected property is the CDS settings object.
-            </summary>
-        </member>
-        <member name="P:Ximura.Command.AppCommandProcess`6.CDSHelper">
-            <summary>
-            The CDSHelper is the object that encapsulates the functionality needed
-            to receive and manage content from the Content Data Store.
-            </summary>
-        </member>
-        <member name="F:Ximura.Command.FiniteStateMachine`9.DEFAULTTHROTTLELIMIT">
-            <summary>
-            This is the default throttle limit for the context completion job.
-            </summary>
-        </member>
-        <member name="F:Ximura.Command.FiniteStateMachine`9.mExtenderService">
-            <summary>
-            This is the state extender service.
-            </summary>
-        </member>
-        <member name="F:Ximura.Command.FiniteStateMachine`9.mPool">
-            <summary>
-            This is the context pool.
-            </summary>
-        </member>
-        <member name="F:Ximura.Command.FiniteStateMachine`9.mContextSettings">
-            <summary>
-            This is the context connection class that hold context connection settings and services.
-            </summary>
-        </member>
-        <member name="F:Ximura.Command.FiniteStateMachine`9.mStateExtender">
-            <summary>
-            This is the base state extender.
-            </summary>
-        </member>
-        <member name="F:Ximura.Command.FiniteStateMachine`9.mRemoteContextPoolAccess">
-            <summary>
-            This class allows contexts to create additional contexts. This is primarily used for 
-            connection based FSM services.
-            </summary>
-        </member>
-        <member name="M:Ximura.Command.FiniteStateMachine`9.#ctor">
-            <summary>
-            Empty constructor for use by the component model.
-            </summary>
-        </member>
-        <member name="M:Ximura.Command.FiniteStateMachine`9.#ctor(System.ComponentModel.IContainer)">
-            <summary>
-            Default constructor for use by the component model.
-            </summary>
-            <param name="container">The container that the transport should be added to.</param>
-        </member>
-        <member name="M:Ximura.Command.FiniteStateMachine`9.#ctor(System.Nullable{System.Guid},System.ComponentModel.IContainer)">
-            <summary>
-            This is the base constructor for a Ximura command
-            </summary>
-            <param name="commandID">This is the explicitly set command id, leave this as null if you want to use the default id.</param>
-            <param name="container">The container to be added to</param>
-        </member>
-        <member name="M:Ximura.Command.FiniteStateMachine`9.InitializeExtenders(System.ComponentModel.IContainer)">
-            <summary>
-            This method can be overriden to add additional extenders to the
-            protocol, or to remove existing extenders.
-            </summary>
-            <param name="baseContainer">This is the base container in the FSM.</param>
-        </member>
-        <member name="M:Ximura.Command.FiniteStateMachine`9.InitializeBaseStates(System.ComponentModel.IContainer)">
-            <summary>
-            This method can be overriden to add additional extenders to the
-            protocol, or to remove existing extenders.
-            </summary>
-            <param name="baseContainer">This is the base container in the FSM.</param>
-        </member>
-        <member name="M:Ximura.Command.FiniteStateMachine`9.InternalStart">
-            <summary>
-            This method initializes the context pool.
-            </summary>
-        </member>
-        <member name="M:Ximura.Command.FiniteStateMachine`9.InternalStop">
-            <summary>
-            This
-            </summary>
-        </member>
-        <member name="M:Ximura.Command.FiniteStateMachine`9.StatesStart">
-            <summary>
-            This method will start any states that implement IXimuraService
-            </summary>
-        </member>
-        <member name="M:Ximura.Command.FiniteStateMachine`9.StatesStop">
-            <summary>
-            This method will stop any states that have been started.
-            </summary>
-        </member>
-        <member name="M:Ximura.Command.FiniteStateMachine`9.CreateSystemRequest(Ximura.Command.EnvelopeAddress)">
-            <summary>
-            This method creates the system request.
-            </summary>
-            <returns>A new envelope with the correct destination address.</returns>
-        </member>
-        <member name="M:Ximura.Command.FiniteStateMachine`9.ProcessRequest(Ximura.Server.SecurityManagerJob,Ximura.Command.RQRSContract{`0,`1})">
-            <summary>
-            This override is the main entry point for the incoming FSM request.
-            </summary>
-            <param name="job">The job.</param>
-            <param name="Data">The request data.</param>
-        </member>
-        <member name="M:Ximura.Command.FiniteStateMachine`9.ProcessRequestFailed(System.String,System.String,Ximura.Server.SecurityManagerJob,Ximura.Command.RQRSContract{`0,`1})">
-            <summary>
-            This method allow customization to the response should there not be any contexts available 
-            to process the request.
-            </summary>
-            <param name="job">The job.</param>
-            <param name="Data">The data containing the request and the response.</param>
-            <returns>Return true if you do not wish the command to set the standard response properties to the response.</returns>
-        </member>
-        <member name="M:Ximura.Command.FiniteStateMachine`9.ProcessRequest(`4)">
-            <summary>
-            This is the entry point for Finite State Machines that require a context.
-            </summary>
-            <param name="jobContext">The job context that contains the requested parameters.</param>
-        </member>
-        <member name="M:Ximura.Command.FiniteStateMachine`9.InitializeContextPool(System.ComponentModel.IContainer)">
-            <summary>
-            This method initializes the context pool. Override this method if you need
-            additional pool creation logic.
-            </summary>
-        </member>
-        <member name="M:Ximura.Command.FiniteStateMachine`9.InitializeContextConnection(System.ComponentModel.IContainer)">
-            <summary>
-            This method should be overriden to provide extended Context collection settings.
-            </summary>
-            <param name="baseContainer">The base container for the collection.</param>
-        </member>
-        <member name="M:Ximura.Command.FiniteStateMachine`9.InitializeContextConnectionSettings(System.ComponentModel.IContainer)">
-            <summary>
-            This method should be overriden to provide extended Context collection settings.
-            </summary>
-            <param name="baseContainer">The base container for the collection.</param>
-        </member>
-        <member name="M:Ximura.Command.FiniteStateMachine`9.ContextInitialize(`4,Ximura.Server.SecurityManagerJob,Ximura.Command.RQRSContract{`0,`1})">
-            <summary>
-            This method allows generic operations to be performed on the new context.
-            </summary>
-            <param name="newContext"></param>
-            <param name="job">The incoming job.</param>
-            <param name="Data">The incoming generic data.</param>
-        </member>
-        <member name="M:Ximura.Command.FiniteStateMachine`9.ClearContextPool">
-            <summary>
-            This method empties the context pool.
-            </summary>
-        </member>
-        <member name="M:Ximura.Command.FiniteStateMachine`9.InitializeContextPoolAccess">
-            <summary>
-            This command initializes the context pool.
-            </summary>
-        </member>
-        <member name="M:Ximura.Command.FiniteStateMachine`9.ContextGetContext">
-            <summary>
-            This method retrieves a context from the pool.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Ximura.Command.FiniteStateMachine`9.ContextReturnContext(`4)">
-            <summary>
-            This method returns a context to the pool.
-            </summary>
-            <param name="context"></param>
-        </member>
-        <member name="P:Ximura.Command.FiniteStateMachine`9.ContextPool">
-            <summary>
-            This is the context pool for the FSM.
-            </summary>
-        </member>
-        <member name="P:Ximura.Command.FiniteStateMachine`9.ContextConnection">
-            <summary>
-            This is the default context connection.
-            </summary>
-        </member>
-        <member name="P:Ximura.Command.FiniteStateMachine`9.GatekeeperEnabled">
-            <summary>
-            This protected property determines whether the context gatekeeper is enabled. If you wish 
-            to enable the gatekeeper, you should override this property and return true.
-            </summary>
-        </member>
-        <member name="P:Ximura.Command.FiniteStateMachine`9.ExternalStatesAllow">
-            <summary>
-            This property determines whether the FSM will allow external states contained in a FSMExtenderCommand object to register
-            with this command.
-            </summary>
         </member>
         <member name="T:Ximura.Command.FSMExtenderBridge`1">
             <summary>
@@ -5595,12 +5179,6 @@
             This method clears the priority list of all pending jobs.
             </summary>
         </member>
-        <member name="M:Ximura.Server.DispatcherJobPriorityGenericQueueList.ToString">
-            <summary>
-            This method returns a text representation of the queue.
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:Ximura.Server.DispatcherJobPriorityGenericQueueList.CountPriority(Ximura.JobPriority)">
             <summary>
             This method returns the total number of jobs pending for a particular job priority.
@@ -5611,6 +5189,11 @@
         <member name="P:Ximura.Server.DispatcherJobPriorityGenericQueueList.Count">
             <summary>
             This property returns the total number of jobs pending.
+            </summary>
+        </member>
+        <member name="T:Ximura.Server.DispatcherJobPriorityGenericQueueList.PriorityComparer">
+            <summary>
+            This internal comparer solves performance issues with enums in dictionaries.
             </summary>
         </member>
         <member name="T:Ximura.Persistence.CacheManagerCDSState">
@@ -6008,70 +5591,6 @@
             The response code was null or an empty string.
             </summary>
         </member>
-        <member name="T:Ximura.Command.AppCommandContainer`6">
-            <summary>
-            
-            </summary>
-            <typeparam name="RQ"></typeparam>
-            <typeparam name="RS"></typeparam>
-            <typeparam name="CBRQ"></typeparam>
-            <typeparam name="CBRS"></typeparam>
-            <typeparam name="CONF"></typeparam>
-            <typeparam name="PERF"></typeparam>
-        </member>
-        <member name="T:Ximura.Command.AppCommandContainer`7">
-            <summary>
-            
-            </summary>
-            <typeparam name="RQ"></typeparam>
-            <typeparam name="RS"></typeparam>
-            <typeparam name="CBRQ"></typeparam>
-            <typeparam name="CBRS"></typeparam>
-            <typeparam name="CONF"></typeparam>
-            <typeparam name="PERF"></typeparam>
-            <typeparam name="INTCONF"></typeparam>
-        </member>
-        <member name="M:Ximura.Command.AppCommandContainer`7.#ctor">
-            <summary>
-            This is the empty constructor
-            </summary>
-        </member>
-        <member name="M:Ximura.Command.AppCommandContainer`7.#ctor(System.ComponentModel.IContainer)">
-            <summary>
-            This is the base constructor for a Ximura command
-            </summary>
-            <param name="container">The command container to be added to.</param>
-        </member>
-        <member name="M:Ximura.Command.AppCommandContainer`7.#ctor(System.Nullable{System.Guid},System.ComponentModel.IContainer)">
-            <summary>
-            This is the base constructor for a Ximura command
-            </summary>
-            <param name="commandID">This is the explicitly set command id, leave this as null if you want to use the default id.</param>
-            <param name="container">The container to be added to</param>
-        </member>
-        <member name="P:Ximura.Command.AppCommandContainer`7.ConfigurationInternal">
-            <summary>
-            This is the internal configuration that contains the settings for the internal commands.
-            </summary>
-        </member>
-        <member name="M:Ximura.Command.AppCommandContainer`6.#ctor">
-            <summary>
-            This is the empty constructor
-            </summary>
-        </member>
-        <member name="M:Ximura.Command.AppCommandContainer`6.#ctor(System.ComponentModel.IContainer)">
-            <summary>
-            This is the base constructor for a Ximura command
-            </summary>
-            <param name="container">The command container to be added to.</param>
-        </member>
-        <member name="M:Ximura.Command.AppCommandContainer`6.#ctor(System.Nullable{System.Guid},System.ComponentModel.IContainer)">
-            <summary>
-            This is the base constructor for a Ximura command
-            </summary>
-            <param name="commandID">This is the explicitly set command id, leave this as null if you want to use the default id.</param>
-            <param name="container">The container to be added to</param>
-        </member>
         <member name="T:Ximura.Server.CompletionJobCallBack">
             <summary>
             This delegate is used to signal the completion of a set of jobs.
@@ -6157,6 +5676,33 @@
         <member name="P:Ximura.PerformanceCounter.Dirty">
             <summary>
             This property identifies whether the counter is dirty and needs updating.
+            </summary>
+        </member>
+        <member name="T:Ximura.Command.CommandDefinition">
+            <summary>
+            This helper class is used to pass the command definition without passing a reference to the command.
+            </summary>
+        </member>
+        <member name="M:Ximura.Command.CommandDefinition.#ctor(Ximura.IXimuraCommand)">
+            <summary>
+            This constructor copies the command properties in to the helper class.
+            </summary>
+            <param name="command">The command whose definition needs to be encapsulated.</param>
+        </member>
+        <member name="P:Ximura.Command.CommandDefinition.CommandID">
+            <summary>
+            The command unique identifier.
+            </summary>
+        </member>
+        <member name="P:Ximura.Command.CommandDefinition.CommandName">
+            <summary>
+            The command name. This is used in to the config file to retrieve the
+            settings.
+            </summary>
+        </member>
+        <member name="P:Ximura.Command.CommandDefinition.CommandDescription">
+            <summary>
+            The command friendly description.
             </summary>
         </member>
         <member name="T:Ximura.Command.FSMCommandPerformance">
@@ -7037,33 +6583,6 @@
             The name of the module. This is used to retrieve app settings.
             </summary>
         </member>
-        <member name="T:Ximura.Command.CommandDefinition">
-            <summary>
-            This helper class is used to pass the command definition without passing a reference to the command.
-            </summary>
-        </member>
-        <member name="M:Ximura.Command.CommandDefinition.#ctor(Ximura.IXimuraCommand)">
-            <summary>
-            This constructor copies the command properties in to the helper class.
-            </summary>
-            <param name="command">The command whose definition needs to be encapsulated.</param>
-        </member>
-        <member name="P:Ximura.Command.CommandDefinition.CommandID">
-            <summary>
-            The command unique identifier.
-            </summary>
-        </member>
-        <member name="P:Ximura.Command.CommandDefinition.CommandName">
-            <summary>
-            The command name. This is used in to the config file to retrieve the
-            settings.
-            </summary>
-        </member>
-        <member name="P:Ximura.Command.CommandDefinition.CommandDescription">
-            <summary>
-            The command friendly description.
-            </summary>
-        </member>
         <member name="M:Ximura.Server.IXimuraSessionManagerAccess.SessionRegister(Ximura.IXimuraSessionSCM)">
             <summary>
             This method registers a session with the security manager.
@@ -7089,6 +6608,33 @@
             The XimuraAppServerAttribute attribute is used to set friendly names and descriptions for
             the server which will be used in the server performance counters.
             </summary>
+        </member>
+        <member name="M:Ximura.Server.XimuraAppServerStorageAttribute.#ctor(System.String,System.String,System.String)">
+            <summary>
+            The attribute constructor.
+            </summary>
+            <param name="type">The agent type.</param>
+            <param name="id">The agent id.</param>
+            <param name="name">The agent name.</param>
+        </member>
+        <member name="M:Ximura.Server.XimuraAppServerStorageAttribute.#ctor(System.Type,System.String,System.String)">
+            <summary>
+            The attribute constructor.
+            </summary>
+            <param name="type">The agent type.</param>
+            <param name="id">The agent id.</param>
+            <param name="name">The agent name.</param>
+        </member>
+        <member name="M:Ximura.Server.StorageAgentBase.#ctor">
+            <summary>
+            This is the default constructor
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.StorageAgentBase.#ctor(System.ComponentModel.IContainer)">
+            <summary>
+            This is the base constructor for a Ximura command
+            </summary>
+            <param name="container">The container to be added to</param>
         </member>
         <member name="T:Ximura.IXimuraFSMStateMetadataExtender`1">
             <summary>
@@ -7559,62 +7105,687 @@
             This is the job for the current context;
             </summary>
         </member>
-        <member name="T:Ximura.Command.FSMExtenderCommand`6">
+        <member name="T:Ximura.Command.CJobSignature`7">
             <summary>
-            The state extender command allows third parties to extend exisiting finite state machines through a modular architecture.
+            The job signature class is used to hold metadata for a JobContext completion job request.
+            </summary>
+        </member>
+        <member name="M:Ximura.Command.CJobSignature`7.#ctor(`0)">
+            <summary>
+            This is the default constructor for the signature.
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:Ximura.Command.CJobSignature`7.JobLength">
+            <summary>
+            The job execution length.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ximura.Command.CJobSignature`7.ValidateContext">
+            <summary>
+            This method validates that the context has not been returned to the pool and used for 
+            another job while this has been executing.
+            </summary>
+            <returns>Returns true if the signature IDs match.</returns>
+        </member>
+        <member name="P:Ximura.Command.CJobSignature`7.SignatureID">
+            <summary>
+            The job signature.
+            </summary>
+        </member>
+        <member name="P:Ximura.Command.CJobSignature`7.Context">
+            <summary>
+            The context
+            </summary>
+        </member>
+        <member name="P:Ximura.Command.CJobSignature`7.CreateTime">
+            <summary>
+            The job create time.
+            </summary>
+        </member>
+        <member name="T:Ximura.Command.FiniteStateMachine`9">
+            <summary>
+            The FiniteStateMachine is one of the root command objects. 
+            It is used to implement system that operate using a well defined system of states.
+            </summary>
+            <typeparam name="RQ">The request type.</typeparam>
+            <typeparam name="RS">The response type.</typeparam>
+            <typeparam name="CBRQ">The callback request type.</typeparam>
+            <typeparam name="CBRS">The callback response type.</typeparam>
+            <typeparam name="CNTX">The FSM context type.</typeparam>
+            <typeparam name="ST">The FSM base state type.</typeparam>
+            <typeparam name="SET">The FSM base settings.</typeparam>
+        </member>
+        <member name="T:Ximura.Command.FiniteStateMachine`10">
+            <summary>
+            The FiniteStateMachine is one of the root command objects. 
+            It is used to implement system that operate using a well defined system of states.
+            </summary>
+            <typeparam name="RQ">The request type.</typeparam>
+            <typeparam name="RS">The response type.</typeparam>
+            <typeparam name="CBRQ">The callback request type.</typeparam>
+            <typeparam name="CBRS">The callback response type.</typeparam>
+            <typeparam name="CNTX">The FSM context type.</typeparam>
+            <typeparam name="ST">The FSM base state type.</typeparam>
+            <typeparam name="SET">The FSM base settings.</typeparam>
+            <typeparam name="EXTCONF">The external configuration object type which contains the settings for the internal commands.</typeparam>
+        </member>
+        <member name="T:Ximura.Command.AppCommandProcess`7">
+            <summary>
+            AppCommandProcess is the base class for Command that require a system session.
             </summary>
             <typeparam name="RQ">The main request RQRSFolder type.</typeparam>
-            <typeparam name="RS">The main response RQRSFolder type</typeparam>
-            <typeparam name="CBRQ">The callback request RQRSFolder type</typeparam>
-            <typeparam name="CBRS">The callback response RQRSFolder type</typeparam>
+            <typeparam name="RS">The main response RQRSFolder type.</typeparam>
+            <typeparam name="CBRQ">The callback request RQRSFolder type.</typeparam>
+            <typeparam name="CBRS">The callback response RQRSFolder type.</typeparam>
             <typeparam name="CONF">The command configuration object.</typeparam>
             <typeparam name="PERF">The command performance monitor object.</typeparam>
+            <typeparam name="EXTCONF">The external configuration object type which contains the settings for the internal commands.</typeparam>
         </member>
-        <member name="F:Ximura.Command.FSMExtenderCommand`6.mStateExtender">
+        <member name="T:Ximura.Command.AppCommandStandard`7">
             <summary>
-            This is the state extender.
+            AppCommandStandard is the base command object that all standard commands should inherit from.
             </summary>
+            <typeparam name="RQ">The main request RQRSFolder type.</typeparam>
+            <typeparam name="RS">The main response RQRSFolder type.</typeparam>
+            <typeparam name="CBRQ">The callback request RQRSFolder type.</typeparam>
+            <typeparam name="CBRS">The callback response RQRSFolder type.</typeparam>
+            <typeparam name="CONF">The command configuration object.</typeparam>
+            <typeparam name="PERF">The command performance monitor object.</typeparam>
+            <typeparam name="EXTCONF">The external command object that contains a set of user configurable settings.</typeparam>
         </member>
-        <member name="M:Ximura.Command.FSMExtenderCommand`6.#ctor">
+        <member name="M:Ximura.Command.AppCommandStandard`7.#ctor">
             <summary>
             This is the empty constructor
             </summary>
         </member>
-        <member name="M:Ximura.Command.FSMExtenderCommand`6.#ctor(System.ComponentModel.IContainer)">
+        <member name="M:Ximura.Command.AppCommandStandard`7.#ctor(System.ComponentModel.IContainer)">
             <summary>
-            This is the constrcutor used by the Ximura Application model.
+            This is the base constructor for a Ximura command
             </summary>
-            <param name="container">The command container.</param>
+            <param name="container">The command container to be added to.</param>
         </member>
-        <member name="M:Ximura.Command.FSMExtenderCommand`6.#ctor(System.Nullable{System.Guid},System.ComponentModel.IContainer)">
+        <member name="M:Ximura.Command.AppCommandStandard`7.#ctor(System.Nullable{System.Guid},System.ComponentModel.IContainer)">
             <summary>
             This is the base constructor for a Ximura command
             </summary>
             <param name="commandID">This is the explicitly set command id, leave this as null if you want to use the default id.</param>
             <param name="container">The container to be added to</param>
         </member>
-        <member name="M:Ximura.Command.FSMExtenderCommand`6.ServicesReference">
+        <member name="M:Ximura.Command.AppCommandStandard`7.ServicesProvide">
             <summary>
-            This override retrieves a reference to the IXimuraStateExtenderService object.
+            This override registers the command with the dispatcher commands collection
             </summary>
         </member>
-        <member name="M:Ximura.Command.FSMExtenderCommand`6.ServicesDereference">
+        <member name="M:Ximura.Command.AppCommandStandard`7.ServicesRemove">
             <summary>
-            This override removes the reference to the IXimuraStateExtenderService object.
+            This overriden method removes the dispatcherCollection services
             </summary>
         </member>
-        <member name="M:Ximura.Command.FSMExtenderCommand.#ctor">
+        <member name="M:Ximura.Command.AppCommandStandard`7.ServicesReference">
+            <summary>
+            This overriden method reference the scheduled services.
+            </summary>
+        </member>
+        <member name="M:Ximura.Command.AppCommandStandard`7.ServicesDereference">
+            <summary>
+            This overriden method unregisters the scheduled services.
+            </summary>
+        </member>
+        <member name="M:Ximura.Command.AppCommandStandard`7.Start">
+            <summary>
+            This method starts the service based on the default async settings
+            </summary>
+        </member>
+        <member name="M:Ximura.Command.AppCommandStandard`7.Stop">
+            <summary>
+            This override removes the performance and configuration.
+            </summary>
+        </member>
+        <member name="M:Ximura.Command.AppCommandStandard`7.GetSettings">
+            <summary>
+            This protected member returns the default settings for the command
+            </summary>
+            <returns>The settings object</returns>
+        </member>
+        <member name="M:Ximura.Command.AppCommandStandard`7.ProcessRequestSCM(Ximura.Server.SecurityManagerJob)">
+            <summary>
+            This is the default entry point for the job request from the security manager. By default
+            the command will track job processes and update statistics for each job.
+            </summary>
+            <param name="job">The job to process.</param>
+        </member>
+        <member name="M:Ximura.Command.AppCommandStandard`7.ProcessRequest(Ximura.Server.SecurityManagerJob)">
+            <summary>
+            This is the default command process logic. You should override this method to implement your
+            specific business logic.
+            </summary>
+            <param name="job">The job to process.</param>
+        </member>
+        <member name="M:Ximura.Command.AppCommandStandard`7.ProcessRequest(Ximura.Server.SecurityManagerJob,Ximura.Command.RQRSContract{`0,`1})">
+            <summary>
+            This is the default generic process point. This will call the non-generic method for backwards
+            compatibility.
+            </summary>
+            <param name="job"></param>
+            <param name="Data"></param>
+        </member>
+        <member name="M:Ximura.Command.AppCommandStandard`7.ProcessCallback(Ximura.Server.SecurityManagerJob,Ximura.Command.RQRSContract{`2,`3})">
+            <summary>
+            This is the standard method for processing callbacks.
+            </summary>
+            <param name="job">The job to process.</param>
+            <param name="Data">The callback data.</param>
+        </member>
+        <member name="M:Ximura.Command.AppCommandStandard`7.IsCallback(Ximura.IXimuraRQRSEnvelope)">
+            <summary>
+            The method returns true if the Data is a callback type.
+            </summary>
+            <param name="Data">The envelope to check.</param>
+            <returns>Return true if this is a callback.</returns>
+        </member>
+        <member name="M:Ximura.Command.AppCommandStandard`7.CallbackRegister">
+            <summary>
+            This method will be called when the command starts and should
+            be overriden and permitted callback commands should be registered.
+            </summary>
+        </member>
+        <member name="M:Ximura.Command.AppCommandStandard`7.CallbackRegister(System.Guid)">
+            <summary>
+            This method registers the callback.
+            </summary>
+            <param name="jobID">The command ID to be registered.</param>
+        </member>
+        <member name="M:Ximura.Command.AppCommandStandard`7.CallbackUnregister">
+            <summary>
+            This method will be called when the command stops and will automatically unregister any callback commands.
+            </summary>
+        </member>
+        <member name="M:Ximura.Command.AppCommandStandard`7.CallbackUnregister(System.Guid)">
+            <summary>
+            This method unregisters the callback.
+            </summary>
+            <param name="commandID">The commandID to unregister.</param>
+        </member>
+        <member name="M:Ximura.Command.AppCommandStandard`7.CallbackValidate(System.Guid)">
+            <summary>
+            This method validates a callback for a command ID.
+            </summary>
+            <param name="commandID">The command ID to validate</param>
+            <returns>Returns true of the command is registered.</returns>
+        </member>
+        <member name="M:Ximura.Command.AppCommandStandard`7.CallbackValidate(Ximura.Server.SecurityManagerJob)">
+            <summary>
+            This method validates a callback for a job request.
+            </summary>
+            <param name="job">The callback job to validate</param>
+            <returns>Returns true if the job is validated.</returns>
+        </member>
+        <member name="M:Ximura.Command.AppCommandStandard`7.CommandBridgeRegister(System.Boolean)">
+            <summary>
+            This method determines whether the command is registered or unregistered with the command bridge.
+            </summary>
+            <param name="register">A boolean value indicating whether this command should be registered or unregistered.</param>
+        </member>
+        <member name="M:Ximura.Command.AppCommandStandard`7.SchedulerRegister">
+            <summary>
+            Use this method registers scheduler callbacks.
+            </summary>
+        </member>
+        <member name="M:Ximura.Command.AppCommandStandard`7.SchedulerRegisterSubCommands">
+            <summary>
+            This method registers specific subcommands for the scheduler. By default this method will
+            register the blank subcommand. 
+            </summary>
+        </member>
+        <member name="M:Ximura.Command.AppCommandStandard`7.SchedulerUnregister">
+            <summary>
+            Use this method to unregister scheduler callbacks.
+            </summary>
+        </member>
+        <member name="M:Ximura.Command.AppCommandStandard`7.SchedulerStart">
+            <summary>
+            This method gets a reference to the scheduler service.
+            </summary>
+        </member>
+        <member name="M:Ximura.Command.AppCommandStandard`7.SchedulerStop">
+            <summary>
+            THis method removes and scheduler notifications and removes the scheduler reference.
+            </summary>
+        </member>
+        <member name="M:Ximura.Command.AppCommandStandard`7.Notify(System.Type,System.Object)">
+            <summary>
+            This method starts and stops the timer based on the system start/stop notification.
+            </summary>
+            <param name="notificationType">The notification type.</param>
+            <param name="notification">The notification.</param>
+        </member>
+        <member name="M:Ximura.Command.AppCommandStandard`7.TimerChange(System.TimeSpan)">
+            <summary>
+            This method is used to change the timer settings.
+            </summary>
+            <param name="span">The due time.</param>
+        </member>
+        <member name="M:Ximura.Command.AppCommandStandard`7.TimerChange(System.Int64)">
+            <summary>
+            This method is used to change the timer settings.
+            </summary>
+            <param name="dueTime">The due time.</param>
+        </member>
+        <member name="M:Ximura.Command.AppCommandStandard`7.TimerStart">
+            <summary>
+            This method initializes the timer used for pick up polling.
+            The default settings for this command is to wait indefintely, so
+            you should override this method if you require different polling.
+            </summary>
+        </member>
+        <member name="M:Ximura.Command.AppCommandStandard`7.TimerStop">
+            <summary>
+            This method stops the timer.
+            </summary>
+        </member>
+        <member name="M:Ximura.Command.AppCommandStandard`7.TimerPause">
+            <summary>
+            This method will pause the timer.
+            </summary>
+        </member>
+        <member name="M:Ximura.Command.AppCommandStandard`7.TimerResume">
+            <summary>
+            This method will resume the timer based on the settings.
+            </summary>
+        </member>
+        <member name="M:Ximura.Command.AppCommandStandard`7.InternalTimerCallback(System.Object)">
+            <summary>
+            This internal method ensures that a unhandled exception in a ontimer method called 
+            does not result in the system crashing out.
+            </summary>
+            <param name="state"></param>
+        </member>
+        <member name="M:Ximura.Command.AppCommandStandard`7.OnTimerEvent(System.Boolean)">
+            <summary>
+            This method will be called when a timer is called.
+            </summary>
+        </member>
+        <member name="M:Ximura.Command.AppCommandStandard`7.TimerPollJobExecute(Ximura.Command.TimerPollJob)">
+            <summary>
+            This method executes a timer poll job and handles the response. You should override this method to provide
+            your own logic.
+            </summary>
+            <param name="job">The timer poll job.</param>
+        </member>
+        <member name="P:Ximura.Command.AppCommandStandard`7.SupportsCallbacks">
+            <summary>
+            This property identifies whether the command supports callbacks.
+            </summary>
+        </member>
+        <member name="P:Ximura.Command.AppCommandStandard`7.Scheduler">
+            <summary>
+            This is the scheduler.
+            </summary>
+        </member>
+        <member name="P:Ximura.Command.AppCommandStandard`7.SchedulerAutoRegister">
+            <summary>
+            This property determines whether the command will automatically register with the
+            scheduler on start up.
+            </summary>
+        </member>
+        <member name="P:Ximura.Command.AppCommandStandard`7.RequestType">
+            <summary>
+            This is the command request type.
+            </summary>
+        </member>
+        <member name="P:Ximura.Command.AppCommandStandard`7.ResponseType">
+            <summary>
+            This is the command response type.
+            </summary>
+        </member>
+        <member name="P:Ximura.Command.AppCommandStandard`7.CallbackRequestType">
+            <summary>
+            This is the command callback request type.
+            </summary>
+        </member>
+        <member name="P:Ximura.Command.AppCommandStandard`7.CallbackResponseType">
+            <summary>
+            This is the command callback response type.
+            </summary>
+        </member>
+        <member name="P:Ximura.Command.AppCommandStandard`7.EnvelopeContractType">
+            <summary>
+            This is the envelope contract type. 
+            </summary>
+        </member>
+        <member name="P:Ximura.Command.AppCommandStandard`7.EnvelopeCallbackContractType">
+            <summary>
+            This is the envelope callback contract type. 
+            </summary>
+        </member>
+        <member name="P:Ximura.Command.AppCommandStandard`7.SupportsNotifications">
+            <summary>
+            This method returns true as the command uses notification to enable and disable the timer poll.
+            </summary>
+        </member>
+        <member name="P:Ximura.Command.AppCommandStandard`7.TimerEnabled">
+            <summary>
+            This method is used to override the default auto start for the timer in the base command.
+            You can override this method if you need more fine-grained timer start
+            functionality.
+            </summary>
+        </member>
+        <member name="F:Ximura.Command.AppCommandProcess`7.mProcessSession">
+            <summary>
+            This is the session that the process command will run under.
+            </summary>
+        </member>
+        <member name="F:Ximura.Command.AppCommandProcess`7.mSessionMan">
+            <summary>
+            This is a reference to the application session manager.
+            </summary>
+        </member>
+        <member name="F:Ximura.Command.AppCommandProcess`7.mSettings">
+            <summary>
+            The Command Process Settings
+            </summary>
+        </member>
+        <member name="M:Ximura.Command.AppCommandProcess`7.#ctor">
             <summary>
             This is the empty constructor
             </summary>
         </member>
-        <member name="M:Ximura.Command.FSMExtenderCommand.#ctor(System.ComponentModel.IContainer)">
+        <member name="M:Ximura.Command.AppCommandProcess`7.#ctor(System.ComponentModel.IContainer)">
             <summary>
             This is the constrcutor used by the Ximura Application model.
             </summary>
             <param name="container">The command container.</param>
         </member>
-        <member name="M:Ximura.Command.FSMExtenderCommand.#ctor(System.Nullable{System.Guid},System.ComponentModel.IContainer)">
+        <member name="M:Ximura.Command.AppCommandProcess`7.#ctor(System.Nullable{System.Guid},System.ComponentModel.IContainer)">
+            <summary>
+            This is the base constructor for a Ximura command
+            </summary>
+            <param name="commandID">This is the explicitly set command id, leave this as null if you want to use the default id.</param>
+            <param name="container">The container to be added to</param>
+        </member>
+        <member name="M:Ximura.Command.AppCommandProcess`7.InternalStart">
+            <summary>
+            This overrides the Internal start and negotiates a session for the process
+            </summary>
+        </member>
+        <member name="M:Ximura.Command.AppCommandProcess`7.InternalStop">
+            <summary>
+            This overrides the stop process and closes the process session.
+            </summary>
+        </member>
+        <member name="M:Ximura.Command.AppCommandProcess`7.ServicesReference">
+            <summary>
+            Creates a reference to the IXimuraSessionManager
+            </summary>
+        </member>
+        <member name="M:Ximura.Command.AppCommandProcess`7.ServicesDereference">
+            <summary>
+            Removes a reference to IXimuraSessionManager
+            </summary>
+        </member>
+        <member name="M:Ximura.Command.AppCommandProcess`7.ProcessSessionNegotiate">
+            <summary>
+            This method negotiates a session for the process.
+            </summary>
+        </member>
+        <member name="M:Ximura.Command.AppCommandProcess`7.ProcessSessionClose">
+            <summary>
+            This method closes a sessions for the process
+            </summary>
+        </member>
+        <member name="M:Ximura.Command.AppCommandProcess`7.PrepareJob(Ximura.Server.SecurityManagerJob,`0@,`1@)">
+            <summary>
+            This method prepares the parameters for the job request.
+            </summary>
+            <param name="job">The job.</param>
+            <param name="Request">The request.</param>
+            <param name="Response">The response.</param>
+        </member>
+        <member name="M:Ximura.Command.AppCommandProcess`7.PrepareJob(Ximura.Server.SecurityManagerJob)">
+            <summary>
+            This helper method is provides for methods that do not want to reference the Request
+            and Response methods directly.
+            </summary>
+            <param name="job">The job to prepare.</param>
+        </member>
+        <member name="M:Ximura.Command.AppCommandProcess`7.TimerPollJobExecute(Ximura.Command.TimerPollJob)">
+            <summary>
+            This method initiates a timer poll job and handles the response.
+            </summary>
+            <param name="job">The time poll job.</param>
+        </member>
+        <member name="M:Ximura.Command.AppCommandProcess`7.TimerHelperAsyncSelfCall(Ximura.Command.TimerPollJob,Ximura.CommandRSCallback)">
+            <summary>
+            This method can be used to initiate a callback.
+            </summary>
+            <param name="subCommand">The subcommand.</param>
+            <param name="callback">The callback delegate.</param>
+        </member>
+        <member name="M:Ximura.Command.AppCommandProcess`7.TimerHelperAsyncSelfCall(Ximura.Command.TimerPollJob,Ximura.CommandRSCallback,Ximura.JobPriority,System.Action{Ximura.Command.RQRSFolder})">
+            <summary>
+            This method can be used to initiate a callback.
+            </summary>
+            <param name="subCommand">The subcommand.</param>
+            <param name="callback">The callback delegate.</param>
+            <param name="priority">The request priority.</param>
+            <param name="rqFormat">The delegate used to format the request. This parameter can be null.</param>
+        </member>
+        <member name="P:Ximura.Command.AppCommandProcess`7.CDSSettings">
+            <summary>
+            This protected property is the CDS settings object.
+            </summary>
+        </member>
+        <member name="P:Ximura.Command.AppCommandProcess`7.CDSHelper">
+            <summary>
+            The CDSHelper is the object that encapsulates the functionality needed
+            to receive and manage content from the Content Data Store.
+            </summary>
+        </member>
+        <member name="F:Ximura.Command.FiniteStateMachine`10.DEFAULTTHROTTLELIMIT">
+            <summary>
+            This is the default throttle limit for the context completion job.
+            </summary>
+        </member>
+        <member name="F:Ximura.Command.FiniteStateMachine`10.mExtenderService">
+            <summary>
+            This is the state extender service.
+            </summary>
+        </member>
+        <member name="F:Ximura.Command.FiniteStateMachine`10.mPool">
+            <summary>
+            This is the context pool.
+            </summary>
+        </member>
+        <member name="F:Ximura.Command.FiniteStateMachine`10.mContextSettings">
+            <summary>
+            This is the context connection class that hold context connection settings and services.
+            </summary>
+        </member>
+        <member name="F:Ximura.Command.FiniteStateMachine`10.mStateExtender">
+            <summary>
+            This is the base state extender.
+            </summary>
+        </member>
+        <member name="F:Ximura.Command.FiniteStateMachine`10.mRemoteContextPoolAccess">
+            <summary>
+            This class allows contexts to create additional contexts. This is primarily used for 
+            connection based FSM services.
+            </summary>
+        </member>
+        <member name="M:Ximura.Command.FiniteStateMachine`10.#ctor">
+            <summary>
+            Empty constructor for use by the component model.
+            </summary>
+        </member>
+        <member name="M:Ximura.Command.FiniteStateMachine`10.#ctor(System.ComponentModel.IContainer)">
+            <summary>
+            Default constructor for use by the component model.
+            </summary>
+            <param name="container">The container that the transport should be added to.</param>
+        </member>
+        <member name="M:Ximura.Command.FiniteStateMachine`10.#ctor(System.Nullable{System.Guid},System.ComponentModel.IContainer)">
+            <summary>
+            This is the base constructor for a Ximura command
+            </summary>
+            <param name="commandID">This is the explicitly set command id, leave this as null if you want to use the default id.</param>
+            <param name="container">The container to be added to</param>
+        </member>
+        <member name="M:Ximura.Command.FiniteStateMachine`10.InitializeExtenders(System.ComponentModel.IContainer)">
+            <summary>
+            This method can be overriden to add additional extenders to the
+            protocol, or to remove existing extenders.
+            </summary>
+            <param name="baseContainer">This is the base container in the FSM.</param>
+        </member>
+        <member name="M:Ximura.Command.FiniteStateMachine`10.InitializeBaseStates(System.ComponentModel.IContainer)">
+            <summary>
+            This method can be overriden to add additional extenders to the
+            protocol, or to remove existing extenders.
+            </summary>
+            <param name="baseContainer">This is the base container in the FSM.</param>
+        </member>
+        <member name="M:Ximura.Command.FiniteStateMachine`10.InternalStart">
+            <summary>
+            This method initializes the context pool.
+            </summary>
+        </member>
+        <member name="M:Ximura.Command.FiniteStateMachine`10.InternalStop">
+            <summary>
+            This
+            </summary>
+        </member>
+        <member name="M:Ximura.Command.FiniteStateMachine`10.StatesStart">
+            <summary>
+            This method will start any states that implement IXimuraService
+            </summary>
+        </member>
+        <member name="M:Ximura.Command.FiniteStateMachine`10.StatesStop">
+            <summary>
+            This method will stop any states that have been started.
+            </summary>
+        </member>
+        <member name="M:Ximura.Command.FiniteStateMachine`10.ServicesProvide">
+            <summary>
+            This override creates the state extender service.
+            </summary>
+        </member>
+        <member name="M:Ximura.Command.FiniteStateMachine`10.ServicesRemove">
+            <summary>
+            This override removes the state extender service.
+            </summary>
+        </member>
+        <member name="M:Ximura.Command.FiniteStateMachine`10.CreateSystemRequest(Ximura.Command.EnvelopeAddress)">
+            <summary>
+            This method creates the system request.
+            </summary>
+            <returns>A new envelope with the correct destination address.</returns>
+        </member>
+        <member name="M:Ximura.Command.FiniteStateMachine`10.ProcessRequest(Ximura.Server.SecurityManagerJob,Ximura.Command.RQRSContract{`0,`1})">
+            <summary>
+            This override is the main entry point for the incoming FSM request.
+            </summary>
+            <param name="job">The job.</param>
+            <param name="Data">The request data.</param>
+        </member>
+        <member name="M:Ximura.Command.FiniteStateMachine`10.ProcessRequestFailed(System.String,System.String,Ximura.Server.SecurityManagerJob,Ximura.Command.RQRSContract{`0,`1})">
+            <summary>
+            This method allow customization to the response should there not be any contexts available 
+            to process the request.
+            </summary>
+            <param name="job">The job.</param>
+            <param name="Data">The data containing the request and the response.</param>
+            <returns>Return true if you do not wish the command to set the standard response properties to the response.</returns>
+        </member>
+        <member name="M:Ximura.Command.FiniteStateMachine`10.ProcessRequest(`4)">
+            <summary>
+            This is the entry point for Finite State Machines that require a context.
+            </summary>
+            <param name="jobContext">The job context that contains the requested parameters.</param>
+        </member>
+        <member name="M:Ximura.Command.FiniteStateMachine`10.InitializeContextPool(System.ComponentModel.IContainer)">
+            <summary>
+            This method initializes the context pool. Override this method if you need
+            additional pool creation logic.
+            </summary>
+        </member>
+        <member name="M:Ximura.Command.FiniteStateMachine`10.InitializeContextConnection(System.ComponentModel.IContainer)">
+            <summary>
+            This method should be overriden to provide extended Context collection settings.
+            </summary>
+            <param name="baseContainer">The base container for the collection.</param>
+        </member>
+        <member name="M:Ximura.Command.FiniteStateMachine`10.InitializeContextConnectionSettings(System.ComponentModel.IContainer)">
+            <summary>
+            This method should be overriden to provide extended Context collection settings.
+            </summary>
+            <param name="baseContainer">The base container for the collection.</param>
+        </member>
+        <member name="M:Ximura.Command.FiniteStateMachine`10.ContextInitialize(`4,Ximura.Server.SecurityManagerJob,Ximura.Command.RQRSContract{`0,`1})">
+            <summary>
+            This method allows generic operations to be performed on the new context.
+            </summary>
+            <param name="newContext"></param>
+            <param name="job">The incoming job.</param>
+            <param name="Data">The incoming generic data.</param>
+        </member>
+        <member name="M:Ximura.Command.FiniteStateMachine`10.ClearContextPool">
+            <summary>
+            This method empties the context pool.
+            </summary>
+        </member>
+        <member name="M:Ximura.Command.FiniteStateMachine`10.InitializeContextPoolAccess">
+            <summary>
+            This command initializes the context pool.
+            </summary>
+        </member>
+        <member name="M:Ximura.Command.FiniteStateMachine`10.ContextGetContext">
+            <summary>
+            This method retrieves a context from the pool.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ximura.Command.FiniteStateMachine`10.ContextReturnContext(`4)">
+            <summary>
+            This method returns a context to the pool.
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="P:Ximura.Command.FiniteStateMachine`10.ContextPool">
+            <summary>
+            This is the context pool for the FSM.
+            </summary>
+        </member>
+        <member name="P:Ximura.Command.FiniteStateMachine`10.ContextConnection">
+            <summary>
+            This is the default context connection.
+            </summary>
+        </member>
+        <member name="P:Ximura.Command.FiniteStateMachine`10.GatekeeperEnabled">
+            <summary>
+            This protected property determines whether the context gatekeeper is enabled. If you wish 
+            to enable the gatekeeper, you should override this property and return true.
+            </summary>
+        </member>
+        <member name="P:Ximura.Command.FiniteStateMachine`10.ExternalStatesAllow">
+            <summary>
+            This property determines whether the FSM will allow external states contained in a FSMExtenderCommand object to register
+            with this command.
+            </summary>
+        </member>
+        <member name="M:Ximura.Command.FiniteStateMachine`9.#ctor">
+            <summary>
+            Empty constructor for use by the component model.
+            </summary>
+        </member>
+        <member name="M:Ximura.Command.FiniteStateMachine`9.#ctor(System.ComponentModel.IContainer)">
+            <summary>
+            Default constructor for use by the component model.
+            </summary>
+            <param name="container">The container that the transport should be added to.</param>
+        </member>
+        <member name="M:Ximura.Command.FiniteStateMachine`9.#ctor(System.Nullable{System.Guid},System.ComponentModel.IContainer)">
             <summary>
             This is the base constructor for a Ximura command
             </summary>
@@ -8009,6 +8180,35 @@
             <typeparam name="RS">The main response RQRSFolder type.</typeparam>
             <typeparam name="CONF">The command configuration object.</typeparam>
         </member>
+        <member name="T:Ximura.Command.AppCommandProcess`6">
+            <summary>
+            AppCommandProcess is the base class for Command that require a system session.
+            </summary>
+            <typeparam name="RQ">The main request RQRSFolder type.</typeparam>
+            <typeparam name="RS">The main response RQRSFolder type.</typeparam>
+            <typeparam name="CBRQ">The callback request RQRSFolder type.</typeparam>
+            <typeparam name="CBRS">The callback response RQRSFolder type.</typeparam>
+            <typeparam name="CONF">The command configuration object.</typeparam>
+            <typeparam name="PERF">The command performance monitor object.</typeparam>
+        </member>
+        <member name="M:Ximura.Command.AppCommandProcess`6.#ctor">
+            <summary>
+            This is the empty constructor
+            </summary>
+        </member>
+        <member name="M:Ximura.Command.AppCommandProcess`6.#ctor(System.ComponentModel.IContainer)">
+            <summary>
+            This is the constrcutor used by the Ximura Application model.
+            </summary>
+            <param name="container">The command container.</param>
+        </member>
+        <member name="M:Ximura.Command.AppCommandProcess`6.#ctor(System.Nullable{System.Guid},System.ComponentModel.IContainer)">
+            <summary>
+            This is the base constructor for a Ximura command
+            </summary>
+            <param name="commandID">This is the explicitly set command id, leave this as null if you want to use the default id.</param>
+            <param name="container">The container to be added to</param>
+        </member>
         <member name="M:Ximura.Command.AppCommandProcess`3.#ctor">
             <summary>
             This is the empty constructor
@@ -8197,45 +8397,6 @@
             </summary>
             <param name="context">The job context.</param>
             <param name="status">The status of the completion job.</param>
-        </member>
-        <member name="T:Ximura.Command.CJobSignature`7">
-            <summary>
-            The job signature class is used to hold metadata for a JobContext completion job request.
-            </summary>
-        </member>
-        <member name="M:Ximura.Command.CJobSignature`7.#ctor(`0)">
-            <summary>
-            This is the default constructor for the signature.
-            </summary>
-            <param name="context"></param>
-        </member>
-        <member name="M:Ximura.Command.CJobSignature`7.JobLength">
-            <summary>
-            The job execution length.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Ximura.Command.CJobSignature`7.ValidateContext">
-            <summary>
-            This method validates that the context has not been returned to the pool and used for 
-            another job while this has been executing.
-            </summary>
-            <returns>Returns true if the signature IDs match.</returns>
-        </member>
-        <member name="P:Ximura.Command.CJobSignature`7.SignatureID">
-            <summary>
-            The job signature.
-            </summary>
-        </member>
-        <member name="P:Ximura.Command.CJobSignature`7.Context">
-            <summary>
-            The context
-            </summary>
-        </member>
-        <member name="P:Ximura.Command.CJobSignature`7.CreateTime">
-            <summary>
-            The job create time.
-            </summary>
         </member>
         <member name="T:Ximura.Server.SessionToken">
             <summary>
@@ -8712,17 +8873,6 @@
             This returns the number of items in the queue.
             </summary>
         </member>
-        <member name="M:Ximura.Server.StorageAgentBase.#ctor">
-            <summary>
-            This is the default constructor
-            </summary>
-        </member>
-        <member name="M:Ximura.Server.StorageAgentBase.#ctor(System.ComponentModel.IContainer)">
-            <summary>
-            This is the base constructor for a Ximura command
-            </summary>
-            <param name="container">The container to be added to</param>
-        </member>
         <member name="M:Ximura.Persistence.CDSPMPerformance.#ctor">
             <summary>
             This is the default constructor for the Content object.
@@ -8773,6 +8923,22 @@
             The XimuraAppServerAttribute attribute is used to set friendly names and descriptions for
             the server which will be used in the server performance counters.
             </summary>
+        </member>
+        <member name="M:Ximura.Server.XimuraAppServerLoggerAttribute.#ctor(System.String,System.String,System.String)">
+            <summary>
+            The attribute constructor.
+            </summary>
+            <param name="type">The agent type.</param>
+            <param name="id">The agent id.</param>
+            <param name="name">The agent name.</param>
+        </member>
+        <member name="M:Ximura.Server.XimuraAppServerLoggerAttribute.#ctor(System.Type,System.String,System.String)">
+            <summary>
+            The attribute constructor.
+            </summary>
+            <param name="type">The agent type.</param>
+            <param name="id">The agent id.</param>
+            <param name="name">The agent name.</param>
         </member>
         <member name="T:Ximura.Server.SessionManager">
             <summary>
@@ -9085,6 +9251,68 @@
             This is the ID of the Ximura application.
             </summary>
         </member>
+        <member name="T:Ximura.Command.FSMExtenderCommand`6">
+            <summary>
+            The state extender command allows third parties to extend exisiting finite state machines through a modular architecture.
+            </summary>
+            <typeparam name="RQ">The main request RQRSFolder type.</typeparam>
+            <typeparam name="RS">The main response RQRSFolder type</typeparam>
+            <typeparam name="CBRQ">The callback request RQRSFolder type</typeparam>
+            <typeparam name="CBRS">The callback response RQRSFolder type</typeparam>
+            <typeparam name="CONF">The command configuration object.</typeparam>
+            <typeparam name="PERF">The command performance monitor object.</typeparam>
+        </member>
+        <member name="F:Ximura.Command.FSMExtenderCommand`6.mStateExtender">
+            <summary>
+            This is the state extender.
+            </summary>
+        </member>
+        <member name="M:Ximura.Command.FSMExtenderCommand`6.#ctor">
+            <summary>
+            This is the empty constructor
+            </summary>
+        </member>
+        <member name="M:Ximura.Command.FSMExtenderCommand`6.#ctor(System.ComponentModel.IContainer)">
+            <summary>
+            This is the constrcutor used by the Ximura Application model.
+            </summary>
+            <param name="container">The command container.</param>
+        </member>
+        <member name="M:Ximura.Command.FSMExtenderCommand`6.#ctor(System.Nullable{System.Guid},System.ComponentModel.IContainer)">
+            <summary>
+            This is the base constructor for a Ximura command
+            </summary>
+            <param name="commandID">This is the explicitly set command id, leave this as null if you want to use the default id.</param>
+            <param name="container">The container to be added to</param>
+        </member>
+        <member name="M:Ximura.Command.FSMExtenderCommand`6.ServicesReference">
+            <summary>
+            This override retrieves a reference to the IXimuraStateExtenderService object.
+            </summary>
+        </member>
+        <member name="M:Ximura.Command.FSMExtenderCommand`6.ServicesDereference">
+            <summary>
+            This override removes the reference to the IXimuraStateExtenderService object.
+            </summary>
+        </member>
+        <member name="M:Ximura.Command.FSMExtenderCommand.#ctor">
+            <summary>
+            This is the empty constructor
+            </summary>
+        </member>
+        <member name="M:Ximura.Command.FSMExtenderCommand.#ctor(System.ComponentModel.IContainer)">
+            <summary>
+            This is the constrcutor used by the Ximura Application model.
+            </summary>
+            <param name="container">The command container.</param>
+        </member>
+        <member name="M:Ximura.Command.FSMExtenderCommand.#ctor(System.Nullable{System.Guid},System.ComponentModel.IContainer)">
+            <summary>
+            This is the base constructor for a Ximura command
+            </summary>
+            <param name="commandID">This is the explicitly set command id, leave this as null if you want to use the default id.</param>
+            <param name="container">The container to be added to</param>
+        </member>
         <member name="T:Ximura.Server.SessionAgentStandard">
             <summary>
             The session manager is the default session manager that is responsible for system session management. 
@@ -9149,6 +9377,13 @@
             <summary>
             This override removes the IXimuraLoggingManager service to the control container.
             </summary>
+        </member>
+        <member name="M:Ximura.Server.LoggingManager.AgentCreate(Ximura.Server.XimuraServerAgentHolder)">
+            <summary>
+            This method creates the logging agent.
+            </summary>
+            <param name="holder">The agent holder.</param>
+            <returns>Returns the logging agent.</returns>
         </member>
         <member name="T:Ximura.Persistence.CDSCacheManagerBridge">
             <summary>
@@ -9425,6 +9660,35 @@
             <typeparam name="RS">The main response RQRSFolder type.</typeparam>
             <typeparam name="CONF">The command configuration object.</typeparam>
         </member>
+        <member name="T:Ximura.Command.AppCommandStandard`6">
+            <summary>
+            AppCommandStandard is the base command object that all standard commands should inherit from.
+            </summary>
+            <typeparam name="RQ">The main request RQRSFolder type.</typeparam>
+            <typeparam name="RS">The main response RQRSFolder type.</typeparam>
+            <typeparam name="CBRQ">The callback request RQRSFolder type.</typeparam>
+            <typeparam name="CBRS">The callback response RQRSFolder type.</typeparam>
+            <typeparam name="CONF">The command configuration object.</typeparam>
+            <typeparam name="PERF">The command performance monitor object.</typeparam>
+        </member>
+        <member name="M:Ximura.Command.AppCommandStandard`6.#ctor">
+            <summary>
+            This is the empty constructor
+            </summary>
+        </member>
+        <member name="M:Ximura.Command.AppCommandStandard`6.#ctor(System.ComponentModel.IContainer)">
+            <summary>
+            This is the constrcutor used by the Ximura Application model.
+            </summary>
+            <param name="container">The command container.</param>
+        </member>
+        <member name="M:Ximura.Command.AppCommandStandard`6.#ctor(System.Nullable{System.Guid},System.ComponentModel.IContainer)">
+            <summary>
+            This is the base constructor for a Ximura command
+            </summary>
+            <param name="commandID">This is the explicitly set command id, leave this as null if you want to use the default id.</param>
+            <param name="container">The container to be added to</param>
+        </member>
         <member name="M:Ximura.Command.AppCommandStandard`3.#ctor">
             <summary>
             This is the empty constructor
@@ -9558,6 +9822,48 @@
             The XimuraAppServerAttribute attribute is used to set friendly names and descriptions for
             the server which will be used in the server performance counters.
             </summary>
+        </member>
+        <member name="M:Ximura.Server.XimuraSessionManagerAttribute.#ctor(System.String)">
+            <summary>
+            The attribute constructor.
+            </summary>
+            <param name="type">The agent type.</param>
+        </member>
+        <member name="M:Ximura.Server.XimuraSessionManagerAttribute.#ctor(System.Type)">
+            <summary>
+            The attribute constructor.
+            </summary>
+            <param name="type">The agent type.</param>
+        </member>
+        <member name="M:Ximura.Server.XimuraSessionManagerAttribute.#ctor(System.String,System.String)">
+            <summary>
+            The attribute constructor.
+            </summary>
+            <param name="type">The agent type.</param>
+            <param name="id">The agent id.</param>
+        </member>
+        <member name="M:Ximura.Server.XimuraSessionManagerAttribute.#ctor(System.Type,System.String)">
+            <summary>
+            The attribute constructor.
+            </summary>
+            <param name="type">The agent type.</param>
+            <param name="id">The agent id.</param>
+        </member>
+        <member name="M:Ximura.Server.XimuraSessionManagerAttribute.#ctor(System.String,System.String,System.String)">
+            <summary>
+            The attribute constructor.
+            </summary>
+            <param name="type">The agent type.</param>
+            <param name="id">The agent id.</param>
+            <param name="name">The agent name.</param>
+        </member>
+        <member name="M:Ximura.Server.XimuraSessionManagerAttribute.#ctor(System.Type,System.String,System.String)">
+            <summary>
+            The attribute constructor.
+            </summary>
+            <param name="type">The agent type.</param>
+            <param name="id">The agent id.</param>
+            <param name="name">The agent name.</param>
         </member>
         <member name="T:Ximura.Command.StateMetadataContainer`1">
             <summary>
@@ -10006,6 +10312,28 @@
             Name/Value Collection of AppSettings
             </summary>
         </member>
+        <member name="T:Ximura.Server.XimuraAppServerGatewayAttribute">
+            <summary>
+            The XimuraAppServerGatewayAttribute attribute is used to set friendly names and descriptions for
+            the server which will be used in the server gateway agents.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.XimuraAppServerGatewayAttribute.#ctor(System.String,System.String,System.String)">
+            <summary>
+            The attribute constructor.
+            </summary>
+            <param name="type">The agent type.</param>
+            <param name="id">The agent id.</param>
+            <param name="name">The agent name.</param>
+        </member>
+        <member name="M:Ximura.Server.XimuraAppServerGatewayAttribute.#ctor(System.Type,System.String,System.String)">
+            <summary>
+            The attribute constructor.
+            </summary>
+            <param name="type">The agent type.</param>
+            <param name="id">The agent id.</param>
+            <param name="name">The agent name.</param>
+        </member>
         <member name="T:Ximura.Persistence.ICDSSettingsService">
             <summary>
             This interface is used to share CDS settings for data connections
@@ -10425,6 +10753,37 @@
             interval.
             </summary>
         </member>
+        <member name="T:Ximura.Server.AgentInvalidTypeException">
+            <summary>
+            This exception is thrown be the AgentManagers when the type passed through the agent attributes
+            does not match the required interface or base class requirements.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.AgentInvalidTypeException.#ctor">
+            <summary>
+            Initializes a new instance of the exception.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.AgentInvalidTypeException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the exception.
+            </summary>
+            <param name="message">The error message.</param>
+        </member>
+        <member name="M:Ximura.Server.AgentInvalidTypeException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the exception.
+            </summary>
+            <param name="message">The error message.</param>
+            <param name="ex">The base exception.</param>
+        </member>
+        <member name="M:Ximura.Server.AgentInvalidTypeException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            This exception is used for deserialization.
+            </summary>
+            <param name="info">The serialization info.</param>
+            <param name="context">The serialization context.</param>
+        </member>
         <member name="M:Ximura.Server.StorageManager.#ctor">
             <summary>
             This is the default constructor.
@@ -10435,6 +10794,13 @@
             The Ximura Application component model constructor
             </summary>
             <param name="container">The container that the services should be added to.</param>
+        </member>
+        <member name="M:Ximura.Server.StorageManager.AgentCreate(Ximura.Server.XimuraServerAgentHolder)">
+            <summary>
+            This override creates the storage agents.
+            </summary>
+            <param name="holder">The agent holder.</param>
+            <returns>Returns the storage agent.</returns>
         </member>
         <member name="M:Ximura.Server.StorageManager.ServicesProvide">
             <summary>

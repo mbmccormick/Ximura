@@ -26,38 +26,47 @@ using System.Security.Principal;
 
 using Ximura;
 using Ximura.Helper;
+using RH=Ximura.Helper.Reflection;
 using Ximura.Server;
 using Ximura.Command;
 #endregion // using
 namespace Ximura.Server
 {
-    [XimuraAppModule("834F904B-21B2-4721-ACCA-F2B3D67FF311", "StorageManager")]
-    public class StorageManager : 
-        AppServerAgentManager<StorageAgentBase, StorageManagerConfiguration, StorageManagerPerformance>, IXimuraStorageManagerService
+    /// <summary>
+    /// The gateway manager manages interactions with the external agents that interact with the system.
+    /// </summary>
+    [XimuraAppModule("8A1A0F0D-A903-4f7a-BC3C-B697D971C517", "GatewayManager")]
+    public class GatewayManager :
+        AppServerAgentManager<IXimuraGatewayAgent, GatewayManagerConfiguration, GatewayManagerPerformance>, IXimuraGatewayManagerService
     {
-		#region Constructors
-		/// <summary>
-		/// This is the default constructor.
-		/// </summary>
-		public StorageManager():this(null){}
-		/// <summary>
-		/// The Ximura Application component model constructor
-		/// </summary>
-		/// <param name="container">The container that the services should be added to.</param>
-        public StorageManager(IContainer container): base(container)
-		{
-		}
-		#endregion
-
+        #region Constructors
         /// <summary>
-        /// This override creates the storage agents.
+        /// This is the default constructor.
+        /// </summary>
+        public GatewayManager() : this((IContainer)null) { }
+        /// <summary>
+        /// The Ximura Application component model constructor
+        /// </summary>
+        /// <param name="container">The container that the services should be added to.</param>
+        public GatewayManager(IContainer container) : base(container) { }
+        #endregion
+
+        #region AgentCreate(XimuraServerAgentHolder holder)
+        /// <summary>
+        /// This method is used to create the Gateway agent.
         /// </summary>
         /// <param name="holder">The agent holder.</param>
-        /// <returns>Returns the storage agent.</returns>
-        protected override StorageAgentBase AgentCreate(XimuraServerAgentHolder holder)
+        /// <returns>Returns the gateway agent.</returns>
+        protected override IXimuraGatewayAgent AgentCreate(XimuraServerAgentHolder holder)
         {
-            throw new NotImplementedException();
+            if (!RH.ValidateInterface(holder.AgentType, typeof(IXimuraGatewayAgent)))
+                throw new AgentInvalidTypeException(
+                    string.Format("The agent type '{0}' does not implement the IXimuraGatewayAgent interface", holder.AgentType.Name));
+
+            return (IXimuraGatewayAgent)RH.CreateObjectFromType(holder.AgentType);
         }
+        #endregion // AgentCreate(XimuraServerAgentHolder holder)
+
 
         #region ServicesProvide/ServicesRemove
         /// <summary>
@@ -67,14 +76,14 @@ namespace Ximura.Server
         {
             base.ServicesProvide();
 
-            AddService<IXimuraStorageManagerService>(this);
+            AddService<IXimuraGatewayManagerService>(this);
         }
         /// <summary>
         /// This override removes the IXimuraLoggingManager service to the control container.
         /// </summary>
         protected override void ServicesRemove()
         {
-            RemoveService<IXimuraStorageManagerService>();
+            RemoveService<IXimuraGatewayManagerService>();
 
             base.ServicesRemove();
         }

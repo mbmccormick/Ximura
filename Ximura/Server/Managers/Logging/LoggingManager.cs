@@ -71,9 +71,16 @@ namespace Ximura.Server
         }
         #endregion // ServicesProvide/ServicesRemove
 
+        #region AgentCreate(XimuraServerAgentHolder holder)
+        /// <summary>
+        /// This method creates the logging agent.
+        /// </summary>
+        /// <param name="holder">The agent holder.</param>
+        /// <returns>Returns the logging agent.</returns>
         protected override LoggerAgentBase AgentCreate(XimuraServerAgentHolder holder)
         {
             return (LoggerAgentBase)RH.CreateObjectFromType(holder.AgentType);
         }
+        #endregion // AgentCreate(XimuraServerAgentHolder holder)
     }
 }

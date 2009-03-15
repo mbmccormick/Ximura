@@ -10,7 +10,6 @@
   </ximura:entity>
   
   <commandconfig>
-    <id></id>
     <name></name>
     <description></description>
     <enabled>true</enabled>

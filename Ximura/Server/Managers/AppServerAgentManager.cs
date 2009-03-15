@@ -37,11 +37,11 @@ using CH = Ximura.Helper.Common;
 namespace Ximura.Server
 {
     /// <summary>
-    /// This class provides common fucntionality for agent based process services.
+    /// This class provides common functionality for agent based process services.
     /// </summary>
-    /// <typeparam name="AGENT"></typeparam>
-    /// <typeparam name="CONF"></typeparam>
-    /// <typeparam name="PERF"></typeparam>
+    /// <typeparam name="AGENT">The agent type.</typeparam>
+    /// <typeparam name="CONF">The agent manager configuration.</typeparam>
+    /// <typeparam name="PERF">The performance counter type.</typeparam>
     public abstract class AppServerAgentManager<AGENT, CONF, PERF> : 
         AppServerProcessBase<CONF, PERF>, IXimuraAppServerAgentService
         where AGENT : class, IXimuraServerAgent
@@ -54,7 +54,6 @@ namespace Ximura.Server
         /// </summary>
         protected Dictionary<string, AGENT> mAgents;
         #endregion // Declarations
-
         #region Constructors
         /// <summary>
         /// This is the default constructor.
@@ -76,17 +75,26 @@ namespace Ximura.Server
         /// This method creates an agent based on the type passed in the holder and adds it to the agent collection.
         /// </summary>
         /// <param name="holder">The agent metadata holder.</param>
-        public void AgentAdd(XimuraServerAgentHolder holder)
+        public virtual void AgentAdd(XimuraServerAgentHolder holder)
         {
             AGENT agent = AgentCreate(holder);
 
-            mAgents.Add(holder.AgentID, agent);
+            AgentAdd(agent, holder.AgentID);
+        }
+        /// <summary>
+        /// This method adds an agent to the collection.
+        /// </summary>
+        /// <param name="agent">The system agent.</param>
+        /// <param name="id">The agent id.</param>
+        public virtual void AgentAdd(AGENT agent, string id)
+        {
+            mAgents.Add(id, agent);
         }
         /// <summary>
         /// This method removes the agent from the service.
         /// </summary>
         /// <param name="holder">The agent metadata holder.</param>
-        public void AgentRemove(XimuraServerAgentHolder holder)
+        public virtual void AgentRemove(XimuraServerAgentHolder holder)
         {
             if (mAgents.ContainsKey(holder.AgentID))
             {

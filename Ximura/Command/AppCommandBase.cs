@@ -32,16 +32,49 @@ using RH = Ximura.Helper.Reflection;
 #endregion // using
 namespace Ximura.Command
 {
-	/// <summary>
-	/// AppCommandBase is the base object for an Application command.
-	/// </summary>
-	//[ToolboxItemFilter("Ximura.Server.AppServer")]
-	//[Designer(typeof(AppCommandDesigner))]
-	[ToolboxBitmap(typeof(XimuraResourcePlaceholder),"Ximura.Resources.XimuraComponent.bmp")]
-    public class AppCommandBase<CONF, PERF> : AppBase<CONF, PERF>, IXimuraCommandBase
+    /// <summary>
+    /// AppCommandBase is the base object for an Application command.
+    /// </summary>
+    /// <typeparam name="CONF">The command configuration object.</typeparam>
+    /// <typeparam name="PERF">The command performance monitor object.</typeparam>
+    public class AppCommandBase<CONF, PERF> : AppCommandBase<CONF, PERF, CONF>
         where CONF : CommandConfiguration, new()
         where PERF : CommandPerformance, new()
-	{
+    {
+        #region Constructor
+        /// <summary>
+        /// This is the default constructor
+        /// </summary>
+        public AppCommandBase() : this(null) { }
+        /// <summary>
+        /// This is the base constructor for a Ximura command
+        /// </summary>
+        /// <param name="container">The container to be added to</param>
+        public AppCommandBase(System.ComponentModel.IContainer container) : base(container) { }
+        /// <summary>
+        /// This is the base constructor for a Ximura command
+        /// </summary>
+        /// <param name="commandID">This is the explicitly set command id</param>
+        /// <param name="container">The container to be added to</param>
+        public AppCommandBase(Guid? commandID, System.ComponentModel.IContainer container)
+            : base(container)
+        {
+        }
+        #endregion
+    }
+
+    /// <summary>
+    /// AppCommandBase is the base object for an Application command.
+    /// </summary>
+    /// <typeparam name="CONF">The command configuration object.</typeparam>
+    /// <typeparam name="PERF">The command performance monitor object.</typeparam>
+    /// <typeparam name="EXTCONF">The external command object that contains a set of user configurable settings.</typeparam>
+	[ToolboxBitmap(typeof(XimuraResourcePlaceholder),"Ximura.Resources.XimuraComponent.bmp")]
+    public class AppCommandBase<CONF, PERF, EXTCONF> : AppBase<CONF, PERF, EXTCONF>, IXimuraCommandBase
+        where CONF : CommandConfiguration, new()
+        where PERF : CommandPerformance, new()
+        where EXTCONF : CommandConfiguration, new()
+    {
 		#region Declarations
 
         private XimuraAppModuleAttribute m_AppCommandAttribute = null;
@@ -589,72 +622,4 @@ namespace Ximura.Command
         }
         #endregion // CommandBridgeStop()
     }
-
-    #region CommandDefinition
-	/// <summary>
-    /// This helper class is used to pass the command definition without passing a reference to the command.
-    /// </summary>
-    public class CommandDefinition : IXimuraCommand
-    {
-        #region Declarations
-        private Guid mCommandID;
-        private string mCommandName;
-        private string mCommandDescription;
-        #endregion // Declarations
-
-        #region Constructor
-        /// <summary>
-        /// This constructor copies the command properties in to the helper class.
-        /// </summary>
-        /// <param name="command">The command whose definition needs to be encapsulated.</param>
-        public CommandDefinition(IXimuraCommand command)
-        {
-            mCommandID = command.CommandID;
-            mCommandName = command.CommandName;
-            mCommandDescription = command.CommandDescription;
-        }
-        #endregion // Constructor
-
-        #region IXimuraCommand Members
-        /// <summary>
-        /// The command unique identifier.
-        /// </summary>
-        public Guid CommandID
-        {
-            get { return mCommandID; }
-        }
-        /// <summary>
-        /// The command name. This is used in to the config file to retrieve the
-        /// settings.
-        /// </summary>
-        public string CommandName
-        {
-            get
-            {
-                return mCommandName;
-            }
-            set
-            {
-                throw new NotImplementedException("The method or operation is not implemented.");
-            }
-        }
-        /// <summary>
-        /// The command friendly description.
-        /// </summary>
-        public string CommandDescription
-        {
-            get
-            {
-                return mCommandDescription;
-            }
-            set
-            {
-                throw new NotImplementedException("The method or operation is not implemented.");
-            }
-        }
-
-        #endregion
-    }
- 
-	#endregion
 }

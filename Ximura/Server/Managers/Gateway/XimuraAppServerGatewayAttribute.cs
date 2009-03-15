@@ -10,7 +10,7 @@
 //     Paul Stancer - initial implementation
 // *******************************************************************************
 #endregion
-﻿#region using
+#region using
 using System;
 
 using Ximura;
@@ -22,14 +22,12 @@ using RH = Ximura.Helper.Reflection;
 namespace Ximura.Server
 {
     /// <summary>
-    /// The XimuraAppServerAttribute attribute is used to set friendly names and descriptions for
-    /// the server which will be used in the server performance counters.
+    /// The XimuraAppServerGatewayAttribute attribute is used to set friendly names and descriptions for
+    /// the server which will be used in the server gateway agents.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
-    public sealed class XimuraAppServerLoggerAttribute : XimuraAppServerAgentAttributeBase
+    public sealed class XimuraAppServerGatewayAttribute : XimuraAppServerAgentAttributeBase
     {
-        #region Declarations
-        #endregion
         #region Constructors
         /// <summary>
         /// The attribute constructor.
@@ -37,7 +35,7 @@ namespace Ximura.Server
         /// <param name="type">The agent type.</param>
         /// <param name="id">The agent id.</param>
         /// <param name="name">The agent name.</param>
-        public XimuraAppServerLoggerAttribute(string type, string id, string name)
+        public XimuraAppServerGatewayAttribute(string type, string id, string name)
             : base(RH.CreateTypeFromString(type), id, name)
         { }
         /// <summary>
@@ -46,34 +44,10 @@ namespace Ximura.Server
         /// <param name="type">The agent type.</param>
         /// <param name="id">The agent id.</param>
         /// <param name="name">The agent name.</param>
-        public XimuraAppServerLoggerAttribute(Type type, string id, string name)
+        public XimuraAppServerGatewayAttribute(Type type, string id, string name)
             : base(type, id, name)
         {
         }
-        #endregion
-
-        #region IXimuraLoggerSettings Members
-
-        public int GetSwitchValue(string Type)
-        {
-            return 0;
-        }
-
-        public int LogLevel
-        {
-            get { return 0; }
-        }
-
-        #endregion
-
-        #region IXimuraLoggerSettings Members
-
-
-        public string GetSetting(string Type)
-        {
-            throw new NotImplementedException();
-        }
-
         #endregion
     }
 }

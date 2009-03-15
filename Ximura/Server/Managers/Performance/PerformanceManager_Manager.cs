@@ -43,28 +43,32 @@ namespace Ximura.Server
 
         protected class PerformanceCounterCollection: IXimuraPerformanceManager
         {
+            List<IXimuraPerformanceCounterCollection> mCollection;
+
             protected internal PerformanceCounterCollection()
             {
-
+                mCollection = new List<IXimuraPerformanceCounterCollection>();
             }
 
             #region IXimuraPerformanceManager Members
 
             public void PerformanceCounterCollectionRegister(IXimuraPerformanceCounterCollection collection)
             {
-                throw new NotImplementedException();
+                mCollection.Add(collection);
+                //throw new NotImplementedException();
             }
 
             public void PerformanceCounterCollectionUnregister(IXimuraPerformanceCounterCollection collection)
             {
-                throw new NotImplementedException();
+                mCollection.Remove(collection);
+                //throw new NotImplementedException();
             }
 
             #endregion
 
             internal void Clear()
             {
-
+                mCollection.Clear();
             }
         }
     }

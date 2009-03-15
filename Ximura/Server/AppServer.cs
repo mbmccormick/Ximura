@@ -42,6 +42,9 @@ namespace Ximura.Server
     /// <summary>
     /// The AppServerBase class is the class that all server applications derive from.
     /// </summary>
+    /// <typeparam name="CONFSYS">The server system configuration.</typeparam>
+    /// <typeparam name="CONFCOM">The server command configuration.</typeparam>
+    /// <typeparam name="PERF">The performance settings for the server.</typeparam>
     [ToolboxBitmap(typeof(XimuraResourcePlaceholder), "Ximura.Resources.AppServer.bmp")]
     //[Designer("Ximura.Design.Applications.AppServerDesigner, XimuraDesign")]
     public partial class AppServer<CONFSYS, CONFCOM, PERF> : AppBase<CONFCOM, PERF>, IXimuraAppServer
@@ -52,7 +55,6 @@ namespace Ximura.Server
         #region Declarations
         #region Containers/Service containers
         private System.ComponentModel.IContainer components = null;
-
         #endregion // Containers
         #region Application Components
         private IXimuraSessionManagerRegistration mSecurityMan = null;

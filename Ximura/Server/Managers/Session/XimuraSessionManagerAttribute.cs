@@ -29,25 +29,48 @@ namespace Ximura.Server
     public sealed class XimuraSessionManagerAttribute : XimuraAppServerAgentAttributeBase
     {
         #region Constructor
-        public XimuraSessionManagerAttribute(string sessionManagerType)
-            : base(sessionManagerType, null, null){}
-
-        public XimuraSessionManagerAttribute(Type sessionManagerType)
-            : base(sessionManagerType, null, null){}
-
-        public XimuraSessionManagerAttribute(string sessionManagerType, string ID)
-            : base(sessionManagerType, ID, null) { }
-
-        public XimuraSessionManagerAttribute(Type sessionManagerType, string ID)
-            : base(sessionManagerType, ID, null) { }
-
-        public XimuraSessionManagerAttribute(string sessionManagerType, string ID, string Name)
-            : base(sessionManagerType, ID, Name) { }
-
-        public XimuraSessionManagerAttribute(Type sessionManagerType, string ID, string Name)
-            : base(sessionManagerType, ID, Name) { }
-
+        /// <summary>
+        /// The attribute constructor.
+        /// </summary>
+        /// <param name="type">The agent type.</param>
+        public XimuraSessionManagerAttribute(string type)
+            : base(type, null, null) { }
+        /// <summary>
+        /// The attribute constructor.
+        /// </summary>
+        /// <param name="type">The agent type.</param>
+        public XimuraSessionManagerAttribute(Type type)
+            : base(type, null, null) { }
+        /// <summary>
+        /// The attribute constructor.
+        /// </summary>
+        /// <param name="type">The agent type.</param>
+        /// <param name="id">The agent id.</param>
+        public XimuraSessionManagerAttribute(string type, string id)
+            : base(type, id, null) { }
+        /// <summary>
+        /// The attribute constructor.
+        /// </summary>
+        /// <param name="type">The agent type.</param>
+        /// <param name="id">The agent id.</param>
+        public XimuraSessionManagerAttribute(Type type, string id)
+            : base(type, id, null) { }
+        /// <summary>
+        /// The attribute constructor.
+        /// </summary>
+        /// <param name="type">The agent type.</param>
+        /// <param name="id">The agent id.</param>
+        /// <param name="name">The agent name.</param>
+        public XimuraSessionManagerAttribute(string type, string id, string name)
+            : base(type, id, name) { }
+        /// <summary>
+        /// The attribute constructor.
+        /// </summary>
+        /// <param name="type">The agent type.</param>
+        /// <param name="id">The agent id.</param>
+        /// <param name="name">The agent name.</param>
+        public XimuraSessionManagerAttribute(Type type, string id, string name)
+            : base(type, id, name) { }
         #endregion // Constructor
-
     }
 }

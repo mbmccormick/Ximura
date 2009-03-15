@@ -201,6 +201,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Command\FiniteStateMachine.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Command\Extenders\FSMExtenderCommand.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Command\Helper\CJobSignature.cs" />
+    <Compile Include="Command\Helper\CommandDefinition.cs" />
     <Compile Include="Command\Interfaces\IXimuraCommandRQ.cs" />
     <Compile Include="Command\Permission\CommandPermission.cs" />
     <Compile Include="Command\Permission\CommandPermissionSet.cs" />
@@ -220,6 +228,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Server\AppServer_Control.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Server\AppServer_Gateway.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Server\AppServer_Job.cs">
@@ -243,6 +254,15 @@
     <Compile Include="Server\AppServer_Threading.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Server\Managers\AgentInvalidTypeException.cs" />
+    <Compile Include="Server\Managers\Gateway\Configuration\GatewayManagerConfiguration.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Server\Managers\Gateway\GatewayManager.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Server\Managers\Gateway\Performance\GatewayManagerPerformance.cs" />
+    <Compile Include="Server\Managers\Gateway\XimuraAppServerGatewayAttribute.cs" />
     <Compile Include="Server\Managers\Logging\XimuraAppTrace.cs" />
     <Compile Include="Server\Managers\Performance\Agents\Configuration\PerformanceAgentConfiguration.cs">
       <SubType>Component</SubType>
@@ -255,9 +275,15 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Server\Managers\Session\Agents\Performance\SessionAgentPerformance.cs" />
-    <Compile Include="Server\Managers\Storage\Agents\FileSystem\FileSystemStorageAgent.cs" />
-    <Compile Include="Server\Managers\Storage\Agents\Resource\ResourceStorageAgent.cs" />
-    <Compile Include="Server\Managers\Storage\Agents\SQLServer\SQLServerStorageAgent.cs" />
+    <Compile Include="Server\Managers\Storage\Agents\FileSystem\FileSystemStorageAgent.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Server\Managers\Storage\Agents\Resource\ResourceStorageAgent.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Server\Managers\Storage\Agents\SQLServer\SQLServerStorageAgent.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Server\Managers\XimuraAppServerAgentAttributeBase.cs" />
     <Compile Include="Server\Configuration\XimuraAppServerConfigurationAttribute.cs" />
     <Compile Include="Server\Managers\Performance\XimuraAppServerPerformanceAgentAttribute.cs" />
@@ -298,13 +324,9 @@
     <Compile Include="Command\Extenders\CommandMetadataExtender.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Command\AppCommandContainer.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Command\Configuration\CommandContainerConfiguration.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Command\Performance\CommandContainerPerformance.cs" />
     <Compile Include="Server\Exceptions\AppServerException.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -346,9 +368,6 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Command\Extenders\StateExtenderService.cs" />
-    <Compile Include="Command\FSMExtenderCommand.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Command\Interfaces\IXimuraStateExtender.cs" />
     <Compile Include="Command\Interfaces\IXimuraStateExtenderService.cs" />
     <Compile Include="Persistence\CDSHelper\CDSCallback.cs" />
@@ -679,9 +698,6 @@
     <Compile Include="Command\Extenders\StateMetadataContainer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Command\FSM.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Command\FSMCompletionJobContract.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -801,10 +817,6 @@
       <DependentUpon>XimuraComponentService.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Command\FSM.resx">
-      <DependentUpon>FSM.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppServer.bmp" />
     <EmbeddedResource Include="Resources\CacheManager.bmp" />
     <EmbeddedResource Include="Resources\CommandBase.bmp" />
@@ -836,6 +848,10 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Command\Configuration\CommandConfiguration_Default.xml" />
+    <EmbeddedResource Include="Command\FiniteStateMachine.resx">
+      <DependentUpon>FiniteStateMachine.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Persistence\CDS\Configuration\CDSConfiguration_Default.xml" />
     <EmbeddedResource Include="Server\Managers\Logging\Configuration\LoggingManagerConfiguration_Default.xml" />
     <Content Include="Properties\epl-v10.html" />
@@ -868,9 +884,8 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Server\Managers\Gateway\Agents\" />
     <Folder Include="Server\Managers\Session\Agents\Configuration\" />
-    <Folder Include="Server\Managers\Storage\Agents\Configuration\" />
-    <Folder Include="Server\Managers\Storage\Agents\Performance\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -32,14 +32,44 @@ using RH = Ximura.Helper.Reflection;
 #endregion // using
 namespace Ximura
 {
+    #region AppBase<CONF, PERF>
     /// <summary>
     /// This is the base class for both command and application objects.
     /// </summary>
     /// <typeparam name="CONF">The configuration class.</typeparam>
     /// <typeparam name="PERF">The performance class.</typeparam>
-    public class AppBase<CONF, PERF> : XimuraComponentService
+    /// <typeparam name="PERF">The configuration class.</typeparam>
+    public class AppBase<CONF, PERF> : AppBase<CONF, PERF, CONF>
         where CONF : ConfigurationBase, new()
         where PERF : PerformanceCounterCollection, new()
+    {
+        #region Constructor
+        /// <summary>
+        /// This is the default constructor
+        /// </summary>
+        public AppBase() : this(null) { }
+        /// <summary>
+        /// This is the base constructor for a Ximura command
+        /// </summary>
+        /// <param name="container">The container to be added to</param>
+        public AppBase(System.ComponentModel.IContainer container)
+            : base(container)
+        {
+        }
+        #endregion
+    }
+    #endregion // AppBase<CONF, PERF>
+
+    /// <summary>
+    /// This is the base class for both command and application objects.
+    /// </summary>
+    /// <typeparam name="CONF">The configuration class.</typeparam>
+    /// <typeparam name="PERF">The performance class.</typeparam>
+    /// <typeparam name="EXTCONF">The external configuration class.</typeparam>
+    public class AppBase<CONF, PERF, EXTCONF> : XimuraComponentService
+        where CONF : ConfigurationBase, new()
+        where PERF : PerformanceCounterCollection, new()
+        where EXTCONF : ConfigurationBase, new() //External Configuration which contains the settings for the internal commands
     {
         #region Declarations
         private IContainer components = null;
@@ -119,7 +149,18 @@ namespace Ximura
             get;
             set;
         }
-        #endregion // CommandConfig
+        #endregion
+        #region ConfigurationExternal
+        /// <summary>
+        /// This is the external configuration that contains the settings for the main configuration.
+        /// </summary>
+        protected virtual EXTCONF ConfigurationExternal
+        {
+            get;
+            set;
+        }
+        #endregion
+
         #region ConfigurationStart()
         /// <summary>
         /// This method creates and registers the configuration data object.
@@ -127,6 +168,7 @@ namespace Ximura
         protected virtual bool ConfigurationStart()
         {
             Configuration = new CONF();
+            ConfigurationExternal = null;
 
             return ConfigurationLoad(Configuration);
         }
@@ -148,6 +190,7 @@ namespace Ximura
         protected virtual void ConfigurationStop()
         {
             Configuration = null;
+            ConfigurationExternal = null;
         }
         #endregion
         #region ConfigurationManager

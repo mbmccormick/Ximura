@@ -135,13 +135,56 @@ namespace Ximura.Command
     /// <typeparam name="CBRS">The callback response RQRSFolder type.</typeparam>
     /// <typeparam name="CONF">The command configuration object.</typeparam>
     /// <typeparam name="PERF">The command performance monitor object.</typeparam>
-    public class AppCommandStandard<RQ, RS, CBRQ, CBRS, CONF, PERF> : AppCommandBase<CONF, PERF>, IXimuraCommandRQ
+    public class AppCommandStandard<RQ, RS, CBRQ, CBRS, CONF, PERF> : AppCommandStandard<RQ, RS, CBRQ, CBRS, CONF, PERF, CONF>
         where RQ : RQRSFolder, new() //Request
         where RS : RQRSFolder, new() //Response
         where CBRQ : RQRSFolder, new() //Callback Request
         where CBRS : RQRSFolder, new() //Callback Response
         where CONF : CommandConfiguration, new()
         where PERF : CommandPerformance, new()
+    {
+        #region Constructors
+        /// <summary>
+        /// This is the empty constructor
+        /// </summary>
+        public AppCommandStandard() : this((IContainer)null) { }
+        /// <summary>
+        /// This is the constrcutor used by the Ximura Application model.
+        /// </summary>
+        /// <param name="container">The command container.</param>
+        public AppCommandStandard(System.ComponentModel.IContainer container)
+            : base(container)
+        {
+        }
+        /// <summary>
+        /// This is the base constructor for a Ximura command
+        /// </summary>
+        /// <param name="commandID">This is the explicitly set command id, leave this as null if you want to use the default id.</param>
+        /// <param name="container">The container to be added to</param>
+        public AppCommandStandard(Guid? commandID, System.ComponentModel.IContainer container) : base(commandID, container) { }
+        #endregion
+    }
+    #endregion
+
+    #region AppCommandStandard<RQ, RS, CBRQ, CBRS, CONF, PERF>
+    /// <summary>
+    /// AppCommandStandard is the base command object that all standard commands should inherit from.
+    /// </summary>
+    /// <typeparam name="RQ">The main request RQRSFolder type.</typeparam>
+    /// <typeparam name="RS">The main response RQRSFolder type.</typeparam>
+    /// <typeparam name="CBRQ">The callback request RQRSFolder type.</typeparam>
+    /// <typeparam name="CBRS">The callback response RQRSFolder type.</typeparam>
+    /// <typeparam name="CONF">The command configuration object.</typeparam>
+    /// <typeparam name="PERF">The command performance monitor object.</typeparam>
+    /// <typeparam name="EXTCONF">The external command object that contains a set of user configurable settings.</typeparam>
+    public class AppCommandStandard<RQ, RS, CBRQ, CBRS, CONF, PERF, EXTCONF> : AppCommandBase<CONF, PERF, EXTCONF>, IXimuraCommandRQ
+        where RQ : RQRSFolder, new() //Request
+        where RS : RQRSFolder, new() //Response
+        where CBRQ : RQRSFolder, new() //Callback Request
+        where CBRS : RQRSFolder, new() //Callback Response
+        where CONF : CommandConfiguration, new()
+        where PERF : CommandPerformance, new()
+        where EXTCONF : CommandConfiguration, new() //Internal Configuration which contains the settings for the internal commands
     {
 		#region Declarations
         private System.Threading.Timer pickUpTimer = null;

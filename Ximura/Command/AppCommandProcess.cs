@@ -123,7 +123,6 @@ namespace Ximura.Command
 		#endregion
     }
     #endregion // AppCommandProcess<RQ, RS, CONF>
-
     #region AppCommandProcess<RQ, RS, CBRQ, CBRS, CONF, PERF>
     /// <summary>
     /// AppCommandProcess is the base class for Command that require a system session.
@@ -134,14 +133,58 @@ namespace Ximura.Command
     /// <typeparam name="CBRS">The callback response RQRSFolder type.</typeparam>
     /// <typeparam name="CONF">The command configuration object.</typeparam>
     /// <typeparam name="PERF">The command performance monitor object.</typeparam>
-    public class AppCommandProcess<RQ, RS, CBRQ, CBRS, CONF, PERF> : 
-        AppCommandStandard<RQ, RS, CBRQ, CBRS, CONF, PERF>, IXimuraCommandProcess
+    public class AppCommandProcess<RQ, RS, CBRQ, CBRS, CONF, PERF> :
+        AppCommandProcess<RQ, RS, CBRQ, CBRS, CONF, PERF, CONF>, IXimuraCommandProcess
         where RS : RQRSFolder, new()
         where RQ : RQRSFolder, new()
         where CBRQ : RQRSFolder, new()
         where CBRS : RQRSFolder, new()
         where CONF : CommandConfiguration, new()
         where PERF : CommandPerformance, new()
+    {
+        #region Constructors
+        /// <summary>
+        /// This is the empty constructor
+        /// </summary>
+        public AppCommandProcess() : this((IContainer)null) { }
+        /// <summary>
+        /// This is the constrcutor used by the Ximura Application model.
+        /// </summary>
+        /// <param name="container">The command container.</param>
+        public AppCommandProcess(System.ComponentModel.IContainer container)
+            : base(container)
+        {
+        }
+        /// <summary>
+        /// This is the base constructor for a Ximura command
+        /// </summary>
+        /// <param name="commandID">This is the explicitly set command id, leave this as null if you want to use the default id.</param>
+        /// <param name="container">The container to be added to</param>
+        public AppCommandProcess(Guid? commandID, System.ComponentModel.IContainer container) : base(commandID, container) { }
+        #endregion
+    }
+    #endregion // AppCommandProcess<RQ, RS, CBRQ, CBRS, CONF, PERF>
+
+    #region AppCommandProcess<RQ, RS, CBRQ, CBRS, CONF, PERF, EXTCONF>
+    /// <summary>
+    /// AppCommandProcess is the base class for Command that require a system session.
+    /// </summary>
+    /// <typeparam name="RQ">The main request RQRSFolder type.</typeparam>
+    /// <typeparam name="RS">The main response RQRSFolder type.</typeparam>
+    /// <typeparam name="CBRQ">The callback request RQRSFolder type.</typeparam>
+    /// <typeparam name="CBRS">The callback response RQRSFolder type.</typeparam>
+    /// <typeparam name="CONF">The command configuration object.</typeparam>
+    /// <typeparam name="PERF">The command performance monitor object.</typeparam>
+    /// <typeparam name="EXTCONF">The external configuration object type which contains the settings for the internal commands.</typeparam>
+    public class AppCommandProcess<RQ, RS, CBRQ, CBRS, CONF, PERF, EXTCONF> :
+        AppCommandStandard<RQ, RS, CBRQ, CBRS, CONF, PERF, EXTCONF>, IXimuraCommandProcess
+        where RS : RQRSFolder, new()
+        where RQ : RQRSFolder, new()
+        where CBRQ : RQRSFolder, new()
+        where CBRS : RQRSFolder, new()
+        where CONF : CommandConfiguration, new()
+        where PERF : CommandPerformance, new()
+        where EXTCONF : CommandConfiguration, new() //Internal Configuration which contains the settings for the internal commands
     {
 		#region Declarations
 
@@ -166,21 +209,21 @@ namespace Ximura.Command
 		/// <summary>
 		/// This is the empty constructor
 		/// </summary>
-		public AppCommandProcess():this((IContainer)null){}
+		public AppCommandProcess()
+            : this((IContainer)null) { }
 		/// <summary>
 		/// This is the constrcutor used by the Ximura Application model.
 		/// </summary>
 		/// <param name="container">The command container.</param>
         public AppCommandProcess(System.ComponentModel.IContainer container)
-            : base(container)
-		{
-		}
+            : base(container) { }
         /// <summary>
         /// This is the base constructor for a Ximura command
         /// </summary>
         /// <param name="commandID">This is the explicitly set command id, leave this as null if you want to use the default id.</param>
         /// <param name="container">The container to be added to</param>
-        public AppCommandProcess(Guid? commandID, System.ComponentModel.IContainer container) : base(commandID, container) { }
+        public AppCommandProcess(Guid? commandID, System.ComponentModel.IContainer container) 
+            : base(commandID, container) { }
 		#endregion
 
 		#region InternalStart/InternalStop

@@ -87,8 +87,6 @@ namespace Ximura.Server
             base.InternalStop();
         }
         #endregion // InternalStop()
-
-
         #region ServicesProvide/ServicesRemove
         /// <summary>
         /// This override adds the IXimuraSessionManagerService service to the control container.
@@ -137,6 +135,10 @@ namespace Ximura.Server
         /// <returns></returns>
         protected override IXimuraSessionAgent AgentCreate(XimuraServerAgentHolder holder)
         {
+            if (!RH.ValidateInterface(holder.AgentType, typeof(IXimuraSessionAgent)))
+                throw new AgentInvalidTypeException(
+                    string.Format("The agent type '{0}' does not implement the IXimuraSessionAgent interface", holder.AgentType.Name));
+
             IXimuraSessionAgent agent = (IXimuraSessionAgent)RH.CreateObjectFromType(holder.AgentType,new object[]{parentContainer});
             return agent;
         }

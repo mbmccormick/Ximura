@@ -21,19 +21,29 @@ using RH = Ximura.Helper.Reflection;
 #endregion // using
 namespace Ximura.Server
 {
+    /// <summary>
+    /// The agent is used to set the performance agents for the application.
+    /// </summary>
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
     public class XimuraAppServerPerformanceAgentAttribute : XimuraAppServerAgentAttributeBase
     {
         #region Constructors
-
-        public XimuraAppServerPerformanceAgentAttribute(string AgentType, string AgentID, string AgentName)
-            : base(RH.CreateTypeFromString(AgentType), AgentID, AgentName){ }
-
-        public XimuraAppServerPerformanceAgentAttribute(Type AgentType, string AgentID, string AgentName)
-            : base(AgentType, AgentID, AgentName){ }
-
+        /// <summary>
+        /// The attribute constructor.
+        /// </summary>
+        /// <param name="type">The agent type.</param>
+        /// <param name="id">The agent id.</param>
+        /// <param name="name">The agent name.</param>
+        public XimuraAppServerPerformanceAgentAttribute(string type, string id, string name)
+            : base(RH.CreateTypeFromString(type), id, name) { }
+        /// <summary>
+        /// The attribute constructor.
+        /// </summary>
+        /// <param name="type">The agent type.</param>
+        /// <param name="id">The agent id.</param>
+        /// <param name="name">The agent name.</param>
+        public XimuraAppServerPerformanceAgentAttribute(Type type, string id, string name)
+            : base(type, id, name) { }
         #endregion
-
-
     }
 }

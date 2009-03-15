@@ -31,7 +31,7 @@ using Ximura.Command;
 #endregion // using
 namespace Ximura.Server
 {
-    public class ResourceStorageAgent
+    public class ResourceStorageAgent : StorageAgentBase
     {
     }
 }

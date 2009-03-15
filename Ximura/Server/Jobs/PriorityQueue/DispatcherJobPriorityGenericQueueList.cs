@@ -33,8 +33,25 @@ namespace Ximura.Server
         #region Declarations
         private Dictionary<JobPriority, Queue<JobPriorityRecord>> QueueList = null;
         private Dictionary<JobPriority, int> QueueListCapacity = null;
-        #endregion // DEclarations
+        private object syncLock = new object();
+        #region Internal PriorityComparer
+        /// <summary>
+        /// This internal comparer solves performance issues with enums in dictionaries.
+        /// </summary>
+        internal class PriorityComparer : IEqualityComparer<JobPriority>
+        {
+            public bool Equals(JobPriority x, JobPriority y)
+            {
+                return x == y;
+            }
 
+            public int GetHashCode(JobPriority obj)
+            {
+                return (int)obj;
+            }
+        }
+        #endregion // PriorityComparer
+        #endregion // DEclarations
         #region Constructor
         /// <summary>
         /// This is the default constructor.
@@ -42,13 +59,13 @@ namespace Ximura.Server
         /// <param name="settings">The dispatcher settings</param>
         public DispatcherJobPriorityGenericQueueList(DelGetCapacity capacitySetting)
         {
-            QueueList = new Dictionary<JobPriority, Queue<JobPriorityRecord>>();
-            QueueListCapacity = new Dictionary<JobPriority, int>();
+            QueueList = new Dictionary<JobPriority, Queue<JobPriorityRecord>>(new PriorityComparer());
+            QueueListCapacity = new Dictionary<JobPriority, int>(new PriorityComparer());
 
+            //OK, initilize each of the queues.
             Enum.GetValues(typeof(JobPriority))
                 .Cast<JobPriority>()
                 .ForEach(e => ConfigureQueueList(e, capacitySetting == null ? 500 : capacitySetting(e)));
-
         }
 
         private void ConfigureQueueList(JobPriority priority, int capacity)
@@ -75,13 +92,15 @@ namespace Ximura.Server
         /// <param name="newJob"></param>
         public void Push(JobPriorityRecord newJob)
         {
-            lock (this)
+            lock (syncLock)
             {
                 JobPriority priority = newJob.Priority;
-                if (QueueList[priority].Count >= QueueListCapacity[priority])
+                Queue<JobPriorityRecord> queue = QueueList[priority];
+
+                if (queue.Count >= QueueListCapacity[priority])
                     throw new SCMCapacityException(newJob.ID.ToString());
 
-                QueueList[priority].Enqueue(newJob);
+                queue.Enqueue(newJob);
             }
         }
         #endregion // Push
@@ -92,7 +111,7 @@ namespace Ximura.Server
         /// <returns>Returns the top job or null if there are no jobs in the queue.</returns>
         public Guid Pop()
         {
-            lock (this)
+            lock (syncLock)
             {
                 JobPriorityRecord job = PopJob();
 
@@ -129,7 +148,7 @@ namespace Ximura.Server
         /// or returns null if there are no jobs to process.</returns>
         public Guid Peek()
         {
-            lock (this)
+            lock (syncLock)
             {
                 JobPriorityRecord job = PeekJob();
 
@@ -177,7 +196,7 @@ namespace Ximura.Server
         /// </summary>
         public void Clear()
         {
-            lock (this)
+            lock (syncLock)
             {
                 QueueList[JobPriority.Low].Clear();
                 QueueList[JobPriority.BelowNormal].Clear();
@@ -189,17 +208,6 @@ namespace Ximura.Server
         }
         #endregion // Clear
 
-        #region ToString()
-        /// <summary>
-        /// This method returns a text representation of the queue.
-        /// </summary>
-        /// <returns></returns>
-        public override string ToString()
-        {
-            return base.ToString();
-        }
-        #endregion // ToString()
-
         #region Count
         /// <summary>
         /// This property returns the total number of jobs pending.
@@ -208,7 +216,7 @@ namespace Ximura.Server
         {
             get 
             {
-                lock (this)
+                lock (syncLock)
                 {
                     return 
                         QueueList[JobPriority.Realtime].Count +
@@ -229,7 +237,7 @@ namespace Ximura.Server
         /// <returns></returns>
         public int CountPriority(JobPriority priority)
         {
-            lock (this)
+            lock (syncLock)
             {
                 return QueueList[priority].Count;
             }

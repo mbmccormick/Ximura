@@ -31,7 +31,7 @@ using Ximura.Command;
 #endregion // using
 namespace Ximura.Server
 {
-    public class SQLServerStorageAgent
+    public class SQLServerStorageAgent:StorageAgentBase
     {
 
         #region VerifyExternalConnectivity()

@@ -100,10 +100,17 @@
   <xs:element name="childconfigurations">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="config" minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="configgroup" minOccurs="0" maxOccurs="unbounded">
           <xs:complexType>
             <xs:sequence>
-              <xs:any minOccurs="0" maxOccurs="1" namespace="##any" processContents="lax"/>
+              <xs:element name="config" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:any minOccurs="0" maxOccurs="1" namespace="##any" processContents="lax"/>
+                  </xs:sequence>
+                  <xs:attribute name="id" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
             </xs:sequence>
             <xs:attribute name="id" type="xs:string" use="required" />
           </xs:complexType>

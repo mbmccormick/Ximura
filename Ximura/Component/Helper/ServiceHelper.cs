@@ -346,7 +346,11 @@ namespace Ximura
                 return this;
             }
 
-            object serviceObj = Services[serviceType];
+            //BUGFIX: Changes to default behaviour. Services would throw an exception if ContainsKay
+            //was not called prior to accessing the service.
+            object serviceObj = null;
+            if (Services.ContainsKey(serviceType))
+                serviceObj = Services[serviceType];
 
             if (serviceObj is ServiceCreatorCallback)
             {

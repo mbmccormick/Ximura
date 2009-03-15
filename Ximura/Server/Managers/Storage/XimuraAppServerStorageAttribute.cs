@@ -28,22 +28,26 @@ namespace Ximura.Server
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
     public sealed class XimuraAppServerStorageAttribute : XimuraAppServerAgentAttributeBase
     {
-        #region Declarations
-        #endregion
-
         #region Constructors
-
+        /// <summary>
+        /// The attribute constructor.
+        /// </summary>
+        /// <param name="type">The agent type.</param>
+        /// <param name="id">The agent id.</param>
+        /// <param name="name">The agent name.</param>
         public XimuraAppServerStorageAttribute(string type, string id, string name)
             : base(RH.CreateTypeFromString(type), id, name)
         { }
-
+        /// <summary>
+        /// The attribute constructor.
+        /// </summary>
+        /// <param name="type">The agent type.</param>
+        /// <param name="id">The agent id.</param>
+        /// <param name="name">The agent name.</param>
         public XimuraAppServerStorageAttribute(Type type, string id, string name)
             : base(type, id, name)
         {
         }
-
         #endregion
-
     }
-
 }

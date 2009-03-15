@@ -32,19 +32,19 @@ namespace Ximura.Server
 
         #region Constructors
         /// <summary>
-        /// 
+        /// The attribute constructor.
         /// </summary>
-        /// <param name="type"></param>
-        /// <param name="ID"></param>
-        /// <param name="Name"></param>
+        /// <param name="type">The agent type.</param>
+        /// <param name="id">The agent id.</param>
+        /// <param name="name">The agent name.</param>
         public XimuraAppServerAgentAttributeBase(string type, string ID, string Name)
             : this(RH.CreateTypeFromString(type), ID, Name){ }
         /// <summary>
-        /// 
+        /// The attribute constructor.
         /// </summary>
-        /// <param name="type"></param>
-        /// <param name="ID"></param>
-        /// <param name="Name"></param>
+        /// <param name="type">The agent type.</param>
+        /// <param name="id">The agent id.</param>
+        /// <param name="name">The agent name.</param>
         public XimuraAppServerAgentAttributeBase(Type type, string ID, string Name)
         {
             holder = new XimuraServerAgentHolder(type, ID, Name);
@@ -52,15 +52,9 @@ namespace Ximura.Server
 
         #endregion
         /// <summary>
-        /// The agent.
+        /// The agent holder.
         /// </summary>
         public XimuraServerAgentHolder Agent { get { return holder; } }
-
-        //public Type AgentType { get { return holder.AgentType; } }
-
-        //public string AgentID { get { return holder.AgentID; } }
-
-        //public string AgentName { get { return holder.AgentName; } }
 
     }
 }

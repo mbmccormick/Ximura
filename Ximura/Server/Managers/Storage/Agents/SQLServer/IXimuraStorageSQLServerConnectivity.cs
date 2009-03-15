@@ -32,7 +32,11 @@ using Ximura.Command;
 #endregion // using
 namespace Ximura.Persistence
 {
+    /// <summary>
+    /// THis interface is implemented by the SQLServer connectivity storage agent.
+    /// </summary>
     public interface IXimuraStorageSQLServerConnectivity
     {
+        string GetConnection(string ID);
     }
 }

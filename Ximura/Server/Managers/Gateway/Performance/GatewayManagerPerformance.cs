@@ -10,7 +10,7 @@
 //     Paul Stancer - initial implementation
 // *******************************************************************************
 #endregion
-﻿#region using
+#region using
 using System;
 using System.Linq;
 using System.Data;
@@ -26,21 +26,23 @@ using Ximura.Helper;
 using CH = Ximura.Helper.Common;
 using RH = Ximura.Helper.Reflection;
 using Ximura.Server;
-
-
 using Ximura.Command;
 #endregion // using
 namespace Ximura.Server
 {
-    public class StorageManagerPerformance : CommandPerformance
+    /// <summary>
+    /// This class records the gateway manager performance.
+    /// </summary>
+    public class GatewayManagerPerformance : CommandPerformance
     {
 		#region Constructors
 		/// <summary>
-		/// This is the default constructor for the Content object.
+		/// This is the default constructor for the Performance object.
 		/// </summary>
-        public StorageManagerPerformance()
+        public GatewayManagerPerformance()
         {
         }
 		#endregion
+
     }
 }

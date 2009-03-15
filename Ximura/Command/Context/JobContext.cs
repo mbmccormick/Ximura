@@ -182,6 +182,8 @@ namespace Ximura.Command
 
             this.Reset(fsm, job, data, contextGet);
         }
+        #endregion // Reset(SET fsm, SecurityManagerJob job)
+        #region Reset(IXimuraFSMSettingsBase fsm, SecurityManagerJob job,RQRSContract<RQ, RS> data, IXimuraFSMContextPoolAccess contextGet)
         /// <summary>
         /// This method resets a connection and sets the connection state to ClosedRBPState.
         /// </summary>
@@ -194,6 +196,7 @@ namespace Ximura.Command
             this.Job = job;
             mData = data;
         }
-        #endregion // Reset(SET fsm, SecurityManagerJob job)
+        #endregion
+
     }
 }
