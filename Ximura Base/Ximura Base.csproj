@@ -306,9 +306,11 @@
     <Compile Include="Pooling\PoolManager.cs" />
     <Compile Include="Pooling\PoolObjectBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Server\Managers\Agents\IXimuraGatewayAgent.cs" />
     <Compile Include="Server\Managers\Agents\IXimuraSessionAgent.cs" />
     <Compile Include="Server\Managers\Agents\IXimuraStorageAgent.cs" />
     <Compile Include="Server\Managers\IXimuraAppServerAgentService.cs" />
+    <Compile Include="Server\Managers\IXimuraGatewayManagerService.cs" />
     <Compile Include="Server\Managers\IXimuraLoggingManagerService.cs" />
     <Compile Include="Server\Managers\IXimuraPerformanceManagerService.cs" />
     <Compile Include="Server\Managers\Agents\IXimuraServerAgent.cs" />

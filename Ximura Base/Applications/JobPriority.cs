@@ -19,6 +19,7 @@ namespace Ximura
     /// Thread pool priority is used to assign the job position within the 
     /// Priority Job queue.
     /// </summary>
+    [Serializable()]
     public enum JobPriority : int
     {
         /// <summary>
