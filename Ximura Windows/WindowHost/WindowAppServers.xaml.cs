@@ -38,24 +38,17 @@ namespace Ximura.Windows
     public partial class WindowAppServers : Window
     {
         #region Declarations
-        List<AppServerHolder> appServerHolders;
+        AppServerCollection appServerHolders = null;
         #endregion // Declarations
         #region Constructors
         /// <summary>
         /// This constructor takes the appserver attributes collection as a parameter.
         /// </summary>
         /// <param name="attrs">The attribute collection.</param>
-        public WindowAppServers(HostAppServerAttribute[] attrs)
+        public WindowAppServers(AppServerAttribute[] attrs)
             : this()
         {
-            attrs
-                .OrderBy(a => a.Priority)
-                .ForEach(a =>
-                    {
-                        AppServerHolder holder = new AppServerHolder(a);
-                        holder.RaiseMessage += new AppServerHolder.RaiseDialogMessage(holder_RaiseMessage);
-                        appServerHolders.Add(holder);
-                    });
+            appServerHolders = new AppServerCollection(attrs);
 
             this.contAppServers.ItemsSource = appServerHolders;
         }
@@ -66,8 +59,6 @@ namespace Ximura.Windows
         public WindowAppServers():base()
         {
             InitializeComponent();
-
-            appServerHolders = new List<AppServerHolder>();
 
             this.btStart.Click += new RoutedEventHandler(btStart_Click);
             this.btStop.Click += new RoutedEventHandler(btStop_Click);
@@ -91,8 +82,6 @@ namespace Ximura.Windows
             this.btExit.IsEnabled = false;
 
             AppServerStop();
-
-            appServerHolders.Clear();
         }
 
         void btStop_Click(object sender, RoutedEventArgs e)
@@ -127,9 +116,7 @@ namespace Ximura.Windows
             try
             {
                 //OK, start the services in order.
-                appServerHolders
-                    .OrderBy(a => a.Priority)
-                    .ForEach(a => a.Start());
+                appServerHolders.Start();
             }
             catch (ServiceStartException ssex)
             {
@@ -151,9 +138,7 @@ namespace Ximura.Windows
         /// </summary>
         protected virtual void AppServerStop()
         {
-            appServerHolders
-                .OrderByDescending(a => a.Priority)
-                .ForEach(a => a.Stop());
+            appServerHolders.Stop();
         }
         #endregion // AppServerStop()
 

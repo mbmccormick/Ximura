@@ -4,6 +4,7 @@
     WindowStartupLocation="CenterScreen"
     Title="Application Servers" Height="500" Width="400"
     xmlns:local="clr-namespace:Ximura.Windows"
+    xmlns:base="clr-namespace:Ximura.Windows;assembly=XimuraWinBase"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		mc:Ignorable="d"
@@ -21,7 +22,7 @@
 	</Window.Background>
   
   <Window.DataContext>
-    <ObjectDataProvider ObjectType="{x:Type local:AppServerHolder}"/>
+    <ObjectDataProvider ObjectType="{x:Type base:AppServerHolder}"/>
   </Window.DataContext>
 
   <Grid>

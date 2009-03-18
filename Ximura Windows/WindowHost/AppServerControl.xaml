@@ -42,7 +42,7 @@
 
         <MultiDataTrigger>
           <MultiDataTrigger.Conditions>
-            <Condition Binding="{Binding Status}" Value="Started" />
+            <Condition Binding="{Binding ServiceStatus}" Value="Started" />
           </MultiDataTrigger.Conditions>
           <MultiDataTrigger.EnterActions>
             <BeginStoryboard>
@@ -65,7 +65,7 @@
 
         <MultiDataTrigger>
           <MultiDataTrigger.Conditions>
-            <Condition Binding="{Binding Status}" Value="Disabled" />
+            <Condition Binding="{Binding ServiceStatus}" Value="Disabled" />
           </MultiDataTrigger.Conditions>
           <MultiDataTrigger.EnterActions>
             <BeginStoryboard>
@@ -86,7 +86,7 @@
 
         <MultiDataTrigger>
           <MultiDataTrigger.Conditions>
-            <Condition Binding="{Binding Status}" Value="Failed" />
+            <Condition Binding="{Binding ServiceStatus}" Value="Failed" />
           </MultiDataTrigger.Conditions>
           <MultiDataTrigger.EnterActions>
             <BeginStoryboard>
@@ -107,7 +107,7 @@
 
         <MultiDataTrigger>
           <MultiDataTrigger.Conditions>
-            <Condition Binding="{Binding Status}" Value="Starting" />
+            <Condition Binding="{Binding ServiceStatus}" Value="Starting" />
           </MultiDataTrigger.Conditions>
           <MultiDataTrigger.EnterActions>
             <BeginStoryboard>
@@ -163,7 +163,7 @@
       <CheckBox x:Name="cbStart"
                 Margin="49,29,0,31"
                 Content="Start Service"
-                IsChecked="{Binding Path=CanStart}"
+                IsChecked="{Binding Path=ServiceEnabled}"
                 IsEnabled="{Binding Path=CanEdit}"
                 Width="93"
                 HorizontalAlignment="Left" 

@@ -121,9 +121,6 @@
     <Compile Include="AppServerControl.xaml.cs">
       <DependentUpon>AppServerControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AppServerHolder.cs" />
-    <Compile Include="AppServerStatus.cs" />
-    <Compile Include="HostAppServerAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -137,7 +134,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="ServiceStartException.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
