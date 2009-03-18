@@ -42,10 +42,10 @@ namespace Ximura
         /// <summary>
         /// This method will return the current service status
         /// </summary>
-        XimuraServiceStatus ServiceStatus { get;}
+        XimuraServiceStatus ServiceStatus {get;}
         /// <summary>
         /// This property determines whether the component is enable and can start.
         /// </summary>
-        bool ServiceEnabled { get;set;}
+        bool ServiceEnabled {get;set;}
     }
 }

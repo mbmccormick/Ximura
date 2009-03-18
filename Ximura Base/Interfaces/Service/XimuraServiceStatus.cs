@@ -66,7 +66,16 @@ namespace Ximura
         /// <summary>
         /// The process has resumed.
         /// </summary>
-        Resumed = 0x200
+        Resumed = 0x200,
+
+        /// <summary>
+        /// The service has failed to start.
+        /// </summary>
+        Failed = 0x400,
+        /// <summary>
+        /// The service is disabled.
+        /// </summary>
+        Disabled = 0x800,
     }
 
 }
