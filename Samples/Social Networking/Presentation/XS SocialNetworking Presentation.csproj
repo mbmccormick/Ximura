@@ -121,13 +121,9 @@
       <Project>{7727E180-73B7-474B-84F6-BF0C6FFB181E}</Project>
       <Name>Ximura Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Ximura\Ximura Process Management\Ximura Process Management.csproj">
-      <Project>{4C2ACC77-246F-4845-BA24-50B72489DF73}</Project>
-      <Name>Ximura Process Management</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\Ximura\Ximura.csproj">
       <Project>{218ED92E-5D40-40DF-B6A2-11DEF3133589}</Project>
-      <Name>Ximura %28Ximura\Ximura%29</Name>
+      <Name>Ximura</Name>
     </ProjectReference>
     <ProjectReference Include="..\Common\XS SocialNetworking Common.csproj">
       <Project>{D9A6D00E-00EB-40C2-BDF3-D1D82C818532}</Project>

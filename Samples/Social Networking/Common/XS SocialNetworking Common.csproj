@@ -120,7 +120,7 @@
     </ProjectReference>
     <ProjectReference Include="..\..\..\Ximura\Ximura.csproj">
       <Project>{218ED92E-5D40-40DF-B6A2-11DEF3133589}</Project>
-      <Name>Ximura %28Ximura\Ximura%29</Name>
+      <Name>Ximura</Name>
     </ProjectReference>
     <ProjectReference Include="..\Entities\XS SocialNetworking Entities.csproj">
       <Project>{4913989D-87D9-4709-A5E5-E90842DD52BD}</Project>
