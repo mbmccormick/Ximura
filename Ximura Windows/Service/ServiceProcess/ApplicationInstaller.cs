@@ -39,13 +39,16 @@ namespace Ximura.Windows
     /// <summary>
     /// The ApplicationServiceInstaller is responsible for providing the config file from the base stream.
     /// </summary>
-    public class ApplicationInstaller : System.Configuration.Install.Installer
+    public class AppServerInstaller : System.Configuration.Install.Installer
     {
         #region Constructor / Destructor
+        public AppServerInstaller():this(null)
+        {
+        }
         /// <summary>
         /// This is the default constructor for the service.
         /// </summary>
-        public ApplicationInstaller()
+        public AppServerInstaller(AppServerAttribute attr)
         {
         }
         #endregion
@@ -121,8 +124,8 @@ namespace Ximura.Windows
                 ArrayList configFiles = GetArrayList(savedState, "XimuraConfigFiles");
 
                 //Process the installer attributes.
-                classType.GetCustomAttributes(typeof(XimuraAppServerConfigInstallerAttribute), true)
-                    .OfType<XimuraAppServerConfigInstallerAttribute>()
+                classType.GetCustomAttributes(typeof(XimuraInstallerAppServerConfigAttribute), true)
+                    .OfType<XimuraInstallerAppServerConfigAttribute>()
                     .ForEach(a => ProcessAppServerTypeConfiguration(a.AppServerType, configFiles));
             }
             catch (Exception ex1)
@@ -302,8 +305,8 @@ namespace Ximura.Windows
             try
             {
                 //Process the installer attributes.
-                AppServerType.GetCustomAttributes(typeof(XimuraEventLoggerInstallerAttribute), true)
-                    .OfType<XimuraEventLoggerInstallerAttribute>()
+                AppServerType.GetCustomAttributes(typeof(XimuraInstallerEventLoggerAttribute), true)
+                    .OfType<XimuraInstallerEventLoggerAttribute>()
                     .Where(a => { return a.LoggerType.IsAssignableFrom(typeof(EventLogLogger)); })
                     .ForEach(a => EventLoggerAdd(a, loggers));
             }
@@ -314,7 +317,7 @@ namespace Ximura.Windows
         }
         #endregion // ProcessEventLoggers(Type AppServerType, IDictionary savedState)
         #region EventLoggerAdd(XimuraAppServerLoggerAttribute logger, ArrayList loggersAdded)
-        private void EventLoggerAdd(XimuraEventLoggerInstallerAttribute logger, ArrayList loggersAdded)
+        private void EventLoggerAdd(XimuraInstallerEventLoggerAttribute logger, ArrayList loggersAdded)
         {
 #if (DEBUG)
             MessageBox.Show(string.Format(@"{0}/{1} - {2}",

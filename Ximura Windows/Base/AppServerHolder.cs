@@ -51,6 +51,10 @@ namespace Ximura.Windows
         /// This event is used to attach a message dialog provider for dialog prompts.
         /// </summary>
         public event RaiseDialogMessage RaiseMessage;
+        /// <summary>
+        /// This event is used to trap unhandled exceptions in the app domain created for the server.
+        /// </summary>
+        public event UnhandledExceptionEventHandler UnhandledException;
         #endregion // Events
         #region Declarations
         protected bool mServiceEnabled;
@@ -214,7 +218,8 @@ namespace Ximura.Windows
 
         private void AppServer_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
-            
+            if (UnhandledException != null)
+                UnhandledException(this, e);
         }
 
         #endregion // Start()

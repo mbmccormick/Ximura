@@ -28,14 +28,14 @@ namespace Ximura.Windows
     /// the server which will be used in the server performance counters.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
-    public sealed class XimuraEventLoggerInstallerAttribute : System.Attribute, IXimuraLoggerSettings
+    public sealed class XimuraInstallerEventLoggerAttribute : System.Attribute, IXimuraLoggerSettings
     {
         #region Declarations
         #endregion
 
         #region Constructors
 
-        public XimuraEventLoggerInstallerAttribute(string LoggerID, string LoggerName)
+        public XimuraInstallerEventLoggerAttribute(string LoggerID, string LoggerName)
         {
             this.LoggerID = LoggerID;
             this.LoggerName = LoggerName;

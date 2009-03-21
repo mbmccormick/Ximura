@@ -40,40 +40,48 @@ namespace Ximura.Windows
     /// <summary>
     /// This is the base installer used to install the service.
     /// </summary>
-    public class ServiceAppInstaller : ApplicationInstaller
+    public class ServiceAppInstaller : System.Configuration.Install.Installer
     {
-        #region Declarations
-        private System.ServiceProcess.ServiceProcessInstaller serviceProcessInstaller;
-        private System.ServiceProcess.ServiceInstaller serviceInstaller;
-        #endregion // Declarations
         #region Constructor
         /// <summary>
         /// The default constructor.
         /// </summary>
         public ServiceAppInstaller()
         {
-            // This call is required by the Designer.
-            InitializeService(AH.GetAttribute<ServiceInstallerAttribute>(GetType()));
+            ServiceInstallerAttribute attr = AH.GetAttribute<ServiceInstallerAttribute>(GetType());
+
+            if (attr == null)
+                throw new InstallException("The ServiceInstallerAttribute cannot be found.");
+
+            //Create the installer class for each app server
+            InitializeAppServers(attr.ServiceType);
+            //Create the service and service process installer.
+            InitializeService(attr);
         }
         #endregion // Constructor
 
+        protected virtual void InitializeAppServers(Type serviceType)
+        {
+            AH.GetAttributes<AppServerAttribute>(serviceType)
+                .ForEach(a => this.Installers.Add(new AppServerInstaller(a)));
+        }
+
         #region InitializeService(ServiceInstallerAttribute servAttr)
         /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
+        /// This method creates the service and service process installer based on the information passed in the ServiceInstallerAttribute class.
         /// </summary>
         protected virtual void InitializeService(ServiceInstallerAttribute servAttr)
         {
-            this.serviceProcessInstaller = new System.ServiceProcess.ServiceProcessInstaller();
-            this.serviceInstaller = new System.ServiceProcess.ServiceInstaller();
+            ServiceProcessInstaller serviceProcessInstaller = new System.ServiceProcess.ServiceProcessInstaller();
+            ServiceInstaller serviceInstaller = new System.ServiceProcess.ServiceInstaller();
 
             // 
             // serviceInstaller
             // 
-            this.serviceInstaller.DisplayName = servAttr.DisplayName;
-            this.serviceInstaller.ServiceName = servAttr.ServiceName;
-            this.serviceInstaller.Description = servAttr.Description;
-            this.serviceInstaller.StartType = servAttr.StartType;
+            serviceInstaller.DisplayName = servAttr.DisplayName;
+            serviceInstaller.ServiceName = servAttr.ServiceName;
+            serviceInstaller.Description = servAttr.Description;
+            serviceInstaller.StartType = servAttr.StartMode;
 
             //this.serviceInstaller.DisplayName = "Budubu Analysis Engine";
             //this.serviceInstaller.ServiceName = "BudubuAnalysisEngine";
@@ -83,15 +91,15 @@ namespace Ximura.Windows
             // 
             // serviceProcessInstaller
             // 
-            this.serviceProcessInstaller.Account = servAttr.Account;
-            this.serviceProcessInstaller.Username = servAttr.Username;
-            this.serviceProcessInstaller.Password = servAttr.Password;
+            serviceProcessInstaller.Account = servAttr.Account;
+            serviceProcessInstaller.Username = servAttr.Username;
+            serviceProcessInstaller.Password = servAttr.Password;
 
             // 
             // ProjectInstaller
             // 
             this.Installers.AddRange(
-                new System.Configuration.Install.Installer[] { this.serviceProcessInstaller, this.serviceInstaller }
+                new System.Configuration.Install.Installer[] { serviceProcessInstaller, serviceInstaller }
                 );
 
         }

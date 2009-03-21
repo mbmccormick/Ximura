@@ -27,11 +27,11 @@ namespace Ximura.Windows
     /// This attribute indicates to the installer which config file to install for which appserver class.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
-    public class XimuraAppServerConfigInstallerAttribute : System.Attribute
+    public class XimuraInstallerAppServerConfigAttribute : System.Attribute
     {
-        public XimuraAppServerConfigInstallerAttribute(string appServerTypeName):this(RH.CreateTypeFromString(appServerTypeName)){}
+        public XimuraInstallerAppServerConfigAttribute(string appServerTypeName):this(RH.CreateTypeFromString(appServerTypeName)){}
 
-        public XimuraAppServerConfigInstallerAttribute(Type appServerType)
+        public XimuraInstallerAppServerConfigAttribute(Type appServerType)
         {
             AppServerType = appServerType;
         }

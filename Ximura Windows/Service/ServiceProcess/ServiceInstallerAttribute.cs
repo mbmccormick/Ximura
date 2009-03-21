@@ -42,30 +42,53 @@ namespace Ximura.Windows
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = false)]
     public class ServiceInstallerAttribute : System.Attribute
     {
-        public ServiceInstallerAttribute(ServiceStartMode StartType, string ServiceName, string DisplayName, string Description)
-            :this(StartType, ServiceName, DisplayName, Description, ServiceAccount.User, null, null)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ServiceType"></param>
+        /// <param name="StartMode"></param>
+        /// <param name="ServiceName"></param>
+        /// <param name="DisplayName"></param>
+        /// <param name="Description"></param>
+        public ServiceInstallerAttribute(Type ServiceType, 
+            ServiceStartMode StartMode, string ServiceName, string DisplayName, string Description)
+            : this(ServiceType, StartMode, ServiceName, DisplayName, Description, ServiceAccount.User, null, null)
         {
 
         }
-
-        public ServiceInstallerAttribute(
-            ServiceStartMode StartType, string ServiceName, string DisplayName, string Description,
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ServiceType"></param>
+        /// <param name="StartMode"></param>
+        /// <param name="ServiceName"></param>
+        /// <param name="DisplayName"></param>
+        /// <param name="Description"></param>
+        /// <param name="Account"></param>
+        /// <param name="Username"></param>
+        /// <param name="Password"></param>
+        public ServiceInstallerAttribute(Type ServiceType, 
+            ServiceStartMode StartMode, string ServiceName, string DisplayName, string Description,
             ServiceAccount Account, string Username, string Password)
         {
-            this.DisplayName = DisplayName;
+            this.ServiceType = ServiceType;
+
+            this.StartMode = StartMode;
             this.ServiceName = ServiceName;
+            this.DisplayName = DisplayName;
             this.Description = Description;
-            this.StartType = StartType;
 
             this.Account = Account;
             this.Username = Username;
             this.Password = Password;
         }
 
-        public string DisplayName { get; private set; }
+        public Type ServiceType { get; private set; }
+
+        public ServiceStartMode StartMode { get; private set; }
         public string ServiceName { get; private set; }
+        public string DisplayName { get; private set; }
         public string Description { get; private set; }
-        public ServiceStartMode StartType { get; private set; }
 
         public ServiceAccount Account { get; private set; }
         public string Username { get; private set; }

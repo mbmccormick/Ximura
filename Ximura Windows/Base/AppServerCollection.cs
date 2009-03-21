@@ -21,6 +21,7 @@ using System.Windows;
 using System.ComponentModel;
 using System.Windows.Threading;
 using System.Threading;
+using System.Diagnostics;
 
 using Ximura;
 using Ximura.Helper;
@@ -30,17 +31,23 @@ using AH = Ximura.Helper.AttributeHelper;
 namespace Ximura.Windows
 {
     /// <summary>
-    /// THis class holds the collection of AppServers.
+    /// THis class holds the collection of AppServers that will be managed.
     /// </summary>
     public class AppServerCollection : IXimuraService, IEnumerable<AppServerHolder>
     {
         #region Declarations
         List<AppServerHolder> mAppServerHolders = null;
         #endregion // Declarations
+        #region Events
+        /// <summary>
+        /// This event is raised when an unhandled exception is thrown by an AppServer.
+        /// </summary>
+        public event UnhandledExceptionEventHandler UnhandledExceptions;
+        #endregion // EEvents
 
         #region Constructors
         /// <summary>
-        /// 
+        /// This constructor passes the 
         /// </summary>
         /// <param name="baseType"></param>
         public AppServerCollection(Type baseType): this(AH.GetAttributes<AppServerAttribute>(baseType))
@@ -60,25 +67,28 @@ namespace Ximura.Windows
                 .ForEach(a =>
                 {
                     AppServerHolder holder = new AppServerHolder(a);
+                    holder.UnhandledException += new UnhandledExceptionEventHandler(holder_UnhandledException);
                     holder.RaiseMessage += new AppServerHolder.RaiseDialogMessage(AppServerHolder_RaiseMessage);
                     mAppServerHolders.Add(holder);
                 });
 
             ServiceStatus = XimuraServiceStatus.NotStarted;
         }
+
+        void holder_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            if (UnhandledExceptions != null)
+                UnhandledExceptions(sender, e);
+        }
+
         #endregion // Constructors
-        #region Events
-        /// <summary>
-        /// This event is raised when an unhandled exception is thrown by an AppServer.
-        /// </summary>
-        public event UnhandledExceptionEventHandler UnhandledExceptions;
-        #endregion // EEvents
 
         MessageBoxResult AppServerHolder_RaiseMessage(AppServerHolder sender, string message, string title, MessageBoxButton options)
         {
             return MessageBoxResult.None;
         }
 
+        #region Start()
         /// <summary>
         /// This method starts the app servers in order.
         /// </summary>
@@ -101,8 +111,10 @@ namespace Ximura.Windows
 
             ServiceStatus = XimuraServiceStatus.Started;
         }
+        #endregion // Start()
+        #region Pause()
         /// <summary>
-        /// This method pauses the app servers in order.
+        /// This method pauses the app servers in decending order.
         /// </summary>
         public void Pause()
         {
@@ -115,6 +127,8 @@ namespace Ximura.Windows
 
             ServiceStatus = XimuraServiceStatus.Paused;
         }
+        #endregion // Pause()
+        #region Continue()
         /// <summary>
         /// This method continues the services if needed.
         /// </summary>
@@ -129,8 +143,10 @@ namespace Ximura.Windows
 
             ServiceStatus = XimuraServiceStatus.Started;
         }
+        #endregion // Continue()
+        #region Stop()
         /// <summary>
-        /// 
+        /// This method stops the services in decending order.
         /// </summary>
         public void Stop()
         {
@@ -142,12 +158,21 @@ namespace Ximura.Windows
 
             ServiceStatus = XimuraServiceStatus.Stopped;
         }
+        #endregion // Stop()
 
+        #region ServiceStatus
+        /// <summary>
+        /// This is the service status for the collection.
+        /// </summary>
         public XimuraServiceStatus ServiceStatus
         {
             get; private set;
         }
-
+        #endregion // ServiceStatus
+        #region ServiceEnabled
+        /// <summary>
+        /// This method determines whether the service is enabled. For the AppServerCollection this property is set to true.
+        /// </summary>
         public bool ServiceEnabled
         {
             get
@@ -156,10 +181,10 @@ namespace Ximura.Windows
             }
             set
             {
-                throw new NotSupportedException("ServiceEnabled cannot be changed.");
+                //throw new NotSupportedException("ServiceEnabled cannot be changed.");
             }
         }
-
+        #endregion // ServiceEnabled
 
         #region IEnumerable<AppServerHolder> Members
 
