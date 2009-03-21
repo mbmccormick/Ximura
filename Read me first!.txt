@@ -1,0 +1,10 @@
+---------------------------------------------------------------------------------------------------
+
+OK, you've run Ximura, marvelled at the colour scheme and clicked the 'Start Services' button, but nothing happened right?
+
+Yes, I'm afraid to say that this project doesn't actually do anything at present. I'm still working on getting all the new bits for Version 3.0 to work with all the old bits from Version 2.0. 
+
+Stay posted and watch this file.
+
+Paul Stancer
+Mar 21st 2009
