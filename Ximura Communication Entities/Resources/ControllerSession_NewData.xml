@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<controllersession xmlns="http://schema.ximura.org/controller/session/1.0" 
+              xmlns:ximura="http://schema.ximura.org/core">
+
+  <ximura:entity>
+    <ximura:tid>D5F7FDC7-90CE-4962-84EA-2C7FEF4D6B0B</ximura:tid>
+    <ximura:cid></ximura:cid>
+    <ximura:vid></ximura:vid>
+  </ximura:entity>
+  
+  <auth>
+  </auth>
+  <data>
+  </data>
+</controllersession>

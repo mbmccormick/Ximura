@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- -*- Relax NG -*- -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified"
+           targetNamespace="http://www.w3.org/2007/app"
+           xmlns:atom="http://www.w3.org/2005/Atom"
+           xmlns:app="http://www.w3.org/2007/app">
+  
+  <xs:import namespace="http://www.w3.org/XML/1998/namespace" />
+  <xs:import namespace="http://schema.ximura.org/core" />
+  <xs:import namespace="http://www.w3.org/2005/Atom" />
+
+  <xs:element name="AtomPublishingProtocol" >
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded"></xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

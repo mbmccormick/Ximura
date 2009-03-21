@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<controllerrequest xmlns="http://schema.ximura.org/controller/request/1.0"
+            xmlns:ximura="http://schema.ximura.org/core">
+  
+  <ximura:entity>
+    <ximura:tid>B6288C52-7284-4564-A65A-C06065A3E21B</ximura:tid>
+    <ximura:cid></ximura:cid>
+    <ximura:vid></ximura:vid>
+  </ximura:entity>
+  
+  <request>
+    <userid></userid>
+    <sessionid></sessionid>
+    <protocol type="" version="">
+      <verb/>
+      <host/>
+      <port/>
+      <path/>
+      <query/>
+      <headers/>
+      <language/>
+      <referer/>
+      <authorization/>
+      <encoding/>
+      <charset/>
+      <accept/>
+      <connection/>
+      <if-none-match/>
+      <x-wap-profile/>
+    </protocol>
+    <secure>
+      <client>false</client>
+    </secure>
+    <host>
+      <remote>
+        <ipaddress></ipaddress>
+        <ipaddressresolve isoid=""></ipaddressresolve>
+      </remote>
+      <local>
+        <ipaddress></ipaddress>
+      </local>
+    </host>
+    <browser>
+      <id></id>
+      <browsertype>default</browsertype>
+      <guid></guid>
+    </browser>
+    <variables>
+    </variables>
+  </request>
+  <auth/>
+  <forms/>
+  <response>
+    <id></id>
+    <stateauth/>
+    <stateauthdomain/>
+    <stateoutput/>
+    <template></template>
+    <stylesheet></stylesheet>
+    <output></output>
+    <outputtype></outputtype>
+    <outputmimetype></outputmimetype>
+    <protocol type="" version="">
+      <verb/>
+      <host/>
+      <port/>
+      <path/>
+      <query/>
+      <headers/>
+      <language/>
+      <referer/>
+      <encoding/>
+      <charset/>
+      <accept/>
+      <connection/>
+    </protocol>
+  </response>
+  <cookies/>
+</controllerrequest>
+
+

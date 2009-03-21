@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:base="http://xahlee.org/Periodic_dosage_dir/">
+
+	<title>Xah's Periodic Dosage</title>
+	<subtitle>Ethnology, Ethology, and Tech Geeking</subtitle>
+	<link rel="self" href="http://xahlee.org/Periodic_dosage_dir/pd.xml"/>
+	<link rel="alternate" href="http://xahlee.org/Periodic_dosage_dir/pd.html"/>
+	<updated>2006-09-11T02:35:33-07:00</updated>
+	<author>
+		<name>Xah Lee</name>
+		<uri>http://xahlee.org/</uri>
+	</author>
+	<id>http://xahlee.org/Periodic_dosage_dir/pd.html</id>
+	<icon>http://xahlee.org/Icons_dir/icon_sum.gif</icon>
+	<rights>© 2006 Xah Lee</rights>
+
+	<entry>
+		<title>Wikipedia readings: keyboards ...</title>
+		<id>tag:xahlee.org,2006-09-09:015218</id>
+		<updated>2006-09-08T18:52:18-07:00</updated>
+		<summary>Wikipedia readings ...</summary>
+		<content type="xhtml">
+			<div xmlns="http://www.w3.org/1999/xhtml">
+				<p>Wikipedia readings</p>
+				<ul>
+					<li>
+						<a href="http://en.wikipedia.org/wiki/Dvorak_Simplified_Keyboard">http://en.wikipedia.org/wiki/Dvorak_Simplified_Keyboard</a>
+					</li>
+					<li>
+						<a href="http://en.wikipedia.org/wiki/Lisp_programming_language">http://en.wikipedia.org/wiki/Lisp_programming_language</a>
+					</li>
+					<li>
+						<a href="http://en.wikipedia.org/wiki/Emacs">http://en.wikipedia.org/wiki/Emacs</a>
+					</li>
+				</ul>
+			</div>
+		</content>
+		<link rel="alternate" href="pd.html"/>
+	</entry>
+</feed>

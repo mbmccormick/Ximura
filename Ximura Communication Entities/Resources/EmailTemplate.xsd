@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:agmail="http://schema.aegea.biz/email/1.0" xmlns:mtemp="http://schema.aegea.biz/messagetemplate/1.0" xmlns:ximura="http://schema.ximura.org/core" targetNamespace="http://schema.aegea.biz/email/1.0" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://www.w3.org/XML/1998/namespace" />
+  <xs:import namespace="http://schema.ximura.org/core" />
+  <xs:import namespace="http://schema.aegea.biz/messagetemplate/1.0" />
+  <xs:element name="EmailTemplate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="ximura:entity" />
+        <xs:element name="AddressSender" minOccurs="1" maxOccurs="1" type="agmail:emailaddress" />
+        <xs:element name="AddressFrom" minOccurs="0" maxOccurs="1" type="agmail:emailaddress" />
+        <xs:element name="AddressReplyTo" minOccurs="0" maxOccurs="1" type="agmail:emailaddress" />
+        <xs:element name="Recipients" minOccurs="1" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Recipient" minOccurs="0" maxOccurs="unbounded" type="agmail:emailaddress" />
+            </xs:sequence>
+            <xs:attribute name="type" type="xs:string" use="required" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Message" type="mtemp:message" minOccurs="1" maxOccurs="1" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="emailaddress">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="address" type="xs:string" use="required" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+</xs:schema>

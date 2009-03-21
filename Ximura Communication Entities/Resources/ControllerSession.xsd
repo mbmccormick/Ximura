@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ximura="http://schema.ximura.org/core" attributeFormDefault="unqualified" 
+           elementFormDefault="qualified" 
+           targetNamespace="http://schema.ximura.org/controller/session/1.0" 
+           xmlns="http://schema.ximura.org/controller/session/1.0" 
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schema.ximura.org/core" />
+  <xs:element name="controllersession">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="ximura:entity" minOccurs="0" maxOccurs="1" />
+        <xs:element name="auth" maxOccurs="1" minOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="domain" minOccurs="0">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="permission" minOccurs="0" maxOccurs="unbounded" type="permission" />
+                    <xs:element name="data" minOccurs="0" maxOccurs="1" type="multivalue" />
+                  </xs:sequence>
+                  <xs:attribute name="id" type="xs:string" use="required" />
+                  <xs:attribute name="userid" type="xs:string" use="required" />
+                  <xs:attribute name="authenticated" type="xs:boolean" use="required" />
+                  <xs:attribute name="persist" type="xs:boolean" use="optional" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="data" maxOccurs="1" minOccurs="0" type="multivalue" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="multivalue">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="value">
+        <xs:complexType>
+          <xs:simpleContent>
+            <xs:extension base="xs:string">
+              <xs:attribute name="type" type="xs:string" use="required" />
+            </xs:extension>
+          </xs:simpleContent>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ipaddressType">
+    <xs:sequence>
+      <xs:element name="ipaddress" type="xs:string" maxOccurs="1" minOccurs="1" />
+      <xs:element name="ipaddressresolve" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:simpleContent>
+            <xs:extension base="xs:string">
+              <xs:attribute name="isoid" type="xs:string" use="required" />
+            </xs:extension>
+          </xs:simpleContent>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="permission">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="id" type="xs:string" use="required" />
+        <xs:attribute name="status" type="xs:boolean" use="required" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+</xs:schema>

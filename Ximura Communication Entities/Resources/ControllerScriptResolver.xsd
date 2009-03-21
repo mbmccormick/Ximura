@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema 
+  attributeFormDefault="unqualified" 
+  elementFormDefault="qualified" 
+  xmlns:csr="http://schema.ximura.org/controller/resolver/1.0" 
+  targetNamespace="http://schema.ximura.org/controller/resolver/1.0" 
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:ximura="http://schema.ximura.org/core">
+
+
+  <xs:import namespace="http://purl.org/dc/elements/1.1/" />
+  <xs:import namespace="http://schema.ximura.org/core" />
+  
+  <xs:element name="ControllerScriptResolver">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="dc:creator" />
+        <xs:element ref="dc:title" />
+        <xs:element ref="dc:description" />
+        <xs:element ref="dc:date" />
+        <xs:element ref="dc:type" />
+        <xs:element ref="ximura:entity" />
+        <xs:element name="Resolver" type="csr:resolver"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:complexType name="resolver">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="Resolve">
+        <xs:complexType>
+          <xs:attribute name="domain" type="xs:string" use="required" />
+          <xs:attribute name="cid" type="xs:string" use="required" />
+          <xs:attribute name="vid" type="xs:string" use="required" />
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  
+</xs:schema>

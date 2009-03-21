@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<BinaryContent xmlns="http://schema.aegea.biz/binary/1.0"
+            xmlns:ximura="http://schema.ximura.org/core" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  
+  <ximura:entity>
+    <ximura:tid></ximura:tid>
+    <ximura:cid></ximura:cid>
+    <ximura:vid></ximura:vid>
+  </ximura:entity>
+
+  <dc:creator></dc:creator>
+  <dc:title></dc:title>
+  <dc:description></dc:description>
+  <dc:date></dc:date>
+  <dc:type></dc:type>
+
+  <etag></etag>
+  <length>0</length>
+  <mimetype></mimetype>
+  <filename></filename>
+  <properties/>
+  
+  <data></data>
+  
+</BinaryContent>

@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:mtemp="http://schema.ximura.org/messagetemplate/1.0"
+           xmlns:ximura="http://schema.ximura.org/core"
+           targetNamespace="http://schema.ximura.org/messagetemplate/1.0"
+           elementFormDefault="qualified"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <xs:import namespace="http://www.w3.org/XML/1998/namespace" />
+  <xs:import namespace="http://schema.ximura.org/core" />
+
+  <xs:complexType name="message">
+    <xs:sequence>
+      <xs:element name="Subject" type="xs:string" minOccurs="1" maxOccurs="1" />
+      <xs:element name="SubjectEncoding" type="xs:string" minOccurs="1" maxOccurs="1" />
+      <xs:element name="Priority" type="xs:int" minOccurs="1" maxOccurs="1" />
+      <xs:element name="Status" type="xs:string" minOccurs="1" maxOccurs="1" />
+      <xs:element name="CreateDate" type="xs:string" minOccurs="1" maxOccurs="1" />
+      <xs:element name="TemplateAddress" type="xs:string" minOccurs="1" maxOccurs="1" />
+      <xs:element name="UpdateDate" type="xs:string" minOccurs="0" maxOccurs="1" />
+
+      <xs:element name="Parameters" minOccurs="1" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Parameter" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:simpleContent>
+                  <xs:extension base="xs:string">
+                    <xs:attribute name="type" type="xs:string" use="required" />
+                  </xs:extension>
+                </xs:simpleContent>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+    </xs:sequence>
+  </xs:complexType>
+
+
+</xs:schema>

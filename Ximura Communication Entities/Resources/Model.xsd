@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ximura="http://schema.ximura.org/core" 
+           attributeFormDefault="unqualified" 
+           elementFormDefault="qualified" 
+           targetNamespace="http://schema.ximura.org/controller/model/1.0" 
+           xmlns="http://schema.ximura.org/controller/model/1.0" 
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           >
+  <xs:import namespace="http://schema.ximura.org/core" />
+  <xs:element name="model">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="ximura:entity" />
+        <xs:element minOccurs="0" maxOccurs="unbounded" name="data">
+          <xs:complexType>
+            <xs:attribute name="type" type="xs:string" use="required" />
+            <xs:attribute name="action" type="xs:string" use="required" />
+            <xs:attribute name="required" type="xs:boolean" use="required" />
+            <xs:attribute name="id" type="xs:string" use="required" />
+            <xs:attribute name="reftype" type="xs:string" use="required" />
+            <xs:attribute name="refvalue" type="xs:string" use="required" />
+            <xs:attribute name="entitytype" type="xs:string" use="required" />
+            <xs:attribute name="permiterror" type="xs:boolean" use="optional" />
+            <xs:attribute name="entitystatus" type="xs:string" use="optional" />
+          </xs:complexType>
+        </xs:element>
+        <xs:any minOccurs="0"/>
+      </xs:sequence>
+      <xs:attribute name="refid" type="xs:string" use="required" />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<EmailTemplate xmlns="http://schema.aegea.biz/email/1.0" 
+               xmlns:mtemp="http://schema.aegea.biz/messagetemplate/1.0" 
+               xmlns:ximura="http://schema.ximura.org/core">
+  
+  <ximura:entity>
+    <ximura:tid>D27CAB41-91C4-4e0c-AEF6-DEF73A74EFF6</ximura:tid>
+    <ximura:cid></ximura:cid>
+    <ximura:vid></ximura:vid>
+  </ximura:entity>
+
+  <AddressSender address=""></AddressSender>
+  <AddressFrom address=""></AddressFrom>
+  <AddressReplyTo address =""></AddressReplyTo>
+  
+  <Recipients type="to"/>
+  <Recipients type="cc"/>
+  <Recipients type="bcc"/>
+
+  <Message>
+    
+    <mtemp:Subject></mtemp:Subject>
+    <mtemp:SubjectEncoding></mtemp:SubjectEncoding>
+    <mtemp:Priority>0</mtemp:Priority>
+    <mtemp:Status>pending</mtemp:Status>
+    <mtemp:CreateDate></mtemp:CreateDate>
+    <mtemp:TemplateAddress></mtemp:TemplateAddress>
+    <mtemp:UpdateDate></mtemp:UpdateDate>
+
+    <mtemp:Parameters/>
+    
+  </Message>
+  
+</EmailTemplate>
