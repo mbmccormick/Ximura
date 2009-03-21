@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceManagerConfiguration xmlns="http://schema.ximura.org/configuration/resourcemanager/1.0"
+  xmlns:fsm="http://schema.ximura.org/configuration/fsm/1.0"
+  xmlns:cmd="http://schema.ximura.org/configuration/command/1.0"
+  xmlns:ximura="http://schema.ximura.org/core">
+
+  <ximura:entity>
+    <ximura:tid>28C52546-68E7-4847-AD03-C7BEA2E17C8D</ximura:tid>
+    <ximura:cid></ximura:cid>
+    <ximura:vid></ximura:vid>
+  </ximura:entity>
+
+  <commandconfig xmlns="http://schema.ximura.org/configuration/command/1.0">
+    <id></id>
+    <name></name>
+    <description></description>
+    <enabled>true</enabled>
+    <priority>normal</priority>
+    <usersessionrealm></usersessionrealm>
+    <processsession required="true" usesystemcredentials="true"/>
+  </commandconfig>
+
+  <timerpoll xmlns="http://schema.ximura.org/configuration/command/1.0"
+    enabled="false" polltimeenabled="false" autostart="false" polltimerepeatvalue ="1" polltimerepeattype ="s"/>
+
+  <fsm:pool min="5" prefer="20" max="200" />
+
+</ResourceManagerConfiguration>

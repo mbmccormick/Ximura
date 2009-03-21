@@ -1,0 +1,2136 @@
+From: "Saved by Windows Internet Explorer 7"
+Subject: RFC 2327 (rfc2327) - SDP: Session Description Protocol
+Date: Tue, 17 Oct 2006 23:01:37 +0800
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	type="text/html";
+	boundary="----=_NextPart_000_0007_01C6F240.3353B370"
+X-MimeOLE: Produced By Microsoft MimeOLE V6.0.5600.16384
+
+This is a multi-part message in MIME format.
+
+------=_NextPart_000_0007_01C6F240.3353B370
+Content-Type: text/html;
+	charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://www.faqs.org/rfcs/rfc2327.html
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>RFC 2327 (rfc2327) - SDP: Session Description =
+Protocol</TITLE>
+<META http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dwindows-1252">
+<META content=3D"RFC 2327 - SDP: Session Description Protocol" =
+name=3Ddescription>
+<SCRIPT language=3DJavaScript1.2>=0A=
+function erfc(s)=0A=
+{document.write("<A href=3D\"/rfccomment.php?rfcnum=3D"+s+"\" =
+target=3D\"_blank\" =
+onclick=3D\"window.open('/rfccomment.php?rfcnum=3D"+s+"','Popup','toolbar=
+=3Dno,location=3Dno,status=3Dno,menubar=3Dno,scrollbars=3Dyes,resizable=3D=
+yes,width=3D680,height=3D530,left=3D30,top=3D43'); return =
+false;\")>Comment on RFC "+s+"</A>\n");}=0A=
+//-->=0A=
+</SCRIPT>
+
+<META content=3D"MSHTML 6.00.5600.16384" name=3DGENERATOR></HEAD>
+<BODY text=3D#000000 bgColor=3D#ffffff>
+<P align=3Dcenter><IMG height=3D62 alt=3D""=20
+src=3D"http://www.faqs.org/images/library.jpg" width=3D150 =
+align=3Dmiddle=20
+border=3D0></P>
+<H1 align=3Dcenter>RFC 2327 (RFC2327)</H1>
+<P align=3Dcenter>Internet RFC/STD/FYI/BCP Archives</P>
+<DIV align=3Dcenter>[ <A href=3D"http://www.faqs.org/rfcs/">RFC =
+Index</A> | <A=20
+href=3D"http://www.faqs.org/rfcs/rfcsearch.html">RFC Search</A> | <A=20
+href=3D"http://www.faqs.org/faqs/">Usenet FAQs</A> | <A=20
+href=3D"http://www.faqs.org/contrib/">Web FAQs</A> | <A=20
+href=3D"http://www.faqs.org/docs/">Documents</A> | <A=20
+href=3D"http://www.city-data.com/">Cities</A> ]=20
+<P><STRONG>Alternate Formats:</STRONG> <A=20
+href=3D"http://www.faqs.org/ftp/rfc/rfc2327.txt">rfc2327.txt</A> | <A=20
+href=3D"http://www.faqs.org/ftp/rfc/pdf/rfc2327.txt.pdf">rfc2327.txt.pdf<=
+/A></P></DIV>
+<P align=3Dcenter>
+<SCRIPT language=3DJavaScript><!--=0A=
+erfc("2327");=0A=
+// --></SCRIPT>
+</P>
+<H3 align=3Dcenter>RFC 2327 - SDP: Session Description Protocol</H3>
+<HR noShade SIZE=3D2>
+<PRE>
+Network Working Group                                           M. =
+Handley
+Request for Comments: 2327                                     V. =
+Jacobson
+Category: Standards Track                                         =
+ISI/LBNL
+                                                                April =
+1998
+
+                   SDP: Session Description Protocol
+
+Status of this Memo
+
+   This document specifies an Internet standards track protocol for the
+   Internet community, and requests discussion and suggestions for
+   improvements.  Please refer to the current edition of the "Internet
+   Official Protocol Standards" (STD 1) for the standardization state
+   and status of this protocol.  Distribution of this memo is unlimited.
+
+Copyright Notice
+
+   Copyright (C) The Internet Society (1998).  All Rights Reserved.
+
+Abstract
+
+   This document defines the Session Description Protocol, SDP.  SDP is
+   intended for describing multimedia sessions for the purposes of
+   session announcement, session invitation, and other forms of
+   multimedia session initiation.
+
+   This document is a product of the Multiparty Multimedia Session
+   Control (MMUSIC) working group of the Internet Engineering Task
+   Force. Comments are solicited and should be addressed to the working
+   group's mailing list at <A =
+href=3D"mailto:confctrl@isi.edu">confctrl@isi.edu</A> and/or the =
+authors.
+
+1.  Introduction
+
+   On the Internet multicast backbone (Mbone), a session directory tool
+   is used to advertise multimedia conferences and communicate the
+   conference addresses and conference tool-specific information
+   necessary for participation.  This document defines a session
+   description protocol for this purpose, and for general real-time
+   multimedia session description purposes. This memo does not describe
+   multicast address allocation or the distribution of SDP messages in
+   detail.  These are described in accompanying memos.  SDP is not
+   intended for negotiation of media encodings.
+
+2.  Background
+
+   The Mbone is the part of the internet that supports IP multicast, and
+   thus permits efficient many-to-many communication.  It is used
+   extensively for multimedia conferencing.  Such conferences usually
+   have the property that tight coordination of conference membership is
+   not necessary; to receive a conference, a user at an Mbone site only
+   has to know the conference's multicast group address and the UDP
+   ports for the conference data streams.
+
+   Session directories assist the advertisement of conference sessions
+   and communicate the relevant conference setup information to
+   prospective participants.  SDP is designed to convey such information
+   to recipients.  SDP is purely a format for session description - it
+   does not incorporate a transport protocol, and is intended to use
+   different transport protocols as appropriate including the Session
+   Announcement Protocol [4], Session Initiation Protocol [11], Real-
+   Time Streaming Protocol [12], electronic mail using the MIME
+   extensions, and the Hypertext Transport Protocol.
+
+   SDP is intended to be general purpose so that it can be used for a
+   wider range of network environments and applications than just
+   multicast session directories.  However, it is not intended to
+   support negotiation of session content or media encodings - this is
+   viewed as outside the scope of session description.
+
+3.  Glossary of Terms
+
+   The following terms are used in this document, and have specific
+   meaning within the context of this document.
+
+   Conference
+     A multimedia conference is a set of two or more communicating users
+     along with the software they are using to communicate.
+
+   Session
+     A multimedia session is a set of multimedia senders and receivers
+     and the data streams flowing from senders to receivers.  A
+     multimedia conference is an example of a multimedia session.
+
+   Session Advertisement
+     See session announcement.
+
+   Session Announcement
+     A session announcement is a mechanism by which a session
+     description is conveyed to users in a proactive fashion, i.e., the
+     session description was not explicitly requested by the user.
+
+   Session Description
+     A well defined format for conveying sufficient information to
+     discover and participate in a multimedia session.
+
+3.1.  Terminology
+
+   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+   "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
+   document are to be interpreted as described in <A =
+href=3D"http://www.faqs.org/rfcs/rfc2119.html">RFC 2119</A>.
+
+4.  SDP Usage
+
+4.1.  Multicast Announcements
+
+   SDP is a session description protocol for multimedia sessions. A
+   common mode of usage is for a client to announce a conference session
+   by periodically multicasting an announcement packet to a well known
+   multicast address and port using the Session Announcement Protocol
+   (SAP).
+
+   SAP packets are UDP packets with the following format:
+
+         |--------------------|
+         | SAP header         |
+         |--------------------|
+         | text payload       |
+         |//////////
+
+   The header is the Session Announcement Protocol header.  SAP is
+   described in more detail in a companion memo [4]
+
+   The text payload is an SDP session description, as described in this
+   memo.  The text payload should be no greater than 1 Kbyte in length.
+   If announced by SAP, only one session announcement is permitted in a
+   single packet.
+
+4.2.  Email and WWW Announcements
+
+   Alternative means of conveying session descriptions include
+   electronic mail and the World Wide Web. For both email and WWW
+   distribution, the use of the MIME content type "application/sdp"
+   should be used.  This enables the automatic launching of applications
+   for participation in the session from the WWW client or mail reader
+   in a standard manner.
+
+   Note that announcements of multicast sessions made only via email or
+   the World Wide Web (WWW) do not have the property that the receiver
+   of a session announcement can necessarily receive the session because
+   the multicast sessions may be restricted in scope, and access to the
+   WWW server or reception of email is possible outside this scope.  SAP
+   announcements do not suffer from this mismatch.
+
+5.  Requirements and Recommendations
+
+   The purpose of SDP is to convey information about media streams in
+   multimedia sessions to allow the recipients of a session description
+   to participate in the session.  SDP is primarily intended for use in
+   an internetwork, although it is sufficiently general that it can
+   describe conferences in other network environments.
+
+   A multimedia session, for these purposes, is defined as a set of
+   media streams that exist for some duration of time.  Media streams
+   can be many-to-many.  The times during which the session is active
+   need not be continuous.
+
+   Thus far, multicast based sessions on the Internet have differed from
+   many other forms of conferencing in that anyone receiving the traffic
+   can join the session (unless the session traffic is encrypted).  In
+   such an environment, SDP serves two primary purposes.  It is a means
+   to communicate the existence of a session, and is a means to convey
+   sufficient information to enable joining and participating in the
+   session.  In a unicast environment, only the latter purpose is likely
+   to be relevant.
+
+   Thus SDP includes:
+
+   o Session name and purpose
+
+   o Time(s) the session is active
+
+   o The media comprising the session
+
+   o Information to receive those media (addresses, ports, formats and
+     so on)
+
+   As resources necessary to participate in a session may be limited,
+   some additional information may also be desirable:
+
+   o Information about the bandwidth to be used by the conference
+
+   o Contact information for the person responsible for the session
+
+   In general, SDP must convey sufficient information to be able to join
+   a session (with the possible exception of encryption keys) and to
+   announce the resources to be used to non-participants that may need
+   to know.
+
+5.1.  Media Information
+
+   SDP includes:
+
+   o The type of media (video, audio, etc)
+
+   o The transport protocol (RTP/UDP/IP, H.320, etc)
+
+   o The format of the media (H.261 video, MPEG video, etc)
+
+   For an IP multicast session, the following are also conveyed:
+
+   o Multicast address for media
+
+   o Transport Port for media
+
+   This address and port are the destination address and destination
+   port of the multicast stream, whether being sent, received, or both.
+
+   For an IP unicast session, the following are conveyed:
+
+   o Remote address for media
+
+   o Transport port for contact address
+
+   The semantics of this address and port depend on the media and
+   transport protocol defined.  By default, this is the remote address
+   and remote port to which data is sent, and the remote address and
+   local port on which to receive data.  However, some media may define
+   to use these to establish a control channel for the actual media
+   flow.
+
+5.2.  Timing Information
+
+   Sessions may either be bounded or unbounded in time. Whether or not
+   they are bounded, they may be only active at specific times.
+
+   SDP can convey:
+
+   o An arbitrary list of start and stop times bounding the session
+
+   o For each bound, repeat times such as "every Wednesday at 10am for
+     one hour"
+
+   This timing information is globally consistent, irrespective of local
+   time zone or daylight saving time.
+
+5.3.  Private Sessions
+
+   It is possible to create both public sessions and private sessions.
+   Private sessions will typically be conveyed by encrypting the session
+   description to distribute it.  The details of how encryption is
+   performed are dependent on the mechanism used to convey SDP - see [4]
+   for how this is done for session announcements.
+
+   If a session announcement is private it is possible to use that
+   private announcement to convey encryption keys necessary to decode
+   each of the media in a conference, including enough information to
+   know which encryption scheme is used for each media.
+
+5.4.  Obtaining Further Information about a Session
+
+   A session description should convey enough information to decide
+   whether or not to participate in a session.  SDP may include
+   additional pointers in the form of Universal Resources Identifiers
+   (URIs) for more information about the session.
+
+5.5.  Categorisation
+
+   When many session descriptions are being distributed by SAP or any
+   other advertisement mechanism, it may be desirable to filter
+   announcements that are of interest from those that are not.  SDP
+   supports a categorisation mechanism for sessions that is capable of
+   being automated.
+
+5.6.  Internationalization
+
+   The SDP specification recommends the use of the ISO 10646 character
+   sets in the UTF-8 encoding (<A =
+href=3D"http://www.faqs.org/rfcs/rfc2044.html">RFC 2044</A>) to allow =
+many different
+   languages to be represented.  However, to assist in compact
+   representations, SDP also allows other character sets such as ISO
+   8859-1 to be used when desired.  Internationalization only applies to
+   free-text fields (session name and background information), and not
+   to SDP as a whole.
+
+6.  SDP Specification
+
+   SDP session descriptions are entirely textual using the ISO 10646
+   character set in UTF-8 encoding. SDP field names and attributes names
+   use only the US-ASCII subset of UTF-8, but textual fields and
+   attribute values may use the full ISO 10646 character set.  The
+   textual form, as opposed to a binary encoding such as ASN/1 or XDR,
+
+   was chosen to enhance portability, to enable a variety of transports
+   to be used (e.g, session description in a MIME email message) and to
+   allow flexible, text-based toolkits (e.g., Tcl/Tk ) to be used to
+   generate and to process session descriptions.  However, since the
+   total bandwidth allocated to all SAP announcements is strictly
+   limited, the encoding is deliberately compact.  Also, since
+   announcements may be transported via very unreliable means (e.g.,
+   email) or damaged by an intermediate caching server, the encoding was
+   designed with strict order and formatting rules so that most errors
+   would result in malformed announcements which could be detected
+   easily and discarded. This also allows rapid discarding of encrypted
+   announcements for which a receiver does not have the correct key.
+
+   An SDP session description consists of a number of lines of text of
+   the form &lt;type&gt;=3D&lt;value&gt; &lt;type&gt; is always exactly =
+one character and is
+   case-significant.  &lt;value&gt; is a structured text string whose =
+format
+   depends on &lt;type&gt;.  It also will be case-significant unless a
+   specific field defines otherwise.  Whitespace is not permitted either
+   side of the `=3D' sign. In general &lt;value&gt; is either a number =
+of fields
+   delimited by a single space character or a free format string.
+
+   A session description consists of a session-level description
+   (details that apply to the whole session and all media streams) and
+   optionally several media-level descriptions (details that apply onto
+   to a single media stream).
+
+   An announcement consists of a session-level section followed by zero
+   or more media-level sections.  The session-level part starts with a
+   `v=3D' line and continues to the first media-level section.  The =
+media
+   description starts with an `m=3D' line and continues to the next =
+media
+   description or end of the whole session description.  In general,
+   session-level values are the default for all media unless overridden
+   by an equivalent media-level value.
+
+   When SDP is conveyed by SAP, only one session description is allowed
+   per packet.  When SDP is conveyed by other means, many SDP session
+   descriptions may be concatenated together (the `v=3D' line indicating
+   the start of a session description terminates the previous
+   description).  Some lines in each description are required and some
+   are optional but all must appear in exactly the order given here (the
+   fixed order greatly enhances error detection and allows for a simple
+   parser). Optional items are marked with a `*'.
+
+Session description
+        v=3D  (protocol version)
+        o=3D  (owner/creator and session identifier).
+        s=3D  (session name)
+        i=3D* (session information)
+
+        u=3D* (URI of description)
+        e=3D* (email address)
+        p=3D* (phone number)
+        c=3D* (connection information - not required if included in all =
+media)
+        b=3D* (bandwidth information)
+        One or more time descriptions (see below)
+        z=3D* (time zone adjustments)
+        k=3D* (encryption key)
+        a=3D* (zero or more session attribute lines)
+        Zero or more media descriptions (see below)
+
+Time description
+        t=3D  (time the session is active)
+        r=3D* (zero or more repeat times)
+
+Media description
+        m=3D  (media name and transport address)
+        i=3D* (media title)
+        c=3D* (connection information - optional if included at =
+session-level)
+        b=3D* (bandwidth information)
+        k=3D* (encryption key)
+        a=3D* (zero or more media attribute lines)
+
+   The set of `type' letters is deliberately small and not intended to
+   be extensible -- SDP parsers must completely ignore any announcement
+   that contains a `type' letter that it does not understand. The
+   `attribute' mechanism ("a=3D" described below) is the primary means =
+for
+   extending SDP and tailoring it to particular applications or media.
+   Some attributes (the ones listed in this document) have a defined
+   meaning but others may be added on an application-, media- or
+   session-specific basis.  A session directory must ignore any
+   attribute it doesn't understand.
+
+   The connection (`c=3D') and attribute (`a=3D') information in the
+   session-level section applies to all the media of that session unless
+   overridden by connection information or an attribute of the same name
+   in the media description.  For instance, in the example below, each
+   media behaves as if it were given a `recvonly' attribute.
+
+   An example SDP description is:
+
+        v=3D0
+        o=3Dmhandley 2890844526 2890842807 IN IP4 126.16.64.4
+        s=3DSDP Seminar
+        i=3DA Seminar on the session description protocol
+        u=3D<A =
+href=3D"http://www.cs.ucl.ac.uk/staff/M.Handley/sdp.03.ps">http://www.cs.=
+ucl.ac.uk/staff/M.Handley/sdp.03.ps</A>
+        <A href=3D"mailto:e=3Dmjh@isi.edu">e=3Dmjh@isi.edu</A> (Mark =
+Handley)
+        c=3DIN IP4 224.2.17.12/127
+
+        t=3D2873397496 2873404696
+        a=3Drecvonly
+        m=3Daudio 49170 RTP/AVP 0
+        m=3Dvideo 51372 RTP/AVP 31
+        m=3Dapplication 32416 udp wb
+        a=3Dorient:portrait
+
+   Text records such as the session name and information are bytes
+   strings which may contain any byte with the exceptions of 0x00 (Nul),
+   0x0a (ASCII newline) and 0x0d (ASCII carriage return).  The sequence
+   CRLF (0x0d0a) is used to end a record, although parsers should be
+   tolerant and also accept records terminated with a single newline
+   character.  By default these byte strings contain ISO-10646
+   characters in UTF-8 encoding, but this default may be changed using
+   the `charset' attribute.
+
+   Protocol Version
+
+   v=3D0
+
+   The "v=3D" field gives the version of the Session Description =
+Protocol.
+   There is no minor version number.
+
+   Origin
+
+   o=3D&lt;username&gt; &lt;session id&gt; &lt;version&gt; &lt;network =
+type&gt; &lt;address type&gt;
+   &lt;address&gt;
+
+   The "o=3D" field gives the originator of the session (their username
+   and the address of the user's host) plus a session id and session
+   version number.
+
+   &lt;username&gt; is the user's login on the originating host, or it =
+is "-"
+   if the originating host does not support the concept of user ids.
+   &lt;username&gt; must not contain spaces.  &lt;session id&gt; is a =
+numeric string
+   such that the tuple of &lt;username&gt;, &lt;session id&gt;, =
+&lt;network type&gt;,
+   &lt;address type&gt; and &lt;address&gt; form a globally unique =
+identifier for
+   the session.
+
+   The method of &lt;session id&gt; allocation is up to the creating =
+tool, but
+   it has been suggested that a Network Time Protocol (NTP) timestamp be
+   used to ensure uniqueness [1].
+
+   &lt;version&gt; is a version number for this announcement.  It is =
+needed
+   for proxy announcements to detect which of several announcements for
+   the same session is the most recent.  Again its usage is up to the
+
+   creating tool, so long as &lt;version&gt; is increased when a =
+modification
+   is made to the session data.  Again, it is recommended (but not
+   mandatory) that an NTP timestamp is used.
+
+   &lt;network type&gt; is a text string giving the type of network.
+   Initially "IN" is defined to have the meaning "Internet".  =
+&lt;address
+   type&gt; is a text string giving the type of the address that =
+follows.
+   Initially "IP4" and "IP6" are defined.  &lt;address&gt; is the =
+globally
+   unique address of the machine from which the session was created.
+   For an address type of IP4, this is either the fully-qualified domain
+   name of the machine, or the dotted-decimal representation of the IP
+   version 4 address of the machine.  For an address type of IP6, this
+   is either the fully-qualified domain name of the machine, or the
+   compressed textual representation of the IP version 6 address of the
+   machine.  For both IP4 and IP6, the fully-qualified domain name is
+   the form that SHOULD be given unless this is unavailable, in which
+   case the globally unique address may be substituted.  A local IP
+   address MUST NOT be used in any context where the SDP description
+   might leave the scope in which the address is meaningful.
+
+   In general, the "o=3D" field serves as a globally unique identifier =
+for
+   this version of this session description, and the subfields excepting
+   the version taken together identify the session irrespective of any
+   modifications.
+
+   Session Name
+
+   s=3D&lt;session name&gt;
+
+   The "s=3D" field is the session name.  There must be one and only one
+   "s=3D" field per session description, and it must contain ISO 10646
+   characters (but see also the `charset' attribute below).
+
+   Session and Media Information
+
+   i=3D&lt;session description&gt;
+
+   The "i=3D" field is information about the session.  There may be at
+   most one session-level "i=3D" field per session description, and at
+   most one "i=3D" field per media. Although it may be omitted, this is
+   discouraged for session announcements, and user interfaces for
+   composing sessions should require text to be entered.  If it is
+   present it must contain ISO 10646 characters (but see also the
+   `charset' attribute below).
+
+   A single "i=3D" field can also be used for each media definition.  In
+   media definitions, "i=3D" fields are primarily intended for labeling
+   media streams. As such, they are most likely to be useful when a
+
+   single session has more than one distinct media stream of the same
+   media type.  An example would be two different whiteboards, one for
+   slides and one for feedback and questions.
+
+   URI
+
+   u=3D&lt;URI&gt;
+
+   o A URI is a Universal Resource Identifier as used by WWW clients
+
+   o The URI should be a pointer to additional information about the
+     conference
+
+   o This field is optional, but if it is present it should be specified
+     before the first media field
+
+   o No more than one URI field is allowed per session description
+
+   Email Address and Phone Number
+
+   e=3D&lt;email address&gt;
+   p=3D&lt;phone number&gt;
+
+   o These specify contact information for the person responsible for
+     the conference.  This is not necessarily the same person that
+     created the conference announcement.
+
+   o Either an email field or a phone field must be specified.
+     Additional email and phone fields are allowed.
+
+   o If these are present, they should be specified before the first
+     media field.
+
+   o More than one email or phone field can be given for a session
+     description.
+
+   o Phone numbers should be given in the conventional international
+
+     format - preceded by a "+ and the international country code.
+     There must be a space or a hyphen ("-") between the country code
+     and the rest of the phone number.  Spaces and hyphens may be used
+     to split up a phone field to aid readability if desired. For
+     example:
+
+                   p=3D+44-171-380-7777 or p=3D+1 617 253 6011
+
+   o Both email addresses and phone numbers can have an optional free
+     text string associated with them, normally giving the name of the
+     person who may be contacted.  This should be enclosed in
+     parenthesis if it is present.  For example:
+
+                        <A =
+href=3D"mailto:e=3Dmjh@isi.edu">e=3Dmjh@isi.edu</A> (Mark Handley)
+
+     The alternative <A =
+href=3D"http://www.faqs.org/rfcs/rfc822.html">RFC822</A> name quoting =
+convention is also allowed for
+     both email addresses and phone numbers.  For example,
+
+                        e=3DMark Handley &lt;<A =
+href=3D"mailto:mjh@isi.edu">mjh@isi.edu</A>&gt;
+
+     The free text string should be in the ISO-10646 character set with
+     UTF-8 encoding, or alternatively in ISO-8859-1 or other encodings
+     if the appropriate charset session-level attribute is set.
+
+   Connection Data
+
+   c=3D&lt;network type&gt; &lt;address type&gt; &lt;connection =
+address&gt;
+
+   The "c=3D" field contains connection data.
+
+   A session announcement must contain one "c=3D" field in each media
+   description (see below) or a "c=3D" field at the session-level.  It =
+may
+   contain a session-level "c=3D" field and one additional "c=3D" field =
+per
+   media description, in which case the per-media values override the
+   session-level settings for the relevant media.
+
+   The first sub-field is the network type, which is a text string
+   giving the type of network.  Initially "IN" is defined to have the
+   meaning "Internet".
+
+   The second sub-field is the address type.  This allows SDP to be used
+   for sessions that are not IP based.  Currently only IP4 is defined.
+
+   The third sub-field is the connection address.  Optional extra
+   subfields may be added after the connection address depending on the
+   value of the &lt;address type&gt; field.
+
+   For IP4 addresses, the connection address is defined as follows:
+
+   o Typically the connection address will be a class-D IP multicast
+
+     group address.  If the session is not multicast, then the
+     connection address contains the fully-qualified domain name or the
+     unicast IP address of the expected data source or data relay or
+     data sink as determined by additional attribute fields. It is not
+     expected that fully-qualified domain names or unicast addresses
+
+     will be given in a session description that is communicated by a
+     multicast announcement, though this is not prohibited.  If a
+     unicast data stream is to pass through a network address
+     translator, the use of a fully-qualified domain name rather than an
+     unicast IP address is RECOMMENDED.  In other cases, the use of an
+     IP address to specify a particular interface on a multi-homed host
+     might be required.  Thus this specification leaves the decision as
+     to which to use up to the individual application, but all
+     applications MUST be able to cope with receiving both formats.
+
+   o Conferences using an IP multicast connection address must also have
+     a time to live (TTL) value present in addition to the multicast
+     address.  The TTL and the address together define the scope with
+     which multicast packets sent in this conference will be sent. TTL
+     values must be in the range 0-255.
+
+     The TTL for the session is appended to the address using a slash as
+     a separator.  An example is:
+
+                           c=3DIN IP4 224.2.1.1/127
+
+     Hierarchical or layered encoding schemes are data streams where the
+     encoding from a single media source is split into a number of
+     layers.  The receiver can choose the desired quality (and hence
+     bandwidth) by only subscribing to a subset of these layers.  Such
+     layered encodings are normally transmitted in multiple multicast
+     groups to allow multicast pruning.  This technique keeps unwanted
+     traffic from sites only requiring certain levels of the hierarchy.
+     For applications requiring multiple multicast groups, we allow the
+     following notation to be used for the connection address:
+
+            &lt;base multicast address&gt;/&lt;ttl&gt;/&lt;number of =
+addresses&gt;
+
+     If the number of addresses is not given it is assumed to be one.
+     Multicast addresses so assigned are contiguously allocated above
+     the base address, so that, for example:
+
+                          c=3DIN IP4 224.2.1.1/127/3
+
+     would state that addresses 224.2.1.1, 224.2.1.2 and 224.2.1.3 are
+     to be used at a ttl of 127.  This is semantically identical to
+     including multiple "c=3D" lines in a media description:
+
+                           c=3DIN IP4 224.2.1.1/127
+                           c=3DIN IP4 224.2.1.2/127
+                           c=3DIN IP4 224.2.1.3/127
+
+     Multiple addresses or "c=3D" lines can only be specified on a per-
+     media basis, and not for a session-level "c=3D" field.
+
+     It is illegal for the slash notation described above to be used for
+     IP unicast addresses.
+
+   Bandwidth
+
+   b=3D&lt;modifier&gt;:&lt;bandwidth-value&gt;
+
+   o This specifies the proposed bandwidth to be used by the session or
+     media, and is optional.
+
+   o &lt;bandwidth-value&gt; is in kilobits per second
+
+   o &lt;modifier&gt; is a single alphanumeric word giving the meaning =
+of the
+     bandwidth figure.
+
+   o Two modifiers are initially defined:
+
+   CT Conference Total: An implicit maximum bandwidth is associated with
+     each TTL on the Mbone or within a particular multicast
+     administrative scope region (the Mbone bandwidth vs. TTL limits are
+     given in the MBone FAQ). If the bandwidth of a session or media in
+     a session is different from the bandwidth implicit from the scope,
+     a `b=3DCT:...' line should be supplied for the session giving the
+     proposed upper limit to the bandwidth used. The primary purpose of
+     this is to give an approximate idea as to whether two or more
+     conferences can co-exist simultaneously.
+
+   AS Application-Specific Maximum: The bandwidth is interpreted to be
+     application-specific, i.e., will be the application's concept of
+     maximum bandwidth.  Normally this will coincide with what is set on
+     the application's "maximum bandwidth" control if applicable.
+
+     Note that CT gives a total bandwidth figure for all the media at
+     all sites.  AS gives a bandwidth figure for a single media at a
+     single site, although there may be many sites sending
+     simultaneously.
+
+   o Extension Mechanism: Tool writers can define experimental bandwidth
+     modifiers by prefixing their modifier with "X-". For example:
+
+                                 b=3DX-YZ:128
+
+     SDP parsers should ignore bandwidth fields with unknown modifiers.
+     Modifiers should be alpha-numeric and, although no length limit is
+     given, they are recommended to be short.
+
+   Times, Repeat Times and Time Zones
+
+   t=3D&lt;start time&gt;  &lt;stop time&gt;
+
+   o "t=3D" fields specify the start and stop times for a conference
+     session.  Multiple "t=3D" fields may be used if a session is active
+     at multiple irregularly spaced times; each additional "t=3D" field
+     specifies an additional period of time for which the session will
+     be active.  If the session is active at regular times, an "r=3D"
+     field (see below) should be used in addition to and following a
+     "t=3D" field - in which case the "t=3D" field specifies the start =
+and
+     stop times of the repeat sequence.
+
+   o The first and second sub-fields give the start and stop times for
+     the conference respectively.  These values are the decimal
+     representation of Network Time Protocol (NTP) time values in
+     seconds [1].  To convert these values to UNIX time, subtract
+     decimal 2208988800.
+
+   o If the stop-time is set to zero, then the session is not bounded,
+     though it will not become active until after the start-time.  If
+     the start-time is also zero, the session is regarded as permanent.
+
+     User interfaces should strongly discourage the creation of
+     unbounded and permanent sessions as they give no information about
+     when the session is actually going to terminate, and so make
+     scheduling difficult.
+
+     The general assumption may be made, when displaying unbounded
+     sessions that have not timed out to the user, that an unbounded
+     session will only be active until half an hour from the current
+     time or the session start time, whichever is the later.  If
+     behaviour other than this is required, an end-time should be given
+     and modified as appropriate when new information becomes available
+     about when the session should really end.
+
+     Permanent sessions may be shown to the user as never being active
+     unless there are associated repeat times which state precisely when
+     the session will be active.  In general, permanent sessions should
+     not be created for any session expected to have a duration of less
+     than 2 months, and should be discouraged for sessions expected to
+     have a duration of less than 6 months.
+
+     r=3D&lt;repeat interval&gt; &lt;active duration&gt; &lt;list of =
+offsets from start-
+     time&gt;
+
+   o "r=3D" fields specify repeat times for a session.  For example, if
+     a session is active at 10am on Monday and 11am on Tuesday for one
+
+     hour each week for three months, then the &lt;start time&gt; in the
+     corresponding "t=3D" field would be the NTP representation of 10am =
+on
+     the first Monday, the &lt;repeat interval&gt; would be 1 week, the
+     &lt;active duration&gt; would be 1 hour, and the offsets would be =
+zero
+     and 25 hours. The corresponding "t=3D" field stop time would be the
+     NTP representation of the end of the last session three months
+     later. By default all fields are in seconds, so the "r=3D" and =
+"t=3D"
+     fields might be:
+
+                           t=3D3034423619 3042462419
+                            r=3D604800 3600 0 90000
+
+    To make announcements more compact, times may also be given in units
+    of days, hours or minutes. The syntax for these is a number
+    immediately followed by a single case-sensitive character.
+    Fractional units are not allowed - a smaller unit should be used
+    instead.  The following unit specification characters are allowed:
+
+                         d - days (86400 seconds)
+                        h - minutes (3600 seconds)
+                         m - minutes (60 seconds)
+         s - seconds (allowed for completeness but not recommended)
+
+   Thus, the above announcement could also have been written:
+
+                               r=3D7d 1h 0 25h
+
+     Monthly and yearly repeats cannot currently be directly specified
+     with a single SDP repeat time - instead separate "t" fields should
+     be used to explicitly list the session times.
+
+        z=3D&lt;adjustment time&gt; &lt;offset&gt; &lt;adjustment =
+time&gt; &lt;offset&gt; ....
+
+   o To schedule a repeated session which spans a change from daylight-
+     saving time to standard time or vice-versa, it is necessary to
+     specify offsets from the base repeat times. This is required
+     because different time zones change time at different times of day,
+     different countries change to or from daylight time on different
+     dates, and some countries do not have daylight saving time at all.
+
+     Thus in order to schedule a session that is at the same time winter
+     and summer, it must be possible to specify unambiguously by whose
+     time zone a session is scheduled.  To simplify this task for
+     receivers, we allow the sender to specify the NTP time that a time
+     zone adjustment happens and the offset from the time when the
+     session was first scheduled.  The "z" field allows the sender to
+     specify a list of these adjustment times and offsets from the base
+     time.
+
+     An example might be:
+
+                        z=3D2882844526 -1h 2898848070 0
+
+     This specifies that at time 2882844526 the time base by which the
+     session's repeat times are calculated is shifted back by 1 hour,
+     and that at time 2898848070 the session's original time base is
+     restored. Adjustments are always relative to the specified start
+     time - they are not cumulative.
+
+   o    If a session is likely to last several years, it is  expected
+   that
+     the session announcement will be modified periodically rather than
+     transmit several years worth of adjustments in one announcement.
+
+   Encryption Keys
+
+   k=3D&lt;method&gt;
+   k=3D&lt;method&gt;:&lt;encryption key&gt;
+
+   o The session description protocol may be used to convey encryption
+     keys.  A key field is permitted before the first media entry (in
+     which case it applies to all media in the session), or for each
+     media entry as required.
+
+   o The format of keys and their usage is outside the scope of this
+     document, but see [3].
+
+   o The method indicates the mechanism to be used to obtain a usable
+     key by external means, or from the encoded encryption key given.
+
+     The following methods are defined:
+
+      k=3Dclear:&lt;encryption key&gt;
+        The encryption key (as described in [3] for  RTP  media  streams
+        under  the  AV  profile)  is  included untransformed in this key
+        field.
+
+      k=3Dbase64:&lt;encoded encryption key&gt;
+        The encryption key (as described in [3] for RTP media streams
+        under the AV profile) is included in this key field but has been
+        base64 encoded because it includes characters that are
+        prohibited in SDP.
+
+      k=3Duri:&lt;URI to obtain key&gt;
+        A Universal Resource Identifier as used by WWW clients is
+        included in this key field.  The URI refers to the data
+        containing the key, and may require additional authentication
+
+        before the key can be returned.  When a request is made to the
+        given URI, the MIME content-type of the reply specifies the
+        encoding for the key in the reply.  The key should not be
+        obtained until the user wishes to join the session to reduce
+        synchronisation of requests to the WWW server(s).
+
+      k=3Dprompt
+        No key is included in this SDP description, but the session or
+        media stream referred to by this key field is encrypted.  The
+        user should be prompted for the key when attempting to join the
+        session, and this user-supplied key should then be used to
+        decrypt the media streams.
+
+   Attributes
+
+   a=3D&lt;attribute&gt;
+   a=3D&lt;attribute&gt;:&lt;value&gt;
+
+   Attributes are the primary means for extending SDP.  Attributes may
+   be defined to be used as "session-level" attributes, "media-level"
+   attributes, or both.
+
+   A media description may have any number of attributes ("a=3D" fields)
+   which are media specific.  These are referred to as "media-level"
+   attributes and add information about the media stream.  Attribute
+   fields can also be added before the first media field; these
+   "session-level" attributes convey additional information that applies
+   to the conference as a whole rather than to individual media; an
+   example might be the conference's floor control policy.
+
+   Attribute fields may be of two forms:
+
+   o property attributes.  A property attribute is simply of the form
+     "a=3D&lt;flag&gt;".  These are binary attributes, and the presence =
+of the
+     attribute conveys that the attribute is a property of the session.
+     An example might be "a=3Drecvonly".
+
+   o value attributes.  A value attribute is of the form
+     "a=3D&lt;attribute&gt;:&lt;value&gt;".  An example might be that a =
+whiteboard
+     could have the value attribute "a=3Dorient:landscape"
+
+   Attribute interpretation depends on the media tool being invoked.
+   Thus receivers of session descriptions should be configurable in
+   their interpretation of announcements in general and of attributes in
+   particular.
+
+   Attribute names must be in the US-ASCII subset of ISO-10646/UTF-8.
+
+   Attribute values are byte strings, and MAY use any byte value except
+   0x00 (Nul), 0x0A (LF), and 0x0D (CR). By default, attribute values
+   are to be interpreted as in ISO-10646 character set with UTF-8
+   encoding.  Unlike other text fields, attribute values are NOT
+   normally affected by the `charset' attribute as this would make
+   comparisons against known values problematic.  However, when an
+   attribute is defined, it can be defined to be charset-dependent, in
+   which case it's value should be interpreted in the session charset
+   rather than in ISO-10646.
+
+   Attributes that will be commonly used can be registered with IANA
+   (see Appendix B).  Unregistered attributes should begin with "X-" to
+   prevent inadvertent collision with registered attributes.  In either
+   case, if an attribute is received that is not understood, it should
+   simply be ignored by the receiver.
+
+   Media Announcements
+
+   m=3D&lt;media&gt; &lt;port&gt; &lt;transport&gt; &lt;fmt list&gt;
+
+   A session description may contain a number of media descriptions.
+   Each media description starts with an "m=3D" field, and is terminated
+   by either the next "m=3D" field or by the end of the session
+   description.  A media field also has several sub-fields:
+
+   o The first sub-field is the media type.  Currently defined media are
+     "audio", "video", "application", "data" and "control", though this
+     list may be extended as new communication modalities emerge (e.g.,
+     telepresense).  The difference between "application" and "data" is
+     that the former is a media flow such as whiteboard information, and
+     the latter is bulk-data transfer such as multicasting of program
+     executables which will not typically be displayed to the user.
+     "control" is used to specify an additional conference control
+     channel for the session.
+
+   o The second sub-field is the transport port to which the media
+     stream will be sent.  The meaning of the transport port depends on
+     the network being used as specified in the relevant "c" field and
+     on the transport protocol defined in the third sub-field.  Other
+     ports used by the media application (such as the RTCP port, see
+     [2]) should be derived algorithmically from the base media port.
+
+     Note: For transports based on UDP, the value should be in the range
+     1024 to 65535 inclusive.  For RTP compliance it should be an even
+     number.
+
+     For applications where hierarchically encoded streams are being
+     sent to a unicast address, it may be necessary to specify multiple
+     transport ports.  This is done using a similar notation to that
+     used for IP multicast addresses in the "c=3D" field:
+
+          m=3D&lt;media&gt; &lt;port&gt;/&lt;number of ports&gt; =
+&lt;transport&gt; &lt;fmt list&gt;
+
+     In such a case, the ports used depend on the transport protocol.
+     For RTP, only the even ports are used for data and the
+     corresponding one-higher odd port is used for RTCP.  For example:
+
+                         m=3Dvideo 49170/2 RTP/AVP 31
+
+     would specify that ports 49170 and 49171 form one RTP/RTCP pair and
+     49172 and 49173 form the second RTP/RTCP pair.  RTP/AVP is the
+     transport protocol and 31 is the format (see below).
+
+     It is illegal for both multiple addresses to be specified in the
+     "c=3D" field and for multiple ports to be specified in the "m=3D" =
+field
+     in the same session description.
+
+   o The third sub-field is the transport protocol.  The transport
+     protocol values are dependent on the address-type field in the =
+"c=3D"
+     fields.  Thus a "c=3D" field of IP4 defines that the transport
+     protocol runs over IP4.  For IP4, it is normally expected that most
+     media traffic will be carried as RTP over UDP.  The following
+     transport protocols are preliminarily defined, but may be extended
+     through registration of new protocols with IANA:
+
+     - RTP/AVP - the IETF's Realtime Transport Protocol using the
+       Audio/Video profile carried over UDP.
+
+     - udp - User Datagram Protocol
+
+     If an application uses a single combined proprietary media format
+     and transport protocol over UDP, then simply specifying the
+     transport protocol as udp and using the format field to distinguish
+     the combined protocol is recommended.  If a transport protocol is
+     used over UDP to carry several distinct media types that need to be
+     distinguished by a session directory, then specifying the transport
+     protocol and media format separately is necessary. RTP is an
+     example of a transport-protocol that carries multiple payload
+     formats that must be distinguished by the session directory for it
+     to know how to start appropriate tools, relays, mixers or
+     recorders.
+
+     The main reason to specify the transport-protocol in addition to
+     the media format is that the same standard media formats may be
+     carried over different transport protocols even when the network
+     protocol is the same - a historical example is vat PCM audio and
+     RTP PCM audio.  In addition, relays and monitoring tools that are
+     transport-protocol-specific but format-independent are possible.
+
+     For RTP media streams operating under the RTP Audio/Video Profile
+     [3], the protocol field is "RTP/AVP".  Should other RTP profiles be
+     defined in the future, their profiles will be specified in the same
+     way.  For example, the protocol field "RTP/XYZ" would specify RTP
+     operating under a profile whose short name is "XYZ".
+
+   o The fourth and subsequent sub-fields are media formats.  For audio
+     and video, these will normally be a media payload type as defined
+     in the RTP Audio/Video Profile.
+
+     When a list of payload formats is given, this implies that all of
+     these formats may be used in the session, but the first of these
+     formats is the default format for the session.
+
+     For media whose transport protocol is not RTP or UDP the format
+     field is protocol specific.  Such formats should be defined in an
+     additional specification document.
+
+     For media whose transport protocol is RTP, SDP can be used to
+     provide a dynamic binding of media encoding to RTP payload type.
+     The encoding names in the RTP AV Profile do not specify unique
+     audio encodings (in terms of clock rate and number of audio
+     channels), and so they are not used directly in SDP format fields.
+     Instead, the payload type number should be used to specify the
+     format for static payload types and the payload type number along
+     with additional encoding information should be used for dynamically
+     allocated payload types.
+
+     An example of a static payload type is u-law PCM coded single
+     channel audio sampled at 8KHz.  This is completely defined in the
+     RTP Audio/Video profile as payload type 0, so the media field for
+     such a stream sent to UDP port 49232 is:
+
+                           m=3Dvideo 49232 RTP/AVP 0
+
+     An example of a dynamic payload type is 16 bit linear encoded
+     stereo audio sampled at 16KHz.  If we wish to use dynamic RTP/AVP
+     payload type 98 for such a stream, additional information is
+     required to decode it:
+
+                          m=3Dvideo 49232 RTP/AVP 98
+
+                           a=3Drtpmap:98 L16/16000/2
+
+     The general form of an rtpmap attribute is:
+
+     a=3Drtpmap:&lt;payload type&gt; &lt;encoding name&gt;/&lt;clock =
+rate&gt;[/&lt;encoding
+     parameters&gt;]
+
+     For audio streams, &lt;encoding parameters&gt; may specify the =
+number of
+     audio channels.  This parameter may be omitted if the number of
+     channels is one provided no additional parameters are needed.  For
+     video streams, no encoding parameters are currently specified.
+
+     Additional parameters may be defined in the future, but
+     codecspecific parameters should not be added.  Parameters added to
+     an rtpmap attribute should only be those required for a session
+     directory to make the choice of appropriate media too to
+     participate in a session.  Codec-specific parameters should be
+     added in other attributes.
+
+     Up to one rtpmap attribute can be defined for each media format
+     specified. Thus we might have:
+
+                       m=3Daudio 49230 RTP/AVP 96 97 98
+                             a=3Drtpmap:96 L8/8000
+                            a=3Drtpmap:97 L16/8000
+                           a=3Drtpmap:98 L16/11025/2
+
+     RTP profiles that specify the use of dynamic payload types must
+     define the set of valid encoding names and/or a means to register
+     encoding names if that profile is to be used with SDP.
+
+     Experimental encoding formats can also be specified using rtpmap.
+     RTP formats that are not registered as standard format names must
+     be preceded by "X-".  Thus a new experimental redundant audio
+     stream called GSMLPC using dynamic payload type 99 could be
+     specified as:
+
+                          m=3Dvideo 49232 RTP/AVP 99
+                          a=3Drtpmap:99 X-GSMLPC/8000
+
+     Such an experimental encoding requires that any site wishing to
+     receive the media stream has relevant configured state in its
+     session directory to know which tools are appropriate.
+
+     Note that RTP audio formats typically do not include information
+     about the number of samples per packet.  If a non-default (as
+     defined in the RTP Audio/Video Profile) packetisation is required,
+     the "ptime" attribute is used as given below.
+
+     For more details on RTP audio and video formats, see [3].
+
+   o Formats for non-RTP media should be registered as MIME content
+     types as described in Appendix B.  For example, the LBL whiteboard
+     application might be registered as MIME content-type application/wb
+     with encoding considerations specifying that it operates over UDP,
+     with no appropriate file format.  In SDP this would then be
+     expressed using a combination of the "media" field and the "fmt"
+     field, as follows:
+
+                         m=3Dapplication 32416 udp wb
+
+   Suggested Attributes
+
+   The following attributes are suggested.  Since application writers
+   may add new attributes as they are required, this list is not
+   exhaustive.
+
+   a=3Dcat:&lt;category&gt;
+       This attribute gives the dot-separated hierarchical category of
+       the session.  This is to enable a receiver to filter unwanted
+       sessions by category.  It would probably have been a compulsory
+       separate field, except for its experimental nature at this time.
+       It is a session-level attribute, and is not dependent on charset.
+
+   a=3Dkeywds:&lt;keywords&gt;
+       Like the cat attribute, this is to assist identifying wanted
+       sessions at the receiver.  This allows a receiver to select
+       interesting session based on keywords describing the purpose of
+       the session.  It is a session-level attribute. It is a charset
+       dependent attribute, meaning that its value should be interpreted
+       in the charset specified for the session description if one is
+       specified, or by default in ISO 10646/UTF-8.
+
+   a=3Dtool:&lt;name and version of tool&gt;
+       This gives the name and version number of the tool used to create
+       the session description.  It is a session-level attribute, and is
+       not dependent on charset.
+
+   a=3Dptime:&lt;packet time&gt;
+       This gives the length of time in milliseconds represented by the
+       media in a packet. This is probably only meaningful for audio
+       data.  It should not be necessary to know ptime to decode RTP or
+       vat audio, and it is intended as a recommendation for the
+       encoding/packetisation of audio.  It is a media attribute, and is
+       not dependent on charset.
+
+   a=3Drecvonly
+       This specifies that the tools should be started in receive-only
+       mode where applicable. It can be either a session or media
+       attribute, and is not dependent on charset.
+
+   a=3Dsendrecv
+       This specifies that the tools should be started in send and
+       receive mode.  This is necessary for interactive conferences with
+       tools such as wb which defaults to receive only mode. It can be
+       either a session or media attribute, and is not dependent on
+       charset.
+
+   a=3Dsendonly
+       This specifies that the tools should be started in send-only
+       mode.  An example may be where a different unicast address is to
+       be used for a traffic destination than for a traffic source. In
+       such a case, two media descriptions may be use, one sendonly and
+       one recvonly. It can be either a session or media attribute, but
+       would normally only be used as a media attribute, and is not
+       dependent on charset.
+
+   a=3Dorient:&lt;whiteboard orientation&gt;
+       Normally this is only used in a whiteboard media specification.
+       It specifies the orientation of a the whiteboard on the screen.
+       It is a media attribute. Permitted values are `portrait',
+       `landscape' and `seascape' (upside down landscape). It is not
+       dependent on charset
+
+   a=3Dtype:&lt;conference type&gt;
+       This specifies the type of the conference.  Suggested values are
+       `broadcast', `meeting', `moderated', `test' and `H332'.
+       `recvonly' should be the default for `type:broadcast' sessions,
+       `type:meeting' should imply `sendrecv' and `type:moderated'
+       should indicate the use of a floor control tool and that the
+       media tools are started so as to "mute" new sites joining the
+       conference.
+
+       Specifying the attribute type:H332 indicates that this loosely
+       coupled session is part of a H.332 session as defined in the ITU
+       H.332 specification [10].  Media tools should be started
+       `recvonly'.
+
+       Specifying the attribute type:test is suggested as a hint that,
+       unless explicitly requested otherwise, receivers can safely avoid
+       displaying this session description to users.
+
+       The type attribute is a session-level attribute, and is not
+       dependent on charset.
+
+   a=3Dcharset:&lt;character set&gt;
+       This specifies the character set to be used to display the
+       session name and information data.  By default, the ISO-10646
+       character set in UTF-8 encoding is used. If a more compact
+       representation is required, other character sets may be used such
+       as ISO-8859-1 for Northern European languages.  In particular,
+       the ISO 8859-1 is specified with the following SDP attribute:
+
+                             a=3Dcharset:ISO-8859-1
+
+       This is a session-level attribute; if this attribute is present,
+       it must be before the first media field.  The charset specified
+       MUST be one of those registered with IANA, such as ISO-8859-1.
+       The character set identifier is a US-ASCII string and MUST be
+       compared against the IANA identifiers using a case-insensitive
+       comparison.  If the identifier is not recognised or not
+       supported, all strings that are affected by it SHOULD be regarded
+       as byte strings.
+
+       Note that a character set specified MUST still prohibit the use
+       of bytes 0x00 (Nul), 0x0A (LF) and 0x0d (CR). Character sets
+       requiring the use of these characters MUST define a quoting
+       mechanism that prevents these bytes appearing within text fields.
+
+   a=3Dsdplang:&lt;language tag&gt;
+       This can be a session level attribute or a media level attribute.
+       As a session level attribute, it specifies the language for the
+       session description.  As a media level attribute, it specifies
+       the language for any media-level SDP information field associated
+       with that media.  Multiple sdplang attributes can be provided
+       either at session or media level if multiple languages in the
+       session description or media use multiple languages, in which
+       case the order of the attributes indicates the order of
+       importance of the various languages in the session or media from
+       most important to least important.
+
+       In general, sending session descriptions consisting of multiple
+       languages should be discouraged.  Instead, multiple descriptions
+       should be sent describing the session, one in each language.
+       However this is not possible with all transport mechanisms, and
+       so multiple sdplang attributes are allowed although not
+       recommended.
+
+       The sdplang attribute value must be a single <A =
+href=3D"http://www.faqs.org/rfcs/rfc1766.html">RFC 1766</A> language
+       tag in US-ASCII.  It is not dependent on the charset attribute.
+       An sdplang attribute SHOULD be specified when a session is of
+
+       sufficient scope to cross geographic boundaries where the
+       language of recipients cannot be assumed, or where the session is
+       in a different language from the locally assumed norm.
+
+   a=3Dlang:&lt;language tag&gt;
+       This can be a session level attribute or a media level attribute.
+       As a session level attribute, it specifies the default language
+       for the session being described.  As a media level attribute, it
+       specifies the language for that media, overriding any session-
+       level language specified.  Multiple lang attributes can be
+       provided either at session or media level if multiple languages
+       if the session description or media use multiple languages, in
+       which case the order of the attributes indicates the order of
+       importance of the various languages in the session or media from
+       most important to least important.
+
+       The lang attribute value must be a single <A =
+href=3D"http://www.faqs.org/rfcs/rfc1766.html">RFC 1766</A> language tag
+       in US-ASCII. It is not dependent on the charset attribute.  A
+       lang attribute SHOULD be specified when a session is of
+       sufficient scope to cross geographic boundaries where the
+       language of recipients cannot be assumed, or where the session is
+       in a different language from the locally assumed norm.
+
+   a=3Dframerate:&lt;frame rate&gt;
+       This gives the maximum video frame rate in frames/sec.  It is
+       intended as a recommendation for the encoding of video data.
+       Decimal representations of fractional values using the notation
+       "&lt;integer&gt;.&lt;fraction&gt;" are allowed.  It is a media =
+attribute, is
+       only defined for video media, and is not dependent on charset.
+
+   a=3Dquality:&lt;quality&gt;
+       This gives a suggestion for the quality of the encoding as an
+       integer value.
+
+       The intention of the quality attribute for video is to specify a
+       non-default trade-off between frame-rate and still-image quality.
+       For video, the value in the range 0 to 10, with the following
+       suggested meaning:
+
+       10 - the best still-image quality the compression scheme can
+       give.
+
+       5 - the default behaviour given no quality suggestion.
+
+       0 - the worst still-image quality the codec designer thinks is
+           still usable.
+
+       It is a media attribute, and is not dependent on charset.
+
+   a=3Dfmtp:&lt;format&gt; &lt;format specific parameters&gt;
+       This attribute allows parameters that are specific to a
+       particular format to be conveyed in a way that SDP doesn't have
+       to understand them.  The format must be one of the formats
+       specified for the media.  Format-specific parameters may be any
+       set of parameters required to be conveyed by SDP and given
+       unchanged to the media tool that will use this format.
+
+       It is a media attribute, and is not dependent on charset.
+
+6.1.  Communicating Conference Control Policy
+
+   There is some debate over the way conference control policy should be
+   communicated.  In general, the authors believe that an implicit
+   declarative style of specifying conference control is desirable where
+   possible.
+
+   A simple declarative style uses a single conference attribute field
+   before the first media field, possibly supplemented by properties
+   such as `recvonly' for some of the media tools.  This conference
+   attribute conveys the conference control policy. An example might be:
+
+                             a=3Dtype:moderated
+
+   In some cases, however, it is possible that this may be insufficient
+   to communicate the details of an unusual conference control policy.
+   If this is the case, then a conference attribute specifying external
+   control might be set, and then one or more "media" fields might be
+   used to specify the conference control tools and configuration data
+   for those tools. An example is an ITU H.332 session:
+
+                c=3DIN IP4 224.5.6.7
+                a=3Dtype:H332
+                m=3Daudio 49230 RTP/AVP 0
+                m=3Dvideo 49232 RTP/AVP 31
+                m=3Dapplication 12349 udp wb
+                m=3Dcontrol 49234 H323 mc
+                c=3DIN IP4 134.134.157.81
+
+   In this example, a general conference attribute (type:H332) is
+   specified stating that conference control will be provided by an
+   external H.332 tool, and a contact addresses for the H.323 session
+   multipoint controller is given.
+
+   In this document, only the declarative style of conference control
+   declaration is specified.  Other forms of conference control should
+   specify an appropriate type attribute, and should define the
+   implications this has for control media.
+
+7.  Security Considerations
+
+   SDP is a session description format that describes multimedia
+   sessions.  A session description should not be trusted unless it has
+   been obtained by an authenticated transport protocol from a trusted
+   source.  Many different transport protocols may be used to distribute
+   session description, and the nature of the authentication will differ
+   from transport to transport.
+
+   One transport that will frequently be used to distribute session
+   descriptions is the Session Announcement Protocol (SAP).  SAP
+   provides both encryption and authentication mechanisms but due to the
+   nature of session announcements it is likely that there are many
+   occasions where the originator of a session announcement cannot be
+   authenticated because they are previously unknown to the receiver of
+   the announcement and because no common public key infrastructure is
+   available.
+
+   On receiving a session description over an unauthenticated transport
+   mechanism or from an untrusted party, software parsing the session
+   should take a few precautions. Session description contain
+   information required to start software on the receivers system.
+   Software that parses a session description MUST not be able to start
+   other software except that which is specifically configured as
+   appropriate software to participate in multimedia sessions.  It is
+   normally considered INAPPROPRIATE for software parsing a session
+   description to start, on a user's system, software that is
+   appropriate to participate in multimedia sessions, without the user
+   first being informed that such software will be started and giving
+   their consent.  Thus a session description arriving by session
+   announcement, email, session invitation, or WWW page SHOULD not
+   deliver the user into an {it interactive} multimedia session without
+   the user being aware that this will happen.  As it is not always
+   simple to tell whether a session is interactive or not, applications
+   that are unsure should assume sessions are interactive.
+
+   In this specification, there are no attributes which would allow the
+   recipient of a session description to be informed to start multimedia
+   tools in a mode where they default to transmitting.  Under some
+   circumstances it might be appropriate to define such attributes.  If
+   this is done an application parsing a session description containing
+   such attributes SHOULD either ignore them, or inform the user that
+   joining this session will result in the automatic transmission of
+   multimedia data.  The default behaviour for an unknown attribute is
+   to ignore it.
+
+   Session descriptions may be parsed at intermediate systems such as
+   firewalls for the purposes of opening a hole in the firewall to allow
+   the participation in multimedia sessions.  It is considered
+   INAPPROPRIATE for a firewall to open such holes for unicast data
+   streams unless the session description comes in a request from inside
+   the firewall.
+
+   For multicast sessions, it is likely that local administrators will
+   apply their own policies, but the exclusive use of "local" or "site-
+   local" administrative scope within the firewall and the refusal of
+   the firewall to open a hole for such scopes will provide separation
+   of global multicast sessions from local ones.
+
+Appendix A: SDP Grammar
+
+   This appendix provides an Augmented BNF grammar for SDP. ABNF is
+   defined in <A href=3D"http://www.faqs.org/rfcs/rfc2234.html">RFC =
+2234</A>.
+
+   announcement =3D        proto-version
+                         origin-field
+                         session-name-field
+                         information-field
+                         uri-field
+                         email-fields
+                         phone-fields
+                         connection-field
+                         bandwidth-fields
+                         time-fields
+                         key-field
+                         attribute-fields
+                         media-descriptions
+
+   proto-version =3D       "v=3D" 1*DIGIT CRLF
+                         ;this memo describes version 0
+
+   origin-field =3D        "o=3D" username space
+                         sess-id space sess-version space
+                         nettype space addrtype space
+                         addr CRLF
+
+   session-name-field =3D  "s=3D" text CRLF
+
+   information-field =3D   ["i=3D" text CRLF]
+
+   uri-field =3D           ["u=3D" uri CRLF]
+
+   email-fields =3D        *("e=3D" email-address CRLF)
+
+   phone-fields =3D        *("p=3D" phone-number CRLF)
+
+   connection-field =3D    ["c=3D" nettype space addrtype space
+                         connection-address CRLF]
+                         ;a connection field must be present
+                         ;in every media description or at the
+                         ;session-level
+
+   bandwidth-fields =3D    *("b=3D" bwtype ":" bandwidth CRLF)
+
+   time-fields =3D         1*( "t=3D" start-time space stop-time
+                         *(CRLF repeat-fields) CRLF)
+                         [zone-adjustments CRLF]
+
+   repeat-fields =3D       "r=3D" repeat-interval space typed-time
+                         1*(space typed-time)
+
+   zone-adjustments =3D    time space ["-"] typed-time
+                         *(space time space ["-"] typed-time)
+
+   key-field =3D           ["k=3D" key-type CRLF]
+
+   key-type =3D            "prompt" |
+                         "clear:" key-data |
+                         "base64:" key-data |
+                         "uri:" uri
+
+   key-data =3D            email-safe | "~" | "
+
+   attribute-fields =3D    *("a=3D" attribute CRLF)
+
+   media-descriptions =3D  *( media-field
+                         information-field
+                         *(connection-field)
+                         bandwidth-fields
+                         key-field
+                         attribute-fields )
+
+   media-field =3D         "m=3D" media space port ["/" integer]
+                         space proto 1*(space fmt) CRLF
+
+   media =3D               1*(alpha-numeric)
+                         ;typically "audio", "video", "application"
+                         ;or "data"
+
+   fmt =3D                 1*(alpha-numeric)
+                         ;typically an RTP payload type for audio
+                         ;and video media
+
+   proto =3D               1*(alpha-numeric)
+                         ;typically "RTP/AVP" or "udp" for IP4
+
+   port =3D                1*(DIGIT)
+                         ;should in the range "1024" to "65535" =
+inclusive
+                         ;for UDP based media
+
+   attribute =3D           (att-field ":" att-value) | att-field
+
+   att-field =3D           1*(alpha-numeric)
+
+   att-value =3D           byte-string
+
+   sess-id =3D             1*(DIGIT)
+                         ;should be unique for this originating =
+username/host
+
+   sess-version =3D        1*(DIGIT)
+                         ;0 is a new session
+
+   connection-address =3D  multicast-address
+                         | addr
+
+   multicast-address =3D   3*(decimal-uchar ".") decimal-uchar "/" ttl
+                         [ "/" integer ]
+                         ;multicast addresses may be in the range
+                         ;224.0.0.0 to 239.255.255.255
+
+   ttl =3D                 decimal-uchar
+
+   start-time =3D          time | "0"
+
+   stop-time =3D           time | "0"
+
+   time =3D                POS-DIGIT 9*(DIGIT)
+                         ;sufficient for 2 more centuries
+
+   repeat-interval =3D     typed-time
+
+   typed-time =3D          1*(DIGIT) [fixed-len-time-unit]
+
+   fixed-len-time-unit =3D "d" | "h" | "m" | "s"
+
+   bwtype =3D              1*(alpha-numeric)
+
+   bandwidth =3D           1*(DIGIT)
+
+   username =3D            safe
+                         ;pretty wide definition, but doesn't include =
+space
+
+   email-address =3D       email | email "(" email-safe ")" |
+                         email-safe "&lt;" email "&gt;"
+
+   email =3D               ;defined in <A =
+href=3D"http://www.faqs.org/rfcs/rfc822.html">RFC822</A>
+
+   uri=3D                  ;defined in <A =
+href=3D"http://www.faqs.org/rfcs/rfc1630.html">RFC1630</A>
+
+   phone-number =3D        phone | phone "(" email-safe ")" |
+                         email-safe "&lt;" phone "&gt;"
+
+   phone =3D               "+" POS-DIGIT 1*(space | "-" | DIGIT)
+                         ;there must be a space or hyphen between the
+                         ;international code and the rest of the number.
+
+   nettype =3D             "IN"
+                         ;list to be extended
+
+   addrtype =3D            "IP4" | "IP6"
+                         ;list to be extended
+
+   addr =3D                FQDN | unicast-address
+
+   FQDN =3D                4*(alpha-numeric|"-"|".")
+                         ;fully qualified domain name as specified in <A =
+href=3D"http://www.faqs.org/rfcs/rfc1035.html">RFC1035</A>
+
+   unicast-address =3D     IP4-address | IP6-address
+
+   IP4-address =3D         b1 "." decimal-uchar "." decimal-uchar "." b4
+   b1 =3D                  decimal-uchar
+                         ;less than "224"; not "0" or "127"
+   b4 =3D                  decimal-uchar
+                         ;not "0"
+
+   IP6-address =3D         ;to be defined
+
+   text =3D                byte-string
+                         ;default is to interpret this as IS0-10646 UTF8
+                         ;ISO 8859-1 requires a "a=3Dcharset:ISO-8859-1"
+                         ;session-level attribute to be used
+
+   byte-string =3D         1*(0x01..0x09|0x0b|0x0c|0x0e..0xff)
+                         ;any byte except NUL, CR or LF
+
+   decimal-uchar =3D       DIGIT
+                         | POS-DIGIT DIGIT
+                         | ("1" 2*(DIGIT))
+                         | ("2" ("0"|"1"|"2"|"3"|"4") DIGIT)
+                         | ("2" "5" ("0"|"1"|"2"|"3"|"4"|"5"))
+
+   integer =3D             POS-DIGIT *(DIGIT)
+
+   alpha-numeric =3D       ALPHA | DIGIT
+
+   DIGIT =3D               "0" | POS-DIGIT
+
+   POS-DIGIT =3D           "1"|"2"|"3"|"4"|"5"|"6"|"7"|"8"|"9"
+
+   ALPHA =3D               "a"|"b"|"c"|"d"|"e"|"f"|"g"|"h"|"i"|"j"|"k"|
+                         "l"|"m"|"n"|"o "|"p"|"q"|"r"|"s"|"t"|"u"|"v"|
+                         "w"|"x"|"y"|"z"|"A"|"B"|"C "|"D"|"E"|"F"|"G"|
+                         "H"|"I"|"J"|"K"|"L"|"M"|"N"|"O"|"P"|" Q"|"R"|
+                         "S"|"T"|"U"|"V"|"W"|"X"|"Y"|"Z"
+
+   email-safe =3D          safe | space | tab
+
+   safe =3D                alpha-numeric |
+                         "'" | "'" | "-" | "." | "/" | ":" | "?" | """ |
+                         "#" | "$" | "&amp;" | "*" | ";" | "=3D" | "@" | =
+"[" |
+                         "]" | "^" | "_" | "`" | "{" | "|" | "}" | "+" |
+                         "~" | "
+
+   space =3D               %d32
+   tab =3D                 %d9
+   CRLF =3D                %d13.10
+
+Appendix B: Guidelines for registering SDP names with IANA
+
+   There are seven field names that may be registered with IANA. Using
+   the terminology in the SDP specification BNF, they are "media",
+   "proto", "fmt", "att-field", "bwtype", "nettype" and "addrtype".
+
+   "media" (eg, audio, video, application, data).
+
+       Packetized media types, such as those used by RTP, share the
+       namespace used by media types registry [<A =
+href=3D"http://www.faqs.org/rfcs/rfc2048.html">RFC 2048</A>] (i.e. "MIME
+       types").  The list of valid media names is the set of top-level
+       MIME content types.  The set of media is intended to be small and
+       not to be extended except under rare circumstances.  (The MIME
+       subtype corresponds to the "fmt" parameter below).
+
+   "proto"
+
+       In general this should be an IETF standards-track transport
+       protocol identifier such as RTP/AVP (<A =
+href=3D"http://www.faqs.org/rfcs/rfc1889.html">rfc 1889</A> under the <A =
+href=3D"http://www.faqs.org/rfcs/rfc1890.html">rfc 1890</A>
+       profile).
+
+       However, people will want to invent their own proprietary
+       transport protocols.  Some of these should be registered as a
+       "fmt" using "udp" as the protocol and some of which probably
+       can't be.
+
+       Where the protocol and the application are intimately linked,
+       such as with the LBL whiteboard wb which used a proprietary and
+       special purpose protocol over UDP, the protocol name should be
+       "udp" and the format name that should be registered is "wb".  The
+       rules for formats (see below) apply to such registrations.
+
+       Where the proprietary transport protocol really carries many
+       different data formats, it is possible to register a new protocol
+       name with IANA. In such a case, an RFC MUST be produced
+       describing the protocol and referenced in the registration.  Such
+       an RFC MAY be informational, although it is preferable if it is
+       standards-track.
+
+   "fmt"
+
+       The format namespace is dependent on the context of the "proto"
+       field, so a format cannot be registered without specifying one or
+       more transport protocols that it applies to.
+
+       Formats cover all the possible encodings that might want to be
+       transported in a multimedia session.
+
+       For RTP formats that have been assigned static payload types, the
+       payload type number is used.  For RTP formats using a dynamic
+       payload type number, the dynamic payload type number is given as
+       the format and an additional "rtpmap" attribute specifies the
+       format and parameters.
+
+       For non-RTP formats, any unregistered format name may be
+       registered through the MIME-type registration process [<A =
+href=3D"http://www.faqs.org/rfcs/rfc2048.html">RFC 2048</A>].
+       The type given here is the MIME subtype only (the top-level MIME
+       content type is specified by the media parameter).  The MIME type
+       registration SHOULD reference a standards-track RFC which
+       describes the transport protocol for this media type.  If there
+       is an existing MIME type for this format, the MIME registration
+       should be augmented to reference the transport specification for
+       this media type.  If there is not an existing MIME type for this
+       format, and there exists no appropriate file format, this should
+       be noted in the encoding considerations as "no appropriate file
+       format".
+
+   "att-field" (Attribute names)
+
+       Attribute field names MAY be registered with IANA, although this
+       is not compulsory, and unknown attributes are simply ignored.
+
+       When an attribute is registered, it must be accompanied by a
+       brief specification stating the following:
+
+       o contact name, email address and telephone number
+
+       o attribute-name (as it will appear in SDP)
+
+       o long-form attribute name in English
+
+       o type of attribute (session level, media level, or both)
+
+       o whether the attribute value is subject to the charset
+       attribute.
+
+       o a one paragraph explanation of the purpose of the attribute.
+
+       o a specification of appropriate attribute values for this
+         attribute.
+
+       IANA will not sanity check such attribute registrations except to
+       ensure that they do not clash with existing registrations.
+
+       Although the above is the minimum that IANA will accept, if the
+       attribute is expected to see widespread use and interoperability
+       is an issue, authors are encouraged to produce a standards-track
+       RFC that specifies the attribute more precisely.
+
+       Submitters of registrations should ensure that the specification
+       is in the spirit of SDP attributes, most notably that the
+       attribute is platform independent in the sense that it makes no
+       implicit assumptions about operating systems and does not name
+       specific pieces of software in a manner that might inhibit
+       interoperability.
+
+   "bwtype" (bandwidth specifiers)
+
+       A proliferation of bandwidth specifiers is strongly discouraged.
+
+       New bandwidth specifiers may be registered with IANA.  The
+       submission MUST reference a standards-track RFC specifying the
+       semantics of the bandwidth specifier precisely, and indicating
+       when it should be used, and why the existing registered bandwidth
+       specifiers do not suffice.
+
+   "nettype" (Network Type)
+
+       New network types may be registered with IANA if SDP needs to be
+       used in the context of non-internet environments. Whilst these
+       are not normally the preserve of IANA, there may be circumstances
+       when an Internet application needs to interoperate with a non-
+       internet application, such as when gatewaying an internet
+       telephony call into the PSTN.  The number of network types should
+       be small and should be rarely extended.  A new network type
+       cannot be registered without registering at least one address
+       type to be used with that network type.  A new network type
+       registration MUST reference an RFC which gives details of the
+       network type and address type and specifies how and when they
+       would be used.  Such an RFC MAY be Informational.
+
+   "addrtype" (Address Type)
+
+       New address types may be registered with IANA.  An address type
+       is only meaningful in the context of a network type, and any
+       registration of an address type MUST specify a registered network
+       type, or be submitted along with a network type registration.  A
+       new address type registration MUST reference an RFC giving
+       details of the syntax of the address type.  Such an RFC MAY be
+       Informational.  Address types are not expected to be registered
+       frequently.
+
+   Registration Procedure
+
+   To register a name the above guidelines should be followed regarding
+   the required  level  of  documentation  that  is required.  The
+   registration itself should be sent to IANA.  Attribute registrations
+   should  include the  information  given  above.   Other registrations
+   should include the following additional information:
+
+   o contact name, email address and telephone number
+
+   o name being registered (as it will appear in SDP)
+
+   o long-form name in English
+
+   o type of name ("media", "proto", "fmt", "bwtype", "nettype", or
+     "addrtype")
+
+   o a one paragraph explanation of the purpose of the registered name.
+
+   o a reference to the specification (eg RFC number) of the registered
+     name.
+
+   IANA may refer any registration to the IESG or to any appropriate
+   IETF working group for review, and may request revisions to be made
+   before a registration will be made.
+
+Appendix C: Authors' Addresses
+
+   Mark Handley
+   Information Sciences Institute
+   c/o MIT Laboratory for Computer Science
+   545 Technology Square
+   Cambridge, MA 02139
+   United States
+   electronic mail: <A href=3D"mailto:mjh@isi.edu">mjh@isi.edu</A>
+
+   Van Jacobson
+   MS 46a-1121
+   Lawrence Berkeley Laboratory
+   Berkeley, CA 94720
+   United States
+   electronic mail: <A href=3D"mailto:van@ee.lbl.gov">van@ee.lbl.gov</A>
+
+Acknowledgments
+
+   Many people in the IETF MMUSIC working group have made comments and
+   suggestions contributing to this document.  In particular, we would
+   like to thank Eve Schooler, Steve Casner, Bill Fenner, Allison
+   Mankin, Ross Finlayson, Peter Parnes, Joerg Ott, Carsten Bormann, Rob
+   Lanphier and Steve Hanna.
+
+References
+
+   [1] Mills, D., "Network Time Protocol (version 3) specification and
+   implementation", <A =
+href=3D"http://www.faqs.org/rfcs/rfc1305.html">RFC 1305</A>, March 1992.
+
+   [2] Schulzrinne, H., Casner, S., Frederick, R. and V. Jacobson, "RTP:
+   A Transport Protocol for Real-Time Applications", <A =
+href=3D"http://www.faqs.org/rfcs/rfc1889.html">RFC 1889</A>, January
+   1996.
+
+   [3] Schulzrinne, H., "RTP Profile for Audio and Video Conferences
+   with Minimal Control", <A =
+href=3D"http://www.faqs.org/rfcs/rfc1890.html">RFC 1890</A>, January =
+1996
+
+   [4] Handley, M., "SAP - Session Announcement Protocol", Work in
+   Progress.
+
+   [5] V. Jacobson, S. McCanne, "vat - X11-based audio teleconferencing
+   tool" vat manual page, Lawrence Berkeley Laboratory, 1994.
+
+   [6] The Unicode Consortium, "The Unicode Standard -- Version 2.0",
+   Addison-Wesley, 1996.
+
+   [7] ISO/IEC 10646-1:1993. International Standard -- Information
+   technol- ogy -- Universal Multiple-Octet Coded Character Set (UCS) --
+   Part 1: Architecture and Basic Multilingual Plane.  Five amendments
+   and a techn- ical  corrigendum  have been published up to now.  UTF-8
+   is described in Annex R, published as Amendment 2.
+
+   [8] Goldsmith, D., and M. Davis, "Using Unicode with MIME", <A =
+href=3D"http://www.faqs.org/rfcs/rfc1641.html">RFC 1641</A>,
+   July 1994.
+
+   [9] Yergeau, F., "UTF-8, a transformation format of Unicode and ISO
+   10646", <A href=3D"http://www.faqs.org/rfcs/rfc2044.html">RFC =
+2044</A>, October 1996.
+
+   [10] ITU-T Recommendation H.332 (1998): "Multimedia Terminal for
+   Receiving Internet-based H.323 Conferences", ITU, Geneva.
+
+   [11] Handley, M., Schooler, E., and H. Schulzrinne, "Session
+   Initiation Protocol (SIP)", Work in Progress.
+
+   [12] Schulzrinne, H., Rao, A., and R. Lanphier, "Real Time Streaming
+   Protocol (RTSP)", <A =
+href=3D"http://www.faqs.org/rfcs/rfc2326.html">RFC 2326</A>, April 1998.
+
+Full Copyright Statement
+
+   Copyright (C) The Internet Society (1998).  All Rights Reserved.
+
+   This document and translations of it may be copied and furnished to
+   others, and derivative works that comment on or otherwise explain it
+   or assist in its implementation may be prepared, copied, published
+   and distributed, in whole or in part, without restriction of any
+   kind, provided that the above copyright notice and this paragraph are
+   included on all such copies and derivative works.  However, this
+   document itself may not be modified in any way, such as by removing
+   the copyright notice or references to the Internet Society or other
+   Internet organizations, except as needed for the purpose of
+   developing Internet standards in which case the procedures for
+   copyrights defined in the Internet Standards process must be
+   followed, or as required to translate it into languages other than
+   English.
+
+   The limited permissions granted above are perpetual and will not be
+   revoked by the Internet Society or its successors or assigns.
+
+   This document and the information contained herein is provided on an
+   "AS IS" basis and THE INTERNET SOCIETY AND THE INTERNET ENGINEERING
+   TASK FORCE DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING
+   BUT NOT LIMITED TO ANY WARRANTY THAT THE USE OF THE INFORMATION
+   HEREIN WILL NOT INFRINGE ANY RIGHTS OR ANY IMPLIED WARRANTIES OF
+   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.
+
+</PRE>
+<P align=3Dcenter>
+<SCRIPT language=3DJavaScript><!--=0A=
+erfc("2327");=0A=
+// --></SCRIPT>
+</P>&nbsp;<BR>
+<DIV align=3Dcenter>
+<CENTER>
+<TABLE cellSpacing=3D4 cellPadding=3D4 width=3D"100%" border=3D0>
+  <TBODY>
+  <TR>
+    <TD width=3D"100%" bgColor=3D#d6d6c0>
+      <P><FONT face=3DArial>Comments about this RFC:</FONT></P>
+      <UL>
+        <LI><FONT face=3DArial><A =
+href=3D"http://www.faqs.org/qa/rfcc-2639.html">RFC=20
+        2327: This rfc (and rfc 1890) do specify whether the 'encoding =
+name'=20
+        specified in the...</A> by Chinmay Dhodapkar (10/27/2005)</FONT> =
+
+        <LI><FONT face=3DArial><A =
+href=3D"http://www.faqs.org/qa/rfcc-3407.html">RFC=20
+        2327: What is the real meaning of the parameter "config" under =
+the=20
+        a=3Dfmtp part of the...</A> by midou (9/26/2006)</FONT>=20
+        <LI><FONT face=3DArial><A =
+href=3D"http://www.faqs.org/qa/rfcc-3491.html">RFC=20
+        2327: Very nice site. It is useful for everybody.=20
+        http://meridia-on.tripod.com/buy...</A> by Eey =
+(10/16/2006)</FONT>=20
+        <LI><FONT face=3DArial><A =
+href=3D"http://www.faqs.org/qa/rfcc-3486.html">RFC=20
+        2327: Very nice site. It is useful for everybody.=20
+        http://meridia-on.tripod.com/buy...</A> by Eey =
+(10/16/2006)</FONT>=20
+        <LI><FONT face=3DArial><A =
+href=3D"http://www.faqs.org/qa/rfcc-3251.html">RFC=20
+        2327: In rfc 2234, the use of double quotes implies case =
+insensitivity.=20
+        However,...</A> by Clark (7/17/2006)</FONT>=20
+        <LI><FONT face=3DArial><A =
+href=3D"http://www.faqs.org/qa/rfcc-2523.html">RFC=20
+        2327: There is a issue in section "Media Announcements": =
+m=3Daudio 49232=20
+        RTP/AVP 0 ...</A> by nustchenhf (9/29/2005)</FONT>=20
+        <LI><FONT face=3DArial><A =
+href=3D"http://www.faqs.org/qa/rfcc-2039.html">RFC=20
+        2327: In section 6 (SDP Specification), where the RFC discusses =
+the=20
+        format of...</A> by Tom Gerke (5/19/2005)</FONT>=20
+</LI></UL></TD></TR></TBODY></TABLE><BR></CENTER></DIV>
+<DIV align=3Dcenter>
+<TABLE cellSpacing=3D3 cellPadding=3D3 width=3D"100%" border=3D0>
+  <TBODY>
+  <TR>
+    <TD width=3D"45%">
+      <P align=3Dleft>Previous: <A=20
+      href=3D"http://www.faqs.org/rfcs/rfc2326.html">RFC 2326 - Real =
+Time=20
+      Streaming Protocol (RTSP)</A> </P></TD>
+    <TD width=3D"10%">&nbsp;</TD>
+    <TD width=3D"45%">
+      <P align=3Dright>Next: <A =
+href=3D"http://www.faqs.org/rfcs/rfc2328.html">RFC=20
+      2328 - OSPF Version 2</A> </P></TD></TR></TBODY></TABLE></DIV>
+<P align=3Dright>&nbsp;</P>
+<HR noShade SIZE=3D2>
+
+<DIV align=3Dcenter>[ <A href=3D"http://www.faqs.org/rfcs/">RFC =
+Index</A> | <A=20
+href=3D"http://www.faqs.org/rfcs/rfcsearch.html">RFC Search</A> | <A=20
+href=3D"http://www.faqs.org/faqs/">Usenet FAQs</A> | <A=20
+href=3D"http://www.faqs.org/contrib/">Web FAQs</A> | <A=20
+href=3D"http://www.faqs.org/docs/">Documents</A> | <A=20
+href=3D"http://www.city-data.com/">Cities</A> ]=20
+<P></P></DIV><SMALL>
+<ADDRESS>
+<P align=3Dcenter></P></ADDRESS></SMALL></BODY></HTML>
+
+------=_NextPart_000_0007_01C6F240.3353B370
+Content-Type: image/jpeg
+Content-Transfer-Encoding: base64
+Content-Location: http://www.faqs.org/images/library.jpg
+
+/9j/4AAQSkZJRgABAgEASABIAAD/7QE0UGhvdG9zaG9wIDMuMAA4QklNA+0AAAAAABAASAAAAAEA
+AQBIAAAAAQABOEJJTQPzAAAAAAAIAAAAAAAAAAA4QklNJxAAAAAAAAoAAQAAAAAAAAACOEJJTQP1
+AAAAAABIAC9mZgABAGxmZgAGAAAAAAABAC9mZgABAKGZmgAGAAAAAAABADIAAAABAFoAAAAGAAAA
+AAABADUAAAABAC0AAAAGAAAAAAABOEJJTQP4AAAAAABwAAD/////////////////////////////
+A+gAAAAA/////////////////////////////wPoAAAAAP////////////////////////////8D
+6AAAAAD/////////////////////////////A+gAADhCSU0EBgAAAAAAAgAE/+4ADkFkb2JlAGQA
+AAAAAf/bAIQABgQEBAUEBgUFBgkGBQYJCwgGBggLDAoKCwoKDBAMDAwMDAwQDAwMDAwMDAwMDAwM
+DAwMDAwMDAwMDAwMDAwMDAEHBwcNDA0YEBAYFA4ODhQUDg4ODhQRDAwMDAwREQwMDAwMDBEMDAwM
+DAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwM/8AAEQgAPgCWAwERAAIRAQMRAf/EAaIAAAAHAQEBAQEA
+AAAAAAAAAAQFAwIGAQAHCAkKCwEAAgIDAQEBAQEAAAAAAAAAAQACAwQFBgcICQoLEAACAQMDAgQC
+BgcDBAIGAnMBAgMRBAAFIRIxQVEGE2EicYEUMpGhBxWxQiPBUtHhMxZi8CRygvElQzRTkqKyY3PC
+NUQnk6OzNhdUZHTD0uIIJoMJChgZhJRFRqS0VtNVKBry4/PE1OT0ZXWFlaW1xdXl9WZ2hpamtsbW
+5vY3R1dnd4eXp7fH1+f3OEhYaHiImKi4yNjo+Ck5SVlpeYmZqbnJ2en5KjpKWmp6ipqqusra6voR
+AAICAQIDBQUEBQYECAMDbQEAAhEDBCESMUEFURNhIgZxgZEyobHwFMHR4SNCFVJicvEzJDRDghaS
+UyWiY7LCB3PSNeJEgxdUkwgJChgZJjZFGidkdFU38qOzwygp0+PzhJSktMTU5PRldYWVpbXF1eX1
+RlZmdoaWprbG1ub2R1dnd4eXp7fH1+f3OEhYaHiImKi4yNjo+DlJWWl5iZmpucnZ6fkqOkpaanqK
+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
+
+------=_NextPart_000_0007_01C6F240.3353B370--

@@ -1,0 +1,476 @@
+From: <Saved by Microsoft Internet Explorer 5>
+Subject: RFC 2142
+Date: Mon, 22 Dec 2003 15:15:35 +0800
+MIME-Version: 1.0
+Content-Type: text/html;
+	charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc2142.html
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2800.1165
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" =
+"http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>RFC 2142</TITLE>
+<META http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dwindows-1252">
+<META content=3D"MSHTML 6.00.2800.1276" name=3DGENERATOR></HEAD>
+<BODY>
+<TABLE width=3D"100%">
+  <TBODY>
+  <TR>
+    <TD vAlign=3Dtop align=3Dleft>Network Working Group<BR>Request for =
+Comments:=20
+      2142<BR>Cateogry: Standards Track<BR>
+    <TD vAlign=3Dtop align=3Dright>D. Crocker<BR>Internet Mail =
+Consortium<BR>May=20
+      1997<BR></TD></TR></TBODY></TABLE><EM><A name=3Dpage-1>Page =
+1</A></EM>
+<P>
+<H3 align=3Dcenter>MAILBOX NAMES FOR</H3>
+<H3 align=3Dcenter>COMMON SERVICES, ROLES AND FUNCTIONS</H3>
+<P>
+<DL>
+  <DT>Status of this Memo
+  <DD>
+  <P>This document specifies an Internet standards track protocol for =
+the=20
+  Internet community, and requests discussion and suggestions for =
+improvements.=20
+  Please refer to the current edition of the "Internet Official Protocol =
+
+  Standards" (<A=20
+  href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/stdlist.html#s1">STD =
+1</A>)=20
+  for the standardization state and status of this protocol. =
+Distribution of=20
+  this memo is unlimited.=20
+  <P></P>
+  <DT>ABSTRACT
+  <DD>
+  <P>This specification enumerates and describes Internet mail addresses =
+
+  (mailbox name @ host reference) to be used when contacting personnel =
+at an=20
+  organization. Mailbox names are provided for both operations and =
+business=20
+  functions. Additional mailbox names and aliases are not prohibited, =
+but=20
+  organizations which support email exchanges with the Internet are =
+encouraged=20
+  to support AT LEAST each mailbox name for which the associated =
+function exists=20
+  within the organization.=20
+  <P></P>
+  <DT><STRONG><A name=3Dsec-1>1</A> RATIONALE AND SCOPE</STRONG>
+  <DD>
+  <P>Various Internet documents have specified mailbox names to be used =
+when=20
+  reaching the operators of the new service; for example, [<A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc0822.html">RFC822</A=
+> 6.3,=20
+  C.6] requires the presence of a &lt;POSTMASTER@domain&gt; mailbox name =
+on all=20
+  hosts that have an SMTP server. Other protocols have defacto standards =
+for=20
+  well known mailbox names, such as &lt;USENET@domain&gt; for NNTP (see =
+[<A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc0977.html">RFC977</A=
+>]),=20
+  and &lt;WEBMASTER@domain&gt; for HTTP (see [HTTP]). Defacto standards =
+also=20
+  exist for well known mailbox names which have nothing to do with a =
+particular=20
+  protocol, e.g., &lt;ABUSE@domain&gt; and <PRE>   =
+&lt;TROUBLE@domain&gt;.
+</PRE>
+  <P>The purpose of this memo is to aggregate and specify the basic set =
+of=20
+  mailbox names which organizations need to support. Most =
+<BR>organizations do=20
+  not need to support the full set of mailbox names defined here, since =
+not=20
+  every organization will implement the all of the associated services. =
+However,=20
+  if a given service is offerred, then the associated mailbox name(es) =
+must be=20
+  supported, resulting in delivery to a recipient appropriate for the =
+referenced=20
+  service or role.=20
+  <P></P>
+  <DT>
+  <HR>
+  <EM><A name=3Dpage-2>Page 2</A></EM>
+  <DD>
+  <P>If a host is not configured to accept mail directly, but it =
+implements a=20
+  service for which this specification defines a mailbox name, that host =
+must=20
+  have an MX RR set (see [<A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc0974.html">RFC974</A=
+>]) and=20
+  the mail exchangers specified by this RR set must recognize the =
+referenced=20
+  host's domain name as "local" for the purpose of accepting mail bound =
+for the=20
+  defined mailbox name. Note that this is true even if the advertised =
+domain=20
+  name is not the same as the host's domain name; for example, if an =
+NNTP=20
+  server's host name is DATA.RAMONA.VIX.COM yet it advertises the domain =
+name=20
+  VIX.COM in its "Path:" headers, then mail must be deliverable to both=20
+  &lt;USENET@VIX.COM&gt; and <PRE>   &lt;USENET@DATA.RAMONA.VIX.COM&gt;, =
+even though these addresses might be
+   delivered to different final destinations.
+</PRE>
+  <P>The scope of a well known mailbox name is its domain name. Servers=20
+  accepting mail on behalf of a domain must accept and correctly process =
+mailbox=20
+  names for that domain, even if the server, itself, does not support =
+the=20
+  associated service. So, for example, if an NNTP server advertises the=20
+  organization's top level domain in "Path:" headers (see [<A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc0977.html">RFC977</A=
+>]) the=20
+  mail exchangers for that top level domain must accept mail to=20
+  &lt;USENET@domain&gt; even if the mail exchanger hosts do not, =
+themselves,=20
+  serve the NNTP protocol.=20
+  <P></P>
+  <DT><STRONG><A name=3Dsec-2>2</A> INVARIANTS</STRONG>
+  <DD>
+  <P>For well known names that are not related to specific protocols, =
+only the=20
+  organization's top level domain name are required to be valid. For =
+example, if=20
+  an Internet service provider's domain name is COMPANY.COM, then the=20
+  &lt;ABUSE@COMPANY.COM&gt; address must be valid and supported, even =
+though the=20
+  customers whose activity generates complaints use hosts with more =
+specific=20
+  domain names like SHELL1.COMPANY.COM. Note, however, that it is valid =
+and=20
+  encouraged to support mailbox names for sub-domains, as appropriate.=20
+  <P>Mailbox names must be recognized independent of character case. For =
+
+  example, POSTMASTER, postmaster, Postmaster, PostMaster, and even =
+PoStMaStEr=20
+  are to be treated the same, with delivery to the same mailbox.=20
+  <P>Implementations of these well known names need to take account of =
+the=20
+  expectations of the senders who will use them. Sending back an =
+automatic mail=20
+  acknowledgement is usually helpful (though we suggest caution against =
+the=20
+  possibility of "duelling mail robots" and the resulting mail loops).=20
+  <P></P>
+  <DT>
+  <HR>
+  <EM><A name=3Dpage-3>Page 3</A></EM>
+  <DD>
+  <P></P>
+  <DT><STRONG><A name=3Dsec-3>3</A> BUSINESS-RELATED MAILBOX =
+NAMES</STRONG>
+  <DD>
+  <P>These names are related to an organization's line-of-business =
+activities.=20
+  The INFO name is often tied to an autoresponder, with a range of =
+standard=20
+  files available.=20
+  <P><PRE>   MAILBOX        AREA                USAGE
+   -----------    ----------------    ---------------------------
+   INFO           Marketing           Packaged information about the
+                                      organization, products, and/or
+                                      services, as appropriate
+   MARKETING      Marketing           Product marketing and
+                                      marketing communications
+   SALES          Sales               Product purchase information
+   SUPPORT        Customer Service    Problems with product or
+                                      service
+</PRE>
+  <P></P>
+  <DT><STRONG><A name=3Dsec-4>4</A> NETWORK OPERATIONS MAILBOX =
+NAMES</STRONG>
+  <DD>
+  <P>Operations addresses are intended to provide recourse for =
+customers,=20
+  providers and others who are experiencing difficulties with the =
+organization's=20
+  Internet service.=20
+  <P><PRE>   MAILBOX        AREA                USAGE
+   -----------    ----------------    ---------------------------
+   ABUSE          Customer Relations  Inappropriate public behaviour
+   NOC            Network Operations  Network infrastructure
+   SECURITY       Network Security    Security bulletins or queries
+</PRE>
+  <P></P>
+  <DT><STRONG><A name=3Dsec-5>5</A> SUPPORT MAILBOX NAMES FOR SPECIFIC =
+INTERNET=20
+  SERVICES</STRONG>
+  <DD>
+  <P>For major Internet protocol services, there is a mailbox defined =
+for=20
+  receiving queries and reports. (Synonyms are included, here, due to =
+their=20
+  extensive installed base.)=20
+  <P><PRE>   MAILBOX        SERVICE             SPECIFICATIONS
+   -----------    ----------------    ---------------------------
+   POSTMASTER     SMTP                [RFC821], [RFC822]
+   HOSTMASTER     DNS                 [RFC1033-RFC1035]
+   USENET         NNTP                [RFC977]
+   NEWS           NNTP                Synonym for USENET
+   WEBMASTER      HTTP                [RFC 2068]
+   WWW            HTTP                Synonym for WEBMASTER
+   UUCP           UUCP                [RFC976]
+   FTP            FTP                 [RFC959]
+</PRE>
+  <P></P>
+  <DT>
+  <HR>
+  <EM><A name=3Dpage-4>Page 4</A></EM>
+  <DD>
+  <P></P>
+  <DT><STRONG><A name=3Dsec-6>6</A> MAILING LIST ADMINISTRATION =
+MAILBOX</STRONG>
+  <DD>
+  <P>Mailing lists have an administrative mailbox name to which add/drop =
+
+  requests and other meta-queries can be sent.=20
+  <P>For a mailing list whose submission mailbox name is:=20
+  <P><PRE>      &lt;LIST@DOMAIN&gt;
+</PRE>
+  <P>there <STRONG>MUST</STRONG> be the administrative mailbox name:=20
+  <P><PRE>      &lt;LIST-REQUEST@DOMAIN&gt;
+</PRE>
+  <P>Distribution List management software, such as MajorDomo and =
+Listserv, also=20
+  have a single mailbox name associated with the software on that system =
+--=20
+  usually the name of the software -- rather than a particular list on =
+that=20
+  system. Use of such mailbox names requires participants to know the =
+type of=20
+  list software employed at the site. This is problematic. Consequently: =
+
+  <P>LIST-SPECIFIC (-REQUEST) MAILBOX NAMES ARE =
+<STRONG>REQUIRED</STRONG>,=20
+  <BR>INDEPENDENT OF THE AVAILABILITY OF GENERIC LIST SOFTWARE MAILBOX =
+NAMES.=20
+  <P></P>
+  <DT><STRONG><A name=3Dsec-7>7</A> DOMAIN NAME SERVICE ADMINISTRATION=20
+  MAILBOX</STRONG>
+  <DD>
+  <P>In DNS (see [<A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc1033.html">RFC1033</=
+A>],=20
+  [<A =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc1034.html">RFC1034</=
+A>]=20
+  and [<A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc1035.html">RFC1035</=
+A>]),=20
+  the Start Of Authority record (SOA RR) has a field for specifying the =
+mailbox=20
+  name of the zone's administrator.=20
+  <P>This field must be a simple word without metacharacters (such as =
+"%" or "!"=20
+  or "::"), and a mail alias should be used on the relevant mail =
+exchanger hosts=20
+  to direct zone administration mail to the appropriate mailbox.=20
+  <P>For simplicity and regularity, it is strongly recommended that the =
+well=20
+  known mailbox name HOSTMASTER always be used <PRE>   =
+&lt;HOSTMASTER@domain&gt;.
+</PRE>
+  <P></P>
+  <DT>
+  <HR>
+  <EM><A name=3Dpage-5>Page 5</A></EM>
+  <DD>
+  <P></P>
+  <DT><STRONG><A name=3Dsec-8>8</A> AUTONOMOUS SYSTEM MAILBOX</STRONG>
+  <DD>
+  <P>Several Internet registries implement mailing lists for Autonomous =
+System=20
+  contacts. So, for example, mail sent to &lt;AS3557@RA.NET&gt; will at =
+the time=20
+  of this writing reach the technical contact for Autonomous System 3557 =
+in the=20
+  BGP4 (see [<A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc1654.html">RFC1654</=
+A>],=20
+  [<A =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc1655.html">RFC1655</=
+A>]=20
+  and [<A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc1656.html">RFC1656</=
+A>]).=20
+  <P>Not all Autonomous Systems are registered with all registries, =
+however, and=20
+  so undeliverable mailbox names under this scheme should be treated as =
+an=20
+  inconvenience rather than as an error or a standards violation.=20
+  <P></P>
+  <DT><STRONG><A name=3Dsec-9>9</A> SECURITY CONSIDERATIONS</STRONG>
+  <DD>
+  <P>Denial of service attacks (flooding a mailbox with junk) will be =
+easier=20
+  after this document becomes a standard, since more systems will =
+support the=20
+  same set of mailbox names.=20
+  <P></P>
+  <DT><STRONG><A name=3Dsec-10>10</A> REFERENCES</STRONG>
+  <DD>
+  <P>[<A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc0821.html">RFC821</A=
+>]=20
+  Postel, J., "Simple Mail Transfer Protocol", <A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/stdlist.html#s10">STD =
+10</A>,=20
+  RFC 821, Information Sciences Institute, August 1982.=20
+  <P>[<A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc0822.html">RFC822</A=
+>]=20
+  Crocker, D., "Standard for the format of ARPA Internet text messages", =
+<A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/stdlist.html#s11">STD =
+11</A>,=20
+  <A href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc0822.html">RFC =
+822</A>,=20
+  University of Delaware, August 1982.=20
+  <P>[<A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc0959.html">RFC959</A=
+>]=20
+  Postel, J., and J. Reynolds, "File Transfer Protocol (FTP)", <A=20
+  href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/stdlist.html#s9">STD =
+9</A>, <A=20
+  href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc0959.html">RFC =
+959</A>,=20
+  Information Sciences Institute, October 1985.=20
+  <P>[<A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc0974.html">RFC974</A=
+>]=20
+  Partridge, C., "Mail routing and the domain system", <A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/stdlist.html#s14">STD =
+14</A>,=20
+  <A href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc0974.html">RFC =
+974</A>,=20
+  CSNET CIC BBN Laboratories Inc, January 1986.=20
+  <P>[<A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc0976.html">RFC976</A=
+>]=20
+  Horton, M., "UUCP mail interchange format standard", RFC 976, Bell=20
+  Laboratories, February 1986.=20
+  <P>[<A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc0977.html">RFC977</A=
+>]=20
+  Kantor, B., et al, "Network News Transfer Protocol: A Proposed =
+Standard for=20
+  the Stream-Based Transmission of News", RFC 977, University of =
+California,=20
+  February 1986.=20
+  <P>[<A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc1033.html">RFC1033</=
+A>]=20
+  Lottor, M., "Domain administrators operations guide", RFC 1033, SRI=20
+  International, November 1987.=20
+  <P>[<A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc1034.html">RFC1034</=
+A>]=20
+  Mockapetris, P., "Domain names - concepts and facilities", <A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/stdlist.html#s13">STD =
+13</A>,=20
+  <A href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc1035.html">RFC =
+1035</A>,=20
+  USC/Information Sciences Institute, November 1987.=20
+  <P></P>
+  <DT>
+  <HR>
+  <EM><A name=3Dpage-6>Page 6</A></EM>
+  <DD>
+  <P>[<A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc1035.html">RFC1035</=
+A>]=20
+  Mockapetris, P., "Domain Names - Implementation and Specification" <A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/stdlist.html#s13">STD =
+13</A>,=20
+  <A href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc1035.html">RFC =
+1035</A>,=20
+  USC/Information Sciences Institute, November 1987.=20
+  <P>[<A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc1654.html">RFC1654</=
+A>]=20
+  Rekhter, Y., et al, "A Border Gateway Protocol 4 (BGP- 4)", <A=20
+  href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc1654.html">RFC =
+1654</A>,=20
+  T.J. Watson Research Center, IBM Corp., July 1994.=20
+  <P>[<A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc1655.html">RFC1655</=
+A>]=20
+  Rekhter, Y., et al, "Application of the Border Gateway Protocol in the =
+
+  Internet", <A=20
+  href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc1655.html">RFC =
+1655</A>,=20
+  T.J. Watson Research Center, IBM Corp., July 1994.=20
+  <P>[<A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc1656.html">RFC1656</=
+A>]=20
+  Traina, P., "BGP-4 Protocol Document Roadmap and Implementation =
+Experience",=20
+  <A href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc1656.html">RFC =
+1656</A>,=20
+  cisco Systems, July 1994.=20
+  <P>[HTTP] Berners-Lee, T., et al, "Hypertext Transfer Protocol -- =
+HTTP/1.0",=20
+  <A href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc1945.html">RFC =
+1945</A>,=20
+  May 1996.=20
+  <P></P>
+  <DT><STRONG><A name=3Dsec-11>11</A> ACKNOWLEDGEMENTS</STRONG>
+  <DD>
+  <P>This specification derived from an earlier draft written by Paul =
+Vixie.=20
+  Thanks to Stan Barber, Michael Dillon, James Aldridge, J. D. Falk, =
+Peter=20
+  Kaminski, Brett Watson, Russ Wright, Neal McBurnett, and Ed Morin for =
+their=20
+  comments on that draft.=20
+  <P></P>
+  <DT><STRONG><A name=3Dsec-12>12</A> AUTHOR'S ADDRESS</STRONG>
+  <DD>
+  <P>Dave Crocker <BR>Internet Mail Consortium <BR>127 Segre Ave. =
+<BR>Santa=20
+  Cruz, CA=20
+  <P>Phone: +1 408 246 8253 <BR>EMail: <A=20
+  href=3D"mailto:dcrocker@imc.org">dcrocker@imc.org</A>=20
+  <P></P>
+  <DT>
+  <HR>
+
+  <DD></DD></DL></BODY></HTML>

@@ -1,0 +1,1599 @@
+From: <Saved by Microsoft Internet Explorer 5>
+Subject: RFC 2557 (rfc2557) - MIME Encapsulation of Aggregate Documents, such as HT
+Date: Thu, 21 Aug 2003 15:32:56 +0800
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	boundary="----=_NextPart_000_0005_01C367F9.7EBD5200";
+	type="text/html"
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2800.1165
+
+This is a multi-part message in MIME format.
+
+------=_NextPart_000_0005_01C367F9.7EBD5200
+Content-Type: text/html;
+	charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://www.faqs.org/rfcs/rfc2557.html
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>RFC 2557 (rfc2557) - MIME Encapsulation of Aggregate =
+Documents, such as HT</TITLE>
+<META http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dwindows-1252">
+<META=20
+content=3D"RFC 2557 - MIME Encapsulation of Aggregate Documents, such as =
+HTML (MHTML)"=20
+name=3Ddescription>
+<META content=3DRFC2110 name=3Dobsoletes>
+<SCRIPT language=3DJavaScript1.2>=0A=
+function erfc(s)=0A=
+{document.write("<A href=3D\"/rfccomment.php?rfcnum=3D"+s+"\" =
+target=3D\"_blank\" =
+onclick=3D\"window.open('/rfccomment.php?rfcnum=3D"+s+"','Popup','toolbar=
+=3Dno,location=3Dno,status=3Dno,menubar=3Dno,scrollbars=3Dyes,resizable=3D=
+yes,width=3D680,height=3D530,left=3D30,top=3D43'); return =
+false;\")>Comment on RFC "+s+"</A>\n");}=0A=
+//-->=0A=
+</SCRIPT>
+
+<META content=3D"MSHTML 6.00.2800.1170" name=3DGENERATOR></HEAD>
+<BODY text=3D#000000 bgColor=3D#ffffff>
+<P align=3Dcenter><STRONG><FONT size=3D-1>Internet RFC/STD/FYI/BCP=20
+Archives</FONT></STRONG></P>
+<P align=3Dcenter><IMG height=3D62 alt=3D""=20
+src=3D"http://www.faqs.org/images/library.jpg" width=3D150 =
+align=3Dmiddle=20
+border=3D0></P>
+<H1 align=3Dcenter>RFC 2557 (RFC2557)</H1>
+<DIV align=3Dcenter>[ <A href=3D"http://www.faqs.org/rfcs/">RFC =
+Index</A> | <A=20
+href=3D"http://www.faqs.org/rfcs/rfcsearch.html">RFC Search</A> | <A=20
+href=3D"http://www.faqs.org/faqs/">Usenet FAQs</A> | <A=20
+href=3D"http://www.faqs.org/contrib/">Web FAQs</A> | <A=20
+href=3D"http://www.faqs.org/docs/">Documents</A> ]=20
+<P><STRONG>Alternate Formats:</STRONG> <A=20
+href=3D"http://www.faqs.org/ftp/rfc/rfc2557.txt">rfc2557.txt</A> | <A=20
+href=3D"http://www.faqs.org/ftp/rfc/pdf/rfc2557.txt.pdf">rfc2557.txt.pdf<=
+/A></P></DIV>
+<P align=3Dcenter>
+<SCRIPT language=3DJavaScript><!--=0A=
+erfc("2557");=0A=
+// --></SCRIPT>
+</P>
+<HR noShade SIZE=3D2>
+<PRE>
+Network Working Group                                         J. Palme
+Request for Comments: 2557                    Stockholm University/KTH
+Obsoletes: 2110                                             A. Hopmann
+Category: Standards Track                        Microsoft Corporation
+                                                           N. Shelness
+                                         Lotus Development Corporation
+                                                            March 1999
+
+    MIME Encapsulation of Aggregate Documents, such as HTML (MHTML)
+
+Status of this Memo
+
+   This document specifies an Internet standards track protocol for the
+   Internet community, and requests discussion and suggestions for
+   improvements.  Please refer to the current edition of the "Internet
+   Official Protocol Standards" (STD 1) for the standardization state
+   and status of this protocol.  Distribution of this memo is unlimited.
+
+Copyright Notice
+
+   Copyright (C) The Internet Society (1999).  All Rights Reserved.
+
+Abstract
+
+   HTML [<A href=3D"http://www.faqs.org/rfcs/rfc1866.html">RFC 1866</A>] =
+defines a powerful means of specifying multimedia
+   documents. These multimedia documents consist of a text/html root
+   resource (object) and other subsidiary resources (image, video clip,
+   applet, etc. objects) referenced by Uniform Resource Identifiers
+   (URIs) within the text/html root resource. When an HTML multimedia
+   document is retrieved by a browser, each of these component resources
+   is individually retrieved in real time from a location, and using a
+   protocol, specified by each URI.
+
+   In order to transfer a complete HTML multimedia document in a single
+   e-mail message, it is necessary to: a) aggregate a text/html root
+   resource and all of the subsidiary resources it references into a
+   single composite message structure, and b) define a means by which
+   URIs in the text/html root can reference subsidiary resources within
+   that composite message structure.
+
+   This document a) defines the use of a MIME multipart/related
+   structure to aggregate a text/html root resource and the subsidiary
+   resources it references, and b) specifies a MIME content-header
+   (Content-Location) that allow URIs in a multipart/related text/html
+   root body part to reference subsidiary resources in other body parts
+   of the same multipart/related structure.
+
+   While initially designed to support e-mail transfer of complete
+   multi-resource HTML multimedia documents, these conventions can also
+   be employed to resources retrieved by other transfer protocols such
+   as HTTP and FTP to retrieve a complete multi-resource HTML multimedia
+   document in a single transfer or for storage and archiving of
+   complete HTML-documents.
+
+   Differences between this and a previous version of this standard,
+   which was published as <A =
+href=3D"http://www.faqs.org/rfcs/rfc2110.html">RFC 2110</A>, are =
+summarized in chapter 12.
+
+Table of Contents
+
+   1. Introduction .................................................   3
+   2. Terminology  .................................................   4
+      2.1 Conformance requirement terminology ......................   4
+      2.2 Other terminology ........................................   4
+   3. Overview .....................................................   6
+   4. The Content-Location MIME Content Header .....................   6
+      4.1 MIME content headers .....................................   6
+      4.2 The Content-Location Header ..............................   7
+      4.3 URIs of MHTML aggregates .................................   8
+      4.4 Encoding and decoding of URIs in MIME header fields ......   8
+   5. Base URIs for resolution of relative URIs ....................   9
+   6. Sending documents without linked objects .....................  10
+   7. Use of the Content-Type "multipart/related" ..................  11
+   8. Usage of Links to Other Body Parts ...........................  13
+      8.1 General principle ........................................  13
+      8.2 Resolution of URIs in text/html body parts ...............  13
+      8.3 Use of the Content-ID header and CID URLs ................  14
+   9. Examples .....................................................  14
+      9.1 Example of a HTML body without included linked objects ...  15
+      9.2 Example with an absolute URI to an embedded GIF picture ..  15
+      9.3 Example with relative URIs to embedded GIF pictures ......  16
+      9.4 Example with a relative URI and no BASE available ........  17
+      9.5 Example using CID URL and Content-ID header to an embedded
+          GIF picture ..............................................  18
+      9.6 Example showing permitted and forbidden references between
+          nested body parts ........................................  19
+   10. Character encoding issues and end-of-line issues ............  21
+   11. Security Considerations .....................................  22
+      11.1 Security considerations not related to caching ..........  22
+      11.2 Security considerations related to caching ..............  23
+   12. Differences as compared to the previous version of this
+       proposed standard in <A =
+href=3D"http://www.faqs.org/rfcs/rfc2110.html">RFC 2110</A> =
+...............................  24
+   13. Acknowledgments .............................................  24
+   14. References ..................................................  25
+   15. Authors' Addresses ..........................................  27
+   16. Full Copyright Statement ....................................  28
+
+1.  Introduction
+
+   There are a number of document formats (Hypertext Markup Language
+   [HTML2], Extended Markup Language [XML], Portable Document format
+   [PDF] and Virtual Reality Markup Language [VRML]) that specify
+   documents consisting of a root resource and a number of distinct
+   subsidiary resources referenced by URIs within that root resource.
+   There is an obvious need to be able to send such multi-resource
+   documents in e-mail [SMTP], [<A =
+href=3D"http://www.faqs.org/rfcs/rfc822.html">RFC822</A>] messages.
+
+   The standard defined in this document specifies how to aggregate such
+   multi-resource documents in MIME-formatted [MIME1 to MIME5] messages
+   for precisely this purpose.
+
+   While this specification was developed to satisfy the specific
+   aggregation requirements of multi-resource HTML documents, it may
+   also be applicable to other multi-resource document representations
+   linked by URIs. While this is the case, there is no requirement that
+   implementations claiming conformance to this standard be able to
+   handle any URI linked document representations other than those whose
+   root is HTML.
+
+   This aggregation into a single message of a root resource and the
+   subsidiary resources it references may also be applicable to
+   resources retrieved by other protocols such as HTTP or FTP, or to the
+   archiving of complete web pages as they appeared at a particular
+   point in time.
+
+   An informational RFC will be published as a supplement to this
+   standard. The informational RFC will discuss implementation methods
+   and some implementation problems. Implementers are strongly
+   recommended to read this informational RFC when developing
+   implementations of this standard. You can find it through URL
+   <A =
+href=3D"http://www.dsv.su.se/~jpalme/ietf/mhtml.html">http://www.dsv.su.s=
+e/~jpalme/ietf/mhtml.html</A>.
+
+   This standard specifies that body parts to be referenced can be
+   identified either by a Content-ID (containing a Message-ID value) or
+   by a Content-Location (containing an arbitrary URL). The reason why
+   this standard does not only recommend the use of Content-ID-s is that
+   it should be possible to forward existing web pages via e-mail
+   without having to rewrite the source text of the web pages. Such
+   rewriting has several disadvantages, one of them that security
+   checksums will probably be invalidated.
+
+2.  Terminology
+
+2.1 Conformance requirement terminology
+
+   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+   "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
+   document are to be interpreted as described in [IETF-TERMS].
+
+   An implementation is not compliant if it fails to satisfy one or more
+   of the MUST requirements for the protocols it implements. An
+   implementation that satisfies all the MUST and all the SHOULD
+   requirements for its protocols is said to be "unconditionally
+   compliant"; one that satisfies all the MUST requirements but not all
+   the SHOULD requirements for its protocols is said to be
+   "conditionally compliant."
+
+2.2 Other terminology
+
+   Most of the terms used in this document are defined in other RFCs.
+
+   Absolute URI,         See Relative Uniform Resource Locators
+   AbsoluteURI           [RELURL].
+
+   CID                   See Message/External Body Content-ID [MIDCID].
+
+   Content-Base          This header was specified in <A =
+href=3D"http://www.faqs.org/rfcs/rfc2110.html">RFC 2110</A>, but has
+                         been removed in this new version of the MHTML
+                         standard.
+
+   Content-ID            See Message/External Body Content-ID [MIDCID].
+
+   Content-Location      MIME message or content part header with one
+                         URI of the MIME message or content part body,
+                         defined in section 4.2 below.
+
+   Content-Transfer-     Conversion of a text into 7-bit octets as
+   Encoding              specified in [MIME1] chapter 6.
+
+   CR                    See [<A =
+href=3D"http://www.faqs.org/rfcs/rfc822.html">RFC822</A>].
+
+   CRLF                  See [<A =
+href=3D"http://www.faqs.org/rfcs/rfc822.html">RFC822</A>].
+
+   Displayed text        The text shown to the user reading a document
+                         with a web browser. This may be different from
+                         the HTML markup, see the definition of HTML
+                         markup below.
+
+   Header                Field in a message or content heading
+                         specifying the value of one attribute.
+
+   Heading               Part of a message or content before the first
+                         CRLFCRLF, containing formatted fields with
+                         attributes of the message or content.
+
+   HTML                  See HTML 2 specification [HTML2].
+
+   HTML Aggregate        HTML objects together with some or all objects,
+   objects               to which the HTML object contains hyperlinks,
+                         directly or indirectly.
+
+   HTML markup           A file containing HTML encodings as specified
+                         in [HTML] which may be different from the
+                         displayed text which a person using a web
+                         browser sees. For example, the HTML markup may
+                         contain "&amp;lt;" where the displayed text
+                         contains the character "&lt;".
+
+   LF                    See [<A =
+href=3D"http://www.faqs.org/rfcs/rfc822.html">RFC822</A>].
+
+   MIC                   Message Integrity Codes, codes use to verify
+                         that a message has not been modified.
+
+   MIME                  See the MIME specifications [MIME1 to MIME5].
+
+   MUA                   Messaging User Agent.
+
+   PDF                   Portable Document Format, see [PDF].
+
+   Relative URI,         See HTML 2 [HTML2] and <A =
+href=3D"http://www.faqs.org/rfcs/rfc1808.html">RFC 1808</A> [RELURL].
+   RelativeURI
+
+   URI, absolute and     See <A =
+href=3D"http://www.faqs.org/rfcs/rfc1866.html">RFC 1866</A> [HTML2].
+   relative
+
+   URL                   See <A =
+href=3D"http://www.faqs.org/rfcs/rfc1738.html">RFC 1738</A> [URL].
+
+   URL, relative         See Relative Uniform Resource Locators =
+[RELURL].
+
+   VRML                  See Virtual Reality Markup Language [VRML].
+
+3.  Overview
+
+   An aggregate document is a MIME-encoded message that contains a root
+   resource (object) as well as other resources linked to it via URIs.
+   These other resources may be required to display a multimedia
+   document based on the root resource (inline pictures, style sheets,
+   applets, etc.), or be the root resources of other multimedia
+   documents. It is important to keep in mind that aggregate documents
+   need to satisfy the differing needs of several audiences.
+
+   Mail sending agents might send aggregate documents as an encoding of
+   normal day-to-day electronic mail. Mail sending agents might also
+   send aggregate documents when a user wishes to mail a particular
+   document from the web to someone else. Finally mail sending agents
+   might send aggregate documents as automatic responders, providing
+   access to WWW resources for non-IP connected clients. Also with other
+   protocols such as HTTP or FTP, there may sometimes be a need to
+   retrieve aggregate documents. Receiving agents also have several
+   differing needs. Some receiving agents might be able to receive an
+   aggregate document and display it just as any other text content type
+   would be displayed.  Others might have to pass this aggregate
+   document to a browsing program, and provisions need to be made to
+   make this possible.
+
+   Finally several other constraints on the problem arise. It is
+   important that it be possible for a document to be signed and for it
+   to be transmitted and displayed without breaking the message
+   integrity (MIC) checksum that is part of the signature.
+
+4.  The Content-Location MIME Content Header
+
+4.1 MIME content headers
+
+   In order to resolve URI references to resources in other body parts,
+   one MIME content header is defined, Content-Location. This header can
+   occur in any message or content heading.
+
+   The syntax for this header is, using the syntax definition tools from
+   [ABNF]:
+
+   quoted-pair      =3D   ("\" text)
+
+   text             =3D   %d1-9 / ; Characters excluding CR and LF
+                        %d11-12 /
+                        %d14-127
+
+   WSP              =3D   SP / HTAB ; Whitespace characters
+
+   FWS              =3D   ([*WSP CRLF] 1*WSP) ; Folding white-space
+
+   ctext            =3D   NO-WS-CTL / ; Non-white-space controls
+                        %d33-39 / ; The rest of the US-ASCII
+                        %d42-91 / ; characters not including "(",
+                        %d93-127 ; ")", or "\"
+
+   comment          =3D  "(" *([FWS] (ctext / quoted-pair / comment))
+                        [FWS] ")"
+
+   CFWS             =3D   *([FWS] comment) (([FWS] comment) / FWS)
+
+   content-location =3D   "Content-Location:" [CFWS] URI [CFWS]
+
+   URI              =3D   absoluteURI | relativeURI
+
+   where URI is restricted to the syntax for URLs as defined in Uniform
+   Resource Locators [URL] until IETF specifies other kinds of URIs.
+
+4.2 The Content-Location Header
+
+   A Content-Location header specifies an URI that labels the content of
+   a body part in whose heading it is placed. Its value CAN be an
+   absolute or a relative URI. Any URI or URL scheme may be used, but
+   use of non-standardized URI or URL schemes might entail some risk
+   that recipients cannot handle them correctly.
+
+   An URI in a Content-Location header need not refer to an resource
+   which is globally available for retrieval using this URI (after
+   resolution of relative URIs). However, URI-s in Content-Location
+   headers (if absolute, or resolvable to absolute URIs) SHOULD still be
+   globally unique.
+
+   A Content-Location header can thus be used to label a resource which
+   is not retrievable by some or all recipients of a message. For
+   example a Content-Location header may label an object which is only
+   retrievable using this URI in a restricted domain, such as within a
+   company-internal web space. A Content-Location header can even
+   contain a fictitious URI. Such an URI need not be globally unique.
+
+   A single Content-Location header field is allowed in any message or
+   content heading, in addition to a Content-ID header (as specified in
+   [MIME1]) and, in Message headings, a Message-ID (as specified in
+   [<A href=3D"http://www.faqs.org/rfcs/rfc822.html">RFC822</A>]). All =
+of these constitute different, equally valid body part
+   labels, and any of them may be used to satisfy a reference to a body
+   part. Multiple Content-Location header fields in the same message
+   heading are not allowed.
+
+   Example of a multipart/related structure containing body parts with
+   both Content-Location and Content-ID labels:
+
+      Content-Type: multipart/related; boundary=3D"boundary-example";
+                    type=3D"text/html"
+
+      --boundary-example
+
+      Content-Type: text/html; charset=3D"US-ASCII"
+
+      ... ... &lt;IMG SRC=3D"fiction1/fiction2"&gt; ... ...
+      ... ... &lt;IMG SRC=3D"cid:<A =
+href=3D"mailto:97116092811xyz@foo.bar.net">97116092811xyz@foo.bar.net</A>=
+"&gt; ... ...
+
+      --boundary-example
+      Content-Type: image/gif
+      Content-ID: &lt;<A =
+href=3D"mailto:97116092511xyz@foo.bar.net">97116092511xyz@foo.bar.net</A>=
+&gt;
+      Content-Location: fiction1/fiction2
+
+      --boundary-example
+      Content-Type: image/gif
+      Content-ID: &lt;<A =
+href=3D"mailto:97116092811xyz@foo.bar.net">97116092811xyz@foo.bar.net</A>=
+&gt;
+      Content-Location: fiction1/fiction3
+
+      --boundary-example--
+
+4.3 URIs of MHTML aggregates
+
+   The URI of an MHTML aggregate is not the same as the URI of its root.
+   The URI of its root will directly retrieve only the root resource
+   itself, even if it may cause a web browser to separately retrieve
+   in-line linked resources. If a Content-Location header field is used
+   in the heading of a multipart/related, this Content-Location SHOULD
+   apply to the whole aggregate, not to its root part.
+
+   When an URI referring to an MHTML aggregate is used to retrieve this
+   aggregate, the set of resources retrieved can be different from the
+   set of resources retrieved using the Content-Locations of its parts.
+   For example, retrieving an MHTML aggregate may return an old version,
+   while retrieving the root URI and its in-line linked objects may
+   return a newer version.
+
+4.4 Encoding and decoding of URIs in MIME header fields
+
+4.4.1 Encoding of URIs containing inappropriate characters
+
+   Some documents may contain URIs with characters that are
+   inappropriate for an <A =
+href=3D"http://www.faqs.org/rfcs/rfc822.html">RFC 822</A> header, either =
+because the URI itself
+   has an incorrect syntax according to [URL] or the URI syntax standard
+
+   has been changed to allow characters not previously allowed in MIME
+   headers. These URIs cannot be sent directly in a message header. If
+   such a URI occurs, all spaces and other illegal characters in it must
+   be encoded using one of the methods described in [MIME3] section 4.
+   This encoding MUST only be done in the header, not in the HTML text.
+   Receiving clients MUST decode the [MIME3] encoding in the heading
+   before comparing URIs in body text to URIs in Content-Location
+   headers.
+
+   The charset parameter value "US-ASCII" SHOULD be used if the URI
+   contains no octets outside of the 7-bit range. If such octets are
+   present, the correct charset parameter value (derived e.g. from
+   information about the HTML document the URI was found in) SHOULD be
+   used. If this cannot be safely established, the value "UNKNOWN-8BIT"
+   [<A href=3D"http://www.faqs.org/rfcs/rfc1428.html">RFC 1428</A>] MUST =
+be used.
+
+   Note, that for the matching of URIs in text/html body parts to URIs
+   in Content-Location headers, the value of the charset parameter is
+   irrelevant, but that it may be relevant for other purposes, and that
+   incorrect labeling MUST, therefore, be avoided. Warning: Irrelevance
+   of the charset parameter may not be true in the future, if different
+   character encodings of the same non-English filename are used in
+   HTML.
+
+4.4.2 Folding of long URIs
+
+   Since MIME header fields have a limited length and long URIs can
+   result in Content-Location headers that exceed this length, Content-
+   Location headers may have to be folded.
+
+   Encoding as discussed in clause 4.4.1 MUST be done before such
+   folding.  After that, the folding can be done, using the algorithm
+   defined in [URLBODY] section 3.1.
+
+4.4.3 Unfolding and decoding of received URLs in MIME header fields
+
+   Upon receipt, folded MIME header fields should be unfolded, and then
+   any MIME encoding should be removed, to retrieve the original URI.
+
+5.  Base URIs for resolution of relative URIs
+
+   Relative URIs inside the contents of MIME body parts are resolved
+   relative to a base URI using the methods for resolving relative URIs
+   described in [RELURL]. In order to determine this base URI, the
+   first-applicable method in the following list applies.
+
+   (a) There is a base specification inside the MIME body part
+       containing the relative URI which resolves relative URIs into
+       absolute URIs.  For example, HTML provides the BASE element for
+       this purpose.
+
+   (b) There is a Content-Location header in the immediately surrounding
+       heading of the body part and it contains an absolute URI. This
+       URI can serve as a base in the same way as a requested URI can
+       serve as a base for relative URIs within a file retrieved via
+       HTTP [HTTP].
+
+   (c) If necessary, step (b) can be repeated recursively to find a
+       suitable Content-Location header in a surrounding multi-part or
+       message heading.
+
+   (d) If the MIME object is returned in a HTTP response, use the URI
+       used to initiate the request
+
+   (e) When the methods above do not yield an absolute URI, a base URL
+       of "thismessage:/" MUST be employed. This base URL has been
+       defined for the sole purpose of resolving relative references
+       within a multipart/related structure when no other base URI is
+       specified.
+
+   This is also described in other words in section 8.2 below.
+
+6.  Sending documents without linked objects
+
+   If a text/html resource (object) is sent without subsidiary
+   resources, to which it refers, it MAY be sent by itself. In this
+   case, embedding it in a multipart/related structure is not necessary.
+
+   Such a text/html resource may either contain no URIs, or URIs which
+   the recipient is expected to retrieve (if possible) via a URI
+   specified protocol. A text/html resource may also be sent with
+   unresolvable links in special cases, such as when two authors
+   exchange drafts of unfinished resources.
+
+   Inclusion of URIs referencing resources which the recipient has to
+   retrieve via an URI specified protocol may not work for some
+   recipients. This is because not all e-mail recipients have full
+   Internet connectivity, or because URIs which work for a sender will
+   not work for a recipient. This occurs, for example, when an URI
+   refers to a resource within a company-internal network that is not
+   accessible from outside the company.
+
+7.  Use of the Content-Type "multipart/related"
+
+   If a message contains one or more MIME body parts containing URIs and
+   also contains as separate body parts, resources, to which these URIs
+   (as defined, for example, in HTML 2.0 [HTML2]) refer, then this whole
+   set of body parts (referring body parts and referred-to body parts)
+   SHOULD be sent within a multipart/related structure as defined in
+   [REL].
+
+   Even though headers can occur in a message that lacks an associated
+   multipart/related structure, this standard only covers their use for
+   resolution of URIs between body parts inside a multipart/related
+   structure. This standard does cover the case where a resource in a
+   nested multipart/related structure contains URIs that reference MIME
+   body parts in another  multipart/related structure, in which it is
+   enclosed. This standard does not cover the case where a resource in a
+   multipart/related structure contains URIs that reference MIME body
+   parts in another parallel or nested multipart/related structure, or
+   in another MIME message, even if methods similar to those described
+   in this standard are used. Implementers who employ such URIs are
+   warned that receiving agents implementing this standard may not be
+   able to process such references.
+
+   When the start body part of a multipart/related structure is an
+   atomic object, such as a text/html resource, it SHOULD be employed as
+   the root resource of that multipart/related structure. When the start
+   body part of a multipart/related structure is a multipart/alternative
+   structure, and that structure contains at least one alternative body
+   part which is a suitable atomic object, such as a text/html resource,
+   then that body part SHOULD be employed as the root resource of the
+   aggregate document.  Implementers are warned, however, that some
+   receiving agents treat multipart/alternative as if it had been
+   multipart/mixed (even though MIME [MIME1] requires support for
+   multipart/alternative).
+
+   [REL] specifies that a type parameter is mandatory in a "Content-
+   Type:  multipart/related" header, and requires that it be employed to
+   specify the type of the multipart/related start object. Thus, the
+   type parameter value shall be "multipart/alternative", when the start
+   part is of "Content-type multipart/alternative", even if the actual
+   root resource is of type "text/html". In addition, if the
+   multipart/related start object is not the first body part in a
+   multipart/related structure, [REL] further requires that its
+   Content-ID MUST be specified as the value of a start parameter in the
+   "Content-Type:  multipart/related" header.
+
+   When rendering a resource in a multipart/related structure, URI
+   references within that resource can be satisfied by body parts within
+   the same multipart/related structure (see section 8.2 below). This is
+   useful:
+
+   (a) For those recipients who only have email but not full Internet
+       access.
+
+   (b) For those recipients who for other reasons, such as firewalls or
+       the use of company-internal links, cannot retrieve URI referenced
+       resources via URI specified protocols.
+
+       Note, that this means that you can, via e-mail, send text/html
+       objects which includes URIs which the recipient cannot resolve
+       via HTTP or other connectivity-requiring URIs.
+
+   (c) To send a document whose content is preserved even if the
+       resources to which embedded URIs refer are later changed or
+       deleted.
+
+   (d) For resources which are not available for protocol based
+       retrieval.
+
+   (e) To speed up access.
+
+   When a sending MUA sends objects which were retrieved from the WWW,
+   it SHOULD maintain their WWW URIs. It SHOULD not transform these URIs
+   into some other URI form prior to transmitting them. This will allow
+
+   the receiving MUA to both verify MICs included with the message, as
+   well as verify the documents against their WWW counterpoints, if this
+   is appropriate.
+
+   In certain cases this will not work - for example, if a resource
+   contains URIs as parameters to objects and applets. In such a case,
+   it might be better to rewrite the document before sending it. This
+   problem is discussed in more detail in the informational RFC which
+   will be published as a supplement to this standard.
+
+   Within a multipart/related structure, each body part MUST have, if
+   assigned, a different Content-ID header value and a Content-Location
+   header field values which resolve to a different URI.
+
+   Two body parts in the same multipart/related structure can have the
+   same relative Content-Location header value, only if when resolved to
+   absolute URIs they become different.
+
+8.  Usage of Links to Other Body Parts
+
+8.1 General principle
+
+   A body part, such as a text/html body part, may contain URIs that
+   reference resources which are included as body parts in the same
+   message -- in detail, as body parts within the same multipart/related
+   structure. Often such URI linked resources are meant to be displayed
+   inline to the viewer of the referencing body part; for example,
+   objects referenced with the SRC attribute of the IMG element in HTML
+   2.0 [HTML2]. New elements and attributes with this property are
+   proposed in the ongoing development of HTML (examples: applet, frame,
+   profile, OBJECT, classid, codebase, data, SCRIPT). A sender might
+   also want to send a set of HTML documents which the reader can
+   traverse, and which are related with the attribute href of the A
+   element.
+
+   If a user retrieves and displays a web page formed from a text/html
+   resource, and the subsidiary resources it references, and merely
+   saves the text/html resource, that user may not at a later time be
+   able to retrieve and display the web page as it appeared when saved.
+   The format described in this standard can be used to archive and
+   retrieve all of the resources required to display the web page, as it
+   originally appeared at a certain moment of time, in one aggregate
+   file.
+
+   In order to send or store complete such messages, there is a need to
+   specify how a URI in one body part can reference a resource in
+   another body part.
+
+8.2 Resolution of URIs in text/html body parts
+
+   The resolution of inline, retrieval and other kinds of URIs in
+   text/html body parts is performed in the following way:
+
+   (a) Unfold multiple line header values according to [URLBODY]. Do NOT
+       however translate character encodings of the kind described in
+       [URL]. Example: Do not transform "a%2eb/c%20d" into "a/b/c d".
+
+   (b) Remove all MIME encodings, such as content-transfer encoding and
+       header encodings as defined in MIME part 3 [MIME3] Do NOT however
+       translate character encodings of the kind described in [URL].
+       Example: Do not transform "a%2eb/c%20d" into "a/b/c d".
+
+   (c) Try to resolve all relative URIs in the HTML content and in
+       Content-Location headers using the procedure described in chapter
+       5 above. The result of this resolution can be an absolute URI, or
+       an absolute URI with the base "thismessage:/" as specified in
+
+       chapter 5.
+
+   (d) For each referencing URI in a text/html body part, compare the
+       value of the referencing URI after resolution as described in (a)
+       and (b), with the URI derived from Content-ID and Content-
+       Location headers for other body parts within the same or a
+       surrounding Multipart/related structure. If the strings are
+       identical, octet by octet, then the referencing URI references
+       that body part. This comparison will only succeed if the two URIs
+       are identical. This means that if one of the two URIs to be
+       compared was a fictitious absolute URI with the base
+       "thismessage:/", the other must also be such a fictitious
+       absolute URI, and not resolvable to a real absolute URI.
+
+   (e) If (d) fails, try to retrieve the URI referenced resource
+       hyperlink through ordinary Internet lookup. Resolution of URIs of
+       the URL-types "mid" or "cid" to other content-parts, outside the
+       same multipart/related structure, or in other separately sent
+       messages, is not covered by this standard, and is thus neither
+       encouraged nor forbidden.
+
+8.3 Use of the Content-ID header and CID URLs
+
+   When URIs employing a CID (Content-ID) scheme as defined in [URL] and
+   [MIDCID] are used to reference other body parts in an MHTML
+   multipart/related structure, they MUST only be matched against
+   Content-ID header values, and not against Content-Location header
+   with CID: values. Thus, even though the following two headers are
+   identical in meaning, only the Content-ID value will be matched, and
+   the Content-Location value will be ignored.
+
+      Content-ID: &lt;<A href=3D"mailto:foo@bar.net">foo@bar.net</A>&gt;
+      Content-Location: CID: <A =
+href=3D"mailto:foo@bar.net">foo@bar.net</A>
+
+   Note: Content-IDs MUST be globally unique [MIME1]. It is thus not
+   permitted to make them unique only within a message or within a
+   single multipart/related structure.
+
+9.  Examples
+
+   Warning: The examples are provided for illustrative purposes only. If
+   there is a contradiction between the explanatory text and the
+   examples in this standard, then the explanatory text is normative.
+
+   Notation: The examples contain indentation to show the structure, the
+   real objects should not be indented in this way.
+
+9.1 Example of a HTML body without included linked objects
+
+   The first example is the simplest form of an HTML email message. This
+   message does not contain an aggregate HTML object, but simply a
+   message with a single HTML body part. This body part contains a URI
+   but the messages does not contain the resource referenced by that
+   URI. To retrieve the resource referenced by the URI the receiving
+   client would need either IP access to the Internet, or an electronic
+   mail web gateway.
+
+      From: <A href=3D"mailto:foo1@bar.net">foo1@bar.net</A>
+      To: <A href=3D"mailto:foo2@bar.net">foo2@bar.net</A>
+      Subject: A simple example
+      Mime-Version: 1.0
+      Content-Type: text/html; charset=3D"iso-8859-1"
+      Content-Transfer-Encoding: 8bit
+
+      &lt;HTML&gt;
+      &lt;head&gt;&lt;/head&gt;
+      &lt;body&gt;
+      &lt;h1&gt;Acute accent&lt;/h1&gt;
+      The following two lines look have the same screen =
+rendering:&lt;p&gt;
+      E with acute accent becomes =C9.&lt;br&gt;
+      E with acute accent becomes &amp;Eacute;.&lt;p&gt;
+      Try clicking &lt;a href=3D"<A =
+href=3D"http://www.ietf.cnri.reston.va.us/" =
+?>http://www.ietf.cnri.reston.va.us/</A>&gt;
+      here.&lt;/a&gt;&lt;p&gt;
+      &lt;/body&gt;&lt;/HTML&gt;
+
+9.2 Example with an absolute URI to an embedded GIF picture
+
+   The second example is an HTML message which includes a single image,
+   referenced using the Content-Location mechanism.
+
+      From: <A href=3D"mailto:foo1@bar.net">foo1@bar.net</A>
+      To: <A href=3D"mailto:foo2@bar.net">foo2@bar.net</A>
+      Subject: A simple example
+      Mime-Version: 1.0
+      Content-Type: multipart/related; boundary=3D"boundary-example";
+              type=3D"text/html"; start=3D"&lt;<A =
+href=3D"mailto:foo3@foo1@bar.net">foo3@foo1@bar.net</A>&gt;"
+
+      --boundary-example
+      Content-Type: text/html;charset=3D"US-ASCII"
+      Content-ID: &lt;<A =
+href=3D"mailto:foo3@foo1@bar.net">foo3@foo1@bar.net</A>&gt;
+
+      ... text of the HTML document, which might contain a URI
+      referencing a resource in another body part, for example
+      through a statement such as:
+      &lt;IMG SRC=3D"<A =
+href=3D"http://www.ietf.cnri.reston.va.us/images/ietflogo.gif">http://www=
+.ietf.cnri.reston.va.us/images/ietflogo.gif</A>"
+
+       ALT=3D"IETF logo"&gt;
+
+      --boundary-example
+      Content-Location:
+         <A =
+href=3D"http://www.ietf.cnri.reston.va.us/images/ietflogo.gif">http://www=
+.ietf.cnri.reston.va.us/images/ietflogo.gif</A>
+      Content-Type: IMAGE/GIF
+      Content-Transfer-Encoding: BASE64
+
+      R0lGODlhGAGgAPEAAP/////ZRaCgoAAAACH+PUNvcHlyaWdodCAoQykgMTk5
+      NSBJRVRGLiBVbmF1dGhvcml6ZWQgZHVwbGljYXRpb24gcHJvaGliaXRlZC4A
+      etc...
+
+      --boundary-example--
+
+9.3 Example with relative URIs to embedded GIF pictures
+
+   In this example, a Content-Location header field in the outermost
+   heading will be a base to all relative URLs, also inside the HTML
+   text being sent.
+
+      From: <A href=3D"mailto:foo1@bar.net">foo1@bar.net</A>
+      To: <A href=3D"mailto:foo2@bar.net">foo2@bar.net</A>
+      Subject: A simple example
+      Mime-Version: 1.0
+      Content-Location: <A =
+href=3D"http://www.ietf.cnri.reston.va.us/">http://www.ietf.cnri.reston.v=
+a.us/</A>
+      Content-Type: multipart/related; boundary=3D"boundary-example";
+              type=3D"text/html"
+
+      --boundary-example
+      Content-Type: text/html; charset=3D"ISO-8859-1"
+      Content-Transfer-Encoding: QUOTED-PRINTABLE
+
+      ... text of the HTML document, which might contain URIs
+      referencing resources in other body parts, for example through
+      statements such as:
+
+      &lt;IMG SRC=3D"images/ietflogo1.gif" ALT=3D"IETF logo1"&gt;
+      &lt;IMG SRC=3D"images/ietflogo2.gif" ALT=3D"IETF logo2"&gt;
+      &lt;IMG SRC=3D"images/ietflogo3.gif" ALT=3D"IETF logo3"&gt;
+
+      Example of a copyright sign encoded with Quoted-Printable: =3DA9
+      Example of a copyright sign mapped onto HTML markup: &amp;#168;
+
+      --boundary-example
+      Content-Location:
+               <A =
+href=3D"http://www.ietf.cnri.reston.va.us/images/ietflogo1.gif">http://ww=
+w.ietf.cnri.reston.va.us/images/ietflogo1.gif</A>
+      ; Note - Absolute Content-Location does not require a
+      ; base
+
+      Content-Type: IMAGE/GIF
+      Content-Transfer-Encoding: BASE64
+
+      R0lGODlhGAGgAPEAAP/////ZRaCgoAAAACH+PUNvcHlyaWdodCAoQykgMTk5
+      NSBJRVRGLiBVbmF1dGhvcml6ZWQgZHVwbGljYXRpb24gcHJvaGliaXRlZC4A
+      etc...
+
+      --boundary-example
+      Content-Location: images/ietflogo2.gif
+      ; Note - Relative Content-Location is resolved by base
+      ; specified in the Multipart/Related Content-Location heading
+      Content-Transfer-Encoding: BASE64
+
+      R0lGODlhGAGgAPEAAP/////ZRaCgoAAAACH+PUNvcHlyaWdodCAoQykgMTk5
+      NSBJRVRGLiBVbmF1dGhvcml6ZWQgZHVwbGljYXRpb24gcHJvaGliaXRlZC4A
+      etc...
+
+      --boundary-example
+      Content-Location:
+               <A =
+href=3D"http://www.ietf.cnri.reston.va.us/images/ietflogo3.gif">http://ww=
+w.ietf.cnri.reston.va.us/images/ietflogo3.gif</A>
+      Content-Transfer-Encoding: BASE64
+
+      R0lGODlhGAGgAPEAAP/////ZRaCgoAAAACH+PUNvcHlyaWdodCAoQykgMTk5
+      NSBJRVRGLiBVbmF1dGhvcml6ZWQgZHVwbGljYXRpb24gcHJvaGliaXRlZC4A
+      etc...
+
+      --boundary-example--
+
+9.4 Example with a relative URI and no BASE available
+
+      From: <A href=3D"mailto:foo1@bar.net">foo1@bar.net</A>
+      To: <A href=3D"mailto:foo2@bar.net">foo2@bar.net</A>
+      Subject: A simple example
+      Mime-Version: 1.0
+      Content-Type: multipart/related; boundary=3D"boundary-example";
+              type=3D"text/html"
+
+      --boundary-example
+      Content-Type: text/html; charset=3D"iso-8859-1"
+      Content-Transfer-Encoding: QUOTED-PRINTABLE
+
+      ... text of the HTML document, which might contain a URI
+      referencing a resource in another body part, for example
+      through a statement such as:
+      &lt;IMG SRC=3D"ietflogo.gif" ALT=3D"IETF logo"&gt;
+      Example of a copyright sign encoded with Quoted-Printable: =3DA9
+      Example of a copyright sign mapped onto HTML markup: &amp;#168;
+
+      --boundary-example
+      Content-Location: ietflogo.gif
+      Content-Type: IMAGE/GIF
+      Content-Transfer-Encoding: BASE64
+
+      R0lGODlhGAGgAPEAAP/////ZRaCgoAAAACH+PUNvcHlyaWdodCAoQykgMTk5
+      NSBJRVRGLiBVbmF1dGhvcml6ZWQgZHVwbGljYXRpb24gcHJvaGliaXRlZC4A
+      etc...
+
+      --boundary-example--
+
+9.5 Example using CID URL and Content-ID header to an embedded GIF
+    picture
+
+      From: <A href=3D"mailto:foo1@bar.net">foo1@bar.net</A>
+      To: <A href=3D"mailto:foo2@bar.net">foo2@bar.net</A>
+      Subject: A simple example
+      Mime-Version: 1.0
+      Content-Type: multipart/related; boundary=3D"boundary-example";
+              type=3D"text/html"
+
+      --boundary-example
+      Content-Type: text/html; charset=3D"US-ASCII"
+
+      ... text of the HTML document, which might contain a URI
+      referencing a resource in another body part, for example
+      through a statement such as:
+      &lt;IMG SRC=3D"cid:<A =
+href=3D"mailto:foo4@foo1@bar.net">foo4@foo1@bar.net</A>" ALT=3D"IETF =
+logo"&gt;
+
+      --boundary-example
+      Content-Location: CID:something@else ; this header is disregarded
+      Content-ID: &lt;<A =
+href=3D"mailto:foo4@foo1@bar.net">foo4@foo1@bar.net</A>&gt;
+      Content-Type: IMAGE/GIF
+      Content-Transfer-Encoding: BASE64
+
+      R0lGODlhGAGgAPEAAP/////ZRaCgoAAAACH+PUNvcHlyaWdodCAoQykgMTk5
+      NSBJRVRGLiBVbmF1dGhvcml6ZWQgZHVwbGljYXRpb24gcHJvaGliaXRlZC4A
+      etc...
+
+      --boundary-example--
+
+9.6 Example showing permitted and forbidden references between nested
+    body parts
+
+   This example shows in which cases references are allowed between
+   multiple multipart/related body parts in a message.
+
+      From: <A href=3D"mailto:foo1@bar.net">foo1@bar.net</A>
+      To: <A href=3D"mailto:foo2@bar.net">foo2@bar.net</A>
+      Subject: A simple example
+      Mime-Version: 1.0
+      Content-Type: multipart/related; boundary=3D"boundary-example-1";
+                type=3D"text/html"
+
+      --boundary-example-1
+      Content-Type: text/html;charset=3D"US-ASCII"
+      Content-ID: &lt;<A =
+href=3D"mailto:foo3@foo1@bar.net">foo3@foo1@bar.net</A>&gt;
+
+      The image reference below will be resolved with the image
+      in the next body part.
+      &lt;IMG SRC=3D"<A =
+href=3D"http://www.ietf.cnri.reston.va.us/images/ietflogo.gif">http://www=
+.ietf.cnri.reston.va.us/images/ietflogo.gif</A>"
+      ALT=3D"IETF logo with white background"&gt;
+
+      The image reference below cannot be resolved within this
+      MIME message, since it contains a reference from an outside
+      body part to an inside body part, which is not supported
+      by this standard.
+      &lt;IMG SRC=3Dimages/ietflogo2e.gif"
+      ALT=3D"IETF logo with transparent background"&gt;
+
+      The anchor reference immediately below will be resolved with
+      the nested text/html body part below:
+      &lt;A HREF=3D"<A =
+href=3D"http://www.ietf.cnri.reston.va.us/more-info">http://www.ietf.cnri=
+.reston.va.us/more-info</A>&gt;
+      More info&lt;/A&gt;
+
+      The anchor reference immediately below will be resolved with
+      the nested text/html body part below:
+      &lt;A HREF=3D"<A =
+href=3D"http://www.ietf.cnri.reston.va.us/even-more-info">http://www.ietf=
+.cnri.reston.va.us/even-more-info</A>&gt;
+      Even more info&lt;/A&gt;
+
+      --boundary-example-1
+      Content-Location:
+               <A =
+href=3D"http://www.ietf.cnri.reston.va.us/images/ietflogo.gif">http://www=
+.ietf.cnri.reston.va.us/images/ietflogo.gif</A>
+      Content-Type: IMAGE/GIF
+      Content-Transfer-Encoding: BASE64
+
+      R0lGODlhGAGgAPEAAP/////ZRaCgoAAAACH+PUNvcHlyaWdodCAoQykgMTk5
+      NSBJRVRGLiBVbmF1dGhvcml6ZWQgZHVwbGljYXRpb24gcHJvaGliaXRlZC4A
+      etc...
+
+      --boundary-example-1
+      Content-Location:
+           <A =
+href=3D"http://www.ietf.cnri.reston.va.us/more-info">http://www.ietf.cnri=
+.reston.va.us/more-info</A>
+      Content-Type: multipart/related; boundary=3D"boundary-example-2";
+                 type=3D"text/html"
+      --boundary-example-2
+      Content-Type: text/html;charset=3D"US-ASCII"
+      Content-ID: &lt;<A =
+href=3D"mailto:foo4@foo1@bar.net">foo4@foo1@bar.net</A>&gt;
+
+      The image reference below will be resolved with the image
+      in the surrounding multipart/related above.
+      &lt;IMG SRC=3D"images/ietflogo.gif"
+      ALT=3D"IETF logo with white background"&gt;
+
+      The image reference below will be resolved with the image
+      inside the current nested multipart/related below.
+      &lt;IMG SRC=3Dimages/ietflogo2e.gif"
+      ALT=3D"IETF logo with transparent background"&gt;
+
+      --boundary-example-2
+      Content-Location: http:images/ietflogo2.gif
+      Content-Type: IMAGE/GIF
+      Content-Transfer-Encoding: BASE64
+
+      R0lGODlhGAGgANX/ACkpKTExMTk5OUJCQkpKSlJSUlpaWmNjY2tra3Nzc3t7e4
+      SEhIyMjJSUlJycnKWlpa2trbW1tcDAwM7Ozv/eQnNzjHNzlGtrjGNjhFpae1pa
+      etc...
+
+      --boundary-example-2--
+      --boundary-example-1
+      Content-Location:
+                 <A =
+href=3D"http://www.ietf.cnri.reston.va.us/even-more-info">http://www.ietf=
+.cnri.reston.va.us/even-more-info</A>
+      Content-Type: multipart/related; boundary=3D"boundary-example-3";
+                 type=3D"text/html"
+      --boundary-example-3
+      Content-Type: text/html;charset=3D"US-ASCII"
+      Content-ID: &lt;<A =
+href=3D"mailto:4@foo@bar.net">4@foo@bar.net</A>&gt;
+
+      The image reference below will be resolved with the image
+      inside the current nested multipart/related below.
+      &lt;IMG SRC=3Dimages/ietflogo2d.gif"
+      ALT=3D"IETF logo with shadows"&gt;
+
+      The image reference below cannot be resolved according to
+      this standard since references between parallel multipart/
+      related structures are not supported.
+      &lt;IMG SRC=3Dimages/ietflogo2e.gif"
+      ALT=3D"IETF logo with transparent background"&gt;
+
+      --boundary-example-3
+      Content-Location: http:images/ietflogo2d.gif
+      Content-Type: IMAGE/GIF
+      Content-Transfer-Encoding: BASE64
+
+      R0lGODlhGAGgANX/AMDAwCkpKTExMTk5OUJCQkpKSlJSUlpaWmNjY2tra3Nz
+      c3t7e4SEhIyMjJSUlJycnKWlpa2trbW1tb29vcbGxs7OztbW1t7e3ufn5+/v
+      etc...
+
+      --boundary-example-3--
+      --boundary-example-1--
+
+10.  Character encoding issues and end-of-line issues
+
+   For the encoding of characters in HTML documents and other text
+   documents into a MIME-compatible octet stream, the following
+   mechanisms are relevant:
+
+   -  HTML [HTML2], [HTML-I18N] as an application of SGML [SGML] allows
+      characters to be denoted by character entities as well as by
+      numeric character references (e.g. "Latin small letter a with
+      acute accent" may be represented by "&amp;aacute;" or =
+"&amp;#225;") in the
+      HTML markup.
+
+   -  HTML documents, in common with other documents of the MIME
+      Content-Type "text", can be represented in MIME using one of
+      several character encodings. The MIME Content-Type "charset"
+      parameter value indicates the particular encoding used. For the
+      exact meaning and use of the "charset" parameter, please see
+      [MIME2] chapter 4.
+
+      Note that the "charset" parameter refers only to the MIME
+      character encoding. For example, the string "&amp;aacute;" can be =
+sent
+      in MIME with "charset=3DUS-ASCII", while the raw character "Latin
+      small letter a with acute accent" cannot.
+
+   The above mechanisms are well defined and documented, and therefore
+   not further explained here. In sending a message, all the above
+   mentioned mechanisms MAY be used, and any mixture of them MAY occur
+   when sending the document in MIME format. Receiving user agents
+   (together with any Web browser they may use to display the document)
+   MUST be capable of handling any combinations of these mechanisms.
+
+   Also note that:
+
+   -  Any documents including HTML documents that contain octet values
+      outside the 7-bit range need a content-transfer-encoding applied
+      before transmission over certain transport protocols [MIME1,
+
+      chapter 5].
+
+   -  The MIME standard [MIME2] requires that e-mailed documents of
+      "Content-Type: Text/ MUST be in canonical form before a Content-
+      Transfer-Encoding is applied, i.e. that line breaks are encoded as
+      CRLFs, not as bare CRs or bare LFs or something else.  This is in
+      contrast to [HTTP] where section 3.6.1 allows other
+      representations of line breaks.
+
+   Note that this might cause problems with integrity checks based on
+   checksums, which might not be preserved when moving a document from
+   the HTTP to the MIME environment. If a document has to be converted
+   in such a way that a checksum based message integrity check becomes
+   invalid, then this integrity check header SHOULD be removed from the
+   document.
+
+   Other sources of problems are Content-Encoding used in HTTP but not
+   allowed in MIME, and character sets that are not able to represent
+   line breaks as CRLF. A good overview of the differences between HTTP
+   and MIME with regards to Content-Type: "text" can be found in [HTTP],
+   appendix C.
+
+   Some transport mechanisms may specify a default "charset" parameter
+   if none is supplied [HTTP, MIME1]. Because the default differs for
+   different mechanisms, when HTML is transferred through e-mail, the
+   charset parameter SHOULD be included, rather than relying on the
+   default.
+
+11.  Security Considerations
+
+11.1 Security considerations not related to caching
+
+   It is possible for a message sender to misrepresent the source of a
+   multipart/related body part to a message recipient by labeling it
+   with a Content-Location URI that references another resource.
+   Therefore, message recipients should only interpret Content-Location
+   URIs as labeling a body part for the resolution of references from
+   body parts in the same multipart/related message structure, and not
+   as the source of a resource, unless this can be verified by other
+   means.
+
+   URIs, especially File URIs, if used without change in a message, may
+   inadvertently reveal information that was not intended to be revealed
+   outside a particular security context. Message senders should take
+   care when constructing messages containing the new header fields,
+   defined in this standard, that they are not revealing information
+   outside of any security contexts to which they belong.
+
+   Some resource servers hide passwords and tickets (access tokens to
+   information which should not be reveled to others) and other
+   sensitive information in non-visible  fields or URIs within a
+   text/html resource.  If such a text/html resource is forwarded in an
+   email message, this sensitive information may be inadvertently
+   revealed to others.
+
+   Since HTML documents can either directly contain executable content
+   (i.e., JavaScript) or indirectly reference executable content (The
+   "INSERT" specification, Java). It is exceedingly dangerous for a
+   receiving User Agent to execute content received in a mail message
+   without careful attention to restrictions on the capabilities of that
+   executable content.
+
+   HTML-formatted messages can be used to investigate user behaviour,
+   for example to break anonymity, in ways which invade the privacy of
+   individuals. If you send a message with a inline link to an object
+   which is not itself included in the message, the recipients mailer or
+   browser may request that object through HTTP. The HTTP transaction
+   will then reveal who is reading the message. Example: A person who
+   wants to find out who is behind an anonymous user identity, or from
+   which workstation a user is reading his mail, can do this by sending
+   a message with an inline link and then observe from where this link
+   is used to request the object.
+
+11.2 Security considerations related to caching
+
+   There is a well-known problem with the caching of directly retrieved
+   web resources. A resource retrieved from a cache may differ from that
+   re-retrieved from its source. This problem, also manifests itself
+   when a copy of a resource is delivered in a multipart/related
+   structure.
+
+   When processing (rendering) a text/html body part in an MHTML
+   multipart/related structure, all URIs in that text/html body part
+   which reference subsidiary resources within the same
+   multipart/related structure SHALL be satisfied by those resources and
+   not by resources from any another local or remote source.
+
+   Therefore, if a sender wishes a recipient to always retrieve an URI
+   referenced resource from its source, an URI labeled copy of that
+   resource MUST NOT be included in the same multipart/related
+   structure.
+
+   In addition, since the source of a resource received in a
+   multipart/related structure can be misrepresented (see 11.1 above),
+   if a resource received in multipart/related structure is stored in a
+   cache, it MUST NOT be retrieved from that cache other than by a
+
+   reference contained in a body part of the same multipart/related
+   structure. Failure to honor this directive will allow a
+   multipart/related structure to be employed as a Trojan Horse. For
+   example, to inject bogus resources (i.e. a misrepresentation of a
+   competitor's Web site) into a recipient's generally accessible Web
+   cache.
+
+12.  Differences as compared to the previous version of this proposed
+     standard in <A href=3D"http://www.faqs.org/rfcs/rfc2110.html">RFC =
+2110</A>
+
+   The specification has been changed to show that the formats described
+   do not only apply to multipart MIME in email, but also to multipart
+   MIME transferred through other protocols such as HTTP or FTP.
+
+   In order to agree with [RELURL], Content-Location headers in
+   multipart Content-Headings can now be used as a base to resolve
+   relative URIs in their component parts, but only if no base URI can
+   be derived from the component part itself. Base URIs in Content-
+   Location header fields in inner headings have precedence over base
+   URIs in outer multipart headings.
+
+   The Content-Base header, which was present in <A =
+href=3D"http://www.faqs.org/rfcs/rfc2110.html">RFC 2110</A>, has been
+   removed. A conservative implementor may choose to accept this header
+   in input for compatibility with implementations of <A =
+href=3D"http://www.faqs.org/rfcs/rfc2110.html">RFC 2110</A>, but MUST
+   never send any Content-Base header, since this header is not any more
+   a part of this standard.
+
+   A section 4.4.1 has been added, specifying how to handle the case of
+   sending a body part whose URI does not agree with the correct URI
+   syntax.
+
+   The handling of relative and absolute URIs for matching between body
+   parts have been merged into a single description, by specifying that
+   relative URIs, which cannot be resolved otherwise, should be handled
+   as if they had been given the URL "thismessage:/".
+
+13.   Acknowledgments
+
+   Harald T. Alvestrand, Richard Baker, Isaac Chan, Dave Crocker, Martin
+   J. Duerst, Lewis Geer, Roy Fielding, Ned Freed, Al Gilman, Paul
+   Hoffman, Andy Jacobs, Richard W. Jesmajian, Mark K. Joseph, Greg
+   Herlihy, Valdis Kletnieks, Daniel LaLiberte, Ed Levinson, Jay Levitt,
+   Albert Lunde, Larry Masinter, Keith Moore, Gavin Nicol, Martyn W.
+   Peck, Pete Resnick, Jon Smirl, Einar Stefferud, Jamie Zawinski, Steve
+   Zilles and several other people have helped us with preparing this
+   document. We alone take responsibility for any errors which may still
+   be in the document.
+
+14.   References
+
+   [ABNF]          Crocker, D. and P. Overell, "Augmented BNF for Syntax
+                   Specifications: ABNF", <A =
+href=3D"http://www.faqs.org/rfcs/rfc2234.html">RFC 2234</A>, November =
+1997.
+
+   [CONDISP]       Troost, R. and S. Dorner, "Communicating Presentation
+                   Information in Internet Messages: The Content-
+                   Disposition Header", <A =
+href=3D"http://www.faqs.org/rfcs/rfc2183.html">RFC 2183</A>, August =
+1997.
+
+   [HOSTS]         Braden, R., Ed.,  "Requirements for Internet Hosts --
+                   Application and Support", STD 3, <A =
+href=3D"http://www.faqs.org/rfcs/rfc1123.html">RFC 1123</A>, October
+                   1989.
+
+   [HTML-I18N]     Yergeau, F., Nicol, G. Adams, G. and M. Duerst:
+                   "Internationalization of the Hypertext Markup
+                   Language", <A =
+href=3D"http://www.faqs.org/rfcs/rfc2070.html">RFC 2070</A>, January =
+1997.
+
+   [HTML2]         Berners-Lee, T. and D. Connolly: "Hypertext Markup
+                   Language - 2.0", <A =
+href=3D"http://www.faqs.org/rfcs/rfc1866.html">RFC 1866</A>, November =
+1995.
+
+   [HTML3.2]       Dave Raggett: HTML 3.2 Reference Specification, W3C
+                   Recommendation, January 1997, at URL
+                   <A =
+href=3D"http://www.w3.org/TR/REC-html32.html">http://www.w3.org/TR/REC-ht=
+ml32.html</A>
+
+   [HTTP]          Berners-Lee, T., Fielding, R. and H. Frystyk,
+                   "Hypertext Transfer Protocol -- HTTP/1.0", <A =
+href=3D"http://www.faqs.org/rfcs/rfc1945.html">RFC 1945</A>,
+                   May 1996.
+
+   [IETF-TERMS]    Bradner, S., "Key words for use in RFCs to Indicate
+                   Requirements Levels", BCP 14, <A =
+href=3D"http://www.faqs.org/rfcs/rfc2119.html">RFC 2119</A>, March 1997.
+
+   [INFO]          J. Palme: Sending HTML in MIME, an informational
+                   supplement to the RFC: MIME Encapsulation of
+                   Aggregate Documents, such as HTML (MHTML), Work in
+                   Progress.
+
+   [MD5]           Rivest, R., "The MD5 Message-Digest Algorithm", RFC
+                   1321, April 1992.
+
+   [MIDCID]        Levinson, E., "Content-ID and Message-ID Uniform
+                   Resource Locators", <A =
+href=3D"http://www.faqs.org/rfcs/rfc2387.html">RFC 2387</A>, August =
+1998.
+
+   [MIME1]         Freed, N. and N. Borenstein, "Multipurpose Internet
+                   Mail Extensions (MIME) Part One: Format of Internet
+                   Message Bodies", <A =
+href=3D"http://www.faqs.org/rfcs/rfc2045.html">RFC 2045</A>, December =
+1996.
+
+   [MIME2]         Freed, N. and N. Borenstein, "Multipurpose Internet
+                   Mail Extensions (MIME) Part Two: Media Types", RFC
+                   2046, December 1996.
+
+   [MIME3]         Moore, K., "MIME (Multipurpose Internet Mail
+                   Extensions) Part Three: Message Header Extensions for
+                   Non-ASCII Text", <A =
+href=3D"http://www.faqs.org/rfcs/rfc2047.html">RFC 2047</A>, December =
+1996.
+
+   [MIME4]         Freed, N., Klensin, J. and J. Postel, "Multipurpose
+                   Internet Mail Extensions (MIME) Part Four:
+                   Registration Procedures", <A =
+href=3D"http://www.faqs.org/rfcs/rfc2048.html">RFC 2048</A>, January =
+1997.
+
+   [MIME5]         Freed, N. and N. Borenstein, "Multipurpose Internet
+                   Mail Extensions (MIME) Part Five:  Conformance
+                   Criteria and Examples", <A =
+href=3D"http://www.faqs.org/rfcs/rfc2049.html">RFC 2049</A>, November =
+1996.
+
+   [NEWS]          Horton, M. and R. Adams: "Standard for interchange of
+                   USENET messages", <A =
+href=3D"http://www.faqs.org/rfcs/rfc1036.html">RFC 1036</A>, December =
+1987.
+
+   [PDF]           Tim Bienz and Richar Cohn: "Portable Document Format
+                   Reference Manual", Addison-Wesley, Reading, MA, USA,
+                   1993, ISBN 0-201-62628-4.
+
+   [REL]           Levinson, E., "The MIME Multipart/Related Content-
+                   Type", <A =
+href=3D"http://www.faqs.org/rfcs/rfc2389.html">RFC 2389</A>, August =
+1998.
+
+   [RELURL]        Fielding, R., "Relative Uniform Resource Locators",
+                   <A href=3D"http://www.faqs.org/rfcs/rfc1808.html">RFC =
+1808</A>, June 1995.
+
+   [<A href=3D"http://www.faqs.org/rfcs/rfc822.html">RFC822</A>]        =
+Crocker, D., "Standard for the format of ARPA
+                   Internet text messages." STD 11, <A =
+href=3D"http://www.faqs.org/rfcs/rfc822.html">RFC 822</A>, August
+                   1982.
+
+   [SGML]          ISO 8879. Information Processing -- Text and Office -
+                   Standard Generalized Markup Language (SGML), 1986.
+                   &lt;URL:<A =
+href=3D"http://www.iso.ch/cate/d16387.html">http://www.iso.ch/cate/d16387=
+.html</A>&gt;
+
+   [SMTP]          Postel, J., "Simple Mail Transfer Protocol", STD 10,
+                   <A href=3D"http://www.faqs.org/rfcs/rfc821.html">RFC =
+821</A>, August 1982.
+
+   [URL]           Berners-Lee, T., Masinter, L. and M. McCahill,
+                   "Uniform Resource Locators (URL)", <A =
+href=3D"http://www.faqs.org/rfcs/rfc1738.html">RFC 1738</A>, December
+                   1994.
+
+   [URLBODY]       Freed, N. and K. Moore, "Definition of the URL MIME
+                   External-Body Access-Type", <A =
+href=3D"http://www.faqs.org/rfcs/rfc2017.html">RFC 2017</A>, October =
+1996.
+
+   [VRML]          Gavin Bell, Anthony Parisi, Mark Pesce: "Virtual
+                   Reality Modeling Language (VRML) Version 1.0 Language
+                   Specification." May 1995,
+                   <A =
+href=3D"http://www.vrml.org/Specifications/">http://www.vrml.org/Specific=
+ations/</A>.
+
+   [XML]           Extensible Markup Language, published by the World
+                   Wide Web Consortium, URL <A =
+href=3D"http://www.w3.org/XML/">http://www.w3.org/XML/</A>
+
+15.  Authors' Addresses
+
+   For contacting the editors, preferably write to Jacob Palme.
+
+   Jacob Palme
+   Stockholm University and KTH
+   Electrum 230
+   S-164 40 Kista, Sweden
+
+   Phone: +46-8-16 16 67
+   Fax: +46-8-783 08 29
+   EMail: <A href=3D"mailto:jpalme@dsv.su.se">jpalme@dsv.su.se</A>
+
+   Alex Hopmann
+   Microsoft Corporation
+   One Microsoft Way
+   Redmond WA 98052
+
+   Phone: +1-425-703-8238
+   EMail: <A =
+href=3D"mailto:alexhop@microsoft.com">alexhop@microsoft.com</A>
+
+   Nick Shelness
+   Lotus Development Corporation
+   55 Cambridge Parkway
+   Cambridge MA  02142-1295
+
+   EMail: <A href=3D"mailto:Shelness@lotus.com">Shelness@lotus.com</A>
+
+   Working group chairman:
+
+   Einar Stefferud
+   EMail: <A href=3D"mailto:stef@nma.com">stef@nma.com</A>
+
+16.  Full Copyright Statement
+
+   Copyright (C) The Internet Society (1999).  All Rights Reserved.
+
+   This document and translations of it may be copied and furnished to
+   others, and derivative works that comment on or otherwise explain it
+   or assist in its implementation may be prepared, copied, published
+   and distributed, in whole or in part, without restriction of any
+   kind, provided that the above copyright notice and this paragraph are
+   included on all such copies and derivative works.  However, this
+   document itself may not be modified in any way, such as by removing
+   the copyright notice or references to the Internet Society or other
+   Internet organizations, except as needed for the purpose of
+   developing Internet standards in which case the procedures for
+   copyrights defined in the Internet Standards process must be
+   followed, or as required to translate it into languages other than
+   English.
+
+   The limited permissions granted above are perpetual and will not be
+   revoked by the Internet Society or its successors or assigns.
+
+   This document and the information contained herein is provided on an
+   "AS IS" basis and THE INTERNET SOCIETY AND THE INTERNET ENGINEERING
+   TASK FORCE DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING
+   BUT NOT LIMITED TO ANY WARRANTY THAT THE USE OF THE INFORMATION
+   HEREIN WILL NOT INFRINGE ANY RIGHTS OR ANY IMPLIED WARRANTIES OF
+   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.
+
+</PRE>
+<P align=3Dcenter>
+<SCRIPT language=3DJavaScript><!--=0A=
+erfc("2557");=0A=
+// --></SCRIPT>
+</P>&nbsp;<BR>
+<DIV align=3Dcenter>
+<TABLE cellSpacing=3D3 cellPadding=3D3 width=3D"100%" border=3D0>
+  <TBODY>
+  <TR>
+    <TD width=3D"45%">
+      <P align=3Dleft>Previous: <A=20
+      href=3D"http://www.faqs.org/rfcs/rfc2556.html">RFC 2556 - OSI =
+connectionless=20
+      transport services on top of UDP Applicability Statement for =
+Historic=20
+      Status</A> </P></TD>
+    <TD width=3D"10%">&nbsp;</TD>
+    <TD width=3D"45%">
+      <P align=3Dright>Next: <A =
+href=3D"http://www.faqs.org/rfcs/rfc2558.html">RFC=20
+      2558 - Definitions of Managed Objects for the SONET/SDH Interface =
+Type</A>=20
+      </P></TD></TR></TBODY></TABLE></DIV>
+<P align=3Dright>&nbsp;</P>
+<HR noShade SIZE=3D2>
+
+<DIV align=3Dcenter>[ <A href=3D"http://www.faqs.org/rfcs/">RFC =
+Index</A> | <A=20
+href=3D"http://www.faqs.org/rfcs/rfcsearch.html">RFC Search</A> | <A=20
+href=3D"http://www.faqs.org/faqs/">Usenet FAQs</A> | <A=20
+href=3D"http://www.faqs.org/contrib/">Web FAQs</A> | <A=20
+href=3D"http://www.faqs.org/docs/">Documents</A> ]=20
+<P></P></DIV><SMALL>
+<ADDRESS>
+<P align=3Dcenter></P></ADDRESS></SMALL></BODY></HTML>
+
+------=_NextPart_000_0005_01C367F9.7EBD5200
+Content-Type: image/jpeg
+Content-Transfer-Encoding: base64
+Content-Location: http://www.faqs.org/images/library.jpg
+
+/9j/4AAQSkZJRgABAgEASABIAAD/7QE0UGhvdG9zaG9wIDMuMAA4QklNA+0AAAAAABAASAAAAAEA
+AQBIAAAAAQABOEJJTQPzAAAAAAAIAAAAAAAAAAA4QklNJxAAAAAAAAoAAQAAAAAAAAACOEJJTQP1
+AAAAAABIAC9mZgABAGxmZgAGAAAAAAABAC9mZgABAKGZmgAGAAAAAAABADIAAAABAFoAAAAGAAAA
+AAABADUAAAABAC0AAAAGAAAAAAABOEJJTQP4AAAAAABwAAD/////////////////////////////
+A+gAAAAA/////////////////////////////wPoAAAAAP////////////////////////////8D
+6AAAAAD/////////////////////////////A+gAADhCSU0EBgAAAAAAAgAE/+4ADkFkb2JlAGQA
+AAAAAf/bAIQABgQEBAUEBgUFBgkGBQYJCwgGBggLDAoKCwoKDBAMDAwMDAwQDAwMDAwMDAwMDAwM
+DAwMDAwMDAwMDAwMDAwMDAEHBwcNDA0YEBAYFA4ODhQUDg4ODhQRDAwMDAwREQwMDAwMDBEMDAwM
+DAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwM/8AAEQgAPgCWAwERAAIRAQMRAf/EAaIAAAAHAQEBAQEA
+AAAAAAAAAAQFAwIGAQAHCAkKCwEAAgIDAQEBAQEAAAAAAAAAAQACAwQFBgcICQoLEAACAQMDAgQC
+BgcDBAIGAnMBAgMRBAAFIRIxQVEGE2EicYEUMpGhBxWxQiPBUtHhMxZi8CRygvElQzRTkqKyY3PC
+NUQnk6OzNhdUZHTD0uIIJoMJChgZhJRFRqS0VtNVKBry4/PE1OT0ZXWFlaW1xdXl9WZ2hpamtsbW
+5vY3R1dnd4eXp7fH1+f3OEhYaHiImKi4yNjo+Ck5SVlpeYmZqbnJ2en5KjpKWmp6ipqqusra6voR
+AAICAQIDBQUEBQYECAMDbQEAAhEDBCESMUEFURNhIgZxgZEyobHwFMHR4SNCFVJicvEzJDRDghaS
+UyWiY7LCB3PSNeJEgxdUkwgJChgZJjZFGidkdFU38qOzwygp0+PzhJSktMTU5PRldYWVpbXF1eX1
+RlZmdoaWprbG1ub2R1dnd4eXp7fH1+f3OEhYaHiImKi4yNjo+DlJWWl5iZmpucnZ6fkqOkpaanqK
+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
+
+------=_NextPart_000_0005_01C367F9.7EBD5200--

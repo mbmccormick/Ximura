@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<SiteServerConfiguration xmlns="http://schema.aegea.biz/configuration/siteserver/1.0" 
+  xmlns:fsm="http://schema.ximura.org/configuration/fsm/1.0" xmlns:cmd="http://schema.ximura.org/configuration/command/1.0" 
+  xmlns:ximura="http://schema.ximura.org/core">
+
+  <ximura:entity>
+    <ximura:tid>B6288C52-7284-4564-A65A-C06065A3E21B</ximura:tid>
+    <ximura:cid>B6288C52-7284-4564-A65A-C06065A3E21B</ximura:cid>
+    <ximura:vid>B6288C52-7284-4564-A65A-C06065A3E21B</ximura:vid>
+  </ximura:entity>
+
+  <commandconfig xmlns="http://schema.ximura.org/configuration/command/1.0">
+    <id>HTTPSiteControllerServerCommand</id>
+    <name>HTTP Server</name>
+    <description>These counters shows the current state of the HTTP Server.</description>
+    <enabled>true</enabled>
+    <priority>normal</priority>
+    <usersessionrealm>user.snagsta.com</usersessionrealm>
+    <processsession required="true" usesystemcredentials="true"/>
+  </commandconfig>
+
+  <cmd:timerpoll enabled="true" polltimeenabled="true" autostart="false" polltimerepeatvalue ="1" polltimerepeattype ="s"/>
+
+  <fsm:pool min="5" prefer="20" max="200" />
+  
+  <listeners>
+  </listeners>
+
+  <senders/>
+
+  <protocols>
+  </protocols>
+  
+</SiteServerConfiguration>

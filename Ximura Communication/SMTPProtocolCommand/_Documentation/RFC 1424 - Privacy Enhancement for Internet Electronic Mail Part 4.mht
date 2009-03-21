@@ -1,0 +1,634 @@
+From: <Saved by Microsoft Internet Explorer 5>
+Subject: RFC 1424 (rfc1424) - Privacy Enhancement for Internet Electronic Mail: Par
+Date: Mon, 22 Dec 2003 15:21:25 +0800
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	boundary="----=_NextPart_000_0058_01C3C89F.43CA1BE0";
+	type="text/html"
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2800.1165
+
+This is a multi-part message in MIME format.
+
+------=_NextPart_000_0058_01C3C89F.43CA1BE0
+Content-Type: text/html;
+	charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://www.faqs.org/rfcs/rfc1424.html
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>RFC 1424 (rfc1424) - Privacy Enhancement for Internet =
+Electronic Mail: Par</TITLE>
+<META http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dwindows-1252">
+<META=20
+content=3D"RFC 1424 - Privacy Enhancement for Internet Electronic Mail: =
+Part IV: Key Certification and Related Services"=20
+name=3Ddescription>
+<SCRIPT language=3DJavaScript1.2>=0A=
+function erfc(s)=0A=
+{document.write("<A href=3D\"/rfccomment.php?rfcnum=3D"+s+"\" =
+target=3D\"_blank\" =
+onclick=3D\"window.open('/rfccomment.php?rfcnum=3D"+s+"','Popup','toolbar=
+=3Dno,location=3Dno,status=3Dno,menubar=3Dno,scrollbars=3Dyes,resizable=3D=
+yes,width=3D680,height=3D530,left=3D30,top=3D43'); return =
+false;\")>Comment on RFC "+s+"</A>\n");}=0A=
+//-->=0A=
+</SCRIPT>
+
+<META content=3D"MSHTML 6.00.2800.1276" name=3DGENERATOR></HEAD>
+<BODY text=3D#000000 bgColor=3D#ffffff>
+<P align=3Dcenter><IMG height=3D62 alt=3D""=20
+src=3D"http://www.faqs.org/images/library.jpg" width=3D150 =
+align=3Dmiddle=20
+border=3D0></P>
+<H1 align=3Dcenter>RFC 1424 (RFC1424)</H1>
+<P align=3Dcenter>Internet RFC/STD/FYI/BCP Archives</P>
+<DIV align=3Dcenter>[ <A href=3D"http://www.faqs.org/rfcs/">RFC =
+Index</A> | <A=20
+href=3D"http://www.faqs.org/rfcs/rfcsearch.html">RFC Search</A> | <A=20
+href=3D"http://www.faqs.org/faqs/">Usenet FAQs</A> | <A=20
+href=3D"http://www.faqs.org/contrib/">Web FAQs</A> | <A=20
+href=3D"http://www.faqs.org/docs/">Documents</A> | <A=20
+href=3D"http://www.city-data.com/">Cities</A> ]=20
+<P><STRONG>Alternate Formats:</STRONG> <A=20
+href=3D"http://www.faqs.org/ftp/rfc/rfc1424.txt">rfc1424.txt</A> | <A=20
+href=3D"http://www.faqs.org/ftp/rfc/pdf/rfc1424.txt.pdf">rfc1424.txt.pdf<=
+/A></P></DIV>
+<P align=3Dcenter>
+<SCRIPT language=3DJavaScript><!--=0A=
+erfc("1424");=0A=
+// --></SCRIPT>
+</P>
+<H3 align=3Dcenter>RFC 1424 - Privacy Enhancement for Internet =
+Electronic Mail:=20
+Part IV: Key Certification and Related Services</H3>
+<HR noShade SIZE=3D2>
+<PRE>
+Network Working Group                                         B. Kaliski
+Request for Comments: 1424                              RSA Laboratories
+                                                           February 1993
+
+           Privacy Enhancement for Internet Electronic Mail:
+            Part IV: Key Certification and Related Services
+
+Status of this Memo
+
+   This RFC specifies an IAB standards track protocol for the Internet
+   community, and requests discussion and suggestions for improvements.
+   Please refer to the current edition of the "IAB Official Protocol
+   Standards" for the standardization state and status of this protocol.
+   Distribution of this memo is unlimited.
+
+Acknowledgements
+
+   This document is the product of many discussions at RSA Data
+   Security, at Trusted Information Systems, and on the &lt;pem-
+   <A href=3D"mailto:dev@tis.com">dev@tis.com</A>&gt; mailing list.  =
+Contributors include Dave Balenson, Jim
+   Bidzos, Pat Cain, Vint Cerf, Pam Cochrane, Steve Dusse, Jeff Fassett,
+   Craig Finseth, Jim Galvin, Mike Indovina, Bob Jueneman, Steve Kent,
+   John Lowry, Paul McKenney, Jeff Thompson, and Charles Wu.  This
+   document is the product of the Privacy-Enhanced Electronic Mail
+   Working Group.
+
+1. Executive Summary
+
+   This document describes three types of service in support of Internet
+   Privacy-Enhanced Mail (PEM) [1-3]: key certification, certificate-
+   revocation list (CRL) storage, and CRL retrieval. Such services are
+   among those required of an <A =
+href=3D"http://www.faqs.org/rfcs/rfc1422.html">RFC 1422</A> [2] =
+certification authority.
+   Other services such as certificate revocation and certificate
+   retrieval are left to the certification authority to define, although
+   they may be based on the services described in this document.
+
+   Each service involves an electronic-mail request and an electronic-
+   mail reply. The request is either an <A =
+href=3D"http://www.faqs.org/rfcs/rfc1421.html">RFC 1421</A> [1] =
+privacy-enhanced
+   message or a message with a new syntax defined in this document. The
+   new syntax follows the general <A =
+href=3D"http://www.faqs.org/rfcs/rfc1421.html">RFC 1421</A> syntax but =
+has a different
+   process type, thereby distinguishing it from ordinary privacy-
+   enhanced messages. The reply is either an <A =
+href=3D"http://www.faqs.org/rfcs/rfc1421.html">RFC 1421</A> =
+privacy-enhanced
+   message, or an ordinary unstructured message.
+
+   Replies that are privacy-enhanced messages can be processed like any
+   other privacy-enhanced message, so that the new certificate or the
+   retrieved CRLs can be inserted into the requestor's database during
+
+   normal privacy-enhanced mail processing.
+
+   Certification authorities may also require non-electronic forms of
+   request and may return non-electronic replies. It is expected that
+   descriptions of such forms, which are outside the scope of this
+   document, will be available through a certification authority's
+   "information" service.
+
+2. Overview of Services
+
+   This section describes the three services in general terms.
+
+   The electronic-mail address to which requests are sent is left to the
+   certification authority to specify. It is expected that certification
+   authorities will advertise their addresses as part of an
+   "information" service. Replies are sent to the address in the
+   "Reply-To:" field of the request, and if that field is omitted, to
+   the address in the "From:" field.
+
+2.1 Key Certification
+
+   The key-certification service signs a certificate containing a
+   specified subject name and public key. The service takes a
+   certification request (see Section 3.1), signs a certificate
+   constructed from the request, and returns a certification reply (see
+   Section 3.2) containing the new certificate.
+
+   The certification request specifies the requestor's subject name and
+   public key in the form of a self-signed certificate. The
+   certification request contains two signatures, both computed with the
+   requestor's private key:
+
+     1.   The signature on the self-signed certificate, having the
+          cryptographic purpose of preventing a requestor from
+          requesting a certificate with another party's public key.
+          (See Section 4.)
+
+     2.   A signature on some encapsulated text, having the
+          practical purpose of allowing the certification authority
+          to construct an ordinary <A =
+href=3D"http://www.faqs.org/rfcs/rfc1421.html">RFC 1421</A> =
+privacy-enhanced
+          message as a reply, with user-friendly encapsulated text.
+          (<A href=3D"http://www.faqs.org/rfcs/rfc1421.html">RFC =
+1421</A> does not provide for messages with
+          certificates but no encapsulated text; and the self-
+          signed certificate is not "user friendly" text.) The text
+          should be something innocuous like "Hello world!"
+
+   A requestor would typically send a certification request after
+   generating a public-key/private-key pair, but may also do so after a
+
+   change in the requestor's distinguished name.
+
+   A certification authority signs a certificate only if both signatures
+   in the certification request are valid.
+
+   The new certificate contains the subject name and public key from the
+   self-signed certificate, and an issuer name, serial number, validity
+   period, and signature algorithm of the certification authority's
+   choice. (The validity period may be derived from the self-signed
+   certificate.) Following <A =
+href=3D"http://www.faqs.org/rfcs/rfc1422.html">RFC 1422</A>, the issuer =
+may be any whose
+   distinguished name is superior to the subject's distinguished name,
+   typically the one closest to the subject. The certification authority
+   signs the certificate with the issuer's private key, then transforms
+   the request into a reply containing the new certificate (see Section
+   3.2 for details).
+
+   The certification reply includes a certification path from the new
+   certificate to the <A =
+href=3D"http://www.faqs.org/rfcs/rfc1422.html">RFC 1422</A> Internet =
+certification authority. It may
+   also include other certificates such as cross-certificates that the
+   certification authority considers helpful to the requestor.
+
+2.2 CRL Storage
+
+   The CRL storage service stores CRLs. The service takes a CRL-storage
+   request (see Section 3.3) specifying the CRLs to be stored, stores
+   the CRLs, and returns a CRL-storage reply (see Section 3.4)
+   acknowledging the request.
+
+   The certification authority stores a CRL only if its signature and
+   certification path are valid, following concepts in <A =
+href=3D"http://www.faqs.org/rfcs/rfc1422.html">RFC 1422</A>
+   (Although a certification path is not required in a CRL-storage
+   request, it may help the certification authority validate the CRL.)
+
+2.3 CRL Retrieval
+
+   The CRL retrieval service retrieves the latest CRLs of specified
+   certificate issuers. The service takes a CRL-retrieval request (see
+   Section 3.5), retrieves the latest CRLs the request specifies, and
+   returns a CRL-retrieval reply (see Section 3.6) containing the CRLs.
+
+   There may be more than one "latest" CRL for a given issuer, if that
+   issuer has more than one public key (see <A =
+href=3D"http://www.faqs.org/rfcs/rfc1422.html">RFC 1422</A> for =
+details).
+
+   The CRL-retrieval reply includes a certification path from each
+   retrieved CRL to the <A =
+href=3D"http://www.faqs.org/rfcs/rfc1422.html">RFC 1422</A> Internet =
+certification authority. It
+   may also include other certificates such as cross-certificates that
+   the certification authority considers helpful to the requestor.
+
+3. Syntax
+
+   This section describes the syntax of requests and replies for the
+   three services, giving simple examples.
+
+3.1 Certification request
+
+   A certification request is an <A =
+href=3D"http://www.faqs.org/rfcs/rfc1421.html">RFC 1421</A> MIC-ONLY or =
+MIC-CLEAR
+   privacy-enhanced message containing a self-signed certificate. There
+   is only one signer.
+
+   The fields of the self-signed certificate (which has type
+   Certificate, as in <A =
+href=3D"http://www.faqs.org/rfcs/rfc1422.html">RFC 1422</A>) are as =
+follows:
+
+     version is 0
+
+     serialNumber is arbitrary; the value 0 is suggested unless the
+          certification authority specifies otherwise
+
+     signature is the algorithm by which the self-signed
+          certificate is signed; it need not be the same as the
+          algorithm by which the requested certificate is to be
+          signed
+
+     issuer is the requestor's distinguished name
+
+     validity is arbitrary; the value with start and end both at
+          12:00am GMT, January 1, 1970, is suggested unless the
+          certification authority specifies otherwise
+
+     subject is the requestor's distinguished name
+
+     subjectPublicKeyInfo is the requestor's public key
+
+   The requestor's MIC encryption algorithm must be asymmetric (e.g.,
+   RSA) and the MIC algorithm must be keyless (e.g., RSA-MD2, not MAC),
+   so that anyone can verify the signature.
+
+   Example:
+
+   To: cert-service@ca.domain
+   From: requestor@host.domain
+
+   -----BEGIN PRIVACY-ENHANCED MESSAGE-----
+   Proc-Type: 4,MIC-ONLY
+   Content-Domain: <A =
+href=3D"http://www.faqs.org/rfcs/rfc822.html">RFC822</A>
+   Originator-Certificate: &lt;requestor's self-signed certificate&gt;
+   MIC-Info: RSA,RSA-MD2,&lt;requestor's signature on text&gt;
+
+   &lt;text&gt;
+   -----END PRIVACY-ENHANCED MESSAGE-----
+
+3.2 Certification reply
+
+   A certification reply is an <A =
+href=3D"http://www.faqs.org/rfcs/rfc1421.html">RFC 1421</A> MIC-ONLY or =
+MIC-CLEAR privacy-
+   enhanced message containing a new certificate, its certification path
+   to the <A href=3D"http://www.faqs.org/rfcs/rfc1422.html">RFC 1422</A> =
+Internet certification authority, and possibly other
+   certificates. There is only one signer. The "MIC-Info:" field and
+   encapsulated text are taken directly from the certification request.
+   The reply has the same process type (MIC-ONLY or MIC-CLEAR) as the
+   request.
+
+   Since the reply is an ordinary privacy-enhanced message, the new
+   certificate can be inserted into the requestor's database during
+   normal privacy-enhanced mail processing. The requestor can forward
+   the reply to other requestors to disseminate the certificate.
+
+   Example:
+
+   To: requestor@host.domain
+   From: cert-service@ca.domain
+
+   -----BEGIN PRIVACY-ENHANCED MESSAGE-----
+   Proc-Type: 4,MIC-ONLY
+   Content-Domain: <A =
+href=3D"http://www.faqs.org/rfcs/rfc822.html">RFC822</A>
+   Originator-Certificate: &lt;requestor's new certificate&gt;
+   Issuer-Certificate: &lt;issuer's certificate&gt;
+   MIC-Info: RSA,RSA-MD2,&lt;requestor's signature on text&gt;
+
+   &lt;text&gt;
+   -----END PRIVACY-ENHANCED MESSAGE-----
+
+3.3 CRL-storage request
+
+   A CRL-storage request is an <A =
+href=3D"http://www.faqs.org/rfcs/rfc1421.html">RFC 1421</A> CRL-type =
+privacy-enhanced
+   message containing the CRLs to be stored and optionally their
+   certification paths to the <A =
+href=3D"http://www.faqs.org/rfcs/rfc1422.html">RFC 1422</A> Internet =
+certification authority.
+
+   Example:
+
+   To: cert-service@ca.domain
+   From: requestor@host.domain
+
+   -----BEGIN PRIVACY-ENHANCED MESSAGE-----
+   Proc-Type: 4,CRL
+   CRL: &lt;CRL to be stored&gt;
+   Originator-Certificate: &lt;CRL issuer's certificate&gt;
+   CRL: &lt;another CRL to be stored&gt;
+   Originator-Certificate: &lt;other CRL issuer's certificate&gt;
+   -----END PRIVACY-ENHANCED MESSAGE-----
+
+3.4 CRL-storage reply
+
+   A CRL-storage reply is an ordinary message acknowledging the storage
+   of CRLs. No particular syntax is specified.
+
+3.5 CRL-retrieval request
+
+   A CRL-retrieval request is a new type of privacy-enhanced message,
+   distinguished from <A =
+href=3D"http://www.faqs.org/rfcs/rfc1421.html">RFC 1421</A> =
+privacy-enhanced messages by the process
+   type CRL-RETRIEVAL-REQUEST.
+
+   The request has two or more encapsulated header fields: the required
+   "Proc-Type:" field and one or more "Issuer:" fields. The fields must
+   appear in the order just described. There is no encapsulated text, so
+   there is no blank line separating the fields from encapsulated text.
+
+   Each "Issuer:" field specifies an issuer whose latest CRL is to be
+   retrieved. The field contains a value of type Name specifying the
+   issuer's distinguished name. The value is encoded as in an <A =
+href=3D"http://www.faqs.org/rfcs/rfc1421.html">RFC 1421</A>
+   "Originator-ID-Asymmetric:" field (i.e., according to the Basic
+   Encoding Rules, then in ASCII).
+
+   Example:
+
+   To: cert-service@ca.domain
+   From: requestor@host.domain
+
+   -----BEGIN PRIVACY-ENHANCED MESSAGE-----
+   Proc-Type: 4,CRL-RETRIEVAL-REQUEST
+   Issuer: &lt;issuer whose latest CRL is to be retrieved&gt;
+   Issuer: &lt;another issuer whose latest CRL is to be retrieved&gt;
+   -----END PRIVACY-ENHANCED MESSAGE-----
+
+3.6 CRL-retrieval reply
+
+   A CRL-retrieval reply is an <A =
+href=3D"http://www.faqs.org/rfcs/rfc1421.html">RFC 1421</A> CRL-type =
+privacy-enhanced
+   message containing retrieved CRLs, their certification paths to the
+   <A href=3D"http://www.faqs.org/rfcs/rfc1422.html">RFC 1422</A> =
+Internet certification authority, and possibly other
+   certificates.
+
+   Since the reply is an ordinary privacy-enhanced message, the
+   retrieved CRLs can be inserted into the requestor's database during
+   normal privacy-enhanced mail processing. The requestor can forward
+   the reply to other requestors to disseminate the CRLs.
+
+   Example:
+
+   To: requestor@host.domain
+   From: cert-service@ca.domain
+
+   -----BEGIN PRIVACY-ENHANCED MESSAGE-----
+   Proc-Type: 4,CRL
+   CRL: &lt;issuer's latest CRL&gt;
+   Originator-Certificate: &lt;issuer's certificate&gt;
+   CRL: &lt;other issuer's latest CRL&gt;
+   Originator-Certificate: &lt;other issuer's certificate&gt;
+   -----END PRIVACY-ENHANCED MESSAGE-----
+
+Patent Statement
+
+   This version of Privacy Enhanced Mail (PEM) relies on the use of
+   patented public key encryption technology for authentication and
+   encryption.  The Internet Standards Process as defined in <A =
+href=3D"http://www.faqs.org/rfcs/rfc1310.html">RFC 1310</A>
+   requires a written statement from the Patent holder that a license
+   will be made available to applicants under reasonable terms and
+   conditions prior to approving a specification as a Proposed, Draft or
+   Internet Standard.
+
+   The Massachusetts Institute of Technology and the Board of Trustees
+   of the Leland Stanford Junior University have granted Public Key
+   Partners (PKP) exclusive sub-licensing rights to the following
+   patents issued in the United States, and all of their corresponding
+   foreign patents:
+
+      Cryptographic Apparatus and Method
+      ("Diffie-Hellman")............................... No. 4,200,770
+
+      Public Key Cryptographic Apparatus
+      and Method ("Hellman-Merkle").................... No. 4,218,582
+
+      Cryptographic Communications System and
+      Method ("RSA")................................... No. 4,405,829
+
+      Exponential Cryptographic Apparatus
+      and Method ("Hellman-Pohlig").................... No. 4,424,414
+
+   These patents are stated by PKP to cover all known methods of
+   practicing the art of Public Key encryption, including the variations
+   collectively known as El Gamal.
+
+   Public Key Partners has provided written assurance to the Internet
+   Society that parties will be able to obtain, under reasonable,
+   nondiscriminatory terms, the right to use the technology covered by
+   these patents.  This assurance is documented in <A =
+href=3D"http://www.faqs.org/rfcs/rfc1170.html">RFC 1170</A> titled
+   "Public Key Standards and Licenses".  A copy of the written assurance
+   dated April 20, 1990, may be obtained from the Internet Assigned
+   Number Authority (IANA).
+
+   The Internet Society, Internet Architecture Board, Internet
+   Engineering Steering Group and the Corporation for National Research
+   Initiatives take no position on the validity or scope of the patents
+   and patent applications, nor on the appropriateness of the terms of
+   the assurance.  The Internet Society and other groups mentioned above
+   have not made any determination as to any other intellectual property
+   rights which may apply to the practice of this standard. Any further
+   consideration of these matters is the user's own responsibility.
+
+Security Considerations
+
+   The self-signed certificate (Section 3.1) prevents a requestor from
+   requesting a certificate with another party's public key. Such an
+   attack would give the requestor the minor ability to pretend to be
+   the originator of any message signed by the other party. This attack
+   is significant only if the requestor does not know the message being
+   signed, and the signed part of the message does not identify the
+   signer. The requestor would still not be able to decrypt messages
+
+   intended for the other party, of course.
+
+References
+
+   [1] Linn, J., "Privacy Enhancement for Internet Electronic Mail: Part
+       I: Message Encryption and Authentication Procedures", <A =
+href=3D"http://www.faqs.org/rfcs/rfc1421.html">RFC 1421</A>,
+       DEC, February 1993.
+
+   [2] Kent, S., "Privacy Enhancement for Internet Electronic Mail: Part
+       II: Certificate-Based Key Management", <A =
+href=3D"http://www.faqs.org/rfcs/rfc1422.html">RFC 1422</A>, BBN, =
+February
+       1993.
+
+   [3] Balenson, D., "Privacy Enhancement for Internet Electronic Mail:
+       Part III: Algorithms, Modes, and Identifiers", <A =
+href=3D"http://www.faqs.org/rfcs/rfc1423.html">RFC 1423</A>, TIS,
+       February 1993.
+
+Author's Address
+
+       Burton S. Kaliski, Jr.
+       RSA Laboratories (a division of RSA Data Security, Inc.)
+       10 Twin Dolphin Drive
+       Redwood City, CA  94065
+
+       Phone: (415) 595-7703
+       FAX: (415) 595-4126
+       EMail: <A href=3D"mailto:burt@rsa.com">burt@rsa.com</A>
+
+</PRE>
+<P align=3Dcenter>
+<SCRIPT language=3DJavaScript><!--=0A=
+erfc("1424");=0A=
+// --></SCRIPT>
+</P>&nbsp;<BR>
+<DIV align=3Dcenter>
+<TABLE cellSpacing=3D3 cellPadding=3D3 width=3D"100%" border=3D0>
+  <TBODY>
+  <TR>
+    <TD width=3D"45%">
+      <P align=3Dleft>Previous: <A=20
+      href=3D"http://www.faqs.org/rfcs/rfc1423.html">RFC 1423 - Privacy=20
+      Enhancement for Internet Electronic Mail: Part III: Algorithms, =
+Modes, and=20
+      Identifiers</A> </P></TD>
+    <TD width=3D"10%">&nbsp;</TD>
+    <TD width=3D"45%">
+      <P align=3Dright>Next: <A =
+href=3D"http://www.faqs.org/rfcs/rfc1425.html">RFC=20
+      1425 - SMTP Service Extensions</A> =
+</P></TD></TR></TBODY></TABLE></DIV>
+<P align=3Dright>&nbsp;</P>
+<HR noShade SIZE=3D2>
+
+<DIV align=3Dcenter>[ <A href=3D"http://www.faqs.org/rfcs/">RFC =
+Index</A> | <A=20
+href=3D"http://www.faqs.org/rfcs/rfcsearch.html">RFC Search</A> | <A=20
+href=3D"http://www.faqs.org/faqs/">Usenet FAQs</A> | <A=20
+href=3D"http://www.faqs.org/contrib/">Web FAQs</A> | <A=20
+href=3D"http://www.faqs.org/docs/">Documents</A> | <A=20
+href=3D"http://www.city-data.com/">Cities</A> ]=20
+<P></P></DIV><SMALL>
+<ADDRESS>
+<P align=3Dcenter></P></ADDRESS></SMALL></BODY></HTML>
+
+------=_NextPart_000_0058_01C3C89F.43CA1BE0
+Content-Type: image/jpeg
+Content-Transfer-Encoding: base64
+Content-Location: http://www.faqs.org/images/library.jpg
+
+/9j/4AAQSkZJRgABAgEASABIAAD/7QE0UGhvdG9zaG9wIDMuMAA4QklNA+0AAAAAABAASAAAAAEA
+AQBIAAAAAQABOEJJTQPzAAAAAAAIAAAAAAAAAAA4QklNJxAAAAAAAAoAAQAAAAAAAAACOEJJTQP1
+AAAAAABIAC9mZgABAGxmZgAGAAAAAAABAC9mZgABAKGZmgAGAAAAAAABADIAAAABAFoAAAAGAAAA
+AAABADUAAAABAC0AAAAGAAAAAAABOEJJTQP4AAAAAABwAAD/////////////////////////////
+A+gAAAAA/////////////////////////////wPoAAAAAP////////////////////////////8D
+6AAAAAD/////////////////////////////A+gAADhCSU0EBgAAAAAAAgAE/+4ADkFkb2JlAGQA
+AAAAAf/bAIQABgQEBAUEBgUFBgkGBQYJCwgGBggLDAoKCwoKDBAMDAwMDAwQDAwMDAwMDAwMDAwM
+DAwMDAwMDAwMDAwMDAwMDAEHBwcNDA0YEBAYFA4ODhQUDg4ODhQRDAwMDAwREQwMDAwMDBEMDAwM
+DAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwM/8AAEQgAPgCWAwERAAIRAQMRAf/EAaIAAAAHAQEBAQEA
+AAAAAAAAAAQFAwIGAQAHCAkKCwEAAgIDAQEBAQEAAAAAAAAAAQACAwQFBgcICQoLEAACAQMDAgQC
+BgcDBAIGAnMBAgMRBAAFIRIxQVEGE2EicYEUMpGhBxWxQiPBUtHhMxZi8CRygvElQzRTkqKyY3PC
+NUQnk6OzNhdUZHTD0uIIJoMJChgZhJRFRqS0VtNVKBry4/PE1OT0ZXWFlaW1xdXl9WZ2hpamtsbW
+5vY3R1dnd4eXp7fH1+f3OEhYaHiImKi4yNjo+Ck5SVlpeYmZqbnJ2en5KjpKWmp6ipqqusra6voR
+AAICAQIDBQUEBQYECAMDbQEAAhEDBCESMUEFURNhIgZxgZEyobHwFMHR4SNCFVJicvEzJDRDghaS
+UyWiY7LCB3PSNeJEgxdUkwgJChgZJjZFGidkdFU38qOzwygp0+PzhJSktMTU5PRldYWVpbXF1eX1
+RlZmdoaWprbG1ub2R1dnd4eXp7fH1+f3OEhYaHiImKi4yNjo+DlJWWl5iZmpucnZ6fkqOkpaanqK
+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
+
+------=_NextPart_000_0058_01C3C89F.43CA1BE0--

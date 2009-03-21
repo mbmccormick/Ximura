@@ -1,0 +1,1898 @@
+From: <Saved by Microsoft Internet Explorer 5>
+Subject: RFC 1894 (rfc1894) - An Extensible Message Format for Delivery Status Noti
+Date: Thu, 10 Jul 2003 20:24:13 +0800
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	boundary="----=_NextPart_000_0000_01C34721.3A3FF9F0";
+	type="text/html"
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2800.1165
+
+This is a multi-part message in MIME format.
+
+------=_NextPart_000_0000_01C34721.3A3FF9F0
+Content-Type: text/html;
+	charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://www.faqs.org/rfcs/rfc1894.html
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>RFC 1894 (rfc1894) - An Extensible Message Format for =
+Delivery Status Noti</TITLE>
+<META http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dwindows-1252">
+<META=20
+content=3D"RFC 1894 - An Extensible Message Format for Delivery Status =
+Notifications"=20
+name=3Ddescription>
+<SCRIPT language=3DJavaScript1.2>=0A=
+function erfc(s)=0A=
+{document.write("<A href=3D\"/rfccomment.php?rfcnum=3D"+s+"\" =
+target=3D\"_blank\" =
+onclick=3D\"window.open('/rfccomment.php?rfcnum=3D"+s+"','Popup','toolbar=
+=3Dno,location=3Dno,status=3Dno,menubar=3Dno,scrollbars=3Dyes,resizable=3D=
+yes,width=3D680,height=3D530,left=3D30,top=3D43'); return =
+false;\")>Comment on RFC "+s+"</A>\n");}=0A=
+//-->=0A=
+</SCRIPT>
+
+<META content=3D"MSHTML 6.00.2800.1170" name=3DGENERATOR></HEAD>
+<BODY text=3D#000000 bgColor=3D#ffffff>
+<P align=3Dcenter><STRONG><FONT size=3D-1>Internet RFC/STD/FYI/BCP=20
+Archives</FONT></STRONG></P>
+<P align=3Dcenter><IMG height=3D62 alt=3D""=20
+src=3D"http://www.faqs.org/images/library.jpg" width=3D150 =
+align=3Dmiddle=20
+border=3D0></P>
+<H1 align=3Dcenter>RFC 1894 (RFC1894)</H1>
+<DIV align=3Dcenter>[ <A href=3D"http://www.faqs.org/rfcs/">RFC =
+Index</A> | <A=20
+href=3D"http://www.faqs.org/rfcs/rfcsearch.html">RFC Search</A> | <A=20
+href=3D"http://www.faqs.org/faqs/">Usenet FAQs</A> | <A=20
+href=3D"http://www.faqs.org/contrib/">Web FAQs</A> | <A=20
+href=3D"http://www.faqs.org/docs/">Documents</A> ]=20
+<P><STRONG>Alternate Formats:</STRONG> <A=20
+href=3D"http://www.faqs.org/ftp/rfc/rfc1894.txt">rfc1894.txt</A> | <A=20
+href=3D"http://www.faqs.org/ftp/rfc/pdf/rfc1894.txt.pdf">rfc1894.txt.pdf<=
+/A></P></DIV>
+<P align=3Dcenter>
+<SCRIPT language=3DJavaScript><!--=0A=
+erfc("1894");=0A=
+// --></SCRIPT>
+</P>
+<HR noShade SIZE=3D2>
+<PRE>
+Network Working Group                                           K. Moore
+Request for Comments: 1894                       University of Tennessee
+Category: Standards Track                                   G. Vaudreuil
+                                                  Octel Network Services
+                                                            January 1996
+
+     An Extensible Message Format for Delivery Status Notifications
+
+Status of this Memo
+
+   This document specifies an Internet standards track protocol for the
+   Internet community, and requests discussion and suggestions for
+   improvements.  Please refer to the current edition of the "Internet
+   Official Protocol Standards" (STD 1) for the standardization state
+   and status of this protocol.  Distribution of this memo is unlimited.
+
+Abstract
+
+   This memo defines a MIME content-type that may be used by a message
+   transfer agent (MTA) or electronic mail gateway to report the result
+   of an attempt to deliver a message to one or more recipients.  This
+   content-type is intended as a machine-processable replacement for the
+   various types of delivery status notifications currently used in
+   Internet electronic mail.
+
+   Because many messages are sent between the Internet and other
+   messaging systems (such as X.400 or the so-called "LAN-based"
+   systems), the DSN protocol is designed to be useful in a multi-
+   protocol messaging environment.  To this end, the protocol described
+   in this memo provides for the carriage of "foreign" addresses and
+   error codes, in addition to those normally used in Internet mail.
+   Additional attributes may also be defined to support "tunneling" of
+   foreign notifications through Internet mail.
+
+   Any questions, comments, and reports of defects or ambiguities in
+   this specification may be sent to the mailing list for the NOTARY
+   working group of the IETF, using the address
+   &lt;<A =
+href=3D"mailto:notifications@cs.utk.edu">notifications@cs.utk.edu</A>&gt;=
+.  Requests to subscribe to the mailing
+   list should be addressed to &lt;<A =
+href=3D"mailto:notifications-request@cs.utk.edu">notifications-request@cs=
+.utk.edu</A>&gt;.
+   Implementors of this specification are encouraged to subscribe to the
+   mailing list, so that they will quickly be informed of any problems
+   which might hinder interoperability.
+
+   NOTE: This document is a Proposed Standard.  If and when this
+   protocol is submitted for Draft Standard status, any normative text
+   (phrases containing SHOULD, SHOULD NOT, MUST, MUST NOT, or MAY) in
+   this document will be re-evaluated in light of implementation
+
+   experience, and are thus subject to change.
+
+1. Introduction
+
+   This memo defines a MIME [1] content-type for delivery status
+   notifications (DSNs).  A DSN can be used to notify the sender of a
+   message of any of several conditions:  failed delivery, delayed
+   delivery, successful delivery, or the gatewaying of a message into an
+   environment that may not support DSNs.  The "message/delivery-status"
+   content-type defined herein is intended for use within the framework
+   of the "multipart/report" content type defined in [2].
+
+   This memo defines only the format of the notifications.  An extension
+   to the Simple Message Transfer Protocol (SMTP) [3] to fully support
+   such notifications is the subject of a separate memo [4].
+
+1.1 Purposes
+
+   The DSNs defined in this memo are expected to serve several purposes:
+
+(a) Inform human beings of the status of message delivery processing, as
+    well as the reasons for any delivery problems or outright failures,
+    in a manner which is largely independent of human language;
+
+(b) Allow mail user agents to keep track of the delivery status of
+    messages sent, by associating returned DSNs with earlier message
+    transmissions;
+
+(c) Allow mailing list exploders to automatically maintain their
+    subscriber lists when delivery attempts repeatedly fail;
+
+(d) Convey delivery and non-delivery notifications resulting from
+    attempts to deliver messages to "foreign" mail systems via a
+    gateway;
+
+(e) Allow "foreign" notifications to be tunneled through a MIME-capable
+    message system and back into the original messaging system that
+    issued the original notification, or even to a third messaging
+    system;
+
+(f) Allow language-independent, yet reasonably precise, indications of
+    the reason for the failure of a message to be delivered (once status
+    codes of sufficient precision are defined); and
+
+(g) Provide sufficient information to remote MTA maintainers (via
+    "trouble tickets") so that they can understand the nature of
+    reported errors.  This feature is used in the case that failure to
+    deliver a message is due to the malfunction of a remote MTA and the
+
+    sender wants to report the problem to the remote MTA administrator.
+
+1.2 Requirements
+
+    These purposes place the following constraints on the notification
+    protocol:
+
+(a) It must be readable by humans as well as being machine-parsable.
+
+(b) It must provide enough information to allow message senders (or the
+    user agents) to unambiguously associate a DSN with the message that
+    was sent and the original recipient address for which the DSN is
+    issued (if such information is available), even if the message was
+    forwarded to another recipient address.
+
+(c) It must be able to preserve the reason for the success or failure of
+    a delivery attempt in a remote messaging system, using the
+    "language" (mailbox addresses and status codes) of that remote
+    system.
+
+(d) It must also be able to describe the reason for the success or
+    failure of a delivery attempt, independent of any particular human
+    language or of the "language" of any particular mail system.
+
+(e) It must preserve enough information to allow the maintainer of a
+    remote MTA to understand (and if possible, reproduce) the conditions
+    that caused a delivery failure at that MTA.
+
+(f) For any notifications issued by foreign mail systems, which are
+    translated by a mail gateway to the DSN format, the DSN must
+    preserve the "type" of the foreign addresses and error codes, so
+    that these may be correctly interpreted by gateways.
+
+   A DSN contains a set of per-message fields which identify the message
+   and the transaction during which the message was submitted, along
+   with other fields that apply to all delivery attempts described by
+   the DSN.  The DSN also includes a set of per-recipient fields to
+   convey the result of the attempt to deliver the message to each of
+   one or more recipients.
+
+1.3 Terminology
+
+   A message may be transmitted through several message transfer agents
+   (MTAs) on its way to a recipient.  For a variety of reasons,
+   recipient addresses may be rewritten during this process, so each MTA
+   may potentially see a different recipient address.  Depending on the
+   purpose for which a DSN is used, different formats of a particular
+   recipient address will be needed.
+
+   Several DSN fields are defined in terms of the view from a particular
+   MTA in the transmission.  The MTAs are assigned the following names:
+
+   (a) Original MTA
+
+   The Original MTA is the one to which the message is submitted for
+   delivery by the sender of the message.
+
+   (b) Reporting MTA
+
+   For any DSN, the Reporting MTA is the one which is reporting the
+   results of delivery attempts described in the DSN.
+
+   If the delivery attempts described occurred in a "foreign" (non-
+   Internet) mail system, and the DSN was produced by translating the
+   foreign notice into DSN format, the Reporting MTA will still identify
+   the "foreign" MTA where the delivery attempts occurred.
+
+   (c) Received-From MTA
+
+   The Received-From MTA is the MTA from which the Reporting MTA
+   received the message, and accepted responsibility for delivery of the
+   message.
+
+   (d) Remote MTA
+
+   If an MTA determines that it must relay a message to one or more
+   recipients, but the message cannot be transferred to its "next hop"
+   MTA, or if the "next hop" MTA refuses to accept responsibility for
+   delivery of the message to one or more of its intended recipients,
+   the relaying MTA may need to issue a DSN on behalf of the recipients
+   for whom the message cannot be delivered.  In this case the relaying
+   MTA is the Reporting MTA, and the "next hop" MTA is known as the
+   Remote MTA.
+
+Figure 1 illustrates the relationship between the various MTAs.
+
++-----+    +--------+           +---------+    +---------+      +------+
+|     |    |        |           |Received-|    |         |      |      |
+|     | =3D&gt; |Original| =3D&gt; ... =3D&gt; |  From   | =3D&gt; =
+|Reporting| =3D=3D=3D&gt; |Remote|
+| user|    |   MTA  |           |   MTA   |    |   MTA   | &lt;No! |  =
+MTA |
+|agent|    +--------+           +---------+    +----v----+      +------+
+|     |                                             |
+|     | &lt;-------------------------------------------+
++-----+      (DSN returned to sender by Reporting MTA)
+
+     Figure 1.  Original, Received-From, Reporting and Remote MTAs
+
+   Each of these MTAs may provide information which is useful in a DSN:
+
++ Ideally, the DSN will contain the address of each recipient as
+  originally specified to the Original MTA by the sender of the message.
+  This version of the address is needed (rather than a forwarding
+  address or some modified version of the original address) so that the
+  sender may compare the recipient address in the DSN with the address
+  in the sender's records (e.g. an address book for an individual, the
+  list of subscribers for a mailing list) and take appropriate action.
+
+  Similarly, the DSN might contain an "envelope identifier" that was
+  known to both the sender's user agent and the Original MTA at the time
+  of message submission, and which, if included in the DSN, can be used
+  by the sender to keep track of which messages were or were not
+  delivered.
+
++ If a message was (a) forwarded to a different address than that
+  specified by the sender, (b) gatewayed to a different mail system than
+  that used by the sender, or (c) subjected to address rewriting during
+  transmission, the "final" form of the recipient address (i.e. the one
+  seen by the Reporting MTA) will be different than the original
+  (sender-specified) recipient address.  Just as the sender's user agent
+  (or the sender) prefers the original recipient address, so the "final"
+  address is needed when reporting a problem to the postmaster of the
+  site where message delivery failed, because only the final recipient
+  address will allow her to reproduce the conditions that caused the
+  failure.
+
++ A "failed" DSN should contain the most accurate explanation for the
+  delivery failure that is available.  For ease of interpretation, this
+  information should be a format which is independent of the mail
+  transport system that issued the DSN.  However, if a foreign error
+
+  code is translated into some transport-independent format, some
+  information may be lost.  It is therefore desirable to provide both a
+  transport-independent status code and a mechanism for reporting
+  transport-specific codes.  Depending on the circumstances that
+  produced delivery failure, the transport-specific code might be
+  obtained from either the Reporting MTA or the Remote MTA.
+
+   Since different values for "recipient address" and "delivery status
+   code" are needed according to the circumstance in which a DSN will be
+   used, and since the MTA that issues the DSN cannot anticipate those
+   circumstances, the DSN format described here may contain both the
+   original and final forms of a recipient address, and both a
+   transport-independent and a transport-specific indication of delivery
+   status.
+
+   Extension fields may also be added by the Reporting MTA as needed to
+   provide additional information for use in a trouble ticket or to
+   preserve information for tunneling of foreign delivery reports
+   through Internet DSNs.
+
+   The Original, Reporting, and Remote MTAs may exist in very different
+   environments and use dissimilar transport protocols, MTA names,
+   address formats, and delivery status codes.  DSNs therefore do not
+   assume any particular format for mailbox addresses, MTA names, or
+   transport-specific status codes.  Instead, the various DSN fields
+   that carry such quantities consist of a "type" subfield followed by a
+   subfield whose contents are ordinary text characters, and the format
+   of which is indicated by the "type" subfield.  This allows a DSN to
+   convey these quantities regardless of format.
+
+2. Format of a Delivery Status Notification
+
+   A DSN is a MIME message with a top-level content-type of
+   multipart/report (defined in [2]).  When a multipart/report content
+   is used to transmit a DSN:
+
+(a) The report-type parameter of the multipart/report content is
+    "delivery-status".
+
+(b) The first component of the multipart/report contains a human-
+    readable explanation of the DSN, as described in [2].
+
+(c) The second component of the multipart/report is of content-type
+    message/delivery-status, described in section 2.1 of this document.
+
+(d) If the original message or a portion of the message is to be
+    returned to the sender, it appears as the third component of the
+    multipart/report.
+
+    NOTE: For delivery status notifications gatewayed from foreign
+    systems, the headers of the original message may not be available.
+    In this case the third component of the DSN may be omitted, or it
+    may contain "simulated" <A =
+href=3D"http://www.faqs.org/rfcs/rfc822.html">RFC 822</A> headers which =
+contain equivalent
+    information.  In particular, it is very desirable to preserve the
+    subject, date, and message-id (or equivalent) fields from the
+    original message.
+
+   The DSN MUST be addressed (in both the message header and the
+   transport envelope) to the return address from the transport envelope
+   which accompanied the original message for which the DSN was
+   generated.  (For a message that arrived via SMTP, the envelope return
+   address appears in the MAIL FROM command.)
+
+   The From field of the message header of the DSN SHOULD contain the
+   address of a human who is responsible for maintaining the mail system
+   at the Reporting MTA site (e.g.  Postmaster), so that a reply to the
+   DSN will reach that person.  Exception: if a DSN is translated from a
+   foreign delivery report, and the gateway performing the translation
+   cannot determine the appropriate address, the From field of the DSN
+   MAY be the address of a human who is responsible for maintaining the
+   gateway.
+
+   The envelope sender address of the DSN SHOULD be chosen to ensure
+   that no delivery status reports will be issued in response to the DSN
+   itself, and MUST be chosen so that DSNs will not generate mail loops.
+   Whenever an SMTP transaction is used to send a DSN, the MAIL FROM
+   command MUST use a NULL return address, i.e. "MAIL FROM:&lt;&gt;".
+
+   A particular DSN describes the delivery status for exactly one
+   message.  However, an MTA MAY report on the delivery status for
+   several recipients of the same message in a single DSN.  Due to the
+   nature of the mail transport system (where responsibility for
+   delivery of a message to its recipients may be split among several
+   MTAs, and delivery to any particular recipient may be delayed),
+   multiple DSNs may be still be issued in response to a single message
+   submission.
+
+2.1 The message/delivery-status content-type
+
+   The message/delivery-status content-type is defined as follows:
+
+     MIME type name:                message
+     MIME subtype name:             delivery-status
+     Optional parameters:           none
+     Encoding considerations:       "7bit" encoding is sufficient and
+                                    MUST be used to maintain readability
+                                    when viewed by non-MIME mail
+                                    readers.
+     Security considerations:       discussed in section 4 of this memo.
+
+   The message/delivery-status report type for use in the
+   multipart/report is "delivery-status".
+
+   The body of a message/delivery-status consists of one or more
+   "fields" formatted according to the ABNF of <A =
+href=3D"http://www.faqs.org/rfcs/rfc822.html">RFC 822</A> header =
+"fields"
+   (see [6]).  The per-message fields appear first, followed by a blank
+   line.  Following the per-message fields are one or more groups of
+   per-recipient fields.  Each group of per-recipient fields is preceded
+   by a blank line.  Using the ABNF of <A =
+href=3D"http://www.faqs.org/rfcs/rfc822.html">RFC 822</A>, the syntax of =
+the
+   message/delivery-status content is as follows:
+
+     delivery-status-content =3D
+          per-message-fields 1*( CRLF per-recipient-fields )
+
+   The per-message fields are described in section 2.2.  The per-
+   recipient fields are described in section 2.3.
+
+2.1.1 General conventions for DSN fields
+
+   Since these fields are defined according to the rules of <A =
+href=3D"http://www.faqs.org/rfcs/rfc822.html">RFC 822</A>, the
+   same conventions for continuation lines and comments apply.
+   Notification fields may be continued onto multiple lines by beginning
+   each additional line with a SPACE or HTAB.  Text which appears in
+   parentheses is considered a comment and not part of the contents of
+   that notification field.  Field names are case-insensitive, so the
+   names of notification fields may be spelled in any combination of
+   upper and lower case letters.  Comments in DSN fields may use the
+   "encoded-word" construct defined in [7].
+
+   A number of DSN fields are defined to have a portion of a field body
+   of "xtext".  "xtext" is used to allow encoding sequences of octets
+   which contain values outside the range [1-127 decimal] of traditional
+   ASCII characters, and also to allow comments to be inserted in the
+   data.  Any octet may be encoded as "+" followed by two upper case
+
+   hexadecimal digits.  (The "+" character MUST be encoded as "+2B".)
+   With certain exceptions, octets that correspond to ASCII characters
+   may be represented as themselves.  SPACE and HTAB characters are
+   ignored.  Comments may be included by enclosing them in parenthesis.
+   Except within comments, encoded-words such as defined in [7] may NOT
+   be used in xtext.
+
+   "xtext" is formally defined as follows:
+
+     xtext =3D *( xchar / hexchar / linear-white-space / comment )
+
+     xchar =3D any ASCII CHAR between "!" (33) and "~" (126) inclusive,
+          except for "+", "\" and "(".
+
+   "hexchar"s are intended to encode octets that cannot be represented
+   as plain text, either because they are reserved, or because they are
+   non-printable.  However, any octet value may be represented by a
+   "hexchar".
+
+     hexchar =3D ASCII "+" immediately followed by two upper case
+          hexadecimal digits
+
+   When encoding an octet sequence as xtext:
+
+   + Any ASCII CHAR between "!" and "~" inclusive, except for "+", "\",
+     and "(", MAY be encoded as itself.  (Some CHARs in this range may
+     also be encoded as "hexchar"s, at the implementor's discretion.)
+
+   + ASCII CHARs that fall outside the range above must be encoded as
+     "hexchar".
+
+   + Line breaks (CR LF SPACE) MAY be inserted as necessary to keep line
+     lengths from becoming excessive.
+
+   + Comments MAY be added to clarify the meaning for human readers.
+
+2.1.2 "*-type" subfields
+
+   Several DSN fields consist of a "-type" subfield, followed by a
+   semicolon, followed by "*text".  For these fields, the keyword used
+   in the address-type, diagnostic-type, or MTA-name-type subfield
+   indicates the expected format of the address, status-code, or MTA-
+   name which follows.
+
+   The "-type" subfields are defined as follows:
+
+(a) An "address-type" specifies the format of a mailbox address.  For
+    example, Internet mail addresses use the "<A =
+href=3D"http://www.faqs.org/rfcs/rfc822.html">rfc822</A>" address-type.
+
+         address-type =3D atom
+
+(b) A "diagnostic-type" specifies the format of a status code.  For
+    example, when a DSN field contains a reply code reported via the
+    Simple Mail Transfer Protocol [3], the "smtp" diagnostic-type is
+    used.
+
+         diagnostic-type =3D atom
+
+(c) An "MTA-name-type" specifies the format of an MTA name.  For
+    example, for an SMTP server on an Internet host, the MTA name is the
+    domain name of that host, and the "dns" MTA-name-type is used.
+
+         mta-name-type =3D atom
+
+   Values for address-type, diagnostic-type, and MTA-name-type are
+   case-insensitive.  Thus address-type values of "<A =
+href=3D"http://www.faqs.org/rfcs/rfc822.html">RFC822</A>" and "<A =
+href=3D"http://www.faqs.org/rfcs/rfc822.html">rfc822</A>"
+   are equivalent.
+
+   The Internet Assigned Numbers Authority (IANA) will maintain a
+   registry of address-types, diagnostic-types, and MTA-name-types,
+   along with descriptions of the meanings and acceptable values of
+   each, or a reference to a one or more specifications that provide
+   such descriptions.  (The "<A =
+href=3D"http://www.faqs.org/rfcs/rfc822.html">rfc822</A>" address-type, =
+"smtp" diagnostic-
+   type, and "dns" MTA-name-type are defined in [4].)  Registration
+   forms for address-type, diagnostic-type, and MTA-name-type appear in
+   section 8 of this document.
+
+   IANA will not accept registrations for any address-type, diagnostic-
+   type, or MTA-name-type name that begins with "X-".  These type names
+   are reserved for experimental use.
+
+2.1.3 Lexical tokens imported from <A =
+href=3D"http://www.faqs.org/rfcs/rfc822.html">RFC 822</A>
+
+   The following lexical tokens, defined in [6], are used in the ABNF
+   grammar for DSNs: atom, CHAR, comment, CR, CRLF, DIGIT, LF, linear-
+   white-space, SPACE, text.  The date-time lexical token is defined in
+   [8].
+
+2.2 Per-Message DSN Fields
+
+   Some fields of a DSN apply to all of the delivery attempts described
+   by that DSN.  These fields may appear at most once in any DSN.  These
+   fields are used to correlate the DSN with the original message
+   transaction and to provide additional information which may be useful
+   to gateways.
+
+     per-message-fields =3D
+          [ original-envelope-id-field CRLF ]
+          reporting-mta-field CRLF
+          [ dsn-gateway-field CRLF ]
+          [ received-from-mta-field CRLF ]
+          [ arrival-date-field CRLF ]
+          *( extension-field CRLF )
+
+2.2.1 The Original-Envelope-Id field
+
+   The optional Original-Envelope-Id field contains an "envelope
+   identifier" which uniquely identifies the transaction during which
+   the message was submitted, and was either (a) specified by the sender
+   and supplied to the sender's MTA, or (b) generated by the sender's
+   MTA and made available to the sender when the message was submitted.
+   Its purpose is to allow the sender (or her user agent) to associate
+   the returned DSN with the specific transaction in which the message
+   was sent.
+
+   If such an envelope identifier was present in the envelope which
+   accompanied the message when it arrived at the Reporting MTA, it
+   SHOULD be supplied in the Original-Envelope-Id field of any DSNs
+   issued as a result of an attempt to deliver the message.  Except when
+   a DSN is issued by the sender's MTA, an MTA MUST NOT supply this
+   field unless there is an envelope-identifier field in the envelope
+   which accompanied this message on its arrival at the Reporting MTA.
+
+   The Original-Envelope-Id field is defined as follows:
+
+     original-envelope-id-field =3D
+          "Original-Envelope-Id" ":" envelope-id
+
+     envelope-id =3D *text
+
+   There may be at most one Original-Envelope-Id field per DSN.
+
+   The envelope-id is CASE-SENSITIVE.  The DSN MUST preserve the
+   original case and spelling of the envelope-id.
+
+   NOTE: The Original-Envelope-Id is NOT the same as the Message-Id from
+   the message header.  The Message-Id identifies the content of the
+   message, while the Original-Envelope-Id identifies the transaction in
+   which the message is sent.
+
+2.2.2 The Reporting-MTA DSN field
+
+     reporting-mta-field =3D
+          "Reporting-MTA" ":" mta-name-type ";" mta-name
+
+     mta-name =3D *text
+
+   The Reporting-MTA field is defined as follows:
+
+   A DSN describes the results of attempts to deliver, relay, or gateway
+   a message to one or more recipients.  In all cases, the Reporting-MTA
+   is the MTA which attempted to perform the delivery, relay, or gateway
+   operation described in the DSN.  This field is required.
+
+   Note that if an SMTP client attempts to relay a message to an SMTP
+   server and receives an error reply to a RCPT command, the client is
+   responsible for generating the DSN, and the client's domain name will
+   appear in the Reporting-MTA field.  (The server's domain name will
+   appear in the Remote-MTA field.)
+
+   Note that the Reporting-MTA is not necessarily the MTA which actually
+   issued the DSN.  For example, if an attempt to deliver a message
+   outside of the Internet resulted in a nondelivery notification which
+   was gatewayed back into Internet mail, the Reporting-MTA field of the
+   resulting DSN would be that of the MTA that originally reported the
+   delivery failure, not that of the gateway which converted the foreign
+   notification into a DSN.  See Figure 2.
+
+sender's environment                            recipient's environment
+............................ ..........................................
+                           : :
+                       (1) : :                             (2)
+  +-----+  +--------+  +--------+  +---------+  +---------+   +------+
+  |     |  |        |  |        |  |Received-|  |         |   |      |
+  |     |=3D&gt;|Original|=3D&gt;|        |-&gt;|  From   =
+|-&gt;|Reporting|--&gt;|Remote|
+  | user|  |   MTA  |  |        |  |   MTA   |  |   MTA   |&lt;No|  MTA =
+|
+  |agent|  +--------+  |Gateway |  +---------+  +----v----+   +------+
+  |     |              |        |                    |
+  |     | &lt;=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D|        =
+|&lt;-------------------+
+  +-----+              |        |(4)                (3)
+                       +--------+
+                           : :
+...........................: :.........................................
+
+              Figure 2.  DSNs in the presence of gateways
+
+     (1) message is gatewayed into recipient's environment
+     (2) attempt to relay message fails
+     (3) reporting-mta (in recipient's environment) returns nondelivery
+         notification
+     (4) gateway translates foreign notification into a DSN
+
+   The mta-name portion of the Reporting-MTA field is formatted
+   according to the conventions indicated by the mta-name-type subfield.
+   If an MTA functions as a gateway between dissimilar mail environments
+   and thus is known by multiple names depending on the environment, the
+   mta-name subfield SHOULD contain the name used by the environment
+   from which the message was accepted by the Reporting-MTA.
+
+   Because the exact spelling of an MTA name may be significant in a
+   particular environment, MTA names are CASE-SENSITIVE.
+
+2.2.3 The DSN-Gateway field
+
+   The DSN-Gateway field indicates the name of the gateway or MTA which
+   translated a foreign (non-Internet) delivery status notification into
+   this DSN.  This field MUST appear in any DSN which was translated by
+   a gateway from a foreign system into DSN format, and MUST NOT appear
+   otherwise.
+
+   dsn-gateway-field =3D "DSN-Gateway" ":" mta-name-type ";" mta-name
+
+   For gateways into Internet mail, the MTA-name-type will normally be
+   "smtp", and the mta-name will be the Internet domain name of the
+   gateway.
+
+2.2.4 The Received-From-MTA DSN field
+
+   The optional Received-From-MTA field indicates the name of the MTA
+   from which the message was received.
+
+     received-from-mta-field =3D
+          "Received-From-MTA" ":" mta-name-type ";" mta-name
+
+   If the message was received from an Internet host via SMTP, the
+   contents of the mta-name subfield SHOULD be the Internet domain name
+   supplied in the HELO or EHLO command, and the network address used by
+   the SMTP client SHOULD be included as a comment enclosed in
+   parentheses.  (In this case, the MTA-name-type will be "smtp".)
+
+   The mta-name portion of the Received-From-MTA field is formatted
+   according to the conventions indicated by the MTA-name-type subfield.
+
+   Since case is significant in some mail systems, the exact spelling,
+   including case, of the MTA name SHOULD be preserved.
+
+2.2.5 The Arrival-Date DSN field
+
+   The optional Arrival-Date field indicates the date and time at which
+   the message arrived at the Reporting MTA.  If the Last-Attempt-Date
+   field is also provided in a per-recipient field, this can be used to
+   determine the interval between when the message arrived at the
+   Reporting MTA and when the report was issued for that recipient.
+
+     arrival-date-field =3D "Arrival-Date" ":" date-time
+
+   The date and time are expressed in <A =
+href=3D"http://www.faqs.org/rfcs/rfc822.html">RFC 822</A> 'date-time' =
+format, as
+   modified by [8].  Numeric timezones ([+/-]HHMM format) MUST be used.
+
+2.3 Per-Recipient DSN fields
+
+   A DSN contains information about attempts to deliver a message to one
+   or more recipients.  The delivery information for any particular
+   recipient is contained in a group of contiguous per-recipient fields.
+   Each group of per-recipient fields is preceded by a blank line.
+
+   The syntax for the group of per-recipient fields is as follows:
+
+     per-recipient-fields =3D
+          [ original-recipient-field CRLF ]
+          final-recipient-field CRLF
+          action-field CRLF
+          status-field CRLF
+          [ remote-mta-field CRLF ]
+          [ diagnostic-code-field CRLF ]
+          [ last-attempt-date-field CRLF ]
+          [ will-retry-until-field CRLF ]
+          *( extension-field CRLF )
+
+2.3.1 Original-Recipient field
+
+   The Original-Recipient field indicates the original recipient address
+   as specified by the sender of the message for which the DSN is being
+   issued.
+
+     original-recipient-field =3D
+          "Original-Recipient" ":" address-type ";" generic-address
+
+     generic-address =3D *text
+
+   The address-type field indicates the type of the original recipient
+   address.  If the message originated within the Internet, the
+   address-type field field will normally be "<A =
+href=3D"http://www.faqs.org/rfcs/rfc822.html">rfc822</A>", and the =
+address
+   will be according to the syntax specified in [6].  The value
+   "unknown" should be used if the Reporting MTA cannot determine the
+   type of the original recipient address from the message envelope.
+
+   This field is optional.  It should be included only if the sender-
+   specified recipient address was present in the message envelope, such
+   as by the SMTP extensions defined in [4].  This address is the same
+   as that provided by the sender and can be used to automatically
+   correlate DSN reports and message transactions.
+
+2.3.2 Final-Recipient field
+
+   The Final-Recipient field indicates the recipient for which this set
+   of per-recipient fields applies.  This field MUST be present in each
+   set of per-recipient data.
+
+   The syntax of the field is as follows:
+
+     final-recipient-field =3D
+          "Final-Recipient" ":" address-type ";" generic-address
+
+   The generic-address subfield of the Final-Recipient field MUST
+   contain the mailbox address of the recipient (from the transport
+   envelope) as it was when the message was accepted for delivery by the
+   Reporting MTA.
+
+   The Final-Recipient address may differ from the address originally
+   provided by the sender, because it may have been transformed during
+   forwarding and gatewaying into an totally unrecognizable mess.
+   However, in the absence of the optional Original-Recipient field, the
+   Final-Recipient field and any returned content may be the only
+   information available with which to correlate the DSN with a
+   particular message submission.
+
+   The address-type subfield indicates the type of address expected by
+   the reporting MTA in that context.  Recipient addresses obtained via
+   SMTP will normally be of address-type "<A =
+href=3D"http://www.faqs.org/rfcs/rfc822.html">rfc822</A>".
+
+   NOTE: The Reporting MTA is not expected to ensure that the address
+   actually conforms to the syntax conventions of the address-type.
+   Instead, it MUST report exactly the address received in the envelope,
+   unless that address contains characters such as CR or LF which may
+   not appear in a DSN field.
+
+   Since mailbox addresses (including those used in the Internet) may be
+   case sensitive, the case of alphabetic characters in the address MUST
+   be preserved.
+
+2.3.3 Action field
+
+   The Action field indicates the action performed by the Reporting-MTA
+   as a result of its attempt to deliver the message to this recipient
+   address.  This field MUST be present for each recipient named in the
+   DSN.
+
+   The syntax for the action-field is:
+
+     action-field =3D "Action" ":" action-value
+
+     action-value =3D
+          "failed" / "delayed" / "delivered" / "relayed" / "expanded"
+
+   The action-value may be spelled in any combination of upper and lower
+   case characters.
+
+"failed"     indicates that the message could not be delivered to the
+             recipient.  The Reporting MTA has abandoned any attempts to
+             deliver the message to this recipient.  No further
+             notifications should be expected.
+
+"delayed"    indicates that the Reporting MTA has so far been unable to
+             deliver or relay the message, but it will continue to
+             attempt to do so.  Additional notification messages may be
+             issued as the message is further delayed or successfully
+             delivered, or if delivery attempts are later abandoned.
+
+"delivered"  indicates that the message was successfully delivered to
+             the recipient address specified by the sender, which
+             includes "delivery" to a mailing list exploder.  It does
+             not indicate that the message has been read.  This is a
+             terminal state and no further DSN for this recipient should
+             be expected.
+
+"relayed"    indicates that the message has been relayed or gatewayed
+             into an environment that does not accept responsibility for
+             generating DSNs upon successful delivery.  This action-
+             value SHOULD NOT be used unless the sender has requested
+             notification of successful delivery for this recipient.
+
+"expanded"   indicates that the message has been successfully delivered
+             to the recipient address as specified by the sender, and
+             forwarded by the Reporting-MTA beyond that destination to
+             multiple additional recipient addresses.  An action-value
+             of "expanded" differs from "delivered" in that "expanded"
+             is not a terminal state. Further "failed" and/or "delayed"
+             notifications may be provided.
+
+             Using the terms "mailing list" and "alias" as defined in
+             [4], section 7.2.7:  An action-value of "expanded" is only
+             to be used when the message is delivered to a multiple-
+             recipient "alias".  An action-value of "expanded" SHOULD
+             NOT be used with a DSN issued on delivery of a message to a
+             "mailing list".
+
+   NOTE ON ACTION VS. STATUS CODES:  Although the 'action' field might
+   seem to be redundant with the 'status' field, this is not the case.
+   In particular, a "temporary failure" ("4") status code could be used
+   with an action-value of either "delayed" or "failed".  For example,
+   assume that an SMTP client repeatedly tries to relay a message to the
+   mail exchanger for a recipient, but fails because a query to a domain
+
+   name server timed out.  After a few hours, it might issue a "delayed"
+   DSN to inform the sender that the message had not yet been delivered.
+   After a few days, the MTA might abandon its attempt to deliver the
+   message and return a "failed" DSN.  The status code (which would
+   begin with a "4" to indicate "temporary failure") would be the same
+   for both DSNs.
+
+   Another example for which the action and status codes may appear
+   contradictory:  If an MTA or mail gateway cannot deliver a message
+   because doing so would entail conversions resulting in an
+   unacceptable loss of information, it would issue a DSN with the
+   'action' field of "failure" and a status code of 'XXX'.  If the
+   message had instead been relayed, but with some loss of information,
+   it might generate a DSN with the same XXX status-code, but with an
+   action field of "relayed".
+
+2.3.4 Status field
+
+   The per-recipient Status field contains a transport-independent
+   status code which indicates the delivery status of the message to
+   that recipient.  This field MUST be present for each delivery attempt
+   which is described by a DSN.
+
+   The syntax of the status field is:
+
+     status-field =3D "Status" ":" status-code
+
+     status-code =3D DIGIT "." 1*3DIGIT "." 1*3DIGIT
+
+          ; White-space characters and comments are NOT allowed within a
+          ; status-code, though a comment enclosed in parentheses MAY =
+follow
+          ; the last numeric subfield of the status-code.  Each numeric
+          ; subfield within the status-code MUST be expressed without
+          ; leading zero digits.
+
+   Status codes thus consist of three numerical fields separated by ".".
+   The first sub-field indicates whether the delivery attempt was
+   successful (2 =3D success, 4 =3D persistent temporary failure, 5 =3D
+   permanent failure).  The second sub-field indicates the probable
+   source of any delivery anomalies, and the third sub-field denotes a
+   precise error condition, if known.
+
+   The initial set of status-codes is defined in [5].
+
+2.3.5 Remote-MTA field
+
+   The value associated with the Remote-MTA DSN field is a printable
+   ASCII representation of the name of the "remote" MTA that reported
+   delivery status to the "reporting" MTA.
+
+     remote-mta-field =3D "Remote-MTA" ":" mta-name-type ";" mta-name
+
+   NOTE: The Remote-MTA field preserves the "while talking to"
+   information that was provided in some pre-existing nondelivery
+   reports.
+
+   This field is optional.  It MUST NOT be included if no remote MTA was
+   involved in the attempted delivery of the message to that recipient.
+
+2.3.6 Diagnostic-Code field
+
+   For a "failed" or "delayed" recipient, the Diagnostic-Code DSN field
+   contains the actual diagnostic code issued by the mail transport.
+   Since such codes vary from one mail transport to another, the
+   diagnostic-type subfield is needed to specify which type of
+   diagnostic code is represented.
+
+     diagnostic-code-field =3D
+          "Diagnostic-Code" ":" diagnostic-type ";" *text
+
+   NOTE:  The information in the Diagnostic-Code field may be somewhat
+   redundant with that from the Status field.  The Status field is
+   needed so that any DSN, regardless of origin, may be understood by
+   any user agent or gateway that parses DSNs.  Since the Status code
+   will sometimes be less precise than the actual transport diagnostic
+   code, the Diagnostic-Code field is provided to retain the latter
+   information.  Such information may be useful in a trouble ticket sent
+   to the administrator of the Reporting MTA, or when tunneling foreign
+   nondelivery reports through DSNs.
+
+   If the Diagnostic Code was obtained from a Remote MTA during an
+   attempt to relay the message to that MTA, the Remote-MTA field should
+   be present.  When interpreting a DSN, the presence of a Remote-MTA
+   field indicates that the Diagnostic Code was issued by the Remote
+   MTA.  The absence of a Remote-MTA indicates that the Diagnostic Code
+   was issued by the Reporting MTA.
+
+   In addition to the Diagnostic-Code itself, additional textual
+   description of the diagnostic, MAY appear in a comment enclosed in
+   parentheses.
+
+   This field is optional, because some mail systems supply no
+   additional information beyond that which is returned in the 'action'
+   and 'status' fields.  However, this field SHOULD be included if
+   transport-specific diagnostic information is available.
+
+2.3.7 Last-Attempt-Date field
+
+   The Last-Attempt-Date field gives the date and time of the last
+   attempt to relay, gateway, or deliver the message (whether successful
+   or unsuccessful) by the Reporting MTA.  This is not necessarily the
+   same as the value of the Date field from the header of the message
+   used to transmit this delivery status notification: In cases where
+   the DSN was generated by a gateway, the Date field in the message
+   header contains the time the DSN was sent by the gateway and the DSN
+   Last-Attempt-Date field contains the time the last delivery attempt
+   occurred.
+
+     last-attempt-date-field =3D "Last-Attempt-Date" ":" date-time
+
+   This field is optional.  It MUST NOT be included if the actual date
+   and time of the last delivery attempt are not available (which might
+   be the case if the DSN were being issued by a gateway).
+
+   The date and time are expressed in <A =
+href=3D"http://www.faqs.org/rfcs/rfc822.html">RFC 822</A> 'date-time' =
+format, as
+   modified by [8].  Numeric timezones ([+/-]HHMM format) MUST be used.
+
+   3.2.1.5 final-log-id field
+
+   The "final-log-id" field gives the final-log-id of the message that
+   was used by the final-mta.  This can be useful as an index to the
+   final-mta's log entry for that delivery attempt.
+
+     final-log-id-field =3D "Final-Log-ID" ":" *text
+
+   This field is optional.
+
+2.3.8 Will-Retry-Until field
+
+   For DSNs of type "delayed", the Will-Retry-Until field gives the date
+   after which the Reporting MTA expects to abandon all attempts to
+   deliver the message to that recipient.  The Will-Retry-Until field is
+   optional for "delay" DSNs, and MUST NOT appear in other DSNs.
+
+     will-retry-until-field =3D "Will-Retry-Until" ":" date-time
+
+   The date and time are expressed in <A =
+href=3D"http://www.faqs.org/rfcs/rfc822.html">RFC 822</A> 'date-time' =
+format, as
+   modified by [8].  Numeric timezones ([+/-]HHMM format) MUST be used.
+
+2.4 Extension fields
+
+   Additional per-message or per-recipient DSN fields may be defined in
+   the future by later revisions or extensions to this specification.
+   Extension-field names beginning with "X-" will never be defined as
+   standard fields; such names are reserved for experimental use.  DSN
+   field names NOT beginning with "X-" MUST be registered with the
+   Internet Assigned Numbers Authority (IANA) and published in an RFC.
+
+   Extension DSN fields may be defined for the following reasons:
+
+   (a) To allow additional information from foreign delivery status
+       reports to be tunneled through Internet DSNs.  The names of such
+       DSN fields should begin with an indication of the foreign
+       environment name (e.g.  X400-Physical-Forwarding-Address).
+
+   (b) To allow the transmission of diagnostic information which is
+       specific to a particular mail transport protocol.  The names of
+       such DSN fields should begin with an indication of the mail
+       transport being used (e.g. SMTP-Remote-Recipient-Address).  Such
+       fields should be used for diagnostic purposes only and not by
+       user agents or mail gateways.
+
+   (c) To allow transmission of diagnostic information which is specific
+       to a particular message transfer agent (MTA).  The names of such
+       DSN fields should begin with an indication of the MTA
+       implementation which produced the DSN.  (e.g. Foomail-Queue-ID).
+
+   MTA implementors are encouraged to provide adequate information, via
+   extension fields if necessary, to allow an MTA maintainer to
+   understand the nature of correctable delivery failures and how to fix
+   them.  For example, if message delivery attempts are logged, the DSN
+   might include information which allows the MTA maintainer to easily
+   find the log entry for a failed delivery attempt.
+
+   If an MTA developer does not wish to register the meanings of such
+   extension fields, "X-" fields may be used for this purpose.  To avoid
+   name collisions, the name of the MTA implementation should follow the
+   "X-", (e.g.  "X-Foomail-Log-ID").
+
+3. Conformance and Usage Requirements
+
+   An MTA or gateway conforms to this specification if it generates DSNs
+   according to the protocol defined in this memo.  For MTAs and
+   gateways that do not support requests for positive delivery
+   notification (such as in [4]), it is sufficient that delivery failure
+   reports use this protocol.
+
+   A minimal implementation of this specification need generate only the
+   Reporting-MTA per-message field, and the Final-Recipient, Action, and
+   Status fields for each attempt to deliver a message to a recipient
+   described by the DSN.  Generation of the other fields, when
+   appropriate, is strongly recommended.
+
+   MTAs and gateways MUST NOT generate the Original-Recipient field of a
+   DSN unless the mail transfer protocol provides the address originally
+   specified by the sender at the time of submission. (Ordinary SMTP
+   does not make that guarantee, but the SMTP extension defined in [4]
+   permits such information to be carried in the envelope if it is
+   available.)
+
+   Each sender-specified recipient address SHOULD result in at most one
+   "delivered" or "failed" DSN for that recipient.  If a positive DSN is
+   requested (e.g. one using NOTIFY=3DSUCCESS in SMTP) for a recipient
+   that is forwarded to multiple recipients of an "alias" (as defined in
+   [4], section 7.2.7), the forwarding MTA SHOULD normally issue a
+   "expanded" DSN for the originally-specified recipient and not
+   propagate the request for a DSN to the forwarding addresses.
+   Alternatively, the forwarding MTA MAY relay the request for a DSN to
+   exactly one of the forwarding addresses and not propagate the request
+   to the others.
+
+   By contrast, successful submission of a message to a mailing list
+   exploder is considered final delivery of the message.  Upon delivery
+   of a message to a recipient address corresponding to a mailing list
+   exploder, the Reporting MTA SHOULD issue an appropriate DSN exactly
+   as if the recipient address were that of an ordinary mailbox.
+
+   NOTE:  This is actually intended to make DSNs usable by mailing lists
+   themselves.  Any message sent to a mailing list subscriber should
+   have its envelope return address pointing to the list maintainer [see
+   <A href=3D"http://www.faqs.org/rfcs/rfc1123.html">RFC 1123</A>, =
+section 5.3.7(E)].  Since DSNs are sent to the envelope
+   return address, all DSNs resulting from delivery to the recipients of
+   a mailing list will be sent to the list maintainer.  The list
+   maintainer may elect to mechanically process DSNs upon receipt, and
+   thus automatically delete invalid addresses from the list.  (See
+   section 7 of this memo.)
+
+   This specification places no restrictions on the processing of DSNs
+   received by user agents or distribution lists.
+
+4. Security Considerations
+
+   The following security considerations apply when using DSNs:
+
+4.1 Forgery
+
+   DSNs may be forged as easily as ordinary Internet electronic mail.
+   User agents and automatic mail handling facilities (such as mail
+   distribution list exploders) that wish to make automatic use of DSNs
+   should take appropriate precautions to minimize the potential damage
+   from denial-of-service attacks.
+
+   Security threats related to forged DSNs include the sending of:
+
+(a) A falsified delivery notification when the message is not delivered
+    to the indicated recipient,
+(b) A falsified non-delivery notification when the message was in fact
+    delivered to the indicated recipient,
+(c) A falsified Final-Recipient address,
+(d) A falsified Remote-MTA identification,
+(e) A falsified relay notification when the message is "dead ended".
+(f) Unsolicited DSNs
+
+4.2 Confidentiality
+
+   Another dimension of security is confidentiality.  There may be cases
+   in which a message recipient is autoforwarding messages but does not
+   wish to divulge the address to which the messages are autoforwarded.
+   The desire for such confidentiality will probably be heightened as
+   "wireless mailboxes", such as pagers, become more widely used as
+   autoforward addresses.
+
+   MTA authors are encouraged to provide a mechanism which enables the
+   end user to preserve the confidentiality of a forwarding address.
+   Depending on the degree of confidentiality required, and the nature
+   of the environment to which a message were being forwarded, this
+   might be accomplished by one or more of:
+
+(a) issuing a "relayed" DSN (if a positive DSN was requested) when a
+    message is forwarded to a confidential forwarding address, and
+    disabling requests for positive DSNs for the forwarded message,
+
+(b) declaring the message to be delivered, issuing a "delivered" DSN,
+    re-sending the message to the confidential forwarding address, and
+    arranging for no DSNs to be issued for the re-sent message,
+
+(c) omitting "Remote-*" or extension fields of a DSN whenever they would
+    otherwise contain confidential information (such as a confidential
+    forwarding address),
+
+(d) for messages forwarded to a confidential address, setting the
+    envelope return address (e.g. SMTP MAIL FROM address) to the NULL
+
+    reverse-path ("&lt;&gt;") (so that no DSNs would be sent from a =
+downstream
+    MTA to the original sender),
+
+(e) for messages forwarded to a confidential address, disabling delivery
+    notifications for the forwarded message (e.g. if the "next-hop" MTA
+    uses ESMTP and supports the DSN extension, by using the =
+NOTIFY=3DNEVER
+    parameter to the RCPT command), or
+
+(f) when forwarding mail to a confidential address, having the
+    forwarding MTA rewrite the envelope return address for the forwarded
+    message and attempt delivery of that message as if the forwarding
+    MTA were the originator.  On its receipt of final delivery status,
+    the forwarding MTA would issue a DSN to the original sender.
+
+   In general, any optional DSN field may be omitted if the Reporting
+   MTA site determines that inclusion of the field would impose too
+   great a compromise of site confidentiality.  The need for such
+   confidentiality must be balanced against the utility of the omitted
+   information in trouble reports and DSNs gatewayed to foreign
+   environments.
+
+   Implementors are cautioned that many existing MTAs will send
+   nondelivery notifications to a return address in the message header
+   (rather than to the one in the envelope), in violation of SMTP and
+   other protocols.  If a message is forwarded through such an MTA, no
+   reasonable action on the part of the forwarding MTA will prevent the
+   downstream MTA from compromising the forwarding address.  Likewise,
+   if the recipient's MTA automatically responds to messages based on a
+   request in the message header (such as the nonstandard, but widely
+   used, Return-Receipt-To extension header), it will also compromise
+   the forwarding address.
+
+4.3 Non-Repudiation
+
+   Within the framework of today's internet mail, the DSNs defined in
+   this memo provide valuable information to the mail user; however,
+   even a "failed" DSN can not be relied upon as a guarantee that a
+   message was not received by the recipient.  Even if DSNs are not
+   actively forged, conditions exist under which a message can be
+   delivered despite the fact that a failure DSN was issued.
+
+   For example, a race condition in the SMTP protocol allows for the
+   duplication of messages if the connection is dropped following a
+   completed DATA command, but before a response is seen by the SMTP
+   client.  This will cause the SMTP client to retransmit the message,
+   even though the SMTP server has already accepted it.[9] If one of
+   those delivery attempts succeeds and the other one fails, a "failed"
+   DSN could be issued even though the message actually reached the
+   recipient.
+
+5. Appendix - collected grammar
+
+   NOTE:  The following lexical tokens are defined in <A =
+href=3D"http://www.faqs.org/rfcs/rfc822.html">RFC 822</A>:  atom,
+   CHAR, comment, CR, CRLF, DIGIT, LF, linear-white-space, SPACE, text.
+   The date-time lexical token is defined in [8].
+
+action-field =3D "Action" ":" action-value
+
+action-value =3D
+     "failed" / "delayed" / "delivered" / "relayed" / "expanded"
+
+address-type =3D atom
+
+arrival-date-field =3D "Arrival-Date" ":" date-time
+
+delivery-status-content =3D
+     per-message-fields 1*( CRLF per-recipient-fields )
+
+diagnostic-code-field =3D
+     "Diagnostic-Code" ":" diagnostic-type ";" *text
+
+diagnostic-type =3D atom
+
+dsn-gateway-field =3D "DSN-Gateway" ":" mta-name-type ";" mta-name
+
+envelope-id =3D *text
+
+extension-field =3D extension-field-name ":" *text
+
+extension-field-name =3D atom
+
+final-recipient-field =3D
+     "Final-Recipient" ":" address-type ";" generic-address
+
+generic-address =3D *text
+
+last-attempt-date-field =3D "Last-Attempt-Date" ":" date-time
+
+mta-name =3D *text
+
+mta-name-type =3D atom
+
+original-envelope-id-field =3D
+     "Original-Envelope-Id" ":" envelope-id
+
+original-recipient-field =3D
+     "Original-Recipient" ":" address-type ";" generic-address
+
+per-message-fields =3D
+     [ original-envelope-id-field CRLF ]
+     reporting-mta-field CRLF
+     [ dsn-gateway-field CRLF ]
+     [ received-from-mta-field CRLF ]
+     [ arrival-date-field CRLF ]
+     *( extension-field CRLF )
+
+per-recipient-fields =3D
+     [ original-recipient-field CRLF ]
+     final-recipient-field CRLF
+     action-field CRLF
+     status-field CRLF
+     [ remote-mta-field CRLF ]
+     [ diagnostic-code-field CRLF ]
+     [ last-attempt-date-field CRLF ]
+     [ will-retry-until-field CRLF ]
+     *( extension-field CRLF )
+
+received-from-mta-field =3D
+     "Received-From-MTA" ":" mta-name-type ";" mta-name
+
+remote-mta-field =3D "Remote-MTA" ":" mta-name-type ";" mta-name
+
+reporting-mta-field =3D
+     "Reporting-MTA" ":" mta-name-type ";" mta-name
+
+status-code =3D DIGIT "." 1*3DIGIT "." 1*3DIGIT
+
+     ; White-space characters and comments are NOT allowed within a
+     ; status-code, though a comment enclosed in parentheses MAY follow
+     ; the last numeric subfield of the status-code.  Each numeric
+     ; subfield within the status-code MUST be expressed without
+     ; leading zero digits.
+
+status-field =3D "Status" ":" status-code
+
+will-retry-until-field =3D "Will-Retry-Until" ":" date-time
+
+6. Appendix - Guidelines for gatewaying DSNs
+
+   NOTE:  This section provides non-binding recommendations for the
+   construction of mail gateways that wish to provide semi-transparent
+   delivery reports between the Internet and another electronic mail
+   system.  Specific DSN gateway requirements for a particular pair of
+   mail systems may be defined by other documents.
+
+6.1 Gatewaying from other mail systems to DSNs
+
+   A mail gateway may issue a DSN to convey the contents of a "foreign"
+   delivery or non-delivery notification over Internet mail.  When there
+   are appropriate mappings from the foreign notification elements to
+   DSN fields, the information may be transmitted in those DSN fields.
+   Additional information (such as might be useful in a trouble ticket
+   or needed to tunnel the foreign notification through the Internet)
+   may be defined in extension DSN fields.  (Such fields should be given
+   names that identify the foreign mail protocol, e.g. X400-* for X.400
+   NDN or DN protocol elements)
+
+   The gateway must attempt to supply reasonable values for the
+   Reporting-MTA, Final-Recipient, Action, and Status fields.  These
+   will normally be obtained by translating the values from the remote
+   delivery or non-delivery notification into their Internet-style
+   equivalents.  However, some loss of information is to be expected.
+   For example, the set of status-codes defined for DSNs may not be
+   adequate to fully convey the delivery diagnostic code from the
+   foreign system.  The gateway should assign the most precise code
+   which describes the failure condition, falling back on "generic"
+   codes such as 2.0.0 (success), 4.0.0 (temporary failure), and 5.0.0
+   (permanent failure) when necessary.  The actual foreign diagnostic
+   code should be retained in the Diagnostic-Code field (with an
+   appropriate diagnostic-type value) for use in trouble tickets or
+   tunneling.
+
+   The sender-specified recipient address, and the original envelope-id,
+   if present in the foreign transport envelope, should be preserved in
+   the Original-Recipient and Original-Envelope-ID fields.
+
+   The gateway should also attempt to preserve the "final" recipient
+   addresses and MTA names from the foreign system.  Whenever possible,
+   foreign protocol elements should be encoded as meaningful printable
+   ASCII strings.
+
+   For DSNs produced from foreign delivery or nondelivery notifications,
+   the name of the gateway MUST appear in the DSN-Gateway field of the
+   DSN.
+
+6.2 Gatewaying from DSNs to other mail systems
+
+   It may be possible to gateway DSNs from the Internet into a foreign
+   mail system.  The primary purpose of such gatewaying is to convey
+   delivery status information in a form that is usable by the
+   destination system.  A secondary purpose is to allow "tunneling" of
+   DSNs through foreign mail systems, in case the DSN may be gatewayed
+   back into the Internet.
+
+   In general, the recipient of the DSN (i.e., the sender of the
+   original message) will want to know, for each recipient: the closest
+   available approximation to the original recipient address, the
+   delivery status (success, failure, or temporary failure), and for
+   failed deliveries, a diagnostic code that describes the reason for
+   the failure.
+
+   If possible, the gateway should attempt to preserve the Original-
+   Recipient address and Original-Envelope-ID (if present), in the
+   resulting foreign delivery status report.
+
+   When reporting delivery failures, if the diagnostic-type subfield of
+   the Diagnostic-Code field indicates that the original diagnostic code
+   is understood by the destination environment, the information from
+   the Diagnostic-Code field should be used.  Failing that, the
+   information in the Status field should be mapped into the closest
+   available diagnostic code used in the destination environment.
+
+   If it is possible to tunnel a DSN through the destination
+   environment, the gateway specification may define a means of
+   preserving the DSN information in the delivery status reports used by
+   that environment.
+
+7. Appendix - Guidelines for use of DSNs by mailing list exploders
+
+   NOTE: This section pertains only to the use of DSNs by "mailing
+   lists" as defined in [4], section 7.2.7.
+
+   DSNs are designed to be used by mailing list exploders to allow them
+   to detect and automatically delete recipients for whom mail delivery
+   fails repeatedly.
+
+   When forwarding a message to list subscribers, the mailing list
+   exploder should always set the envelope return address (e.g. SMTP
+   MAIL FROM address) to point to a special address which is set up to
+   received nondelivery reports.  A "smart" mailing list exploder can
+   therefore intercept such nondelivery reports, and if they are in the
+   DSN format, automatically examine them to determine for which
+   recipients a message delivery failed or was delayed.
+
+   The Original-Recipient field should be used if available, since it
+   should exactly match the subscriber address known to the list.  If
+   the Original-Recipient field is not available, the recipient field
+   may resemble the list subscriber address.  Often, however, the list
+   subscriber will have forwarded his mail to a different address, or
+   the address may be subject to some re-writing, so heuristics may be
+   required to successfully match an address from the recipient field.
+   Care is needed in this case to minimize the possibility of false
+   matches.
+
+   The reason for delivery failure can be obtained from the Status and
+   Action fields, and from the Diagnostic-Code field (if the status-type
+   is recognized).  Reports for recipients with action values other than
+   "failed" can generally be ignored; in particular, subscribers should
+   not be removed from a list due to "delayed" reports.
+
+   In general, almost any failure status code (even a "permanent" one)
+   can result from a temporary condition.  It is therefore recommended
+   that a list exploder not delete a subscriber based on any single
+   failure DSN (regardless of the status code), but only on the
+   persistence of delivery failure over a period of time.
+
+   However, some kinds of failures are less likely than others to have
+   been caused by temporary conditions, and some kinds of failures are
+   more likely to be noticed and corrected quickly than others.  Once
+   more precise status codes are defined, it may be useful to
+   differentiate between the status codes when deciding whether to
+   delete a subscriber.  For example, on a list with a high message
+   volume, it might be desirable to temporarily suspend delivery to a
+   recipient address which causes repeated "temporary" failures, rather
+   than simply deleting the recipient.  The duration of the suspension
+
+   might depend on the type of error.  On the other hand, a "user
+   unknown" error which persisted for several days could be considered a
+   reliable indication that address were no longer valid.
+
+8. Appendix - IANA registration forms for DSN types
+
+   The forms below are for use when registering a new address-type,
+   diagnostic-type, or MTA-name-type with the Internet Assigned Numbers
+   Authority (IANA).  Each piece of information requested by a
+   registration form may be satisfied either by providing the
+   information on the form itself, or by including a reference to a
+   published, publicly available specification which includes the
+   necessary information.  IANA MAY reject DSN type registrations
+   because of incomplete registration forms, imprecise specifications,
+   or inappropriate type names.
+
+   To register a DSN type, complete the applicable form below and send
+   it via Internet electronic mail to &lt;<A =
+href=3D"mailto:IANA@IANA.ORG">IANA@IANA.ORG</A>&gt;.
+
+8.1 IANA registration form for address-type
+
+   A registration for a DSN address-type MUST include the following
+   information:
+
+(a) The proposed address-type name.
+
+(b) The syntax for mailbox addresses of this type, specified using BNF,
+    regular expressions, ASN.1, or other non-ambiguous language.
+
+(c) If addresses of this type are not composed entirely of graphic
+    characters from the US-ASCII repertoire, a specification for how
+    they are to be encoded as graphic US-ASCII characters in a DSN
+    Original-Recipient or Final-Recipient DSN field.
+
+(d) [optional] A specification for how addresses of this type are to be
+    translated to and from Internet electronic mail addresses.
+
+8.2 IANA registration form for diagnostic-type
+
+   A registration for a DSN address-type MUST include the following
+   information:
+
+(a) The proposed diagnostic-type name.
+
+(b) A description of the syntax to be used for expressing diagnostic
+    codes of this type as graphic characters from the US-ASCII
+    repertoire.
+
+(c) A list of valid diagnostic codes of this type and the meaning of
+    each code.
+
+(d) [optional] A specification for mapping from diagnostic codes of this
+    type to DSN status codes (as defined in [5]).
+
+8.3 IANA registration form for MTA-name-type
+
+   A registration for a DSN MTA-name-type must include the following
+   information:
+
+(a) The proposed MTA-name-type name.
+
+(b) A description of the syntax of MTA names of this type, using BNF,
+    regular expressions, ASN.1, or other non-ambiguous language.
+
+(c) If MTA names of this type do not consist entirely of graphic
+    characters from the US-ASCII repertoire, a specification for how an
+    MTA name of this type should be expressed as a sequence of graphic
+    US-ASCII characters.
+
+9. Appendix - Examples
+
+   NOTE:  These examples are provided as illustration only, and are not
+   considered part of the DSN protocol specification.  If an example
+   conflicts with the protocol definition above, the example is wrong.
+
+   Likewise, the use of *-type subfield names or extension fields in
+   these examples is not to be construed as a definition for those type
+   names or extension fields.
+
+   These examples were manually translated from bounced messages using
+   whatever information was available.
+
+9.1  This is a simple DSN issued after repeated attempts
+     to deliver a message failed.  In this case, the DSN is
+     issued by the same MTA from which the message was originated.
+
+   Date: Thu, 7 Jul 1994 17:16:05 -0400
+   From: Mail Delivery Subsystem &lt;<A =
+href=3D"mailto:MAILER-DAEMON@CS.UTK.EDU">MAILER-DAEMON@CS.UTK.EDU</A>&gt;=
+
+   Message-Id: &lt;199407072116.RAA14128@CS.UTK.EDU&gt;
+   Subject: Returned mail: Cannot send message for 5 days
+   To: &lt;<A =
+href=3D"mailto:owner-info-mime@cs.utk.edu">owner-info-mime@cs.utk.edu</A>=
+&gt;
+   MIME-Version: 1.0
+   Content-Type: multipart/report; report-type=3Ddelivery-status;
+         boundary=3D"RAA14128.773615765/CS.UTK.EDU"
+
+   --RAA14128.773615765/CS.UTK.EDU
+
+   The original message was received at Sat, 2 Jul 1994 17:10:28 -0400
+   from root@localhost
+
+      ----- The following addresses had delivery problems -----
+   &lt;<A =
+href=3D"mailto:louisl@larry.slip.umd.edu">louisl@larry.slip.umd.edu</A>&g=
+t;  (unrecoverable error)
+
+      ----- Transcript of session follows -----
+   &lt;<A =
+href=3D"mailto:louisl@larry.slip.umd.edu">louisl@larry.slip.umd.edu</A>&g=
+t;... Deferred: Connection timed out
+         with larry.slip.umd.edu.
+   Message could not be delivered for 5 days
+   Message will be deleted from queue
+
+   --RAA14128.773615765/CS.UTK.EDU
+   content-type: message/delivery-status
+
+   Reporting-MTA: dns; cs.utk.edu
+
+   Original-Recipient: <A =
+href=3D"http://www.faqs.org/rfcs/rfc822.html">rfc822</A>;<A =
+href=3D"mailto:louisl@larry.slip.umd.edu">louisl@larry.slip.umd.edu</A>
+   Final-Recipient: <A =
+href=3D"http://www.faqs.org/rfcs/rfc822.html">rfc822</A>;<A =
+href=3D"mailto:louisl@larry.slip.umd.edu">louisl@larry.slip.umd.edu</A>
+   Action: failed
+   Status: 4.0.0
+   Diagnostic-Code: smtp; 426 connection timed out
+   Last-Attempt-Date: Thu, 7 Jul 1994 17:15:49 -0400
+
+   --RAA14128.773615765/CS.UTK.EDU
+   content-type: message/rfc822
+
+   [original message goes here]
+   --RAA14128.773615765/CS.UTK.EDU--
+
+9.2  This is another DSN issued by the sender's MTA, which
+     contains details of multiple delivery attempts.  Some of
+     these were detected locally, and others by a remote MTA.
+
+   Date: Fri, 8 Jul 1994 09:21:47 -0400
+   From: Mail Delivery Subsystem &lt;<A =
+href=3D"mailto:MAILER-DAEMON@CS.UTK.EDU">MAILER-DAEMON@CS.UTK.EDU</A>&gt;=
+
+   Subject: Returned mail: User unknown
+   To: &lt;<A =
+href=3D"mailto:owner-ups-mib@CS.UTK.EDU">owner-ups-mib@CS.UTK.EDU</A>&gt;=
+
+   MIME-Version: 1.0
+   Content-Type: multipart/report; report-type=3Ddelivery-status;
+         boundary=3D"JAA13167.773673707/CS.UTK.EDU"
+
+   --JAA13167.773673707/CS.UTK.EDU
+   content-type: text/plain; charset=3Dus-ascii
+
+      ----- The following addresses had delivery problems -----
+   &lt;<A =
+href=3D"mailto:arathib@vnet.ibm.com">arathib@vnet.ibm.com</A>&gt;  =
+(unrecoverable error)
+   &lt;<A =
+href=3D"mailto:wsnell@sdcc13.ucsd.edu">wsnell@sdcc13.ucsd.edu</A>&gt;  =
+(unrecoverable error)
+
+   --JAA13167.773673707/CS.UTK.EDU
+   content-type: message/delivery-status
+
+   Reporting-MTA: dns; cs.utk.edu
+
+   Original-Recipient: <A =
+href=3D"http://www.faqs.org/rfcs/rfc822.html">rfc822</A>;<A =
+href=3D"mailto:arathib@vnet.ibm.com">arathib@vnet.ibm.com</A>
+   Final-Recipient: <A =
+href=3D"http://www.faqs.org/rfcs/rfc822.html">rfc822</A>;<A =
+href=3D"mailto:arathib@vnet.ibm.com">arathib@vnet.ibm.com</A>
+   Action: failed
+   Status: 5.0.0 (permanent failure)
+   Diagnostic-Code: smtp;
+    550 '<A =
+href=3D"mailto:arathib@vnet.IBM.COM">arathib@vnet.IBM.COM</A>' is not a =
+registered gateway user
+   Remote-MTA: dns; vnet.ibm.com
+
+   Original-Recipient: <A =
+href=3D"http://www.faqs.org/rfcs/rfc822.html">rfc822</A>;<A =
+href=3D"mailto:johnh@hpnjld.njd.hp.com">johnh@hpnjld.njd.hp.com</A>
+   Final-Recipient: <A =
+href=3D"http://www.faqs.org/rfcs/rfc822.html">rfc822</A>;<A =
+href=3D"mailto:johnh@hpnjld.njd.hp.com">johnh@hpnjld.njd.hp.com</A>
+   Action: delayed
+   Status: 4.0.0 (hpnjld.njd.jp.com: host name lookup failure)
+
+   Original-Recipient: <A =
+href=3D"http://www.faqs.org/rfcs/rfc822.html">rfc822</A>;<A =
+href=3D"mailto:wsnell@sdcc13.ucsd.edu">wsnell@sdcc13.ucsd.edu</A>
+   Final-Recipient: <A =
+href=3D"http://www.faqs.org/rfcs/rfc822.html">rfc822</A>;<A =
+href=3D"mailto:wsnell@sdcc13.ucsd.edu">wsnell@sdcc13.ucsd.edu</A>
+   Action: failed
+   Status: 5.0.0
+   Diagnostic-Code: smtp; 550 user unknown
+   Remote-MTA: dns; sdcc13.ucsd.edu
+
+   --JAA13167.773673707/CS.UTK.EDU
+   content-type: message/rfc822
+
+   [original message goes here]
+   --JAA13167.773673707/CS.UTK.EDU--
+
+9.3 A delivery report generated by Message Router (MAILBUS) and
+    gatewayed by PMDF_MR to a DSN.  In this case the gateway did not
+    have sufficient information to supply an original-recipient address.
+
+   Disclose-recipients: prohibited
+   Date: Fri, 08 Jul 1994 09:21:25 -0400 (EDT)
+   From: Message Router Submission Agent &lt;<A =
+href=3D"mailto:AMMGR@corp.timeplex.com">AMMGR@corp.timeplex.com</A>&gt;
+   Subject: Status of : Re: Battery current sense
+   To: <A =
+href=3D"mailto:owner-ups-mib@CS.UTK.EDU">owner-ups-mib@CS.UTK.EDU</A>
+   Message-id: &lt;01HEGJ0WNBY28Y95LN@mr.timeplex.com&gt;
+   MIME-version: 1.0
+   content-type: multipart/report; report-type=3Ddelivery-status;
+         boundary=3D"84229080704991.122306.SYS30"
+
+   --84229080704991.122306.SYS30
+   content-type: text/plain
+
+   Invalid address - nair_s
+   %DIR-E-NODIRMTCH, No matching Directory Entry found
+
+   --84229080704991.122306.SYS30
+   content-type: message/delivery-status
+
+   Reporting-MTA: mailbus; SYS30
+
+   Final-Recipient: unknown; nair_s
+   Status: 5.0.0 (unknown permanent failure)
+   Action: failed
+
+   --84229080704991.122306.SYS30--
+
+9.4 A delay report from a multiprotocol MTA.  Note that there is no
+    returned content, so no third body part appears in the DSN.
+
+   From: &lt;<A =
+href=3D"mailto:postmaster@nsfnet-relay.ac.uk">postmaster@nsfnet-relay.ac.=
+uk</A>&gt;
+   Message-Id: &lt;199407092338.TAA23293@CS.UTK.EDU&gt;
+   Received: from nsfnet-relay.ac.uk by sun2.nsfnet-relay.ac.uk
+             id &lt;<A =
+href=3D"mailto:g.12954-0@sun2.nsfnet-relay.ac.uk">g.12954-0@sun2.nsfnet-r=
+elay.ac.uk</A>&gt;;
+   Sun, 10 Jul 1994 00:36:51 +0100
+   To: <A =
+href=3D"mailto:owner-info-mime@cs.utk.edu">owner-info-mime@cs.utk.edu</A>=
+
+   Date: Sun, 10 Jul 1994 00:36:51 +0100
+   Subject: WARNING: message delayed at "nsfnet-relay.ac.uk"
+   content-type: multipart/report; report-type=3Ddelivery-status;
+         boundary=3Dfoobar
+
+   --foobar
+   content-type: text/plain
+
+   The following message:
+
+   UA-ID:  Reliable PC (...
+   Q-ID:   sun2.nsf:77/msg.11820-0
+
+   has not been delivered to the intended recipient:
+
+   <A =
+href=3D"mailto:thomas@de-montfort.ac.uk">thomas@de-montfort.ac.uk</A>
+
+   despite repeated delivery attempts over the past 24 hours.
+
+   The  usual cause of this problem is that the remote system is
+   temporarily unavailable.
+
+   Delivery will continue to be attempted up to a total elapsed
+   time of  168 hours, ie 7 days.
+
+   You  will  be  informed  if  delivery proves to be impossible
+   within this time.
+
+   Please quote the Q-ID in any queries regarding this mail.
+
+   --foobar
+   content-type: message/delivery-status
+
+   Reporting-MTA: dns; sun2.nsfnet-relay.ac.uk
+
+   Final-Recipient: <A =
+href=3D"http://www.faqs.org/rfcs/rfc822.html">rfc822</A>;<A =
+href=3D"mailto:thomas@de-montfort.ac.uk">thomas@de-montfort.ac.uk</A>
+   Status: 4.0.0 (unknown temporary failure)
+   Action: delayed
+
+   --foobar--
+
+10. Acknowledgments
+
+   The authors wish to thank the following people for their reviews of
+   earlier drafts of this document and their suggestions for
+   improvement:  Eric Allman, Harald Alvestrand, Allan Cargille, Jim
+   Conklin, Peter Cowen, Dave Crocker, Roger Fajman, Ned Freed, Marko
+   Kaittola, Steve Kille, John Klensin, John Gardiner Myers, Mark
+   Nahabedian, Julian Onions, Jacob Palme, Jean Charles Roy, and Gregory
+   Sheehan.
+
+11. References
+
+[1] Borenstein, N., Freed, N. "Multipurpose Internet Mail Extensions",
+    <A href=3D"http://www.faqs.org/rfcs/rfc1521.html">RFC 1521</A>, =
+Bellcore, Innosoft, September 1993.
+
+[2] Vaudreuil, G., "The Multipart/Report Content Type for the Reporting
+    of Mail System Administrative Messages", <A =
+href=3D"http://www.faqs.org/rfcs/rfc1892.html">RFC 1892</A>, Octal =
+Network
+    Services, January 1996.
+
+[3] Postel, J., "Simple Mail Transfer Protocol", STD 10, <A =
+href=3D"http://www.faqs.org/rfcs/rfc821.html">RFC 821</A>,
+    USC/Information Sciences Institute, August 1982.
+
+[4] Moore, K., "SMTP Service Extension for Delivery Status
+    Notifications", <A =
+href=3D"http://www.faqs.org/rfcs/rfc1891.html">RFC 1891</A>, University =
+of Tennessee, January 1996.
+
+[5] Vaudreuil, G., "Enhanced Mail System Status Codes", <A =
+href=3D"http://www.faqs.org/rfcs/rfc1893.html">RFC 1893</A>, Octal
+    Network Services, January 1996.
+
+[6] Crocker, D., "Standard for the Format of ARPA Internet Text
+    Messages", STD 11, <A =
+href=3D"http://www.faqs.org/rfcs/rfc822.html">RFC 822</A>, UDEL, August =
+1982.
+
+[7] Moore, K. "MIME (Multipurpose Internet Mail Extensions) Part Two:
+    Message Header Extensions for Non-Ascii Text", <A =
+href=3D"http://www.faqs.org/rfcs/rfc1522.html">RFC 1522</A>, University
+    of Tennessee, September 1993.
+
+[8] Braden, R. (ed.)  "Requirements for Internet Hosts - Application and
+    Support", STD 3, <A =
+href=3D"http://www.faqs.org/rfcs/rfc1123.html">RFC 1123</A>, =
+USC/Information Sciences Institute,
+    October 1989.
+
+[9] Partridge, C., "Duplicate Messages and SMTP", <A =
+href=3D"http://www.faqs.org/rfcs/rfc1047.html">RFC 1047</A>, BBN,
+    February 1988.
+
+11. Authors' Addresses
+
+   Keith Moore
+   University of Tennessee
+   107 Ayres Hall
+   Knoxville, TN 37996-1301
+   USA
+
+   EMail: <A href=3D"mailto:moore@cs.utk.edu">moore@cs.utk.edu</A>
+   Phone: +1 615 974 3126
+   Fax: +1 615 974 8296
+
+   Gregory M. Vaudreuil
+   Octel Network Services
+   17080 Dallas Parkway
+   Dallas, TX 75248-1905
+   USA
+
+   EMail: <A =
+href=3D"mailto:Greg.Vaudreuil@Octel.Com">Greg.Vaudreuil@Octel.Com</A>
+
+</PRE>
+<P align=3Dcenter>
+<SCRIPT language=3DJavaScript><!--=0A=
+erfc("1894");=0A=
+// --></SCRIPT>
+</P>&nbsp;<BR>
+<HR noShade SIZE=3D2>
+
+<DIV align=3Dcenter>[ <A href=3D"http://www.faqs.org/rfcs/">RFC =
+Index</A> | <A=20
+href=3D"http://www.faqs.org/rfcs/rfcsearch.html">RFC Search</A> | <A=20
+href=3D"http://www.faqs.org/faqs/">Usenet FAQs</A> | <A=20
+href=3D"http://www.faqs.org/contrib/">Web FAQs</A> | <A=20
+href=3D"http://www.faqs.org/docs/">Documents</A> ]=20
+<P></P></DIV><SMALL>
+<ADDRESS>
+<P align=3Dcenter></P></ADDRESS></SMALL></BODY></HTML>
+
+------=_NextPart_000_0000_01C34721.3A3FF9F0
+Content-Type: image/jpeg
+Content-Transfer-Encoding: base64
+Content-Location: http://www.faqs.org/images/library.jpg
+
+/9j/4AAQSkZJRgABAgEASABIAAD/7QE0UGhvdG9zaG9wIDMuMAA4QklNA+0AAAAAABAASAAAAAEA
+AQBIAAAAAQABOEJJTQPzAAAAAAAIAAAAAAAAAAA4QklNJxAAAAAAAAoAAQAAAAAAAAACOEJJTQP1
+AAAAAABIAC9mZgABAGxmZgAGAAAAAAABAC9mZgABAKGZmgAGAAAAAAABADIAAAABAFoAAAAGAAAA
+AAABADUAAAABAC0AAAAGAAAAAAABOEJJTQP4AAAAAABwAAD/////////////////////////////
+A+gAAAAA/////////////////////////////wPoAAAAAP////////////////////////////8D
+6AAAAAD/////////////////////////////A+gAADhCSU0EBgAAAAAAAgAE/+4ADkFkb2JlAGQA
+AAAAAf/bAIQABgQEBAUEBgUFBgkGBQYJCwgGBggLDAoKCwoKDBAMDAwMDAwQDAwMDAwMDAwMDAwM
+DAwMDAwMDAwMDAwMDAwMDAEHBwcNDA0YEBAYFA4ODhQUDg4ODhQRDAwMDAwREQwMDAwMDBEMDAwM
+DAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwM/8AAEQgAPgCWAwERAAIRAQMRAf/EAaIAAAAHAQEBAQEA
+AAAAAAAAAAQFAwIGAQAHCAkKCwEAAgIDAQEBAQEAAAAAAAAAAQACAwQFBgcICQoLEAACAQMDAgQC
+BgcDBAIGAnMBAgMRBAAFIRIxQVEGE2EicYEUMpGhBxWxQiPBUtHhMxZi8CRygvElQzRTkqKyY3PC
+NUQnk6OzNhdUZHTD0uIIJoMJChgZhJRFRqS0VtNVKBry4/PE1OT0ZXWFlaW1xdXl9WZ2hpamtsbW
+5vY3R1dnd4eXp7fH1+f3OEhYaHiImKi4yNjo+Ck5SVlpeYmZqbnJ2en5KjpKWmp6ipqqusra6voR
+AAICAQIDBQUEBQYECAMDbQEAAhEDBCESMUEFURNhIgZxgZEyobHwFMHR4SNCFVJicvEzJDRDghaS
+UyWiY7LCB3PSNeJEgxdUkwgJChgZJjZFGidkdFU38qOzwygp0+PzhJSktMTU5PRldYWVpbXF1eX1
+RlZmdoaWprbG1ub2R1dnd4eXp7fH1+f3OEhYaHiImKi4yNjo+DlJWWl5iZmpucnZ6fkqOkpaanqK
+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
+
+------=_NextPart_000_0000_01C34721.3A3FF9F0--

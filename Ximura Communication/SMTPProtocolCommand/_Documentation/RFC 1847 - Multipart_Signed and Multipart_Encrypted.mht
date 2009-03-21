@@ -1,0 +1,685 @@
+From: <Saved by Microsoft Internet Explorer 5>
+Subject: 
+Date: Tue, 7 Oct 2003 12:26:00 +0800
+MIME-Version: 1.0
+Content-Type: text/html;
+	charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc1847.html
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2800.1165
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" =
+"http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<META http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dwindows-1252">
+<META content=3D"MSHTML 6.00.2800.1264" name=3DGENERATOR></HEAD>
+<BODY>
+<TABLE width=3D"100%">
+  <TBODY>
+  <TR>
+    <TD vAlign=3Dtop align=3Dleft>Network Working Group<BR>Request For =
+Comments:=20
+      1847<BR>Category: Standards Track<BR>
+    <TD vAlign=3Dtop align=3Dright>J. Galvin<BR>S. Murphy<BR>Trusted =
+Information=20
+      Systems<BR>S. Crocker<BR>CyberCash, Inc.<BR>N. Freed<BR>Innosoft=20
+      International, Inc.<BR>October 1995<BR>Security Multiparts for=20
+  MIME:<BR></TD></TR></TBODY></TABLE><EM><A name=3Dpage-1>Page =
+1</A></EM>
+<P>
+<H3 align=3Dcenter>Multipart/Signed and Multipart/Encrypted</H3>
+<P>
+<DL>
+  <DT>Status of this Memo
+  <DD>
+  <P>This document specifies an Internet standards track protocol for =
+the=20
+  Internet community, and requests discussion and suggestions for =
+improvements.=20
+  Please refer to the current edition of the "Internet Official Protocol =
+
+  Standards" (<A=20
+  href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/stdlist.html#s1">STD =
+1</A>)=20
+  for the standardization state and status of this protocol. =
+Distribution of=20
+  this memo is unlimited.=20
+  <P></P>
+  <DT>Abstract
+  <DD>
+  <P>This document defines a framework within which security services =
+may be=20
+  applied to MIME body parts. MIME, an acronym for "Multipurpose =
+Internet Mail=20
+  Extensions", defines the format of the contents of Internet mail =
+messages and=20
+  provides for multi-part textual and non- textual message bodies. The =
+new=20
+  content types are subtypes of multipart: signed and encrypted. Each =
+will=20
+  contain two body parts: one for the protected data and one for the =
+control=20
+  information necessary to remove the protection. The type and contents =
+of the=20
+  control information body parts are determined by the value of the =
+protocol=20
+  parameter of the enclosing multipart/signed or <BR>multipart/encrypted =
+content=20
+  type, which is required to be present.=20
+  <P></P>
+  <DT>Table of Contents
+  <DD>
+  <P><A =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc1847.html#sec-1">1. =
+
+  Introduction </A><BR><A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc1847.html#sec-2">2. =
+
+  Definition of Security Subtypes of Multipart </A><BR><A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc1847.html#sec-2.1">2=
+.1=20
+  Definition of Multipart/Signed </A><BR><A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc1847.html#sec-2.2">2=
+.2=20
+  Definition of Multipart/Encrypted </A><BR><A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc1847.html#sec-3">3. =
+
+  Definition of Control Information Content Types </A><BR><A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc1847.html#sec-4">4. =
+
+  Definition of Key Management Content Types </A><BR><A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc1847.html#sec-5">5. =
+
+  Security Considerations </A><BR><A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc1847.html#sec-6">6. =
+
+  Acknowledgements </A><BR><A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc1847.html#sec-7">7. =
+
+  References </A><BR><A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc1847.html#sec-8">8. =
+
+  Authors' Addresses </A>
+  <P></P>
+  <DT>
+  <HR>
+  <EM><A name=3Dpage-2>Page 2</A></EM>
+  <DD>
+  <P></P>
+  <DT><STRONG><A name=3Dsec-1>1</A> Introduction</STRONG>
+  <DD>
+  <P>An Internet electronic mail message consists of two parts: the =
+headers and=20
+  the body. The headers form a collection of field/value pairs =
+structured=20
+  according to <A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/stdlist.html#s11">STD =
+11</A>,=20
+  <A href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc0822.html">RFC =
+822</A>=20
+  [1], whilst the body, if structured, is defined according to MIME [2]. =
+The=20
+  basic MIME specification does not provide specific security =
+protection.=20
+  <P>This document defines a framework whereby security protection =
+provided by=20
+  other protocols may be used with MIME in a complementary fashion. By =
+itself,=20
+  it does not specify security protection. A MIME agent must include =
+support for=20
+  both the framework defined here and a mechanism to interact with a =
+security=20
+  protocol defined in a separate document. The resulting combined =
+service=20
+  provides security for single-part and multi-part textual and =
+non-textual=20
+  messages.=20
+  <P>The framework is provided by defining two new security subtypes of =
+the MIME=20
+  multipart content type: signed and encrypted. In each of the security=20
+  subtypes, there are exactly two related body parts: one for the =
+protected data=20
+  and one for the control information. The type and contents of the =
+control=20
+  information body parts are determined by the value of the protocol =
+parameter=20
+  of the enclosing multipart/signed or multipart/encrypted content type, =
+which=20
+  is required to be present. By registering new values for the required =
+protocol=20
+  parameter, the framework is easily extended to accommodate a variety =
+of=20
+  protocols.=20
+  <P>A MIME agent that includes support for this framework will be able =
+to=20
+  recognize a security multipart body part and to identify its protected =
+data=20
+  and control information body parts. If the value of the protocol =
+parameter is=20
+  unrecognized the MIME agent will not be able to process the security=20
+  multipart. However, a MIME agent may continue to process any other =
+body parts=20
+  that may be present.=20
+  <P></P>
+  <DT><STRONG><A name=3Dsec-2>2</A> Definition of Security Subtypes of=20
+  Multipart</STRONG>
+  <DD>
+  <P>The multipart/signed content type specifies how to support =
+authentication=20
+  and integrity services via digital signature. The control information =
+is=20
+  carried in the second of the two required body parts.=20
+  <P>The multipart/encrypted content type specifies how to support=20
+  confidentiality via encryption. The control information is carried in =
+the=20
+  first of the two required body parts.=20
+  <P>A three-step process is described for the origination and reception =
+of the=20
+  multipart/signed and multipart/encrypted contents. The details of the=20
+  processing performed during each step is left to be specified by the =
+security=20
+  protocol being used.=20
+  <P></P>
+  <DT>
+  <HR>
+  <EM><A name=3Dpage-3>Page 3</A></EM>
+  <DD>
+  <P></P>
+  <DT><STRONG><A name=3Dsec-2.1>2.1</A> Definition of =
+Multipart/Signed</STRONG>
+  <DD>
+  <P>(1) MIME type name: multipart=20
+  <P>(2) MIME subtype name: signed=20
+  <P>(3) Required parameters: boundary, protocol, and micalg=20
+  <P>(4) Optional parameters: none=20
+  <P>(5) Security considerations: Must be treated as opaque while in =
+transit=20
+  <P>The multipart/signed content type contains exactly two body parts. =
+The=20
+  first body part is the body part over which the digital signature was =
+created,=20
+  including its MIME headers. The second body part contains the control=20
+  information necessary to verify the digital signature. The first body =
+part may=20
+  contain any valid MIME content type, labeled accordingly. The second =
+body part=20
+  is labeled according to the value of the protocol parameter.=20
+  <P>The attribute token for the protocol parameter is "protocol", i.e., =
+
+  <P><PRE>    parameter :=3D "protocol" "=3D" value
+</PRE>
+  <P>The value token is comprised of the type and sub-type tokens of the =
+
+  Content-Type: header of the second body part, i.e.,=20
+  <P><PRE>    value :=3D &lt;"&gt; type "/" subtype &lt;"&gt;
+</PRE>
+  <P>where the type and subtype tokens are defined by the MIME [2]=20
+  specification. The semantics of the protocol parameter are defined =
+according=20
+  to its value.=20
+  <P>The attribute token for the micalg parameter is "micalg", i.e.,=20
+  <P><PRE>    parameter :=3D "micalg" "=3D" value
+</PRE>
+  <P>The Message Integrity Check (MIC) is the name given to the quantity =
+
+  computed over the body part with a message digest or hash function, in =
+support=20
+  of the digital signature service. Valid value tokens are defined by =
+the=20
+  specification for the value of the protocol parameter. The value may =
+be a=20
+  comma (",") separated list of tokens, indicating the use of multiple =
+MIC=20
+  algorithms. As a result, the comma (",") character is explicitly =
+excluded from=20
+  the list of characters that may be included in a token used as a value =
+of the=20
+  micalg parameter. If multiple MIC algorithms are specified, the =
+purpose and=20
+  use of the multiple algorithms is defined by the protocol. If the MIC=20
+  algorithm=20
+  <P></P>
+  <DT>
+  <HR>
+  <EM><A name=3Dpage-4>Page 4</A></EM>
+  <DD>
+  <P>is also specified in the control information and the value there =
+does not=20
+  agree with the value in this parameter, it must be treated as an =
+error.=20
+  <P>NOTE: The presence of the micalg parameter on the =
+<BR>multipart/signed=20
+  content type header is explicitly intended to support one-pass =
+processing.=20
+  MIME implementations may locate the second body part by inputting the =
+first=20
+  body part and computing the specified MIC values until the boundary=20
+  <BR>identifying the second body part is found.=20
+  <P>The entire contents of the multipart/signed container must be =
+treated as=20
+  opaque while it is in transit from an originator to a recipient. =
+Intermediate=20
+  message transfer agents must not alter the content of a =
+multipart/signed in=20
+  any way, including, but not limited to, changing the content transfer =
+encoding=20
+  of the body part or any of its encapsulated body parts.=20
+  <P>The signature in a multipart/signed only applies to the material =
+that is=20
+  actually within the multipart/signed object. In particular, it does =
+not apply=20
+  to any enclosing message material, nor does it apply to entities that =
+are=20
+  referenced (e.g. via a MIME message/external- body) by rather than =
+included in=20
+  the signed content.=20
+  <P>When creating a multipart/signed body part, the following sequence =
+of steps=20
+  describes the processing necessary. It must be emphasized that these =
+steps are=20
+  descriptive, not prescriptive, and in no way impose restrictions or=20
+  requirements on implementations of this <BR>specification.=20
+  <P>(1) The content of the body part to be protected is prepared =
+according to a=20
+  local convention. The content is then transformed into a MIME body =
+part in=20
+  canonical MIME format, including an appropriate set of MIME headers.=20
+  <P>In addition, if the multipart/signed object is EVER to be =
+transferred over=20
+  the standard Internet SMTP infrastructure, the resulting MIME body is=20
+  constrained to 7 bits -- that is, the use of material requiring either =
+8bit or=20
+  binary <BR>content-transfer-encoding is NOT allowed. Such 8bit or =
+binary=20
+  material <STRONG>MUST</STRONG> be encoded using either the =
+quoted-printable or=20
+  base64 encodings.=20
+  <P>This requirement exists because it is not generally possible, given =
+the=20
+  current characteristics of Internet SMTP, for a message originator to=20
+  guarantee that a message will travel only along paths capable of =
+carrying 8bit=20
+  or binary material.=20
+  <P></P>
+  <DT>
+  <HR>
+  <EM><A name=3Dpage-5>Page 5</A></EM>
+  <DD>
+  <P>SMTP clients normally have the option of either converting the =
+message to=20
+  eliminate the use of 8bit or binary encoding or returning a =
+nondelivery=20
+  notification to the originator. However, conversion is not viable in =
+the case=20
+  of signed objects since conversion would necessarily invalidate the =
+signature.=20
+  This leaves a nondelivery notification as the only available option, =
+which is=20
+  not acceptable.=20
+  <P>(2) The body part (headers and content) to be digitally signed is =
+prepared=20
+  for signature according to the value of the protocol parameter. The =
+MIME=20
+  headers of the signed body part are included in the signature to =
+protect the=20
+  integrity of the MIME labeling of the data that is signed.=20
+  <P>(3) The prepared body part is made available to the signature =
+creation=20
+  process according to a local convention. The signature creation =
+process must=20
+  make available to a MIME implementation two data streams: the control=20
+  information necessary to verify the signature, which the MIME =
+implementation=20
+  will place in the second body part and label according to the value of =
+the=20
+  protocol parameter, and the digitally signed body part, which the MIME =
+
+  implementation will use as the first body part.=20
+  <P>When receiving a multipart/signed body part, the following sequence =
+of=20
+  steps describes the processing necessary to verify the signature or=20
+  signatures. It must be emphasized that these steps are descriptive, =
+not=20
+  prescriptive, and in no way impose restrictions or requirements on=20
+  implementations of this specification.=20
+  <P>(1) The first body part and the control information in the second =
+body part=20
+  must be prepared for the signature verification process according to =
+the value=20
+  of the protocol parameter.=20
+  <P>(2) The prepared body parts must be made available to the signature =
+
+  verification process according to a local convention. The signature=20
+  verification process must make available to the MIME implementation =
+the result=20
+  of the signature verification and the body part that was digitally =
+signed.=20
+  <P>NOTE: The result of the signature verification is likely to include =
+a=20
+  testament of the success or failure of the verification. Also, in the =
+usual=20
+  case, the body part returned after signature verification will be the =
+same as=20
+  the body part that was received. We do not insist that this be the =
+case to=20
+  allow for protocols that may modify the body part during the signature =
+
+  processing.=20
+  <P></P>
+  <DT>
+  <HR>
+  <EM><A name=3Dpage-6>Page 6</A></EM>
+  <DD>
+  <P>(3) The result of the signature verification process is made =
+available to=20
+  the user and the MIME implementation continues processing with the =
+verified=20
+  body part, i.e., the body part returned by the signature verification =
+process.=20
+
+  <P>The following example is an illustration of a multipart/signed body =
+part.=20
+  It is necessarily incomplete since the control information is defined =
+by the=20
+  security protocol, which must be specified in a separate document.=20
+  <P>Content-Type: multipart/signed; protocol=3D"TYPE/STYPE"; =
+<BR>micalg=3D"MICALG";=20
+  boundary=3D"Signed Boundary"=20
+  <P><PRE>    --Signed Boundary
+    Content-Type: text/plain; charset=3D"us-ascii"
+</PRE>
+  <P>This is some text to be signed although it could be <BR>any type of =
+data,=20
+  labeled accordingly, of course.=20
+  <P><PRE>    --Signed Boundary
+    Content-Type: TYPE/STYPE
+</PRE>
+  <P>CONTROL INFORMATION for protocol "TYPE/STYPE" would be here=20
+  <P><PRE>    --Signed Boundary--
+</PRE>
+  <P></P>
+  <DT><STRONG><A name=3Dsec-2.2>2.2</A> Definition of =
+Multipart/Encrypted</STRONG>
+  <DD>
+  <P>(1) MIME type name: multipart=20
+  <P>(2) MIME subtype name: encrypted=20
+  <P>(3) Required parameters: boundary, protocol=20
+  <P>(4) Optional parameters: none=20
+  <P>(5) Security considerations: none=20
+  <P>The multipart/encrypted content type contains exactly two body =
+parts. The=20
+  first body part contains the control information necessary to decrypt =
+the data=20
+  in the second body part and is labeled according to the value of the =
+protocol=20
+  parameter. The second body part contains the data which was encrypted =
+and is=20
+  always labeled <BR>application/octet-stream.=20
+  <P>The attribute token for the protocol parameter is "protocol", i.e., =
+
+  <P><PRE>    parameter :=3D "protocol" "=3D" value
+</PRE>
+  <P></P>
+  <DT>
+  <HR>
+  <EM><A name=3Dpage-7>Page 7</A></EM>
+  <DD>
+  <P>The value token is comprised of the type and sub-type tokens of the =
+
+  Content-Type: header of the first body part, i.e.,=20
+  <P><PRE>    value :=3D &lt;"&gt; type "/" subtype &lt;"&gt;
+</PRE>
+  <P>where the type and subtype tokens are defined by the MIME [2]=20
+  specification. The semantics of the protocol parameter are defined =
+according=20
+  to its value.=20
+  <P>When creating a multipart/encrypted body part, the following =
+sequence of=20
+  steps describes the processing necessary. It must be emphasized that =
+these=20
+  steps are descriptive, not prescriptive, and in no way impose =
+restrictions or=20
+  requirements on implementations of this specification.=20
+  <P>(1) The contents of the body part to be protected is prepared =
+according to=20
+  a local convention. The contents are then transformed into a MIME body =
+part in=20
+  canonical MIME format, including an appropriate set of MIME headers.=20
+  <P>(2) The body part (headers and content) to be encrypted is prepared =
+for=20
+  encryption according to the value of the protocol parameter. The MIME =
+headers=20
+  of the encrypted body part are included in the encryption to protect =
+from=20
+  disclosure the MIME labeling of the data that is encrypted.=20
+  <P>(3) The prepared body part is made available to the encryption =
+process=20
+  according to a local convention. The encryption process must make =
+available to=20
+  a MIME implementation two data streams: the control information =
+necessary to=20
+  decrypt the body part, which the MIME implementation will place in the =
+first=20
+  body part and label according to the value of the protocol parameter, =
+and the=20
+  encrypted body part, which the MIME implementation will place in the =
+second=20
+  body part and label application/octet-stream. Thus, when used in a=20
+  multipart/encrypted, the application/octet-stream data is comprised of =
+a=20
+  nested MIME body part.=20
+  <P>When receiving a multipart/encrypted body part, the following =
+sequence of=20
+  steps describes the processing necessary to decrypt the enclosed data. =
+It must=20
+  be emphasized that these steps are descriptive, not prescriptive, and =
+in no=20
+  way impose restrictions or requirements on implementations of this=20
+  specification.=20
+  <P>(1) The second body part and the control information in the first =
+body part=20
+  must be prepared for the decryption process according to the value of =
+the=20
+  protocol parameter.=20
+  <P></P>
+  <DT>
+  <HR>
+  <EM><A name=3Dpage-8>Page 8</A></EM>
+  <DD>
+  <P>(2) The prepared body parts must be made available to the =
+decryption=20
+  process according to a local convention. The decryption process must =
+make=20
+  available to the MIME implementation the result of the decryption and =
+the=20
+  decrypted form of the encrypted body part.=20
+  <P>NOTE: The result of the decryption process is likely to include a =
+testament=20
+  of the success or failure of the decryption. Failure may be due to an=20
+  inability to locate the proper decryption key or the proper recipient =
+field,=20
+  etc. Implementors should note that the data, if any, of a failed =
+decryption=20
+  process is pretty much guaranteed to be garbage.=20
+  <P>(3) The result of the decryption process is made available to the =
+user and=20
+  the MIME implementation continues processing with the decrypted body =
+part,=20
+  i.e., the body part returned by the decryption process.=20
+  <P>NOTE: A MIME implementation will not be able to display the =
+received form=20
+  of the second body part because the application of encryption will =
+transform=20
+  the body part. This transformation will not be described in the MIME =
+headers=20
+  (Content-Type: and Content-Transfer-Encoding:) but, rather, will be =
+described=20
+  in the content of the first body part. Therefore, an implementation =
+should=20
+  wait until the encryption has been removed before attempting to =
+display the=20
+  content.=20
+  <P>The following example is an illustration of a multipart/encrypted =
+body=20
+  part. It is necessarily incomplete since the control information is =
+defined by=20
+  the security protocol, which must be specified in a separate document. =
+
+  <P>Content-Type: multipart/encrypted; protocol=3D"TYPE/STYPE";=20
+  boundary=3D"Encrypted Boundary"=20
+  <P><PRE>    --Encrypted Boundary
+    Content-Type: TYPE/STYPE
+</PRE>
+  <P>CONTROL INFORMATION for protocol "TYPE/STYPE" would be here=20
+  <P><PRE>    --Encrypted Boundary
+    Content-Type: application/octet-stream
+</PRE>
+  <P>Content-Type: text/plain; charset=3D"us-ascii"=20
+  <P></P>
+  <DT>
+  <HR>
+  <EM><A name=3Dpage-9>Page 9</A></EM>
+  <DD>
+  <P>All of this indented text, including the indented headers, would be =
+
+  unreadable since it would have been encrypted by the protocol =
+"TYPE/STYPE".=20
+  Also, this encrypted data could be any type of data, labeled =
+accordingly, of=20
+  course.=20
+  <P><PRE>    --Encrypted Boundary--
+</PRE>
+  <P></P>
+  <DT><STRONG><A name=3Dsec-3>3</A> Definition of Control Information =
+Content=20
+  Types</STRONG>
+  <DD>
+  <P>This document defines a framework within which security services =
+may be=20
+  applied to MIME body parts. A minimal MIME implementation will be able =
+to=20
+  recognize multipart/signed and multipart/encrypted body parts and be =
+able to=20
+  identify the protected data and control information body parts within =
+them.=20
+  <P>Complete support for security services requires the MIME agent to =
+recognize=20
+  the value of the protocol parameter and to continue processing based =
+on its=20
+  value. The value of the protocol parameter is the same value used to =
+label the=20
+  content type of the control information.=20
+  <P>The value of the protocol parameter and the resulting processing =
+required=20
+  must be specified in the document defining the security protocol used. =
+That=20
+  document must also precisely specify the contents of the control =
+information=20
+  body part.=20
+  <P></P>
+  <DT><STRONG><A name=3Dsec-4>4</A> Definition of Key Management Content =
+
+  Types</STRONG>
+  <DD>
+  <P>This specification recognizes that the complete specification of a=20
+  MIME-based security protocol must include a mechanism for distributing =
+the=20
+  cryptographic material used in support of the security services. For =
+example,=20
+  a digital signature service implemented with asymmetric cryptography =
+requires=20
+  that a signer's public key be available to the signee.=20
+  <P>One possible mechanism for distributing cryptographic material is =
+to define=20
+  two additional body parts: one for the purpose of requesting =
+cryptographic=20
+  information and one for the purpose of returning the cryptographic =
+information=20
+  requested. The specification of a security protocol may include a =
+definition=20
+  of two such body parts or it may specify an alternate mechanism for =
+the=20
+  distribution of cryptographic material.=20
+  <P></P>
+  <DT>
+  <HR>
+  <EM><A name=3Dpage-10>Page 10</A></EM>
+  <DD>
+  <P></P>
+  <DT><STRONG><A name=3Dsec-5>5</A> Security Considerations</STRONG>
+  <DD>
+  <P>This specification describes an enhancement to MIME to support =
+signed and=20
+  encrypted body parts. In that context this entire document is about =
+security.=20
+  <P></P>
+  <DT><STRONG><A name=3Dsec-6>6</A> Acknowledgements</STRONG>
+  <DD>
+  <P>David H. Crocker suggested the use of a multipart structure for the =
+MIME=20
+  and PEM interaction.=20
+  <P></P>
+  <DT><STRONG><A name=3Dsec-7>7</A> References</STRONG>
+  <DD>
+  <P>[1] Crocker, D., "Standard for the Format of ARPA Internet Text =
+Messages",=20
+  <A =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/stdlist.html#s11">STD=20
+  11</A>, <A =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc0822.html">RFC=20
+  822</A>, University of Delaware, August 1982.=20
+  <P>[2] Borenstein, N., and N. Freed, "MIME (Multipurpose Internet Mail =
+
+  Extension) Part One: Mechanisms for Specifying and Describing the =
+Format of=20
+  Internet Message Bodies", <A=20
+  href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc1521.html">RFC =
+1521</A>,=20
+  Bellcore and Innosoft, September 1993.=20
+  <P></P>
+  <DT>
+  <HR>
+  <EM><A name=3Dpage-11>Page 11</A></EM>
+  <DD>
+  <P></P>
+  <DT><STRONG><A name=3Dsec-8>8</A> Authors' Addresses</STRONG>
+  <DD>
+  <P>Jim Galvin <BR>Trusted Information Systems <BR>3060 Washington Road =
+
+  <BR>Glenwood, MD 21738=20
+  <P>Phone: +1 301 854 6889 <BR>Fax: +1 301 854 5363 <BR>EMail: <A=20
+  href=3D"mailto:galvin@tis.com">galvin@tis.com</A>=20
+  <P>Sandy Murphy <BR>Trusted Information Systems <BR>3060 Washington =
+Road=20
+  <BR>Glenwood, MD 21738=20
+  <P>Phone: +1 301 854 6889 <BR>Fax: +1 301 854 5363 <BR>EMail: <A=20
+  href=3D"mailto:sandy@tis.com">sandy@tis.com</A>=20
+  <P>Steve Crocker <BR>CyberCash, Inc. <BR>2086 Hunters Crest Way =
+<BR>Vienna, VA=20
+  22181=20
+  <P><PRE>   Phone::    +1 703 620 1222
+   Fax:    +1 703 391 2651
+   EMail:  <A =
+href=3D"mailto:crocker@cybercash.com">crocker@cybercash.com</A>
+</PRE>
+  <P>Ned Freed <BR>Innosoft International, Inc. <BR>1050 East Garvey =
+Avenue=20
+  South <BR>West Covina, CA 91790=20
+  <P>Phone: +1 818 919 3600 <BR>Fax: +1 818 919 3614 <BR>EMail: <A=20
+  href=3D"mailto:ned@innosoft.com">ned@innosoft.com</A>=20
+  <P></P>
+  <DT>
+  <HR>
+
+  <DD></DD></DL></BODY></HTML>

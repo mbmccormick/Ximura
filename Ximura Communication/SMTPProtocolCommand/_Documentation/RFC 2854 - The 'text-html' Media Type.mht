@@ -1,0 +1,347 @@
+From: <Saved by Microsoft Internet Explorer 5>
+Subject: RFC 2854 (rfc2854) - The 'text/html' Media Type
+Date: Thu, 21 Aug 2003 15:37:12 +0800
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	boundary="----=_NextPart_000_000A_01C367FA.17123520";
+	type="text/html"
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2800.1165
+
+This is a multi-part message in MIME format.
+
+------=_NextPart_000_000A_01C367FA.17123520
+Content-Type: text/html;
+	charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://www.faqs.org/rfcs/rfc2854.html
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>RFC 2854 (rfc2854) - The 'text/html' Media =
+Type</TITLE>
+<META http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dwindows-1252">
+<META content=3D"RFC 2854 - The 'text/html' Media Type" =
+name=3Ddescription>
+<META content=3D"RFC2070, RFC1980, RFC1942, RFC1867, RFC1866" =
+name=3Dobsoletes>
+<SCRIPT language=3DJavaScript1.2>=0A=
+function erfc(s)=0A=
+{document.write("<A href=3D\"/rfccomment.php?rfcnum=3D"+s+"\" =
+target=3D\"_blank\" =
+onclick=3D\"window.open('/rfccomment.php?rfcnum=3D"+s+"','Popup','toolbar=
+=3Dno,location=3Dno,status=3Dno,menubar=3Dno,scrollbars=3Dyes,resizable=3D=
+yes,width=3D680,height=3D530,left=3D30,top=3D43'); return =
+false;\")>Comment on RFC "+s+"</A>\n");}=0A=
+//-->=0A=
+</SCRIPT>
+
+<META content=3D"MSHTML 6.00.2800.1170" name=3DGENERATOR></HEAD>
+<BODY text=3D#000000 bgColor=3D#ffffff>
+<P align=3Dcenter><STRONG><FONT size=3D-1>Internet RFC/STD/FYI/BCP=20
+Archives</FONT></STRONG></P>
+<P align=3Dcenter><IMG height=3D62 alt=3D""=20
+src=3D"http://www.faqs.org/images/library.jpg" width=3D150 =
+align=3Dmiddle=20
+border=3D0></P>
+<H1 align=3Dcenter>RFC 2854 (RFC2854)</H1>
+<DIV align=3Dcenter>[ <A href=3D"http://www.faqs.org/rfcs/">RFC =
+Index</A> | <A=20
+href=3D"http://www.faqs.org/rfcs/rfcsearch.html">RFC Search</A> | <A=20
+href=3D"http://www.faqs.org/faqs/">Usenet FAQs</A> | <A=20
+href=3D"http://www.faqs.org/contrib/">Web FAQs</A> | <A=20
+href=3D"http://www.faqs.org/docs/">Documents</A> ]=20
+<P><STRONG>Alternate Formats:</STRONG> <A=20
+href=3D"http://www.faqs.org/ftp/rfc/rfc2854.txt">rfc2854.txt</A> | <A=20
+href=3D"http://www.faqs.org/ftp/rfc/pdf/rfc2854.txt.pdf">rfc2854.txt.pdf<=
+/A></P></DIV>
+<P align=3Dcenter>
+<SCRIPT language=3DJavaScript><!--=0A=
+erfc("2854");=0A=
+// --></SCRIPT>
+</P>
+<HR noShade SIZE=3D2>
+<PRE>
+Network Working Group                                        D. Connolly
+Request for Comments: 2854               World Wide Web Consortium (W3C)
+Obsoletes: 2070, 1980, 1942, 1867, 1866                      L. Masinter
+Category: Informational                                             =
+AT&amp;T
+                                                               June 2000
+
+                       The 'text/html' Media Type
+
+Status of this Memo
+
+   This memo provides information for the Internet community.  It does
+   not specify an Internet standard of any kind.  Distribution of this
+   memo is unlimited.
+
+Copyright Notice
+
+   Copyright (C) The Internet Society (2000).  All Rights Reserved.
+
+Abstract
+
+   This document summarizes the history of HTML development, and defines
+   the "text/html" MIME type by pointing to the relevant W3C
+   recommendations; it is intended to obsolete the previous IETF
+   documents defining HTML, including <A =
+href=3D"http://www.faqs.org/rfcs/rfc1866.html">RFC 1866</A>, <A =
+href=3D"http://www.faqs.org/rfcs/rfc1867.html">RFC 1867</A>, <A =
+href=3D"http://www.faqs.org/rfcs/rfc1980.html">RFC 1980</A>, RFC
+   1942 and <A href=3D"http://www.faqs.org/rfcs/rfc2070.html">RFC =
+2070</A>, and to remove HTML from IETF Standards Track.
+
+   This document was prepared at the request of the W3C HTML working
+   group. Please send comments to <A =
+href=3D"mailto:www-html@w3.org">www-html@w3.org</A>, a public mailing =
+list
+   with archive at &lt;<A =
+href=3D"http://lists.w3.org/Archives/Public/www-html/">http://lists.w3.or=
+g/Archives/Public/www-html/</A>&gt;.
+
+1. Introduction and background
+
+   HTML has been in use in the World Wide Web information infrastructure
+   since 1990, and specified in various informal documents.  The
+   text/html media type was first officially defined by the IETF HTML
+   working group in 1995 in [HTML20]. Extensions to HTML were proposed
+   in [HTML30], [UPLOAD], [TABLES], [CLIMAPS], and [I18N].
+
+   The IETF HTML working group closed Sep 1996, and work on defining
+   HTML moved to the World Wide Web Consortium (W3C). The proposed
+   extensions were incorporated to some extent in [HTML32], and to a
+   larger extent in [HTML40]. The definition of multipart/form-data from
+   [UPLOAD] was described in [FORMDATA]. In addition, a reformulation of
+   HTML 4.0 in XML 1.0[XHTML1] was developed.
+
+   [HTML32] notes "This specification defines HTML version 3.2. HTML 3.2
+   aims to capture recommended practice as of early '96 and as such to
+   be used as a replacement for HTML 2.0 (<A =
+href=3D"http://www.faqs.org/rfcs/rfc1866.html">RFC 1866</A>)."  =
+Subsequent
+   specifications for HTML describe the differences in each version.
+
+   In addition to the development of standards, a wide variety of
+   additional extensions, restrictions, and modifications to HTML were
+   popularized by NCSA's Mosaic system and subsequently by the
+   competitive implementations of Netscape Navigator and Microsoft
+   Internet Explorer; these extensions are documented in numerous books
+   and online guides.
+
+2. Registration of MIME media type text/html
+
+   MIME media type name:      text
+   MIME subtype name:         html
+   Required parameters:       none
+   Optional parameters:
+
+      charset
+         The optional parameter "charset" refers to the character
+         encoding used to represent the HTML document as a sequence of
+         bytes. Any registered IANA charset may be used, but UTF-8 is
+         preferred.  Although this parameter is optional, it is strongly
+         recommended that it always be present. See Section 6 below for
+         a discussion of charset default rules.
+
+      Note that [HTML20] included an optional "level" parameter; in
+      practice, this parameter was never used and has been removed from
+      this specification.  [HTML30] also suggested a "version"
+      parameter; in practice, this parameter also was never used and has
+      been removed from this specification.
+
+   Encoding considerations:
+      See Section 4 of this document.
+
+   Security considerations:
+      See Section 7 of this document.
+
+   Interoperability considerations:
+      HTML is designed to be interoperable across the widest possible
+      range of platforms and devices of varying capabilities.  However,
+      there are contexts (platforms of limited display capability, for
+      example) where not all of the capabilities of the full HTML
+      definition are feasible. There is ongoing work to develop both a
+      modularization of HTML and a set of profiling capabilities to
+      identify and negotiate restricted (and extended) capabilities.
+
+      Due to the long and distributed development of HTML, current
+      practice on the Internet includes a wide variety of HTML variants.
+      Implementors of text/html interpreters must be prepared to be
+      "bug-compatible" with popular browsers in order to work with many
+      HTML documents available the Internet.
+
+      Typically, different versions are distinguishable by the DOCTYPE
+      declaration contained within them, although the DOCTYPE
+      declaration itself is sometimes omitted or incorrect.
+
+   Published specification:
+      The text/html media type is now defined by W3C Recommendations;
+      the latest published version is [HTML401].  In addition, [XHTML1]
+      defines a profile of use of XHTML which is compatible with HTML
+      4.01 and which may also be labeled as text/html.
+
+   Applications which use this media type:
+      The first and most common application of HTML is the World Wide
+      Web; commonly, HTML documents contain URI references [URI] to
+      other documents and media to be retrieved using the HTTP protocol
+      [HTTP]. Many gateway applications provide HTML-based interfaces to
+      other underlying complex services. Numerous other applications now
+      also use HTML as a convenient platform-independent multimedia
+      document representation.
+
+   Additional information:
+
+      Magic number:
+         There is no single initial string that is always present for
+         HTML files. However, Section 5 below gives some guidelines for
+         recognizing HTML files.
+
+      File extension:
+         The file extensions 'html' or 'htm' are commonly used, but
+         other extensions denoting file formats for preprocessing are
+         also common.
+
+      Macintosh File Type code: TEXT
+
+   Person &amp; email address to contact for further information:
+      Dan Connolly &lt;<A =
+href=3D"mailto:connolly@w3.org">connolly@w3.org</A>&gt;
+      Larry Masinter &lt;<A =
+href=3D"mailto:lmm@acm.org">lmm@acm.org</A>&gt;
+
+   Intended usage: COMMON
+
+   Author/Change controller:
+      The HTML specification is a work product of the World Wide Web
+      Consortium's HTML Working Group.  The W3C has change control over
+      the HTML specification.
+
+   Further information:
+      HTML has a means of including, by reference via URI, additional
+      resources (image, video clip, applet) within the base document. In
+      order to transfer a complete HTML object and the included
+      resources in a single MIME object, the mechanisms of [MHTML] may
+      be used.
+
+3. Fragment Identifiers
+
+   The URI specification [URI] notes that the semantics of a fragment
+   identifier (part of a URI after a "#") is a property of the data
+   resulting from a retrieval action, and that the format and
+   interpretation of fragment identifiers is dependent on the media type
+   of the retrieval result.
+
+   For documents labeled as text/html, the fragment identifier
+   designates the correspondingly named element; any element may be
+   named with the "id" attribute, and A, APPLET, FRAME, IFRAME, IMG and
+   MAP elements may be named with a "name" attribute.  This is described
+   in detail in [HTML40] section 12.
+
+4. Encoding considerations
+
+   Because of the availability within HTML itself for using character
+   entity references, documents that use a wide repertoire of characters
+   may still be represented using the US-ASCII charset and transported
+   without encoding.  However, transport of text/html using a charset
+   other than US-ASCII may require base64 or quoted-printable encoding
+   for 7-bit channels.
+
+   As with all MIME text subtypes, the canonical</PRE></BODY></HTML>
+
+------=_NextPart_000_000A_01C367FA.17123520
+Content-Type: image/jpeg
+Content-Transfer-Encoding: base64
+Content-Location: http://www.faqs.org/images/library.jpg
+
+/9j/4AAQSkZJRgABAgEASABIAAD/7QE0UGhvdG9zaG9wIDMuMAA4QklNA+0AAAAAABAASAAAAAEA
+AQBIAAAAAQABOEJJTQPzAAAAAAAIAAAAAAAAAAA4QklNJxAAAAAAAAoAAQAAAAAAAAACOEJJTQP1
+AAAAAABIAC9mZgABAGxmZgAGAAAAAAABAC9mZgABAKGZmgAGAAAAAAABADIAAAABAFoAAAAGAAAA
+AAABADUAAAABAC0AAAAGAAAAAAABOEJJTQP4AAAAAABwAAD/////////////////////////////
+A+gAAAAA/////////////////////////////wPoAAAAAP////////////////////////////8D
+6AAAAAD/////////////////////////////A+gAADhCSU0EBgAAAAAAAgAE/+4ADkFkb2JlAGQA
+AAAAAf/bAIQABgQEBAUEBgUFBgkGBQYJCwgGBggLDAoKCwoKDBAMDAwMDAwQDAwMDAwMDAwMDAwM
+DAwMDAwMDAwMDAwMDAwMDAEHBwcNDA0YEBAYFA4ODhQUDg4ODhQRDAwMDAwREQwMDAwMDBEMDAwM
+DAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwM/8AAEQgAPgCWAwERAAIRAQMRAf/EAaIAAAAHAQEBAQEA
+AAAAAAAAAAQFAwIGAQAHCAkKCwEAAgIDAQEBAQEAAAAAAAAAAQACAwQFBgcICQoLEAACAQMDAgQC
+BgcDBAIGAnMBAgMRBAAFIRIxQVEGE2EicYEUMpGhBxWxQiPBUtHhMxZi8CRygvElQzRTkqKyY3PC
+NUQnk6OzNhdUZHTD0uIIJoMJChgZhJRFRqS0VtNVKBry4/PE1OT0ZXWFlaW1xdXl9WZ2hpamtsbW
+5vY3R1dnd4eXp7fH1+f3OEhYaHiImKi4yNjo+Ck5SVlpeYmZqbnJ2en5KjpKWmp6ipqqusra6voR
+AAICAQIDBQUEBQYECAMDbQEAAhEDBCESMUEFURNhIgZxgZEyobHwFMHR4SNCFVJicvEzJDRDghaS
+UyWiY7LCB3PSNeJEgxdUkwgJChgZJjZFGidkdFU38qOzwygp0+PzhJSktMTU5PRldYWVpbXF1eX1
+RlZmdoaWprbG1ub2R1dnd4eXp7fH1+f3OEhYaHiImKi4yNjo+DlJWWl5iZmpucnZ6fkqOkpaanqK
+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
+
+------=_NextPart_000_000A_01C367FA.17123520--

@@ -1,0 +1,1107 @@
+From: <Saved by Microsoft Internet Explorer 5>
+Subject: (MIME) Part Three: Message Header Extensions for Non-ASCII Text
+Date: Fri, 5 Apr 2002 12:29:02 +0800
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	boundary="----=_NextPart_000_0000_01C1DC9D.77D99950";
+	type="text/html"
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2600.0000
+
+This is a multi-part message in MIME format.
+
+------=_NextPart_000_0000_01C1DC9D.77D99950
+Content-Type: text/html;
+	charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://www.nacs.uci.edu/indiv/ehood/MIME/2047/rfc2047.html
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>(MIME) Part Three: Message Header Extensions for =
+Non-ASCII Text</TITLE>
+<META http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dwindows-1252">
+<META content=3D"MSHTML 6.00.2600.0" name=3DGENERATOR></HEAD>
+<BODY background=3Dhttp://www.oac.uci.edu/indiv/ehood/bg/cemstone.gif>
+<TABLE width=3D"100%" border=3D0>
+  <TBODY>
+  <TR>
+    <TD align=3Dleft>
+      <ADDRESS>Network Working Group<BR>Request for Comments: =
+2047<BR>Obsoletes:=20
+      1521, 1522, 1590<BR>Category: Standards Track<BR></ADDRESS></TD>
+    <TD align=3Dright>
+      <ADDRESS>K. Moore<BR>University of Tennessee<BR>November=20
+      1996<BR><BR></ADDRESS></TD></TR></TBODY></TABLE>
+<HR>
+
+<H1 align=3Dcenter>Multipurpose Internet Mail Extensions</H1>
+<H4 align=3Dcenter>(MIME) Part Three:<BR>Message Header Extensions for =
+Non-ASCII=20
+Text</H4>
+<HR>
+
+<H2><A name=3Dstatus>Status of this Memo</A> </H2>
+<P>This document specifies an Internet standards track protocol for the =
+Internet=20
+community, and requests discussion and suggestions for improvements. =
+Please=20
+refer to the current edition of the "Internet Official Protocol =
+Standards" (STD=20
+1) for the standardization state and status of this protocol. =
+Distribution of=20
+this memo is unlimited. </P>
+<H2><A name=3Dabstract>Abstract</A> </H2>
+<P>STD 11, <A href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC =
+822</A>, defines=20
+a message representation protocol specifying considerable detail about =
+US-ASCII=20
+message headers, and leaves the message content, or message body, as =
+flat=20
+US-ASCII text. This set of documents, collectively called the =
+Multipurpose=20
+Internet Mail Extensions, or MIME, redefines the format of messages to =
+allow for=20
+</P>
+<OL>
+  <LI>
+  <P>textual message bodies in character sets other than US-ASCII, </P>
+  <LI>
+  <P>an extensible set of different formats for non-textual message =
+bodies, </P>
+  <LI>
+  <P>multi-part message bodies, and </P>
+  <LI>
+  <P>textual header information in character sets other than US-ASCII.=20
+</P></LI></OL>
+<P>These documents are based on earlier work documented in <A=20
+href=3D"http://ds.internic.net/rfc/rfc934.txt">RFC 934</A>, STD 11, and =
+<A=20
+href=3D"http://ds.internic.net/rfc/rfc1049.txt">RFC 1049</A>, but =
+extends and=20
+revises them. Because <A =
+href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC=20
+822</A> said so little about message bodies, these documents are largely =
+
+orthogonal to (rather than a revision of) <A=20
+href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC 822</A>. </P>
+<P>This particular document is the third document in the series. It =
+describes=20
+extensions to <A href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC =
+822</A> to=20
+allow non-US-ASCII text data in Internet mail header fields. </P>
+<P>Other documents in this series include: </P>
+<UL>
+  <LI>
+  <P><A =
+href=3D"http://www.nacs.uci.edu/indiv/ehood/MIME/2045/rfc2045.html">RFC=20
+  2045</A>, which specifies the various headers used to describe the =
+structure=20
+  of MIME messages. </P>
+  <LI>
+  <P><A =
+href=3D"http://www.nacs.uci.edu/indiv/ehood/MIME/2046/rfc2046.html">RFC=20
+  2046</A>, which defines the general structure of the MIME media typing =
+system=20
+  and defines an initial set of media types, </P>
+  <LI>
+  <P><A =
+href=3D"http://www.nacs.uci.edu/indiv/ehood/MIME/2048/rfc2048.html">RFC=20
+  2048</A>, which specifies various IANA registration procedures for=20
+  MIME-related facilities, and </P>
+  <LI>
+  <P><A =
+href=3D"http://www.nacs.uci.edu/indiv/ehood/MIME/2049/rfc2049.html">RFC=20
+  2049</A>, which describes MIME conformance criteria and provides some=20
+  illustrative examples of MIME message formats, acknowledgements, and =
+the=20
+  bibliography. </P></LI></UL>
+<P>These documents are revisions of RFCs 1521, 1522, and 1590, which =
+themselves=20
+were revisions of RFCs 1341 and 1342. An appendix in RFC 2049 describes=20
+differences and changes from previous versions. </P>
+<H2><A name=3D1>1. Introduction </A></H2>
+<P><A =
+href=3D"http://www.nacs.uci.edu/indiv/ehood/MIME/2045/rfc2045.html">RFC=20
+2045</A> describes a mechanism for denoting textual body parts which are =
+coded=20
+in various character sets, as well as methods for encoding such body =
+parts as=20
+sequences of printable US-ASCII characters. This memo describes similar=20
+techniques to allow the encoding of non-ASCII text in various portions =
+of a <A=20
+href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC 822</A> [2] message =
+header, in=20
+a manner which is unlikely to confuse existing message handling =
+software. </P>
+<P>Like the encoding techniques described in <A=20
+href=3D"http://www.nacs.uci.edu/indiv/ehood/MIME/2045/rfc2045.html">RFC =
+2045</A>,=20
+the techniques outlined here were designed to allow the use of non-ASCII =
+
+characters in message headers in a way which is unlikely to be disturbed =
+by the=20
+quirks of existing Internet mail handling programs. In particular, some =
+mail=20
+relaying programs are known to (a) delete some message header fields =
+while=20
+retaining others, (b) rearrange the order of addresses in To or Cc =
+fields, (c)=20
+rearrange the (vertical) order of header fields, and/or (d) "wrap" =
+message=20
+headers at different places than those in the original message. In =
+addition,=20
+some mail reading programs are known to have difficulty correctly =
+parsing=20
+message headers which, while legal according to <A=20
+href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC 822</A>, make use of=20
+backslash-quoting to "hide" special characters such as "&lt;", ",", or =
+":", or=20
+which exploit other infrequently-used features of that specification. =
+</P>
+<P>While it is unfortunate that these programs do not correctly =
+interpret <A=20
+href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC 822</A> headers, to =
+"break"=20
+these programs would cause severe operational problems for the Internet =
+mail=20
+system. The extensions described in this memo therefore do not rely on=20
+little-used features of <A =
+href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC=20
+822</A>. </P>
+<P>Instead, certain sequences of "ordinary" printable ASCII characters =
+(known as=20
+"encoded-words") are reserved for use as encoded data. The syntax of=20
+encoded-words is such that they are unlikely to "accidentally" appear as =
+normal=20
+text in message headers. Furthermore, the characters used in =
+encoded-words are=20
+restricted to those which do not have special meanings in the context in =
+which=20
+the encoded-word appears. </P>
+<P>Generally, an "encoded-word" is a sequence of printable ASCII =
+characters that=20
+begins with "=3D?", ends with "?=3D", and has two "?"s in between. It =
+specifies a=20
+character set and an encoding method, and also includes the original =
+text=20
+encoded as graphic ASCII characters, according to the rules for that =
+encoding=20
+method. </P>
+<P>A mail composer that implements this specification will provide a =
+means of=20
+inputting non-ASCII text in header fields, but will translate these =
+fields (or=20
+appropriate portions of these fields) into encoded-words before =
+inserting them=20
+into the message header. </P>
+<P>A mail reader that implements this specification will recognize =
+encoded-words=20
+when they appear in certain portions of the message header. Instead of=20
+displaying the encoded-word "as is", it will reverse the encoding and =
+display=20
+the original text in the designated character set. </P>
+<H4>NOTES </H4>
+<P>This memo relies heavily on notation and terms defined <A=20
+href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC 822</A> and <A=20
+href=3D"http://www.nacs.uci.edu/indiv/ehood/MIME/2045/rfc2045.html">RFC =
+2045</A>.=20
+In particular, the syntax for the ABNF used in this memo is defined in =
+<A=20
+href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC 822</A>, as well as =
+many of the=20
+terminal or nonterminal symbols from <A=20
+href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC 822</A> are used in =
+the grammar=20
+for the header extensions defined here. Among the symbols defined in <A=20
+href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC 822</A> and =
+referenced in this=20
+memo are: 'addr-spec', 'atom', 'CHAR', 'comment', 'CTLs', 'ctext',=20
+'linear-white-space', 'phrase', 'quoted-pair'. 'quoted-string', 'SPACE', =
+and=20
+'word'. Successful implementation of this protocol extension requires =
+careful=20
+attention to the <A href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC =
+822</A>=20
+definitions of these terms. </P>
+<P>When the term "ASCII" appears in this memo, it refers to the "7-Bit =
+American=20
+Standard Code for Information Interchange", ANSI X3.4-1986. The MIME =
+charset=20
+name for this character set is "US-ASCII". When not specifically =
+referring to=20
+the MIME charset name, this document uses the term "ASCII", both for =
+brevity and=20
+for consistency with <A =
+href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC=20
+822</A>. However, implementors are warned that the character set name =
+must be=20
+spelled "US-ASCII" in MIME message and body part headers. </P>
+<P>This memo specifies a protocol for the representation of non-ASCII =
+text in=20
+message headers. It specifically DOES NOT define any translation between =
+"8-bit=20
+headers" and pure ASCII headers, nor is any such translation assumed to =
+be=20
+possible. </P>
+<H2><A name=3D2>2. Syntax of encoded-words </A></H2>
+<P>An 'encoded-word' is defined by the following ABNF grammar. The =
+notation of=20
+<A href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC 822</A> is used, =
+with the=20
+exception that white space characters MUST NOT appear between components =
+of an=20
+'encoded-word'. </P><PRE>  encoded-word =3D "=3D?" charset "?" encoding =
+"?" encoded-text "?=3D"
+
+  charset =3D token    ; see section 3
+
+  encoding =3D token   ; see section 4
+
+  token =3D 1*&lt;Any CHAR except SPACE, CTLs, and especials&gt;
+
+  especials =3D "(" / ")" / "&lt;" / "&gt;" / "@" / "," / ";" / ":" / "
+              &lt;"&gt; / "/" / "[" / "]" / "?" / "." / "=3D"
+
+  encoded-text =3D 1*&lt;Any printable ASCII character other than "?"
+                    or SPACE&gt;
+                 ; (but see "Use of encoded-words in message
+                 ; headers", section 5)
+
+</PRE>
+<P>Both 'encoding' and 'charset' names are case-independent. Thus the =
+charset=20
+name "ISO-8859-1" is equivalent to "iso-8859-1", and the encoding named =
+"Q" may=20
+be spelled either "Q" or "q". </P>
+<P>An 'encoded-word' may not be more than 75 characters long, including=20
+'charset', 'encoding', 'encoded-text', and delimiters. If it is =
+desirable to=20
+encode more text than will fit in an 'encoded-word' of 75 characters, =
+multiple=20
+'encoded-word's (separated by CRLF SPACE) may be used. </P>
+<P>While there is no limit to the length of a multiple-line header =
+field, each=20
+line of a header field that contains one or more 'encoded-word's is =
+limited to=20
+76 characters. </P>
+<P>The length restrictions are included both to ease interoperability =
+through=20
+internetwork mail gateways, and to impose a limit on the amount of =
+lookahead a=20
+header parser must employ (while looking for a final ?=3D delimiter) =
+before it can=20
+decide whether a token is an "encoded-word" or something else. </P>
+<P><STRONG>IMPORTANT</STRONG>: 'encoded-word's are designed to be =
+recognized as=20
+'atom's by an <A href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC =
+822</A>=20
+parser. As a consequence, unencoded white space characters (such as =
+SPACE and=20
+HTAB) are FORBIDDEN within an 'encoded-word'. For example, the character =
+
+sequence </P><PRE>  =3D?iso-8859-1?q?this is some text?=3D
+
+</PRE>
+<P>would be parsed as four 'atom's, rather than as a single 'atom' (by =
+an <A=20
+href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC 822</A> parser) or=20
+'encoded-word' (by a parser which understands 'encoded-words'). The =
+correct way=20
+to encode the string "this is some text" is to encode the SPACE =
+characters as=20
+well, e.g. </P><PRE>  =3D?iso-8859-1?q?this=3D20is=3D20some=3D20text?=3D
+
+</PRE>
+<P>The characters which may appear in 'encoded-text' are further =
+restricted by=20
+the rules in section 5. </P>
+<H2><A name=3D3>3. Character sets </A></H2>
+<P>The 'charset' portion of an 'encoded-word' specifies the character =
+set=20
+associated with the unencoded text. A 'charset' can be any of the =
+character set=20
+names allowed in an MIME "charset" parameter of a "text/plain" body =
+part, or any=20
+character set name registered with IANA for use with the MIME text/plain =
+
+content-type. </P>
+<P>Some character sets use code-switching techniques to switch between =
+"ASCII=20
+mode" and other modes. If unencoded text in an 'encoded-word' contains a =
+
+sequence which causes the charset interpreter to switch out of ASCII =
+mode, it=20
+MUST contain additional control codes such that ASCII mode is again =
+selected at=20
+the end of the 'encoded-word'. (This rule applies separately to each=20
+'encoded-word', including adjacent 'encoded-word's within a single =
+header=20
+field.) </P>
+<P>When there is a possibility of using more than one character set to =
+represent=20
+the text in an 'encoded-word', and in the absence of private agreements =
+between=20
+sender and recipients of a message, it is recommended that members of =
+the=20
+ISO-8859-* series be used in preference to other character sets. </P>
+<H2><A name=3D4>4. Encodings </A></H2>
+<P>Initially, the legal values for "encoding" are "Q" and "B". These =
+encodings=20
+are described below. The "Q" encoding is recommended for use when most =
+of the=20
+characters to be encoded are in the ASCII character set; otherwise, the =
+"B"=20
+encoding should be used. Nevertheless, a mail reader which claims to =
+recognize=20
+'encoded-word's MUST be able to accept either encoding for any character =
+set=20
+which it supports. </P>
+<P>Only a subset of the printable ASCII characters may be used in=20
+'encoded-text'. Space and tab characters are not allowed, so that the =
+beginning=20
+and end of an 'encoded-word' are obvious. The "?" character is used =
+within an=20
+'encoded-word' to separate the various portions of the 'encoded-word' =
+from one=20
+another, and thus cannot appear in the 'encoded-text' portion. Other =
+characters=20
+are also illegal in certain contexts. For example, an 'encoded-word' in =
+a=20
+'phrase' preceding an address in a From header field may not contain any =
+of the=20
+"specials" defined in <A =
+href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC=20
+822</A>. Finally, certain other characters are disallowed in some =
+contexts, to=20
+ensure reliability for messages that pass through internetwork mail =
+gateways.=20
+</P>
+<P>The "B" encoding automatically meets these requirements. The "Q" =
+encoding=20
+allows a wide range of printable characters to be used in non-critical =
+locations=20
+in the message header (e.g., Subject), with fewer characters available =
+for use=20
+in other locations. </P>
+<H3><A name=3D4.1>4.1. The "B" encoding </A></H3>
+<P>The "B" encoding is identical to the "BASE64" encoding defined by RFC =
+2045.=20
+</P>
+<H3><A name=3D4.2>4.2. The "Q" encoding </A></H3>
+<P>The "Q" encoding is similar to the "Quoted-Printable"=20
+content-transfer-encoding defined in <A=20
+href=3D"http://www.nacs.uci.edu/indiv/ehood/MIME/2045/rfc2045.html">RFC =
+2045</A>.=20
+It is designed to allow text containing mostly ASCII characters to be=20
+decipherable on an ASCII terminal without decoding. </P>
+<OL>
+  <LI>
+  <P>Any 8-bit value may be represented by a "=3D" followed by two =
+hexadecimal=20
+  digits. For example, if the character set in use were ISO-8859-1, the =
+"=3D"=20
+  character would thus be encoded as "=3D3D", and a SPACE by "=3D20". =
+(Upper case=20
+  should be used for hexadecimal digits "A" through "F".) </P>
+  <LI>
+  <P>The 8-bit hexadecimal value 20 (e.g., ISO-8859-1 SPACE) may be =
+represented=20
+  as "_" (underscore, ASCII 95.). (This character may not pass through =
+some=20
+  internetwork mail gateways, but its use will greatly enhance =
+readability of=20
+  "Q" encoded data with mail readers that do not support this encoding.) =
+Note=20
+  that the "_" always represents hexadecimal 20, even if the SPACE =
+character=20
+  occupies a different code position in the character set in use. </P>
+  <LI>
+  <P>8-bit values which correspond to printable ASCII characters other =
+than "=3D",=20
+  "?", and "_" (underscore), MAY be represented as those characters. =
+(But see=20
+  section 5 for restrictions.) In particular, SPACE and TAB MUST NOT be=20
+  represented as themselves within encoded words. </P></LI></OL>
+<H2><A name=3D5>5. Use of encoded-words in message headers </A></H2>
+<P>An 'encoded-word' may appear in a message header or body part header=20
+according to the following rules: </P>
+<OL>
+  <LI>
+  <P>An 'encoded-word' may replace a 'text' token (as defined by <A=20
+  href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC 822</A>) in any =
+Subject or=20
+  Comments header field, any extension message header field, or any MIME =
+body=20
+  part field for which the field body is defined as '*text'. An =
+'encoded-word'=20
+  may also appear in any user-defined ("X-") message or body part header =
+field.=20
+  </P>
+  <P>Ordinary ASCII text and 'encoded-word's may appear together in the =
+same=20
+  header field. However, an 'encoded-word' that appears in a header =
+field=20
+  defined as '*text' MUST be separated from any adjacent 'encoded-word' =
+or=20
+  'text' by 'linear-white-space'. </P>
+  <LI>
+  <P>An 'encoded-word' may appear within a 'comment' delimited by "(" =
+and ")",=20
+  i.e., wherever a 'ctext' is allowed. More precisely, the RFC 822 ABNF=20
+  definition for 'comment' is amended as follows: </P><PRE>  comment =3D =
+"(" *(ctext / quoted-pair / comment / encoded-word) ")"
+
+</PRE>contain the characters "(", ")" or " 'encoded-word' that appears =
+in a=20
+  'comment' MUST be separated from any adjacent 'encoded-word' or =
+'ctext' by=20
+  'linear-white-space'.=20
+  <P></P>
+  <P>It is important to note that 'comment's are only recognized inside=20
+  "structured" field bodies. In fields whose bodies are defined as =
+'*text', "("=20
+  and ")" are treated as ordinary characters rather than comment =
+delimiters, and=20
+  rule (1) of this section applies. (See RFC 822, sections 3.1.2 and =
+3.1.3) </P>
+  <LI>
+  <P>As a replacement for a 'word' entity within a 'phrase', for =
+example, one=20
+  that precedes an address in a From, To, or Cc header. The ABNF =
+definition for=20
+  'phrase' from <A href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC =
+822</A> thus=20
+  becomes: </P><PRE>  phrase =3D 1*( encoded-word / word )
+
+</PRE>'encoded-word' is restricted to: &lt;upper and lower case ASCII =
+letters,=20
+  decimal digits, "!", "*", "+", "-", "/", "=3D", and "_" (underscore, =
+ASCII=20
+  95.)&gt;. An 'encoded-word' that appears within a 'phrase' MUST be =
+separated=20
+  from any adjacent 'word', 'text' or 'special' by 'linear-white-space'. =
+
+  <P></P></LI></OL>
+<P>These are the ONLY locations where an 'encoded-word' may appear. In=20
+particular: </P>
+<UL>
+  <LI>
+  <P>An 'encoded-word' MUST NOT appear in any portion of an 'addr-spec'. =
+</P>
+  <LI>
+  <P>An 'encoded-word' MUST NOT appear within a 'quoted-string'. </P>
+  <LI>
+  <P>An 'encoded-word' MUST NOT be used in a Received header field. </P>
+  <LI>
+  <P>An 'encoded-word' MUST NOT be used in parameter of a MIME =
+Content-Type or=20
+  Content-Disposition field, or in any structured field body except =
+within a=20
+  'comment' or 'phrase'. </P></LI></UL>
+<P>The 'encoded-text' in an 'encoded-word' must be self-contained;=20
+'encoded-text' MUST NOT be continued from one 'encoded-word' to another. =
+This=20
+implies that the 'encoded-text' portion of a "B" 'encoded-word' will be =
+a=20
+multiple of 4 characters long; for a "Q" 'encoded-word', any "=3D" =
+character that=20
+appears in the 'encoded-text' portion will be followed by two =
+hexadecimal=20
+characters. </P>
+<P>Each 'encoded-word' MUST encode an integral number of octets. The=20
+'encoded-text' in each 'encoded-word' must be well-formed according to =
+the=20
+encoding specified; the 'encoded-text' may not be continued in the next=20
+'encoded-word'. (For example, "=3D?charset?Q?=3D?=3D =
+=3D?charset?Q?AB?=3D" would be=20
+illegal, because the two hex digits "AB" must follow the "=3D" in the =
+same=20
+'encoded-word'.) </P>
+<P>Each 'encoded-word' MUST represent an integral number of characters. =
+A=20
+multi-octet character may not be split across adjacent 'encoded-word's. =
+</P>
+<P>Only printable and white space character data should be encoded using =
+this=20
+scheme. However, since these encoding schemes allow the encoding of =
+arbitrary=20
+octet values, mail readers that implement this decoding should also =
+ensure that=20
+display of the decoded data on the recipient's terminal will not cause =
+unwanted=20
+side-effects. </P>
+<P>Use of these methods to encode non-textual data (e.g., pictures or =
+sounds) is=20
+not defined by this memo. Use of 'encoded-word's to represent strings of =
+purely=20
+ASCII characters is allowed, but discouraged. In rare cases it may be =
+necessary=20
+to encode ordinary text that looks like an 'encoded-word'. </P>
+<H2><A name=3D6>6. Support of 'encoded-word's by mail readers </A></H2>
+<H3><A name=3D6.1>6.1. Recognition of 'encoded-word's in message headers =
+</A></H3>
+<P>A mail reader must parse the message and body part headers according =
+to the=20
+rules in <A href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC 822</A> =
+to=20
+correctly recognize 'encoded-word's. </P>
+<P>'encoded-word's are to be recognized as follows: </P>
+<OL>
+  <LI>
+  <P>Any message or body part header field defined as '*text', or any=20
+  user-defined header field, should be parsed as follows: Beginning at =
+the start=20
+  of the field-body and immediately following each occurrence of=20
+  'linear-white-space', each sequence of up to 75 printable characters =
+(not=20
+  containing any 'linear-white-space') should be examined to see if it =
+is an=20
+  'encoded-word' according to the syntax rules in section 2. Any other =
+sequence=20
+  of printable characters should be treated as ordinary ASCII text. </P>
+  <LI>
+  <P>Any header field not defined as '*text' should be parsed according =
+to the=20
+  syntax rules for that header field. However, any 'word' that appears =
+within a=20
+  'phrase' should be treated as an 'encoded-word' if it meets the syntax =
+rules=20
+  in section 2. Otherwise it should be treated as an ordinary 'word'. =
+</P>
+  <LI>
+  <P>Within a 'comment', any sequence of up to 75 printable characters =
+(not=20
+  containing 'linear-white-space'), that meets the syntax rules in =
+section 2,=20
+  should be treated as an 'encoded-word'. Otherwise it should be treated =
+as=20
+  normal comment text. </P>
+  <LI>
+  <P>A MIME-Version header field is NOT required to be present for=20
+  'encoded-word's to be interpreted according to this specification. One =
+reason=20
+  for this is that the mail reader is not expected to parse the entire =
+message=20
+  header before displaying lines that may contain 'encoded-word's. =
+</P></LI></OL>
+<H3><A name=3D6.2>6.2. Display of 'encoded-word's </A></H3>
+<P>Any 'encoded-word's so recognized are decoded, and if possible, the =
+resulting=20
+unencoded text is displayed in the original character set. </P>
+<P><STRONG>NOTE</STRONG>: Decoding and display of encoded-words occurs =
+*after* a=20
+structured field body is parsed into tokens. It is therefore possible to =
+hide=20
+'special' characters in encoded-words which, when displayed, will be=20
+indistinguishable from 'special' characters in the surrounding text. For =
+this=20
+and other reasons, it is NOT generally possible to translate a message =
+header=20
+containing 'encoded-word's to an unencoded form which can be parsed by =
+an <A=20
+href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC 822</A> mail reader. =
+</P>
+<P>When displaying a particular header field that contains multiple=20
+'encoded-word's, any 'linear-white-space' that separates a pair of =
+adjacent=20
+'encoded-word's is ignored. (This is to allow the use of multiple=20
+'encoded-word's to represent long strings of unencoded text, without =
+having to=20
+separate 'encoded-word's where spaces occur in the unencoded text.) </P>
+<P>In the event other encodings are defined in the future, and the mail =
+reader=20
+does not support the encoding used, it may either (a) display the =
+'encoded-word'=20
+as ordinary text, or (b) substitute an appropriate message indicating =
+that the=20
+text could not be decoded. </P>
+<P>If the mail reader does not support the character set used, it may =
+(a)=20
+display the 'encoded-word' as ordinary text (i.e., as it appears in the =
+header),=20
+(b) make a "best effort" to display using such characters as are =
+available, or=20
+(c) substitute an appropriate message indicating that the decoded text =
+could not=20
+be displayed. </P>
+<P>If the character set being used employs code-switching techniques, =
+display of=20
+the encoded text implicitly begins in "ASCII mode". In addition, the =
+mail reader=20
+must ensure that the output device is once again in "ASCII mode" after =
+the=20
+'encoded-word' is displayed. </P>
+<H3><A name=3D6.3>6.3. Mail reader handling of incorrectly formed =
+'encoded-word's=20
+</A></H3>
+<P>It is possible that an 'encoded-word' that is legal according to the =
+syntax=20
+defined in section 2, is incorrectly formed according to the rules for =
+the=20
+encoding being used. For example: </P>
+<OL>
+  <LI>
+  <P>An 'encoded-word' which contains characters which are not legal for =
+a=20
+  particular encoding (for example, a "-" in the "B" encoding, or a =
+SPACE or=20
+  HTAB in either the "B" or "Q" encoding), is incorrectly formed. </P>
+  <LI>
+  <P>Any 'encoded-word' which encodes a non-integral number of =
+characters or=20
+  octets is incorrectly formed. </P></LI></OL>
+<P>A mail reader need not attempt to display the text associated with an =
+
+'encoded-word' that is incorrectly formed. However, a mail reader MUST =
+NOT=20
+prevent the display or handling of a message because an 'encoded-word' =
+is=20
+incorrectly formed. </P>
+<H2><A name=3D7>7. Conformance </A></H2>
+<P>A mail composing program claiming compliance with this specification =
+MUST=20
+ensure that any string of non-white-space printable ASCII characters =
+within a=20
+'*text' or '*ctext' that begins with "=3D?" and ends with "?=3D" be a =
+valid=20
+'encoded-word'. ("begins" means: at the start of the field-body, =
+immediately=20
+following 'linear-white-space', or immediately following a "(" for an=20
+'encoded-word' within '*ctext'; "ends" means: at the end of the =
+field-body,=20
+immediately preceding 'linear-white-space', or immediately preceding a =
+")" for=20
+an 'encoded-word' within '*ctext'.) In addition, any 'word' within a =
+'phrase'=20
+that begins with "=3D?" and ends with "?=3D" must be a valid =
+'encoded-word'. </P>
+<P>A mail reading program claiming compliance with this specification =
+must be=20
+able to distinguish 'encoded-word's from 'text', 'ctext', or 'word's, =
+according=20
+to the rules in section 6, anytime they appear in appropriate places in =
+message=20
+headers. It must support both the "B" and "Q" encodings for any =
+character set=20
+which it supports. The program must be able to display the unencoded =
+text if the=20
+character set is "US-ASCII". For the ISO-8859-* character sets, the mail =
+reading=20
+program must at least be able to display the characters which are also =
+in the=20
+ASCII set. </P>
+<H2><A name=3D8>8. Examples </A></H2>
+<P>The following are examples of message headers containing =
+'encoded-word's:=20
+</P><PRE>  From: =3D?US-ASCII?Q?Keith_Moore?=3D &lt;moore@cs.utk.edu&gt;
+  To: =3D?ISO-8859-1?Q?Keld_J=3DF8rn_Simonsen?=3D &lt;keld@dkuug.dk&gt;
+  CC: =3D?ISO-8859-1?Q?Andr=3DE9?=3D Pirard &lt;PIRARD@vm1.ulg.ac.be&gt;
+  Subject: =3D?ISO-8859-1?B?SWYgeW91IGNhbiByZWFkIHRoaXMgeW8=3D?=3D
+   =3D?ISO-8859-2?B?dSB1bmRlcnN0YW5kIHRoZSBleGFtcGxlLg=3D=3D?=3D
+
+</PRE>
+<P>Note: In the first 'encoded-word' of the Subject field above, the =
+last "=3D" at=20
+the end of the 'encoded-text' is necessary because each 'encoded-word' =
+must be=20
+self-contained (the "=3D" character completes a group of 4 base64 =
+characters=20
+representing 2 octets). An additional octet could have been encoded in =
+the first=20
+'encoded-word' (so that the encoded-word would contain an exact multiple =
+of 3=20
+encoded octets), except that the second 'encoded-word' uses a different=20
+'charset' than the first one. </P><PRE>  From: =
+=3D?ISO-8859-1?Q?Olle_J=3DE4rnefors?=3D &lt;ojarnef@admin.kth.se&gt;
+  To: ietf-822@dimacs.rutgers.edu, ojarnef@admin.kth.se
+  Subject: Time for ISO 10646?
+
+  To: Dave Crocker &lt;dcrocker@mordor.stanford.edu&gt;
+  Cc: ietf-822@dimacs.rutgers.edu, paf@comsol.se
+  From: =3D?ISO-8859-1?Q?Patrik_F=3DE4ltstr=3DF6m?=3D =
+&lt;paf@nada.kth.se&gt;
+  Subject: Re: RFC-HDR care and feeding
+
+  From: Nathaniel Borenstein &lt;nsb@thumper.bellcore.com&gt;
+        (=3D?iso-8859-8?b?7eXs+SDv4SDp7Oj08A=3D=3D?=3D)
+  To: Greg Vaudreuil &lt;gvaudre@NRI.Reston.VA.US&gt;, Ned Freed
+     &lt;ned@innosoft.com&gt;, Keith Moore &lt;moore@cs.utk.edu&gt;
+  Subject: Test of new header generator
+  MIME-Version: 1.0
+  Content-type: text/plain; charset=3DISO-8859-1
+
+</PRE>
+<P>The following examples illustrate how text containing 'encoded-word's =
+which=20
+appear in a structured field body. The rules are slightly different for =
+fields=20
+defined as '*text' because "(" and ")" are not recognized as 'comment'=20
+delimiters. [Section 5, paragraph (1)]. </P>
+<P>In each of the following examples, if the same sequence were to occur =
+in a=20
+'*text' field, the "displayed as" form would NOT be treated as encoded =
+words,=20
+but be identical to the "encoded form". This is because each of the=20
+encoded-words in the following examples is adjacent to a "(" or ")" =
+character.=20
+</P>
+<TABLE cellPadding=3D4 border=3D0>
+  <TBODY>
+  <TR>
+    <TH align=3Dleft>encoded form</TH>
+    <TH align=3Dleft>displayed as</TH></TR>
+  <TR>
+    <TD colSpan=3D2>
+      <HR noShade>
+    </TD></TR>
+  <TR>
+    <TD><TT>(=3D?ISO-8859-1?Q?a?=3D)</TT></TD>
+    <TD><TT>(a)</TT></TD></TR>
+  <TR>
+    <TD><TT>(=3D?ISO-8859-1?Q?a?=3D b)</TT></TD>
+    <TD><TT>(a b)</TT></TD></TR>
+  <TR>
+    <TD colSpan=3D2>
+      <P>Within a 'comment', white space MUST appear between an =
+'encoded-word'=20
+      and surrounding text. [Section 5, paragraph (2)]. However, white =
+space is=20
+      not needed between the initial "(" that begins the 'comment', and =
+the=20
+      'encoded-word'. </P></TD></TR>
+  <TR>
+    <TD><TT>(=3D?ISO-8859-1?Q?a?=3D =3D?ISO-8859-1?Q?b?=3D)</TT></TD>
+    <TD><TT>(ab)</TT></TD></TR>
+  <TR>
+    <TD colSpan=3D2>
+      <P>White space between adjacent 'encoded-word's is not displayed.=20
+  </P></TD></TR>
+  <TR>
+    <TD><TT>(=3D?ISO-8859-1?Q?a?=3D =3D?ISO-8859-1?Q?b?=3D)</TT></TD>
+    <TD><TT>(ab)</TT></TD></TR>
+  <TR>
+    <TD colSpan=3D2>
+      <P>Even multiple SPACEs between 'encoded-word's are ignored for =
+the=20
+      purpose of display. </P></TD></TR>
+  <TR>
+    =
+<TD><TT>(=3D?ISO-8859-1?Q?a?=3D<BR>&nbsp;&nbsp;&nbsp;=3D?ISO-8859-1?Q?b?=3D=
+)</TT></TD>
+    <TD><TT>(ab)</TT></TD></TR>
+  <TR>
+    <TD colSpan=3D2>
+      <P>Any amount of linear-space-white between 'encoded-word's, even =
+if it=20
+      includes a CRLF followed by one or more SPACEs, is ignored for the =
+
+      purposes of display. </P></TD></TR>
+  <TR>
+    <TD><TT>(=3D?ISO-8859-1?Q?a_b?=3D)</TT></TD>
+    <TD><TT>(a b)</TT></TD></TR>
+  <TR>
+    <TD colSpan=3D2>
+      <P>In order to cause a SPACE to be displayed within a portion of =
+encoded=20
+      text, the SPACE MUST be encoded as part of the 'encoded-word'. =
+</P></TD></TR>
+  <TR>
+    <TD><TT>(=3D?ISO-8859-1?Q?a?=3D =3D?ISO-8859-2?Q?_b?=3D)</TT></TD>
+    <TD><TT>(a b)</TT></TD></TR>
+  <TR>
+    <TD colSpan=3D2>
+      <P>In order to cause a SPACE to be displayed between two strings =
+of=20
+      encoded text, the SPACE MAY be encoded as part of one of the=20
+      'encoded-word's. </P></TD></TR></TBODY></TABLE>
+<H2><A name=3D9>9. References </A></H2>
+<DL>
+  <DT>[<A href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC 822</A>]=20
+  <DD>
+  <P>Crocker, D., "Standard for the Format of ARPA Internet Text =
+Messages", STD=20
+  11, <A href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC 822</A>, =
+UDEL, August=20
+  1982. </P>
+  <DT>[<A =
+href=3D"http://www.nacs.uci.edu/indiv/ehood/MIME/2049/rfc2049.html">RFC=20
+  2049</A>]=20
+  <DD>
+  <P>Borenstein, N., and N. Freed, "Multipurpose Internet Mail =
+Extensions (MIME)=20
+  Part Five: Conformance Criteria and Examples", <A=20
+  =
+href=3D"http://www.nacs.uci.edu/indiv/ehood/MIME/2049/rfc2049.html">RFC=20
+  2049</A>, November 1996. </P>
+  <DT>[<A =
+href=3D"http://www.nacs.uci.edu/indiv/ehood/MIME/2045/rfc2045.html">RFC=20
+  2045</A>]=20
+  <DD>
+  <P>Borenstein, N., and N. Freed, "Multipurpose Internet Mail =
+Extensions (MIME)=20
+  Part One: Format of Internet Message Bodies", <A=20
+  =
+href=3D"http://www.nacs.uci.edu/indiv/ehood/MIME/2045/rfc2045.html">RFC=20
+  2045</A>, November 1996. </P>
+  <DT>[<A =
+href=3D"http://www.nacs.uci.edu/indiv/ehood/MIME/2046/rfc2046.html">RFC=20
+  2046</A>]=20
+  <DD>
+  <P>Borenstein N., and N. Freed, "Multipurpose Internet Mail Extensions =
+(MIME)=20
+  Part Two: Media Types", <A=20
+  =
+href=3D"http://www.nacs.uci.edu/indiv/ehood/MIME/2046/rfc2046.html">RFC=20
+  2046</A>, November 1996. </P>
+  <DT>[<A =
+href=3D"http://www.nacs.uci.edu/indiv/ehood/MIME/2048/rfc2048.html">RFC=20
+  2048</A>]=20
+  <DD>
+  <P>Freed, N., Klensin, J., and J. Postel, "Multipurpose Internet Mail=20
+  Extensions (MIME) Part Four: Registration Procedures", <A=20
+  =
+href=3D"http://www.nacs.uci.edu/indiv/ehood/MIME/2048/rfc2048.html">RFC=20
+  2048</A>, November 1996. </P></DD></DL>
+<H2><A name=3D10>10. Security Considerations </A></H2>
+<P>Security issues are not discussed in this memo. </P>
+<H2><A name=3D11>11. Acknowledgements </A></H2>
+<P>The author wishes to thank Nathaniel Borenstein, Issac Chan, Lutz=20
+Donnerhacke, Paul Eggert, Ned Freed, Andreas M. Kirchwitz, Olle =
+Jarnefors, Mike=20
+Rosin, Yutaka Sato, Bart Schaefer, and Kazuhiko Yamamoto, for their =
+helpful=20
+advice, insightful comments, and illuminating questions in response to =
+earlier=20
+versions of this specification. </P>
+<H2><A name=3D12>12. Author's Address </A></H2>
+<ADDRESS>Keith Moore<BR>University of Tennessee<BR>107 Ayres =
+Hall<BR>Knoxville=20
+TN 37996-1301<BR></ADDRESS>
+<P>EMail: moore@cs.utk.edu </P>
+<H2><A name=3Dappendix>Appendix - changes since RFC 1522 (in no =
+particular order)=20
+</A></H2>
+<UL>
+  <LI>
+  <P>explicitly state that the MIME-Version is not requried to use=20
+  'encoded-word's. </P>
+  <LI>
+  <P>add explicit note that SPACEs and TABs are not allowed within=20
+  'encoded-word's, explaining that an 'encoded-word' must look like an =
+'atom' to=20
+  an RFC822 parser.values, to be precise). </P>
+  <LI>
+  <P>add examples from Olle Jarnefors (thanks!) which illustrate how=20
+  encoded-words with adjacent linear-white-space are displayed. </P>
+  <LI>
+  <P>explicitly list terms defined in RFC822 and referenced in this memo =
+</P>
+  <LI>
+  <P>fix transcription typos that caused one or two lines and a couple =
+of=20
+  characters to disappear in the resulting text, due to nroff quirks. =
+</P>
+  <LI>
+  <P>clarify that encoded-words are allowed in '*text' fields in both =
+RFC822=20
+  headers and MIME body part headers, but NOT as parameter values. </P>
+  <LI>
+  <P>clarify the requirement to switch back to ASCII within the encoded =
+portion=20
+  of an 'encoded-word', for any charset that uses code switching =
+sequences. </P>
+  <LI>
+  <P>add a note about 'encoded-word's being delimited by "(" and ")" =
+within a=20
+  comment, but not in a *text (how bizarre!). </P>
+  <LI>
+  <P>fix the Andre Pirard example to get rid of the trailing "_" after =
+the =3DE9.=20
+  (no longer needed post-1342). </P>
+  <LI>
+  <P>clarification: an 'encoded-word' may appear immediately following =
+the=20
+  initial "(" or immediately before the final ")" that delimits a =
+comment, not=20
+  just adjacent to "(" and ")" *within* *ctext. </P>
+  <LI>
+  <P>add a note to explain that a "B" 'encoded-word' will always have a =
+multiple=20
+  of 4 characters in the 'encoded-text' portion. </P>
+  <LI>
+  <P>add note about the "=3D" in the examples </P>
+  <LI>
+  <P>note that processing of 'encoded-word's occurs *after* parsing, and =
+some of=20
+  the implications thereof. </P>
+  <LI>
+  <P>explicitly state that you can't expect to translate between 1522 =
+and either=20
+  vanilla 822 or so-called "8-bit headers". </P>
+  <LI>
+  <P>explicitly state that 'encoded-word's are not valid within a=20
+  'quoted-string'. </P></LI></UL>
+<HR>
+
+<ADDRESS><SMALL>HTML version of RFC converted from text version by <A=20
+href=3D"http://www.oac.uci.edu/indiv/ehood/">Earl Hood</A>, <A=20
+href=3D"mailto:ehood@medusa.acs.uci.edu">ehood@medusa.acs.uci.edu</A><BR>=
+HTML Last=20
+Updated: 97/12/03 08:40:46<BR></SMALL></ADDRESS></BODY></HTML>
+
+------=_NextPart_000_0000_01C1DC9D.77D99950
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://www.oac.uci.edu/indiv/ehood/bg/cemstone.gif
+
+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
+
+------=_NextPart_000_0000_01C1DC9D.77D99950--

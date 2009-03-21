@@ -1,0 +1,760 @@
+From: <Saved by Microsoft Internet Explorer 5>
+Subject: RFC 2852 (rfc2852) - Deliver By SMTP Service Extension
+Date: Tue, 17 Jun 2003 18:23:48 +0800
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	boundary="----=_NextPart_000_0018_01C334FD.985B8210";
+	type="text/html"
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2800.1165
+
+This is a multi-part message in MIME format.
+
+------=_NextPart_000_0018_01C334FD.985B8210
+Content-Type: text/html;
+	charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://www.faqs.org/rfcs/rfc2852.html
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>RFC 2852 (rfc2852) - Deliver By SMTP Service =
+Extension</TITLE>
+<META http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dwindows-1252">
+<META content=3D"RFC 2852 - Deliver By SMTP Service Extension" =
+name=3Ddescription>
+<META content=3D"PROPOSED STANDARD" name=3Dstatus>
+<META content=3D"MSHTML 6.00.2800.1170" name=3DGENERATOR></HEAD>
+<BODY text=3D#000000 bgColor=3D#ffffff>
+<P align=3Dcenter><STRONG><FONT size=3D-1>Internet RFC/STD/FYI/BCP=20
+Archives</FONT></STRONG></P>
+<P align=3Dcenter><IMG height=3D62 alt=3D""=20
+src=3D"http://www.faqs.org/images/library.jpg" width=3D150 =
+align=3Dmiddle=20
+border=3D0></P>
+<H1 align=3Dcenter>RFC 2852 (RFC2852)</H1>
+<DIV align=3Dcenter>[ <A href=3D"http://www.faqs.org/rfcs/">RFC =
+Index</A> | <A=20
+href=3D"http://www.faqs.org/rfcs/rfcsearch.html">RFC Search</A> | <A=20
+href=3D"http://www.faqs.org/faqs/">Usenet FAQs</A> | <A=20
+href=3D"http://www.faqs.org/contrib/">Web FAQs</A> | <A=20
+href=3D"http://www.faqs.org/docs/">Documents</A> ]=20
+<P><STRONG>Alternate Formats:</STRONG> <A=20
+href=3D"http://www.faqs.org/ftp/rfc/rfc2852.txt">rfc2852.txt</A> | <A=20
+href=3D"http://www.faqs.org/ftp/rfc/pdf/rfc2852.txt.pdf">rfc2852.txt.pdf<=
+/A></P></DIV>
+<HR noShade SIZE=3D2>
+<PRE>
+Network Working Group                                           D. =
+Newman
+Request for Comments: 2852                               Sun =
+Microsystems
+Updates: 1894                                                   June =
+2000
+Category: Standards Track
+
+                   Deliver By SMTP Service Extension
+
+Status of this Memo
+
+   This document specifies an Internet standards track protocol for the
+   Internet community, and requests discussion and suggestions for
+   improvements.  Please refer to the current edition of the "Internet
+   Official Protocol Standards" (STD 1) for the standardization state
+   and status of this protocol.  Distribution of this memo is unlimited.
+
+Copyright Notice
+
+   Copyright (C) The Internet Society (2000).  All Rights Reserved.
+
+Abstract
+
+   This memo defines a mechanism whereby a SMTP client can request, when
+   transmitting a message to a SMTP server, that the server deliver the
+   message within a prescribed period of time.  A client making such a
+   request also specifies the message handling which is to occur if the
+   message cannot be delivered within the specified time period: either
+   the message is to be returned as undeliverable with no further
+   processing, or a "delayed" delivery status notification (DSN) [6] is
+   to be issued.
+
+   This extension should not be viewed as a vehicle for requesting
+   "priority" processing.  A receiving SMTP server may assign whatever
+   processing priority it wishes to a message transmitted with a Deliver
+   By request.  A Deliver By request serves to express a message's
+   urgency and to provide an additional degree of determinancy in its
+   processing.  An indication of an urgent message's status within a
+   given time period may be requested and will be honored.  Moreover,
+   the message may be withdrawn if not delivered within that time
+   period.
+
+   A typical usage of this mechanism is to prevent delivery of a message
+   beyond some future time of significance to the sender or recipient
+   but not known by the MTAs handling the message.  For instance, the
+   sender may know that the message will be delivered as a page but does
+   not consider the message to be sufficiently important as to warrant
+   paging the recipient after business hours. In that case, the message
+   could be marked such that delivery attempts are not made beyond
+
+   17:00.  Another common usage arises when a sender wishes to be
+   alerted to delivery delays.  In this case, the sender can mark a
+   message such that if it is not delivered within, say, 30 minutes, a
+   "delayed" DSN is generated but delivery attempts are nonetheless
+   continued.  In this case the sender has been allowed to express a
+   preference for when they would like to learn of delivery problems.
+
+1.  Definitions
+
+   Throughout this document, the term "deliver" is taken to mean the act
+   of transmitting a message to its "final" destination by a message
+   transport agent (MTA).  Usually, but not always, this means storing
+   or otherwise handing off the message to the recipient's mailbox.
+   Thus, an MTA which accepts a message to be delivered within a
+   specified time period is agreeing to store or handoff the message to
+   the recipient's mailbox within the specified time period.  Outside
+   the scope of the term "deliver" are any user-specified actions which
+   might take place after the MTA stores or hands off the message; e.g.,
+   user-programmed filters which, often unbeknownst to the MTA, resend
+   the message to some other location.
+
+   The key words "MUST", "MUST NOT", "SHOULD" and "SHOULD NOT" in this
+   document are to be interpreted as described in <A =
+href=3D"http://www.faqs.org/rfcs/rfc2119.html">RFC 2119</A> [7].
+
+2.  Framework for the Deliver By SMTP service extension
+
+   The Deliver By SMTP service extension uses the SMTP service extension
+   mechanism described in [4].  The following SMTP service extension is
+   therefore defined:
+
+   (1)  The name of the SMTP service extension is "Deliver By".
+
+   (2)  The EHLO keyword value associated with this service extension is
+        "DELIVERBY".
+
+   (3)  One optional parameter is allowed with this EHLO keyword value.
+        The optional parameter, when supplied, is a comma separated list
+        of options.  Only one option, a min-by-time, is specified in
+        this document.  Future documents may extend this specification
+        by specifying additional options.  The min-by-time is a fixed
+        integer indicating the fixed minimum by-time that the server
+        will accept when a by-mode of "R" is specified as per Section 4.
+
+        The syntax of the optional parameter is as follows, using the
+        augmented BNF notation of <A =
+href=3D"http://www.faqs.org/rfcs/rfc2234.html">RFC 2234</A> [2]:
+
+      deliverby-param =3D min-by-time *( ',' extension-token )
+      min-by-time     =3D [1*9DIGIT]
+      extension-token =3D 1*&lt;any CHAR excluding SP, COMMA and all =
+control
+                           characters (US ASCII 0-31 inclusive)&gt;
+      SP               =3D &lt;the space character (ASCII decimal code =
+32)&gt;
+      COMMA            =3D &lt;the comma character (ASCII decimal code =
+44)&gt;
+
+        If the parameter is omitted, no information is conveyed about
+        the server's fixed minimum by-time.
+
+   (4)  One optional parameter using the keyword "BY" is added to the
+        MAIL FROM command.
+
+   (5)  The maximum length of a MAIL FROM command line is increased by
+        17 characters by the possible addition of the BY keyword and
+        value.
+
+   (6)  No additional SMTP verbs are defined by this extension.
+
+3.  The Deliver By SMTP service extension
+
+   A SMTP client wishing to use the Deliver By SMTP service extension
+   may issue the EHLO command to start a SMTP session and to determine
+   if the SMTP server supports the service extension.  If the server
+   responds with code 250 to the EHLO command, and the response includes
+   the EHLO keyword DELIVERBY, then the Deliver By SMTP service
+   extension is supported by the server.
+
+   If a numeric parameter follows the DELIVERBY keyword value of the
+   EHLO response then that parameter indicates the minimum value allowed
+   for the by-time when a by-mode of "R" is specified with the extended
+   MAIL FROM command as described in Section 4.  Any attempt by a client
+   to specify a by-mode of "R" and a by-time strictly less than this
+   limit, min-by-time, will be rejected with a permanent failure (55z)
+   reply code.
+
+   A SMTP server that supports the Deliver By SMTP service extension
+   will accept the extended version of the MAIL FROM command described
+   in Section 4.  When supported by the server, a SMTP client may use
+   the extended MAIL FROM command (instead of the MAIL FROM command
+   described in [1]) to request that the message be delivered within the
+   specified time period.  The server may then return an appropriate
+   error code if it determines that the request cannot be honored.  Note
+   that this may not be apparent to the server until either presentation
+   of the recipient addresses with RCPT TO commands or completion of the
+   transfer of the message data with the dot (.) command.  As such, the
+
+   server may send to the client a success response to the MAIL FROM
+   command only to later return an error response to the RCPT TO, DATA,
+   or dot command.
+
+4.  The extended MAIL FROM command
+
+   The extended MAIL FROM command is issued by a SMTP client when it
+   wishes to inform a SMTP server that a message is to be delivered
+   within a specified period of time and further what action to take
+   should the message prove undeliverable within that time period.  The
+   extended MAIL FROM command is identical to the MAIL FROM command as
+   defined in <A href=3D"http://www.faqs.org/rfcs/rfc821.html">RFC =
+821</A> [1], except that a BY parameter appears after the
+   address.
+
+   The complete syntax of this extended command is defined in [4].  The
+   esmtp-keyword is "BY" and the syntax for the esmtp-value is given by
+   the syntax for by-value shown below.  In the augmented BNF of RFC
+   2234 [2], the syntax for the BY esmtp-parameter is
+
+   by-parameter =3D "BY=3D"by-value
+   by-value     =3D by-time";"by-mode[by-trace]
+   by-time      =3D ["-" / "+"]1*9digit ; a negative or zero value is =
+not
+                                      ; allowed with a by-mode of "R"
+   by-mode      =3D "N" / "R"           ; "Notify" or "Return"
+   by-trace     =3D "T"                 ; "Trace"
+
+   Note that the BY esmtp-keyword MUST have an associated esmtp-value.
+   The by-time is a decimal representation of the number of seconds
+   within which the message should be delivered and has the range
+
+     -999,999,999 seconds &lt;=3D by-time &lt;=3D +999,999,999 seconds
+
+   and is thus sufficient to represent a time anywhere from
+   approximately 31.6 years in the past to 31.6 years in the future.
+
+   As described in Section 4.1, the by-mode indicates the action the
+   SMTP server must take should it not be possible to transmit the
+   message within by-time seconds.
+
+   Note that by-time is a delta time: the number of seconds within which
+   to deliver the message.  This delta time does not extend an MTA's
+   normal retention period for undeliverable messages nor is it a
+   "deliver after" time.
+
+   A delta time is used so as to prevent problems associated with
+   differences in system clocks between clients and servers.  Servers in
+   receipt of a valid by-parameter are expected to convert the by-time
+   into a locale-specific absolute time called the deliver-by-time.
+
+   This is done by adding the by-time upon receipt to the current
+   locale-specific time and thereby arriving at a locale-specific
+   absolute time which is by-time seconds in the future or past,
+   depending upon the arithmetic sign of by-time.  The message is then
+   to be delivered by the deliver-by-time.  The sending client and
+   receiving server should assume the transmission time of the MAIL FROM
+   command to be instantaneous.  Clearly, it will not be and network
+   latency will introduce an error, the nature of which will be to
+   extend slightly the effective by-time. The more hops the message
+   takes, the more pronounced the effect will be owing to the cumulative
+   nature of this latency-induced error.
+
+   In the case of a by-mode of "N", it is possible that by-time may be
+   zero or negative.  This is not an error and should not be rejected as
+   such.  It indicates a message for which the deliver-by-time occurred
+   -(by-time) seconds in the past.  [Here, "-(by-time)" represents the
+   arithmetic negation of the by-time value.]  Zero and negative values
+   are allowed so as to preserve information about any requested
+   delivery time information -- information which the delivering MTA may
+   wish to include with the delivered message for the benefit of the
+   recipient or to show in a DSN or NDN (non delivery notification).
+
+   In the case of a by-mode of "R", a zero or negative by-time is a
+   syntax error. In such a case, the SMTP server SHOULD return a
+   permanent failure (501) SMTP reply code in response to the extended
+   MAIL FROM command.  If the SMTP server also supports enhanced error
+   codes [8], then an enhanced error code of 5.5.4 SHOULD also be
+   returned.
+
+   If the by-time is a valid by-time specification but the SMTP server
+   cannot honor or accept it for a server-specific reason, then SMTP
+   server SHOULD respond with either a 455 SMTP response if the
+   condition is transient or a 555 SMTP response if the condition is
+   permanent. In addition, if the SMTP server also supports [8], a
+   suitable 4.X.X or 5.X.X enhanced error code SHOULD also be returned.
+
+4.1.  Server behavior upon receipt of the extended MAIL FROM command
+
+   Upon receipt of an extended MAIL FROM command containing a valid BY
+   parameter, a SMTP server and associated MTA must handle the message
+   in accord with the following subsections, Sections 4.1.1-4.1.5.
+   Delivery status notifications generated in response to processing a
+   message with a Deliver By request should include both the optional
+   Arrival-Date DSN field as well as the new Deliver-By-Date DSN field
+   described in Section 5 of this memo.
+
+   A by-time Note that a message's by-time does not extend the MTA's
+   normal message retention period: an MTA MAY return a message as
+   undeliverable before the deliver-by-time has been reached.
+
+4.1.1.  Successful delivery
+
+   If the message is delivered before deliver-by-time, no special action
+   need be taken.  If the SMTP server or MTA also supports the Delivery
+   Status Notification SMTP service extension [5] and a NOTIFY parameter
+   including "SUCCESS" was specified, a "delivered" DSN with appropriate
+   status must be returned as per [5].
+
+4.1.2.  Unsuccessful delivery; deliver-by-time not yet reached
+
+   If deliver-by-time has not yet passed and the message has proved
+   undeliverable for temporary reasons, then the SMTP server or MTA
+   should continue delivery or relay attempts as per the site's message
+   handling policy.  If the MTA's message retention period is less than
+   by-time, the MTA MAY return the message as undeliverable before
+   deliver-by-time has been reached.  However, the message MUST still be
+   handled in accord with Sections 4.1.1-4.1.5.
+
+   If deliver-by-time has not yet passed and the message cannot be
+   delivered for permanent reasons, then the SMTP server or MTA MUST
+   return a "failed" DSN with an appropriate status for each recipient
+   address with either no NOTIFY parameter specified or for which the
+   NOTIFY parameter includes "FAILURE".
+
+4.1.3.  Time has expired; deliver-by-time reached or passed
+
+   If the message is not delivered or relayed before deliver-by-time and
+   a by-mode of "R" was specified, no further delivery attempts may be
+   made for the message.  The server or MTA MUST issue a "failed" DSN
+   with status 5.4.7, "delivery time expired", for each recipient
+   address with either no NOTIFY parameter specified or for which the
+   NOTIFY parameter includes "FAILURE".
+
+   If the message is not delivered or relayed before deliver-by-time and
+   a by-mode of "N" was specified, the server or MTA should continue
+   attempts to deliver or relay the message using the site's message
+   handling policy.  In addition, the server or MTA MUST issue a
+   "delayed" DSN with status 4.4.7, "delivery time expired", for each
+   recipient address with either no NOTIFY parameter specified or for
+   which the NOTIFY parameter includes "DELAY".
+
+4.1.4.  Relaying to another SMTP server
+
+   Sections 4.1.4.1 and 4.1.4.2 below describe when a message with a
+   Deliver By request may be relayed to another SMTP server and what
+   additional actions, if any, should or must be taken.  In addition to
+   that discussed in those sections, the following must also be observed
+   when relaying is permitted.
+
+   If the message is relayed to a SMTP server that supports the Deliver
+   By extension, a new BY parameter MUST be relayed specifying a by-time
+   value indicating the number of seconds remaining until deliver-by-
+   time.  The new by-time value should be computed as close to the time
+   the MAIL FROM command is transmitted by the relaying SMTP client as
+   is reasonably possible. Note that if deliver-by-time has passed, the
+   relayed by-time will be a negative value indicating how may seconds
+   has elapsed since delivery-by-time.  Such a case -- relay of a
+   message for which deliver-by-time has just arrived or passed -- may
+   only happen with a message that has a by-mode of "N".
+
+   When a message with a by-trace field with value "T" is relayed, a
+   "relayed" DSN SHOULD be generated by the relaying SMTP client for
+   each recipient which either did not specify a NOTIFY parameter or the
+   NOTIFY parameter does not have the value "NEVER".
+
+   Note that these "relayed" DSNs are generated regardless of whether
+   success notifications were explicitly requested with a =
+NOTIFY=3DSUCCESS
+   parameter.  Note further that the "relayed" DSNs discussed here are
+   not terminal notifications:  downstream SMTP servers and MTAs may
+   still support [5] and as such additional notifications may still
+   result.
+
+4.1.4.1.  Relaying a message with a by-mode of "R"
+
+   A message for which a by-mode of "R" was specified MUST NOT be
+   relayed to a SMTP server which does not support the Deliver By SMTP
+   service extension.  Moreover, the server to which it is relayed MUST
+   NOT have a fixed minimum by-time which is greater than the time
+   remaining in which the message is to be delivered.  The fixed minimum
+   by-time is expressed by the optional deliverby-param discussed in
+   Section 2.
+
+   If the message requires relaying in order to be delivered yet cannot
+   be relayed, then the message is deemed to be undeliverable for
+   permanent reasons and Section 4.1.2 should be applied.
+
+4.1.4.2.  Relaying a message with a by-mode of "N"
+
+   A message with a by-mode of "N" may be relayed to another server
+   regardless of whether or not the SMTP server to which it is relayed
+   supports the Deliver By extension.
+
+   If the message is relayed before deliver-by-time to a SMTP server
+   that does not support the Deliver By extension, then the relaying
+   SMTP client MUST issue a "relayed" DSN for each recipient which
+   either did not specify a NOTIFY parameter or the NOTIFY parameter
+   does not have the value "NEVER". Further, if the SMTP server being
+   relayed to supports the Delivery Status Notification SMTP service
+   extension [5] then for each recipient: if no NOTIFY parameter was
+   supplied, "NOTIFY=3DFAILURE,DELAY" SHOULD be requested; if a NOTIFY
+   parameter was specified and does not have the value "NEVER", "DELAY"
+   SHOULD be added to the list of notify-list-element values if not
+   already present.  Note that this explicitly overrides the "MUST NOT"
+   wording of Section 6.2.1(c) of [5].
+
+4.1.5.  Relaying to a foreign mail system
+
+   If the foreign mail system supports semantics similar to the Deliver
+   By SMTP service extension described in this memo, then convey the
+   Deliver By request to that system.  Otherwise, relay the message as
+   if relaying to a SMTP server which does not support the Deliver By
+   extension.
+
+5.  Delivery status notifications and extension
+
+   The format of delivery status notifications (DSNs) is specified in
+   [6].  DSNs generated in response to a Deliver By request should
+   include an Arrival-Date DSN field.  This memo also extends the per-
+   message-fields of [6] to include a new DSN field, Deliver-By-Date,
+   indicating the deliver-by-time as computed by the MTA or SMTP server
+   generating the DSN.  In the augmented BNF of <A =
+href=3D"http://www.faqs.org/rfcs/rfc822.html">RFC 822</A> [2], per-
+   message-fields is therefore extended as follows:
+
+     per-message-fields =3D
+         [ original-envelope-id-field CRLF ]
+         reporting-mta-field CRLF
+         [ dsn-gateway-field CRLF ]
+         [ received-from-mta-field CRLF ]
+         [ arrival-date-field CRLF ]
+         [ deliver-by-date-field CRLF ]
+         *( extension-field CRLF )
+     deliver-by-date-field =3D "Deliver-by-date" ":" date-time
+
+   where date-time is a <A =
+href=3D"http://www.faqs.org/rfcs/rfc822.html">RFC 822</A> [2] date-time =
+field as ammended by RFC
+   1123 [3].
+
+6.  Examples
+
+   In the following sample SMTP dialog, the SMTP client requests that a
+   message from &lt;<A =
+href=3D"mailto:eljefe@bigbiz.com">eljefe@bigbiz.com</A>&gt; be delivered =
+to
+   &lt;<A =
+href=3D"mailto:topbanana@other.com">topbanana@other.com</A>&gt; within 2 =
+minutes (120 seconds) and returned
+   otherwise.  This request takes the form of a BY parameter on the MAIL
+   FROM line of "BY=3D120;R" as shown below:
+
+     S: 220 acme.net SMTP server here
+     C: EHLO bigbiz.com
+     S: 250-acme.net
+     S: 250 DELIVERBY
+     C: MAIL FROM:&lt;<A =
+href=3D"mailto:eljefe@bigbiz.com">eljefe@bigbiz.com</A>&gt; BY=3D120;R
+     S: 250 &lt;<A =
+href=3D"mailto:eljefe@bigbiz.com">eljefe@bigbiz.com</A>&gt; sender ok
+     C: RCPT TO:&lt;<A =
+href=3D"mailto:topbanana@other.com">topbanana@other.com</A>&gt;
+     S: 250 &lt;<A =
+href=3D"mailto:topbanana@wherever.com">topbanana@wherever.com</A>&gt; =
+recipient ok
+
+   Suppose now that the receiving SMTP server in the above example needs
+   to relay the message to another SMTP server, mail.other.com.  Owing
+   to the original by-mode of "R", the message may only be relayed to
+   another SMTP server which supports the Deliver By extension (Section
+   4.1.4).  Further, when relaying the message, the Deliver By request
+   must be relayed.  With this in mind, consider the following SMTP
+   dialog:
+
+     S: 220 mail.other.com ESMTP server at your service
+     C: EHLO acme.net
+     S: 250-mail.other.com
+     S: 250 DELIVERBY 240
+     C: QUIT
+
+   In the above dialog, the relaying SMTP server, acme.net, connects to
+   mail.other.com and issues an EHLO command.  It then learns that the
+   Deliver By extension is supported but that the minimum by-time for a
+   by-mode of "R" is 4 minutes (240 seconds).  This value exceeds the
+   message's original by-time and therefore necessarily exceeds the
+   remaining by-time.  The relaying SMTP server thus ends the SMTP
+   session after which it must either attempt to follow any other MX
+   records or, if there are no more MX records to follow, must return
+   the message as undeliverable.  Similar behavior would result if the
+   EHLO command was met with an error or did not include the DELIVERBY
+   keyword.
+
+   Consider instead, the relaying SMTP session:
+
+     S: 220 mail.other.com ESMTP server at your service
+     C: EHLO acme.net
+     S: 250-mail.other.com
+     S: 250 DELIVERBY 30
+     C: MAIL FROM:&lt;<A =
+href=3D"mailto:eljefe@bigbiz.com">eljefe@bigbiz.com</A>&gt; BY=3D98;R
+     S: 250 &lt;<A =
+href=3D"mailto:eljefe@bigbiz.com">eljefe@bigbiz.com</A>&gt; Sender okay
+     C: RCPT TO:&lt;<A =
+href=3D"mailto:topbanana@other.com">topbanana@other.com</A>&gt;
+     S: 250 &lt;<A =
+href=3D"mailto:topbanana@wherever.com">topbanana@wherever.com</A>&gt; =
+Recipient okay
+
+   In the above, the relaying SMTP client relays the BY parameter with
+   the by-mode preserved and the by-time computed to be the remaining
+   number of seconds at the approximate time that the MAIL FROM command
+   was transmitted from the relaying SMTP client (acme.net) to the
+   receiving SMTP server (mail.other.com).  In this example, 22 seconds
+   have elapsed since acme.net received the MAIL FROM line from the
+   original sending client and relayed the Deliver By request to
+   mail.other.com.
+
+7.  MX based relaying considerations
+
+   Sites which wish to use the Deliver By SMTP service extension and
+   which direct their mail via MX records [9] need to ensure that all of
+   their MX hosts -- hosts to which their mail is directed by MX records
+   -- support the Deliver By extension. SMTP clients which support
+   Deliver By SHOULD NOT attempt multiple MX hosts looking for one which
+   supports Deliver By.
+
+   MX hosts should pay careful attention to the min-by-time value they
+   present in response to EHLO commands.  It is not practical for an MX
+   host to present a value which either (1) is substantially different
+   from that which can be handled by the destination host to which it
+   relays, or (2) doesn't recognize normal delivery latencies introduced
+   when the MX host relays mail to the destination host.
+
+8.  Security Considerations
+
+   Implemention of Deliver By allows tracing of a mail transport system.
+   The by-trace field "T" explicitly requests that a trace be generated.
+   Moreover, even when the by-trace field is not used, a crude trace may
+   be generated by entering a series of messages into the transport
+   system, each with successively increasing by-time values; e.g.,
+   "BY=3D0;R", "BY=3D1;R", "BY=3D2;R". Probing, and in some cases =
+tracing, can
+   be accomplished through other means: querying the visible SMTP
+   servers, investigating Received: header lines in bounced messages,
+   and using utilities such as "traceroute".
+
+9.  Other Considerations
+
+   SMTP servers which support the Deliver By SMTP service extension as
+   well as their associated MTAs are not required to assign any special
+   processing priority to messages with Deliver By requests.  Of course,
+   some SMTP servers and MTAs may do so if they desire.  Moreover,
+   delivery status notifications generated in response to messages with
+   Deliver By requests are not required to receive any special
+   processing.  Consequently, users of this service should not, in
+   general, expect expedited processing of their messages.  Moreover,
+   just because a message is sent with a "BY=3D60;R" parameter does not
+   guarantee that the sender will learn of a delivery failure within any
+   specified time period as the DSN will not necessarily be expedited
+   back to sender.
+
+10.  Acknowledgments
+
+   The author wishes to thank Keith Moore for providing much of the
+   initial impetus for this document as well as the basic ideas embodied
+   within it.  Further thanks are due to Ned Freed and Chris Newman for
+   their reviews of this document and suggestions for improvement.
+
+11.  References
+
+   [1]  Postel, J., "Simple Mail Transfer Protocol", STD 10, <A =
+href=3D"http://www.faqs.org/rfcs/rfc821.html">RFC 821</A>,
+        August 1982.
+
+   [2]  Crocker, D., Editor, and P. Overell, "Augmented BNF for Syntax
+        Specifications: ABNF", <A =
+href=3D"http://www.faqs.org/rfcs/rfc2234.html">RFC 2234</A>, November =
+1997.
+
+   [3]  Braden, R., Editor, "Requirements for Internet Hosts --
+        Application and Support", STD 3, <A =
+href=3D"http://www.faqs.org/rfcs/rfc1123.html">RFC 1123</A>, October =
+1989.
+
+   [4]  Rose, M., Stefferud, E., Crocker, D., Klensin, J. and N. Freed,
+        "SMTP Service Extensions", STD 10, <A =
+href=3D"http://www.faqs.org/rfcs/rfc1869.html">RFC 1869</A>, November =
+1995.
+
+   [5]  Moore, K., "SMTP Service Extension for Delivery Status
+        Notifications", <A =
+href=3D"http://www.faqs.org/rfcs/rfc1891.html">RFC 1891</A>, January =
+1996.
+
+   [6]  Moore, K. and G. Vaudreuil, "An Extensible Message Format for
+        Delivery Status Notifications", <A =
+href=3D"http://www.faqs.org/rfcs/rfc1894.html">RFC 1894</A>, January =
+1996.
+
+   [7]  Bradner, S., "Key words for use in RFCs to Indicate Requirement
+        Levels", BCP 14, <A =
+href=3D"http://www.faqs.org/rfcs/rfc2119.html">RFC 2119</A>, March 1997.
+
+   [8]  Freed, N., "SMTP Service Extension for Returning Enhanced Error
+        Codes", <A href=3D"http://www.faqs.org/rfcs/rfc2034.html">RFC =
+2034</A>, October 1996.
+
+   [9]  Partridge, C., "Mail Routing and the Domain System", STD 14, RFC
+        974, January 1986.
+
+12.  Author's Address
+
+   Dan Newman
+   Sun Microsystems, Inc.
+   1050 Lakes Drive, Suite 250
+   West Covina, CA  91790
+   USA
+
+   Phone: +1 626 919 3600
+   Fax:   +1 626 919 3614
+   EMail:  <A href=3D"mailto:dan.newman@sun.com">dan.newman@sun.com</A>
+
+13.  Full Copyright Statement
+
+   Copyright (C) The Internet Society (2000).  All Rights Reserved.
+
+   This document and translations of it may be copied and furnished to
+   others, and derivative works that comment on or otherwise explain it
+   or assist in its implementation may be prepared, copied, published
+   and distributed, in whole or in part, without restriction of any
+   kind, provided that the above copyright notice and this paragraph are
+   included on all such copies and derivative works.  However, this
+   document itself may not be modified in any way, such as by removing
+   the copyright notice or references to the Internet Society or other
+   Internet organizations, except as needed for the purpose of
+   developing Internet standards in which case the procedures for
+   copyrights defined in the Internet Standards process must be
+   followed, or as required to translate it into languages other than
+   English.
+
+   The limited permissions granted above are perpetual and will not be
+   revoked by the Internet Society or its successors or assigns.
+
+   This document and the information contained herein is provided on an
+   "AS IS" basis and THE INTERNET SOCIETY AND THE INTERNET ENGINEERING
+   TASK FORCE DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING
+   BUT NOT LIMITED TO ANY WARRANTY THAT THE USE OF THE INFORMATION
+   HEREIN WILL NOT INFRINGE ANY RIGHTS OR ANY IMPLIED WARRANTIES OF
+   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.
+
+Acknowledgement
+
+   Funding for the RFC Editor function is currently provided by the
+   Internet Society.
+
+</PRE>
+<HR noShade SIZE=3D2>
+
+<DIV align=3Dcenter>[ <A href=3D"http://www.faqs.org/rfcs/">RFC =
+Index</A> | <A=20
+href=3D"http://www.faqs.org/rfcs/rfcsearch.html">RFC Search</A> | <A=20
+href=3D"http://www.faqs.org/faqs/">Usenet FAQs</A> | <A=20
+href=3D"http://www.faqs.org/contrib/">Web FAQs</A> | <A=20
+href=3D"http://www.faqs.org/docs/">Documents</A> ]=20
+<P></P></DIV><SMALL>
+<ADDRESS>
+<P align=3Dcenter></P></ADDRESS></SMALL></BODY></HTML>
+
+------=_NextPart_000_0018_01C334FD.985B8210
+Content-Type: image/jpeg
+Content-Transfer-Encoding: base64
+Content-Location: http://www.faqs.org/images/library.jpg
+
+/9j/4AAQSkZJRgABAgEASABIAAD/7QE0UGhvdG9zaG9wIDMuMAA4QklNA+0AAAAAABAASAAAAAEA
+AQBIAAAAAQABOEJJTQPzAAAAAAAIAAAAAAAAAAA4QklNJxAAAAAAAAoAAQAAAAAAAAACOEJJTQP1
+AAAAAABIAC9mZgABAGxmZgAGAAAAAAABAC9mZgABAKGZmgAGAAAAAAABADIAAAABAFoAAAAGAAAA
+AAABADUAAAABAC0AAAAGAAAAAAABOEJJTQP4AAAAAABwAAD/////////////////////////////
+A+gAAAAA/////////////////////////////wPoAAAAAP////////////////////////////8D
+6AAAAAD/////////////////////////////A+gAADhCSU0EBgAAAAAAAgAE/+4ADkFkb2JlAGQA
+AAAAAf/bAIQABgQEBAUEBgUFBgkGBQYJCwgGBggLDAoKCwoKDBAMDAwMDAwQDAwMDAwMDAwMDAwM
+DAwMDAwMDAwMDAwMDAwMDAEHBwcNDA0YEBAYFA4ODhQUDg4ODhQRDAwMDAwREQwMDAwMDBEMDAwM
+DAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwM/8AAEQgAPgCWAwERAAIRAQMRAf/EAaIAAAAHAQEBAQEA
+AAAAAAAAAAQFAwIGAQAHCAkKCwEAAgIDAQEBAQEAAAAAAAAAAQACAwQFBgcICQoLEAACAQMDAgQC
+BgcDBAIGAnMBAgMRBAAFIRIxQVEGE2EicYEUMpGhBxWxQiPBUtHhMxZi8CRygvElQzRTkqKyY3PC
+NUQnk6OzNhdUZHTD0uIIJoMJChgZhJRFRqS0VtNVKBry4/PE1OT0ZXWFlaW1xdXl9WZ2hpamtsbW
+5vY3R1dnd4eXp7fH1+f3OEhYaHiImKi4yNjo+Ck5SVlpeYmZqbnJ2en5KjpKWmp6ipqqusra6voR
+AAICAQIDBQUEBQYECAMDbQEAAhEDBCESMUEFURNhIgZxgZEyobHwFMHR4SNCFVJicvEzJDRDghaS
+UyWiY7LCB3PSNeJEgxdUkwgJChgZJjZFGidkdFU38qOzwygp0+PzhJSktMTU5PRldYWVpbXF1eX1
+RlZmdoaWprbG1ub2R1dnd4eXp7fH1+f3OEhYaHiImKi4yNjo+DlJWWl5iZmpucnZ6fkqOkpaanqK
+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
+
+------=_NextPart_000_0018_01C334FD.985B8210--

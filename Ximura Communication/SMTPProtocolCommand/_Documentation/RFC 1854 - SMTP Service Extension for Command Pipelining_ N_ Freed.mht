@@ -1,0 +1,583 @@
+From: <Saved by Microsoft Internet Explorer 5>
+Subject: RFC 1854 - SMTP Service Extension for Command Pipelining. N. Freed.
+Date: Tue, 17 Jun 2003 17:52:06 +0800
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	boundary="----=_NextPart_000_0000_01C334F9.2AFB9E20";
+	type="text/html"
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2800.1165
+
+This is a multi-part message in MIME format.
+
+------=_NextPart_000_0000_01C334F9.2AFB9E20
+Content-Type: text/html;
+	charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://rfc.sunsite.dk/rfc/rfc1854.html
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>RFC 1854 - SMTP Service Extension for Command =
+Pipelining. N. Freed.</TITLE>
+<META http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Diso-8859-1">
+<META content=3D"MSHTML 6.00.2800.1170" name=3DGENERATOR></HEAD>
+<BODY vLink=3D#800000 link=3D#d96c00 bgColor=3D#ffffff>
+<TABLE cellSpacing=3D0 cellPadding=3D0 width=3D600>
+  <TBODY>
+  <TR>
+    <TD width=3D"100%">
+      <H2><A href=3D"http://rfc.sunsite.dk/rfc/">RFC 1854</A></H2></TD>
+    <TD vAlign=3Dtop rowSpan=3D2><A =
+href=3D"http://rfc.sunsite.dk/main.html"><IMG=20
+      src=3D"http://rfc.sunsite.dk/rfcicon.gif" border=3D0></A></TD>
+    <TD vAlign=3Dtop rowSpan=3D2><A href=3D"http://sunsite.dk/" =
+target=3D_top><IMG=20
+      src=3D"http://sunsite.dk/images/hostedby.png" =
+border=3D0></A></TD></TR>
+  <TR>
+    <TD>Obsoleted by <A=20
+      =
+href=3D"http://rfc.sunsite.dk/rfc/rfc2197.html">2197</A><BR></TD></TR></T=
+BODY></TABLE><PRE style=3D"PAGE-BREAK-AFTER: always">
+
+
+
+
+
+Network Working Group                                           N. Freed
+Request For Comments: 1854                  Innosoft International, Inc.
+Category: Standards Track                          A. Cargille, WG Chair
+                                                            October 1995
+
+
+                         SMTP Service Extension
+                         for Command Pipelining
+
+Status of this Memo
+
+   This document specifies an Internet standards track protocol for the
+   Internet community, and requests discussion and suggestions for
+   improvements.  Please refer to the current edition of the "Internet
+   Official Protocol Standards" (STD 1) for the standardization state
+   and status of this protocol.  Distribution of this memo is unlimited.
+
+Abstract
+
+   This memo defines an extension to the SMTP service whereby a server
+   can indicate the extent of its ability to accept multiple commands in
+   a single TCP send operation. Using a single TCP send operation for
+   multiple commands can improve SMTP performance significantly.
+
+Introduction
+
+   Although SMTP is widely and robustly deployed, certain extensions may
+   nevertheless prove useful. In particular, many parts of the Internet
+   make use of high latency network links.
+
+   SMTP's intrinsic one command-one response structure is significantly
+   penalized by high latency links, often to the point where the factors
+   contributing to overall connection time are dominated by the time
+   spent waiting for responses to individual commands (turnaround time).
+
+   In the best of all worlds it would be possible to simply deploy SMTP
+   client software that makes use of command pipelining: batching up
+   multiple commands into single TCP send operations. Unfortunately, the
+   original SMTP specification [1] did not explicitly state that SMTP
+   servers must support this.  As a result a non-trivial number of
+   Internet SMTP servers cannot adequately handle command pipelining.
+   Flaws known to exist in deployed servers include:
+
+ (1)   Connection handoff and buffer flushes in the middle of
+       the SMTP dialogue.  Creation of server processes for
+       incoming SMTP connections is a useful, obvious, and
+       harmless implementation technique. However, some SMTP
+       servers defer process forking and connection handoff
+
+
+
+Freed &amp; Cargille            Standards Track                     =
+[Page 1]
+<HR>
+</PRE><PRE style=3D"PAGE-BREAK-AFTER: always"><A =
+href=3D"http://rfc.sunsite.dk/rfc/rfc1854.html">RFC 1854</A>             =
+       SMTP Pipelining                 October 1995
+
+
+       until some intermediate point in the SMTP dialogue.
+       When this is done material read from the TCP connection
+       and kept in process buffers can be lost.
+
+ (2)   Flushing the TCP input buffer when an SMTP command
+       fails. SMTP commands often fail but there is no reason
+       to flush the TCP input buffer when this happens.
+       Nevertheless, some SMTP servers do this.
+
+ (3)   Improper processing and promulgation of SMTP command
+       failures. For example, some SMTP servers will refuse to
+       accept a DATA command if the last RCPT TO command
+       fails, paying no attention to the success or failure of
+       prior RCPT TO command results. Other servers will
+       accept a DATA command even when all previous RCPT TO
+       commands have failed. Although it is possible to
+       accommodate this sort of behavior in a client that
+       employs command pipelining, it does complicate the
+       construction of the client unnecessarily.
+
+   This memo uses the mechanism described in [2] to define an extension
+   to the SMTP service whereby an SMTP server can declare that it is
+   capable of handling pipelined commands. The SMTP client can then
+   check for this declaration and use pipelining only when the server
+   declares itself capable of handling it.
+
+1.  Framework for the Command Pipelining Extension
+
+   The Command Pipelining extension is defined as follows:
+
+    (1)   the name of the SMTP service extension is Pipelining;
+
+    (2)   the EHLO keyword value associated with the extension is
+          PIPELINING;
+
+    (3)   no parameter is used with the PIPELINING EHLO keyword;
+
+    (4)   no additional parameters are added to either the MAIL
+          FROM or RCPT TO commands.
+
+    (5)   no additional SMTP verbs are defined by this extension;
+          and,
+
+    (6)   the next section specifies how support for the
+          extension affects the behavior of a server and client
+          SMTP.
+
+
+
+
+
+Freed &amp; Cargille            Standards Track                     =
+[Page 2]
+<HR>
+</PRE><PRE style=3D"PAGE-BREAK-AFTER: always"><A =
+href=3D"http://rfc.sunsite.dk/rfc/rfc1854.html">RFC 1854</A>             =
+       SMTP Pipelining                 October 1995
+
+
+2.  The Pipelining Service Extension
+
+   When a client SMTP wishes to employ command pipelining, it first
+   issues the EHLO command to the server SMTP. If the server SMTP
+   responds with code 250 to the EHLO command, and the response includes
+   the EHLO keyword value PIPELINING, then the server SMTP has indicated
+   that it can accommodate SMTP command pipelining.
+
+2.1.  Client use of pipelining
+
+   Once the client SMTP has confirmed that support exists for the
+   pipelining extension, the client SMTP may then elect to transmit
+   groups of SMTP commands in batches without waiting for a response to
+   each individual command. In particular, the commands RSET, MAIL FROM,
+   SEND FROM, SOML FROM, SAML FROM, and RCPT TO can all appear anywhere
+   in a pipelined command group.  The EHLO, DATA, VRFY, EXPN, TURN,
+   QUIT, and NOOP commands can only appear as the last command in a
+   group since their success or failure produces a change of state which
+   the client SMTP must accommodate. (NOOP is included in this group so
+   it can be used as a synchronization point.)
+
+   Additional commands added by other SMTP extensions may only appear as
+   the last command in a group unless otherwise specified by the
+   extensions that define the commands.
+
+   The actual transfer of message content is explicitly allowed to be
+   the first "command" in a group. That is, the RSET/MAIL FROM sequence
+   necessary to initiate a new message transaction can be placed in the
+   same group as the final transfer of the headers and body of the
+   previous message.
+
+   Client SMTP implementations that employ pipelining MUST check ALL
+   statuses associated with each command in a group. For example, if
+   none of the RCPT TO recipient addresses were accepted the client must
+   then check the response to the DATA command -- the client cannot
+   assume that the DATA command will be rejected just because none of
+   the RCPT TO commands worked.  If the DATA command was properly
+   rejected the client SMTP can just issue RSET, but if the DATA command
+   was accepted the client SMTP should send a single dot.
+
+   Command statuses MUST be coordinated with responses by counting each
+   separate response and correlating that count with the number of
+   commands known to have been issued.  Multiline responses MUST be
+   supported. Matching on the basis of either the error code value or
+   associated text is expressly forbidden.
+
+   Client SMTP implementations MAY elect to operate in a nonblocking
+   fashion, processing server responses immediately upon receipt, even
+
+
+
+Freed &amp; Cargille            Standards Track                     =
+[Page 3]
+<HR>
+</PRE><PRE style=3D"PAGE-BREAK-AFTER: always"><A =
+href=3D"http://rfc.sunsite.dk/rfc/rfc1854.html">RFC 1854</A>             =
+       SMTP Pipelining                 October 1995
+
+
+   if there is still data pending transmission from the client's
+   previous TCP send operation. If nonblocking operation is not
+   supported, however, client SMTP implementations MUST also check the
+   TCP window size and make sure that each group of commands fits
+   entirely within the window. The window size is usually, but not
+   always, 4K octets.  Failure to perform this check can lead to
+   deadlock conditions.
+
+   Clients MUST NOT confuse responses to multiple commands with
+   multiline responses. Each command requires one or more lines of
+   response, the last line not containing a dash between the response
+   code and the response string.
+
+2.2.  Server support of pipelining
+
+   A server SMTP implementation that offers the pipelining extension:
+
+    (1)   MUST NOT flush or otherwise lose the contents of the
+          TCP input buffer under any circumstances whatsoever.
+
+    (2)   SHOULD issue a positive response to the DATA command if
+          and only if one or more valid RCPT TO addresses have
+          been previously received.
+
+    (3)   MUST NOT, after issuing a positive response to a DATA
+          command with no valid recipients and subsequently
+          receiving an empty message, send any message whatsoever
+          to anybody.
+
+    (4)   SHOULD elect to store responses to grouped RSET, MAIL
+          FROM, SEND FROM, SOML FROM, SAML FROM, and RCPT TO
+          commands in an internal buffer so they can sent as a
+          unit.
+
+    (5)   MUST NOT buffer responses to EHLO, DATA, VRFY, EXPN,
+          TURN, QUIT, and NOOP.
+
+    (6)   MUST NOT buffer responses to unrecognized commands.
+
+    (7)   MUST send all pending responses immediately whenever
+          the local TCP input buffer is emptied.
+
+    (8)   MUST NOT make assumptions about commands that are yet
+          to be received.
+
+    (9)   SHOULD issue response text that indicates, either
+          implicitly or explicitly, what command the response
+          matches.
+
+
+
+Freed &amp; Cargille            Standards Track                     =
+[Page 4]
+<HR>
+</PRE><PRE style=3D"PAGE-BREAK-AFTER: always"><A =
+href=3D"http://rfc.sunsite.dk/rfc/rfc1854.html">RFC 1854</A>             =
+       SMTP Pipelining                 October 1995
+
+
+   The overriding intent of these server requirements is to make it as
+   easy as possible for servers to conform to these pipelining
+   extensions.
+
+3.  Examples
+
+   Consider the following SMTP dialogue that does not use pipelining:
+
+   S: &lt;wait for open connection&gt;
+   C: &lt;open connection to server&gt;
+   S: 220 innosoft.com SMTP service ready
+   C: HELO dbc.mtview.ca.us
+   S: 250 innosoft.com
+   C: MAIL FROM:&lt;<A =
+href=3D"mailto:mrose@dbc.mtview.ca.us">mrose@dbc.mtview.ca.us</A>&gt;
+   S: 250 sender &lt;<A =
+href=3D"mailto:mrose@dbc.mtview.ca.us">mrose@dbc.mtview.ca.us</A>&gt; OK
+   C: RCPT TO:&lt;<A =
+href=3D"mailto:ned@innosoft.com">ned@innosoft.com</A>&gt;
+   S: 250 recipient &lt;<A =
+href=3D"mailto:ned@innosoft.com">ned@innosoft.com</A>&gt; OK
+   C: RCPT TO:&lt;<A =
+href=3D"mailto:dan@innosoft.com">dan@innosoft.com</A>&gt;
+   S: 250 recipient &lt;<A =
+href=3D"mailto:dan@innosoft.com">dan@innosoft.com</A>&gt; OK
+   C: RCPT TO:&lt;<A =
+href=3D"mailto:kvc@innosoft.com">kvc@innosoft.com</A>&gt;
+   S: 250 recipient &lt;<A =
+href=3D"mailto:kvc@innosoft.com">kvc@innosoft.com</A>&gt; OK
+   C: DATA
+   S: 354 enter mail, end with line containing only "."
+    ...
+   C: .
+   S: 250 message sent
+   C: QUIT
+   S: 221 goodbye
+
+   The client waits for a server response a total of 9 times in this
+   simple example. But if pipelining is employed the following dialogue
+   is possible:
+
+   S: &lt;wait for open connection&gt;
+   C: &lt;open connection to server&gt;
+   S: 220 innosoft.com SMTP service ready
+   C: EHLO dbc.mtview.ca.us
+   S: 250-innosoft.com
+   S: 250 PIPELINING
+   C: MAIL FROM:&lt;<A =
+href=3D"mailto:mrose@dbc.mtview.ca.us">mrose@dbc.mtview.ca.us</A>&gt;
+   C: RCPT TO:&lt;<A =
+href=3D"mailto:ned@innosoft.com">ned@innosoft.com</A>&gt;
+   C: RCPT TO:&lt;<A =
+href=3D"mailto:dan@innosoft.com">dan@innosoft.com</A>&gt;
+   C: RCPT TO:&lt;<A =
+href=3D"mailto:kvc@innosoft.com">kvc@innosoft.com</A>&gt;
+   C: DATA
+   S: 250 sender &lt;<A =
+href=3D"mailto:mrose@dbc.mtview.ca.us">mrose@dbc.mtview.ca.us</A>&gt; OK
+   S: 250 recipient &lt;<A =
+href=3D"mailto:ned@innosoft.com">ned@innosoft.com</A>&gt; OK
+   S: 250 recipient &lt;<A =
+href=3D"mailto:dan@innosoft.com">dan@innosoft.com</A>&gt; OK
+   S: 250 recipient &lt;<A =
+href=3D"mailto:kvc@innosoft.com">kvc@innosoft.com</A>&gt; OK
+
+
+
+Freed &amp; Cargille            Standards Track                     =
+[Page 5]
+<HR>
+</PRE><PRE style=3D"PAGE-BREAK-AFTER: always"><A =
+href=3D"http://rfc.sunsite.dk/rfc/rfc1854.html">RFC 1854</A>             =
+       SMTP Pipelining                 October 1995
+
+
+   S: 354 enter mail, end with line containing only "."
+    ...
+   C: .
+   C: QUIT
+   S: 250 message sent
+   S: 221 goodbye
+
+   The total number of turnarounds has been reduced from 9 to 4.
+
+   The next example illustrates one possible form of behavior when
+   pipelining is used and all recipients are rejected:
+
+   S: &lt;wait for open connection&gt;
+   C: &lt;open connection to server&gt;
+   S: 220 innosoft.com SMTP service ready
+   C: EHLO dbc.mtview.ca.us
+   S: 250-innosoft.com
+   S: 250 PIPELINING
+   C: MAIL FROM:&lt;<A =
+href=3D"mailto:mrose@dbc.mtview.ca.us">mrose@dbc.mtview.ca.us</A>&gt;
+   C: RCPT TO:&lt;<A =
+href=3D"mailto:nsb@thumper.bellcore.com">nsb@thumper.bellcore.com</A>&gt;=
+
+   C: RCPT TO:&lt;<A =
+href=3D"mailto:galvin@tis.com">galvin@tis.com</A>&gt;
+   C: DATA
+   S: 250 sender &lt;<A =
+href=3D"mailto:mrose@dbc.mtview.ca.us">mrose@dbc.mtview.ca.us</A>&gt; OK
+   S: 550 remote mail to &lt;<A =
+href=3D"mailto:nsb@thumper.bellore.com">nsb@thumper.bellore.com</A>&gt; =
+not allowed
+   S: 550 remote mail to &lt;<A =
+href=3D"mailto:galvin@tis.com">galvin@tis.com</A>&gt; not allowed
+   S: 554 no valid recipients given
+   C: QUIT
+   S: 221 goodbye
+
+   The client SMTP waits for the server 4 times here as well. If the
+   server SMTP does not check for at least one valid recipient prior to
+   accepting the DATA command, the following dialogue would result:
+
+   S: &lt;wait for open connection&gt;
+   C: &lt;open connection to server&gt;
+   S: 220 innosoft.com SMTP service ready
+   C: EHLO dbc.mtview.ca.us
+   S: 250-innosoft.com
+   S: 250 PIPELINING
+   C: MAIL FROM:&lt;<A =
+href=3D"mailto:mrose@dbc.mtview.ca.us">mrose@dbc.mtview.ca.us</A>&gt;
+   C: RCPT TO:&lt;<A =
+href=3D"mailto:nsb@thumper.bellcore.com">nsb@thumper.bellcore.com</A>&gt;=
+
+   C: RCPT TO:&lt;<A =
+href=3D"mailto:galvin@tis.com">galvin@tis.com</A>&gt;
+   C: DATA
+   S: 250 sender &lt;<A =
+href=3D"mailto:mrose@dbc.mtview.ca.us">mrose@dbc.mtview.ca.us</A>&gt; OK
+   S: 550 remote mail to &lt;<A =
+href=3D"mailto:nsb@thumper.bellore.com">nsb@thumper.bellore.com</A>&gt; =
+not allowed
+   S: 550 remote mail to &lt;<A =
+href=3D"mailto:galvin@tis.com">galvin@tis.com</A>&gt; not allowed
+   S: 354 enter mail, end with line containing only "."
+   C: .
+
+
+
+Freed &amp; Cargille            Standards Track                     =
+[Page 6]
+<HR>
+</PRE><PRE style=3D"PAGE-BREAK-AFTER: always"><A =
+href=3D"http://rfc.sunsite.dk/rfc/rfc1854.html">RFC 1854</A>             =
+       SMTP Pipelining                 October 1995
+
+
+   C: QUIT
+   S: 554 no valid recipients
+   S: 221 goodbye
+
+4.  Security Considerations
+
+   This RFC does not discuss security issues and is not believed to
+   raise any security issues not endemic in electronic mail and present
+   in fully conforming implementations of [1].
+
+5.  Acknowledgements
+
+   This document is based on the SMTP service extension model presented
+   in <A href=3D"http://rfc.sunsite.dk/rfc/rfc1425.html">RFC 1425</A>. =
+Marshall Rose's description of SMTP command pipelining
+   in his book "The Internet Message" also served as a source of
+   inspiration for this extension.
+
+6.  References
+
+   [1]  Postel, J., "Simple Mail Transfer Protocol", STD 10
+        <A href=3D"http://rfc.sunsite.dk/rfc/rfc821.html">RFC 821</A>, =
+USC/Information Sciences Institute, August
+        1982.
+
+   [2]  Klensin, J., Freed, N., Rose, M., Stefferud, E.,
+        and D. Crocker, "SMTP Service Extensions", <A =
+href=3D"http://rfc.sunsite.dk/rfc/rfc1651.html">RFC 1651</A>,
+        MCI, Innosoft, Dover Beach Consulting, Inc.,
+        Network Management Associates, Inc., Silicon Graphics,
+        Inc., July 1994.
+
+7.  Author's Address
+
+   Ned Freed
+   Innosoft International, Inc.
+   1050 East Garvey Avenue South
+   West Covina, CA 91790
+   USA
+
+   Phone: +1 818 919 3600
+   Fax: +1 818 919 3614
+   EMail: <A href=3D"mailto:ned@innosoft.com">ned@innosoft.com</A>
+
+
+
+
+
+
+
+
+
+
+
+Freed &amp; Cargille            Standards Track                     =
+[Page 7]
+<HR>
+</PRE><PRE style=3D"PAGE-BREAK-AFTER: always"></PRE></BODY></HTML>
+
+------=_NextPart_000_0000_01C334F9.2AFB9E20
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://rfc.sunsite.dk/rfcicon.gif
+
+R0lGODlhZAAyANUAAP///wgICCEhITk5OVJSUmtra3t7e4yMjJycnK2trd7e3vf39+/s587Lxr26
+tc7Hvb20pb2tlP/pxtbDpefRrf/mvcDAwP/cpf/TjP/Jc//AWv+2Qv+tKf+mGP+dAAAAAP///wAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAABYALAAAAABkADIAAAb/QItw
+SCwaj8ikcslsOp/QqHRKrVqv2Kx2y+16AeAw2EsUm89mI3rNBpTbZ+15AVjY7/d62jKv4/94emuA
+eXRxVmEMigwKi42LCwyBZpGLjI6Kj4+Kk34NBwYFBhANkJJ5YVVgCgQBrq+wrgMECJyoAAcCsbu8
+AQa2dgy5AR/FxQEEDg0DAw6nhm5UYAXG1dbVAgmQdgrE19/XBZYLDwLgxt4C22PSANTn4AfjCvD1
+BQ2PB971x/i27FLqsHJVbZe1AAgaRVowrGCvfR8INMCXAGKAWQQImDv4wJ8kgFHARFJwwNgABBAQ
+JEiAwMCAagM8LlpmrEBKCCtzJiBgTOLE/43FCEB44OAB0QMv0SkrdSpawGAMEBgTkHKlg6IP3n0I
+oGwTo6QfDKi0evUqz6BFzxYrUPaqUaNqAySYqJBOOwCKpBY7iRNrA6NAD0y0pABsAZYJ3BptoDaZ
+A6ADiCqeONEBOgQdH4GE4ieS3g/ZVnak3ACoAbqWwBqwakCAAAQTDRgz4ED2scRXSSugvFFA0cF2
+nIYUGdWkaMq7bRfDLJOB6pyvYk7UmOxB47KULTFCMEDAgdH/VPlJYPx3Kev7BiQAX8nwgZZTSZM2
+7HawdkXyFSjcPHwBhKkFBBjKABCF9dsjdoC1lTUCyEeZauZBkkgm+PgTnHBPLUAeP2vlZv9hgvAI
+MJp+JEII3kciQaXdhYjU8R8/AtDmoS3OhWheI/qpthgnc6zIYosa8hPAATll9swCYAXg2j7ZZLaJ
+jqgFJ4QYgKQC5IZbMcMMRN4hsBSCIBYjFnzFNGlfJBBGCZAgnWCYIZbq4ZRALth4eaYfqt20UTNG
+SsKAVgScKOWUIhUqxhUivfjBACmp5EACCqpnnx81ijnWARmtd6YdJZV5YFNuUELHqPz1h2VouF2l
+oE/AIDlbTpN5dEc3PQlKiQMFHNCmeHbAWeRoj112piTP1afbkX9W4xOYdyDgjTz/uPkEGAzgOpUB
+Yo02EQRMfvdIAwkARQC2BryH2j8jAXX/EWzaNaBVROtI2wQY5ZyzbGwHHcBKPcjgAyalFTGIEQEE
+WqPvv+2o9U0AHVGo8KKWcTgaBRVIkGJeBcJzj6ylzguAct8IEIG/jNRba8bXMKzAAxRQIIEhwSgA
+KYwGaBveFCK5pGV3rg1wQAQJ6JcJUswQMBcCBO8sQHdawuZvxVRSiGnGFx12I4/yMkEpI3896gAE
+EUQwwQRe7VafZB0RtVKjXp7o8kgKQLUbuAgcEGCuEDxqlZMIDiHQR0sQx/VfRCEANAUTPMAJAw0g
+PgFOE4ideGVhVx422Y1UUPHmL1eiQOSVv2WU4ZfrR7HmL1vAgASbV7yAEhc3QtkDY0/U//IzDLA8
+9ti6Uwa22Ak4TrYiqEuwuuuVNOAA4iOTJrwDOFYsgQJ4SWB9I9anjkSKlTCy2wQUyF5B3Hgo0HL4
++vnbAPgkfh8+8RUwMCXrXjECvoPmv22H6xYsYL1dfMievMJwB0u0rAHZg1pnWGc8BXjggR7IwAPG
+px0FGG9/FpufBDLQAQ7UQRG3U8QEOFCKBkDNf9MTwgKkl70WZo2AnWGA5jQ3Qc1dCC/jswMGNPDA
+DlSAAosr4B1OSIf/aaADeKiA4saxv/gBgHWvU10CWfg/2J0he4Sxnhhk2DkAYCCCERyfFzewgQvw
+kAMV8B8GOPBAMl5gAUfcwAMzoDkAUP+AjBvonAIywAEySkADZKRjBTjogQ5kIA9aIw7rULQABSDP
+DlhkRAc2AAAOoHF6hHygBjiQgT16gJOEzAADeGhIHmpgehfYQAc8UIEwHPGTCuBhBCXARg1kwJTT
+y5oRuMhAMEzRglSUwBc1kEoPXCB7X+TAMSNRgU927osZ+KMHrFeBSTKwAhdg5RAUkM0MWCCbFfim
+B4h5gWJiQHtNaOT04iaSdcaNEeucnhwhOE4UZvMCcetfMzFAPRzq54j+U8Ak9YNKbapQAnJcQAfd
+kIFCrrIDq8SALrUggXFacJTT5MM9AbiAeg5BcxY4Yqg6oIEprdCYALRAReV4ASFk85x3x7uA/MhA
+hGoWsqUYeGgqHwrRcFrgiyTdpAcwkM1xAkCWElVlDycZRQvI0YNTkuMGNPDKltJ0CH+kaksrQNVT
+3rKrpxzCTicpUTNqQKI71EArv8pWp/zRpypcYweJ2dSrImqiLcKrXffK17769a+ADaxgB8uEIAAA
+Ow==
+
+------=_NextPart_000_0000_01C334F9.2AFB9E20
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-Location: http://sunsite.dk/images/hostedby.png
+
+iVBORw0KGgoAAAANSUhEUgAAAGYAAAAgCAMAAADXAP0hAAAABGdBTUEAALGPC/xhBQAAAwBQTFRF
+////OhoCZmJOypoC1sJ+3s6expoOgnZW4taqdnZ26uLCvpouSioCqppy7u7uQkJCrqKCqoICwq5+
+9vbykoJy0r6GtoYC1sKOdlICWlpa0rp++vr6popC0sKauo4CyrqOZjICUlJSkpKS2sqecnJy4tay
+2s6umpqarooqxrqWjmoCyr6a5ubmkm4CxqpW/v7+3ta2vo4CTiYCxpYC5t7CakoCmo6CvraiysKy
+Xi4C0q4+nn4abmpWooIi2tK29vLi0saeyr6eoqKisrKywrqewqpekoqC0saq3ta+8urWzs7Orq6u
+2tK6rqaOvpYmTi4C1qIC6uLKzrZsxpICysrKPh4CqoYeUjIC0qo6mo5idl46ZmZm2tbKnn4i1qIH
+4trGtra2Qh4CalI6wpICsoYC5uLSzp4CvpIS5t7OvpYeysa2vr6+uppAwqZWwq56cjoConoCqqqq
+UioCno5W6urmurq21tLCampqqn4ClnICRiYCsqZ65uLW3trOtooC0qIGpqamwqJCypYCqpJGenp6
+sooQnnYCzrJWrooiYmJi4uLiqpJO4t7SvraqRiIC1p4CeloCpn4Duo4GqpZmuooCtppLxpoetqqC
+zrp2Wi4CwpYS2tra8vLuwsLCxsbG0tLSQiIC2tbOvpIOuo4KVlZWbm5u9u7iroIC2sqW0q5OWjYC
+0p4C0sKK3t7epoo66ubeUiYCvqZmvqJSmnYC3s6iXl5eupITzrqJzpoCtqZ+ajICYi4Cyq5eWioC
+spZCgloCzp4a1r564tKqsoYKvp462qICVjYConYCSi4C2saOxrJyYjICvpIK1tbWypYKypoOpn4K
+xpYG1qIO0s7KpnoCSiYCSiIC3trWsoICvpIa6ubm1saWwrJ6sqZ+qo5ClpaW3tKybk4C0rZWso4i
+rpZSqo42VioCVjICdjoCmnIC1sKHxpoWyrZysoYG6urq0qIOuo4S2s6qup5CwraiuqqC5taqcmpW
+3tK2rpJC0rpyxrJ69vb2urq6qn4GnnYG8vLy/hi75AAAAAF0Uk5TAEDm2GYAAAABYktHRACIBR1I
+AAAACXBIWXMAAAsSAAALEgHS3X78AAAAB3RJTUUH0QYNBzMnPLKOiQAABmZJREFUeJy1Vn9sE3UU
+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
+
+------=_NextPart_000_0000_01C334F9.2AFB9E20--

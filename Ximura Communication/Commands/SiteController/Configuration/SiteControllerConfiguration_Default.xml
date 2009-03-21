@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<SiteControllerConfiguration 
+  xmlns="http://schema.ximura.org/configuration/sitecontroller/1.0" 
+  xmlns:fsm="http://schema.ximura.org/configuration/fsm/1.0"
+  xmlns:cmd="http://schema.ximura.org/configuration/command/1.0" 
+  xmlns:ximura="http://schema.ximura.org/core"
+  >
+
+  <ximura:entity>
+    <ximura:tid>B6288C52-7284-4564-A65A-C06065A3E21B</ximura:tid>
+    <ximura:cid></ximura:cid>
+    <ximura:vid></ximura:vid>
+  </ximura:entity>
+
+  <commandconfig xmlns="http://schema.ximura.org/configuration/command/1.0">
+    <id></id>
+    <name></name>
+    <description></description>
+    <enabled>true</enabled>
+    <priority>normal</priority>
+    <usersessionrealm></usersessionrealm>
+    <processsession required="true" usesystemcredentials="true"/>
+  </commandconfig>
+
+  <cmd:timerpoll enabled="false" autostart="false" polltimeenabled="true" polltimerepeatvalue="1" polltimerepeattype="s" />
+
+  <fsm:pool min="5" prefer="20" max="50" />
+
+</SiteControllerConfiguration>

@@ -1,0 +1,1535 @@
+From: <Saved by Microsoft Internet Explorer 5>
+Subject: (MIME) Part Five: Conformance Criteria and Examples
+Date: Fri, 5 Apr 2002 12:29:44 +0800
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	boundary="----=_NextPart_000_0014_01C1DC9D.910D7900";
+	type="text/html"
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2600.0000
+
+This is a multi-part message in MIME format.
+
+------=_NextPart_000_0014_01C1DC9D.910D7900
+Content-Type: text/html;
+	charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://www.nacs.uci.edu/indiv/ehood/MIME/2049/rfc2049.html
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>(MIME) Part Five: Conformance Criteria and =
+Examples</TITLE>
+<META http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dwindows-1252">
+<META content=3D"MSHTML 6.00.2600.0" name=3DGENERATOR></HEAD>
+<BODY background=3Dhttp://www.oac.uci.edu/indiv/ehood/bg/cemstone.gif>
+<TABLE width=3D"100%" border=3D0>
+  <TBODY>
+  <TR>
+    <TD align=3Dleft>
+      <ADDRESS>Network Working Group<BR>Request for Comments: =
+2049<BR>Obsoletes:=20
+      1521, 1522, 1590<BR>Category: Standards =
+Track<BR><BR></ADDRESS></TD>
+    <TD align=3Dright>
+      <ADDRESS>N. Freed<BR>Innosoft<BR>N. Borenstein<BR>First=20
+      Virtual<BR>November 1996<BR></ADDRESS></TD></TR></TBODY></TABLE>
+<HR>
+
+<H1 align=3Dcenter>Multipurpose Internet Mail Extensions</H1>
+<H4 align=3Dcenter>(MIME) Part Five:<BR>Conformance Criteria and =
+Examples</H4>
+<HR>
+
+<H2><A name=3Dstatus>Status of this Memo</A> </H2>
+<P>This document specifies an Internet standards track protocol for the =
+Internet=20
+community, and requests discussion and suggestions for improvements. =
+Please=20
+refer to the current edition of the "Internet Official Protocol =
+Standards" (STD=20
+1) for the standardization state and status of this protocol. =
+Distribution of=20
+this memo is unlimited. </P>
+<H2><A name=3Dabstract>Abstract</A> </H2>
+<P>STD 11, <A href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC =
+822</A>, defines=20
+a message representation protocol specifying considerable detail about =
+US-ASCII=20
+message headers, and leaves the message content, or message body, as =
+flat=20
+US-ASCII text. This set of documents, collectively called the =
+Multipurpose=20
+Internet Mail Extensions, or MIME, redefines the format of messages to =
+allow for=20
+</P>
+<OL>
+  <LI>
+  <P>textual message bodies in character sets other than US-ASCII, </P>
+  <LI>
+  <P>an extensible set of different formats for non-textual message =
+bodies, </P>
+  <LI>
+  <P>multi-part message bodies, and </P>
+  <LI>
+  <P>textual header information in character sets other than US-ASCII.=20
+</P></LI></OL>
+<P>These documents are based on earlier work documented in <A=20
+href=3D"http://ds.internic.net/rfc/rfc934.txt">RFC 934</A>, STD 11, and =
+<A=20
+href=3D"http://ds.internic.net/rfc/rfc1049.txt">RFC 1049</A>, but =
+extends and=20
+revises them. Because <A =
+href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC=20
+822</A> said so little about message bodies, these documents are largely =
+
+orthogonal to (rather than a revision of) <A=20
+href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC 822</A>. </P>
+<P>The initial document in this set, <A=20
+href=3D"http://www.nacs.uci.edu/indiv/ehood/MIME/2045/rfc2045.html">RFC =
+2045</A>,=20
+specifies the various headers used to describe the structure of MIME =
+messages.=20
+The second document defines the general structure of the MIME media =
+typing=20
+system and defines an initial set of media types. The third document, <A =
+
+href=3D"http://www.nacs.uci.edu/indiv/ehood/MIME/2047/rfc2047.html">RFC =
+2047</A>,=20
+describes extensions to <A =
+href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC=20
+822</A> to allow non-US-ASCII text data in Internet mail header fields. =
+The=20
+fourth document, <A=20
+href=3D"http://www.nacs.uci.edu/indiv/ehood/MIME/2048/rfc2048.html">RFC =
+2048</A>,=20
+specifies various IANA registration procedures for MIME-related =
+facilities. This=20
+fifth and final document describes MIME conformance criteria as well as=20
+providing some illustrative examples of MIME message formats, =
+acknowledgements,=20
+and the bibliography. </P>
+<P>These documents are revisions of RFCs 1521, 1522, and 1590, which =
+themselves=20
+were revisions of RFCs 1341 and 1342. Appendix B of this document =
+describes=20
+differences and changes from previous versions. </P>
+<H2><A name=3D1>1. Introduction </A></H2>
+<P>The first and second documents in this set define MIME header fields =
+and the=20
+initial set of MIME media types. The third document describes extensions =
+to=20
+RFC822 formats to allow for character sets other than US-ASCII. This =
+document=20
+describes what portions of MIME must be supported by a conformant MIME=20
+implementation. It also describes various pitfalls of contemporary =
+messaging=20
+systems as well as the canonical encoding model MIME is based on. </P>
+<H2><A name=3D2>2. MIME Conformance </A></H2>
+<P>The mechanisms described in these documents are open-ended. It is =
+definitely=20
+not expected that all implementations will support all available media =
+types,=20
+nor that they will all share the same extensions. In order to promote=20
+interoperability, however, it is useful to define the concept of=20
+"MIME-conformance" to define a certain level of implementation that =
+allows the=20
+useful interworking of messages with content that differs from US-ASCII =
+text. In=20
+this section, we specify the requirements for such conformance. </P>
+<P>A mail user agent that is MIME-conformant MUST: </P>
+<OL>
+  <LI>
+  <P>Always generate a "MIME-Version: 1.0" header field in any message =
+it=20
+  creates. </P>
+  <LI>
+  <P>Recognize the Content-Transfer-Encoding header field and decode all =
+
+  received data encoded by either quoted-printable or base64 =
+implementations.=20
+  The identity transformations 7bit, 8bit, and binary must also be =
+recognized.=20
+  </P>
+  <P>Any non-7bit data that is sent without encoding must be properly =
+labelled=20
+  with a content-transfer-encoding of 8bit or binary, as appropriate. If =
+the=20
+  underlying transport does not support 8bit or binary (as SMTP [<A=20
+  href=3D"http://ds.internic.net/rfc/rfc821.txt">RFC-821</A>] does not), =
+the=20
+  sender is required to both encode and label data using an appropriate=20
+  Content-Transfer-Encoding such as quoted-printable or base64. </P>
+  <LI>
+  <P>Must treat any unrecognized Content-Transfer-Encoding as if it had =
+a=20
+  Content-Type of "application/octet-stream", regardless of whether or =
+not the=20
+  actual Content-Type is recognized. </P>
+  <LI>
+  <P>Recognize and interpret the Content-Type header field, and avoid =
+showing=20
+  users raw data with a Content-Type field other than text. =
+Implementations must=20
+  be able to send at least text/plain messages, with the character set =
+specified=20
+  with the charset parameter if it is not US-ASCII. </P>
+  <LI>
+  <P>Ignore any content type parameters whose names they do not =
+recognize. </P>
+  <LI>
+  <P>Explicitly handle the following media type values, to at least the=20
+  following extents: </P>
+  <P>Text: </P>
+  <UL>
+    <LI>
+    <P>Recognize and display "text" mail with the character set =
+"US-ASCII." </P>
+    <LI>
+    <P>Recognize other character sets at least to the extent of being =
+able to=20
+    inform the user about what character set the message uses. </P>
+    <LI>
+    <P>Recognize the "ISO-8859-*" character sets to the extent of being =
+able to=20
+    display those characters that are common to ISO-8859-* and US-ASCII, =
+namely=20
+    all characters represented by octet values 1-127. </P>
+    <LI>
+    <P>For unrecognized subtypes in a known character set, show or offer =
+to show=20
+    the user the "raw" version of the data after conversion of the =
+content from=20
+    canonical form to local form. </P>
+    <LI>
+    <P>Treat material in an unknown character set as if it were=20
+    "application/octet-stream". </P></LI></UL>
+  <P>Image, audio, and video: </P>
+  <UL>
+    <LI>
+    <P>At a minumum provide facilities to treat any unrecognized =
+subtypes as if=20
+    they were "application/octet-stream". </P></LI></UL>
+  <P>Application: </P>
+  <UL>
+    <LI>
+    <P>Offer the ability to remove either of the quoted-printable or =
+base64=20
+    encodings defined in this document if they were used and put the =
+resulting=20
+    information in a user file. </P></LI></UL>
+  <P>Multipart: </P>
+  <UL>
+    <LI>
+    <P>Recognize the mixed subtype. Display all relevant information on =
+the=20
+    message level and the body part header level and then display or =
+offer to=20
+    display each of the body parts individually. </P>
+    <LI>
+    <P>Recognize the "alternative" subtype, and avoid showing the user =
+redundant=20
+    parts of multipart/alternative mail. </P>
+    <LI>
+    <P>Recognize the "multipart/digest" subtype, specifically using=20
+    "message/rfc822" rather than "text/plain" as the default media type =
+for body=20
+    parts inside "multipart/digest" entities. </P>
+    <LI>
+    <P>Treat any unrecognized subtypes as if they were "mixed". =
+</P></LI></UL>
+  <P>Message: </P>
+  <UL>
+    <LI>
+    <P>Recognize and display at least the RFC822 message encapsulation=20
+    (message/rfc822) in such a way as to preserve any recursive =
+structure, that=20
+    is, displaying or offering to display the encapsulated data in =
+accordance=20
+    with its media type. </P>
+    <LI>
+    <P>Treat any unrecognized subtypes as if they were=20
+    "application/octet-stream". </P></LI></UL>
+  <LI>
+  <P>Upon encountering any unrecognized Content-Type field, an =
+implementation=20
+  must treat it as if it had a media type of "application/octet-stream" =
+with no=20
+  parameter sub-arguments. How such data are handled is up to an =
+implementation,=20
+  but likely options for handling such unrecognized data include =
+offering the=20
+  user to write it into a file (decoded from its mail transport format) =
+or=20
+  offering the user to name a program to which the decoded data should =
+be passed=20
+  as input. </P>
+  <LI>
+  <P>Conformant user agents are required, if they provide non-standard =
+support=20
+  for non-MIME messages employing character sets other than US-ASCII, to =
+do so=20
+  on received messages only. Conforming user agents must not send =
+non-MIME=20
+  messages containing anything other than US-ASCII text. </P>
+  <P>In particular, the use of non-US-ASCII text in mail messages =
+without a=20
+  MIME-Version field is strongly discouraged as it impedes =
+interoperability when=20
+  sending messages between regions with different localization =
+conventions.=20
+  Conforming user agents MUST include proper MIME labelling when sending =
+
+  anything other than plain text in the US-ASCII character set. </P>
+  <P>In addition, non-MIME user agents should be upgraded if at all =
+possible to=20
+  include appropriate MIME header information in the messages they send =
+even if=20
+  nothing else in MIME is supported. This upgrade will have little, if =
+any,=20
+  effect on non-MIME recipients and will aid MIME in correctly =
+displaying such=20
+  messages. It also provides a smooth transition path to eventual =
+adoption of=20
+  other MIME capabilities. </P>
+  <LI>
+  <P>Conforming user agents must ensure that any string of =
+non-white-space=20
+  printable US-ASCII characters within a "*text" or "*ctext" that begins =
+with=20
+  "=3D?" and ends with "?=3D" be a valid encoded-word. ("begins" means: =
+At the start=20
+  of the field-body or immediately following linear-white-space; "ends" =
+means:=20
+  At the end of the field-body or immediately preceding =
+linear-white-space.) In=20
+  addition, any "word" within a "phrase" that begins with "=3D?" and =
+ends with=20
+  "?=3D" must be a valid encoded-word. </P>
+  <LI>
+  <P>Conforming user agents must be able to distinguish encoded-words =
+from=20
+  "text", "ctext", or "word"s, according to the rules in section 4, =
+anytime they=20
+  appear in appropriate places in message headers. It must support both =
+the "B"=20
+  and "Q" encodings for any character set which it supports. The program =
+must be=20
+  able to display the unencoded text if the character set is "US-ASCII". =
+For the=20
+  ISO-8859-* character sets, the mail reading program must at least be =
+able to=20
+  display the characters which are also in the US-ASCII set. =
+</P></LI></OL>
+<P>A user agent that meets the above conditions is said to be =
+MIME-conformant.=20
+The meaning of this phrase is that it is assumed to be "safe" to send =
+virtually=20
+any kind of properly-marked data to users of such mail systems, because =
+such=20
+systems will at least be able to treat the data as undifferentiated =
+binary, and=20
+will not simply splash it onto the screen of unsuspecting users. </P>
+<P>There is another sense in which it is always "safe" to send data in a =
+format=20
+that is MIME-conformant, which is that such data will not break or be =
+broken by=20
+any known systems that are conformant with RFC 821 and <A=20
+href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC 822</A>. User agents =
+that are=20
+MIME-conformant have the additional guarantee that the user will not be =
+shown=20
+data that were never intended to be viewed as text. </P>
+<H2><A name=3D3>3. Guidelines for Sending Email Data </A></H2>
+<P>Internet email is not a perfect, homogeneous system. Mail may become=20
+corrupted at several stages in its travel to a final destination. =
+Specifically,=20
+email sent throughout the Internet may travel across many networking=20
+technologies. Many networking and mail technologies do not support the =
+full=20
+functionality possible in the SMTP transport environment. Mail =
+traversing these=20
+systems is likely to be modified in order that it can be transported. =
+</P>
+<P>There exist many widely-deployed non-conformant MTAs in the Internet. =
+These=20
+MTAs, speaking the SMTP protocol, alter messages on the fly to take =
+advantage of=20
+the internal data structure of the hosts they are implemented on, or are =
+just=20
+plain broken. </P>
+<P>The following guidelines may be useful to anyone devising a data =
+format=20
+(media type) that is supposed to survive the widest range of networking=20
+technologies and known broken MTAs unscathed. Note that anything encoded =
+in the=20
+base64 encoding will satisfy these rules, but that some well-known =
+mechanisms,=20
+notably the UNIX uuencode facility, will not. Note also that anything =
+encoded in=20
+the Quoted-Printable encoding will survive most gateways intact, but =
+possibly=20
+not some gateways to systems that use the EBCDIC character set. </P>
+<P>
+<OL>
+  <LI>
+  <P>Under some circumstances the encoding used for data may change as =
+part of=20
+  normal gateway or user agent operation. In particular, conversion from =
+base64=20
+  to quoted-printable and vice versa may be necessary. This may result =
+in the=20
+  confusion of CRLF sequences with line breaks in text bodies. As such, =
+the=20
+  persistence of CRLF as something other than a line break must not be =
+relied=20
+  on. </P>
+  <LI>
+  <P>Many systems may elect to represent and store text data using local =
+newline=20
+  conventions. Local newline conventions may not match the RFC822 CRLF=20
+  convention -- systems are known that use plain CR, plain LF, CRLF, or =
+counted=20
+  records. The result is that isolated CR and LF characters are not well =
+
+  tolerated in general; they may be lost or converted to delimiters on =
+some=20
+  systems, and hence must not be relied on. </P>
+  <LI>
+  <P>The transmission of NULs (US-ASCII value 0) is problematic in =
+Internet=20
+  mail. (This is largely the result of NULs being used as a termination=20
+  character by many of the standard runtime library routines in the C=20
+  programming language.) The practice of using NULs as termination =
+characters is=20
+  so entrenched now that messages should not rely on them being =
+preserved. </P>
+  <LI>
+  <P>TAB (HT) characters may be misinterpreted or may be automatically =
+converted=20
+  to variable numbers of spaces. This is unavoidable in some =
+environments,=20
+  notably those not based on the US-ASCII character set. Such conversion =
+is=20
+  STRONGLY DISCOURAGED, but it may occur, and mail formats must not rely =
+on the=20
+  persistence of TAB (HT) characters. </P>
+  <LI>
+  <P>Lines longer than 76 characters may be wrapped or truncated in some =
+
+  environments. Line wrapping or line truncation imposed by mail =
+transports is=20
+  STRONGLY DISCOURAGED, but unavoidable in some cases. Applications =
+which=20
+  require long lines must somehow differentiate between soft and hard =
+line=20
+  breaks. (A simple way to do this is to use the quoted-printable =
+encoding.)=20
+</P>
+  <LI>
+  <P>Trailing "white space" characters (SPACE, TAB (HT)) on a line may =
+be=20
+  discarded by some transport agents, while other transport agents may =
+pad lines=20
+  with these characters so that all lines in a mail file are of equal =
+length.=20
+  The persistence of trailing white space, therefore, must not be relied =
+on.=20
+</P>
+  <LI>
+  <P>Many mail domains use variations on the US-ASCII character set, or =
+use=20
+  character sets such as EBCDIC which contain most but not all of the =
+US-ASCII=20
+  characters. The correct translation of characters not in the =
+"invariant" set=20
+  cannot be depended on across character converting gateways. For =
+example, this=20
+  situation is a problem when sending uuencoded information across =
+BITNET, an=20
+  EBCDIC system. Similar problems can occur without crossing a gateway, =
+since=20
+  many Internet hosts use character sets other than US-ASCII internally. =
+The=20
+  definition of Printable Strings in X.400 adds further restrictions in =
+certain=20
+  special cases. In particular, the only characters that are known to be =
+
+  consistent across all gateways are the 73 characters that correspond =
+to the=20
+  upper and lower case letters A-Z and a-z, the 10 digits 0-9, and the =
+following=20
+  eleven special characters: </P>
+  <TABLE border=3D0>
+    <TBODY>
+    <TR>
+      <TD>"'"&nbsp;</TD>
+      <TD>(US-ASCII decimal value 39)</TD></TR>
+    <TR>
+      <TD>"("&nbsp;</TD>
+      <TD>(US-ASCII decimal value 40)</TD></TR>
+    <TR>
+      <TD>")"&nbsp;</TD>
+      <TD>(US-ASCII decimal value 41)</TD></TR>
+    <TR>
+      <TD>"+"&nbsp;</TD>
+      <TD>(US-ASCII decimal value 43)</TD></TR>
+    <TR>
+      <TD>","&nbsp;</TD>
+      <TD>(US-ASCII decimal value 44)</TD></TR>
+    <TR>
+      <TD>"-"&nbsp;</TD>
+      <TD>(US-ASCII decimal value 45)</TD></TR>
+    <TR>
+      <TD>"."&nbsp;</TD>
+      <TD>(US-ASCII decimal value 46)</TD></TR>
+    <TR>
+      <TD>"/"&nbsp;</TD>
+      <TD>(US-ASCII decimal value 47)</TD></TR>
+    <TR>
+      <TD>":"&nbsp;</TD>
+      <TD>(US-ASCII decimal value 58)</TD></TR>
+    <TR>
+      <TD>"=3D"&nbsp;</TD>
+      <TD>(US-ASCII decimal value 61)</TD></TR>
+    <TR>
+      <TD>"?"&nbsp;</TD>
+      <TD>(US-ASCII decimal value 63)</TD></TR></TBODY></TABLE>
+  <P>A maximally portable mail representation will confine itself to =
+relatively=20
+  short lines of text in which the only meaningful characters are taken =
+from=20
+  this set of 73 characters. The base64 encoding follows this rule. </P>
+  <LI>
+  <P>Some mail transport agents will corrupt data that includes certain =
+literal=20
+  strings. In particular, a period (".") alone on a line is known to be=20
+  corrupted by some (incorrect) SMTP implementations, and a line that =
+starts=20
+  with the five characters "From " (the fifth character is a SPACE) are =
+commonly=20
+  corrupted as well. A careful composition agent can prevent these =
+corruptions=20
+  by encoding the data (e.g., in the quoted-printable encoding using =
+"=3D46rom "=20
+  in place of "From " at the start of a line, and "=3D2E" in place of =
+"." alone on=20
+  a line). </P></LI></OL>
+<P>Please note that the above list is NOT a list of recommended =
+practices for=20
+MTAs. <A href=3D"http://ds.internic.net/rfc/rfc821.txt">RFC 821</A> MTAs =
+are=20
+prohibited from altering the character of white space or wrapping long =
+lines.=20
+These BAD and invalid practices are known to occur on established =
+networks, and=20
+implementations should be robust in dealing with the bad effects they =
+can cause.=20
+</P>
+<H2><A name=3D4>4. Canonical Encoding Model </A></H2>
+<P>There was some confusion, in earlier versions of these documents, =
+regarding=20
+the model for when email data was to be converted to canonical form and =
+encoded,=20
+and in particular how this process would affect the treatment of CRLFs, =
+given=20
+that the representation of newlines varies greatly from system to =
+system. For=20
+this reason, a canonical model for encoding is presented below. </P>
+<P>The process of composing a MIME entity can be modeled as being done =
+in a=20
+number of steps. Note that these steps are roughly similar to those =
+steps used=20
+in PEM [<A href=3D"http://ds.internic.net/rfc/rfc1421.txt">RFC-1421</A>] =
+and are=20
+performed for each "innermost level" body: </P>
+<OL>
+  <LI>
+  <P>Creation of local form. </P>
+  <P>The body to be transmitted is created in the system's native =
+format. The=20
+  native character set is used and, where appropriate, local end of line =
+
+  conventions are used as well. The body may be a UNIX-style text file, =
+or a Sun=20
+  raster image, or a VMS indexed file, or audio data in a =
+system-dependent=20
+  format stored only in memory, or anything else that corresponds to the =
+local=20
+  model for the representation of some form of information. =
+Fundamentally, the=20
+  data is created in the "native" form that corresponds to the type =
+specified by=20
+  the media type. </P>
+  <LI>
+  <P>Conversion to canonical form. </P>
+  <P>The entire body, including "out-of-band" information such as record =
+lengths=20
+  and possibly file attribute information, is converted to a universal =
+canonical=20
+  form. The specific media type of the body as well as its associated =
+attributes=20
+  dictate the nature of the canonical form that is used. Conversion to =
+the=20
+  proper canonical form may involve character set conversion, =
+transformation of=20
+  audio data, compression, or various other operations specific to the =
+various=20
+  media types. If character set conversion is involved, however, care =
+must be=20
+  taken to understand the semantics of the media type, which may have =
+strong=20
+  implications for any character set conversion, e.g. with regard to=20
+  syntactically meaningful characters in a text subtype other than =
+"plain". </P>
+  <P>For example, in the case of text/plain data, the text must be =
+converted to=20
+  a supported character set and lines must be delimited with CRLF =
+delimiters in=20
+  accordance with <A href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC =
+822</A>.=20
+  Note that the restriction on line lengths implied by <A=20
+  href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC 822</A> is =
+eliminated if the=20
+  next step employs either quoted-printable or base64 encoding. </P>
+  <LI>
+  <P>Apply transfer encoding. </P>
+  <P>A Content-Transfer-Encoding appropriate for this body is applied. =
+Note that=20
+  there is no fixed relationship between the media type and the transfer =
+
+  encoding. In particular, it may be appropriate to base the choice of =
+base64 or=20
+  quoted-printable on character frequency counts which are specific to a =
+given=20
+  instance of a body. </P>
+  <LI>
+  <P>Insertion into entity. </P>
+  <P>The encoded body is inserted into a MIME entity with appropriate =
+headers.=20
+  The entity is then inserted into the body of a higher-level entity =
+(message or=20
+  multipart) as needed. </P></LI></OL>
+<P>Conversion from entity form to local form is accomplished by =
+reversing these=20
+steps. Note that reversal of these steps may produce differing results =
+since=20
+there is no guarantee that the original and final local forms are the =
+same. </P>
+<P>It is vital to note that these steps are only a model; they are =
+specifically=20
+NOT a blueprint for how an actual system would be built. In particular, =
+the=20
+model fails to account for two common designs: </P>
+<OL>
+  <LI>
+  <P>In many cases the conversion to a canonical form prior to encoding =
+will be=20
+  subsumed into the encoder itself, which understands local formats =
+directly.=20
+  For example, the local newline convention for text bodies might be =
+carried=20
+  through to the encoder itself along with knowledge of what that format =
+is.=20
+</P>
+  <LI>
+  <P>The output of the encoders may have to pass through one or more =
+additional=20
+  steps prior to being transmitted as a message. As such, the output of =
+the=20
+  encoder may not be conformant with the formats specified by <A=20
+  href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC 822</A>. In =
+particular, once=20
+  again it may be appropriate for the converter's output to be expressed =
+using=20
+  local newline conventions rather than using the standard <A=20
+  href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC 822</A> CRLF =
+delimiters.=20
+  </P></LI></OL>
+<P>Other implementation variations are conceivable as well. The vital =
+aspect of=20
+this discussion is that, in spite of any optimizations, collapsings of =
+required=20
+steps, or insertion of additional processing, the resulting messages =
+must be=20
+consistent with those produced by the model described here. For example, =
+a=20
+message with the following header fields: </P><PRE>    Content-type: =
+text/foo; charset=3Dbar
+    Content-Transfer-Encoding: base64
+</PRE>
+<P>must be first represented in the text/foo form, then (if necessary)=20
+represented in the "bar" character set, and finally transformed via the =
+base64=20
+algorithm into a mail-safe form. </P>
+<P><STRONG>NOTE</STRONG>: Some confusion has been caused by systems that =
+
+represent messages in a format which uses local newline conventions =
+which differ=20
+from the RFC822 CRLF convention. It is important to note that these =
+formats are=20
+not canonical RFC822/MIME. These formats are instead *encodings* of =
+RFC822,=20
+where CRLF sequences in the canonical representation of the message are =
+encoded=20
+as the local newline convention. Note that formats which encode CRLF =
+sequences=20
+as, for example, LF are not capable of representing MIME messages =
+containing=20
+binary data which contains LF octets not part of CRLF line separation =
+sequences.=20
+</P>
+<H2><A name=3D5>5. Summary </A></H2>
+<P>This document defines what is meant by MIME Conformance. It also =
+details=20
+various problems known to exist in the Internet email system and how to =
+use MIME=20
+to overcome them. Finally, it describes MIME's canonical encoding model. =
+</P>
+<H2><A name=3D6>6. Security Considerations </A></H2>
+<P>Security issues are discussed in the second document in this set, RFC =
+2046.=20
+</P>
+<H2><A name=3D7>7. Authors' Addresses </A></H2>
+<P>For more information, the authors of this document are best contacted =
+via=20
+Internet mail: </P>
+<ADDRESS>Ned Freed<BR>Innosoft International, Inc.<BR>1050 East Garvey =
+Avenue=20
+South<BR>West Covina, CA 91790<BR>USA<BR><BR>Phone: +1 818 919 =
+3600<BR>Fax: +1=20
+818 919 3614<BR>EMail: ned@innosoft.com<BR><BR></ADDRESS>
+<ADDRESS>Nathaniel S. Borenstein<BR>First Virtual Holdings<BR>25 =
+Washington=20
+Avenue<BR>Morristown, NJ 07960<BR>USA<BR><BR>Phone: +1 201 540 =
+8967<BR>Fax: +1=20
+201 993 3032<BR>EMail: nsb@nsb.fv.com<BR><BR></ADDRESS>
+<P>MIME is a result of the work of the Internet Engineering Task Force =
+Working=20
+Group on <A href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC 822</A> =
+Extensions.=20
+The chairman of that group, Greg Vaudreuil, may be reached at: </P>
+<ADDRESS>Gregory M. Vaudreuil<BR>Octel Network Services<BR>17080 Dallas=20
+Parkway<BR>Dallas, TX 75248-1905<BR>USA<BR><BR>EMail:=20
+Greg.Vaudreuil@Octel.Com<BR><BR></ADDRESS>
+<H2><A name=3D8>8. Acknowledgements </A></H2>
+<P>This document is the result of the collective effort of a large =
+number of=20
+people, at several IETF meetings, on the IETF-SMTP and IETF-822 mailing =
+lists,=20
+and elsewhere. Although any enumeration seems doomed to suffer from =
+egregious=20
+omissions, the following are among the many contributors to this effort: =
+</P><PRE>    Harald Tveit Alvestrand       Marc Andreessen
+    Randall Atkinson              Bob Braden
+    Philippe Brandon              Brian Capouch
+    Kevin Carosso                 Uhhyung Choi
+    Peter Clitherow               Dave Collier-Brown
+    Cristian Constantinof         John Coonrod
+    Mark Crispin                  Dave Crocker
+    Stephen Crocker               Terry Crowley
+    Walt Daniels                  Jim Davis
+    Frank Dawson                  Axel Deininger
+    Hitoshi Doi                   Kevin Donnelly
+    Steve Dorner                  Keith Edwards
+    Chris Eich                    Dana S. Emery
+    Johnny Eriksson               Craig Everhart
+    Patrik Faltstrom              Erik E. Fair
+    Roger Fajman                  Alain Fontaine
+    Martin Forssen                James M. Galvin
+    Stephen Gildea                Philip Gladstone
+    Thomas Gordon                 Keld Simonsen
+    Terry Gray                    Phill Gross
+    James Hamilton                David Herron
+    Mark Horton                   Bruce Howard
+    Bill Janssen                  Olle Jarnefors
+    Risto Kankkunen               Phil Karn
+    Alan Katz                     Tim Kehres
+    Neil Katin                    Steve Kille
+    Kyuho Kim                     Anders Klemets
+    John Klensin                  Valdis Kletniek
+    Jim Knowles                   Stev Knowles
+    Bob Kummerfeld                Pekka Kytolaakso
+    Stellan Lagerstrom            Vincent Lau
+    Timo Lehtinen                 Donald Lindsay
+    Warner Losh                   Carlyn Lowery
+    Laurence Lundblade            Charles Lynn
+    John R. MacMillan             Larry Masinter
+    Rick McGowan                  Michael J. McInerny
+    Leo Mclaughlin                Goli Montaser-Kohsari
+    Tom Moore                     John Gardiner Myers
+    Erik Naggum                   Mark Needleman
+    Chris Newman                  John Noerenberg
+    Mats Ohrman                   Julian Onions
+    Michael Patton                David J. Pepper
+    Erik van der Poel             Blake C. Ramsdell
+    Christer Romson               Luc Rooijakkers
+    Marshall T. Rose              Jonathan Rosenberg
+    Guido van Rossum              Jan Rynning
+    Harri Salminen                Michael Sanderson
+    Yutaka Sato                   Markku Savela
+    Richard Alan Schafer          Masahiro Sekiguchi
+    Mark Sherman                  Bob Smart
+    Peter Speck                   Henry Spencer
+    Einar Stefferud               Michael Stein
+    Klaus Steinberger             Peter Svanberg
+    James Thompson                Steve Uhler
+    Stuart Vance                  Peter Vanderbilt
+    Greg Vaudreuil                Ed Vielmetti
+    Larry W. Virden               Ryan Waldron
+    Rhys Weatherly                Jay Weber
+    Dave Wecker                   Wally Wedel
+    Sven-Ove Westberg             Brian Wideen
+    John Wobus                    Glenn Wright
+    Rayan Zachariassen            David Zimmerman
+</PRE>
+<P>The authors apologize for any omissions from this list, which are =
+certainly=20
+unintentional. </P>
+<H2><A name=3DA>Appendix A -- A Complex Multipart Example </A></H2>
+<P>What follows is the outline of a complex multipart message. This =
+message=20
+contains five parts that are to be displayed serially: two introductory =
+plain=20
+text objects, an embedded multipart message, a text/enriched object, and =
+a=20
+closing encapsulated text message in a non-ASCII character set. The =
+embedded=20
+multipart message itself contains two objects to be displayed in =
+parallel, a=20
+picture and an audio fragment. </P><PRE>    MIME-Version: 1.0
+    From: Nathaniel Borenstein &lt;nsb@nsb.fv.com&gt;
+    To: Ned Freed &lt;ned@innosoft.com&gt;
+    Date: Fri, 07 Oct 1994 16:15:05 -0700 (PDT)
+    Subject: A multipart example
+    Content-Type: multipart/mixed;
+                  boundary=3Dunique-boundary-1
+
+    This is the preamble area of a multipart message.
+    Mail readers that understand multipart format
+    should ignore this preamble.
+
+    If you are reading this text, you might want to
+    consider changing to a mail reader that understands
+    how to properly display multipart messages.
+
+    --unique-boundary-1
+
+      ... Some text appears here ...
+
+    [Note that the blank between the boundary and the start
+     of the text in this part means no header fields were
+     given and this is text in the US-ASCII character set.
+     It could have been done with explicit typing as in the
+     next part.]
+
+    --unique-boundary-1
+    Content-type: text/plain; charset=3DUS-ASCII
+
+    This could have been part of the previous part, but
+    illustrates explicit versus implicit typing of body
+    parts.
+
+    --unique-boundary-1
+    Content-Type: multipart/parallel; boundary=3Dunique-boundary-2
+
+    --unique-boundary-2
+    Content-Type: audio/basic
+    Content-Transfer-Encoding: base64
+
+      ... base64-encoded 8000 Hz single-channel
+          mu-law-format audio data goes here ...
+
+    --unique-boundary-2
+    Content-Type: image/jpeg
+    Content-Transfer-Encoding: base64
+
+      ... base64-encoded image data goes here ...
+
+    --unique-boundary-2--
+   =20
+    --unique-boundary-1
+    Content-type: text/enriched
+
+    This is =
+&lt;bold&gt;&lt;italic&gt;enriched.&lt;/italic&gt;&lt;/bold&gt;
+    &lt;smaller&gt;as defined in <A =
+href=3D"http://ds.internic.net/rfc/rfc1896.txt">RFC =
+1896</A>&lt;/smaller&gt;
+
+    Isn't it
+    &lt;bigger&gt;&lt;bigger&gt;cool?&lt;/bigger&gt;&lt;/bigger&gt;
+
+    --unique-boundary-1
+    Content-Type: message/rfc822
+
+    From: (mailbox in US-ASCII)
+    To: (address in US-ASCII)
+    Subject: (subject in US-ASCII)
+    Content-Type: Text/plain; charset=3DISO-8859-1
+    Content-Transfer-Encoding: Quoted-printable
+
+      ... Additional text in ISO-8859-1 goes here ...
+
+    --unique-boundary-1--
+   =20
+</PRE>
+<H2><A name=3DB>Appendix B -- Changes from RFC 1521, 1522, and 1590 =
+</A></H2>
+<P>These documents are a revision of <A=20
+href=3D"http://www.nacs.uci.edu/indiv/ehood/MIME/1521/rfc1521ToC.html">RF=
+C=20
+1521</A>, 1522, and 1590. For the convenience of those familiar with the =
+earlier=20
+documents, the changes from those documents are summarized in this =
+appendix. For=20
+further history, note that Appendix H in <A=20
+href=3D"http://www.nacs.uci.edu/indiv/ehood/MIME/1521/rfc1521ToC.html">RF=
+C=20
+1521</A> specified how that document differed from its predecessor, <A=20
+href=3D"http://ds.internic.net/rfc/rfc1341.txt">RFC 1341</A>. </P>
+<OL>
+  <LI>
+  <P>This document has been completely reformatted and split into =
+multiple=20
+  documents. This was done to improve the quality of the plain text =
+version of=20
+  this document, which is required to be the reference copy. </P>
+  <LI>
+  <P>BNF describing the overall structure of MIME object headers has =
+been added.=20
+  This is a documentation change only -- the underlying syntax has not =
+changed=20
+  in any way. </P>
+  <LI>
+  <P>The specific BNF for the seven media types in MIME has been =
+removed. This=20
+  BNF was incorrect, incomplete, amd inconsistent with the =
+type-indendependent=20
+  BNF. And since the type-independent BNF already fully specifies the =
+syntax of=20
+  the various MIME headers, the type-specific BNF was, in the final =
+analysis,=20
+  completely unnecessary and caused more problems than it solved. </P>
+  <LI>
+  <P>The more specific "US-ASCII" character set name has replaced the =
+use of the=20
+  informal term ASCII in many parts of these documents. </P>
+  <LI>
+  <P>The informal concept of a primary subtype has been removed. </P>
+  <LI>
+  <P>The term "object" was being used inconsistently. The definition of =
+this=20
+  term has been clarified, along with the related terms "body", "body =
+part", and=20
+  "entity", and usage has been corrected where appropriate. </P>
+  <LI>
+  <P>The BNF for the multipart media type has been rearranged to make it =
+clear=20
+  that the CRLF preceeding the boundary marker is actually part of the =
+marker=20
+  itself rather than the preceeding body part. </P>
+  <LI>
+  <P>The prose and BNF describing the multipart media type have been =
+changed to=20
+  make it clear that the body parts within a multipart object MUST NOT =
+contain=20
+  any lines beginning with the boundary parameter string. </P>
+  <LI>
+  <P>In the rules on reassembling "message/partial" MIME entities, =
+"Subject" is=20
+  added to the list of headers to take from the inner message, and the =
+example=20
+  is modified to clarify this point. </P>
+  <LI>
+  <P>"Message/partial" fragmenters are restricted to splitting MIME =
+objects only=20
+  at line boundaries. </P>
+  <LI>
+  <P>In the discussion of the application/postscript type, an additional =
+
+  paragraph has been added warning about possible interoperability =
+problems=20
+  caused by embedding of binary data inside a PostScript MIME entity. =
+</P>
+  <LI>
+  <P>Added a clarifying note to the basic syntax rules for the =
+Content-Type=20
+  header field to make it clear that the following two forms: </P><PRE>  =
+ Content-type: text/plain; charset=3Dus-ascii (comment)
+
+   Content-type: text/plain; charset=3D"us-ascii"
+</PRE>are completely equivalent.=20
+  <P></P>
+  <LI>
+  <P>The following sentence has been removed from the discussion of the=20
+  MIME-Version header: "However, conformant software is encouraged to =
+check the=20
+  version number and at least warn the user if an unrecognized =
+MIME-version is=20
+  encountered." </P>
+  <LI>
+  <P>A typo was fixed that said "application/external-body" instead of=20
+  "message/external-body". </P>
+  <LI>
+  <P>The definition of a character set has been reorganized to make the=20
+  requirements clearer. </P>
+  <LI>
+  <P>The definition of the "image/gif" media type has been moved to a =
+separate=20
+  document. This change was made because of potential conflicts with =
+IETF rules=20
+  governing the standardization of patented technology. </P>
+  <LI>
+  <P>The definitions of "7bit" and "8bit" have been tightened so that =
+use of=20
+  bare CR, LF can only be used as end-of-line sequences. The document =
+also no=20
+  longer requires that NUL characters be preserved, which brings MIME =
+into=20
+  alignment with real-world implementations. </P>
+  <LI>
+  <P>The definition of canonical text in MIME has been tightened so that =
+line=20
+  breaks must be represented by a CRLF sequence. CR and LF characters =
+are not=20
+  allowed outside of this usage. The definition of quoted-printable =
+encoding has=20
+  been altered accordingly. </P>
+  <LI>
+  <P>The definition of the quoted-printable encoding now includes a =
+number of=20
+  suggestions for how quoted-printable encoders might best handle =
+improperly=20
+  encoded material. </P>
+  <LI>
+  <P>Prose was added to clarify the use of the "7bit", "8bit", and =
+"binary"=20
+  transfer-encodings on multipart or message entities encapsulating =
+"8bit" or=20
+  "binary" data. </P>
+  <LI>
+  <P>In the section on MIME Conformance, "multipart/digest" support was =
+added to=20
+  the list of requirements for minimal MIME conformance. Also, the =
+requirement=20
+  for "message/rfc822" support were strengthened to clarify the =
+importance of=20
+  recognizing recursive structure. </P>
+  <LI>
+  <P>The various restrictions on subtypes of "message" are now specified =
+
+  entirely on a subtype by subtype basis. </P>
+  <LI>
+  <P>The definition of "message/rfc822" was changed to indicate that at =
+least=20
+  one of the "From", "Subject", or "Date" headers must be present. </P>
+  <LI>
+  <P>The required handling of unrecognized subtypes as=20
+  "application/octet-stream" has been made more explicit in both the =
+type=20
+  definitions sections and the conformance guidelines. </P>
+  <LI>
+  <P>Examples using text/richtext were changed to text/enriched. </P>
+  <LI>
+  <P>The BNF definition of subtype has been changed to make it clear =
+that either=20
+  an IANA registered subtype or a nonstandard "X-" subtype must be used =
+in a=20
+  Content-Type header field. </P>
+  <LI>
+  <P>MIME media types that are simply registered for use and those that =
+are=20
+  standardized by the IETF are now distinguished in the MIME BNF. </P>
+  <LI>
+  <P>All of the various MIME registration procedures have been =
+extensively=20
+  revised. IANA registration procedures for character sets have been =
+moved to a=20
+  separate document that is no included in this set of documents. </P>
+  <LI>
+  <P>The use of escape and shift mechanisms in the US-ASCII and =
+ISO-8859-X=20
+  character sets these documents define have been clarified: Such =
+mechanisms=20
+  should never be used in conjunction with these character sets and =
+their effect=20
+  if they are used is undefined. </P>
+  <LI>
+  <P>The definition of the AFS access-type for message/external-body has =
+been=20
+  removed. </P>
+  <LI>
+  <P>The handling of the combination of multipart/alternative and=20
+  message/external-body is now specifically addressed. </P>
+  <LI>
+  <P>Security issues specific to message/external-body are now discussed =
+in some=20
+  detail. </P></LI></OL>
+<H2><A name=3DC>Appendix C -- References </A></H2>
+<DL>
+  <DT>[ATK]
+  <DD>
+  <P>Borenstein, Nathaniel S., Multimedia Applications Development with =
+the=20
+  Andrew Toolkit, Prentice-Hall, 1990. </P>
+  <DT>[ISO-2022]
+  <DD>
+  <P>International Standard -- Information Processing --Character Code =
+Structure=20
+  and Extension Techniques, ISO/IEC 2022:1994, 4th ed. </P>
+  <DT>[ISO-8859]
+  <DD>
+  <P>International Standard -- Information Processing -- 8-bit =
+Single-Byte Coded=20
+  Graphic Character Sets<BR>- Part 1: Latin Alphabet No. 1, ISO =
+8859-1:1987, 1st=20
+  ed.<BR>- Part 2: Latin Alphabet No. 2, ISO 8859-2:1987, 1st ed.<BR>- =
+Part 3:=20
+  Latin Alphabet No. 3, ISO 8859-3:1988, 1st ed.<BR>- Part 4: Latin =
+Alphabet No.=20
+  4, ISO 8859-4:1988, 1st ed.<BR>- Part 5: Latin/Cyrillic Alphabet, ISO=20
+  8859-5:1988, 1st ed.<BR>- Part 6: Latin/Arabic Alphabet, ISO =
+8859-6:1987, 1st=20
+  ed.<BR>- Part 7: Latin/Greek Alphabet, ISO 8859-7:1987, 1st ed.<BR>- =
+Part 8:=20
+  Latin/Hebrew Alphabet, ISO 8859-8:1988, 1st ed.<BR>- Part 9: Latin =
+Alphabet=20
+  No. 5, ISO/IEC 8859-9:1989, 1st ed.<BR>International Standard -- =
+Information=20
+  Technology -- 8-bit Single-Byte Coded Graphic Character Sets<BR>- Part =
+10:=20
+  Latin Alphabet No. 6, ISO/IEC 8859-10:1992, 1st ed.<BR></P>
+  <DT>[ISO-646]
+  <DD>
+  <P>International Standard -- Information Technology -- ISO 7-bit Coded =
+
+  Character Set for Information Interchange, ISO 646:1991, 3rd ed.. </P>
+  <DT>[JPEG]
+  <DD>
+  <P>JPEG Draft Standard ISO 10918-1 CD. </P>
+  <DT>[MPEG]
+  <DD>
+  <P>Video Coding Draft Standard ISO 11172 CD, ISO IEC/JTC1/SC2/WG11 =
+(Motion=20
+  Picture Experts Group), May, 1991. </P>
+  <DT>[PCM]
+  <DD>
+  <P>CCITT, Fascicle III.4 - Recommendation G.711, "Pulse Code =
+Modulation (PCM)=20
+  of Voice Frequencies", Geneva, 1972. </P>
+  <DT>[POSTSCRIPT]
+  <DD>
+  <P>Adobe Systems, Inc., PostScript Language Reference Manual, =
+Addison-Wesley,=20
+  1985. </P>
+  <DT>[POSTSCRIPT2]
+  <DD>
+  <P>Adobe Systems, Inc., PostScript Language Reference Manual, =
+Addison-Wesley,=20
+  Second Ed., 1990. </P>
+  <DT>[<A href=3D"http://ds.internic.net/rfc/rfc783.txt">RFC-783</A>]
+  <DD>
+  <P>Sollins, K.R., "TFTP Protocol (revision 2)", <A=20
+  href=3D"http://ds.internic.net/rfc/rfc783.txt">RFC-783</A>, MIT, June =
+1981. </P>
+  <DT>[<A href=3D"http://ds.internic.net/rfc/rfc821.txt">RFC-821</A>]
+  <DD>
+  <P>Postel, J.B., "Simple Mail Transfer Protocol", STD 10, <A=20
+  href=3D"http://ds.internic.net/rfc/rfc821.txt">RFC 821</A>, =
+USC/Information=20
+  Sciences Institute, August 1982. </P>
+  <DT>[<A href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC-822</A>]
+  <DD>
+  <P>Crocker, D., "Standard for the Format of ARPA Internet Text =
+Messages", STD=20
+  11, <A href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC 822</A>, =
+UDEL, August=20
+  1982. </P>
+  <DT>[<A href=3D"http://ds.internic.net/rfc/rfc934.txt">RFC-934</A>]
+  <DD>
+  <P>Rose, M. and E. Stefferud, "Proposed Standard for Message =
+Encapsulation",=20
+  <A href=3D"http://ds.internic.net/rfc/rfc934.txt">RFC 934</A>, =
+Delaware and NMA,=20
+  January 1985. </P>
+  <DT>[<A href=3D"http://ds.internic.net/rfc/rfc959.txt">RFC-959</A>]
+  <DD>
+  <P>Postel, J. and J. Reynolds, "File Transfer Protocol", STD 9, <A=20
+  href=3D"http://ds.internic.net/rfc/rfc959.txt">RFC 959</A>, =
+USC/Information=20
+  Sciences Institute, October 1985. </P>
+  <DT>[<A href=3D"http://ds.internic.net/rfc/rfc1049.txt">RFC-1049</A>]
+  <DD>
+  <P>Sirbu, M., "Content-Type Header Field for Internet Messages", <A=20
+  href=3D"http://ds.internic.net/rfc/rfc1049.txt">RFC 1049</A>, CMU, =
+March 1988.=20
+  </P>
+  <DT>[<A href=3D"http://ds.internic.net/rfc/rfc1154.txt">RFC-1154</A>]
+  <DD>
+  <P>Robinson, D., and R. Ullmann, "Encoding Header Field for Internet=20
+  Messages", <A href=3D"http://ds.internic.net/rfc/rfc1154.txt">RFC =
+1154</A>,=20
+  Prime Computer, Inc., April 1990. </P>
+  <DT>[<A href=3D"http://ds.internic.net/rfc/rfc1341.txt">RFC-1341</A>]
+  <DD>
+  <P>Borenstein, N., and N. Freed, "MIME (Multipurpose Internet Mail=20
+  Extensions): Mechanisms for Specifying and Describing the Format of =
+Internet=20
+  Message Bodies", RFC 1341, Bellcore, Innosoft, June 1992. </P>
+  <DT>[<A href=3D"http://ds.internic.net/rfc/rfc1342.txt">RFC-1342</A>]
+  <DD>
+  <P>Moore, K., "Representation of Non-Ascii Text in Internet Message =
+Headers",=20
+  <A href=3D"http://ds.internic.net/rfc/rfc1342.txt">RFC 1342</A>, =
+University of=20
+  Tennessee, June 1992. </P>
+  <DT>[<A href=3D"http://ds.internic.net/rfc/rfc1344.txt">RFC-1344</A>]
+  <DD>
+  <P>Borenstein, N., "Implications of MIME for Internet Mail Gateways", =
+<A=20
+  href=3D"http://ds.internic.net/rfc/rfc1344.txt">RFC 1344</A>, =
+Bellcore, June=20
+  1992. </P>
+  <DT>[<A href=3D"http://ds.internic.net/rfc/rfc1345.txt">RFC-1345</A>]
+  <DD>
+  <P>Simonsen, K., "Character Mnemonics &amp; Character Sets", RFC 1345, =
+
+  Rationel Almen Planlaegning, June 1992. </P>
+  <DT>[<A href=3D"http://ds.internic.net/rfc/rfc1421.txt">RFC-1421</A>]
+  <DD>
+  <P>Linn, J., "Privacy Enhancement for Internet Electronic Mail: Part I =
+--=20
+  Message Encryption and Authentication Procedures", <A=20
+  href=3D"http://ds.internic.net/rfc/rfc1421.txt">RFC 1421</A>, IAB IRTF =
+PSRG,=20
+  IETF PEM WG, February 1993. </P>
+  <DT>[<A href=3D"http://ds.internic.net/rfc/rfc1422.txt">RFC-1422</A>]
+  <DD>
+  <P>Kent, S., "Privacy Enhancement for Internet Electronic Mail: Part =
+II --=20
+  Certificate-Based Key Management", RFC 1422, IAB IRTF PSRG, IETF PEM =
+WG,=20
+  February 1993. </P>
+  <DT>[<A href=3D"http://ds.internic.net/rfc/rfc1423.txt">RFC-1423</A>]
+  <DD>
+  <P>Balenson, D., "Privacy Enhancement for Internet Electronic Mail: =
+Part III=20
+  -- Algorithms, Modes, and Identifiers", IAB IRTF PSRG, IETF PEM WG, =
+February=20
+  1993. </P>
+  <DT>[<A href=3D"http://ds.internic.net/rfc/rfc1424.txt">RFC-1424</A>]
+  <DD>
+  <P>Kaliski, B., "Privacy Enhancement for Internet Electronic Mail: =
+Part IV --=20
+  Key Certification and Related Services", IAB IRTF PSRG, IETF PEM WG, =
+February=20
+  1993. </P>
+  <DT>[<A=20
+  =
+href=3D"http://www.nacs.uci.edu/indiv/ehood/MIME/1521/rfc1521ToC.html">RF=
+C-1521</A>]
+  <DD>
+  <P>Borenstein, N., and Freed, N., "MIME (Multipurpose Internet Mail=20
+  Extensions): Mechanisms for Specifying and Describing the Format of =
+Internet=20
+  Message Bodies", RFC 1521, Bellcore, Innosoft, September, 1993. </P>
+  <DT>[<A=20
+  =
+href=3D"http://www.nacs.uci.edu/indiv/ehood/MIME/1522/rfc1522ToC.html">RF=
+C-1522</A>]
+  <DD>
+  <P>Moore, K., "Representation of Non-ASCII Text in Internet Message =
+Headers",=20
+  <A =
+href=3D"http://www.nacs.uci.edu/indiv/ehood/MIME/1522/rfc1522ToC.html">RF=
+C=20
+  1522</A>, University of Tennessee, September 1993. </P>
+  <DT>[<A href=3D"http://ds.internic.net/rfc/rfc1524.txt">RFC-1524</A>]
+  <DD>
+  <P>Borenstein, N., "A User Agent Configuration Mechanism for =
+Multimedia Mail=20
+  Format Information", <A =
+href=3D"http://ds.internic.net/rfc/rfc1524.txt">RFC=20
+  1524</A>, Bellcore, September 1993. </P>
+  <DT>[<A href=3D"http://ds.internic.net/rfc/rfc1543.txt">RFC-1543</A>]
+  <DD>
+  <P>Postel, J., "Instructions to RFC Authors", <A=20
+  href=3D"http://ds.internic.net/rfc/rfc1543.txt">RFC 1543</A>, =
+USC/Information=20
+  Sciences Institute, October 1993. </P>
+  <DT>[<A href=3D"http://ds.internic.net/rfc/rfc1556.txt">RFC-1556</A>]
+  <DD>
+  <P>Nussbacher, H., "Handling of Bi-directional Texts in MIME", <A=20
+  href=3D"http://ds.internic.net/rfc/rfc1556.txt">RFC 1556</A>, Israeli=20
+  Inter-University Computer Center, December 1993. </P>
+  <DT>[<A href=3D"http://ds.internic.net/rfc/rfc1590.txt">RFC-1590</A>]
+  <DD>
+  <P>Postel, J., "Media Type Registration Procedure", RFC 1590, =
+USC/Information=20
+  Sciences Institute, March 1994. </P>
+  <DT>[<A href=3D"http://ds.internic.net/rfc/rfc1602.txt">RFC-1602</A>]
+  <DD>
+  <P>Internet Architecture Board, Internet Engineering Steering Group, =
+Huitema,=20
+  C., Gross, P., "The Internet Standards Process -- Revision 2", March =
+1994.=20
+</P>
+  <DT>[<A href=3D"http://ds.internic.net/rfc/rfc1652.txt">RFC-1652</A>]
+  <DD>
+  <P>Klensin, J., (WG Chair), Freed, N., (Editor), Rose, M., Stefferud, =
+E., and=20
+  Crocker, D., "SMTP Service Extension for 8bit-MIME transport", <A=20
+  href=3D"http://ds.internic.net/rfc/rfc1652.txt">RFC 1652</A>, United =
+Nations=20
+  University, Innosoft, Dover Beach Consulting, Inc., Network Management =
+
+  Associates, Inc., The Branch Office, March 1994. </P>
+  <DT>[<A href=3D"http://ds.internic.net/rfc/rfc1700.txt">RFC-1700</A>]
+  <DD>
+  <P>Reynolds, J. and J. Postel, "Assigned Numbers", STD 2, <A=20
+  href=3D"http://ds.internic.net/rfc/rfc1700.txt">RFC 1700</A>, =
+USC/Information=20
+  Sciences Institute, October 1994. </P>
+  <DT>[<A href=3D"http://ds.internic.net/rfc/rfc1741.txt">RFC-1741</A>]
+  <DD>
+  <P>Faltstrom, P., Crocker, D., and Fair, E., "MIME Content Type for =
+BinHex=20
+  Encoded Files", December 1994. </P>
+  <DT>[<A href=3D"http://ds.internic.net/rfc/rfc1896.txt">RFC-1896</A>]
+  <DD>
+  <P>Resnick, P., and A. Walker, "The text/enriched MIME Content-type", =
+<A=20
+  href=3D"http://ds.internic.net/rfc/rfc1896.txt">RFC 1896</A>, =
+February, 1996.=20
+  </P>
+  <DT>[<A=20
+  =
+href=3D"http://www.nacs.uci.edu/indiv/ehood/MIME/2045/rfc2045.html">RFC-2=
+045</A>]
+  <DD>
+  <P>Freed, N., and and N. Borenstein, "Multipurpose Internet Mail =
+Extensions=20
+  (MIME) Part One: Format of Internet Message Bodies", <A=20
+  =
+href=3D"http://www.nacs.uci.edu/indiv/ehood/MIME/2045/rfc2045.html">RFC=20
+  2045</A>, Innosoft, First Virtual Holdings, November 1996. </P>
+  <DT>[<A=20
+  =
+href=3D"http://www.nacs.uci.edu/indiv/ehood/MIME/2046/rfc2046.html">RFC-2=
+046</A>]
+  <DD>
+  <P>Freed, N., and N. Borenstein, "Multipurpose Internet Mail =
+Extensions (MIME)=20
+  Part Two: Media Types", <A=20
+  =
+href=3D"http://www.nacs.uci.edu/indiv/ehood/MIME/2046/rfc2046.html">RFC=20
+  2046</A>, Innosoft, First Virtual Holdings, November 1996. </P>
+  <DT>[<A=20
+  =
+href=3D"http://www.nacs.uci.edu/indiv/ehood/MIME/2047/rfc2047.html">RFC-2=
+047</A>]
+  <DD>
+  <P>Moore, K., "Multipurpose Internet Mail Extensions (MIME) Part =
+Three:=20
+  Representation of Non-ASCII Text in Internet Message Headers", <A=20
+  =
+href=3D"http://www.nacs.uci.edu/indiv/ehood/MIME/2047/rfc2047.html">RFC=20
+  2047</A>, University of Tennessee, November 1996. </P>
+  <DT>[<A=20
+  =
+href=3D"http://www.nacs.uci.edu/indiv/ehood/MIME/2048/rfc2048.html">RFC-2=
+048</A>]
+  <DD>
+  <P>Freed, N., Klensin, J., and J. Postel, "Multipurpose Internet Mail=20
+  Extensions (MIME) Part Four: MIME Registration Procedures", <A=20
+  =
+href=3D"http://www.nacs.uci.edu/indiv/ehood/MIME/2048/rfc2048.html">RFC=20
+  2048</A>, Innosoft, MCI, ISI, November 1996. </P>
+  <DT>[<A=20
+  =
+href=3D"http://www.nacs.uci.edu/indiv/ehood/MIME/2049/rfc2049.html">RFC-2=
+049</A>]
+  <DD>
+  <P>Freed, N. and N. Borenstein, "Multipurpose Internet Mail Extensions =
+(MIME)=20
+  Part Five: Conformance Criteria and Examples", <A=20
+  =
+href=3D"http://www.nacs.uci.edu/indiv/ehood/MIME/2049/rfc2049.html">RFC =
+2049</A>=20
+  (this document), Innosoft, First Virtual Holdings, November 1996. </P>
+  <DT>[US-ASCII]
+  <DD>
+  <P>Coded Character Set -- 7-Bit American Standard Code for Information =
+
+  Interchange, ANSI X3.4-1986. </P>
+  <DT>[X400]
+  <DD>
+  <P>Schicker, Pietro, "Message Handling Systems, X.400", Message =
+Handling=20
+  Systems and Distributed Applications, E. Stefferud, O-j. Jacobsen, and =
+P.=20
+  Schicker, eds., North-Holland, 1989, pp. 3-41. </P></DD></DL>
+<HR>
+
+<ADDRESS><SMALL>HTML version of RFC converted from text version by <A=20
+href=3D"http://www.oac.uci.edu/indiv/ehood/">Earl Hood</A>, <A=20
+href=3D"mailto:ehood@medusa.acs.uci.edu">ehood@medusa.acs.uci.edu</A><BR>=
+HTML Last=20
+Updated: 01/06/19 15:47:48<BR></SMALL></ADDRESS></BODY></HTML>
+
+------=_NextPart_000_0014_01C1DC9D.910D7900
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://www.oac.uci.edu/indiv/ehood/bg/cemstone.gif
+
+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
+
+------=_NextPart_000_0014_01C1DC9D.910D7900--

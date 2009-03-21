@@ -1,0 +1,898 @@
+From: <Saved by Microsoft Internet Explorer 5>
+Subject: RFC 1423 (rfc1423) - Privacy Enhancement for Internet Electronic Mail: Par
+Date: Mon, 22 Dec 2003 15:21:04 +0800
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	boundary="----=_NextPart_000_0053_01C3C89F.36F02950";
+	type="text/html"
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2800.1165
+
+This is a multi-part message in MIME format.
+
+------=_NextPart_000_0053_01C3C89F.36F02950
+Content-Type: text/html;
+	charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://www.faqs.org/rfcs/rfc1423.html
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>RFC 1423 (rfc1423) - Privacy Enhancement for Internet =
+Electronic Mail: Par</TITLE>
+<META http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dwindows-1252">
+<META=20
+content=3D"RFC 1423 - Privacy Enhancement for Internet Electronic Mail: =
+Part III: Algorithms, Modes, and Identifiers"=20
+name=3Ddescription>
+<META content=3DRFC1115 name=3Dobsoletes>
+<SCRIPT language=3DJavaScript1.2>=0A=
+function erfc(s)=0A=
+{document.write("<A href=3D\"/rfccomment.php?rfcnum=3D"+s+"\" =
+target=3D\"_blank\" =
+onclick=3D\"window.open('/rfccomment.php?rfcnum=3D"+s+"','Popup','toolbar=
+=3Dno,location=3Dno,status=3Dno,menubar=3Dno,scrollbars=3Dyes,resizable=3D=
+yes,width=3D680,height=3D530,left=3D30,top=3D43'); return =
+false;\")>Comment on RFC "+s+"</A>\n");}=0A=
+//-->=0A=
+</SCRIPT>
+
+<META content=3D"MSHTML 6.00.2800.1276" name=3DGENERATOR></HEAD>
+<BODY text=3D#000000 bgColor=3D#ffffff>
+<P align=3Dcenter><IMG height=3D62 alt=3D""=20
+src=3D"http://www.faqs.org/images/library.jpg" width=3D150 =
+align=3Dmiddle=20
+border=3D0></P>
+<H1 align=3Dcenter>RFC 1423 (RFC1423)</H1>
+<P align=3Dcenter>Internet RFC/STD/FYI/BCP Archives</P>
+<DIV align=3Dcenter>[ <A href=3D"http://www.faqs.org/rfcs/">RFC =
+Index</A> | <A=20
+href=3D"http://www.faqs.org/rfcs/rfcsearch.html">RFC Search</A> | <A=20
+href=3D"http://www.faqs.org/faqs/">Usenet FAQs</A> | <A=20
+href=3D"http://www.faqs.org/contrib/">Web FAQs</A> | <A=20
+href=3D"http://www.faqs.org/docs/">Documents</A> | <A=20
+href=3D"http://www.city-data.com/">Cities</A> ]=20
+<P><STRONG>Alternate Formats:</STRONG> <A=20
+href=3D"http://www.faqs.org/ftp/rfc/rfc1423.txt">rfc1423.txt</A> | <A=20
+href=3D"http://www.faqs.org/ftp/rfc/pdf/rfc1423.txt.pdf">rfc1423.txt.pdf<=
+/A></P></DIV>
+<P align=3Dcenter>
+<SCRIPT language=3DJavaScript><!--=0A=
+erfc("1423");=0A=
+// --></SCRIPT>
+</P>
+<H3 align=3Dcenter>RFC 1423 - Privacy Enhancement for Internet =
+Electronic Mail:=20
+Part III: Algorithms, Modes, and Identifiers</H3>
+<HR noShade SIZE=3D2>
+<PRE>
+Network Working Group                                        D. Balenson
+Request for Comments: 1423                                           TIS
+Obsoletes: 1115                               IAB IRTF PSRG, IETF PEM WG
+                                                           February 1993
+
+           Privacy Enhancement for Internet Electronic Mail:
+              Part III: Algorithms, Modes, and Identifiers
+
+Status of This Memo
+
+   This RFC specifies an IAB standards track protocol for the Internet
+   community, and requests discussion and suggestions for improvements.
+   Please refer to the current edition of the "IAB Official Protocol
+   Standards" for the standardization state and status of this protocol.
+   Distribution of this memo is unlimited.
+
+Abstract
+
+   This document provides definitions, formats, references, and
+   citations for cryptographic algorithms, usage modes, and associated
+   identifiers and parameters used in support of Privacy Enhanced Mail
+   (PEM) in the Internet community.  It is intended to become one member
+   of the set of related PEM RFCs.  This document is organized into four
+   primary sections, dealing with message encryption algorithms, message
+   integrity check algorithms, symmetric key management algorithms, and
+   asymmetric key management algorithms (including both asymmetric
+   encryption and asymmetric signature algorithms).
+
+   Some parts of this material are cited by other documents and it is
+   anticipated that some of the material herein may be changed, added,
+   or replaced without affecting the citing documents.  Therefore,
+   algorithm-specific material has been placed into this separate
+   document.
+
+   Use of other algorithms and/or modes will require case-by-case study
+   to determine applicability and constraints.  The use of additional
+   algorithms may be documented first in Prototype or Experimental RFCs.
+   As experience is gained, these protocols may be considered for
+   incorporation into the standard.  Additional algorithms and modes
+   approved for use in PEM in this context will be specified in
+   successors to this document.
+
+Acknowledgments
+
+   This specification was initially developed by the Internet Research
+   Task Force's Privacy and Security Research Group (IRTF PSRG) and
+   subsequently refined based on discussion in the Internet Engineering
+
+   Task Force's Privacy Enhanced Mail Working Group (IETF PEM WG).  John
+   Linn contributed significantly to the predecessor of this document
+   (<A href=3D"http://www.faqs.org/rfcs/rfc1115.html">RFC 1115</A>).  I =
+would like to thank the members of the PSRG and PEM
+   WG, as well as all participants in discussions on the "pem-
+   <A href=3D"mailto:dev@tis.com">dev@tis.com</A>" mailing list, for =
+their contributions to this document.
+
+Table of Contents
+
+      1.  Message Encryption Algorithms ....................... 2
+      1.1  DES in CBC Mode (DES-CBC) .......................... 2
+      2.  Message Integrity Check Algorithms .................. 4
+      2.1  RSA-MD2 Message Digest Algorithm ................... 4
+      2.2  RSA-MD5 Message Digest Algorithm ................... 5
+      3.  Symmetric Key Management Algorithms ................. 6
+      3.1  DES in ECB mode (DES-ECB) .......................... 6
+      3.2  DES in EDE mode (DES-EDE) .......................... 7
+      4.  Asymmetric Key Management Algorithms ................ 7
+      4.1  Asymmetric Keys .................................... 7
+      4.1.1  RSA Keys ......................................... 7
+      4.2  Asymmetric Encryption Algorithms ..................  9
+      4.2.1  RSAEncryption ...................................  9
+      4.3  Asymmetric Signature Algorithms ................... 10
+      4.3.1  md2WithRSAEncryption ............................ 11
+      5.  Descriptive Grammar ................................ 11
+      References ............................................. 12
+      Patent Statement ....................................... 13
+      Security Considerations ................................ 14
+      Author's Address ....................................... 14
+
+1.  Message Encryption Algorithms
+
+   This section identifies the alternative message encryption algorithms
+   and modes that shall be used to encrypt message text and, when
+   asymmetric key management is employed in an ENCRYPTED PEM message, =
+for
+   encryption of message signatures.  Character string identifiers are
+   assigned and any parameters required by the message encryption
+   algorithm are defined for incorporation in an encapsulated "DEK-
+   Info:" header field.
+
+   Only one alternative is currently defined in this category.
+
+1.1  DES in CBC Mode (DES-CBC)
+
+   Message text and, if required, message signatures are encrypted using
+   the Data Encryption Standard (DES) algorithm in the Cipher Block
+   Chaining (CBC) mode of operation.  The DES algorithm is defined in
+   FIPS PUB 46-1 [1], and is equivalent to the Data Encryption Algorithm
+   (DEA) provided in ANSI X3.92-1981 [2].  The CBC mode of operation of
+
+   DES is defined in FIPS PUB 81 [3], and is equivalent to those
+   provided in ANSI X3.106 [4] and in ISO IS 8372 [5].  The character
+   string "DES-CBC" within an encapsulated PEM header field indicates
+   the use of this algorithm/mode combination.
+
+   The input to the DES CBC encryption process shall be padded to a
+   multiple of 8 octets, in the following manner.  Let n be the length
+   in octets of the input.  Pad the input by appending 8-(n mod 8)
+   octets to the end of the message, each having the value 8-(n mod 8),
+   the number of octets being added.  In hexadecimal, the possible
+   paddings are:  01, 0202, 030303, 04040404, 0505050505, 060606060606,
+   07070707070707, and 0808080808080808.  All input is padded with 1 to
+   8 octets to produce a multiple of 8 octets in length.  The padding
+   can be removed unambiguously after decryption.
+
+   The DES CBC encryption process requires a 64-bit cryptographic key.
+   A new, pseudorandom key shall be generated for each ENCRYPTED PEM
+   message.  Of the 64 bits, 56 are used directly by the DES CBC
+   process, and 8 are odd parity bits, with one parity bit occupying the
+   right-most bit of each octet.  When symmetric key management is
+   employed, the setting and checking of odd parity bits is encouraged,
+   since these bits could detect an error in the decryption of a DES key
+   encrypted under a symmetric key management algorithm (e.g., DES ECB).
+   When asymmetric key management is employed, the setting of odd parity
+   bits is encouraged, but the checking of odd parity bits is
+   discouraged, in order to facilitate interoperability, and since an
+   error in the decryption of a DES key can be detected by other means
+   (e.g., an incorrect PKCS #1 encryption-block format).  In all cases,
+   the encrypted form of a DES key shall carry all 64 bits of the key,
+   including the 8 parity bits, though those bits may have no meaning.
+
+   The DES CBC encryption process also requires a 64-bit Initialization
+   Vector (IV).  A new, pseudorandom IV shall be generated for each
+   ENCRYPTED PEM message.  Section 4.3.1 of [7] provides rationale for
+   this requirement, even given the fact that individual DES keys are
+   generated for individual messages.  The IV is transmitted with the
+   message within an encapsulated PEM header field.
+
+   When this algorithm/mode combination is used for message text
+   encryption, the "DEK-Info:" header field carries exactly two
+   arguments.  The first argument identifies the DES CBC algorithm/mode
+   using the character string defined above.  The second argument
+   contains the IV, represented as a contiguous string of 16 ASCII
+   hexadecimal digits.
+
+   When symmetric key management is employed with this algorithm/mode
+   combination, a symmetrically encrypted DES key will be represented in
+   the third argument of a "Key-Info:" header field as a contiguous
+
+   string of 16 ASCII hexadecimal digits (corresponding to a 64-bit
+   key).
+
+   To avoid any potential ambiguity regarding the ordering of the octets
+   of a DES key that is input as a data value to another encryption
+   process (e.g., RSAEncryption), the following holds true.  The first
+   (or left-most displayed, if one thinks in terms of a key's "print"
+   representation) (For purposes of discussion in this document, data
+   values are normalized in terms of their "print" representation.  For =
+a
+   octet stream, the "first" octet would appear as the one on the =
+"left",
+   and the "last" octet would appear on the "right".) octet of the key
+   (i.e., bits 1-8 per FIPS PUB 46-1), when considered as a data value,
+   has numerical weight 2**56.  The last (or right-most displayed) octet
+   (i.e., bits 57-64 per FIPS PUB 46-1) has numerical weight 2**0.
+
+2.  Message Integrity Check Algorithms
+
+   This section identifies the alternative algorithms that shall be used
+   to compute Message Integrity Check (MIC) values for PEM messages.
+   Character string identifiers and ASN.1 object identifiers are
+   assigned for incorporation in encapsulated "MIC-Info:" and "Key-
+   Info:" header fields to indicate the choice of MIC algorithm
+   employed.
+
+   A compliant PEM implementation shall be able to process all of the
+   alternative MIC algorithms defined here on incoming messages.  It is
+   a sender option as to which alternative is employed on an outbound
+   message.
+
+2.1  RSA-MD2 Message Digest Algorithm
+
+   The RSA-MD2 message digest is computed using the algorithm defined in
+   <A href=3D"http://www.faqs.org/rfcs/rfc1319.html">RFC 1319</A> [9].  =
+( An error has been identified in <A =
+href=3D"http://www.faqs.org/rfcs/rfc1319.html">RFC 1319</A>.  The
+   statement in the text of Section 3.2 which reads "Set C[j] to S[c xor
+   L]" should read "Set C[j] to S[c xor L] xor C[j]".  Note that the C
+   source code in the appendix of <A =
+href=3D"http://www.faqs.org/rfcs/rfc1319.html">RFC 1319</A> is correct.) =
+ The character
+   string "RSA-MD2" within an encapsulated PEM header field indicates =
+the
+   use of this algorithm.  Also, as defined in <A =
+href=3D"http://www.faqs.org/rfcs/rfc1319.html">RFC 1319</A>, the ASN.1 =
+object
+   identifier
+
+     md2 OBJECT IDENTIFIER ::=3D {
+         iso(1) member-body(2) US(840) rsadsi(113549)
+         digestAlgorithm(2) 2
+     }
+
+   identifies this algorithm.  When this object identifier is used with
+   the ASN.1 type AlgorithmIdentifier, the parameters component of that
+   type is the ASN.1 type NULL.
+
+   The RSA-MD2 message digest algorithm accepts as input a message of
+   any length and produces as output a 16-octet quantity.  When
+   symmetric key management is employed, an RSA-MD2 MIC is encrypted by
+   splitting the MIC into two 8-octet halves, independently encrypting
+   each half, and concatenating the results.
+
+   When symmetric key management is employed with this MIC algorithm,
+   the symmetrically encrypted MD2 message digest is represented in a
+   the fourth argument of a "Key-Info:" header field as a contiguous
+   string of 32 ASCII hexadecimal digits (corresponding to a 128-bit MD2
+   message digest).
+
+   To avoid any potential ambiguity regarding the ordering of the octets
+   of an MD2 message digest that is input as a data value to another
+   encryption process (e.g., RSAEncryption), the following holds true.
+   The first (or left-most displayed, if one thinks in terms of a
+   digest's "print" representation) octet of the digest (i.e., digest[0]
+   as specified in <A href=3D"http://www.faqs.org/rfcs/rfc1319.html">RFC =
+1319</A>), when considered as an RSA data value, has
+   numerical weight 2**120.  The last (or right-most displayed) octet
+   (i.e., digest[15] as specified in <A =
+href=3D"http://www.faqs.org/rfcs/rfc1319.html">RFC 1319</A>) has =
+numerical weight
+   2**0.
+
+2.2  RSA-MD5 Message Digest Algorithm
+
+   The RSA-MD5 message digest is computed using the algorithm defined in
+   <A href=3D"http://www.faqs.org/rfcs/rfc1321.html">RFC 1321</A> [10].  =
+The character string "RSA-MD5" within an encapsulated
+   PEM header field indicates the use of this algorithm.  Also, as
+   defined in <A href=3D"http://www.faqs.org/rfcs/rfc1321.html">RFC =
+1321</A>, the object identifier
+
+     md5 OBJECT IDENTIFIER ::=3D {
+         iso(1) member-body(2) US(840) rsadsi(113549)
+         digestAlgorithm(2) 5
+     }
+
+   identifies this algorithm.  When this object identifier is used with
+   the ASN.1 type AlgorithmIdentifier, the parameters component of that
+   type is the ASN.1 type NULL.
+
+   The RSA-MD5 message digest algorithm accepts as input a message of
+   any length and produces as output a 16-octet quantity.  When
+   symmetric key management is employed, an RSA-MD5 MIC is encrypted by
+   splitting the MIC into two 8-octet halves, independently encrypting
+   each half, and concatenating the results.
+
+   When symmetric key management is employed with this MIC algorithm,
+   the symmetrically encrypted MD5 message digest is represented in the
+   fourth argument of a "Key-Info:" header field as a contiguous string
+   of 32 ASCII hexadecimal digits (corresponding to a 128-bit MD5
+
+   message digest).
+
+   To avoid any potential ambiguity regarding the ordering of the octets
+   of a MD5 message digest that is input as an RSA data value to the RSA
+   encryption process, the following holds true.  The first (or left-
+   most displayed, if one thinks in terms of a digest's "print"
+   representation) octet of the digest (i.e., the low-order octet of A
+   as specified in <A href=3D"http://www.faqs.org/rfcs/rfc1321.html">RFC =
+1321</A>), when considered as an RSA data value, has
+   numerical weight 2**120.  The last (or right-most displayed) octet
+   (i.e., the high-order octet of D as specified in <A =
+href=3D"http://www.faqs.org/rfcs/rfc1321.html">RFC 1321</A>) has
+   numerical weight 2**0.
+
+3.  Symmetric Key Management Algorithms
+
+   This section identifies the alternative algorithms and modes that
+   shall be used when symmetric key management is employed, to encrypt
+   data encryption keys (DEKs) and message integrity check (MIC) values.
+   Character string identifiers are assigned for incorporation in
+   encapsulated "Key-Info:" header fields to indicate the choice of
+   algorithm employed.
+
+   All alternatives presently defined in this category correspond to
+   different usage modes of the DES algorithm, rather than to other
+   algorithms.
+
+   When symmetric key management is employed, the symmetrically
+   encrypted DEK and MIC, carried in the third and fourth arguments of a
+   "Key-Info:" header field, respectively, are each represented as a
+   string of contiguous ASCII hexadecimal digits.  The manner in which
+   to use the following symmetric encryption algorithms and the length
+   of the symmetrically encrypted DEK and MIC may vary depending on the
+   length of the underlying DEK and MIC.  Section 1, Message Encryption
+   Algorithms, and Section 2, Message Integrity Check Algorithms,
+   provide information on the proper manner in which a DEK and MIC,
+   respectively, are symmetrically encrypted when the size of the DEK or
+   MIC is not equal to the symmetric encryption algorithm's input block
+   size.  These sections also provide information on the proper format
+   and length of the symmetrically encrypted DEK and MIC, respectively.
+
+3.1  DES in ECB Mode (DES-ECB)
+
+   The DES algorithm in Electronic Codebook (ECB) mode [1][3] is used
+   for DEK and MIC encryption when symmetric key management is employed.
+   The character string "DES-ECB" within an encapsulated PEM header
+   field indicates use of this algorithm/mode combination.
+
+   A compliant PEM implementation supporting symmetric key management
+   shall support this algorithm/mode combination.
+
+3.2  DES in EDE Mode (DES-EDE)
+
+   The DES algorithm in Encrypt-Decrypt-Encrypt (EDE) multiple
+   encryption mode, as defined by ANSI X9.17 [6] for encryption and
+   decryption with pairs of 64-bit keys, may be used for DEK and MIC
+   encryption when symmetric key management is employed.  The character
+   string "DES-EDE" within an encapsulated a PEM header field indicates
+   use of this algorithm/mode combination.
+
+   A compliant PEM implementation supporting symmetric key management
+   may optionally support this algorithm/mode combination.
+
+4.  Asymmetric Key Management Algorithms
+
+   This section identifies the alternative asymmetric keys and the
+   alternative asymmetric key management algorithms with which those
+   keys shall be used, namely the asymmetric encryption algorithms with
+   which DEKs and MICs are encrypted, and the asymmetric signature
+   algorithms with which certificates and certificate revocation lists
+   (CRLs) are signed.
+
+4.1  Asymmetric Keys
+
+   This section describes the asymmetric keys that shall be used with
+   the asymmetric encryption algorithms and the signature algorithms
+   described later.  ASN.1 object identifiers are identified for
+   incorporation in a public-key certificate to identify the
+   algorithm(s) with which the accompanying public key is to be
+   employed.
+
+4.1.1  RSA Keys
+
+   An RSA asymmetric key pair is comprised of matching public and
+   private keys.
+
+   An RSA public key consists of an encryption exponent e and an
+   arithmetic modulus n, which are both public quantities typically
+   carried in a public-key certificate.  For the value of e, Annex C to
+   X.509 suggests the use of Fermat's Number F4 (65537 decimal, or
+   1+2**16) as a value "common to the whole environment in order to
+   reduce transmission capacity and complexity of transformation", i.e.,
+   the value can be transmitted as 3 octets and at most seventeen (17)
+   multiplications are required to effect exponentiation.  As an
+   alternative, the number three (3) can be employed as the value for e,
+   requiring even less octets for transmission and yielding even faster
+   exponentiation.  For purposes of PEM, the value of e shall be either
+   F4 or the number three (3).  The use of the number three (3) for the
+   value of e is encouraged, to permit rapid certificate validation.
+
+   An RSA private key consists of a decryption exponent d, which should
+   be kept secret, and the arithmetic modulus n.  Other values may be
+   stored with a private key to facilitate efficient private key
+   operations (see PKCS #1 [11]).
+
+   For purposes of PEM, the modulus n may vary in size from 508 to 1024
+   bits.
+
+   Two ASN.1 object identifiers have been defined to identify RSA public
+   keys.  In Annex H of X.509 [8], the object identifier
+
+     rsa OBJECT IDENTIFIER ::=3D {
+         joint-iso-ccitt(2) ds(5) algorithm(8)
+         encryptionAlgorithm(1) 1
+     }
+
+   is defined to identify an RSA public key.  A single parameter,
+   KeySize, the length of the public key modulus in bits, is defined for
+   use in conjunction with this object identifier.  When this object
+   identifier is used with the ASN.1 type AlgorithmIdentifier, the
+   parameters component of that type is the number of bits in the
+   modulus, ASN.1 encoded as an INTEGER.
+
+   Alternatively, in PKCS #1 [11], the ASN.1 object identifier
+
+     rsaEncryption OBJECT IDENTIFIER ::=3D {
+         iso(1) member-body(2) US(840) rsadsi(113549) pkcs(1)
+         pkcs-1(1) 1
+     }
+
+   is defined to identify both an RSA public key and the RSAEncryption
+   process.  There are no parameters defined in conjunction with this
+   object identifier, hence, when it is used with the ASN.1 type
+   AlgorithmIdentifier, the parameters component of that type is the
+   ASN.1 type NULL.
+
+   A compliant PEM implementation may optionally generate an RSA
+   public-key certificate that identifies the enclosed RSA public key
+   (within the SubjectPublicKeyInformation component) with either the
+   "rsa" or the "rsaEncryption" object identifier.  Use of the "rsa"
+   object identifier is encouraged, since it is, in some sense, more
+   generic in its identification of a key, without indicating how the
+   key will be used.  However, to facilitate interoperability, a
+   compliant PEM implementation shall accept RSA public-key certificates
+   that identify the enclosed RSA public key with either the "rsa" or
+   the "rsaEncryption" object identifier.  In all cases, an RSA public
+   key identified in an RSA public-key certificate with either the "rsa"
+   or "rsaEncryption" object identifier, shall be used according to the
+
+   procedures defined below for asymmetric encryption algorithms and
+   asymmetric signature algorithms.
+
+4.2  Asymmetric Encryption Algorithms
+
+   This section identifies the alternative algorithms that shall be used
+   when asymmetric key management is employed, to encrypt DEKs and MICs.
+   Character string identifiers are assigned for incorporation in "MIC-
+   Info:" and "Key-Info:" header fields to indicate the choice of
+   algorithm employed.
+
+   Only one alternative is presently defined in this category.
+
+4.2.1  RSAEncryption
+
+   The RSAEncryption public-key encryption algorithm, defined in PKCS #1
+   [11], is used for DEK and MIC encryption when asymmetric key
+   management is employed.  The character string "RSA" within a "MIC-
+   Info:" or "Key-Info:" header field indicates the use of this
+   algorithm.
+
+   All PEM implementations supporting asymmetric key management shall
+   support this algorithm.
+
+   As described in PKCS #1, all quantities input as data values to the
+   RSAEncryption process shall be properly justified and padded to the
+   length of the modulus prior to the encryption process.  In general,
+   an RSAEncryption input value is formed by concatenating a leading
+   NULL octet, a block type BT, a padding string PS, a NULL octet, and
+   the data quantity D, that is,
+
+     RSA input value =3D 0x00 || BT || PS || 0x00 || D.
+
+   To prepare a DEK for RSAEncryption, the PKCS #1 "block type 02"
+   encryption-block formatting scheme is employed.  The block type BT is
+   a single octet containing the value 0x02 and the padding string PS is
+   one or more octets (enough octets to make the length of the complete
+   RSA input value equal to the length of the modulus) each containing a
+   pseudorandomly generated, non-zero value.  For multiple recipient
+   messages, a different, pseudorandom padding string should be used for
+   each recipient.  The data quantity D is the DEK itself, which is
+   right-justified within the RSA input such that the last (or rightmost
+   displayed, if one thinks in terms of the "print" representation)
+   octet of the DEK is aligned with the right-most, or least-
+   significant, octet of the RSA input.  Proceeding to the left, each of
+   the remaining octets of the DEK, up through the first (or left-most
+   displayed) octet, are each aligned in the next more significant octet
+   of the RSA input.
+
+   To prepare a MIC for RSAEncryption, the PKCS #1 "block type 01"
+   encryption-block formatting scheme is employed.  The block type BT is
+   a single octet containing the value 0x01 and the padding string PS is
+   one or more octets (enough octets to make the length of the complete
+   RSA input value equal to the length of the modulus) each containing
+   the value 0xFF.  The data quantity D is comprised of the MIC and the
+   MIC algorithm identifier which are ASN.1 encoded as the following
+   sequence.
+
+     SEQUENCE {
+         digestAlgorithm   AlgorithmIdentifier,
+         digest            OCTET STRING
+     }
+
+   The ASN.1 type AlgorithmIdentifier is defined in X.509 as follows.
+
+     AlgorithmIdentifier ::=3D SEQUENCE {
+         algorithm         OBJECT IDENTIFIER,
+         parameters        ANY DEFINED BY algorithm OPTIONAL
+     }
+
+   An RSA input block is encrypted using the RSA algorithm with the
+   first (or left-most) octet taken as the most significant octet, and
+   the last (or right-most) octet taken as the least significant octet.
+   The resulting RSA output block is interpreted in a similar manner.
+
+   When RSAEncryption is used to encrypt a DEK, the second argument in a
+   "MIC-Info:" header field, an asymmetrically encrypted DEK, is
+   represented using the printable encoding technique defined in Section
+   4.3.2.4 of <A href=3D"http://www.faqs.org/rfcs/rfc1421.html">RFC =
+1421</A> [12].
+
+   When RSAEncryption is used to sign a MIC, the third argument in a
+   "MIC-Info:" header field, an asymmetrically signed MIC, is
+   represented using the printable encoding technique defined in Section
+   4.3.2.4 of <A href=3D"http://www.faqs.org/rfcs/rfc1421.html">RFC =
+1421</A>.
+
+4.3  Asymmetric Signature Algorithms
+
+   This section identifies the alternative algorithms which shall be
+   used to asymmetrically sign certificates and certificate revocation
+   lists (CRLs) in accordance with the SIGNED macro defined in Annex G
+   of X.509.  ASN.1 object identifiers are identified for incorporation
+   in certificates and CRLs to indicate the choice of algorithm
+   employed.
+
+   Only one alternative is presently defined in this category.
+
+4.3.1  md2WithRSAEncryption
+
+   The md2WithRSAEncryption signature algorithm is used to sign
+   certificates and CRLs.  The algorithm is defined in PKCS #1 [11].  It
+   combines the RSA-MD2 message digest algorithm described here in
+   Section 2.2 with the RSAEncryption asymmetric encryption algorithm
+   described here in Section 4.2.1.  As defined in PKCS #1, the ASN.1
+   object identifier
+
+     md2WithRSAEncryption OBJECT IDENTIFIER ::=3D {
+         iso(1) member-body(2) US(840) rsadsi(113549) pkcs(1)
+         pkcs-1(1) 2
+     }
+
+   identifies this algorithm.  When this object identifier is used with
+   the ASN.1 type AlgorithmIdentifier, the parameters component of that
+   type is the ASN.1 type NULL.
+
+   There is some ambiguity in X.509 regarding the definition of the
+   SIGNED macro and, in particular, the representation of a signature in
+   a certificate or a CRL.  The interpretation selected for PEM requires
+   that the data to be signed (in our case, an MD2 message digest) is
+   first ASN.1 encoded as an OCTET STRING and the result is encrypted
+   (in our case, using RSAEncryption) to form the signed quantity, which
+   is then ASN.1 encoded as a BIT STRING.
+
+5.  Descriptive Grammar
+
+   ; Addendum to PEM BNF representation, using <A =
+href=3D"http://www.faqs.org/rfcs/rfc822.html">RFC 822</A> notation
+   ; Provides specification for official PEM cryptographic algorithms,
+   ; modes, identifiers and formats.
+
+   ; Imports &lt;hexchar&gt; and &lt;encbin&gt; from RFC [1421]
+
+       &lt;dekalgid&gt; ::=3D "DES-CBC"
+       &lt;ikalgid&gt;  ::=3D "DES-EDE" / "DES-ECB" / "RSA"
+       &lt;sigalgid&gt; ::=3D "RSA"
+       &lt;micalgid&gt; ::=3D "RSA-MD2" / "RSA-MD5"
+
+       &lt;dekparameters&gt; ::=3D &lt;DESCBCparameters&gt;
+       &lt;DESCBCparameters&gt; ::=3D &lt;IV&gt;
+       &lt;IV&gt; ::=3D &lt;hexchar16&gt;
+
+       &lt;symencdek&gt; ::=3D &lt;DESECBencDESCBC&gt; / =
+&lt;DESEDEencDESCBC&gt;
+       &lt;DESECBencDESCBC&gt; ::=3D &lt;hexchar16&gt;
+       &lt;DESEDEencDESCBC&gt; ::=3D &lt;hexchar16&gt;
+
+       &lt;symencmic&gt; ::=3D &lt;DESECBencRSAMD2&gt; / =
+&lt;DESECBencRSAMD5&gt;
+
+       &lt;DESECBencRSAMD2&gt; ::=3D 2*2&lt;hexchar16&gt;
+       &lt;DESECBencRSAMD5&gt; ::=3D 2*2&lt;hexchar16&gt;
+
+       &lt;asymsignmic&gt; ::=3D &lt;RSAsignmic&gt;
+       &lt;RSAsignmic&gt; ::=3D &lt;encbin&gt;
+
+       &lt;asymencdek&gt; ::=3D &lt;RSAencdek&gt;
+       &lt;RSAencdek&gt; ::=3D &lt;encbin&gt;
+
+       &lt;hexchar16&gt; ::=3D 16*16&lt;hexchar&gt;
+
+References
+
+   [1] Federal Information Processing Standards Publication (FIPS PUB)
+       46-1, Data Encryption Standard, Reaffirmed 1988 January 22
+       (supersedes FIPS PUB 46, 1977 January 15).
+
+   [2] ANSI X3.92-1981, American National Standard Data Encryption
+       Algorithm, American National Standards Institute, Approved 30
+       December 1980.
+
+   [3] Federal Information Processing Standards Publication (FIPS PUB)
+       81, DES Modes of Operation, 1980 December 2.
+
+   [4] ANSI X3.106-1983, American National Standard for Information
+       Systems - Data Encryption Algorithm - Modes of Operation,
+       American National Standards Institute, Approved 16 May 1983.
+
+   [5] ISO 8372, Information Processing Systems: Data Encipherment:
+       Modes of Operation of a 64-bit Block Cipher.
+
+   [6] ANSI X9.17-1985, American National Standard, Financial
+       Institution Key Management (Wholesale), American Bankers
+       Association, April 4, 1985, Section 7.2.
+
+   [7] Voydock, V. L. and Kent, S. T., "Security Mechanisms in High-
+       Level Network Protocols", ACM Computing Surveys, Vol. 15, No. 2,
+       June 1983, pp. 135-171.
+
+   [8] CCITT Recommendation X.509, "The Directory - Authentication
+       Framework", November 1988, (Developed in collaboration, and
+       technically aligned, with ISO 9594-8).
+
+   [9] Kaliski, B., "The MD2 Message-Digest Algorithm", <A =
+href=3D"http://www.faqs.org/rfcs/rfc1319.html">RFC 1319</A>, RSA
+       Laboratories, April 1992.
+
+  [10] Rivest, R., "The MD5 Message-Digest Algorithm", <A =
+href=3D"http://www.faqs.org/rfcs/rfc1321.html">RFC 1321</A>, MIT
+       Laboratory for Computer Science and RSA Data Security, Inc.,
+
+       April 1992.
+
+  [11] PKCS #1: RSA Encryption Standard, Version 1.4, RSA Data Security,
+       Inc., June 3, 1991.
+
+  [12] Linn, J., "Privacy Enhancement for Internet Electronic Mail: Part
+       I: Message Encryption and Authentication Procedures", <A =
+href=3D"http://www.faqs.org/rfcs/rfc1421.html">RFC 1421</A>,
+       DEC, February 1993.
+
+  [13] Kent, S., "Privacy Enhancement for Internet Electronic Mail: Part
+       II: Certificate-Based Key Management", <A =
+href=3D"http://www.faqs.org/rfcs/rfc1422.html">RFC 1422</A>, BBN, =
+February
+       1993.
+
+  [14] Kaliski, B., "Privacy Enhancement for Internet Electronic Mail:
+       Part IV: Key Certification and Related Services", <A =
+href=3D"http://www.faqs.org/rfcs/rfc1424.html">RFC 1424</A>, RSA
+       Laboratories, February 1993.
+
+Patent Statement
+
+   This version of Privacy Enhanced Mail (PEM) relies on the use of
+   patented public key encryption technology for authentication and
+   encryption.  The Internet Standards Process as defined in <A =
+href=3D"http://www.faqs.org/rfcs/rfc1310.html">RFC 1310</A>
+   requires a written statement from the Patent holder that a license
+   will be made available to applicants under reasonable terms and
+   conditions prior to approving a specification as a Proposed, Draft or
+   Internet Standard.
+
+   The Massachusetts Institute of Technology and the Board of Trustees
+   of the Leland Stanford Junior University have granted Public Key
+   Partners (PKP) exclusive sub-licensing rights to the following
+   patents issued in the United States, and all of their corresponding
+   foreign patents:
+
+      Cryptographic Apparatus and Method
+      ("Diffie-Hellman")............................... No. 4,200,770
+
+      Public Key Cryptographic Apparatus
+      and Method ("Hellman-Merkle").................... No. 4,218,582
+
+      Cryptographic Communications System and
+      Method ("RSA")................................... No. 4,405,829
+
+      Exponential Cryptographic Apparatus
+      and Method ("Hellman-Pohlig").................... No. 4,424,414
+
+   These patents are stated by PKP to cover all known methods of
+   practicing the art of Public Key encryption, including the variations
+   collectively known as El Gamal.
+
+   Public Key Partners has provided written assurance to the Internet
+   Society that parties will be able to obtain, under reasonable,
+   nondiscriminatory terms, the right to use the technology covered by
+   these patents.  This assurance is documented in <A =
+href=3D"http://www.faqs.org/rfcs/rfc1170.html">RFC 1170</A> titled
+   "Public Key Standards and Licenses".  A copy of the written assurance
+   dated April 20, 1990, may be obtained from the Internet Assigned
+   Number Authority (IANA).
+
+   The Internet Society, Internet Architecture Board, Internet
+   Engineering Steering Group and the Corporation for National Research
+   Initiatives take no position on the validity or scope of the patents
+   and patent applications, nor on the appropriateness of the terms of
+   the assurance.  The Internet Society and other groups mentioned above
+   have not made any determination as to any other intellectual property
+   rights which may apply to the practice of this standard. Any further
+   consideration of these matters is the user's own responsibility.
+
+Security Considerations
+
+   This entire document is about security.
+
+Author's Address
+
+   David Balenson
+   Trusted Information Systems
+   3060 Washington Road
+   Glenwood, Maryland 21738
+
+   Phone: 301-854-6889
+   EMail: <A href=3D"mailto:balenson@tis.com">balenson@tis.com</A>
+
+</PRE>
+<P align=3Dcenter>
+<SCRIPT language=3DJavaScript><!--=0A=
+erfc("1423");=0A=
+// --></SCRIPT>
+</P>&nbsp;<BR>
+<DIV align=3Dcenter>
+<TABLE cellSpacing=3D3 cellPadding=3D3 width=3D"100%" border=3D0>
+  <TBODY>
+  <TR>
+    <TD width=3D"45%">
+      <P align=3Dleft>Previous: <A=20
+      href=3D"http://www.faqs.org/rfcs/rfc1422.html">RFC 1422 - Privacy=20
+      Enhancement for Internet Electronic Mail: Part II: =
+Certificate-Based Key=20
+      Management</A> </P></TD>
+    <TD width=3D"10%">&nbsp;</TD>
+    <TD width=3D"45%">
+      <P align=3Dright>Next: <A =
+href=3D"http://www.faqs.org/rfcs/rfc1424.html">RFC=20
+      1424 - Privacy Enhancement for Internet Electronic Mail: Part IV: =
+Key=20
+      Certification and Related Services</A> =
+</P></TD></TR></TBODY></TABLE></DIV>
+<P align=3Dright>&nbsp;</P>
+<HR noShade SIZE=3D2>
+
+<DIV align=3Dcenter>[ <A href=3D"http://www.faqs.org/rfcs/">RFC =
+Index</A> | <A=20
+href=3D"http://www.faqs.org/rfcs/rfcsearch.html">RFC Search</A> | <A=20
+href=3D"http://www.faqs.org/faqs/">Usenet FAQs</A> | <A=20
+href=3D"http://www.faqs.org/contrib/">Web FAQs</A> | <A=20
+href=3D"http://www.faqs.org/docs/">Documents</A> | <A=20
+href=3D"http://www.city-data.com/">Cities</A> ]=20
+<P></P></DIV><SMALL>
+<ADDRESS>
+<P align=3Dcenter></P></ADDRESS></SMALL></BODY></HTML>
+
+------=_NextPart_000_0053_01C3C89F.36F02950
+Content-Type: image/jpeg
+Content-Transfer-Encoding: base64
+Content-Location: http://www.faqs.org/images/library.jpg
+
+/9j/4AAQSkZJRgABAgEASABIAAD/7QE0UGhvdG9zaG9wIDMuMAA4QklNA+0AAAAAABAASAAAAAEA
+AQBIAAAAAQABOEJJTQPzAAAAAAAIAAAAAAAAAAA4QklNJxAAAAAAAAoAAQAAAAAAAAACOEJJTQP1
+AAAAAABIAC9mZgABAGxmZgAGAAAAAAABAC9mZgABAKGZmgAGAAAAAAABADIAAAABAFoAAAAGAAAA
+AAABADUAAAABAC0AAAAGAAAAAAABOEJJTQP4AAAAAABwAAD/////////////////////////////
+A+gAAAAA/////////////////////////////wPoAAAAAP////////////////////////////8D
+6AAAAAD/////////////////////////////A+gAADhCSU0EBgAAAAAAAgAE/+4ADkFkb2JlAGQA
+AAAAAf/bAIQABgQEBAUEBgUFBgkGBQYJCwgGBggLDAoKCwoKDBAMDAwMDAwQDAwMDAwMDAwMDAwM
+DAwMDAwMDAwMDAwMDAwMDAEHBwcNDA0YEBAYFA4ODhQUDg4ODhQRDAwMDAwREQwMDAwMDBEMDAwM
+DAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwM/8AAEQgAPgCWAwERAAIRAQMRAf/EAaIAAAAHAQEBAQEA
+AAAAAAAAAAQFAwIGAQAHCAkKCwEAAgIDAQEBAQEAAAAAAAAAAQACAwQFBgcICQoLEAACAQMDAgQC
+BgcDBAIGAnMBAgMRBAAFIRIxQVEGE2EicYEUMpGhBxWxQiPBUtHhMxZi8CRygvElQzRTkqKyY3PC
+NUQnk6OzNhdUZHTD0uIIJoMJChgZhJRFRqS0VtNVKBry4/PE1OT0ZXWFlaW1xdXl9WZ2hpamtsbW
+5vY3R1dnd4eXp7fH1+f3OEhYaHiImKi4yNjo+Ck5SVlpeYmZqbnJ2en5KjpKWmp6ipqqusra6voR
+AAICAQIDBQUEBQYECAMDbQEAAhEDBCESMUEFURNhIgZxgZEyobHwFMHR4SNCFVJicvEzJDRDghaS
+UyWiY7LCB3PSNeJEgxdUkwgJChgZJjZFGidkdFU38qOzwygp0+PzhJSktMTU5PRldYWVpbXF1eX1
+RlZmdoaWprbG1ub2R1dnd4eXp7fH1+f3OEhYaHiImKi4yNjo+DlJWWl5iZmpucnZ6fkqOkpaanqK
+mqq6ytrq+v/dAAQAE//aAAwDAQACEQMRAD8AkH5redfNOk+e9Ss7DVpLK1jihkRS5Kqzsqk8eQ2p
+/LiqAuvzJ8+2nlW216yvOOpR3JR7e5LvC0fIAxspJ8ftZGcuFlCPEzjyT/zkNpmpWls3mrTp/L0l
+wfThvZVJspXB40Wb9k1H2XwiVhZQMTu9btrq2uoEntpUmgkFY5Y2DKR4gjCxeXfmv5h1bRnlubC5
+khKywxbM5QB4mIAVTT4n44q89vvzG/MC1M6W+oS3FzaEK8YBKTN6j8/RH2mVYwnxfsSfC2Ksp8ne
+avNepatH9d1SaS2KXRktgAqho5lSOrABkPA/YOKsy/K3zyNefW9Guiy6poN7JC4c1aS3cloZRXcq
+RVf9jirPcVdiqXeYtd07QNDvdZ1GVYbOxiaaV2IGyjoK92Pwrirw1fzK853mk6VqlsZoY9UtZrpg
+iNKI3ec/a8Fgi/YH2sVQdz+YH5opcCOT1UgaMgyiN/gagYP1PwkNT/WXFUfoXm/zzc62lvqUsyWS
+zNbrwEqtKeJZJuXLj6Q4/H/rJir32M1RCepA/ViqB13zHoeg2T3usX0NjbIKmSZwtaeAO5+jFXh3
+nj/nKF0s5h5I0W4v0SqtrFxGyWqduQ2+Ie/2cEJRMhGxxS+lkYEcwxvUPO/5i2ZSXUddkEnowTXk
+dvyC+pNy2h3FRXhyT+TlhYr/AC/+YPnWfRPNE0uoXMl5Z2ts8EZd+MXO7gQ8Ty5cmRmY/wCS2Kv/
+0J/5xhhfzlqRkjRjzUVZQxp6a+I6Yqw78yZbaHy/H60scCtPGA8hCLy5g9dgDtleSJIbMcgLvuTS
+/t9H1b8ur2OVYb61V5JwoYOnJAWRvhPjlZySxmBjzObHH/NlLhkzz1Ijf+D/AHLFfKNr5z8rfVpP
+KevNGjBGuNOvg0tpIHj9X4VBJi/l+HLs2WtTPH/N45Q/zG3JhBx45AUZgf6Z6b5a8233muzm1XUL
+JLK59X0HiQ842MIA5oT+yxOTMSOf44nFnDhJCcgjbYV33p44GK9DRhTuflirxTT/ADJc+W/zXvvM
+thKWtra5FprlstT6lq7EN/s4G/ejEy5D3tgjcCX1fbzxTwxzwuJIZVDxyLuGVhVSPmDi1rzir59/
+5yE81JrerW/ke2Y/ULNWvdccGiu6RF4IKg/s/wB7IP8AUwgXY/os4x2vomn5Yy/86DovBqqYDQg7
+H4jkIfSET5sm9Rv5jkmKjcTCOCR2JKRqzsOuyip+e2KsQ80/nx5pvrSRPKultpdksdf0vqK/vGFD
+T0bevt9pzhwmM5RF7Tn4f+c3DBKpH+YOJKX8qx3GiaZqnmSWTWvMUtwouL65dpFWpI4wxn4EXj/k
+5ja6fBIRHIzMEQjv/mse8zx2lp5Y1mwEkdspV4raOaRUqBICBVyOwzDxQI1eOVemE/V/pXP10gYA
+eQ+5lem3llf6TBd2rrPbyInpTAAghVC1FfcZtHVonSQBb62QAK2sVduv+lw9cVf/0Z/5wb/nctT8
+fUX/AJNrirB/zW06yv8AyVerdIXECCaEgkcZFcKDt1+13y3DG5gILCovyogsZlGi6vfWjrCZZ2WR
+eJUKK/BsDUt9nNPptbOY4iB6b/2MnYHSx8Lj3tONXg/MfyjNp7eva+ZLG8Xkkrxm2lRgnEIxBK1K
+n4P9XNhjxDKDl7oGUuL+ZNoiZ3GI3qXDFn35U30915W5T2U1hNHcSRvbz05VG5II6rvtls52fhH/
+AHLVkJJN87P3szByLBejfEPnir5m8xvqOjec9b1i0VruwuNRli1HTwORoByEi08PDIDcS8vT/wAr
+G6Ioiv6z6P8AyE80w33luHSzdrcRxIZdKYsTI1sGKshr3gf4f9XGJ6MJgXbPPNnmCLRNFlvOSC5c
+iGxjkrxkuHqI0PHfrk2ID4n1/Udb8w3FzbWcskxSSV9a1k7F3kY81U/tdeO3+rlcpcPr8uByAOIc
+I5c30H+XlrDZeStJs4a+lbxemletAx65Y4zICcVUbmZIraaR6lEjdmAFSQFJNBieSh4NqPmTXtQj
+k0zTPLd080cPqSfXHW2/dkM4YKTypxbxyrR4DjIP+2+JD+twhzsuaR45AemcXNH+beuxxWmo6omk
+WHGqQWaD927j92rv1q3scxtRq4AGdcQgeJh+WIgJE/Urecfyb8vWNjaX31m6uruOB7m9ku5WmEpU
+KpVRtxHJuWXyyHhBHUcTHHCJiSdzYizLyxFDb+WbKCFBHFHEqog6AU98sxH0hqygCRpM9JP+i61/
+zCxf9RcOTa3/0p15zcDzpqntIn/JtcVYN+aN9Pb+VJVhtDei4KwzRK3BgjMDyDUPceGSjk4CCnhv
+ZjieePMUOjjW7rypdjTZozarcwyxyJVyF22DdV8MwdL2cAOCG5lf+zLl5NQYw4JDukv1r827DXrH
+TrRNG1OB4GQqfR9UOI68qcDmZhHh454zz8M4Zf0WuAMZxkQfq44vTPy61q21Xy99YtlmREnkjZZ4
+zG4Ybn4T88iI7k+7/cxa8puRLKQ2Sa16tuMVfPHmHVbuw806uk1lI1umoSXLTwMsjCMrSrRj4lyJ
+h6a7zE/6VvhMjfpXCm/kLXrHTNT0bUNCkRXU3UtzauGTlI0g3AalPg+0v2WyIJ5qaovQPzt1+S91
+vT7G5uY7TTra4jLLyIkYPFycLTu3KnL9nDKVMYDveNfpmylsZNO8vWEk8So8fNQIYlrQk85Kcvsn
+kcqlA0QTzIk2idcg90/L6aWTyXpTzKqytES6o3JQeR6N3y8FxiKT8thQo3Mipbyu32URmbavwqN9
+sjIWCFeLar+Z3ly819rqzttRuBJaNAsS2kgckoVDfFT4RXJY5gY4X/BP/eCLkiREZRo7w4f9kuXz
+tqP1I31t5V1ea0keIpcGNI0JjBWlS1etc1n5IeCcZl9X8TKefiEY1vFK/NX5uazqOnhT5Ruorf0W
+tjK70FHIr9lDv8OZfooRvkOFiYTjEgj6jxM18r3U83liyluLdrSV4wWt3+0ngDUDtl4FCmicrNpt
+pEn+h65/zCRf9RcOFi//05j54k4+d9VHhIn/ACbTFWHefGZ9AooLHnHstSf7weG+U5uVt2I7lPrh
+BH5HvYAqRsTN6cTcU6qaEA0ynMDUK/1XH/peNlnNkf1WN6fqWjabDbiW8tbVEWMgCRNqwcWoFJ/b
++1lueJOqnIfRLxf9l9LkHJ+7xWd4Uyz8tp7eXy3zgkWRTPLV0rQsTXuB2OZeSQJFfzY/7lw8vM/H
+/dFlfLK2tcr7jFXj9/p8o8z6tdShLeCZ1CTzEKrFWaoXu3XwyE7PylH/AIlvxH0kf0kRo1k+s6pY
+W+nQ+oz81jnZAFb4grEDqu/c5CGMgJnIc2R/mdZywec0mli9YI6SIFAqaRBP2u3Ib5YSwhyYPZ6Y
+13A8lkyTBbecvF9iVGlBIUq23L/VOUTiTO/6NN5kOGvN6X+XayReSdJikUpIkRVkYEMCGNQQcvhy
+cWfNkJYZJipTyqkMjv8AYVGLd9gMSrymTVbT6vE/rGFY0Uu0ySQ0U8yCS6jrUZr44JCEgf8AVeL/
+AGIdr+YHFM7+qMfvZNe6zo91o1jb2d9bTFbpWMMcqGilifs1yeoxn0UP4vU4Il6mMaxHImi6sscR
+WKsojCCooZNqUrmt1MD40aH8Tn6qdxjR6J+ZCLcBq14pWv8AqDN+6krtHlrY697WkX/UZBir/9SS
+ef5+Pn3Vx4SJ/wAmkxVivnBUuNAndpJE+rqJP3MjRFqMF4llINN8hksR26M8ZF7i2OXfl61srGaS
+yuZkZIWup2nf6x6pTiOP7ytB8WPYmtlmyesCUan6XL1OKIwcQFSuLLvOGk2X1PRLqwsVS6/dqfq0
+YUcXX4uSqKdurZbpchlp53zlh/2VxacRqce7xAyzykrRaTwcBXErllBBpy3HTKhfEfh/uIteU3I9
+1p4HybW2rCuKvFbyy1DV/NV9EsjPHb6jLyLn91BbiP42Y/y17H7TfAuMt8f+d/vm+BAP+a97/Kfy
+VDpthHdsrcQCLb1RRyGPIuw7M/8Awv2MAapGym35keTv01pv1uzATVLOslu9K1NN1bxVh9oYljb5
+o8zaXXSry9to3hFtWO8gBPqWs3whVb+aOSh9GT/Y/bXIAGJP9KUf0uVinYryeseT3B8tWDUpVDQf
+T75Zd83FTctiqnM4ETknYKan2pkJg0UhgGswPP5iuLu3UTwSWDKzrUkskZoGQ/H8vhy7ENoA9Jf7
+xyI5P3ct9+H/AHzDdb8p6FcTWsklssX76C2kjRVBKzKxYkkc+QI+HMPQ6qfgZckvXOGOU48X8627
+UGoQAA9R+pkXmvQNK0OwtZtGsrW2MVs810zq7NKsfFQoIYUYlq8sslkJiD5NOOEeEk7mwu0+4/3E
+wGv2kVtyzdRXqxLffksZuILTkAEiAjdEnrp/mHxFnCf+n2AZNg//1ZH+Y2ka2PPGq3YsZ/qssiNF
+OI3KMojUVDAU6g4qxm+tfr1lPYSu8BnThURl2B5A9NvDIzFghQnuleSL7VU9KDT2kjkiMLzXRNCj
+UqeC8R+z45RosHgbx5t885lHhrZ6TpP5XSyJF+mLt50jAC24+GMAdAEWi/hmREcIoNCG8w6J+jtT
+nSztXSyCRFZFRiuyUO4HGu2FWNXHmfy9asUutTtYHB+zJKqH8TiqkvnnybX/AI7lj/0kR/1xVAfl
+7plv5j1+8g01CdH+tm71G7rUXdwD8BBG3oRL/dL/ADfvMASS+hLeCOCJIowFRBQAe2FCoQCKEVBx
+V4h+cXk240y4bzPpNulxFIhi1bTnB9K5t2+3HIB96t9pH+NcUgpJ5c85eTV0a3WLUoLNPiKWl1Mg
+niBYnhJv9pelf2sUJoPNvlhj8OrWjfKZT/HFUytVk1CPnZI11E1PihVnU1PioOKs51n8u9A1RORh
+EM1BR02oaY2rAPMP5V61AA0JXULeKQSpFMORDp0IJo21f5sjwjhMf4Zjhl/VTxHa+jEPNEMl5aSW
+WoWz6dc+g9vHKtTHRypqVb/V7NkTj9NDp6WcclCvNKYNNvvq6WtpG94YlCh4UY1pt0FcMI0KYzlx
+G010Xyz5pTSvMDvpN2qy2kKRcoXBZhewOVUEfF8Cs2TYv//W9F6/H5eYf7lJeC+4Yj8AcVY/YQ/l
+ktyDDcRPLXoyt1/2QGKs2s/qXpj6rw9Om3CmKojvirDvP9nb3FiReahLZ2v7Rjjlf/k2rYq8D1fy
+/wDkeZX+u+aHWWp5c7W7Jr/yJxVKB5c/5x59QV82b+H1W8/6o4q+jPynt/JkHl2OPyvdpeWo+1Mq
+shJ9w6q2Ks4xV2KoDXF01tLuBqLKtoUPqs+4AxV8w6xoP5Avqs7nzMIpC5LRrbXRANelRERiqmnl
+/wDIrbh5oP0Wt5/1RxV6n+VGleW7efl5e1qa9t+8bQ3Ea/fJGoxV69irjSm/TFUg8wr5TMDDV2hV
+e5fr+GKsGs7H8qzeFrDUWEtfsxRz0/BKYqzyOHTxosqC4lNqVFZCsnICo6CnL8MVf//Z
+
+------=_NextPart_000_0053_01C3C89F.36F02950--

@@ -1,0 +1,376 @@
+From: <Saved by Microsoft Internet Explorer 5>
+Subject: RFC 1579 (rfc1579) - Firewall-Friendly FTP
+Date: Fri, 12 Aug 2005 20:49:16 +0800
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	type="text/html";
+	boundary="----=_NextPart_000_0005_01C59F7F.4E023E40"
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2900.2527
+
+This is a multi-part message in MIME format.
+
+------=_NextPart_000_0005_01C59F7F.4E023E40
+Content-Type: text/html;
+	charset="big5"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://www.faqs.org/rfcs/rfc1579.html
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>RFC 1579 (rfc1579) - Firewall-Friendly FTP</TITLE>
+<META http-equiv=3DContent-Type content=3D"text/html; charset=3Dbig5">
+<META content=3D"RFC 1579 - Firewall-Friendly FTP" name=3Ddescription>
+<SCRIPT language=3DJavaScript1.2>=0A=
+function erfc(s)=0A=
+{document.write("<A href=3D\"/rfccomment.php?rfcnum=3D"+s+"\" =
+target=3D\"_blank\" =
+onclick=3D\"window.open('/rfccomment.php?rfcnum=3D"+s+"','Popup','toolbar=
+=3Dno,location=3Dno,status=3Dno,menubar=3Dno,scrollbars=3Dyes,resizable=3D=
+yes,width=3D680,height=3D530,left=3D30,top=3D43'); return =
+false;\")>Comment on RFC "+s+"</A>\n");}=0A=
+//-->=0A=
+</SCRIPT>
+
+<META content=3D"MSHTML 6.00.2900.2722" name=3DGENERATOR></HEAD>
+<BODY text=3D#000000 bgColor=3D#ffffff>
+<P align=3Dcenter><IMG height=3D62 alt=3D""=20
+src=3D"http://www.faqs.org/images/library.jpg" width=3D150 =
+align=3Dmiddle=20
+border=3D0></P>
+<H1 align=3Dcenter>RFC 1579 (RFC1579)</H1>
+<P align=3Dcenter>Internet RFC/STD/FYI/BCP Archives</P>
+<DIV align=3Dcenter>[ <A href=3D"http://www.faqs.org/rfcs/">RFC =
+Index</A> | <A=20
+href=3D"http://www.faqs.org/rfcs/rfcsearch.html">RFC Search</A> | <A=20
+href=3D"http://www.faqs.org/faqs/">Usenet FAQs</A> | <A=20
+href=3D"http://www.faqs.org/contrib/">Web FAQs</A> | <A=20
+href=3D"http://www.faqs.org/docs/">Documents</A> | <A=20
+href=3D"http://www.city-data.com/">Cities</A> ]=20
+<P><STRONG>Alternate Formats:</STRONG> <A=20
+href=3D"http://www.faqs.org/ftp/rfc/rfc1579.txt">rfc1579.txt</A> | <A=20
+href=3D"http://www.faqs.org/ftp/rfc/pdf/rfc1579.txt.pdf">rfc1579.txt.pdf<=
+/A></P></DIV>
+<P align=3Dcenter>
+<SCRIPT language=3DJavaScript><!--=0A=
+erfc("1579");=0A=
+// --></SCRIPT>
+</P>
+<H3 align=3Dcenter>RFC 1579 - Firewall-Friendly FTP</H3>
+<HR noShade SIZE=3D2>
+<PRE>
+Network Working Group                                        S. Bellovin
+Request for Comments: 1579                        AT&amp;T Bell =
+Laboratories
+Category: Informational                                    February 1994
+
+                         Firewall-Friendly FTP
+
+Status of this Memo
+
+   This document provides information for the Internet community.  This
+   document does not specify an Internet standard of any kind.
+   Distribution of this document is unlimited.
+
+Abstract
+
+   This memo describes a suggested change to the behavior of FTP client
+   programs.  No protocol modifications are required, though we outline
+   some that might be useful.
+
+Overview and Rational
+
+   The FTP protocol [1] uses a secondary TCP connection for actual
+   transmission of files.  By default, this connection is set up by an
+   active open from the FTP server to the FTP client.  However, this
+   scheme does not work well with packet filter-based firewalls, which
+   in general cannot permit incoming calls to random port numbers.
+
+   If, on the other hand, clients use the PASV command, the data channel
+   will be an outgoing call through the firewall.  Such calls are more
+   easily handled, and present fewer problems.
+
+The Gory Details
+
+   The FTP specification says that by default, all data transfers should
+   be over a single connection.  An active open is done by the server,
+   from its port 20 to the same port on the client machine as was used
+   for the control connection.  The client does a passive open.
+
+   For better or worse, most current FTP clients do not behave that way.
+   A new connection is used for each transfer; to avoid running afoul of
+   TCP's TIMEWAIT state, the client picks a new port number each time
+   and sends a PORT command announcing that to the server.
+
+   Neither scenario is firewall-friendly.  If a packet filter is used
+   (as, for example, provided by most modern routers), the data channel
+   requests appear as incoming calls to unknown ports.  Most firewalls
+   are constructed to allow incoming calls only to certain believed-to-
+   be-safe ports, such as SMTP.  The usual compromise is to block only
+
+   the "server" area, i.e., port numbers below 1024.  But that strategy
+   is risky; dangerous services such as X Windows live at higher-
+   numbered ports.
+
+   Outgoing calls, on the other hand, present fewer problems, either for
+   the firewall administrator or for the packet filter.  Any TCP packet
+   with the ACK bit set cannot be the packet used to initiate a TCP
+   connection; filters can be configured to pass such packets in the
+   outbound direction only.  We thus want to change the behavior of FTP
+   so that the data channel is implemented as a call from the client to
+   the server.
+
+   Fortunately, the necessary mechanisms already exist in the protocol.
+   If the client sends a PASV command, the server will do a passive TCP
+   open on some random port, and inform the client of the port number.
+   The client can then do an active open to establish the connection.
+
+   There are a few FTP servers in existence that do not honor the PASV
+   command.  While this is unfortunate (and in violation of STD 3, RFC
+   1123 [2]), it does not pose a problem.  Non-conforming
+   implementations will return a "500 Command not understood" message;
+   it is a simple matter to fall back to current behavior.  While it may
+   not be possible to talk to such sites through a firewall, that would
+   have been the case had PASV not been adopted.
+
+Recommendation
+
+   We recommend that vendors convert their FTP client programs
+   (including FTP proxy agents such as Gopher [3] daemons) to use PASV
+   instead of PORT.  There is no reason not to use it even for non-
+   firewall transfers, and adopting it as standard behavior will make
+   the client more useful in a firewall environment.
+
+   STD 3, <A href=3D"http://www.faqs.org/rfcs/rfc1123.html">RFC 1123</A> =
+notes that the format of the response to a PASV
+   command is not well-defined.  We therefore recommend that FTP clients
+   and servers follow the recommendations of that RFC for solving this
+   problem.
+
+Discussion
+
+   Given the behavior of most current FTP clients, the use of PASV does
+   not cause any additional messages to be sent.  In all cases, a
+   transfer operation is preceded by an extra exchange between the
+   client and the server; it does not matter if that exchange involves a
+   PORT command or a PASV command.
+
+   There is some extra overhead with Gopher-style clients; since they
+   transfer exactly one file per control channel connection, they do not
+
+   need to use PORT commands.  If this is a serious concern, the Gopher
+   proxy should be located on the outside of the firewall, so that it is
+   not hampered by the packet filter's restrictions.
+
+   If we accept that clients should always perform active opens, it
+   might be worthwhile enhancing the FTP protocol to eliminate the extra
+   exchange entirely.  At startup time, the client could send a new
+   command APSV ("all passive"); a server that implements this option
+   would always do a passive open.  A new reply code 151 would be issued
+   in response to all file transfer requests not preceded by a PORT or
+   PASV command; this message would contain the port number to use for
+   that transfer.  A PORT command could still be sent to a server that
+   had previously received APSV; that would override the default
+   behavior for the next transfer operation, thus permitting third-party
+   transfers.
+
+Implementation Status
+
+   At least two independent implementations of the modified clients
+   exist.  Source code to one is freely available.  To our knowledge,
+   APSV has not been implemented.
+
+Security Considerations
+
+   Some people feel that packet filters are dangerous, since they are
+   very hard to configure properly.  We agree.  But they are quite
+   popular.  Another common complaint is that permitting arbitrary
+   outgoing calls is dangerous, since it allows free export of sensitive
+   data through a firewall.  Some firewalls impose artificial bandwidth
+   limits to discourage this.  While a discussion of the merits of this
+   approach is beyond the scope of this memo, we note that the sort of
+   application-level gateway necessary to implement a bandwidth limiter
+   could be implemented just as easily using PASV as with PORT.
+
+   Using PASV does enhances the security of gateway machines, since they
+   no longer need to create ports that an outsider might connect to
+   before the real FTP client.  More importantly, the protocol between
+   the client host and the firewall can be simplified, if there is no
+   need to specify a "create" operation.
+
+   Concerns have been expressed that this use of PASV just trades one
+   problem for another.  With it, the FTP server must accept calls to
+   random ports, which could pose an equal problem for its firewall.  We
+   believe that this is not a serious issue, for several reasons.
+
+   First, there are many fewer FTP servers than there are clients.  It
+   is possible to secure a small number of special-purpose machines,
+   such as gateways and organizational FTP servers.  The firewall's
+
+   filters can be configured to allow access to just these machines.
+   Further precautions can be taken by modifying the FTP server so that
+   it only uses very high-numbered ports for the data channel.  It is
+   comparatively easy to ensure that no dangerous services live in a
+   given port range.  Again, this is feasible because of the small
+   number of servers.
+
+References
+
+   [1] Postel, J., and J. Reynolds, "File Transfer Protocol", STD 1, RFC
+       959, USC/Information Sciences Institute, October 1985.
+
+   [2] Braden, R., Editor, "Requirements for Internet Hosts -
+       Application and Support", STD 3, <A =
+href=3D"http://www.faqs.org/rfcs/rfc1123.html">RFC 1123</A>, =
+USC/Information
+       Sciences Institute, October 1989.
+
+   [3] Anklesaria, F., McCahill, M., Lindner, P., Johnson, D., Torrey,
+       D., and B. Alberti, "The Internet Gopher Protocol (a distributed
+       document search and retrieval protocol)", <A =
+href=3D"http://www.faqs.org/rfcs/rfc1436.html">RFC 1436</A>, University =
+of
+       Minnesota, March 1993.
+
+Author's Address
+
+       Steven M. Bellovin
+       AT&amp;T Bell Laboratories
+       600 Mountain Avenue
+       Murray Hill, NJ  07974
+
+       Phone: (908) 582-5886
+       EMail: <A =
+href=3D"mailto:smb@research.att.com">smb@research.att.com</A>
+
+</PRE>
+<P align=3Dcenter>
+<SCRIPT language=3DJavaScript><!--=0A=
+erfc("1579");=0A=
+// --></SCRIPT>
+</P>&nbsp;<BR>
+<DIV align=3Dcenter>
+<TABLE cellSpacing=3D3 cellPadding=3D3 width=3D"100%" border=3D0>
+  <TBODY>
+  <TR>
+    <TD width=3D"45%">
+      <P align=3Dleft>Previous: <A=20
+      href=3D"http://www.faqs.org/rfcs/rfc1578.html">RFC 1578 - FYI on =
+Questions=20
+      and Answers - Answers to Commonly Asked "Primary and Secondary =
+School=20
+      Internet User" Questions</A> </P></TD>
+    <TD width=3D"10%">&nbsp;</TD>
+    <TD width=3D"45%">
+      <P align=3Dright>Next: <A =
+href=3D"http://www.faqs.org/rfcs/rfc1580.html">RFC=20
+      1580 - Guide to Network Resource Tools</A> =
+</P></TD></TR></TBODY></TABLE></DIV>
+<P align=3Dright>&nbsp;</P>
+<HR noShade SIZE=3D2>
+
+<DIV align=3Dcenter>[ <A href=3D"http://www.faqs.org/rfcs/">RFC =
+Index</A> | <A=20
+href=3D"http://www.faqs.org/rfcs/rfcsearch.html">RFC Search</A> | <A=20
+href=3D"http://www.faqs.org/faqs/">Usenet FAQs</A> | <A=20
+href=3D"http://www.faqs.org/contrib/">Web FAQs</A> | <A=20
+href=3D"http://www.faqs.org/docs/">Documents</A> | <A=20
+href=3D"http://www.city-data.com/">Cities</A> ]=20
+<P></P></DIV><SMALL>
+<ADDRESS>
+<P align=3Dcenter></P></ADDRESS></SMALL></BODY></HTML>
+
+------=_NextPart_000_0005_01C59F7F.4E023E40
+Content-Type: image/jpeg
+Content-Transfer-Encoding: base64
+Content-Location: http://www.faqs.org/images/library.jpg
+
+/9j/4AAQSkZJRgABAgEASABIAAD/7QE0UGhvdG9zaG9wIDMuMAA4QklNA+0AAAAAABAASAAAAAEA
+AQBIAAAAAQABOEJJTQPzAAAAAAAIAAAAAAAAAAA4QklNJxAAAAAAAAoAAQAAAAAAAAACOEJJTQP1
+AAAAAABIAC9mZgABAGxmZgAGAAAAAAABAC9mZgABAKGZmgAGAAAAAAABADIAAAABAFoAAAAGAAAA
+AAABADUAAAABAC0AAAAGAAAAAAABOEJJTQP4AAAAAABwAAD/////////////////////////////
+A+gAAAAA/////////////////////////////wPoAAAAAP////////////////////////////8D
+6AAAAAD/////////////////////////////A+gAADhCSU0EBgAAAAAAAgAE/+4ADkFkb2JlAGQA
+AAAAAf/bAIQABgQEBAUEBgUFBgkGBQYJCwgGBggLDAoKCwoKDBAMDAwMDAwQDAwMDAwMDAwMDAwM
+DAwMDAwMDAwMDAwMDAwMDAEHBwcNDA0YEBAYFA4ODhQUDg4ODhQRDAwMDAwREQwMDAwMDBEMDAwM
+DAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwM/8AAEQgAPgCWAwERAAIRAQMRAf/EAaIAAAAHAQEBAQEA
+AAAAAAAAAAQFAwIGAQAHCAkKCwEAAgIDAQEBAQEAAAAAAAAAAQACAwQFBgcICQoLEAACAQMDAgQC
+BgcDBAIGAnMBAgMRBAAFIRIxQVEGE2EicYEUMpGhBxWxQiPBUtHhMxZi8CRygvElQzRTkqKyY3PC
+NUQnk6OzNhdUZHTD0uIIJoMJChgZhJRFRqS0VtNVKBry4/PE1OT0ZXWFlaW1xdXl9WZ2hpamtsbW
+5vY3R1dnd4eXp7fH1+f3OEhYaHiImKi4yNjo+Ck5SVlpeYmZqbnJ2en5KjpKWmp6ipqqusra6voR
+AAICAQIDBQUEBQYECAMDbQEAAhEDBCESMUEFURNhIgZxgZEyobHwFMHR4SNCFVJicvEzJDRDghaS
+UyWiY7LCB3PSNeJEgxdUkwgJChgZJjZFGidkdFU38qOzwygp0+PzhJSktMTU5PRldYWVpbXF1eX1
+RlZmdoaWprbG1ub2R1dnd4eXp7fH1+f3OEhYaHiImKi4yNjo+DlJWWl5iZmpucnZ6fkqOkpaanqK
+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
+
+------=_NextPart_000_0005_01C59F7F.4E023E40--

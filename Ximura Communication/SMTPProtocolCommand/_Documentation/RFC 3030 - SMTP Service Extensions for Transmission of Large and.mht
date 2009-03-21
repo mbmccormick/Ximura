@@ -1,0 +1,680 @@
+From: <Saved by Microsoft Internet Explorer 5>
+Subject: RFC 3030 (rfc3030) - SMTP Service Extensions for Transmission of Large and
+Date: Tue, 17 Jun 2003 18:06:57 +0800
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	boundary="----=_NextPart_000_0013_01C334FB.3DBC4490";
+	type="text/html"
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2800.1165
+
+This is a multi-part message in MIME format.
+
+------=_NextPart_000_0013_01C334FB.3DBC4490
+Content-Type: text/html;
+	charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://www.faqs.org/rfcs/rfc3030.html
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>RFC 3030 (rfc3030) - SMTP Service Extensions for =
+Transmission of Large and</TITLE>
+<META http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dwindows-1252">
+<META=20
+content=3D"RFC 3030 - SMTP Service Extensions for Transmission of Large =
+and Binary MIME Messages"=20
+name=3Ddescription>
+<META content=3DRFC1830 name=3Dobsoletes>
+<META content=3D"PROPOSED STANDARD" name=3Dstatus>
+<META content=3D"MSHTML 6.00.2800.1170" name=3DGENERATOR></HEAD>
+<BODY text=3D#000000 bgColor=3D#ffffff>
+<P align=3Dcenter><STRONG><FONT size=3D-1>Internet RFC/STD/FYI/BCP=20
+Archives</FONT></STRONG></P>
+<P align=3Dcenter><IMG height=3D62 alt=3D""=20
+src=3D"http://www.faqs.org/images/library.jpg" width=3D150 =
+align=3Dmiddle=20
+border=3D0></P>
+<H1 align=3Dcenter>RFC 3030 (RFC3030)</H1>
+<DIV align=3Dcenter>[ <A href=3D"http://www.faqs.org/rfcs/">RFC =
+Index</A> | <A=20
+href=3D"http://www.faqs.org/rfcs/rfcsearch.html">RFC Search</A> | <A=20
+href=3D"http://www.faqs.org/faqs/">Usenet FAQs</A> | <A=20
+href=3D"http://www.faqs.org/contrib/">Web FAQs</A> | <A=20
+href=3D"http://www.faqs.org/docs/">Documents</A> ]=20
+<P><STRONG>Alternate Formats:</STRONG> <A=20
+href=3D"http://www.faqs.org/ftp/rfc/rfc3030.txt">rfc3030.txt</A> | <A=20
+href=3D"http://www.faqs.org/ftp/rfc/pdf/rfc3030.txt.pdf">rfc3030.txt.pdf<=
+/A></P></DIV>
+<HR noShade SIZE=3D2>
+<PRE>
+Network Working Group                                       G. Vaudreuil
+Request for Comments: 3030                           Lucent Technologies
+Obsolete: 1830                                             December 2000
+Category: Standards Track
+
+                        SMTP Service Extensions
+                       for Transmission of Large
+                        and Binary MIME Messages
+
+Status of this Memo
+
+   This document specifies an Internet standards track protocol for the
+   Internet community, and requests discussion and suggestions for
+   improvements.  Please refer to the current edition of the "Internet
+   Official Protocol Standards" (STD 1) for the standardization state
+   and status of this protocol.  Distribution of this memo is unlimited.
+
+Copyright Notice
+
+   Copyright (C) The Internet Society (2000).  All Rights Reserved.
+
+Abstract
+
+   This memo defines two extensions to the SMTP (Simple Mail Transfer
+   Protocol) service.  The first extension enables a SMTP client and
+   server to negotiate the use of an alternative to the DATA command,
+   called "BDAT", for efficiently sending large MIME (Multipurpose
+   Internet Mail Extensions) messages.  The second extension takes
+   advantage of the BDAT command to permit the negotiated sending of
+   MIME messages that employ the binary transfer encoding.  This
+   document is intended to update and obsolete <A =
+href=3D"http://www.faqs.org/rfcs/rfc1830.html">RFC 1830</A>.
+
+Working Group Summary
+
+   This protocol is not the product of an IETF working group, however
+   the specification resulted from discussions within the ESMTP working
+   group.  The resulting protocol documented in <A =
+href=3D"http://www.faqs.org/rfcs/rfc1830.html">RFC 1830</A> was =
+classified
+   as experimental at that time due to questions about the robustness of
+   the Binary Content-Transfer-Encoding deployed in then existent MIME
+   implementations.  As MIME has matured and other uses of the Binary
+   Content-Transfer-Encoding have been deployed, these concerns have
+   been allayed.  With this document, Binary ESMTP is expected to become
+   standards-track.
+
+Document Conventions
+
+   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+   "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
+   document are to be interpreted as described in <A =
+href=3D"http://www.faqs.org/rfcs/rfc2119.html">RFC 2119</A> [<A =
+href=3D"http://www.faqs.org/rfcs/rfc2119.html">RFC2119</A>].
+
+Table of Contents
+
+   1.   Overview ...................................................  2
+   2.   Framework for the Large Message Extensions .................  3
+   3.   Framework for the Binary Service Extension .................  5
+   4.   Examples ...................................................  8
+     4.1  Simple Chunking ..........................................  8
+     4.2  Pipelining BINARYMIME ....................................  8
+   5.   Security Considerations ....................................  9
+   6.   References .................................................  9
+   7.   Author's Address ........................................... 10
+   8.   Appendix A - Changes from <A =
+href=3D"http://www.faqs.org/rfcs/rfc1830.html">RFC 1830</A> =
+......................... 11
+   9.   Full Copyright Statement ................................... 12
+
+1. Overview
+
+   The MIME extensions to the Internet message format provides for the
+   transmission of many kinds of data that were previously unsupported
+   in Internet mail.  Anticipating the need to transport the new media
+   more efficiently, the SMTP protocol has been extended to provide
+   transport for new message types.  <A =
+href=3D"http://www.faqs.org/rfcs/rfc1652.html">RFC 1652</A> defines one =
+such extension
+   for the transmission of unencoded 8-bit MIME messages [8BIT].  This
+   service extension permits the receiver SMTP to declare support for
+   8-bit body parts and the sender to request 8-bit transmission of a
+   particular message.
+
+   One expected result of the use of MIME is that the Internet mail
+   system will be expected to carry very large mail messages.  In such
+   transactions, there is a performance-based desire to eliminate the
+   requirement that the message be scanned for "CR LF . CR LF" sequences
+   upon sending and receiving to detect the end of message.
+
+   Independent of the need to send large messages, Internet mail is
+   increasingly multimedia.  There is a need to avoid the overhead of
+   base64 and quoted-printable encoding of binary objects sent using the
+   MIME message format over SMTP between hosts that support binary
+   message processing.
+
+   This memo uses the mechanism defined in [ESMTP] to define two
+   extensions to the SMTP service whereby an SMTP server ("receiver-
+   SMTP") may declare support for the message chunking transmission mode
+   and support for the reception of Binary messages, which the SMTP
+   client ("sender-SMTP") is then free to use.
+
+2. Framework for the Large Message Extensions
+
+   The following service extension is hereby defined:
+
+   1) The name of the data chunking service extension is "CHUNKING".
+
+   2) The EHLO keyword value associated with this extension is
+      "CHUNKING".
+
+   3) A new SMTP verb, BDAT, is defined as an alternative to the "DATA"
+      command of [<A =
+href=3D"http://www.faqs.org/rfcs/rfc821.html">RFC821</A>].  The BDAT =
+verb takes two arguments.  The
+      first argument indicates the length, in octets, of the binary data
+      chunk.  The second optional argument indicates that the data chunk
+      is the last.
+
+      bdat-cmd   ::=3D "BDAT" SP chunk-size [ SP end-marker ] CR LF
+      chunk-size ::=3D 1*DIGIT
+      end-marker ::=3D "LAST"
+
+   4) This extension may be used for SMTP message submission.  [Submit]
+
+   5) Servers that offer the BDAT extension MUST continue to support the
+      regular SMTP DATA command.  Clients are free to use DATA to
+      transfer appropriately encoded to servers that support the
+      CHUNKING extension if they wish to do so.
+
+   The CHUNKING service extension enables the use of the BDAT
+   alternative to the DATA command.  This extension can be used for any
+   message, whether 7-bit, 8BITMIME or BINARYMIME.
+
+   When a sender-SMTP wishes to send (using the MAIL command) a large
+   message using the CHUNKING extension, it first issues the EHLO
+   command to the receiver-SMTP.  If the receiver-SMTP responds with
+   code 250 to the EHLO command and the response includes the EHLO
+   keyword value CHUNKING, then the receiver-SMTP is indicating that it
+   supports the BDAT command and will accept the sending of messages in
+   chunks.
+
+   After all MAIL and RCPT responses are collected and processed, the
+   message is sent using a series of BDAT commands.  The BDAT command
+   takes one required argument, the exact length of the data segment in
+
+   octets.  The message data is sent immediately after the trailing =
+&lt;CR&gt;
+   &lt;LF&gt; of the BDAT command line.  Once the receiver-SMTP receives =
+the
+   specified number of octets, it will return a 250 reply code.
+
+   The optional LAST parameter on the BDAT command indicates that this
+   is the last chunk of message data to be sent.  The last BDAT command
+   MAY have a byte-count of zero indicating there is no additional data
+   to be sent.  Any BDAT command sent after the BDAT LAST is illegal and
+   MUST be replied to with a 503 "Bad sequence of commands" reply code.
+   The state resulting from this error is indeterminate.  A RSET command
+   MUST be sent to clear the transaction before continuing.
+
+   A 250 response MUST be sent to each successful BDAT data block within
+   a mail transaction.  If a failure occurs after a BDAT command is
+   received, the receiver-SMTP MUST accept and discard the associated
+   message data before sending the appropriate 5XX or 4XX code.  If a
+   5XX or 4XX code is received by the sender-SMTP in response to a BDAT
+   chunk, the transaction should be considered failed and the sender-
+   SMTP MUST NOT send any additional BDAT segments.  If the receiver-
+   SMTP has declared support for command pipelining [PIPE], the receiver
+   SMTP MUST be prepared to accept and discard additional BDAT chunks
+   already in the pipeline after the failed BDAT.
+
+      Note: An error on the receiver-SMTP such as disk full or imminent
+      shutdown can only be reported after the BDAT segment has been
+      received.  It is therefore important to choose a reasonable chunk
+      size given the expected end-to-end bandwidth.
+
+      Note:  Because the receiver-SMTP does not acknowledge the BDAT
+      command before the message data is sent, it is important to send
+      the BDAT only to systems that have declared their capability to
+      accept BDAT commands.  Illegally sending a BDAT command and
+      associated message data to a non-CHUNKING capable system will
+      result in the receiver-SMTP parsing the associated message data as
+      if it were a potentially very long, ESMTP command line containing
+      binary data.
+
+   The resulting state from a failed BDAT command is indeterminate.  A
+   RSET command MUST be issued to clear the transaction before
+   additional commands may be sent.  The RSET command, when issued after
+   the first BDAT and before the BDAT LAST, clears all segments sent
+   during that transaction and resets the session.
+
+   DATA and BDAT commands cannot be used in the same transaction.  If a
+   DATA statement is issued after a BDAT for the current transaction, a
+   503 "Bad sequence of commands" MUST be issued.  The state resulting
+   from this error is indeterminate.  A RSET command MUST be sent to
+
+   clear the transaction before continuing.  There is no prohibition on
+   using DATA and BDAT in the same session, so long as they are not
+   mixed in the same transaction.
+
+   The local storage size of a message may not accurately reflect the
+   actual size of the message sent due to local storage conventions.  In
+   particular, text messages sent with the BDAT command MUST be sent in
+   the canonical MIME format with lines delimited with a =
+&lt;CR&gt;&lt;LF&gt;.  It
+   may not be possible to convert the entire message to the canonical
+   format at once.  CHUNKING provides a mechanism to convert the message
+   to canonical form, accurately count the bytes, and send the message a
+   single chunk at a time.
+
+      Note: Correct byte counting is essential.  If the sender-SMTP
+      indicates a chunk-size larger than the actual chunk-size, the
+      receiver-SMTP will continue to wait for the remainder of the data
+      or when using streaming, will read the subsequent command as
+      additional message data.  In the case where a portion of the
+      previous command was read as data, the parser will return a syntax
+      error when the incomplete command is read.
+
+      If the sender-SMTP indicates a chunk-size smaller than the actual
+      chunk-size, the receiver-SMTP will interpret the remainder of the
+      message data as invalid commands.  Note that the remainder of the
+      message data may be binary and as such lexicographical parsers
+      MUST be prepared to receive, process, and reject lines of
+      arbitrary octets.
+
+3. Framework for the Binary Service Extension
+
+   The following service extension is hereby defined:
+
+   1) The name of the binary service extension is "BINARYMIME".
+
+   2) The EHLO keyword value associated with this extension is
+      "BINARYMIME".
+
+   3) The BINARYMIME service extension can only be used with the
+      "CHUNKING" service extension.
+
+   4) No parameter is used with the BINARYMIME keyword.
+
+   5) [8BIT] defines the BODY parameter for the MAIL command.  This
+      extension defines an additional value for the BODY parameter,
+      "BINARYMIME".  The value "BINARYMIME" associated with this
+      parameter indicates that this message is a Binary MIME message (in
+
+      strict compliance with [MIME]) with arbitrary octet content being
+      sent.  The revised syntax of the value is as follows, using the
+      ABNF notation of [<A =
+href=3D"http://www.faqs.org/rfcs/rfc822.html">RFC822</A>]:
+
+               body-value ::=3D "7BIT" / "8BITMIME" / "BINARYMIME"
+
+   6) No new verbs are defined for the BINARYMIME extension.
+
+   7) This extension may be used for SMTP message submission.  [Submit]
+
+   8) The maximum length of a MAIL FROM command line is increased by 16
+      characters by the possible addition of the BODY=3DBINARYMIME =
+keyword
+      and value;.
+
+   A sender-SMTP may request that a binary MIME message be sent without
+   transport encoding by sending a BODY parameter with a value of
+   "BINARYMIME" with the MAIL command.  When the receiver-SMTP accepts a
+   MAIL command with the BINARYMIME body-value, it agrees to preserve
+   all bits in each octet passed using the BDAT command.  Once a
+   receiver-SMTP supporting the BINARYMIME service extension accepts a
+   message containing binary material, the receiver-SMTP MUST deliver or
+   relay the message in such a way as to preserve all bits in each
+   octet.
+
+   BINARYMIME cannot be used with the DATA command.  If a DATA command
+   is issued after a MAIL command containing the body-value of
+   "BINARYMIME", a 503 "Bad sequence of commands" response MUST be sent.
+   The resulting state from this error condition is indeterminate and
+   the transaction MUST be reset with the RSET command.
+
+   It is especially important when using BINARYMIME to ensure that the
+   MIME message itself is properly formed.  In particular, it is
+   essential that text be canonically encoded with each line properly
+   terminated with &lt;CR&gt;&lt;LF&gt;.  Any transformation of text =
+into non-
+   canonical MIME to observe local storage conventions MUST be reversed
+   before sending as BINARYMIME.  Some line-oriented shortcuts will
+   break if used with BINARYMIME.  A sender-SMTP MUST use the canonical
+   encoding for a given MIME content-type.  In particular, text/* MUST
+   be sent with &lt;CR&gt;&lt;LF&gt; terminated lines.
+
+   Note: Although CR and LF do not necessarily represent ends of text
+   lines in BDAT chunks and use of the binary transfer encoding is
+   allowed, the <A href=3D"http://www.faqs.org/rfcs/rfc2781.html">RFC =
+2781</A> prohibition against using a UTF-16 charset
+   within the text top-level media type remains.
+
+   The syntax of the extended MAIL command is identical to the MAIL
+   command in [<A =
+href=3D"http://www.faqs.org/rfcs/rfc821.html">RFC821</A>], except that a =
+BODY=3DBINARYMIME parameter and
+   value MUST be added.  The complete syntax of this extended command is
+   defined in [ESMTP].
+
+   If a receiver-SMTP does not indicate support the BINARYMIME message
+   format then the sender-SMTP MUST NOT, under any circumstances, send
+   binary data.
+
+   If the receiver-SMTP does not support BINARYMIME and the message to
+   be sent is a MIME object with a binary encoding, a sender-SMTP has
+   three options with which to forward the message.  First, if the
+   receiver-SMTP supports the 8bit-MIMEtransport extension [8bit] and
+   the content is amenable to being encoded in 8bit, the sender-SMTP may
+   implement a gateway transformation to convert the message into valid
+   8bit-encoded MIME.  Second, it may implement a gateway transformation
+   to convert the message into valid 7bit-encoded MIME.  Third, it may
+   treat this as a permanent error and handle it in the usual manner for
+   delivery failures.  The specifics of MIME content-transfer-encodings,
+   including transformations from Binary MIME to 8bit or 7bit MIME are
+   not described by this RFC; the conversion is nevertheless constrained
+   in the following ways:
+
+      1. The conversion MUST cause no loss of information;  MIME
+         transport encodings MUST be employed as needed to insure this
+         is the case.
+
+      2. The resulting message MUST be valid 7bit or 8bit MIME.  In
+         particular, the transformation MUST NOT result in nested Base-
+         64 or Quoted-Printable content-transfer-encodings.
+
+   Note that at the time of this writing there are no mechanisms for
+   converting a binary MIME object into an 8-bit MIME object.  Such a
+   transformation will require the specification of a new MIME content-
+   transfer-encoding.
+
+   If the MIME message contains a "Binary" content-transfer-encoding and
+   the BODY parameter does not indicate BINARYMIME, the message MUST be
+   accepted.  The message SHOULD be returned to the sender with an
+   appropriate DSN.  The message contents MAY be returned to the sender
+   if the offending content can be mangled into a legal DSN structure.
+   "Fixing" and forwarding the offending content is beyond the scope of
+   this document.
+
+4. Examples
+
+4.1 Simple Chunking
+
+   The following simple dialogue illustrates the use of the large
+   message extension to send a short pseudo-RFC 822 message to one
+   recipient using the CHUNKING extension:
+
+   R: &lt;wait for connection on TCP port 25&gt;
+   S: &lt;open connection to server&gt;
+   R: 220 cnri.reston.va.us SMTP service ready
+   S: EHLO ymir.claremont.edu
+   R: 250-cnri.reston.va.us says hello
+   R: 250 CHUNKING
+   S: MAIL FROM:&lt;<A =
+href=3D"mailto:Sam@Random.com">Sam@Random.com</A>&gt;
+   R: 250 &lt;<A href=3D"mailto:Sam@Random.com">Sam@Random.com</A>&gt; =
+Sender ok
+   S: RCPT TO:&lt;<A =
+href=3D"mailto:Susan@Random.com">Susan@Random.com</A>&gt;
+   R: 250 &lt;<A =
+href=3D"mailto:Susan@random.com">Susan@random.com</A>&gt; Recipient ok
+   S: BDAT 86 LAST
+   S: To: Susan@random.com&lt;CR&gt;&lt;LF&gt;
+   S: From: Sam@random.com&lt;CR&gt;&lt;LF&gt;
+   S: Subject: This is a bodyless test message&lt;CR&gt;&lt;LF&gt;
+   R: 250 Message OK, 86 octets received
+   S: QUIT
+   R: 221 Goodbye
+
+4.2 Pipelining BINARYMIME
+
+   The following dialogue illustrates the use of the large message
+   extension to send a BINARYMIME object to two recipients using the
+   CHUNKING and PIPELINING extensions:
+
+   R: &lt;wait for connection on TCP port
+   S: &lt;open connection to server&gt;
+   R: 220 cnri.reston.va.us SMTP service ready
+   S: EHLO ymir.claremont.edu
+   R: 250-cnri.reston.va.us says hello
+   R: 250-PIPELINING
+   R: 250-BINARYMIME
+   R: 250 CHUNKING
+   S: MAIL FROM:&lt;<A =
+href=3D"mailto:ned@ymir.claremont.edu">ned@ymir.claremont.edu</A>&gt; =
+BODY=3DBINARYMIME
+   S: RCPT TO:&lt;<A =
+href=3D"mailto:gvaudre@cnri.reston.va.us">gvaudre@cnri.reston.va.us</A>&g=
+t;
+   S: RCPT TO:&lt;<A =
+href=3D"mailto:jstewart@cnri.reston.va.us">jstewart@cnri.reston.va.us</A>=
+&gt;
+   R: 250 &lt;<A =
+href=3D"mailto:ned@ymir.claremont.edu">ned@ymir.claremont.edu</A>&gt;... =
+Sender and BINARYMIME ok
+   R: 250 &lt;<A =
+href=3D"mailto:gvaudre@cnri.reston.va.us">gvaudre@cnri.reston.va.us</A>&g=
+t;... Recipient ok
+   R: 250 &lt;<A =
+href=3D"mailto:jstewart@cnri.reston.va.us">jstewart@cnri.reston.va.us</A>=
+&gt;... Recipient ok
+   S: BDAT 100000
+   S: (First 10000 octets of canonical MIME message data)
+
+   S: BDAT 324
+   S: (Remaining 324 octets of canonical MIME message data)
+   S: BDAT 0 LAST
+   R: 250 100000 octets received
+   R: 250 324 octets received
+   R: 250 Message OK, 100324 octets received
+   S: QUIT
+   R: 221 Goodbye
+
+5. Security Considerations
+
+   This extension is not known to present any additional security issues
+   not already endemic to electronic mail and present in fully
+   conforming implementations of [<A =
+href=3D"http://www.faqs.org/rfcs/rfc821.html">RFC821</A>], or otherwise =
+made possible by
+   [MIME].
+
+6. References
+
+   [BINARY]  Vaudreuil, G., "SMTP Service Extensions for Transmission of
+             Large and Binary MIME Messages", <A =
+href=3D"http://www.faqs.org/rfcs/rfc1830.html">RFC 1830</A>, August =
+1995.
+
+   [<A href=3D"http://www.faqs.org/rfcs/rfc821.html">RFC821</A>]  =
+Postel, J., "Simple Mail Transfer Protocol", STD 10, RFC
+             821, August 1982.
+
+   [<A href=3D"http://www.faqs.org/rfcs/rfc822.html">RFC822</A>]  =
+Crocker, D., "Standard for the Format of ARPA Internet Text
+             Messages", STD 11, <A =
+href=3D"http://www.faqs.org/rfcs/rfc822.html">RFC 822</A>, August 1982.
+
+   [MIME]    Borenstein, N. and N. Freed, "Multipurpose Internet Mail
+             Extensions (MIME) Part One: Format of Internet Message
+             Bodies", <A =
+href=3D"http://www.faqs.org/rfcs/rfc2045.html">RFC 2045</A>, November =
+1996.
+
+   [SUBMIT]  Gellens, R. and J. Klensin, "Message Submission", <A =
+href=3D"http://www.faqs.org/rfcs/rfc2476.html">RFC 2476</A>,
+             December 1998.
+
+   [ESMTP]   Klensin, J., Freed, N., Rose, M., Stefferud, E. and D.
+             Crocker, "SMTP Service Extensions", <A =
+href=3D"http://www.faqs.org/rfcs/rfc1869.html">RFC 1869</A>, November
+             1995.
+
+   [8BIT]    Klensin, J., Freed, N., Rose, M., Stefferud, E. and D.
+             Crocker, "SMTP Service Extension for 8bit-MIMEtransport",
+             <A href=3D"http://www.faqs.org/rfcs/rfc1652.html">RFC =
+1652</A>, July 1994.
+
+   [PIPE]    Freed, N., "SMTP Service Extensions for Command
+             Pipelining", <A =
+href=3D"http://www.faqs.org/rfcs/rfc2920.html">RFC 2920</A>, September =
+2000.
+
+   [<A href=3D"http://www.faqs.org/rfcs/rfc2119.html">RFC2119</A>] =
+Bradner, S., "Key words for use in RFCs to Indicate
+             Requirement Levels", BCP 14, <A =
+href=3D"http://www.faqs.org/rfcs/rfc2119.html">RFC 2119</A>, March 1997.
+
+7. Author's Address
+
+   Gregory M. Vaudreuil
+   Lucent Technologies
+   17080 Dallas Parkway
+   Dallas, TX 75248-1905
+
+   Phone/Fax: +1-972-733-2722
+   EMail: <A href=3D"mailto:GregV@ieee.org">GregV@ieee.org</A>
+
+Appendix A - Changes from <A =
+href=3D"http://www.faqs.org/rfcs/rfc1830.html">RFC 1830</A>
+
+   Numerous editorial changes including required intellectual property
+   boilerplate and revised authors contact information
+
+   Corrected the simple chunking example to use the correct number of
+   bytes.  Updated the pipelining example to illustrate use of the BDAT
+   0 LAST construct.
+
+Full Copyright Statement
+
+   Copyright (C) The Internet Society (2000).  All Rights Reserved.
+
+   This document and translations of it may be copied and furnished to
+   others, and derivative works that comment on or otherwise explain it
+   or assist in its implementation may be prepared, copied, published
+   and distributed, in whole or in part, without restriction of any
+   kind, provided that the above copyright notice and this paragraph are
+   included on all such copies and derivative works.  However, this
+   document itself may not be modified in any way, such as by removing
+   the copyright notice or references to the Internet Society or other
+   Internet organizations, except as needed for the purpose of
+   developing Internet standards in which case the procedures for
+   copyrights defined in the Internet Standards process must be
+   followed, or as required to translate it into languages other than
+   English.
+
+   The limited permissions granted above are perpetual and will not be
+   revoked by the Internet Society or its successors or assigns.
+
+   This document and the information contained herein is provided on an
+   "AS IS" basis and THE INTERNET SOCIETY AND THE INTERNET ENGINEERING
+   TASK FORCE DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING
+   BUT NOT LIMITED TO ANY WARRANTY THAT THE USE OF THE INFORMATION
+   HEREIN WILL NOT INFRINGE ANY RIGHTS OR ANY IMPLIED WARRANTIES OF
+   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.
+
+Acknowledgement
+
+   Funding for the RFC Editor function is currently provided by the
+   Internet Society.
+
+</PRE>
+<HR noShade SIZE=3D2>
+
+<DIV align=3Dcenter>[ <A href=3D"http://www.faqs.org/rfcs/">RFC =
+Index</A> | <A=20
+href=3D"http://www.faqs.org/rfcs/rfcsearch.html">RFC Search</A> | <A=20
+href=3D"http://www.faqs.org/faqs/">Usenet FAQs</A> | <A=20
+href=3D"http://www.faqs.org/contrib/">Web FAQs</A> | <A=20
+href=3D"http://www.faqs.org/docs/">Documents</A> ]=20
+<P></P></DIV><SMALL>
+<ADDRESS>
+<P align=3Dcenter></P></ADDRESS></SMALL></BODY></HTML>
+
+------=_NextPart_000_0013_01C334FB.3DBC4490
+Content-Type: image/jpeg
+Content-Transfer-Encoding: base64
+Content-Location: http://www.faqs.org/images/library.jpg
+
+/9j/4AAQSkZJRgABAgEASABIAAD/7QE0UGhvdG9zaG9wIDMuMAA4QklNA+0AAAAAABAASAAAAAEA
+AQBIAAAAAQABOEJJTQPzAAAAAAAIAAAAAAAAAAA4QklNJxAAAAAAAAoAAQAAAAAAAAACOEJJTQP1
+AAAAAABIAC9mZgABAGxmZgAGAAAAAAABAC9mZgABAKGZmgAGAAAAAAABADIAAAABAFoAAAAGAAAA
+AAABADUAAAABAC0AAAAGAAAAAAABOEJJTQP4AAAAAABwAAD/////////////////////////////
+A+gAAAAA/////////////////////////////wPoAAAAAP////////////////////////////8D
+6AAAAAD/////////////////////////////A+gAADhCSU0EBgAAAAAAAgAE/+4ADkFkb2JlAGQA
+AAAAAf/bAIQABgQEBAUEBgUFBgkGBQYJCwgGBggLDAoKCwoKDBAMDAwMDAwQDAwMDAwMDAwMDAwM
+DAwMDAwMDAwMDAwMDAwMDAEHBwcNDA0YEBAYFA4ODhQUDg4ODhQRDAwMDAwREQwMDAwMDBEMDAwM
+DAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwM/8AAEQgAPgCWAwERAAIRAQMRAf/EAaIAAAAHAQEBAQEA
+AAAAAAAAAAQFAwIGAQAHCAkKCwEAAgIDAQEBAQEAAAAAAAAAAQACAwQFBgcICQoLEAACAQMDAgQC
+BgcDBAIGAnMBAgMRBAAFIRIxQVEGE2EicYEUMpGhBxWxQiPBUtHhMxZi8CRygvElQzRTkqKyY3PC
+NUQnk6OzNhdUZHTD0uIIJoMJChgZhJRFRqS0VtNVKBry4/PE1OT0ZXWFlaW1xdXl9WZ2hpamtsbW
+5vY3R1dnd4eXp7fH1+f3OEhYaHiImKi4yNjo+Ck5SVlpeYmZqbnJ2en5KjpKWmp6ipqqusra6voR
+AAICAQIDBQUEBQYECAMDbQEAAhEDBCESMUEFURNhIgZxgZEyobHwFMHR4SNCFVJicvEzJDRDghaS
+UyWiY7LCB3PSNeJEgxdUkwgJChgZJjZFGidkdFU38qOzwygp0+PzhJSktMTU5PRldYWVpbXF1eX1
+RlZmdoaWprbG1ub2R1dnd4eXp7fH1+f3OEhYaHiImKi4yNjo+DlJWWl5iZmpucnZ6fkqOkpaanqK
+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
+
+------=_NextPart_000_0013_01C334FB.3DBC4490--

@@ -1,0 +1,674 @@
+From: <Saved by Microsoft Internet Explorer 5>
+Subject: RFC 1870 - SMTP Service Extension for Message Size Declaration. J. Klensin, N. Freed, K. Moore.
+Date: Tue, 17 Jun 2003 17:56:38 +0800
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	boundary="----=_NextPart_000_0007_01C334F9.CCDE5610";
+	type="text/html"
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2800.1165
+
+This is a multi-part message in MIME format.
+
+------=_NextPart_000_0007_01C334F9.CCDE5610
+Content-Type: text/html;
+	charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://rfc.sunsite.dk/rfc/rfc1870.html
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>RFC 1870 - SMTP Service Extension for Message Size =
+Declaration. J. Klensin, N. Freed, K. Moore.</TITLE>
+<META http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Diso-8859-1">
+<META content=3D"MSHTML 6.00.2800.1170" name=3DGENERATOR></HEAD>
+<BODY vLink=3D#800000 link=3D#d96c00 bgColor=3D#ffffff>
+<TABLE cellSpacing=3D0 cellPadding=3D0 width=3D600>
+  <TBODY>
+  <TR>
+    <TD width=3D"100%">
+      <H2><A href=3D"http://rfc.sunsite.dk/rfc/">RFC 1870</A></H2></TD>
+    <TD vAlign=3Dtop rowSpan=3D2><A =
+href=3D"http://rfc.sunsite.dk/main.html"><IMG=20
+      src=3D"http://rfc.sunsite.dk/rfcicon.gif" border=3D0></A></TD>
+    <TD vAlign=3Dtop rowSpan=3D2><A href=3D"http://sunsite.dk/" =
+target=3D_top><IMG=20
+      src=3D"http://sunsite.dk/images/hostedby.png" =
+border=3D0></A></TD></TR>
+  <TR>
+    <TD></TD></TR></TBODY></TABLE><PRE style=3D"PAGE-BREAK-AFTER: =
+always">
+
+
+
+
+
+Network Working Group                               J. Klensin, WG Chair
+Request For Comments: 1870                                           MCI
+STD: 10                                                 N. Freed, Editor
+Obsoletes: 1653                             Innosoft International, Inc.
+Category: Standards Track                                       K. Moore
+                                                 University of Tennessee
+                                                           November 1995
+
+
+                         SMTP Service Extension
+                      for Message Size Declaration
+
+Status of this Memo
+
+   This document specifies an Internet standards track protocol for the
+   Internet community, and requests discussion and suggestions for
+   improvements.  Please refer to the current edition of the "Internet
+   Official Protocol Standards" (STD 1) for the standardization state
+   and status of this protocol.  Distribution of this memo is unlimited.
+
+1.  Abstract
+
+   This memo defines an extension to the SMTP service whereby an SMTP
+   client and server may interact to give the server an opportunity to
+   decline to accept a message (perhaps temporarily) based on the
+   client's estimate of the message size.
+
+2.  Introduction
+
+   The MIME extensions to the Internet message protocol provide for the
+   transmission of many kinds of data which were previously unsupported
+   in Internet mail.  One expected result of the use of MIME is that
+   SMTP will be expected to carry a much wider range of message sizes
+   than was previously the case.  This has an impact on the amount of
+   resources (e.g. disk space) required by a system acting as a server.
+
+   This memo uses the mechanism defined in [5] to define extensions to
+   the SMTP service whereby a client ("sender-SMTP") may declare the
+   size of a particular message to a server ("receiver-SMTP"), after
+   which the server may indicate to the client that it is or is not
+   willing to accept the message based on the declared message size and
+   whereby a server ("receiver-SMTP") may declare the maximum message
+   size it is willing to accept to a client ("sender-SMTP").
+
+
+
+
+
+
+
+
+Klensin, et al              Standards Track                     [Page 1]
+<HR>
+</PRE><PRE style=3D"PAGE-BREAK-AFTER: always"><A =
+href=3D"http://rfc.sunsite.dk/rfc/rfc1870.html">RFC 1870</A>             =
+    SMTP Size Declaration             November 1995
+
+
+3.  Framework for the Size Declaration Extension
+
+   The following service extension is therefore defined:
+
+   (1) the name of the SMTP service extension is "Message Size
+       Declaration";
+
+   (2) the EHLO keyword value associated with this extension is "SIZE";
+
+   (3) one optional parameter is allowed with this EHLO keyword value, a
+       decimal number indicating the fixed maximum message size in bytes
+       that the server will accept.  The syntax of the parameter is as
+       follows, using the augmented BNF notation of [2]:
+
+           size-param ::=3D [1*DIGIT]
+
+       A parameter value of 0 (zero) indicates that no fixed maximum
+       message size is in force.  If the parameter is omitted no
+       information is conveyed about the server's fixed maximum message
+       size;
+
+   (4) one optional parameter using the keyword "SIZE" is added to the
+       MAIL FROM command.  The value associated with this parameter is a
+       decimal number indicating the size of the message that is to be
+       transmitted.  The syntax of the value is as follows, using the
+       augmented BNF notation of [2]:
+
+           size-value ::=3D 1*20DIGIT
+
+   (5) the maximum length of a MAIL FROM command line is increased by 26
+       characters by the possible addition of the SIZE keyword and
+       value;
+
+   (6) no additional SMTP verbs are defined by this extension.
+
+   The remainder of this memo specifies how support for the extension
+   affects the behavior of an SMTP client and server.
+
+4.  The Message Size Declaration service extension
+
+   An SMTP server may have a fixed upper limit on message size.  Any
+   attempt by a client to transfer a message which is larger than this
+   fixed upper limit will fail.  In addition, a server normally has
+   limited space with which to store incoming messages.  Transfer of a
+   message may therefore also fail due to a lack of storage space, but
+   might succeed at a later time.
+
+
+
+
+
+Klensin, et al              Standards Track                     [Page 2]
+<HR>
+</PRE><PRE style=3D"PAGE-BREAK-AFTER: always"><A =
+href=3D"http://rfc.sunsite.dk/rfc/rfc1870.html">RFC 1870</A>             =
+    SMTP Size Declaration             November 1995
+
+
+   A client using the unextended SMTP protocol defined in [1], can only
+   be informed of such failures after transmitting the entire message to
+   the server (which discards the transferred message).  If, however,
+   both client and server support the Message Size Declaration service
+   extension, such conditions may be detected before any transfer is
+   attempted.
+
+   An SMTP client wishing to relay a large content may issue the EHLO
+   command to start an SMTP session, to determine if the server supports
+   any of several service extensions.  If the server responds with code
+   250 to the EHLO command, and the response includes the EHLO keyword
+   value SIZE, then the Message Size Declaration extension is supported.
+
+   If a numeric parameter follows the SIZE keyword value of the EHLO
+   response, it indicates the size of the largest message that the
+   server is willing to accept.  Any attempt by a client to transfer a
+   message which is larger than this limit will be rejected with a
+   permanent failure (552) reply code.
+
+   A server that supports the Message Size Declaration extension will
+   accept the extended version of the MAIL command described below.
+   When supported by the server, a client may use the extended MAIL
+   command (instead of the MAIL command as defined in [1]) to declare an
+   estimate of the size of a message it wishes to transfer.  The server
+   may then return an appropriate error code if it determines that an
+   attempt to transfer a message of that size would fail.
+
+5.  Definitions
+
+   The message size is defined as the number of octets, including CR-LF
+   pairs, but not the SMTP DATA command's terminating dot or doubled
+   quoting dots, to be transmitted by the SMTP client after receiving
+   reply code 354 to the DATA command.
+
+   The fixed maximum message size is defined as the message size of the
+   largest message that a server is ever willing to accept.  An attempt
+   to transfer any message larger than the fixed maximum message size
+   will always fail.  The fixed maximum message size may be an
+   implementation artifact of the SMTP server, or it may be chosen by
+   the administrator of the server.
+
+   The declared message size is defined as a client's estimate of the
+   message size for a particular message.
+
+
+
+
+
+
+
+
+Klensin, et al              Standards Track                     [Page 3]
+<HR>
+</PRE><PRE style=3D"PAGE-BREAK-AFTER: always"><A =
+href=3D"http://rfc.sunsite.dk/rfc/rfc1870.html">RFC 1870</A>             =
+    SMTP Size Declaration             November 1995
+
+
+6.  The extended MAIL command
+
+   The extended MAIL command is issued by a client when it wishes to
+   inform a server of the size of the message to be sent.  The extended
+   MAIL command is identical to the MAIL command as defined in [1],
+   except that a SIZE parameter appears after the address.
+
+   The complete syntax of this extended command is defined in [5]. The
+   esmtp-keyword is "SIZE" and the syntax for esmtp-value is given by
+   the syntax for size-value shown above.
+
+   The value associated with the SIZE parameter is a decimal
+   representation of the declared message size in octets.  This number
+   should include the message header, body, and the CR-LF sequences
+   between lines, but not the SMTP DATA command's terminating dot or
+   doubled quoting dots. Only one SIZE parameter may be specified in a
+   single MAIL command.
+
+   Ideally, the declared message size is equal to the true message size.
+   However, since exact computation of the message size may be
+   infeasable, the client may use a heuristically-derived estimate.
+   Such heuristics should be chosen so that the declared message size is
+   usually larger than the actual message size. (This has the effect of
+   making the counting or non-counting of SMTP DATA dots largely an
+   academic point.)
+
+   NOTE: Servers MUST NOT use the SIZE parameter to determine end of
+   content in the DATA command.
+
+6.1  Server action on receipt of the extended MAIL command
+
+   Upon receipt of an extended MAIL command containing a SIZE parameter,
+   a server should determine whether the declared message size exceeds
+   its fixed maximum message size.  If the declared message size is
+   smaller than the fixed maximum message size, the server may also wish
+   to determine whether sufficient resources are available to buffer a
+   message of the declared message size and to maintain it in stable
+   storage, until the message can be delivered or relayed to each of its
+   recipients.
+
+   A server may respond to the extended MAIL command with any of the
+   error codes defined in [1] for the MAIL command.  In addition, one of
+   the following error codes may be returned:
+
+   (1) If the server currently lacks sufficient resources to accept a
+       message of the indicated size, but may be able to accept the
+       message at a later time, it responds with code "452 insufficient
+       system storage".
+
+
+
+Klensin, et al              Standards Track                     [Page 4]
+<HR>
+</PRE><PRE style=3D"PAGE-BREAK-AFTER: always"><A =
+href=3D"http://rfc.sunsite.dk/rfc/rfc1870.html">RFC 1870</A>             =
+    SMTP Size Declaration             November 1995
+
+
+   (2) If the indicated size is larger than the server's fixed maximum
+       message size, the server responds with code "552 message size
+       exceeds fixed maximium message size".
+
+   A server is permitted, but not required, to accept a message which
+   is, in fact, larger than declared in the extended MAIL command, such
+   as might occur if the client employed a size-estimation heuristic
+   which was inaccurate.
+
+6.2  Client action on receiving response to extended MAIL command
+
+   The client, upon receiving the server's response to the extended MAIL
+   command, acts as follows:
+
+   (1) If the code "452 insufficient system storage" is returned, the
+       client should next send either a RSET command (if it wishes to
+       attempt to send other messages) or a QUIT command. The client
+       should then repeat the attempt to send the message to the server
+       at a later time.
+
+   (2) If the code "552 message exceeds fixed maximum message size" is
+       received, the client should immediately send either a RSET =
+command
+       (if it wishes to attempt to send additional messages), or a QUIT
+       command.  The client should then declare the message =
+undeliverable
+       and return appropriate notification to the sender (if a sender
+       address was present in the MAIL command).
+
+   A successful (250) reply code in response to the extended MAIL
+   command does not constitute an absolute guarantee that the message
+   transfer will succeed.  SMTP clients using the extended MAIL command
+   must still be prepared to handle both temporary and permanent error
+   reply codes (including codes 452 and 552), either immediately after
+   issuing the DATA command, or after transfer of the message.
+
+6.3  Messages larger than the declared size.
+
+   Once a server has agreed (via the extended MAIL command) to accept a
+   message of a particular size, it should not return a 552 reply code
+   after the transfer phase of the DATA command, unless the actual size
+   of the message transferred is greater than the declared message size.
+   A server may also choose to accept a message which is somewhat larger
+   than the declared message size.
+
+   A client is permitted to declare a message to be smaller than its
+   actual size.  However, in this case, a successful (250) reply code is
+   no assurance that the server will accept the message or has
+   sufficient resources to do so.  The server may reject such a message
+   after its DATA transfer.
+
+
+
+Klensin, et al              Standards Track                     [Page 5]
+<HR>
+</PRE><PRE style=3D"PAGE-BREAK-AFTER: always"><A =
+href=3D"http://rfc.sunsite.dk/rfc/rfc1870.html">RFC 1870</A>             =
+    SMTP Size Declaration             November 1995
+
+
+6.4  Per-recipient rejection based on message size.
+
+   A server that implements this extension may return a 452 or 552 reply
+   code in response to a RCPT command, based on its unwillingness to
+   accept a message of the declared size for a particular recipient.
+
+   (1) If a 452 code is returned, the client may requeue the message for
+       later delivery to the same recipient.
+
+   (2) If a 552 code is returned, the client may not requeue the message
+       for later delivery to the same recipient.
+
+7.  Minimal usage
+
+   A "minimal" client may use this extension to simply compare its
+   (perhaps estimated) size of the message that it wishes to relay, with
+   the server's fixed maximum message size (from the parameter to the
+   SIZE keyword in the EHLO response), to determine whether the server
+   will ever accept the message.  Such an implementation need not
+   declare message sizes via the extended MAIL command.  However,
+   neither will it be able to discover temporary limits on message size
+   due to server resource limitations, nor per-recipient limitations on
+   message size.
+
+   A minimal server that employs this service extension may simply use
+   the SIZE keyword value to inform the client of the size of the
+   largest message it will accept, or to inform the client that there is
+   no fixed limit on message size.  Such a server must accept the
+   extended MAIL command and return a 552 reply code if the client's
+   declared size exceeds its fixed size limit (if any), but it need not
+   detect "temporary" limitations on message size.
+
+   The numeric parameter to the EHLO SIZE keyword is optional.  If the
+   parameter is omitted entirely it indicates that the server does not
+   advertise a fixed maximum message size.  A server that returns the
+   SIZE keyword with no parameter in response to the EHLO command may
+   not issue a positive (250) response to an extended MAIL command
+   containing a SIZE specification without first checking to see if
+   sufficient resources are available to transfer a message of the
+   declared size, and to retain it in stable storage until it can be
+   relayed or delivered to its recipients.  If possible, the server
+   should actually reserve sufficient storage space to transfer the
+   message.
+
+
+
+
+
+
+
+
+Klensin, et al              Standards Track                     [Page 6]
+<HR>
+</PRE><PRE style=3D"PAGE-BREAK-AFTER: always"><A =
+href=3D"http://rfc.sunsite.dk/rfc/rfc1870.html">RFC 1870</A>             =
+    SMTP Size Declaration             November 1995
+
+
+8. Example
+
+   The following example illustrates the use of size declaration with
+   some permanent and temporary failures.
+
+   S: &lt;wait for connection on TCP port 25&gt;
+   C: &lt;open connection to server&gt;
+   S: 220 sigurd.innosoft.com -- Server SMTP (PMDF V4.2-6 #1992)
+   C: EHLO ymir.claremont.edu
+   S: 250-sigurd.innosoft.com
+   S: 250-EXPN
+   S: 250-HELP
+   S: 250 SIZE 1000000
+   C: MAIL FROM:&lt;<A =
+href=3D"mailto:ned@thor.innosoft.com">ned@thor.innosoft.com</A>&gt; =
+SIZE=3D500000
+   S: 250 Address Ok.
+   C: RCPT TO:&lt;<A =
+href=3D"mailto:ned@innosoft.com">ned@innosoft.com</A>&gt;
+   S: 250 <A href=3D"mailto:ned@innosoft.com">ned@innosoft.com</A> OK; =
+can accomodate 500000 byte message
+   C: RCPT TO:&lt;<A =
+href=3D"mailto:ned@ymir.claremont.edu">ned@ymir.claremont.edu</A>&gt;
+   S: 552 Channel size limit exceeded: <A =
+href=3D"mailto:ned@YMIR.CLAREMONT.EDU">ned@YMIR.CLAREMONT.EDU</A>
+   C: RCPT TO:&lt;<A =
+href=3D"mailto:ned@hmcvax.claremont.edu">ned@hmcvax.claremont.edu</A>&gt;=
+
+   S: 452 Insufficient channel storage: <A =
+href=3D"mailto:ned@hmcvax.CLAREMONT.EDU">ned@hmcvax.CLAREMONT.EDU</A>
+   C: DATA
+   S: 354 Send message, ending in CRLF.CRLF.
+    ...
+   C: .
+   S: 250 Some recipients OK
+   C: QUIT
+   S: 221 Goodbye
+
+9. Security Considerations
+
+   The size declaration extensions described in this memo can
+   conceivably be used to facilitate crude service denial attacks.
+   Specifically, both the information contained in the SIZE parameter
+   and use of the extended MAIL command make it somewhat quicker and
+   easier to devise an efficacious service denial attack.  However,
+   unless implementations are very weak, these extensions do not create
+   any vulnerability that has not always existed with SMTP. In addition,
+   no issues are addressed involving trusted systems and possible
+   release of information via the mechanisms described in this RFC.
+
+10.  Acknowledgements
+
+   This document was derived from an earlier Working Group work in
+   progess contribution.  Jim Conklin, Dave Crocker, Neil Katin, Eliot
+   Lear, Marshall T. Rose, and Einar Stefferud provided extensive
+   comments in response to earlier works in progress of both this and
+   the previous memo.
+
+
+
+Klensin, et al              Standards Track                     [Page 7]
+<HR>
+</PRE><PRE style=3D"PAGE-BREAK-AFTER: always"><A =
+href=3D"http://rfc.sunsite.dk/rfc/rfc1870.html">RFC 1870</A>             =
+    SMTP Size Declaration             November 1995
+
+
+11.  References
+
+   [1] Postel, J., "Simple Mail Transfer Protocol", STD 10, <A =
+href=3D"http://rfc.sunsite.dk/rfc/rfc821.html">RFC 821</A>,
+       USC/Information Sciences Institute, August 1982.
+
+   [2] Crocker, D., "Standard for the Format of ARPA Internet Text
+       Messages", STD 11, <A =
+href=3D"http://rfc.sunsite.dk/rfc/rfc822.html">RFC 822</A>, UDEL, August =
+1982.
+
+   [3] Borenstein, N., and N. Freed, "Multipurpose Internet Mail
+       Extensions", <A =
+href=3D"http://rfc.sunsite.dk/rfc/rfc1521.html">RFC 1521</A>, Bellcore, =
+Innosoft, September 1993.
+
+   [4] Moore, K., "Representation of Non-ASCII Text in Internet Message
+       Headers", <A href=3D"http://rfc.sunsite.dk/rfc/rfc1522.html">RFC =
+1522</A>, University of Tennessee, September 1993.
+
+   [5] Klensin, J., Freed, N., Rose, M., Stefferud, E., and D. Crocker,
+       "SMTP Service Extensions", STD 11, <A =
+href=3D"http://rfc.sunsite.dk/rfc/rfc1869.html">RFC 1869</A>, MCI, =
+Innosoft
+       International, Inc., Dover Beach Consulting, Inc., Network
+       Management Associates, Inc., Brandenburg Consulting, November
+       1995.
+
+   [6] Partridge, C., "Mail Routing and the Domain System", STD 14, RFC
+       974, BBN, January 1986.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Klensin, et al              Standards Track                     [Page 8]
+<HR>
+</PRE><PRE style=3D"PAGE-BREAK-AFTER: always"><A =
+href=3D"http://rfc.sunsite.dk/rfc/rfc1870.html">RFC 1870</A>             =
+    SMTP Size Declaration             November 1995
+
+
+12.  Chair, Editor, and Author Addresses
+
+   John Klensin, WG Chair
+   MCI
+   2100 Reston Parkway
+   Reston, VA 22091
+
+   Phone: +1 703 715-7361
+   Fax: +1 703 715-7436
+   EMail: <A href=3D"mailto:klensin@mci.net">klensin@mci.net</A>
+
+
+   Ned Freed, Editor
+   Innosoft International, Inc.
+   1050 East Garvey Avenue South
+   West Covina, CA 91790
+   USA
+
+   Phone: +1 818 919 3600
+   Fax: +1 818 919 3614
+   EMail: <A href=3D"mailto:ned@innosoft.com">ned@innosoft.com</A>
+
+
+   Keith Moore
+   Computer Science Dept.
+   University of Tennessee
+   107 Ayres Hall
+   Knoxville, TN 37996-1301
+   USA
+
+   EMail: <A href=3D"mailto:moore@cs.utk.edu">moore@cs.utk.edu</A>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Klensin, et al              Standards Track                     [Page 9]
+<HR>
+</PRE><PRE style=3D"PAGE-BREAK-AFTER: always"></PRE></BODY></HTML>
+
+------=_NextPart_000_0007_01C334F9.CCDE5610
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://rfc.sunsite.dk/rfcicon.gif
+
+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
+Ow==
+
+------=_NextPart_000_0007_01C334F9.CCDE5610
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-Location: http://sunsite.dk/images/hostedby.png
+
+iVBORw0KGgoAAAANSUhEUgAAAGYAAAAgCAMAAADXAP0hAAAABGdBTUEAALGPC/xhBQAAAwBQTFRF
+////OhoCZmJOypoC1sJ+3s6expoOgnZW4taqdnZ26uLCvpouSioCqppy7u7uQkJCrqKCqoICwq5+
+9vbykoJy0r6GtoYC1sKOdlICWlpa0rp++vr6popC0sKauo4CyrqOZjICUlJSkpKS2sqecnJy4tay
+2s6umpqarooqxrqWjmoCyr6a5ubmkm4CxqpW/v7+3ta2vo4CTiYCxpYC5t7CakoCmo6CvraiysKy
+Xi4C0q4+nn4abmpWooIi2tK29vLi0saeyr6eoqKisrKywrqewqpekoqC0saq3ta+8urWzs7Orq6u
+2tK6rqaOvpYmTi4C1qIC6uLKzrZsxpICysrKPh4CqoYeUjIC0qo6mo5idl46ZmZm2tbKnn4i1qIH
+4trGtra2Qh4CalI6wpICsoYC5uLSzp4CvpIS5t7OvpYeysa2vr6+uppAwqZWwq56cjoConoCqqqq
+UioCno5W6urmurq21tLCampqqn4ClnICRiYCsqZ65uLW3trOtooC0qIGpqamwqJCypYCqpJGenp6
+sooQnnYCzrJWrooiYmJi4uLiqpJO4t7SvraqRiIC1p4CeloCpn4Duo4GqpZmuooCtppLxpoetqqC
+zrp2Wi4CwpYS2tra8vLuwsLCxsbG0tLSQiIC2tbOvpIOuo4KVlZWbm5u9u7iroIC2sqW0q5OWjYC
+0p4C0sKK3t7epoo66ubeUiYCvqZmvqJSmnYC3s6iXl5eupITzrqJzpoCtqZ+ajICYi4Cyq5eWioC
+spZCgloCzp4a1r564tKqsoYKvp462qICVjYConYCSi4C2saOxrJyYjICvpIK1tbWypYKypoOpn4K
+xpYG1qIO0s7KpnoCSiYCSiIC3trWsoICvpIa6ubm1saWwrJ6sqZ+qo5ClpaW3tKybk4C0rZWso4i
+rpZSqo42VioCVjICdjoCmnIC1sKHxpoWyrZysoYG6urq0qIOuo4S2s6qup5CwraiuqqC5taqcmpW
+3tK2rpJC0rpyxrJ69vb2urq6qn4GnnYG8vLy/hi75AAAAAF0Uk5TAEDm2GYAAAABYktHRACIBR1I
+AAAACXBIWXMAAAsSAAALEgHS3X78AAAAB3RJTUUH0QYNBzMnPLKOiQAABmZJREFUeJy1Vn9sE3UU
+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
+
+------=_NextPart_000_0007_01C334F9.CCDE5610--

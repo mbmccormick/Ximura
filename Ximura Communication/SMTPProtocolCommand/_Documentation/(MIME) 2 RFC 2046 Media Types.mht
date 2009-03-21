@@ -1,0 +1,2749 @@
+From: <Saved by Microsoft Internet Explorer 5>
+Subject: (MIME) Part Two: Media Types
+Date: Fri, 5 Apr 2002 12:29:24 +0800
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	boundary="----=_NextPart_000_000A_01C1DC9D.8578D7B0";
+	type="text/html"
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2600.0000
+
+This is a multi-part message in MIME format.
+
+------=_NextPart_000_000A_01C1DC9D.8578D7B0
+Content-Type: text/html;
+	charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://www.nacs.uci.edu/indiv/ehood/MIME/2046/rfc2046.html
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>(MIME) Part Two: Media Types</TITLE>
+<META http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dwindows-1252">
+<META content=3D"MSHTML 6.00.2600.0" name=3DGENERATOR></HEAD>
+<BODY background=3Dhttp://www.oac.uci.edu/indiv/ehood/bg/cemstone.gif>
+<TABLE width=3D"100%" border=3D0>
+  <TBODY>
+  <TR>
+    <TD align=3Dleft>
+      <ADDRESS>Network Working Group<BR>Request for Comments: =
+2046<BR>Obsoletes:=20
+      1521, 1522, 1590<BR>Category: Standards =
+Track<BR><BR></ADDRESS></TD>
+    <TD align=3Dright>
+      <ADDRESS>N. Freed<BR>Innosoft<BR>N. Borenstein<BR>First=20
+      Virtual<BR>November 1996<BR></ADDRESS></TD></TR></TBODY></TABLE>
+<HR>
+
+<H1 align=3Dcenter>Multipurpose Internet Mail Extensions</H1>
+<H4 align=3Dcenter>(MIME) Part Two:<BR>Media Types</H4>
+<HR>
+
+<H2><A name=3Dstatus>Status of this Memo</A> </H2>
+<P>This document specifies an Internet standards track protocol for the =
+Internet=20
+community, and requests discussion and suggestions for improvements. =
+Please=20
+refer to the current edition of the "Internet Official Protocol =
+Standards" (STD=20
+1) for the standardization state and status of this protocol. =
+Distribution of=20
+this memo is unlimited. </P>
+<H2><A name=3Dabstract>Abstract</A> </H2>
+<P>STD 11, <A href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC 822</A> =
+defines a=20
+message representation protocol specifying considerable detail about =
+US-ASCII=20
+message headers, but which leaves the message content, or message body, =
+as flat=20
+US-ASCII text. This set of documents, collectively called the =
+Multipurpose=20
+Internet Mail Extensions, or MIME, redefines the format of messages to =
+allow for=20
+</P>
+<OL>
+  <LI>
+  <P>textual message bodies in character sets other than US-ASCII, </P>
+  <LI>
+  <P>an extensible set of different formats for non-textual message =
+bodies, </P>
+  <LI>
+  <P>multi-part message bodies, and </P>
+  <LI>
+  <P>textual header information in character sets other than US-ASCII.=20
+</P></LI></OL>
+<P>These documents are based on earlier work documented in <A=20
+href=3D"http://ds.internic.net/rfc/rfc934.txt">RFC 934</A>, STD 11, and =
+<A=20
+href=3D"http://ds.internic.net/rfc/rfc1049.txt">RFC 1049</A>, but =
+extends and=20
+revises them. Because <A =
+href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC=20
+822</A> said so little about message bodies, these documents are largely =
+
+orthogonal to (rather than a revision of) <A=20
+href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC 822</A>. </P>
+<P>The initial document in this set, <A=20
+href=3D"http://www.nacs.uci.edu/indiv/ehood/MIME/2045/rfc2045.html">RFC =
+2045</A>,=20
+specifies the various headers used to describe the structure of MIME =
+messages.=20
+This second document defines the general structure of the MIME media =
+typing=20
+system and defines an initial set of media types. The third document, <A =
+
+href=3D"http://www.nacs.uci.edu/indiv/ehood/MIME/2047/rfc2047.html">RFC =
+2047</A>,=20
+describes extensions to <A =
+href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC=20
+822</A> to allow non-US-ASCII text data in Internet mail header fields. =
+The=20
+fourth document, <A=20
+href=3D"http://www.nacs.uci.edu/indiv/ehood/MIME/2048/rfc2048.html">RFC =
+2048</A>,=20
+specifies various IANA registration procedures for MIME-related =
+facilities. The=20
+fifth and final document, <A=20
+href=3D"http://www.nacs.uci.edu/indiv/ehood/MIME/2049/rfc2049.html">RFC =
+2049</A>,=20
+describes MIME conformance criteria as well as providing some =
+illustrative=20
+examples of MIME message formats, acknowledgements, and the =
+bibliography. </P>
+<P>These documents are revisions of RFCs 1521 and 1522, which themselves =
+were=20
+revisions of RFCs 1341 and 1342. An appendix in <A=20
+href=3D"http://www.nacs.uci.edu/indiv/ehood/MIME/2049/rfc2049.html">RFC =
+2049</A>=20
+describes differences and changes from previous versions. </P>
+<H2><A name=3D1>1. Introduction </A></H2>
+<P>The first document in this set, <A=20
+href=3D"http://www.nacs.uci.edu/indiv/ehood/MIME/2045/rfc2045.html">RFC =
+2045</A>,=20
+defines a number of header fields, including Content-Type. The =
+Content-Type=20
+field is used to specify the nature of the data in the body of a MIME =
+entity, by=20
+giving media type and subtype identifiers, and by providing auxiliary=20
+information that may be required for certain media types. After the type =
+and=20
+subtype names, the remainder of the header field is simply a set of =
+parameters,=20
+specified in an attribute/value notation. The ordering of parameters is =
+not=20
+significant. </P>
+<P>In general, the top-level media type is used to declare the general =
+type of=20
+data, while the subtype specifies a specific format for that type of =
+data. Thus,=20
+a media type of "image/xyz" is enough to tell a user agent that the data =
+is an=20
+image, even if the user agent has no knowledge of the specific image =
+format=20
+"xyz". Such information can be used, for example, to decide whether or =
+not to=20
+show a user the raw data from an unrecognized subtype -- such an action =
+might be=20
+reasonable for unrecognized subtypes of "text", but not for unrecognized =
+
+subtypes of "image" or "audio". For this reason, registered subtypes of =
+"text",=20
+"image", "audio", and "video" should not contain embedded information =
+that is=20
+really of a different type. Such compound formats should be represented =
+using=20
+the "multipart" or "application" types. </P>
+<P>Parameters are modifiers of the media subtype, and as such do not=20
+fundamentally affect the nature of the content. The set of meaningful =
+parameters=20
+depends on the media type and subtype. Most parameters are associated =
+with a=20
+single specific subtype. However, a given top-level media type may =
+define=20
+parameters which are applicable to any subtype of that type. Parameters =
+may be=20
+required by their defining media type or subtype or they may be =
+optional. MIME=20
+implementations must also ignore any parameters whose names they do not=20
+recognize. </P>
+<P>MIME's Content-Type header field and media type mechanism has been =
+carefully=20
+designed to be extensible, and it is expected that the set of media =
+type/subtype=20
+pairs and their associated parameters will grow significantly over time. =
+Several=20
+other MIME facilities, such as transfer encodings and =
+"message/external-body"=20
+access types, are likely to have new values defined over time. In order =
+to=20
+ensure that the set of such values is developed in an orderly, =
+well-specified,=20
+and public manner, MIME sets up a registration process which uses the =
+Internet=20
+Assigned Numbers Authority (IANA) as a central registry for MIME's =
+various areas=20
+of extensibility. The registration process for these areas is described =
+in a=20
+companion document, <A=20
+href=3D"http://www.nacs.uci.edu/indiv/ehood/MIME/2048/rfc2048.html">RFC =
+2048</A>.=20
+The initial seven standard top-level media type are defined and =
+described in the=20
+remainder of this document. </P>
+<H2><A name=3D2>2. Definition of a Top-Level Media Type </A></H2>
+<P>The definition of a top-level media type consists of: </P>
+<OL>
+  <LI>
+  <P>a name and a description of the type, including criteria for =
+whether a=20
+  particular type would qualify under that type, </P>
+  <LI>
+  <P>the names and definitions of parameters, if any, which are defined =
+for all=20
+  subtypes of that type (including whether such parameters are required =
+or=20
+  optional), </P>
+  <LI>
+  <P>how a user agent and/or gateway should handle unknown subtypes of =
+this=20
+  type, </P>
+  <LI>
+  <P>general considerations on gatewaying entities of this top-level =
+type, if=20
+  any, and </P>
+  <LI>
+  <P>any restrictions on content-transfer-encodings for entities of this =
+
+  top-level type. </P></LI></OL>
+<H2><A name=3D3>3. Overview Of The Initial Top-Level Media Types =
+</A></H2>
+<P>The five discrete top-level media types are: </P>
+<OL>
+  <LI>
+  <P><STRONG>text</STRONG> -- textual information. The subtype "plain" =
+in=20
+  particular indicates plain text containing no formatting commands or=20
+  directives of any sort. Plain text is intended to be displayed =
+"as-is". No=20
+  special software is required to get the full meaning of the text, =
+aside from=20
+  support for the indicated character set. Other subtypes are to be used =
+for=20
+  enriched text in forms where application software may enhance the =
+appearance=20
+  of the text, but such software must not be required in order to get =
+the=20
+  general idea of the content. Possible subtypes of "text" thus include =
+any word=20
+  processor format that can be read without resorting to software that=20
+  understands the format. In particular, formats that employ embeddded =
+binary=20
+  formatting information are not considered directly readable. A very =
+simple and=20
+  portable subtype, "richtext", was defined in <A=20
+  href=3D"http://ds.internic.net/rfc/rfc1341.txt">RFC 1341</A>, with a =
+further=20
+  revision in <A href=3D"http://ds.internic.net/rfc/rfc1896.txt">RFC =
+1896</A>=20
+  under the name "enriched". </P>
+  <LI>
+  <P><STRONG>image</STRONG> -- image data. "Image" requires a display =
+device=20
+  (such as a graphical display, a graphics printer, or a FAX machine) to =
+view=20
+  the information. An initial subtype is defined for the widely-used =
+image=20
+  format JPEG. . subtypes are defined for two widely-used image formats, =
+jpeg=20
+  and gif. </P>
+  <LI>
+  <P><STRONG>audio</STRONG> -- audio data. "Audio" requires an audio =
+output=20
+  device (such as a speaker or a telephone) to "display" the contents. =
+An=20
+  initial subtype "basic" is defined in this document. </P>
+  <LI>
+  <P><STRONG>video</STRONG> -- video data. "Video" requires the =
+capability to=20
+  display moving images, typically including specialized hardware and =
+software.=20
+  An initial subtype "mpeg" is defined in this document. </P>
+  <LI>
+  <P><STRONG>application</STRONG> -- some other kind of data, typically =
+either=20
+  uninterpreted binary data or information to be processed by an =
+application.=20
+  The subtype "octet-stream" is to be used in the case of uninterpreted =
+binary=20
+  data, in which case the simplest recommended action is to offer to =
+write the=20
+  information into a file for the user. The "PostScript" subtype is also =
+defined=20
+  for the transport of PostScript material. Other expected uses for=20
+  "application" include spreadsheets, data for mail-based scheduling =
+systems,=20
+  and languages for "active" (computational) messaging, and word =
+processing=20
+  formats that are not directly readable. Note that security =
+considerations may=20
+  exist for some types of application data, most notably=20
+  "application/PostScript" and any form of active messaging. These =
+issues are=20
+  discussed later in this document. </P></LI></OL>
+<P>The two composite top-level media types are: </P>
+<OL>
+  <LI>
+  <P><STRONG>multipart</STRONG> -- data consisting of multiple entities =
+of=20
+  independent data types. Four subtypes are initially defined, including =
+the=20
+  basic "mixed" subtype specifying a generic mixed set of parts, =
+"alternative"=20
+  for representing the same data in multiple formats, "parallel" for =
+parts=20
+  intended to be viewed simultaneously, and "digest" for multipart =
+entities in=20
+  which each part has a default type of "message/rfc822". </P>
+  <LI>
+  <P><STRONG>message</STRONG> -- an encapsulated message. A body of =
+media type=20
+  "message" is itself all or a portion of some kind of message object. =
+Such=20
+  objects may or may not in turn contain other entities. The "rfc822" =
+subtype is=20
+  used when the encapsulated content is itself an <A=20
+  href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC 822</A> message. =
+The=20
+  "partial" subtype is defined for partial <A=20
+  href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC 822</A> messages, =
+to permit=20
+  the fragmented transmission of bodies that are thought to be too large =
+to be=20
+  passed through transport facilities in one piece. Another subtype,=20
+  "external-body", is defined for specifying large bodies by reference =
+to an=20
+  external data source. </P></LI></OL>
+<P>It should be noted that the list of media type values given here may =
+be=20
+augmented in time, via the mechanisms described above, and that the set =
+of=20
+subtypes is expected to grow substantially. </P>
+<H2><A name=3D4>4. Discrete Media Type Values </A></H2>
+<P>Five of the seven initial media type values refer to discrete bodies. =
+The=20
+content of these types must be handled by non-MIME mechanisms; they are =
+opaque=20
+to MIME processors. </P>
+<H3><A name=3D4.1>4.1. Text Media Type </A></H3>
+<P>The "text" media type is intended for sending material which is =
+principally=20
+textual in form. A "charset" parameter may be used to indicate the =
+character set=20
+of the body text for "text" subtypes, notably including the subtype=20
+"text/plain", which is a generic subtype for plain text. Plain text does =
+not=20
+provide for or allow formatting commands, font attribute specifications, =
+
+processing instructions, interpretation directives, or content markup. =
+Plain=20
+text is seen simply as a linear sequence of characters, possibly =
+interrupted by=20
+line breaks or page breaks. Plain text may allow the stacking of several =
+
+characters in the same position in the text. Plain text in scripts like =
+Arabic=20
+and Hebrew may also include facilitites that allow the arbitrary mixing =
+of text=20
+segments with opposite writing directions. </P>
+<P>Beyond plain text, there are many formats for representing what might =
+be=20
+known as "rich text". An interesting characteristic of many such =
+representations=20
+is that they are to some extent readable even without the software that=20
+interprets them. It is useful, then, to distinguish them, at the highest =
+level,=20
+from such unreadable data as images, audio, or text represented in an =
+unreadable=20
+form. In the absence of appropriate interpretation software, it is =
+reasonable to=20
+show subtypes of "text" to the user, while it is not reasonable to do so =
+with=20
+most nontextual data. Such formatted textual data should be represented =
+using=20
+subtypes of "text". </P>
+<H4><A name=3D4.1.1>4.1.1. Representation of Line Breaks </A></H4>
+<P>The canonical form of any MIME "text" subtype MUST always represent a =
+line=20
+break as a CRLF sequence. Similarly, any occurrence of CRLF in MIME =
+"text" MUST=20
+represent a line break. Use of CR and LF outside of line break sequences =
+is also=20
+forbidden. </P>
+<P>This rule applies regardless of format or character set or sets =
+involved.=20
+</P>
+<P><STRONG>NOTE</STRONG>: The proper interpretation of line breaks when =
+a body=20
+is displayed depends on the media type. In particular, while it is =
+appropriate=20
+to treat a line break as a transition to a new line when displaying a=20
+"text/plain" body, this treatment is actually incorrect for other =
+subtypes of=20
+"text" like "text/enriched" [<A=20
+href=3D"http://ds.internic.net/rfc/rfc1896.txt">RFC-1896</A>]. =
+Similarly, whether=20
+or not line breaks should be added during display operations is also a =
+function=20
+of the media type. It should not be necessary to add any line breaks to =
+display=20
+"text/plain" correctly, whereas proper display of "text/enriched" =
+requires the=20
+appropriate addition of line breaks. </P>
+<P><STRONG>NOTE</STRONG>: Some protocols defines a maximum line length. =
+E.g.=20
+SMTP [<A href=3D"http://ds.internic.net/rfc/rfc821.txt">RFC-821</A>] =
+allows a=20
+maximum of 998 octets before the next CRLF sequence. To be transported =
+by such=20
+protocols, data which includes too long segments without CRLF sequences =
+must be=20
+encoded with a suitable content-transfer-encoding. </P>
+<H4><A name=3D4.1.2>4.1.2. Charset Parameter </A></H4>
+<P>A critical parameter that may be specified in the Content-Type field =
+for=20
+"text/plain" data is the character set. This is specified with a =
+"charset"=20
+parameter, as in: </P><PRE>  Content-type: text/plain; =
+charset=3Diso-8859-1
+
+</PRE>
+<P>Unlike some other parameter values, the values of the charset =
+parameter are=20
+NOT case sensitive. The default character set, which must be assumed in =
+the=20
+absence of a charset parameter, is US-ASCII. </P>
+<P>The specification for any future subtypes of "text" must specify =
+whether or=20
+not they will also utilize a "charset" parameter, and may possibly =
+restrict its=20
+values as well. For other subtypes of "text" than "text/plain", the =
+semantics of=20
+the "charset" parameter should be defined to be identical to those =
+specified=20
+here for "text/plain", i.e., the body consists entirely of characters in =
+the=20
+given charset. In particular, definers of future "text" subtypes should =
+pay=20
+close attention to the implications of multioctet character sets for =
+their=20
+subtype definitions. </P>
+<P>The charset parameter for subtypes of "text" gives a name of a =
+character set,=20
+as "character set" is defined in <A=20
+href=3D"http://www.nacs.uci.edu/indiv/ehood/MIME/2045/rfc2045.html">RFC =
+2045</A>.=20
+The rules regarding line breaks detailed in the previous section must =
+also be=20
+observed -- a character set whose definition does not conform to these =
+rules=20
+cannot be used in a MIME "text" subtype. </P>
+<P>An initial list of predefined character set names can be found at the =
+end of=20
+this section. Additional character sets may be registered with IANA. =
+</P>
+<P>Other media types than subtypes of "text" might choose to employ the =
+charset=20
+parameter as defined here, but with the CRLF/line break restriction =
+removed.=20
+Therefore, all character sets that conform to the general definition of=20
+"character set" in <A=20
+href=3D"http://www.nacs.uci.edu/indiv/ehood/MIME/2045/rfc2045.html">RFC =
+2045</A>=20
+can be registered for MIME use. </P>
+<P>Note that if the specified character set includes 8-bit characters =
+and such=20
+characters are used in the body, a Content-Transfer-Encoding header =
+field and a=20
+corresponding encoding on the data are required in order to transmit the =
+body=20
+via some mail transfer protocols, such as SMTP [<A=20
+href=3D"http://ds.internic.net/rfc/rfc821.txt">RFC-821</A>]. </P>
+<P>The default character set, US-ASCII, has been the subject of some =
+confusion=20
+and ambiguity in the past. Not only were there some ambiguities in the=20
+definition, there have been wide variations in practice. In order to =
+eliminate=20
+such ambiguity and variations in the future, it is strongly recommended =
+that new=20
+user agents explicitly specify a character set as a media type parameter =
+in the=20
+Content-Type header field. "US-ASCII" does not indicate an arbitrary =
+7-bit=20
+character set, but specifies that all octets in the body must be =
+interpreted as=20
+characters according to the US-ASCII character set. National and=20
+application-oriented versions of ISO 646 [ISO-646] are usually NOT =
+identical to=20
+US-ASCII, and in that case their use in Internet mail is explicitly =
+discouraged.=20
+The omission of the ISO 646 character set from this document is =
+deliberate in=20
+this regard. The character set name of "US-ASCII" explicitly refers to =
+the=20
+character set defined in ANSI X3.4-1986 [US- ASCII]. The new =
+international=20
+reference version (IRV) of the 1991 edition of ISO 646 is identical to =
+US-ASCII.=20
+The character set name "ASCII" is reserved and must not be used for any =
+purpose.=20
+</P>
+<P><STRONG>NOTE</STRONG>: <A =
+href=3D"http://ds.internic.net/rfc/rfc821.txt">RFC=20
+821</A> explicitly specifies "ASCII", and references an earlier version =
+of the=20
+American Standard. Insofar as one of the purposes of specifying a media =
+type and=20
+character set is to permit the receiver to unambiguously determine how =
+the=20
+sender intended the coded message to be interpreted, assuming anything =
+other=20
+than "strict ASCII" as the default would risk unintentional and =
+incompatible=20
+changes to the semantics of messages now being transmitted. This also =
+implies=20
+that messages containing characters coded according to other versions of =
+ISO 646=20
+than US-ASCII and the 1991 IRV, or using code-switching procedures =
+(e.g., those=20
+of ISO 2022), as well as 8bit or multiple octet character encodings MUST =
+use an=20
+appropriate character set specification to be consistent with MIME. </P>
+<P>The complete US-ASCII character set is listed in ANSI X3.4- 1986. =
+Note that=20
+the control characters including DEL (0-31, 127) have no defined meaning =
+in=20
+apart from the combination CRLF (US-ASCII values 13 and 10) indicating a =
+new=20
+line. Two of the characters have de facto meanings in wide use: FF (12) =
+often=20
+means "start subsequent text on the beginning of a new page"; and TAB or =
+HT (9)=20
+often (though not always) means "move the cursor to the next available =
+column=20
+after the current position where the column number is a multiple of 8 =
+(counting=20
+the first column as column 0)." Aside from these conventions, any use of =
+the=20
+control characters or DEL in a body must either occur </P>
+<OL>
+  <LI>
+  <P>because a subtype of text other than "plain" specifically assigns =
+some=20
+  additional meaning, or </P>
+  <LI>
+  <P>within the context of a private agreement between the sender and =
+recipient.=20
+  Such private agreements are discouraged and should be replaced by the =
+other=20
+  capabilities of this document. </P></LI></OL>
+<P><STRONG>NOTE</STRONG>: An enormous proliferation of character sets =
+exist=20
+beyond US-ASCII. A large number of partially or totally overlapping =
+character=20
+sets is NOT a good thing. A SINGLE character set that can be used =
+universally=20
+for representing all of the world's languages in Internet mail would be=20
+preferrable. Unfortunately, existing practice in several communities =
+seems to=20
+point to the continued use of multiple character sets in the near =
+future. A=20
+small number of standard character sets are, therefore, defined for =
+Internet use=20
+in this document. </P>
+<P>The defined charset values are: </P>
+<OL>
+  <LI>
+  <P><STRONG>US-ASCII</STRONG> -- as defined in ANSI X3.4-1986 =
+[US-ASCII]. </P>
+  <LI>
+  <P><STRONG>ISO-8859-X</STRONG> -- where "X" is to be replaced, as =
+necessary,=20
+  for the parts of ISO-8859 [ISO-8859]. Note that the ISO 646 character =
+sets=20
+  have deliberately been omitted in favor of their 8859 replacements, =
+which are=20
+  the designated character sets for Internet mail. As of the publication =
+of this=20
+  document, the legitimate values for "X" are the digits 1 through 10.=20
+</P></LI></OL>
+<P>Characters in the range 128-159 has no assigned meaning in =
+ISO-8859-X.=20
+Characters with values below 128 in ISO-8859-X have the same assigned =
+meaning as=20
+they do in US-ASCII. </P>
+<P>Part 6 of ISO 8859 (Latin/Arabic alphabet) and part 8 (Latin/Hebrew =
+alphabet)=20
+includes both characters for which the normal writing direction is right =
+to left=20
+and characters for which it is left to right, but do not define a =
+canonical=20
+ordering method for representing bi-directional text. The charset values =
+
+"ISO-8859-6" and "ISO-8859-8", however, specify that the visual method =
+is used=20
+[<A href=3D"http://ds.internic.net/rfc/rfc1556.txt">RFC-1556</A>]. </P>
+<P>All of these character sets are used as pure 7bit or 8bit sets =
+without any=20
+shift or escape functions. The meaning of shift and escape sequences in =
+these=20
+character sets is not defined. </P>
+<P>The character sets specified above are the ones that were relatively=20
+uncontroversial during the drafting of MIME. This document does not =
+endorse the=20
+use of any particular character set other than US-ASCII, and recognizes =
+that the=20
+future evolution of world character sets remains unclear. </P>
+<P>Note that the character set used, if anything other than US- ASCII, =
+must=20
+always be explicitly specified in the Content-Type field. </P>
+<P>No character set name other than those defined above may be used in =
+Internet=20
+mail without the publication of a formal specification and its =
+registration with=20
+IANA, or by private agreement, in which case the character set name must =
+begin=20
+with "X-". </P>
+<P>Implementors are discouraged from defining new character sets unless=20
+absolutely necessary. </P>
+<P>The "charset" parameter has been defined primarily for the purpose of =
+textual=20
+data, and is described in this section for that reason. However, it is=20
+conceivable that non-textual data might also wish to specify a charset =
+value for=20
+some purpose, in which case the same syntax and values should be used. =
+</P>
+<P>In general, composition software should always use the "lowest common =
+
+denominator" character set possible. For example, if a body contains =
+only=20
+US-ASCII characters, it SHOULD be marked as being in the US-ASCII =
+character set,=20
+not ISO-8859-1, which, like all the ISO-8859 family of character sets, =
+is a=20
+superset of US-ASCII. More generally, if a widely-used character set is =
+a subset=20
+of another character set, and a body contains only characters in the =
+widely-used=20
+subset, it should be labelled as being in that subset. This will =
+increase the=20
+chances that the recipient will be able to view the resulting entity =
+correctly.=20
+</P>
+<H4><A name=3D4.1.3>4.1.3. Plain Subtype </A></H4>
+<P>The simplest and most important subtype of "text" is "plain". This =
+indicates=20
+plain text that does not contain any formatting commands or directives. =
+Plain=20
+text is intended to be displayed "as-is", that is, no interpretation of =
+embedded=20
+formatting commands, font attribute specifications, processing =
+instructions,=20
+interpretation directives, or content markup should be necessary for =
+proper=20
+display. The default media type of "text/plain; charset=3Dus-ascii" for =
+Internet=20
+mail describes existing Internet practice. That is, it is the type of =
+body=20
+defined by <A href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC =
+822</A>. </P>
+<P>No other "text" subtype is defined by this document. </P>
+<H4><A name=3D4.1.4>4.1.4. Unrecognized Subtypes </A></H4>
+<P>Unrecognized subtypes of "text" should be treated as subtype "plain" =
+as long=20
+as the MIME implementation knows how to handle the charset. Unrecognized =
+
+subtypes which also specify an unrecognized charset should be treated as =
+
+"application/octet- stream". </P>
+<H3><A name=3D4.2>4.2. Image Media Type </A></H3>
+<P>A media type of "image" indicates that the body contains an image. =
+The=20
+subtype names the specific image format. These names are not case =
+sensitive. An=20
+initial subtype is "jpeg" for the JPEG format using JFIF encoding =
+[JPEG]. </P>
+<P>The list of "image" subtypes given here is neither exclusive nor =
+exhaustive,=20
+and is expected to grow as more types are registered with IANA, as =
+described in=20
+<A =
+href=3D"http://www.nacs.uci.edu/indiv/ehood/MIME/2048/rfc2048.html">RFC=20
+2048</A>. </P>
+<P>Unrecognized subtypes of "image" should at a miniumum be treated as=20
+"application/octet-stream". Implementations may optionally elect to pass =
+
+subtypes of "image" that they do not specifically recognize to a secure =
+and=20
+robust general-purpose image viewing application, if such an application =
+is=20
+available. </P>
+<P><STRONG>NOTE</STRONG>: Using of a generic-purpose image viewing =
+application=20
+this way inherits the security problems of the most dangerous type =
+supported by=20
+the application. </P>
+<H3><A name=3D4.3>4.3. Audio Media Type </A></H3>
+<P>A media type of "audio" indicates that the body contains audio data. =
+Although=20
+there is not yet a consensus on an "ideal" audio format for use with =
+computers,=20
+there is a pressing need for a format capable of providing interoperable =
+
+behavior. </P>
+<P>The initial subtype of "basic" is specified to meet this requirement =
+by=20
+providing an absolutely minimal lowest common denominator audio format. =
+It is=20
+expected that richer formats for higher quality and/or lower bandwidth =
+audio=20
+will be defined by a later document. </P>
+<P>The content of the "audio/basic" subtype is single channel audio =
+encoded=20
+using 8bit ISDN mu-law [PCM] at a sample rate of 8000 Hz. </P>
+<P>Unrecognized subtypes of "audio" should at a miniumum be treated as=20
+"application/octet-stream". Implementations may optionally elect to pass =
+
+subtypes of "audio" that they do not specifically recognize to a robust=20
+general-purpose audio playing application, if such an application is =
+available.=20
+</P>
+<H3><A name=3D4.4>4.4. Video Media Type </A></H3>
+<P>A media type of "video" indicates that the body contains a=20
+time-varying-picture image, possibly with color and coordinated sound. =
+The term=20
+'video' is used in its most generic sense, rather than with reference to =
+any=20
+particular technology or format, and is not meant to preclude subtypes =
+such as=20
+animated drawings encoded compactly. The subtype "mpeg" refers to video =
+coded=20
+according to the MPEG standard [MPEG]. </P>
+<P>Note that although in general this document strongly discourages the =
+mixing=20
+of multiple media in a single body, it is recognized that many so-called =
+video=20
+formats include a representation for synchronized audio, and this is =
+explicitly=20
+permitted for subtypes of "video". </P>
+<P>Unrecognized subtypes of "video" should at a minumum be treated as=20
+"application/octet-stream". Implementations may optionally elect to pass =
+
+subtypes of "video" that they do not specifically recognize to a robust=20
+general-purpose video display application, if such an application is =
+available.=20
+</P>
+<H3><A name=3D4.5>4.5. Application Media Type </A></H3>
+<P>The "application" media type is to be used for discrete data which do =
+not fit=20
+in any of the other categories, and particularly for data to be =
+processed by=20
+some type of application program. This is information which must be =
+processed by=20
+an application before it is viewable or usable by a user. Expected uses =
+for the=20
+"application" media type include file transfer, spreadsheets, data for=20
+mail-based scheduling systems, and languages for "active" =
+(computational)=20
+material. (The latter, in particular, can pose security problems which =
+must be=20
+understood by implementors, and are considered in detail in the =
+discussion of=20
+the "application/PostScript" media type.) </P>
+<P>For example, a meeting scheduler might define a standard =
+representation for=20
+information about proposed meeting dates. An intelligent user agent =
+would use=20
+this information to conduct a dialog with the user, and might then send=20
+additional material based on that dialog. More generally, there have =
+been=20
+several "active" messaging languages developed in which programs in a =
+suitably=20
+specialized language are transported to a remote location and =
+automatically run=20
+in the recipient's environment. </P>
+<P>Such applications may be defined as subtypes of the "application" =
+media type.=20
+This document defines two subtypes: </P>
+<P>octet-stream, and PostScript. </P>
+<P>The subtype of "application" will often be either the name or include =
+part of=20
+the name of the application for which the data are intended. This does =
+not mean,=20
+however, that any application program name may be used freely as a =
+subtype of=20
+"application". </P>
+<H4><A name=3D4.5.1>4.5.1. Octet-Stream Subtype </A></H4>
+<P>The "octet-stream" subtype is used to indicate that a body contains =
+arbitrary=20
+binary data. The set of currently defined parameters is: </P>
+<OL>
+  <LI>
+  <P><STRONG>TYPE</STRONG> -- the general type or category of binary =
+data. This=20
+  is intended as information for the human recipient rather than for any =
+
+  automatic processing. </P>
+  <LI>
+  <P><STRONG>PADDING</STRONG> -- the number of bits of padding that were =
+
+  appended to the bit-stream comprising the actual contents to produce =
+the=20
+  enclosed 8bit byte-oriented data. This is useful for enclosing a =
+bit-stream in=20
+  a body when the total number of bits is not a multiple of 8. =
+</P></LI></OL>
+<P>Both of these parameters are optional. </P>
+<P>An additional parameter, "CONVERSIONS", was defined in <A=20
+href=3D"http://ds.internic.net/rfc/rfc1341.txt">RFC 1341</A> but has =
+since been=20
+removed. <A href=3D"http://ds.internic.net/rfc/rfc1341.txt">RFC 1341</A> =
+also=20
+defined the use of a "NAME" parameter which gave a suggested file name =
+to be=20
+used if the data were to be written to a file. This has been deprecated =
+in=20
+anticipation of a separate Content-Disposition header field, to be =
+defined in a=20
+subsequent RFC. </P>
+<P>The recommended action for an implementation that receives an=20
+"application/octet-stream" entity is to simply offer to put the data in =
+a file,=20
+with any Content-Transfer-Encoding undone, or perhaps to use it as input =
+to a=20
+user-specified process. </P>
+<P>To reduce the danger of transmitting rogue programs, it is strongly=20
+recommended that implementations NOT implement a path-search mechanism =
+whereby=20
+an arbitrary program named in the Content-Type parameter (e.g., an=20
+"interpreter=3D" parameter) is found and executed using the message body =
+as input.=20
+</P>
+<H4><A name=3D4.5.2>4.5.2. PostScript Subtype </A></H4>
+<P>A media type of "application/postscript" indicates a PostScript =
+program.=20
+Currently two variants of the PostScript language are allowed; the =
+original=20
+level 1 variant is described in [POSTSCRIPT] and the more recent level 2 =
+variant=20
+is described in [POSTSCRIPT2]. </P>
+<P>PostScript is a registered trademark of Adobe Systems, Inc. Use of =
+the MIME=20
+media type "application/postscript" implies recognition of that =
+trademark and=20
+all the rights it entails. </P>
+<P>The PostScript language definition provides facilities for internal =
+labelling=20
+of the specific language features a given program uses. This labelling, =
+called=20
+the PostScript document structuring conventions, or DSC, is very general =
+and=20
+provides substantially more information than just the language level. =
+The use of=20
+document structuring conventions, while not required, is strongly =
+recommended as=20
+an aid to interoperability. Documents which lack proper structuring =
+conventions=20
+cannot be tested to see whether or not they will work in a given =
+environment. As=20
+such, some systems may assume the worst and refuse to process =
+unstructured=20
+documents. </P>
+<P>The execution of general-purpose PostScript interpreters entails =
+serious=20
+security risks, and implementors are discouraged from simply sending =
+PostScript=20
+bodies to "off- the-shelf" interpreters. While it is usually safe to =
+send=20
+PostScript to a printer, where the potential for harm is greatly =
+constrained by=20
+typical printer environments, implementors should consider all of the =
+following=20
+before they add interactive display of PostScript bodies to their MIME =
+readers.=20
+</P>
+<P>The remainder of this section outlines some, though probably not all, =
+of the=20
+possible problems with the transport of PostScript entities. </P>
+<OL>
+  <LI>
+  <P>Dangerous operations in the PostScript language include, but may =
+not be=20
+  limited to, the PostScript operators "deletefile", "renamefile",=20
+  "filenameforall", and "file". "File" is only dangerous when applied to =
+
+  something other than standard input or output. Implementations may =
+also define=20
+  additional nonstandard file operators; these may also pose a threat to =
+
+  security. "Filenameforall", the wildcard file search operator, may =
+appear at=20
+  first glance to be harmless. Note, however, that this operator has the =
+
+  potential to reveal information about what files the recipient has =
+access to,=20
+  and this information may itself be sensitive. Message senders should =
+avoid the=20
+  use of potentially dangerous file operators, since these operators are =
+quite=20
+  likely to be unavailable in secure PostScript implementations. Message =
+
+  receiving and displaying software should either completely disable all =
+
+  potentially dangerous file operators or take special care not to =
+delegate any=20
+  special authority to their operation. These operators should be viewed =
+as=20
+  being done by an outside agency when interpreting PostScript =
+documents. Such=20
+  disabling and/or checking should be done completely outside of the =
+reach of=20
+  the PostScript language itself; care should be taken to insure that no =
+method=20
+  exists for re-enabling full-function versions of these operators. </P>
+  <LI>
+  <P>The PostScript language provides facilities for exiting the normal=20
+  interpreter, or server, loop. Changes made in this "outer" environment =
+are=20
+  customarily retained across documents, and may in some cases be =
+retained=20
+  semipermanently in nonvolatile memory. The operators associated with =
+exiting=20
+  the interpreter loop have the potential to interfere with subsequent =
+document=20
+  processing. As such, their unrestrained use constitutes a threat of =
+service=20
+  denial. PostScript operators that exit the interpreter loop include, =
+but may=20
+  not be limited to, the exitserver and startjob operators. Message =
+sending=20
+  software should not generate PostScript that depends on exiting the=20
+  interpreter loop to operate, since the ability to exit will probably =
+be=20
+  unavailable in secure PostScript implementations. Message receiving =
+and=20
+  displaying software should completely disable the ability to make =
+retained=20
+  changes to the PostScript environment by eliminating or disabling the=20
+  "startjob" and "exitserver" operations. If these operations cannot be=20
+  eliminated or completely disabled the password associated with them =
+should at=20
+  least be set to a hard-to-guess value. </P>
+  <LI>
+  <P>PostScript provides operators for setting system-wide and =
+device-specific=20
+  parameters. These parameter settings may be retained across jobs and =
+may=20
+  potentially pose a threat to the correct operation of the interpreter. =
+The=20
+  PostScript operators that set system and device parameters include, =
+but may=20
+  not be limited to, the "setsystemparams" and "setdevparams" operators. =
+Message=20
+  sending software should not generate PostScript that depends on the =
+setting of=20
+  system or device parameters to operate correctly. The ability to set =
+these=20
+  parameters will probably be unavailable in secure PostScript =
+implementations.=20
+  Message receiving and displaying software should disable the ability =
+to change=20
+  system and device parameters. If these operators cannot be completely =
+disabled=20
+  the password associated with them should at least be set to a =
+hard-to-guess=20
+  value. </P>
+  <LI>
+  <P>Some PostScript implementations provide nonstandard facilities for =
+the=20
+  direct loading and execution of machine code. Such facilities are =
+quite=20
+  obviously open to substantial abuse. Message sending software should =
+not make=20
+  use of such features. Besides being totally hardware-specific, they =
+are also=20
+  likely to be unavailable in secure implementations of PostScript. =
+Message=20
+  receiving and displaying software should not allow such operators to =
+be used=20
+  if they exist. </P>
+  <LI>
+  <P>PostScript is an extensible language, and many, if not most,=20
+  implementations of it provide a number of their own extensions. This =
+document=20
+  does not deal with such extensions explicitly since they constitute an =
+unknown=20
+  factor. Message sending software should not make use of nonstandard=20
+  extensions; they are likely to be missing from some implementations. =
+Message=20
+  receiving and displaying software should make sure that any =
+nonstandard=20
+  PostScript operators are secure and don't present any kind of threat. =
+</P>
+  <LI>
+  <P>It is possible to write PostScript that consumes huge amounts of =
+various=20
+  system resources. It is also possible to write PostScript programs =
+that loop=20
+  indefinitely. Both types of programs have the potential to cause =
+damage if=20
+  sent to unsuspecting recipients. Message-sending software should avoid =
+the=20
+  construction and dissemination of such programs, which is antisocial. =
+Message=20
+  receiving and displaying software should provide appropriate =
+mechanisms to=20
+  abort processing after a reasonable amount of time has elapsed. In =
+addition,=20
+  PostScript interpreters should be limited to the consumption of only a =
+
+  reasonable amount of any given system resource. </P>
+  <LI>
+  <P>It is possible to include raw binary information inside PostScript =
+in=20
+  various forms. This is not recommended for use in Internet mail, both =
+because=20
+  it is not supported by all PostScript interpreters and because it=20
+  significantly complicates the use of a MIME Content-Transfer-Encoding. =
+
+  (Without such binary, PostScript may typically be viewed as =
+line-oriented=20
+  data. The treatment of CRLF sequences becomes extremely problematic if =
+binary=20
+  and line-oriented data are mixed in a single Postscript data stream.) =
+</P>
+  <LI>
+  <P>Finally, bugs may exist in some PostScript interpreters which could =
+
+  possibly be exploited to gain unauthorized access to a recipient's =
+system.=20
+  Apart from noting this possibility, there is no specific action to =
+take to=20
+  prevent this, apart from the timely correction of such bugs if any are =
+found.=20
+  </P></LI></OL>
+<H4><A name=3D4.5.3>4.5.3. Other Application Subtypes </A></H4>
+<P>It is expected that many other subtypes of "application" will be =
+defined in=20
+the future. MIME implementations must at a minimum treat any =
+unrecognized=20
+subtypes as being equivalent to "application/octet-stream". </P>
+<H2><A name=3D5>5. Composite Media Type Values </A></H2>
+<P>The remaining two of the seven initial Content-Type values refer to =
+composite=20
+entities. Composite entities are handled using MIME mechanisms -- a MIME =
+
+processor typically handles the body directly. </P>
+<H3><A name=3D5.1>5.1. Multipart Media Type </A></H3>
+<P>In the case of multipart entities, in which one or more different =
+sets of=20
+data are combined in a single body, a "multipart" media type field must =
+appear=20
+in the entity's header. The body must then contain one or more body =
+parts, each=20
+preceded by a boundary delimiter line, and the last one followed by a =
+closing=20
+boundary delimiter line. After its boundary delimiter line, each body =
+part then=20
+consists of a header area, a blank line, and a body area. Thus a body =
+part is=20
+similar to an <A href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC =
+822</A>=20
+message in syntax, but different in meaning. </P>
+<P>A body part is an entity and hence is NOT to be interpreted as =
+actually being=20
+an <A href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC 822</A> =
+message. To begin=20
+with, NO header fields are actually required in body parts. A body part =
+that=20
+starts with a blank line, therefore, is allowed and is a body part for =
+which all=20
+default values are to be assumed. In such a case, the absence of a =
+Content-Type=20
+header usually indicates that the corresponding body has a content-type =
+of=20
+"text/plain; charset=3DUS-ASCII". </P>
+<P>The only header fields that have defined meaning for body parts are =
+those the=20
+names of which begin with "Content-". All other header fields may be =
+ignored in=20
+body parts. Although they should generally be retained if at all =
+possible, they=20
+may be discarded by gateways if necessary. Such other fields are =
+permitted to=20
+appear in body parts but must not be depended on. "X-" fields may be =
+created for=20
+experimental or private purposes, with the recognition that the =
+information they=20
+contain may be lost at some gateways. </P>
+<P><STRONG>NOTE</STRONG>: The distinction between an <A=20
+href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC 822</A> message and a =
+body part=20
+is subtle, but important. A gateway between Internet and X.400 mail, for =
+
+example, must be able to tell the difference between a body part that =
+contains=20
+an image and a body part that contains an encapsulated message, the body =
+of=20
+which is a JPEG image. In order to represent the latter, the body part =
+must have=20
+"Content-Type: message/rfc822", and its body (after the blank line) must =
+be the=20
+encapsulated message, with its own "Content-Type: image/jpeg" header =
+field. The=20
+use of similar syntax facilitates the conversion of messages to body =
+parts, and=20
+vice versa, but the distinction between the two must be understood by=20
+implementors. (For the special case in which parts actually are =
+messages, a=20
+"digest" subtype is also defined.) </P>
+<P>As stated previously, each body part is preceded by a boundary =
+delimiter line=20
+that contains the boundary delimiter. The boundary delimiter MUST NOT =
+appear=20
+inside any of the encapsulated parts, on a line by itself or as the =
+prefix of=20
+any line. This implies that it is crucial that the composing agent be =
+able to=20
+choose and specify a unique boundary parameter value that does not =
+contain the=20
+boundary parameter value of an enclosing multipart as a prefix. </P>
+<P>All present and future subtypes of the "multipart" type must use an =
+identical=20
+syntax. Subtypes may differ in their semantics, and may impose =
+additional=20
+restrictions on syntax, but must conform to the required syntax for the=20
+"multipart" type. This requirement ensures that all conformant user =
+agents will=20
+at least be able to recognize and separate the parts of any multipart =
+entity,=20
+even those of an unrecognized subtype. </P>
+<P>As stated in the definition of the Content-Transfer-Encoding field =
+[<A=20
+href=3D"http://www.nacs.uci.edu/indiv/ehood/MIME/2045/rfc2045.html">RFC =
+2045</A>],=20
+no encoding other than "7bit", "8bit", or "binary" is permitted for =
+entities of=20
+type "multipart". The "multipart" boundary delimiters and header fields =
+are=20
+always represented as 7bit US-ASCII in any case (though the header =
+fields may=20
+encode non-US-ASCII header text as per <A=20
+href=3D"http://www.nacs.uci.edu/indiv/ehood/MIME/2047/rfc2047.html">RFC =
+2047</A>)=20
+and data within the body parts can be encoded on a part-by-part basis, =
+with=20
+Content-Transfer-Encoding fields for each appropriate body part. </P>
+<H4><A name=3D5.1.1>5.1.1. Common Syntax </A></H4>
+<P>This section defines a common syntax for subtypes of "multipart". All =
+
+subtypes of "multipart" must use this syntax. A simple example of a =
+multipart=20
+message also appears in this section. An example of a more complex =
+multipart=20
+message is given in <A=20
+href=3D"http://www.nacs.uci.edu/indiv/ehood/MIME/2049/rfc2049.html">RFC =
+2049</A>.=20
+</P>
+<P>The Content-Type field for multipart entities requires one parameter, =
+
+"boundary". The boundary delimiter line is then defined as a line =
+consisting=20
+entirely of two hyphen characters ("-", decimal value 45) followed by =
+the=20
+boundary parameter value from the Content-Type header field, optional =
+linear=20
+whitespace, and a terminating CRLF. </P>
+<P><STRONG>NOTE</STRONG>: The hyphens are for rough compatibility with =
+the=20
+earlier RFC 934 method of message encapsulation, and for ease of =
+searching for=20
+the boundaries in some implementations. However, it should be noted that =
+
+multipart messages are NOT completely compatible with <A=20
+href=3D"http://ds.internic.net/rfc/rfc934.txt">RFC 934</A> =
+encapsulations; in=20
+particular, they do not obey <A =
+href=3D"http://ds.internic.net/rfc/rfc934.txt">RFC=20
+934</A> quoting conventions for embedded lines that begin with hyphens. =
+This=20
+mechanism was chosen over the <A=20
+href=3D"http://ds.internic.net/rfc/rfc934.txt">RFC 934</A> mechanism =
+because the=20
+latter causes lines to grow with each level of quoting. The combination =
+of this=20
+growth with the fact that SMTP implementations sometimes wrap long lines =
+made=20
+the <A href=3D"http://ds.internic.net/rfc/rfc934.txt">RFC 934</A> =
+mechanism=20
+unsuitable for use in the event that deeply-nested multipart structuring =
+is ever=20
+desired. </P>
+<P><STRONG>WARNING TO IMPLEMENTORS</STRONG>: The grammar for parameters =
+on the=20
+Content-type field is such that it is often necessary to enclose the =
+boundary=20
+parameter values in quotes on the Content-type line. This is not always=20
+necessary, but never hurts. Implementors should be sure to study the =
+grammar=20
+carefully in order to avoid producing invalid Content-type fields. Thus, =
+a=20
+typical "multipart" Content-Type header field might look like this: =
+</P><PRE>  Content-Type: multipart/mixed; =
+boundary=3Dgc0p4Jq0M2Yt08j34c0p
+
+</PRE>
+<P>But the following is not valid: </P><PRE>  Content-Type: =
+multipart/mixed; boundary=3Dgc0pJq0M:08jU534c0p
+
+</PRE>
+<P>(because of the colon) and must instead be represented as </P><PRE>  =
+Content-Type: multipart/mixed; boundary=3D"gc0pJq0M:08jU534c0p"
+
+</PRE>
+<P>This Content-Type value indicates that the content consists of one or =
+more=20
+parts, each with a structure that is syntactically identical to an <A=20
+href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC 822</A> message, =
+except that=20
+the header area is allowed to be completely empty, and that the parts =
+are each=20
+preceded by the line </P><PRE>  --gc0pJq0M:08jU534c0p
+
+</PRE>
+<P>The boundary delimiter MUST occur at the beginning of a line, i.e., =
+following=20
+a CRLF, and the initial CRLF is considered to be attached to the =
+boundary=20
+delimiter line rather than part of the preceding part. The boundary may =
+be=20
+followed by zero or more characters of linear whitespace. It is then =
+terminated=20
+by either another CRLF and the header fields for the next part, or by =
+two CRLFs,=20
+in which case there are no header fields for the next part. If no =
+Content-Type=20
+field is present it is assumed to be "message/rfc822" in a =
+"multipart/digest"=20
+and "text/plain" otherwise. </P>
+<P><STRONG>NOTE</STRONG>: The CRLF preceding the boundary delimiter line =
+is=20
+conceptually attached to the boundary so that it is possible to have a =
+part that=20
+does not end with a CRLF (line break). Body parts that must be =
+considered to end=20
+with line breaks, therefore, must have two CRLFs preceding the boundary=20
+delimiter line, the first of which is part of the preceding body part, =
+and the=20
+second of which is part of the encapsulation boundary. </P>
+<P>Boundary delimiters must not appear within the encapsulated material, =
+and=20
+must be no longer than 70 characters, not counting the two leading =
+hyphens. </P>
+<P>The boundary delimiter line following the last body part is a =
+distinguished=20
+delimiter that indicates that no further body parts will follow. Such a=20
+delimiter line is identical to the previous delimiter lines, with the =
+addition=20
+of two more hyphens after the boundary parameter value. </P><PRE>  =
+--gc0pJq0M:08jU534c0p--
+</PRE>
+<P><STRONG>NOTE TO IMPLEMENTORS</STRONG>: Boundary string comparisons =
+must=20
+compare the boundary value with the beginning of each candidate line. An =
+exact=20
+match of the entire candidate line is not required; it is sufficient =
+that the=20
+boundary appear in its entirety following the CRLF. </P>
+<P>There appears to be room for additional information prior to the =
+first=20
+boundary delimiter line and following the final boundary delimiter line. =
+These=20
+areas should generally be left blank, and implementations must ignore =
+anything=20
+that appears before the first boundary delimiter line or after the last =
+one.=20
+</P>
+<P><STRONG>NOTE</STRONG>: These "preamble" and "epilogue" areas are =
+generally=20
+not used because of the lack of proper typing of these parts and the =
+lack of=20
+clear semantics for handling these areas at gateways, particularly X.400 =
+
+gateways. However, rather than leaving the preamble area blank, many =
+MIME=20
+implementations have found this to be a convenient place to insert an=20
+explanatory note for recipients who read the message with pre-MIME =
+software,=20
+since such notes will be ignored by MIME-compliant software. </P>
+<P><STRONG>NOTE</STRONG>: Because boundary delimiters must not appear in =
+the=20
+body parts being encapsulated, a user agent must exercise care to choose =
+a=20
+unique boundary parameter value. The boundary parameter value in the =
+example=20
+above could have been the result of an algorithm designed to produce =
+boundary=20
+delimiters with a very low probability of already existing in the data =
+to be=20
+encapsulated without having to prescan the data. Alternate algorithms =
+might=20
+result in more "readable" boundary delimiters for a recipient with an =
+old user=20
+agent, but would require more attention to the possibility that the =
+boundary=20
+delimiter might appear at the beginning of some line in the encapsulated =
+part.=20
+The simplest boundary delimiter line possible is something like "---", =
+with a=20
+closing boundary delimiter line of "-----". </P>
+<P>As a very simple example, the following multipart message has two =
+parts, both=20
+of them plain text, one of them explicitly typed and one of them =
+implicitly=20
+typed: </P><PRE>  From: Nathaniel Borenstein &lt;nsb@bellcore.com&gt;
+  To: Ned Freed &lt;ned@innosoft.com&gt;
+  Date: Sun, 21 Mar 1993 23:56:48 -0800 (PST)
+  Subject: Sample message
+  MIME-Version: 1.0
+  Content-type: multipart/mixed; boundary=3D"simple boundary"
+ =20
+  This is the preamble.  It is to be ignored, though it
+  is a handy place for composition agents to include an
+  explanatory note to non-MIME conformant readers.
+ =20
+  --simple boundary
+ =20
+  This is implicitly typed plain US-ASCII text.
+  It does NOT end with a linebreak.
+  --simple boundary
+  Content-type: text/plain; charset=3Dus-ascii
+ =20
+  This is explicitly typed plain US-ASCII text.
+  It DOES end with a linebreak.
+ =20
+  --simple boundary--
+ =20
+  This is the epilogue.  It is also to be ignored.
+ =20
+</PRE>
+<P>The use of a media type of "multipart" in a body part within another=20
+"multipart" entity is explicitly allowed. In such cases, for obvious =
+reasons,=20
+care must be taken to ensure that each nested "multipart" entity uses a=20
+different boundary delimiter. See <A=20
+href=3D"http://www.nacs.uci.edu/indiv/ehood/MIME/2049/rfc2049.html">RFC =
+2049</A>=20
+for an example of nested "multipart" entities. </P>
+<P>The use of the "multipart" media type with only a single body part =
+may be=20
+useful in certain contexts, and is explicitly permitted. </P>
+<P><STRONG>NOTE</STRONG>: Experience has shown that a "multipart" media =
+type=20
+with a single body part is useful for sending non-text media types. It =
+has the=20
+advantage of providing the preamble as a place to include decoding =
+instructions.=20
+In addition, a number of SMTP gateways move or remove the MIME headers, =
+and a=20
+clever MIME decoder can take a good guess at multipart boundaries even =
+in the=20
+absence of the Content-Type header and thereby successfully decode the =
+message.=20
+</P>
+<P>The only mandatory global parameter for the "multipart" media type is =
+the=20
+boundary parameter, which consists of 1 to 70 characters from a set of=20
+characters known to be very robust through mail gateways, and NOT ending =
+with=20
+white space. (If a boundary delimiter line appears to end with white =
+space, the=20
+white space must be presumed to have been added by a gateway, and must =
+be=20
+deleted.) It is formally specified by the following BNF: </P><PRE>     =
+boundary :=3D 0*69&lt;bchars&gt; bcharsnospace
+
+     bchars :=3D bcharsnospace / " "
+
+     bcharsnospace :=3D DIGIT / ALPHA / "'" / "(" / ")" /
+                      "+" / "_" / "," / "-" / "." /
+                      "/" / ":" / "=3D" / "?"
+
+</PRE>
+<P>Overall, the body of a "multipart" entity may be specified as =
+follows: </P><PRE>     dash-boundary :=3D "--" boundary
+                      ; boundary taken from the value of
+                      ; boundary parameter of the
+                      ; Content-Type field.
+
+     multipart-body :=3D [preamble CRLF]
+                       dash-boundary transport-padding CRLF
+                       body-part *encapsulation
+                       close-delimiter transport-padding
+                       [CRLF epilogue]
+
+
+     transport-padding :=3D *LWSP-char
+                          ; Composers MUST NOT generate
+                          ; non-zero length transport
+                          ; padding, but receivers MUST
+                          ; be able to handle padding
+                          ; added by message transports.
+
+     encapsulation :=3D delimiter transport-padding
+                      CRLF body-part
+
+     delimiter :=3D CRLF dash-boundary
+
+     close-delimiter :=3D delimiter "--"
+
+     preamble :=3D discard-text
+
+     epilogue :=3D discard-text
+
+     discard-text :=3D *(*text CRLF) *text
+                     ; May be ignored or discarded.
+
+     body-part :=3D MIME-part-headers [CRLF *OCTET]
+                  ; Lines in a body-part must not start
+                  ; with the specified dash-boundary and
+                  ; the delimiter must not appear anywhere
+                  ; in the body part.  Note that the
+                  ; semantics of a body-part differ from
+                  ; the semantics of a message, as
+                  ; described in the text.
+
+     OCTET :=3D &lt;any 0-255 octet value&gt;
+
+</PRE>
+<P><STRONG>IMPORTANT</STRONG>: The free insertion of linear-white-space =
+and <A=20
+href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC 822</A> comments =
+between the=20
+elements shown in this BNF is NOT allowed since this BNF does not =
+specify a=20
+structured header field. </P>
+<P><STRONG>NOTE</STRONG>: In certain transport enclaves, <A=20
+href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC 822</A> restrictions =
+such as=20
+the one that limits bodies to printable US-ASCII characters may not be =
+in force.=20
+(That is, the transport domains may exist that resemble standard =
+Internet mail=20
+transport as specified in <A =
+href=3D"http://ds.internic.net/rfc/rfc821.txt">RFC=20
+821</A> and assumed by <A =
+href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC=20
+822</A>, but without certain restrictions.) The relaxation of these =
+restrictions=20
+should be construed as locally extending the definition of bodies, for =
+example=20
+to include octets outside of the US-ASCII range, as long as these =
+extensions are=20
+supported by the transport and adequately documented in the Content-=20
+Transfer-Encoding header field. However, in no event are headers (either =
+message=20
+headers or body part headers) allowed to contain anything other than =
+US-ASCII=20
+characters. </P>
+<P><STRONG>NOTE</STRONG>: Conspicuously missing from the "multipart" =
+type is a=20
+notion of structured, related body parts. It is recommended that those =
+wishing=20
+to provide more structured or integrated multipart messaging facilities =
+should=20
+define subtypes of multipart that are syntactically identical but define =
+
+relationships between the various parts. For example, subtypes of =
+multipart=20
+could be defined that include a distinguished part which in turn is used =
+to=20
+specify the relationships between the other parts, probably referring to =
+them by=20
+their Content-ID field. Old implementations will not recognize the new =
+subtype=20
+if this approach is used, but will treat it as multipart/mixed and will =
+thus be=20
+able to show the user the parts that are recognized. </P>
+<H4><A name=3D5.1.2>5.1.2. Handling Nested Messages and Multiparts =
+</A></H4>
+<P>The "message/rfc822" subtype defined in a subsequent section of this =
+document=20
+has no terminating condition other than running out of data. Similarly, =
+an=20
+improperly truncated "multipart" entity may not have any terminating =
+boundary=20
+marker, and can turn up operationally due to mail system malfunctions. =
+</P>
+<P>It is essential that such entities be handled correctly when they are =
+
+themselves imbedded inside of another "multipart" structure. MIME=20
+implementations are therefore required to recognize outer level boundary =
+markers=20
+at ANY level of inner nesting. It is not sufficient to only check for =
+the next=20
+expected marker or other terminating condition. </P>
+<H4><A name=3D5.1.3>5.1.3. Mixed Subtype </A></H4>
+<P>The "mixed" subtype of "multipart" is intended for use when the body =
+parts=20
+are independent and need to be bundled in a particular order. Any =
+"multipart"=20
+subtypes that an implementation does not recognize must be treated as =
+being of=20
+subtype "mixed". </P>
+<H4><A name=3D5.1.4>5.1.4. Alternative Subtype </A></H4>
+<P>The "multipart/alternative" type is syntactically identical to=20
+"multipart/mixed", but the semantics are different. In particular, each =
+of the=20
+body parts is an "alternative" version of the same information. </P>
+<P>Systems should recognize that the content of the various parts are=20
+interchangeable. Systems should choose the "best" type based on the =
+local=20
+environment and references, in some cases even through user interaction. =
+As with=20
+"multipart/mixed", the order of body parts is significant. In this case, =
+the=20
+alternatives appear in an order of increasing faithfulness to the =
+original=20
+content. In general, the best choice is the LAST part of a type =
+supported by the=20
+recipient system's local environment. </P>
+<P>"Multipart/alternative" may be used, for example, to send a message =
+in a=20
+fancy text format in such a way that it can easily be displayed =
+anywhere: </P><PRE>  From: Nathaniel Borenstein &lt;nsb@bellcore.com&gt;
+  To: Ned Freed &lt;ned@innosoft.com&gt;
+  Date: Mon, 22 Mar 1993 09:41:09 -0800 (PST)
+  Subject: Formatted text mail
+  MIME-Version: 1.0
+  Content-Type: multipart/alternative; boundary=3Dboundary42
+ =20
+  --boundary42
+  Content-Type: text/plain; charset=3Dus-ascii
+ =20
+    ... plain text version of message goes here ...
+ =20
+  --boundary42
+  Content-Type: text/enriched
+ =20
+    ... <A href=3D"http://ds.internic.net/rfc/rfc1896.txt">RFC 1896</A> =
+text/enriched version of same message
+    goes here ...
+ =20
+  --boundary42
+  Content-Type: application/x-whatever
+ =20
+    ... fanciest version of same message goes here ...
+ =20
+  --boundary42--
+</PRE>
+<P>In this example, users whose mail systems understood the=20
+"application/x-whatever" format would see only the fancy version, while =
+other=20
+users would see only the enriched or plain text version, depending on =
+the=20
+capabilities of their system. </P>
+<P>In general, user agents that compose "multipart/alternative" entities =
+must=20
+place the body parts in increasing order of preference, that is, with =
+the=20
+preferred format last. For fancy text, the sending user agent should put =
+the=20
+plainest format first and the richest format last. Receiving user agents =
+should=20
+pick and display the last format they are capable of displaying. In the =
+case=20
+where one of the alternatives is itself of type "multipart" and contains =
+
+unrecognized sub-parts, the user agent may choose either to show that=20
+alternative, an earlier alternative, or both. </P>
+<P><STRONG>NOTE</STRONG>: From an implementor's perspective, it might =
+seem more=20
+sensible to reverse this ordering, and have the plainest alternative =
+last.=20
+However, placing the plainest alternative first is the friendliest =
+possible=20
+option when "multipart/alternative" entities are viewed using a=20
+non-MIME-conformant viewer. While this approach does impose some burden =
+on=20
+conformant MIME viewers, interoperability with older mail readers was =
+deemed to=20
+be more important in this case. </P>
+<P>It may be the case that some user agents, if they can recognize more =
+than one=20
+of the formats, will prefer to offer the user the choice of which format =
+to=20
+view. This makes sense, for example, if a message includes both a =
+nicely-=20
+formatted image version and an easily-edited text version. What is most=20
+critical, however, is that the user not automatically be shown multiple =
+versions=20
+of the same data. Either the user should be shown the last recognized =
+version or=20
+should be given the choice. </P>
+<P><STRONG>THE SEMANTICS OF CONTENT-ID IN =
+MULTIPART/ALTERNATIVE</STRONG>: Each=20
+part of a "multipart/alternative" entity represents the same data, but =
+the=20
+mappings between the two are not necessarily without information loss. =
+For=20
+example, information is lost when translating ODA to PostScript or plain =
+text.=20
+It is recommended that each part should have a different Content-ID =
+value in the=20
+case where the information content of the two parts is not identical. =
+And when=20
+the information content is identical -- for example, where several parts =
+of type=20
+"message/external-body" specify alternate ways to access the identical =
+data --=20
+the same Content-ID field value should be used, to optimize any caching=20
+mechanisms that might be present on the recipient's end. However, the =
+Content-ID=20
+values used by the parts should NOT be the same Content-ID value that =
+describes=20
+the "multipart/alternative" as a whole, if there is any such Content-ID =
+field.=20
+That is, one Content-ID value will refer to the "multipart/alternative" =
+entity,=20
+while one or more other Content-ID values will refer to the parts inside =
+it.=20
+</P>
+<H4><A name=3D5.1.5>5.1.5. Digest Subtype </A></H4>
+<P>This document defines a "digest" subtype of the "multipart" =
+Content-Type.=20
+This type is syntactically identical to "multipart/mixed", but the =
+semantics are=20
+different. In particular, in a digest, the default Content-Type value =
+for a body=20
+part is changed from "text/plain" to "message/rfc822". This is done to =
+allow a=20
+more readable digest format that is largely compatible (except for the =
+quoting=20
+convention) with <A href=3D"http://ds.internic.net/rfc/rfc934.txt">RFC =
+934</A>.=20
+</P>
+<P>Note: Though it is possible to specify a Content-Type value for a =
+body part=20
+in a digest which is other than "message/rfc822", such as a "text/plain" =
+part=20
+containing a description of the material in the digest, actually doing =
+so is=20
+undesireble. The "multipart/digest" Content-Type is intended to be used =
+to send=20
+collections of messages. If a "text/plain" part is needed, it should be =
+included=20
+as a seperate part of a "multipart/mixed" message. </P>
+<P>A digest in this format might, then, look something like this: =
+</P><PRE>  From: Moderator-Address
+  To: Recipient-List
+  Date: Mon, 22 Mar 1994 13:34:51 +0000
+  Subject: Internet Digest, volume 42
+  MIME-Version: 1.0
+  Content-Type: multipart/mixed;
+                boundary=3D"---- main boundary ----"
+ =20
+  ------ main boundary ----
+ =20
+    ...Introductory text or table of contents...
+ =20
+  ------ main boundary ----
+  Content-Type: multipart/digest;
+                boundary=3D"---- next message ----"
+ =20
+  ------ next message ----
+ =20
+  From: someone-else
+  Date: Fri, 26 Mar 1993 11:13:32 +0200
+  Subject: my opinion
+ =20
+    ...body goes here ...
+ =20
+  ------ next message ----
+ =20
+  From: someone-else-again
+  Date: Fri, 26 Mar 1993 10:07:13 -0500
+  Subject: my different opinion
+ =20
+    ... another body goes here ...
+ =20
+  ------ next message ------
+ =20
+  ------ main boundary ------
+ =20
+</PRE>
+<H4><A name=3D5.1.6>5.1.6. Parallel Subtype </A></H4>
+<P>This document defines a "parallel" subtype of the "multipart" =
+Content-Type.=20
+This type is syntactically identical to "multipart/mixed", but the =
+semantics are=20
+different. In particular, in a parallel entity, the order of body parts =
+is not=20
+significant. </P>
+<P>A common presentation of this type is to display all of the parts=20
+simultaneously on hardware and software that are capable of doing so. =
+However,=20
+composing agents should be aware that many mail readers will lack this=20
+capability and will show the parts serially in any event. </P>
+<H4><A name=3D5.1.7>5.1.7. Other Multipart Subtypes </A></H4>
+<P>Other "multipart" subtypes are expected in the future. MIME =
+implementations=20
+must in general treat unrecognized subtypes of "multipart" as being =
+equivalent=20
+to "multipart/mixed". </P>
+<H3><A name=3D5.2>5.2. Message Media Type </A></H3>
+<P>It is frequently desirable, in sending mail, to encapsulate another =
+mail=20
+message. A special media type, "message", is defined to facilitate this. =
+In=20
+particular, the "rfc822" subtype of "message" is used to encapsulate <A=20
+href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC 822</A> messages. =
+</P>
+<P><STRONG>NOTE</STRONG>: It has been suggested that subtypes of =
+"message" might=20
+be defined for forwarded or rejected messages. However, forwarded and =
+rejected=20
+messages can be handled as multipart messages in which the first part =
+contains=20
+any control or descriptive information, and a second part, of type=20
+"message/rfc822", is the forwarded or rejected message. Composing =
+rejection and=20
+forwarding messages in this manner will preserve the type information on =
+the=20
+original message and allow it to be correctly presented to the =
+recipient, and=20
+hence is strongly encouraged. </P>
+<P>Subtypes of "message" often impose restrictions on what encodings are =
+
+allowed. These restrictions are described in conjunction with each =
+specific=20
+subtype. </P>
+<P>Mail gateways, relays, and other mail handling agents are commonly =
+known to=20
+alter the top-level header of an <A=20
+href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC 822</A> message. In =
+particular,=20
+they frequently add, remove, or reorder header fields. These operations =
+are=20
+explicitly forbidden for the encapsulated headers embedded in the bodies =
+of=20
+messages of type "message." </P>
+<H4><A name=3D5.2.1>5.2.1. RFC822 Subtype </A></H4>
+<P>A media type of "message/rfc822" indicates that the body contains an=20
+encapsulated message, with the syntax of an <A=20
+href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC 822</A> message. =
+However,=20
+unlike top-level <A href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC =
+822</A>=20
+messages, the restriction that each "message/rfc822" body must include a =
+"From",=20
+"Date", and at least one destination header is removed and replaced with =
+the=20
+requirement that at least one of "From", "Subject", or "Date" must be =
+present.=20
+It should be noted that, despite the use of the numbers "822", a=20
+"message/rfc822" entity isn't restricted to material in strict =
+conformance to=20
+RFC822, nor are the semantics of "message/rfc822" objects restricted to =
+the=20
+semantics defined in RFC822. More specifically, a "message/rfc822" =
+message could=20
+well be a News article or a MIME message. </P>
+<P>No encoding other than "7bit", "8bit", or "binary" is permitted for =
+the body=20
+of a "message/rfc822" entity. The message header fields are always =
+US-ASCII in=20
+any case, and data within the body can still be encoded, in which case =
+the=20
+Content-Transfer-Encoding header field in the encapsulated message will =
+reflect=20
+this. Non-US-ASCII text in the headers of an encapsulated message can be =
+
+specified using the mechanisms described in <A=20
+href=3D"http://www.nacs.uci.edu/indiv/ehood/MIME/2047/rfc2047.html">RFC =
+2047</A>.=20
+</P>
+<H4><A name=3D5.2.2>5.2.2. Partial Subtype </A></H4>
+<P>The "partial" subtype is defined to allow large entities to be =
+delivered as=20
+several separate pieces of mail and automatically reassembled by a =
+receiving=20
+user agent. (The concept is similar to IP fragmentation and reassembly =
+in the=20
+basic Internet Protocols.) This mechanism can be used when intermediate=20
+transport agents limit the size of individual messages that can be sent. =
+The=20
+media type "message/partial" thus indicates that the body contains a =
+fragment of=20
+a larger entity. </P>
+<P>Because data of type "message" may never be encoded in base64 or=20
+quoted-printable, a problem might arise if "message/partial" entities =
+are=20
+constructed in an environment that supports binary or 8bit transport. =
+The=20
+problem is that the binary data would be split into multiple =
+"message/partial"=20
+messages, each of them requiring binary transport. If such messages were =
+
+encountered at a gateway into a 7bit transport environment, there would =
+be no=20
+way to properly encode them for the 7bit world, aside from waiting for =
+all of=20
+the fragments, reassembling the inner message, and then encoding the =
+reassembled=20
+data in base64 or quoted-printable. Since it is possible that different=20
+fragments might go through different gateways, even this is not an =
+acceptable=20
+solution. For this reason, it is specified that entities of type=20
+"message/partial" must always have a content-transfer-encoding of 7bit =
+(the=20
+default). In particular, even in environments that support binary or =
+8bit=20
+transport, the use of a content- transfer-encoding of "8bit" or "binary" =
+is=20
+explicitly prohibited for MIME entities of type "message/partial". This =
+in turn=20
+implies that the inner message must not use "8bit" or "binary" encoding. =
+</P>
+<P>Because some message transfer agents may choose to automatically =
+fragment=20
+large messages, and because such agents may use very different =
+fragmentation=20
+thresholds, it is possible that the pieces of a partial message, upon=20
+reassembly, may prove themselves to comprise a partial message. This is=20
+explicitly permitted. </P>
+<P>Three parameters must be specified in the Content-Type field of type=20
+"message/partial": The first, "id", is a unique identifier, as close to =
+a=20
+world-unique identifier as possible, to be used to match the fragments =
+together.=20
+(In general, the identifier is essentially a message-id; if placed in =
+double=20
+quotes, it can be ANY message-id, in accordance with the BNF for =
+"parameter"=20
+given in <A=20
+href=3D"http://www.nacs.uci.edu/indiv/ehood/MIME/2045/rfc2045.html">RFC =
+2045</A>.)=20
+The second, "number", an integer, is the fragment number, which =
+indicates where=20
+this fragment fits into the sequence of fragments. The third, "total", =
+another=20
+integer, is the total number of fragments. This third subfield is =
+required on=20
+the final fragment, and is optional (though encouraged) on the earlier=20
+fragments. Note also that these parameters may be given in any order. =
+</P>
+<P>Thus, the second piece of a 3-piece message may have either of the =
+following=20
+header fields: </P><PRE>  Content-Type: Message/Partial; number=3D2; =
+total=3D3;
+                id=3D"oc=3Djpbe0M2Yt4s@thumper.bellcore.com"
+
+  Content-Type: Message/Partial;
+                id=3D"oc=3Djpbe0M2Yt4s@thumper.bellcore.com";
+                number=3D2
+
+</PRE>
+<P>But the third piece MUST specify the total number of fragments: =
+</P><PRE>  Content-Type: Message/Partial; number=3D3; total=3D3;
+                id=3D"oc=3Djpbe0M2Yt4s@thumper.bellcore.com"
+
+</PRE>
+<P>Note that fragment numbering begins with 1, not 0. </P>
+<P>When the fragments of an entity broken up in this manner are put =
+together,=20
+the result is always a complete MIME entity, which may have its own =
+Content-Type=20
+header field, and thus may contain any other data type. </P>
+<H4><A name=3D5.2.2.1>5.2.2.1. Message Fragmentation and Reassembly =
+</A></H4>
+<P>The semantics of a reassembled partial message must be those of the =
+"inner"=20
+message, rather than of a message containing the inner message. This =
+makes it=20
+possible, for example, to send a large audio message as several partial=20
+messages, and still have it appear to the recipient as a simple audio =
+message=20
+rather than as an encapsulated message containing an audio message. That =
+is, the=20
+encapsulation of the message is considered to be "transparent". </P>
+<P>When generating and reassembling the pieces of a "message/partial" =
+message,=20
+the headers of the encapsulated message must be merged with the headers =
+of the=20
+enclosing entities. In this process the following rules must be =
+observed: </P>
+<OL>
+  <LI>
+  <P>Fragmentation agents must split messages at line boundaries only. =
+This=20
+  restriction is imposed because splits at points other than the ends of =
+lines=20
+  in turn depends on message transports being able to preserve the =
+semantics of=20
+  messages that don't end with a CRLF sequence. Many transports are =
+incapable of=20
+  preserving such semantics. </P>
+  <LI>
+  <P>All of the header fields from the initial enclosing message, except =
+those=20
+  that start with "Content-" and the specific header fields "Subject",=20
+  "Message-ID", "Encrypted", and "MIME-Version", must be copied, in =
+order, to=20
+  the new message. </P>
+  <LI>
+  <P>The header fields in the enclosed message which start with =
+"Content-", plus=20
+  the "Subject", "Message-ID", "Encrypted", and "MIME-Version" fields, =
+must be=20
+  appended, in order, to the header fields of the new message. Any =
+header fields=20
+  in the enclosed message which do not start with "Content-" (except for =
+the=20
+  "Subject", "Message-ID", "Encrypted", and "MIME-Version" fields) will =
+be=20
+  ignored and dropped. </P>
+  <LI>
+  <P>All of the header fields from the second and any subsequent =
+enclosing=20
+  messages are discarded by the reassembly process. </P></LI></OL>
+<H4><A name=3D5.2.2.2>5.2.2.2. Fragmentation and Reassembly Example =
+</A></H4>
+<P>If an audio message is broken into two pieces, the first piece might =
+look=20
+something like this: </P><PRE>  X-Weird-Header-1: Foo
+  From: Bill@host.com
+  To: joe@otherhost.com
+  Date: Fri, 26 Mar 1993 12:59:38 -0500 (EST)
+  Subject: Audio mail (part 1 of 2)
+  Message-ID: &lt;id1@host.com&gt;
+  MIME-Version: 1.0
+  Content-type: message/partial; id=3D"ABC@host.com";
+                number=3D1; total=3D2
+
+  X-Weird-Header-1: Bar
+  X-Weird-Header-2: Hello
+  Message-ID: &lt;anotherid@foo.com&gt;
+  Subject: Audio mail
+  MIME-Version: 1.0
+  Content-type: audio/basic
+  Content-transfer-encoding: base64
+
+    ... first half of encoded audio data goes here ...
+
+</PRE>
+<P>and the second half might look something like this: </P><PRE>  From: =
+Bill@host.com
+  To: joe@otherhost.com
+  Date: Fri, 26 Mar 1993 12:59:38 -0500 (EST)
+  Subject: Audio mail (part 2 of 2)
+  MIME-Version: 1.0
+  Message-ID: &lt;id2@host.com&gt;
+  Content-type: message/partial;
+                id=3D"ABC@host.com"; number=3D2; total=3D2
+
+    ... second half of encoded audio data goes here ...
+
+</PRE>
+<P>Then, when the fragmented message is reassembled, the resulting =
+message to be=20
+displayed to the user should look something like this: </P><PRE>  =
+X-Weird-Header-1: Foo
+  From: Bill@host.com
+  To: joe@otherhost.com
+  Date: Fri, 26 Mar 1993 12:59:38 -0500 (EST)
+  Subject: Audio mail
+  Message-ID: &lt;anotherid@foo.com&gt;
+  MIME-Version: 1.0
+  Content-type: audio/basic
+  Content-transfer-encoding: base64
+
+    ... first half of encoded audio data goes here ...
+    ... second half of encoded audio data goes here ...
+
+</PRE>
+<P>The inclusion of a "References" field in the headers of the second =
+and=20
+subsequent pieces of a fragmented message that references the Message-Id =
+on the=20
+previous piece may be of benefit to mail readers that understand and =
+track=20
+references. However, the generation of such "References" fields is =
+entirely=20
+optional. </P>
+<P>Finally, it should be noted that the "Encrypted" header field has =
+been made=20
+obsolete by Privacy Enhanced Messaging (PEM) [<A=20
+href=3D"http://ds.internic.net/rfc/rfc1421.txt">RFC-1421</A>, <A=20
+href=3D"http://ds.internic.net/rfc/rfc1422.txt">RFC-1422</A>, <A=20
+href=3D"http://ds.internic.net/rfc/rfc1423.txt">RFC-1423</A>, <A=20
+href=3D"http://ds.internic.net/rfc/rfc1424.txt">RFC-1424</A>], but the =
+rules above=20
+are nevertheless believed to describe the correct way to treat it if it =
+is=20
+encountered in the context of conversion to and from "message/partial"=20
+fragments. </P>
+<H4><A name=3D5.2.3>5.2.3. External-Body Subtype </A></H4>
+<P>The external-body subtype indicates that the actual body data are not =
+
+included, but merely referenced. In this case, the parameters describe a =
+
+mechanism for accessing the external data. </P>
+<P>When a MIME entity is of type "message/external-body", it consists of =
+a=20
+header, two consecutive CRLFs, and the message header for the =
+encapsulated=20
+message. If another pair of consecutive CRLFs appears, this of course =
+ends the=20
+message header for the encapsulated message. However, since the =
+encapsulated=20
+message's body is itself external, it does NOT appear in the area that =
+follows.=20
+For example, consider the following message: </P><PRE>  Content-type: =
+message/external-body;
+                access-type=3Dlocal-file;
+                name=3D"/u/nsb/Me.jpeg"
+
+  Content-type: image/jpeg
+  Content-ID: &lt;id42@guppylake.bellcore.com&gt;
+  Content-Transfer-Encoding: binary
+
+  THIS IS NOT REALLY THE BODY!
+
+</PRE>
+<P>The area at the end, which might be called the "phantom body", is =
+ignored for=20
+most external-body messages. However, it may be used to contain =
+auxiliary=20
+information for some such messages, as indeed it is when the access-type =
+is=20
+"mail-server". The only access-type defined in this document that uses =
+the=20
+phantom body is "mail-server", but other access-types may be defined in =
+the=20
+future in other specifications that use this area. </P>
+<P>The encapsulated headers in ALL "message/external-body" entities MUST =
+include=20
+a Content-ID header field to give a unique identifier by which to =
+reference the=20
+data. This identifier may be used for caching mechanisms, and for =
+recognizing=20
+the receipt of the data when the access-type is "mail-server". </P>
+<P>Note that, as specified here, the tokens that describe external-body =
+data,=20
+such as file names and mail server commands, are required to be in the =
+US-ASCII=20
+character set. </P>
+<P>If this proves problematic in practice, a new mechanism may be =
+required as a=20
+future extension to MIME, either as newly defined access-types for=20
+"message/external-body" or by some other mechanism. </P>
+<P>As with "message/partial", MIME entities of type =
+"message/external-body" MUST=20
+have a content-transfer-encoding of 7bit (the default). In particular, =
+even in=20
+environments that support binary or 8bit transport, the use of a =
+content-=20
+transfer-encoding of "8bit" or "binary" is explicitly prohibited for =
+entities of=20
+type "message/external-body". </P>
+<H4><A name=3D5.2.3.1>5.2.3.1. General External-Body Parameters =
+</A></H4>
+<P>The parameters that may be used with any "message/external- body" =
+are: </P>
+<OL>
+  <LI>
+  <P><STRONG>ACCESS-TYPE</STRONG> -- A word indicating the supported =
+access=20
+  mechanism by which the file or data may be obtained. This word is not =
+case=20
+  sensitive. Values include, but are not limited to, "FTP", "ANON-FTP", =
+"TFTP",=20
+  "LOCAL-FILE", and "MAIL-SERVER". Future values, except for =
+experimental values=20
+  beginning with "X-", must be registered with IANA, as described in <A=20
+  =
+href=3D"http://www.nacs.uci.edu/indiv/ehood/MIME/2048/rfc2048.html">RFC=20
+  2048</A>. This parameter is unconditionally mandatory and MUST be =
+present on=20
+  EVERY "message/external-body". </P>
+  <LI>
+  <P><STRONG>EXPIRATION</STRONG> -- The date (in the <A=20
+  href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC 822</A> "date-time" =
+syntax,=20
+  as extended by <A href=3D"http://ds.internic.net/rfc/rfc1123.txt">RFC =
+1123</A>=20
+  to permit 4 digits in the year field) after which the existence of the =
+
+  external data is not guaranteed. This parameter may be used with ANY=20
+  access-type and is ALWAYS optional. </P>
+  <LI>
+  <P><STRONG>SIZE</STRONG> -- The size (in octets) of the data. The =
+intent of=20
+  this parameter is to help the recipient decide whether or not to =
+expend the=20
+  necessary resources to retrieve the external data. Note that this =
+describes=20
+  the size of the data in its canonical form, that is, before any=20
+  Content-Transfer-Encoding has been applied or after the data have been =
+
+  decoded. This parameter may be used with ANY access-type and is ALWAYS =
+
+  optional. </P>
+  <LI>
+  <P><STRONG>PERMISSION</STRONG> -- A case-insensitive field that =
+indicates=20
+  whether or not it is expected that clients might also attempt to =
+overwrite the=20
+  data. By default, or if permission is "read", the assumption is that =
+they are=20
+  not, and that if the data is retrieved once, it is never needed again. =
+If=20
+  PERMISSION is "read-write", this assumption is invalid, and any local =
+copy=20
+  must be considered no more than a cache. "Read" and "Read-write" are =
+the only=20
+  defined values of permission. This parameter may be used with ANY =
+access-type=20
+  and is ALWAYS optional. </P></LI></OL>
+<P>The precise semantics of the access-types defined here are described =
+in the=20
+sections that follow. </P>
+<H4><A name=3D5.2.3.2>5.2.3.2. The 'ftp' and 'tftp' Access-Types =
+</A></H4>
+<P>An access-type of FTP or TFTP indicates that the message body is =
+accessible=20
+as a file using the FTP [<A=20
+href=3D"http://ds.internic.net/rfc/rfc959.txt">RFC-959</A>] or TFTP =
+[RFC- 783]=20
+protocols, respectively. For these access-types, the following =
+additional=20
+parameters are mandatory: </P>
+<OL>
+  <LI>
+  <P><STRONG>NAME</STRONG> -- The name of the file that contains the =
+actual body=20
+  data. </P>
+  <LI>
+  <P><STRONG>SITE</STRONG> -- A machine from which the file may be =
+obtained,=20
+  using the given protocol. This must be a fully qualified domain name, =
+not a=20
+  nickname. </P>
+  <LI>
+  <P>Before any data are retrieved, using FTP, the user will generally =
+need to=20
+  be asked to provide a login id and a password for the machine named by =
+the=20
+  site parameter. For security reasons, such an id and password are not=20
+  specified as content-type parameters, but must be obtained from the =
+user.=20
+  </P></LI></OL>
+<P>In addition, the following parameters are optional: </P>
+<OL>
+  <LI>
+  <P><STRONG>DIRECTORY</STRONG> -- A directory from which the data named =
+by NAME=20
+  should be retrieved. </P>
+  <LI>
+  <P><STRONG>MODE</STRONG> -- A case-insensitive string indicating the =
+mode to=20
+  be used when retrieving the information. The valid values for =
+access-type=20
+  "TFTP" are "NETASCII", "OCTET", and "MAIL", as specified by the TFTP =
+protocol=20
+  [<A href=3D"http://ds.internic.net/rfc/rfc783.txt">RFC-783</A>]. The =
+valid=20
+  values for access-type "FTP" are "ASCII", "EBCDIC", "IMAGE", and =
+"LOCALn"=20
+  where "n" is a decimal integer, typically 8. These correspond to the=20
+  representation types "A" "E" "I" and "L n" as specified by the FTP =
+protocol=20
+  [<A href=3D"http://ds.internic.net/rfc/rfc959.txt">RFC-959</A>]. Note =
+that=20
+  "BINARY" and "TENEX" are not valid values for MODE and that "OCTET" or =
+"IMAGE"=20
+  or "LOCAL8" should be used instead. IF MODE is not specified, the =
+default=20
+  value is "NETASCII" for TFTP and "ASCII" otherwise. </P></LI></OL>
+<H4><A name=3D5.2.3.3>5.2.3.3. The 'anon-ftp' Access-Type </A></H4>
+<P>The "anon-ftp" access-type is identical to the "ftp" access type, =
+except that=20
+the user need not be asked to provide a name and password for the =
+specified=20
+site. Instead, the ftp protocol will be used with login "anonymous" and =
+a=20
+password that corresponds to the user's mail address. </P>
+<H4><A name=3D5.2.3.4>5.2.3.4. The 'local-file' Access-Type </A></H4>
+<P>An access-type of "local-file" indicates that the actual body is =
+accessible=20
+as a file on the local machine. Two additional parameters are defined =
+for this=20
+access type: </P>
+<OL>
+  <LI>
+  <P><STRONG>NAME</STRONG> -- The name of the file that contains the =
+actual body=20
+  data. This parameter is mandatory for the "local-file" access-type. =
+</P>
+  <LI>
+  <P><STRONG>SITE</STRONG> -- A domain specifier for a machine or set of =
+
+  machines that are known to have access to the data file. This optional =
+
+  parameter is used to describe the locality of reference for the data, =
+that is,=20
+  the site or sites at which the file is expected to be visible. =
+Asterisks may=20
+  be used for wildcard matching to a part of a domain name, such as=20
+  "*.bellcore.com", to indicate a set of machines on which the data =
+should be=20
+  directly visible, while a single asterisk may be used to indicate a =
+file that=20
+  is expected to be universally available, e.g., via a global file =
+system.=20
+  </P></LI></OL>
+<H4><A name=3D5.2.3.5>5.2.3.5. The 'mail-server' Access-Type </A></H4>
+<P>The "mail-server" access-type indicates that the actual body is =
+available=20
+from a mail server. Two additional parameters are defined for this =
+access-type:=20
+</P>
+<OL>
+  <LI>
+  <P><STRONG>SERVER</STRONG> -- The addr-spec of the mail server from =
+which the=20
+  actual body data can be obtained. This parameter is mandatory for the=20
+  "mail-server" access-type. </P>
+  <LI>
+  <P><STRONG>SUBJECT</STRONG> -- The subject that is to be used in the =
+mail that=20
+  is sent to obtain the data. Note that keying mail servers on Subject =
+lines is=20
+  NOT recommended, but such mail servers are known to exist. This is an =
+optional=20
+  parameter. </P></LI></OL>
+<P>Because mail servers accept a variety of syntaxes, some of which is=20
+multiline, the full command to be sent to a mail server is not included =
+as a=20
+parameter in the content-type header field. Instead, it is provided as =
+the=20
+"phantom body" when the media type is "message/external-body" and the=20
+access-type is mail-server. </P>
+<P>Note that MIME does not define a mail server syntax. Rather, it =
+allows the=20
+inclusion of arbitrary mail server commands in the phantom body. =
+Implementations=20
+must include the phantom body in the body of the message it sends to the =
+mail=20
+server address to retrieve the relevant data. </P>
+<P>Unlike other access-types, mail-server access is asynchronous and =
+will happen=20
+at an unpredictable time in the future. For this reason, it is important =
+that=20
+there be a mechanism by which the returned data can be matched up with =
+the=20
+original "message/external-body" entity. MIME mail servers must use the =
+same=20
+Content-ID field on the returned message that was used in the original=20
+"message/external-body" entities, to facilitate such matching. </P>
+<H4><A name=3D5.2.3.6>5.2.3.6. External-Body Security Issues </A></H4>
+<P>"Message/external-body" entities give rise to two important security =
+issues:=20
+</P>
+<OL>
+  <LI>
+  <P>Accessing data via a "message/external-body" reference effectively =
+results=20
+  in the message recipient performing an operation that was specified by =
+the=20
+  message originator. It is therefore possible for the message =
+originator to=20
+  trick a recipient into doing something they would not have done =
+otherwise. For=20
+  example, an originator could specify a action that attempts retrieval =
+of=20
+  material that the recipient is not authorized to obtain, causing the =
+recipient=20
+  to unwittingly violate some security policy. For this reason, user =
+agents=20
+  capable of resolving external references must always take steps to =
+describe=20
+  the action they are to take to the recipient and ask for explicit =
+permisssion=20
+  prior to performing it. </P>
+  <P>The 'mail-server' access-type is particularly vulnerable, in that =
+it causes=20
+  the recipient to send a new message whose contents are specified by =
+the=20
+  original message's originator. Given the potential for abuse, any such =
+request=20
+  messages that are constructed should contain a clear indication that =
+they were=20
+  generated automatically (e.g. in a Comments: header field) in an =
+attempt to=20
+  resolve a MIME "message/external-body" reference. </P>
+  <LI>
+  <P>MIME will sometimes be used in environments that provide some =
+guarantee of=20
+  message integrity and authenticity. If present, such guarantees may =
+apply only=20
+  to the actual direct content of messages -- they may or may not apply =
+to data=20
+  accessed through MIME's "message/external-body" mechanism. In =
+particular, it=20
+  may be possible to subvert certain access mechanisms even when the =
+messaging=20
+  system itself is secure. </P>
+  <P>It should be noted that this problem exists either with or without =
+the=20
+  availabilty of MIME mechanisms. A casual reference to an FTP site =
+containing a=20
+  document in the text of a secure message brings up similar issues -- =
+the only=20
+  difference is that MIME provides for automatic retrieval of such =
+material, and=20
+  users may place unwarranted trust is such automatic retrieval =
+mechanisms.=20
+  </P></LI></OL>
+<H4><A name=3D5.2.3.7>5.2.3.7. Examples and Further Explanations =
+</A></H4>
+<P>When the external-body mechanism is used in conjunction with the=20
+"multipart/alternative" media type it extends the functionality of=20
+"multipart/alternative" to include the case where the same entity is =
+provided in=20
+the same format but via different accces mechanisms. When this is done =
+the=20
+originator of the message must order the parts first in terms of =
+preferred=20
+formats and then by preferred access mechanisms. The recipient's viewer =
+should=20
+then evaluate the list both in terms of format and access mechanisms. =
+</P>
+<P>With the emerging possibility of very wide-area file systems, it =
+becomes very=20
+hard to know in advance the set of machines where a file will and will =
+not be=20
+accessible directly from the file system. Therefore it may make sense to =
+provide=20
+both a file name, to be tried directly, and the name of one or more =
+sites from=20
+which the file is known to be accessible. An implementation can try to =
+retrieve=20
+remote files using FTP or any other protocol, using anonymous file =
+retrieval or=20
+prompting the user for the necessary name and password. If an external =
+body is=20
+accessible via multiple mechanisms, the sender may include multiple =
+entities of=20
+type "message/external-body" within the body parts of an enclosing=20
+"multipart/alternative" entity. </P>
+<P>However, the external-body mechanism is not intended to be limited to =
+file=20
+retrieval, as shown by the mail-server access-type. Beyond this, one can =
+
+imagine, for example, using a video server for external references to =
+video=20
+clips. </P>
+<P>The embedded message header fields which appear in the body of the=20
+"message/external-body" data must be used to declare the media type of =
+the=20
+external body if it is anything other than plain US-ASCII text, since =
+the=20
+external body does not have a header section to declare its type. =
+Similarly, any=20
+Content-transfer-encoding other than "7bit" must also be declared here. =
+Thus a=20
+complete "message/external-body" message, referring to an object in =
+PostScript=20
+format, might look like this: </P><PRE>  From: Whomever
+  To: Someone
+  Date: Whenever
+  Subject: whatever
+  MIME-Version: 1.0
+  Message-ID: &lt;id1@host.com&gt;
+  Content-Type: multipart/alternative; boundary=3D42
+  Content-ID: &lt;id001@guppylake.bellcore.com&gt;
+
+  --42
+  Content-Type: message/external-body; name=3D"BodyFormats.ps";
+                site=3D"thumper.bellcore.com"; mode=3D"image";
+                access-type=3DANON-FTP; directory=3D"pub";
+                expiration=3D"Fri, 14 Jun 1991 19:13:14 -0400 (EDT)"
+
+  Content-type: application/postscript
+  Content-ID: &lt;id42@guppylake.bellcore.com&gt;
+
+  --42
+  Content-Type: message/external-body; access-type=3Dlocal-file;
+                name=3D"/u/nsb/writing/rfcs/RFC-MIME.ps";
+                site=3D"thumper.bellcore.com";
+                expiration=3D"Fri, 14 Jun 1991 19:13:14 -0400 (EDT)"
+
+  Content-type: application/postscript
+  Content-ID: &lt;id42@guppylake.bellcore.com&gt;
+
+  --42
+  Content-Type: message/external-body;
+                access-type=3Dmail-server
+                server=3D"listserv@bogus.bitnet";
+                expiration=3D"Fri, 14 Jun 1991 19:13:14 -0400 (EDT)"
+
+  Content-type: application/postscript
+  Content-ID: &lt;id42@guppylake.bellcore.com&gt;
+
+  get RFC-MIME.DOC
+
+  --42--
+
+</PRE>
+<P>Note that in the above examples, the default =
+Content-transfer-encoding of=20
+"7bit" is assumed for the external postscript data. </P>
+<P>Like the "message/partial" type, the "message/external-body" media =
+type is=20
+intended to be transparent, that is, to convey the data type in the =
+external=20
+body rather than to convey a message with a body of that type. Thus the =
+headers=20
+on the outer and inner parts must be merged using the same rules as for=20
+"message/partial". In particular, this means that the Content-type and =
+Subject=20
+fields are overridden, but the From field is preserved. </P>
+<P>Note that since the external bodies are not transported along with =
+the=20
+external body reference, they need not conform to transport limitations =
+that=20
+apply to the reference itself. In particular, Internet mail transports =
+may=20
+impose 7bit and line length limits, but these do not automatically apply =
+to=20
+binary external body references. Thus a Content-Transfer-Encoding is not =
+
+generally necessary, though it is permitted. </P>
+<P>Note that the body of a message of type "message/external-body" is =
+governed=20
+by the basic syntax for an <A =
+href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC=20
+822</A> message. In particular, anything before the first consecutive =
+pair of=20
+CRLFs is header information, while anything after it is body =
+information, which=20
+is ignored for most access-types. </P>
+<H4><A name=3D5.2.4>5.2.4. Other Message Subtypes </A></H4>
+<P>MIME implementations must in general treat unrecognized subtypes of =
+"message"=20
+as being equivalent to "application/octet-stream". </P>
+<P>Future subtypes of "message" intended for use with email should be =
+restricted=20
+to "7bit" encoding. A type other than "message" should be used if =
+restriction to=20
+"7bit" is not possible. </P>
+<H2><A name=3D6>6. Experimental Media Type Values </A></H2>
+<P>A media type value beginning with the characters "X-" is a private =
+value, to=20
+be used by consenting systems by mutual agreement. Any format without a =
+rigorous=20
+and public definition must be named with an "X-" prefix, and publicly =
+specified=20
+values shall never begin with "X-". (Older versions of the widely used =
+Andrew=20
+system use the "X-BE2" name, so new systems should probably choose a =
+different=20
+name.) </P>
+<P>In general, the use of "X-" top-level types is strongly discouraged.=20
+Implementors should invent subtypes of the existing types whenever =
+possible. In=20
+many cases, a subtype of "application" will be more appropriate than a =
+new=20
+top-level type. </P>
+<H2><A name=3D7>7. Summary </A></H2>
+<P>The five discrete media types provide provide a standardized =
+mechanism for=20
+tagging entities as "audio", "image", or several other kinds of data. =
+The=20
+composite "multipart" and "message" media types allow mixing and =
+hierarchical=20
+structuring of entities of different types in a single message. A =
+distinguished=20
+parameter syntax allows further specification of data format details,=20
+particularly the specification of alternate character sets. Additional =
+optional=20
+header fields provide mechanisms for certain extensions deemed desirable =
+by many=20
+implementors. Finally, a number of useful media types are defined for =
+general=20
+use by consenting user agents, notably "message/partial" and=20
+"message/external-body". </P>
+<H2><A name=3D8>8. Security Considerations </A></H2>
+<P>Security issues are discussed in the context of the =
+"application/postscript"=20
+type, the "message/external-body" type, and in <A=20
+href=3D"http://www.nacs.uci.edu/indiv/ehood/MIME/2048/rfc2048.html">RFC =
+2048</A>.=20
+Implementors should pay special attention to the security implications =
+of any=20
+media types that can cause the remote execution of any actions in the=20
+recipient's environment. In such cases, the discussion of the=20
+"application/postscript" type may serve as a model for considering other =
+media=20
+types with remote execution capabilities. </P>
+<H2><A name=3D9>9. Authors' Addresses </A></H2>
+<P>For more information, the authors of this document are best contacted =
+via=20
+Internet mail: </P>
+<P>Ned Freed Innosoft International, Inc. 1050 East Garvey Avenue South =
+West=20
+Covina, CA 91790 USA </P>
+<P>Phone: +1 818 919 3600 Fax: +1 818 919 3614 EMail: ned@innosoft.com =
+</P>
+<P>Nathaniel S. Borenstein First Virtual Holdings 25 Washington Avenue=20
+Morristown, NJ 07960 USA </P>
+<P>Phone: +1 201 540 8967 Fax: +1 201 993 3032 EMail: nsb@nsb.fv.com =
+</P>
+<P>MIME is a result of the work of the Internet Engineering Task Force =
+Working=20
+Group on <A href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC 822</A> =
+Extensions.=20
+The chairman of that group, Greg Vaudreuil, may be reached at: </P>
+<P>Gregory M. Vaudreuil Octel Network Services 17080 Dallas Parkway =
+Dallas, TX=20
+75248-1905 USA </P>
+<P>EMail: Greg.Vaudreuil@Octel.Com </P>
+<H2><A name=3DA>Appendix A -- Collected Grammar</A> </H2>
+<P>This appendix contains the complete BNF grammar for all the syntax =
+specified=20
+by this document. </P>
+<P>By itself, however, this grammar is incomplete. It refers by name to =
+several=20
+syntax rules that are defined by <A=20
+href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC 822</A>. Rather than =
+reproduce=20
+those definitions here, and risk unintentional differences between the =
+two, this=20
+document simply refers the reader to <A=20
+href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC 822</A> for the =
+remaining=20
+definitions. Wherever a term is undefined, it refers to the <A=20
+href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC 822</A> definition. =
+</P><PRE>     boundary :=3D 0*69&lt;bchars&gt; bcharsnospace
+
+     bchars :=3D bcharsnospace / " "
+
+     bcharsnospace :=3D DIGIT / ALPHA / "'" / "(" / ")" /
+                      "+" / "_" / "," / "-" / "." /
+                      "/" / ":" / "=3D" / "?"
+
+     body-part :=3D &lt;"message" as defined in <A =
+href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC 822</A>, with all
+                   header fields optional, not starting with the
+                   specified dash-boundary, and with the
+                   delimiter not occurring anywhere in the
+                   body part.  Note that the semantics of a
+                   part differ from the semantics of a message,
+                   as described in the text.&gt;
+
+     close-delimiter :=3D delimiter "--"
+
+     dash-boundary :=3D "--" boundary
+                      ; boundary taken from the value of
+                      ; boundary parameter of the
+                      ; Content-Type field.
+
+     delimiter :=3D CRLF dash-boundary
+
+     discard-text :=3D *(*text CRLF)
+                     ; May be ignored or discarded.
+
+     encapsulation :=3D delimiter transport-padding
+                      CRLF body-part
+
+     epilogue :=3D discard-text
+
+     multipart-body :=3D [preamble CRLF]
+                       dash-boundary transport-padding CRLF
+                       body-part *encapsulation
+                       close-delimiter transport-padding
+                       [CRLF epilogue]
+
+     preamble :=3D discard-text
+
+     transport-padding :=3D *LWSP-char
+                          ; Composers MUST NOT generate
+                          ; non-zero length transport
+                          ; padding, but receivers MUST
+                          ; be able to handle padding
+                          ; added by message transports.
+</PRE>
+<HR>
+
+<ADDRESS><SMALL>HTML version of RFC converted from text version by <A=20
+href=3D"http://www.oac.uci.edu/indiv/ehood/">Earl Hood</A>, <A=20
+href=3D"mailto:ehood@medusa.acs.uci.edu">ehood@medusa.acs.uci.edu</A><BR>=
+HTML Last=20
+Updated: 97/12/03 08:40:37<BR></SMALL></ADDRESS></BODY></HTML>
+
+------=_NextPart_000_000A_01C1DC9D.8578D7B0
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://www.oac.uci.edu/indiv/ehood/bg/cemstone.gif
+
+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
+
+------=_NextPart_000_000A_01C1DC9D.8578D7B0--

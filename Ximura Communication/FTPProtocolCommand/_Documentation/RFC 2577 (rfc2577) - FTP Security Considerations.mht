@@ -1,0 +1,573 @@
+From: <Saved by Microsoft Internet Explorer 5>
+Subject: RFC 2577 (rfc2577) - FTP Security Considerations
+Date: Thu, 25 Aug 2005 22:42:18 +0800
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	type="text/html";
+	boundary="----=_NextPart_000_0005_01C5A9C6.3FB914C0"
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2900.2527
+
+This is a multi-part message in MIME format.
+
+------=_NextPart_000_0005_01C5A9C6.3FB914C0
+Content-Type: text/html;
+	charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://www.faqs.org/rfcs/rfc2577.html
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>RFC 2577 (rfc2577) - FTP Security =
+Considerations</TITLE>
+<META http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dwindows-1252">
+<META content=3D"RFC 2577 - FTP Security Considerations" =
+name=3Ddescription>
+<SCRIPT language=3DJavaScript1.2>=0A=
+function erfc(s)=0A=
+{document.write("<A href=3D\"/rfccomment.php?rfcnum=3D"+s+"\" =
+target=3D\"_blank\" =
+onclick=3D\"window.open('/rfccomment.php?rfcnum=3D"+s+"','Popup','toolbar=
+=3Dno,location=3Dno,status=3Dno,menubar=3Dno,scrollbars=3Dyes,resizable=3D=
+yes,width=3D680,height=3D530,left=3D30,top=3D43'); return =
+false;\")>Comment on RFC "+s+"</A>\n");}=0A=
+//-->=0A=
+</SCRIPT>
+
+<META content=3D"MSHTML 7.00.5112.0" name=3DGENERATOR></HEAD>
+<BODY text=3D#000000 bgColor=3D#ffffff>
+<P align=3Dcenter><IMG height=3D62 alt=3D""=20
+src=3D"http://www.faqs.org/images/library.jpg" width=3D150 =
+align=3Dmiddle=20
+border=3D0></P>
+<H1 align=3Dcenter>RFC 2577 (RFC2577)</H1>
+<P align=3Dcenter>Internet RFC/STD/FYI/BCP Archives</P>
+<DIV align=3Dcenter>[ <A href=3D"http://www.faqs.org/rfcs/">RFC =
+Index</A> | <A=20
+href=3D"http://www.faqs.org/rfcs/rfcsearch.html">RFC Search</A> | <A=20
+href=3D"http://www.faqs.org/faqs/">Usenet FAQs</A> | <A=20
+href=3D"http://www.faqs.org/contrib/">Web FAQs</A> | <A=20
+href=3D"http://www.faqs.org/docs/">Documents</A> | <A=20
+href=3D"http://www.city-data.com/">Cities</A> ]=20
+<P><STRONG>Alternate Formats:</STRONG> <A=20
+href=3D"http://www.faqs.org/ftp/rfc/rfc2577.txt">rfc2577.txt</A> | <A=20
+href=3D"http://www.faqs.org/ftp/rfc/pdf/rfc2577.txt.pdf">rfc2577.txt.pdf<=
+/A></P></DIV>
+<P align=3Dcenter>
+<SCRIPT language=3DJavaScript><!--=0A=
+erfc("2577");=0A=
+// --></SCRIPT>
+</P>
+<H3 align=3Dcenter>RFC 2577 - FTP Security Considerations</H3>
+<HR noShade SIZE=3D2>
+<PRE>
+Network Working Group                                          M. Allman
+Request for Comments: 2577                  NASA Glenn/Sterling Software
+Category: Informational                                     S. Ostermann
+                                                         Ohio University
+                                                                May 1999
+
+                      FTP Security Considerations
+
+Status of this Memo
+
+   This memo provides information for the Internet community.  It does
+   not specify an Internet standard of any kind.  Distribution of this
+   memo is unlimited.
+
+Copyright Notice
+
+   Copyright (C) The Internet Society (1999).  All Rights Reserved.
+
+Abstract
+
+   The specification for the File Transfer Protocol (FTP) contains a
+   number of mechanisms that can be used to compromise network security.
+   The FTP specification allows a client to instruct a server to
+   transfer files to a third machine.  This third-party mechanism, known
+   as proxy FTP, causes a well known security problem.  The FTP
+   specification also allows an unlimited number of attempts at entering
+   a user's password.  This allows brute force "password guessing"
+   attacks.  This document provides suggestions for system
+   administrators and those implementing FTP servers that will decrease
+   the security problems associated with FTP.
+
+1   Introduction
+
+   The File Transfer Protocol specification (FTP) [PR85] provides a
+   mechanism that allows a client to establish an FTP control connection
+   and transfer a file between two FTP servers.  This "proxy FTP"
+   mechanism can be used to decrease the amount of traffic on the
+   network; the client instructs one server to transfer a file to
+   another server, rather than transferring the file from the first
+   server to the client and then from the client to the second server.
+   This is particularly useful when the client connects to the network
+   using a slow link (e.g., a modem).  While useful, proxy FTP provides
+   a security problem known as a "bounce attack" [CERT97:27].  In
+   addition to the bounce attack, FTP servers can be used by attackers
+   to guess passwords using brute force.
+
+   This document does not contain a discussion of FTP when used in
+   conjunction with strong security protocols, such as IP Security.
+   These security concerns should be documented, however they are out of
+   the scope of this document.
+
+   This paper provides information for FTP server implementers and
+   system administrators, as follows.  Section 2 describes the FTP
+   "bounce attack".  Section 3 provides suggestions for minimizing the
+   bounce attack.  Section 4 provides suggestions for servers which
+   limit access based on network address.  Section 5 provides
+   recommendations for limiting brute force "password guessing" by
+   clients.  Next, section 6 provides a brief discussion of mechanisms
+   to improve privacy.  Section 7 provides a mechanism to prevent user
+   identity guessing.  Section 8 discusses the practice of port
+   stealing.  Finally, section 9 provides an overview of other FTP
+   security issues related to software bugs rather than protocol issues.
+
+2   The Bounce Attack
+
+   The version of FTP specified in the standard [PR85] provides a method
+   for attacking well known network servers, while making the
+   perpetrators difficult to track down.  The attack involves sending an
+   FTP "PORT" command to an FTP server containing the network address
+   and the port number of the machine and service being attacked.  At
+   this point, the original client can instruct the FTP server to send a
+   file to the service being attacked.  Such a file would contain
+   commands relevant to the service being attacked (SMTP, NNTP, etc.).
+   Instructing a third party to connect to the service, rather than
+   connecting directly, makes tracking down the perpetrator difficult
+   and can circumvent network-address-based access restrictions.
+
+   As an example, a client uploads a file containing SMTP commands to an
+   FTP server.  Then, using an appropriate PORT command, the client
+   instructs the server to open a connection to a third machine's SMTP
+   port.  Finally, the client instructs the server to transfer the
+   uploaded file containing SMTP commands to the third machine.  This
+   may allow the client to forge mail on the third machine without
+   making a direct connection.  This makes it difficult to track
+   attackers.
+
+3   Protecting Against the Bounce Attack
+
+   The original FTP specification [PR85] assumes that data connections
+   will be made using the Transmission Control Protocol (TCP) [Pos81].
+   TCP port numbers in the range 0 - 1023 are reserved for well known
+   services such as mail, network news and FTP control connections
+   [RP94].  The FTP specification makes no restrictions on the TCP port
+   number used for the data connection.  Therefore, using proxy FTP,
+
+   clients have the ability to tell the server to attack a well known
+   service on any machine.
+
+   To avoid such bounce attacks, it is suggested that servers not open
+   data connections to TCP ports less than 1024.  If a server receives a
+   PORT command containing a TCP port number less than 1024, the
+   suggested response is 504 (defined as "Command not implemented for
+   that parameter" by [PR85]).  Note that this still leaves non-well
+   known servers (those running on ports greater than 1023) vulnerable
+   to bounce attacks.
+
+   Several proposals (e.g., [AOM98] and [Pis94]) provide a mechanism
+   that would allow data connections to be made using a transport
+   protocol other than TCP.  Similar precautions should be taken to
+   protect well known services when using these protocols.
+
+   Also note that the bounce attack generally requires that a
+   perpetrator be able to upload a file to an FTP server and later
+   download it to the service being attacked.  Using proper file
+   protections will prevent this behavior.  However, attackers can also
+   attack services by sending random data from a remote FTP server which
+   may cause problems for some services.
+
+   Disabling the PORT command is also an option for protecting against
+   the bounce attack.  Most file transfers can be made using only the
+   PASV command [Bel94].  The disadvantage of disabling the PORT command
+   is that one loses the ability to use proxy FTP, but proxy FTP may not
+   be necessary in a particular environment.
+
+4   Restricted Access
+
+   For some FTP servers, it is desirable to restrict access based on
+   network address.  For example, a server might want to restrict access
+   to certain files from certain places (e.g., a certain file should not
+   be transferred out of an organization).  In such a situation, the
+   server should confirm that the network address of the remote hosts on
+   both the control connection and the data connection are within the
+   organization before sending a restricted file.  By checking both
+   connections, a server is protected against the case when the control
+   connection is established with a trusted host and the data connection
+   is not.  Likewise, the client should verify the IP address of the
+   remote host after accepting a connection on a port opened in listen
+   mode to verify that the connection was made by the expected server.
+
+   Note that restricting access based on network address leaves the FTP
+   server vulnerable to "spoof" attacks.  In a spoof attack, for
+   example, an attacking machine could assume the host address of
+   another machine inside an organization and download files that are
+
+   not accessible from outside the organization.  Whenever possible,
+   secure authentication mechanisms should be used, such as those
+   outlined in [HL97].
+
+5   Protecting Passwords
+
+   To minimize the risk of brute force password guessing through the FTP
+   server, it is suggested that servers limit the number of attempts
+   that can be made at sending a correct password.  After a small number
+   of attempts (3-5), the server should close the control connection
+   with the client.  Before closing the control connection the server
+   must send a return code of 421 ("Service not available, closing
+   control connection." [PR85]) to the client.  In addition, it is
+   suggested that the server impose a 5 second delay before replying to
+   an invalid "PASS" command to diminish the efficiency of a brute force
+   attack.  If available, mechanisms already provided by the target
+   operating system should be used to implement the above suggestions.
+
+   An intruder can subvert the above mechanisms by establishing
+   multiple, parallel control connections to a server.  To combat the
+   use of multiple concurrent connections, the server could either limit
+   the total number of control connections possible or attempt to detect
+   suspicious activity across sessions and refuse further connections
+   from the site.  However, both of these mechanisms open the door to
+   "denial of service" attacks, in which an attacker purposely initiates
+   the attack to disable access by a valid user.
+
+   Standard FTP [PR85] sends passwords in clear text using the "PASS"
+   command.  It is suggested that FTP clients and servers use alternate
+   authentication mechanisms that are not subject to eavesdropping (such
+   as the mechanisms being developed by the IETF Common Authentication
+   Technology Working Group [HL97]).
+
+6   Privacy
+
+   All data and control information (including passwords) is sent across
+   the network in unencrypted form by standard FTP [PR85].  To guarantee
+   the privacy of the information FTP transmits, a strong encryption
+   scheme should be used whenever possible.  One such mechanism is
+   defined in [HL97].
+
+7   Protecting Usernames
+
+   Standard FTP [PR85] specifies a 530 response to the USER command when
+   the username is rejected.  If the username is valid and a password is
+   required FTP returns a 331 response instead.  In order to prevent a
+   malicious client from determining valid usernames on a server, it is
+   suggested that a server always return 331 to the USER command and
+
+   then reject the combination of username and password for an invalid
+   username.
+
+8   Port Stealing
+
+   Many operating systems assign dynamic port numbers in increasing
+   order.  By making a legitimate transfer, an attacker can observe the
+   current port number allocated by the server and "guess" the next one
+   that will be used.  The attacker can make a connection to this port,
+   thus denying another legitimate client the ability to make a
+   transfer.  Alternatively, the attacker can steal a file meant for a
+   legitimate user.  In addition, an attacker can insert a forged file
+   into a data stream thought to come from an authenticated client.
+   This problem can be mitigated by making FTP clients and servers use
+   random local port numbers for data connections, either by requesting
+   random ports from the operating system or using system dependent
+   mechanisms.
+
+9   Software-Base Security Problems
+
+   The emphasis in this document is on protocol-related security issues.
+   There are a number of documented FTP security-related problems that
+   are due to poor implementation as well.  Although the details of
+   these types of problems are beyond the scope of this document, it
+   should be pointed out that the following FTP features has been abused
+   in the past and should be treated with great care by future
+   implementers:
+
+   Anonymous FTP
+
+      Anonymous FTP refers to the ability of a client to connect to an
+      FTP server with minimal authentication and gain access to public
+      files.  Security problems arise when such a user can read all
+      files on the system or can create files. [CERT92:09] [CERT93:06]
+
+   Remote Command Execution
+
+      An optional FTP extension, "SITE EXEC", allows clients to execute
+      arbitrary commands on the server.  This feature should obviously
+      be implemented with great care.  There are several documented
+      cases of the FTP "SITE EXEC" command being used to subvert server
+      security [CERT94:08] [CERT95:16]
+
+   Debug Code
+
+      Several previous security compromises related to FTP can be
+      attributed to software that was installed with debugging features
+      enabled [CERT88:01].
+
+   This document recommends that implementors of FTP servers with these
+   capabilities review all of the CERT advisories for attacks on these
+   or similar mechanisms before releasing their software.
+
+10  Conclusion
+
+   Using the above suggestions can decrease the security problems
+   associated with FTP servers without eliminating functionality.
+
+11  Security Considerations
+
+   Security issues are discussed throughout this memo.
+
+Acknowledgments
+
+   We would like to thank Alex Belits, Jim Bound, William Curtin, Robert
+   Elz, Paul Hethmon, Alun Jones and Stephen Tihor for their helpful
+   comments on this paper.  Also, we thank the FTPEXT WG members who
+   gave many useful suggestions at the Memphis IETF meeting.
+
+References
+
+   [AOM98]     Allman, M., Ostermann, S. and C. Metz, "FTP Extensions
+               for IPv6 and NATs", <A =
+href=3D"http://www.faqs.org/rfcs/rfc2428.html">RFC 2428</A>, September =
+1998.
+
+   [Bel94]     Bellovin. S., "Firewall-Friendly FTP", <A =
+href=3D"http://www.faqs.org/rfcs/rfc1579.html">RFC 1579</A>, February
+               1994.
+
+   [CERT88:01] CERT Advisory CA-88:01. ftpd Vulnerability. December,
+               1988 <A =
+href=3D"ftp://info.cert.org/pub/cert_advisories/">ftp://info.cert.org/pub=
+/cert_advisories/</A>
+
+   [CERT92:09] CERT Advisory CA-92:09. AIX Anonymous FTP Vulnerability.
+               April 27, 1992. <A =
+href=3D"ftp://info.cert.org/pub/cert_advisories/">ftp://info.cert.org/pub=
+/cert_advisories/</A>
+
+   [CERT93:06] CERT Advisory CA-93:06. Wuarchive ftpd Vulnerability.
+               September 19,1997
+               <A =
+href=3D"ftp://info.cert.org/pub/cert_advisories/">ftp://info.cert.org/pub=
+/cert_advisories/</A>
+
+   [CERT94:08] CERT Advisory CA-94:08. ftpd Vulnerabilities. September
+               23, 1997.  <A =
+href=3D"ftp://info.cert.org/pub/cert_advisories/">ftp://info.cert.org/pub=
+/cert_advisories/</A>
+
+   [CERT95:16] CERT Advisory CA-95:16. wu-ftpd Misconfiguration
+               Vulnerability.  September 23, 1997
+               <A =
+href=3D"ftp://info.cert.org/pub/cert_advisories/">ftp://info.cert.org/pub=
+/cert_advisories/</A>
+
+   [CERT97:27] CERT Advisory CA-97.27. FTP Bounce.  January 8, 1998.
+               <A =
+href=3D"ftp://info.cert.org/pub/cert_advisories/">ftp://info.cert.org/pub=
+/cert_advisories/</A>
+
+   [HL97]      Horowitz, M. and S. Lunt, "FTP Security Extensions", RFC
+               2228, October 1997.
+
+   [Pis94]     Piscitello, D., "FTP Operation Over Big Address Records
+               (FOOBAR), <A =
+href=3D"http://www.faqs.org/rfcs/rfc1639.html">RFC 1639</A>, June 1994.
+
+   [Pos81]     Postel, J., "Transmission Control Protocol", STD 7, RFC
+               793, September 1981.
+
+   [PR85]      Postel, J. and J. Reynolds, "File Transfer Protocol
+               (FTP)", STD 9, <A =
+href=3D"http://www.faqs.org/rfcs/rfc959.html">RFC 959</A>, October 1985.
+
+   [RP94]      Reynolds, J. and J. Postel, "Assigned Numbers", STD 2,
+               <A href=3D"http://www.faqs.org/rfcs/rfc1700.html">RFC =
+1700</A>, October 1994.  See also:
+               <A =
+href=3D"http://www.iana.org/numbers.html">http://www.iana.org/numbers.htm=
+l</A>
+
+Authors' Addresses
+
+   Mark Allman
+   NASA Glenn Research Center/Sterling Software
+   21000 Brookpark Rd.  MS 54-2
+   Cleveland, OH  44135
+
+   EMail: <A =
+href=3D"mailto:mallman@grc.nasa.gov">mallman@grc.nasa.gov</A>
+
+   Shawn Ostermann
+   School of Electrical Engineering and Computer Science
+   Ohio University
+   416 Morton Hall
+   Athens, OH  45701
+
+   EMail: <A =
+href=3D"mailto:ostermann@cs.ohiou.edu">ostermann@cs.ohiou.edu</A>
+
+Full Copyright Statement
+
+   Copyright (C) The Internet Society (1999).  All Rights Reserved.
+
+   This document and translations of it may be copied and furnished to
+   others, and derivative works that comment on or otherwise explain it
+   or assist in its implementation may be prepared, copied, published
+   and distributed, in whole or in part, without restriction of any
+   kind, provided that the above copyright notice and this paragraph are
+   included on all such copies and derivative works.  However, this
+   document itself may not be modified in any way, such as by removing
+   the copyright notice or references to the Internet Society or other
+   Internet organizations, except as needed for the purpose of
+   developing Internet standards in which case the procedures for
+   copyrights defined in the Internet Standards process must be
+   followed, or as required to translate it into languages other than
+   English.
+
+   The limited permissions granted above are perpetual and will not be
+   revoked by the Internet Society or its successors or assigns.
+
+   This document and the information contained herein is provided on an
+   "AS IS" basis and THE INTERNET SOCIETY AND THE INTERNET ENGINEERING
+   TASK FORCE DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING
+   BUT NOT LIMITED TO ANY WARRANTY THAT THE USE OF THE INFORMATION
+   HEREIN WILL NOT INFRINGE ANY RIGHTS OR ANY IMPLIED WARRANTIES OF
+   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.
+
+Acknowledgement
+
+   Funding for the RFC Editor function is currently provided by the
+   Internet Society.
+
+</PRE>
+<P align=3Dcenter>
+<SCRIPT language=3DJavaScript><!--=0A=
+erfc("2577");=0A=
+// --></SCRIPT>
+</P>&nbsp;<BR>
+<DIV align=3Dcenter>
+<TABLE cellSpacing=3D3 cellPadding=3D3 width=3D"100%" border=3D0>
+  <TBODY>
+  <TR>
+    <TD width=3D"45%">
+      <P align=3Dleft>Previous: <A=20
+      href=3D"http://www.faqs.org/rfcs/rfc2576.html">RFC 2576 - =
+Coexistence=20
+      between Version 1, Version 2, and Version 3 of the =
+Internet-standard=20
+      Network Management Framework</A> </P></TD>
+    <TD width=3D"10%">&nbsp;</TD>
+    <TD width=3D"45%">
+      <P align=3Dright>Next: <A =
+href=3D"http://www.faqs.org/rfcs/rfc2578.html">RFC=20
+      2578 - Structure of Management Information Version 2 (SMIv2)</A>=20
+  </P></TD></TR></TBODY></TABLE></DIV>
+<P align=3Dright>&nbsp;</P>
+<HR noShade SIZE=3D2>
+
+<DIV align=3Dcenter>[ <A href=3D"http://www.faqs.org/rfcs/">RFC =
+Index</A> | <A=20
+href=3D"http://www.faqs.org/rfcs/rfcsearch.html">RFC Search</A> | <A=20
+href=3D"http://www.faqs.org/faqs/">Usenet FAQs</A> | <A=20
+href=3D"http://www.faqs.org/contrib/">Web FAQs</A> | <A=20
+href=3D"http://www.faqs.org/docs/">Documents</A> | <A=20
+href=3D"http://www.city-data.com/">Cities</A> ]=20
+<P></P></DIV><SMALL>
+<ADDRESS>
+<P align=3Dcenter></P></ADDRESS></SMALL></BODY></HTML>
+
+------=_NextPart_000_0005_01C5A9C6.3FB914C0
+Content-Type: image/jpeg
+Content-Transfer-Encoding: base64
+Content-Location: http://www.faqs.org/images/library.jpg
+
+/9j/4AAQSkZJRgABAgEASABIAAD/7QE0UGhvdG9zaG9wIDMuMAA4QklNA+0AAAAAABAASAAAAAEA
+AQBIAAAAAQABOEJJTQPzAAAAAAAIAAAAAAAAAAA4QklNJxAAAAAAAAoAAQAAAAAAAAACOEJJTQP1
+AAAAAABIAC9mZgABAGxmZgAGAAAAAAABAC9mZgABAKGZmgAGAAAAAAABADIAAAABAFoAAAAGAAAA
+AAABADUAAAABAC0AAAAGAAAAAAABOEJJTQP4AAAAAABwAAD/////////////////////////////
+A+gAAAAA/////////////////////////////wPoAAAAAP////////////////////////////8D
+6AAAAAD/////////////////////////////A+gAADhCSU0EBgAAAAAAAgAE/+4ADkFkb2JlAGQA
+AAAAAf/bAIQABgQEBAUEBgUFBgkGBQYJCwgGBggLDAoKCwoKDBAMDAwMDAwQDAwMDAwMDAwMDAwM
+DAwMDAwMDAwMDAwMDAwMDAEHBwcNDA0YEBAYFA4ODhQUDg4ODhQRDAwMDAwREQwMDAwMDBEMDAwM
+DAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwM/8AAEQgAPgCWAwERAAIRAQMRAf/EAaIAAAAHAQEBAQEA
+AAAAAAAAAAQFAwIGAQAHCAkKCwEAAgIDAQEBAQEAAAAAAAAAAQACAwQFBgcICQoLEAACAQMDAgQC
+BgcDBAIGAnMBAgMRBAAFIRIxQVEGE2EicYEUMpGhBxWxQiPBUtHhMxZi8CRygvElQzRTkqKyY3PC
+NUQnk6OzNhdUZHTD0uIIJoMJChgZhJRFRqS0VtNVKBry4/PE1OT0ZXWFlaW1xdXl9WZ2hpamtsbW
+5vY3R1dnd4eXp7fH1+f3OEhYaHiImKi4yNjo+Ck5SVlpeYmZqbnJ2en5KjpKWmp6ipqqusra6voR
+AAICAQIDBQUEBQYECAMDbQEAAhEDBCESMUEFURNhIgZxgZEyobHwFMHR4SNCFVJicvEzJDRDghaS
+UyWiY7LCB3PSNeJEgxdUkwgJChgZJjZFGidkdFU38qOzwygp0+PzhJSktMTU5PRldYWVpbXF1eX1
+RlZmdoaWprbG1ub2R1dnd4eXp7fH1+f3OEhYaHiImKi4yNjo+DlJWWl5iZmpucnZ6fkqOkpaanqK
+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
+
+------=_NextPart_000_0005_01C5A9C6.3FB914C0--

@@ -1,0 +1,657 @@
+From: <Saved by Microsoft Internet Explorer 5>
+Subject: RFC 2387 (rfc2387) - The MIME Multipart/Related Content-type
+Date: Mon, 6 Oct 2003 19:21:46 +0800
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	boundary="----=_NextPart_000_0000_01C38C3F.1572A8D0";
+	type="text/html"
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2800.1165
+
+This is a multi-part message in MIME format.
+
+------=_NextPart_000_0000_01C38C3F.1572A8D0
+Content-Type: text/html;
+	charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://www.faqs.org/rfcs/rfc2387.html
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>RFC 2387 (rfc2387) - The MIME Multipart/Related =
+Content-type</TITLE>
+<META http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dwindows-1252">
+<META content=3D"RFC 2387 - The MIME Multipart/Related Content-type"=20
+name=3Ddescription>
+<META content=3DRFC2112 name=3Dobsoletes>
+<SCRIPT language=3DJavaScript1.2>=0A=
+function erfc(s)=0A=
+{document.write("<A href=3D\"/rfccomment.php?rfcnum=3D"+s+"\" =
+target=3D\"_blank\" =
+onclick=3D\"window.open('/rfccomment.php?rfcnum=3D"+s+"','Popup','toolbar=
+=3Dno,location=3Dno,status=3Dno,menubar=3Dno,scrollbars=3Dyes,resizable=3D=
+yes,width=3D680,height=3D530,left=3D30,top=3D43'); return =
+false;\")>Comment on RFC "+s+"</A>\n");}=0A=
+//-->=0A=
+</SCRIPT>
+
+<META content=3D"MSHTML 6.00.2800.1264" name=3DGENERATOR></HEAD>
+<BODY text=3D#000000 bgColor=3D#ffffff>
+<P align=3Dcenter><IMG height=3D62 alt=3D""=20
+src=3D"http://www.faqs.org/images/library.jpg" width=3D150 =
+align=3Dmiddle=20
+border=3D0></P>
+<H1 align=3Dcenter>RFC 2387 (RFC2387)</H1>
+<P align=3Dcenter>Internet RFC/STD/FYI/BCP Archives</P>
+<DIV align=3Dcenter>[ <A href=3D"http://www.faqs.org/rfcs/">RFC =
+Index</A> | <A=20
+href=3D"http://www.faqs.org/rfcs/rfcsearch.html">RFC Search</A> | <A=20
+href=3D"http://www.faqs.org/faqs/">Usenet FAQs</A> | <A=20
+href=3D"http://www.faqs.org/contrib/">Web FAQs</A> | <A=20
+href=3D"http://www.faqs.org/docs/">Documents</A> | <A=20
+href=3D"http://www.city-data.com/">Cities</A> ]=20
+<P><STRONG>Alternate Formats:</STRONG> <A=20
+href=3D"http://www.faqs.org/ftp/rfc/rfc2387.txt">rfc2387.txt</A> | <A=20
+href=3D"http://www.faqs.org/ftp/rfc/pdf/rfc2387.txt.pdf">rfc2387.txt.pdf<=
+/A></P></DIV>
+<P align=3Dcenter>
+<SCRIPT language=3DJavaScript><!--=0A=
+erfc("2387");=0A=
+// --></SCRIPT>
+</P>
+<H3 align=3Dcenter>RFC 2387 - The MIME Multipart/Related =
+Content-type</H3>
+<HR noShade SIZE=3D2>
+<PRE>
+Network Working Group                                       E. Levinson
+Request for Comments: 2387                                  August 1998
+Obsoletes: 2112
+Category: Standards Track
+
+                The MIME Multipart/Related Content-type
+
+Status of this Memo
+
+   This document specifies an Internet standards track protocol for the
+   Internet community, and requests discussion and suggestions for
+   improvements.  Please refer to the current edition of the "Internet
+   Official Protocol Standards" (STD 1) for the standardization state
+   and status of this protocol.  Distribution of this memo is unlimited.
+
+Copyright Notice
+
+   Copyright (C) The Internet Society (1998).  All Rights Reserved.
+
+Abstract
+
+   The Multipart/Related content-type provides a common mechanism for
+   representing objects that are aggregates of related MIME body parts.
+   This document defines the Multipart/Related content-type and provides
+   examples of its use.
+
+1.  Introduction
+
+   Several applications of MIME, including MIME-PEM, and MIME-Macintosh
+   and other proposals, require multiple body parts that make sense only
+   in the aggregate.  The present approach to these compound objects has
+   been to define specific multipart subtypes for each new object.  In
+   keeping with the MIME philosophy of having one mechanism to achieve
+   the same goal for different purposes, this document describes a
+   single mechanism for such aggregate or compound objects.
+
+   The Multipart/Related content-type addresses the MIME representation
+   of compound objects.  The object is categorized by a "type"
+   parameter.  Additional parameters are provided to indicate a specific
+   starting body part or root and auxiliary information which may be
+   required when unpacking or processing the object.
+
+   Multipart/Related MIME entities may contain Content-Disposition
+   headers that provide suggestions for the storage and display of a
+   body part.  Multipart/Related processing takes precedence over
+   Content-Disposition; the interaction between them is discussed in
+   section 4.
+
+   Responsibility for the display or processing of a Multipart/Related's
+   constituent entities rests with the application that handles the
+   compound object.
+
+2.  Multipart/Related Registration Information
+
+   The following form is copied from <A =
+href=3D"http://www.faqs.org/rfcs/rfc1590.html">RFC 1590</A>, Appendix A.
+
+     To:  <A href=3D"mailto:IANA@isi.edu">IANA@isi.edu</A>
+     Subject:  Registration of new Media Type content-type/subtype
+
+     Media Type name:           Multipart
+
+     Media subtype name:        Related
+
+     Required parameters:       Type, a media type/subtype.
+
+     Optional parameters:       Start
+                                Start-info
+
+     Encoding considerations:   Multipart content-types cannot have
+                                encodings.
+
+     Security considerations:   Depends solely on the referenced type.
+
+     Published specification:   RFC-REL (this document).
+
+     Person &amp; email address to contact for further information:
+                                Edward Levinson
+                                47 Clive Street
+                                Metuchen, NJ  08840-1060
+                                +1 908 494 1606
+                                <A =
+href=3D"mailto:XIson@cnj.digex.net">XIson@cnj.digex.net</A>
+
+3.  Intended usage
+
+   The Multipart/Related media type is intended for compound objects
+   consisting of several inter-related body parts.  For a
+   Multipart/Related object, proper display cannot be achieved by
+   individually displaying the constituent body parts.  The content-type
+   of the Multipart/Related object is specified by the type parameter.
+   The "start" parameter, if given, points, via a content-ID, to the
+   body part that contains the object root.  The default root is the
+   first body part within the Multipart/Related body.
+
+   The relationships among the body parts of a compound object
+   distinguishes it from other object types.  These relationships are
+   often represented by links internal to the object's components that
+
+   reference the other components.  Within a single operating
+   environment the links are often file names, such links may be
+   represented within a MIME message using content-IDs or the value of
+   some other "Content-" headers.
+
+3.1.  The Type Parameter
+
+   The type parameter must be specified and its value is the MIME media
+   type of the "root" body part.  It permits a MIME user agent to
+   determine the content-type without reference to the enclosed body
+   part.  If the value of the type parameter and the root body part's
+   content-type differ then the User Agent's behavior is undefined.
+
+3.2.  The Start Parameter
+
+   The start parameter, if given, is the content-ID of the compound
+   object's "root".  If not present the "root" is the first body part in
+   the Multipart/Related entity.  The "root" is the element the
+   applications processes first.
+
+3.3.  The Start-Info Parameter
+
+   Additional information can be provided to an application by the
+   start-info parameter.  It contains either a string or points, via a
+   content-ID, to another MIME entity in the message.  A typical use
+   might be to provide additional command line parameters or a MIME
+   entity giving auxiliary information for processing the compound
+   object.
+
+   Applications that use Multipart/Related must specify the
+   interpretation of start-info.  User Agents shall provide the
+   parameter's value to the processing application.  Processes can
+   distinguish a start-info reference from a token or quoted-string by
+   examining the first non-white-space character, "&lt;" indicates a
+   reference.
+
+3.4.  Syntax
+
+     related-param   :=3D [ ";" "start" "=3D" cid ]
+                        [ ";" "start-info"  "=3D"
+                           ( cid-list / value ) ]
+                        [ ";" "type"  "=3D" type "/" subtype ]
+                        ; order independent
+
+     cid-list        :=3D cid cid-list
+
+     cid             :=3D msg-id     ; c.f. [822]
+
+     value           :=3D token / quoted-string    ; c.f. [MIME]
+                           ; value cannot begin with "&lt;"
+
+   Note that the parameter values will usually require quoting.  Msg-id
+   contains the special characters "&lt;", "&gt;", "@", and perhaps =
+other
+   special characters.  If msg-id contains quoted-strings, those quote
+   marks must be escaped.  Similarly, the type parameter contains the
+   special character "/".
+
+4.  Handling Content-Disposition Headers
+
+   Content-Disposition Headers [DISP] suggest presentation styles for
+   MIME body parts.  [DISP] describes two presentation styles, called
+   the disposition type, INLINE and ATTACHMENT.  These, used within a
+   multipart entity, allow the sender to suggest presentation
+   information.  [DISP] also provides for an optional storage (file)
+   name.  Content-Disposition headers could appear in one or more body
+   parts contained within a Multipart/Related entity.
+
+   Using Content-Disposition headers in addition to Multipart/Related
+   provides presentation information to User Agents that do not
+   recognize Multipart/Related.  They will treat the multipart as
+   Multipart/Mixed and they may find the Content-Disposition information
+   useful.
+
+   With Multipart/Related however, the application processing the
+   compound object determines the presentation style for all the
+   contained parts.  In that context the Content-Disposition header
+   information is redundant or even misleading.  Hence, User Agents that
+   understand Multipart/Related shall ignore the disposition type within
+   a Multipart/Related body part.
+
+   It may be possible for a User Agent capable of handling both
+   Multipart/Related and Content-Disposition headers to provide the
+   invoked application the Content-Disposition header's optional
+   filename parameter to the Multipart/Related.  The use of that
+   information will depend on the specific application and should be
+   specified when describing the handling of the corresponding compound
+   object.  Such descriptions would be appropriate in an RFC registering
+   that object's media type.
+
+5.  Examples
+
+5.1 Application/X-FixedRecord
+
+   The X-FixedRecord content-type consists of one or more octet-streams
+   and a list of the lengths of each record.  The root, which lists the
+   record lengths of each record within the streams.  The record length
+
+   list, type Application/X-FixedRecord, consists of a set of INTEGERs
+   in ASCII format, one per line.  Each INTEGER gives the number of
+   octets from the octet-stream body part that constitute the next
+   "record".
+
+   The example below, uses a single data block.
+
+     Content-Type: Multipart/Related; boundary=3Dexample-1
+             start=3D"&lt;<A =
+href=3D"mailto:950120.aaCC@XIson.com">950120.aaCC@XIson.com</A>&gt;";
+             type=3D"Application/X-FixedRecord"
+             start-info=3D"-o ps"
+
+     --example-1
+     Content-Type: Application/X-FixedRecord
+     Content-ID: &lt;<A =
+href=3D"mailto:950120.aaCC@XIson.com">950120.aaCC@XIson.com</A>&gt;
+
+     25
+     10
+     34
+     10
+     25
+     21
+     26
+     10
+     --example-1
+     Content-Type: Application/octet-stream
+     Content-Description: The fixed length records
+     Content-Transfer-Encoding: base64
+     Content-ID: &lt;<A =
+href=3D"mailto:950120.aaCB@XIson.com">950120.aaCB@XIson.com</A>&gt;
+
+     T2xkIE1hY0RvbmFsZCBoYWQgYSBmYXJtCkUgSS
+     BFIEkgTwpBbmQgb24gaGlzIGZhcm0gaGUgaGFk
+     IHNvbWUgZHVja3MKRSBJIEUgSSBPCldpdGggYS
+     BxdWFjayBxdWFjayBoZXJlLAphIHF1YWNrIHF1
+     YWNrIHRoZXJlLApldmVyeSB3aGVyZSBhIHF1YW
+     NrIHF1YWNrCkUgSSBFIEkgTwo=3D
+
+     --example-1--
+
+5.2 Text/X-Okie
+
+   The Text/X-Okie is an invented markup language permitting the
+   inclusion of images with text.  A feature of this example is the
+   inclusion of two additional body parts, both picture. They are
+   referred to internally by the encapsulated document via each
+   picture's body part content-ID.  Usage of "cid:", as in this example,
+   may be useful for a variety of compound objects.  It is not, however,
+   a part of the Multipart/Related specification.
+
+     Content-Type: Multipart/Related; boundary=3Dexample-2;
+             start=3D"&lt;<A =
+href=3D"mailto:950118.AEBH@XIson.com">950118.AEBH@XIson.com</A>&gt;"
+             type=3D"Text/x-Okie"
+
+     --example-2
+     Content-Type: Text/x-Okie; charset=3Diso-8859-1;
+             declaration=3D"&lt;<A =
+href=3D"mailto:950118.AEB0@XIson.com">950118.AEB0@XIson.com</A>&gt;"
+     Content-ID: &lt;<A =
+href=3D"mailto:950118.AEBH@XIson.com">950118.AEBH@XIson.com</A>&gt;
+     Content-Description: Document
+
+     {doc}
+     This picture was taken by an automatic camera mounted ...
+     {image file=3Dcid:<A =
+href=3D"mailto:950118.AECB@XIson.com">950118.AECB@XIson.com</A>}
+     {para}
+     Now this is an enlargement of the area ...
+     {image file=3Dcid:<A =
+href=3D"mailto:950118:AFDH@XIson.com">950118:AFDH@XIson.com</A>}
+     {/doc}
+     --example-2
+     Content-Type: image/jpeg
+     Content-ID: &lt;<A =
+href=3D"mailto:950118.AFDH@XIson.com">950118.AFDH@XIson.com</A>&gt;
+     Content-Transfer-Encoding: BASE64
+     Content-Description: Picture A
+
+     [encoded jpeg image]
+     --example-2
+     Content-Type: image/jpeg
+     Content-ID: &lt;<A =
+href=3D"mailto:950118.AECB@XIson.com">950118.AECB@XIson.com</A>&gt;
+     Content-Transfer-Encoding: BASE64
+     Content-Description: Picture B
+
+     [encoded jpeg image]
+     --example-2--
+
+5.3 Content-Disposition
+
+   In the above example each image body part could also have a Content-
+   Disposition header.  For example,
+
+     --example-2
+     Content-Type: image/jpeg
+     Content-ID: &lt;<A =
+href=3D"mailto:950118.AECB@XIson.com">950118.AECB@XIson.com</A>&gt;
+     Content-Transfer-Encoding: BASE64
+     Content-Description: Picture B
+     Content-Disposition: INLINE
+
+     [encoded jpeg image]
+     --example-2--
+
+   User Agents that recognize Multipart/Related will ignore the
+   Content-Disposition header's disposition type.  Other User Agents
+   will process the Multipart/Related as Multipart/Mixed and may make
+   use of that header's information.
+
+6.  User Agent Requirements
+
+   User agents that do not recognize Multipart/Related shall, in
+   accordance with [MIME], treat the entire entity as Multipart/Mixed.
+   MIME User Agents that do recognize Multipart/Related entities but are
+   unable to process the given type should give the user the option of
+   suppressing the entire Multipart/Related body part shall be.
+
+   Existing MIME-capable mail user agents (MUAs) handle the existing
+   media types in a straightforward manner.  For discrete media types
+   (e.g. text, image, etc.) the body of the entity can be directly
+   passed to a display process.  Similarly the existing composite
+   subtypes can be reduced to handing one or more discrete types.
+   Handling Multipart/Related differs in that processing cannot be
+   reduced to handling the individual entities.
+
+   The following sections discuss what information the processing
+   application requires.
+
+   It is possible that an application specific "receiving agent" will
+   manipulate the entities for display prior to invoking actual
+   application process.  Okie, above, is an example of this; it may need
+   a receiving agent to parse the document and substitute local file
+   names for the originator's file names.  Other applications may just
+   require a table showing the correspondence between the local file
+   names and the originator's.  The receiving agent takes responsibility
+   for such processing.
+
+6.1 Data Requirements
+
+   MIME-capable mail user agents (MUAs) are required to provide the
+   application:
+
+   (a) the bodies of the MIME entities and the entity Content-* headers,
+
+   (b) the parameters of the Multipart/Related Content-type header, and
+
+   (c) the correspondence between each body's local file name, that
+       body's header data, and, if present, the body part's content-ID.
+
+6.2 Storing Multipart/Related Entities
+
+   The Multipart/Related media type will be used for objects that have
+   internal linkages between the body parts.  When the objects are
+   stored the linkages may require processing by the application or its
+   receiving agent.
+
+6.3 Recursion
+
+   MIME is a recursive structure.  Hence one must expect a
+   Multipart/Related entity to contain other Multipart/Related entities.
+   When a Multipart/Related entity is being processed for display or
+   storage, any enclosed Multipart/Related entities shall be processed
+   as though they were being stored.
+
+6.4 Configuration Considerations
+
+   It is suggested that MUAs that use configuration mechanisms, see
+   [CFG] for an example, refer to Multipart/Related as Multi-
+   part/Related/&lt;type&gt;, were &lt;type&gt; is the value of the =
+"type"
+   parameter.
+
+7.  Security Considerations
+
+   Security considerations relevant to Multipart/Related are identical
+   to those of the underlying content-type.
+
+8.  Acknowledgments
+
+   This proposal is the result of conversations the author has had with
+   many people.  In particular, Harald A. Alvestrand, James Clark,
+   Charles Goldfarb, Gary Houston, Ned Freed, Ray Moody, and Don
+   Stinchfield, provided both encouragement and invaluable help.  The
+   author, however, take full responsibility for all errors contained in
+   this document.
+
+9.  References
+
+   [822]       Crocker, D., "Standard for the Format of ARPA Internet
+               Text Messages", STD 11, <A =
+href=3D"http://www.faqs.org/rfcs/rfc822.html">RFC 822</A>, August 1982.
+
+   [CID]       Levinson, E., and J. Clark, "Message/External-Body
+               Content-ID Access Type",  <A =
+href=3D"http://www.faqs.org/rfcs/rfc1873.html">RFC 1873</A>, December =
+1995,
+               Levinson, E., "Message/External-Body Content-ID Access
+               Type", Work in Progress.
+
+   [CFG]       Borenstein, N., "A User Agent Configuration Mechanism For
+               Multimedia Mail Format Information", <A =
+href=3D"http://www.faqs.org/rfcs/rfc1524.html">RFC 1524</A>, September
+               1993.
+
+   [DISP]      Troost, R., and S. Dorner, "Communicating Presentation
+               Information in Internet Messages:  The Content-
+               Disposition Header", <A =
+href=3D"http://www.faqs.org/rfcs/rfc1806.html">RFC 1806</A>, June 1995.
+
+   [MIME]      Borenstein, N., and Freed, N., "Multipurpose Internet
+               Mail Extensions (MIME) Part One: Format of Internet
+               Message Bodies", <A =
+href=3D"http://www.faqs.org/rfcs/rfc2045.html">RFC 2045</A>, November =
+1996.
+
+9.  Author's Address
+
+   Edward Levinson
+   47 Clive Street
+   Metuchen, NJ  08840-1060
+   USA
+
+   Phone: +1 908 494 1606
+   EMail: <A href=3D"mailto:XIson@cnj.digex.com">XIson@cnj.digex.com</A>
+
+10.  Changes from previous draft (<A =
+href=3D"http://www.faqs.org/rfcs/rfc2112.html">RFC 2112</A>)
+
+   Corrected cid urls to conform to <A =
+href=3D"http://www.faqs.org/rfcs/rfc2111.html">RFC 2111</A>; the angle =
+brackets were
+   removed.
+
+11.  Full Copyright Statement
+
+   Copyright (C) The Internet Society (1998).  All Rights Reserved.
+
+   This document and translations of it may be copied and furnished to
+   others, and derivative works that comment on or otherwise explain it
+   or assist in its implementation may be prepared, copied, published
+   and distributed, in whole or in part, without restriction of any
+   kind, provided that the above copyright notice and this paragraph are
+   included on all such copies and derivative works.  However, this
+   document itself may not be modified in any way, such as by removing
+   the copyright notice or references to the Internet Society or other
+   Internet organizations, except as needed for the purpose of
+   developing Internet standards in which case the procedures for
+   copyrights defined in the Internet Standards process must be
+   followed, or as required to translate it into languages other than
+   English.
+
+   The limited permissions granted above are perpetual and will not be
+   revoked by the Internet Society or its successors or assigns.
+
+   This document and the information contained herein is provided on an
+   "AS IS" basis and THE INTERNET SOCIETY AND THE INTERNET ENGINEERING
+   TASK FORCE DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING
+   BUT NOT LIMITED TO ANY WARRANTY THAT THE USE OF THE INFORMATION
+   HEREIN WILL NOT INFRINGE ANY RIGHTS OR ANY IMPLIED WARRANTIES OF
+   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.
+
+</PRE>
+<P align=3Dcenter>
+<SCRIPT language=3DJavaScript><!--=0A=
+erfc("2387");=0A=
+// --></SCRIPT>
+</P>&nbsp;<BR>
+<DIV align=3Dcenter>
+<TABLE cellSpacing=3D3 cellPadding=3D3 width=3D"100%" border=3D0>
+  <TBODY>
+  <TR>
+    <TD width=3D"45%">
+      <P align=3Dleft>Previous: <A=20
+      href=3D"http://www.faqs.org/rfcs/rfc2386.html">RFC 2386 - A =
+Framework for=20
+      QoS-based Routing in the Internet</A> </P></TD>
+    <TD width=3D"10%">&nbsp;</TD>
+    <TD width=3D"45%">
+      <P align=3Dright>Next: <A =
+href=3D"http://www.faqs.org/rfcs/rfc2388.html">RFC=20
+      2388 - Returning Values from Forms: multipart/form-data</A>=20
+  </P></TD></TR></TBODY></TABLE></DIV>
+<P align=3Dright>&nbsp;</P>
+<HR noShade SIZE=3D2>
+
+<DIV align=3Dcenter>[ <A href=3D"http://www.faqs.org/rfcs/">RFC =
+Index</A> | <A=20
+href=3D"http://www.faqs.org/rfcs/rfcsearch.html">RFC Search</A> | <A=20
+href=3D"http://www.faqs.org/faqs/">Usenet FAQs</A> | <A=20
+href=3D"http://www.faqs.org/contrib/">Web FAQs</A> | <A=20
+href=3D"http://www.faqs.org/docs/">Documents</A> | <A=20
+href=3D"http://www.city-data.com/">Cities</A> ]=20
+<P></P></DIV><SMALL>
+<ADDRESS>
+<P align=3Dcenter></P></ADDRESS></SMALL></BODY></HTML>
+
+------=_NextPart_000_0000_01C38C3F.1572A8D0
+Content-Type: image/jpeg
+Content-Transfer-Encoding: base64
+Content-Location: http://www.faqs.org/images/library.jpg
+
+/9j/4AAQSkZJRgABAgEASABIAAD/7QE0UGhvdG9zaG9wIDMuMAA4QklNA+0AAAAAABAASAAAAAEA
+AQBIAAAAAQABOEJJTQPzAAAAAAAIAAAAAAAAAAA4QklNJxAAAAAAAAoAAQAAAAAAAAACOEJJTQP1
+AAAAAABIAC9mZgABAGxmZgAGAAAAAAABAC9mZgABAKGZmgAGAAAAAAABADIAAAABAFoAAAAGAAAA
+AAABADUAAAABAC0AAAAGAAAAAAABOEJJTQP4AAAAAABwAAD/////////////////////////////
+A+gAAAAA/////////////////////////////wPoAAAAAP////////////////////////////8D
+6AAAAAD/////////////////////////////A+gAADhCSU0EBgAAAAAAAgAE/+4ADkFkb2JlAGQA
+AAAAAf/bAIQABgQEBAUEBgUFBgkGBQYJCwgGBggLDAoKCwoKDBAMDAwMDAwQDAwMDAwMDAwMDAwM
+DAwMDAwMDAwMDAwMDAwMDAEHBwcNDA0YEBAYFA4ODhQUDg4ODhQRDAwMDAwREQwMDAwMDBEMDAwM
+DAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwM/8AAEQgAPgCWAwERAAIRAQMRAf/EAaIAAAAHAQEBAQEA
+AAAAAAAAAAQFAwIGAQAHCAkKCwEAAgIDAQEBAQEAAAAAAAAAAQACAwQFBgcICQoLEAACAQMDAgQC
+BgcDBAIGAnMBAgMRBAAFIRIxQVEGE2EicYEUMpGhBxWxQiPBUtHhMxZi8CRygvElQzRTkqKyY3PC
+NUQnk6OzNhdUZHTD0uIIJoMJChgZhJRFRqS0VtNVKBry4/PE1OT0ZXWFlaW1xdXl9WZ2hpamtsbW
+5vY3R1dnd4eXp7fH1+f3OEhYaHiImKi4yNjo+Ck5SVlpeYmZqbnJ2en5KjpKWmp6ipqqusra6voR
+AAICAQIDBQUEBQYECAMDbQEAAhEDBCESMUEFURNhIgZxgZEyobHwFMHR4SNCFVJicvEzJDRDghaS
+UyWiY7LCB3PSNeJEgxdUkwgJChgZJjZFGidkdFU38qOzwygp0+PzhJSktMTU5PRldYWVpbXF1eX1
+RlZmdoaWprbG1ub2R1dnd4eXp7fH1+f3OEhYaHiImKi4yNjo+DlJWWl5iZmpucnZ6fkqOkpaanqK
+mqq6ytrq+v/dAAQAE//aAAwDAQACEQMRAD8AkH5redfNOk+e9Ss7DVpLK1jihkRS5Kqzsqk8eQ2p
+/LiqAuvzJ8+2nlW216yvOOpR3JR7e5LvC0fIAxspJ8ftZGcuFlCPEzjyT/zkNpmpWls3mrTp/L0l
+wfThvZVJspXB40Wb9k1H2XwiVhZQMTu9btrq2uoEntpUmgkFY5Y2DKR4gjCxeXfmv5h1bRnlubC5
+khKywxbM5QB4mIAVTT4n44q89vvzG/MC1M6W+oS3FzaEK8YBKTN6j8/RH2mVYwnxfsSfC2Ksp8ne
+avNepatH9d1SaS2KXRktgAqho5lSOrABkPA/YOKsy/K3zyNefW9Guiy6poN7JC4c1aS3cloZRXcq
+RVf9jirPcVdiqXeYtd07QNDvdZ1GVYbOxiaaV2IGyjoK92Pwrirw1fzK853mk6VqlsZoY9UtZrpg
+iNKI3ec/a8Fgi/YH2sVQdz+YH5opcCOT1UgaMgyiN/gagYP1PwkNT/WXFUfoXm/zzc62lvqUsyWS
+zNbrwEqtKeJZJuXLj6Q4/H/rJir32M1RCepA/ViqB13zHoeg2T3usX0NjbIKmSZwtaeAO5+jFXh3
+nj/nKF0s5h5I0W4v0SqtrFxGyWqduQ2+Ie/2cEJRMhGxxS+lkYEcwxvUPO/5i2ZSXUddkEnowTXk
+dvyC+pNy2h3FRXhyT+TlhYr/AC/+YPnWfRPNE0uoXMl5Z2ts8EZd+MXO7gQ8Ty5cmRmY/wCS2Kv/
+0J/5xhhfzlqRkjRjzUVZQxp6a+I6Yqw78yZbaHy/H60scCtPGA8hCLy5g9dgDtleSJIbMcgLvuTS
+/t9H1b8ur2OVYb61V5JwoYOnJAWRvhPjlZySxmBjzObHH/NlLhkzz1Ijf+D/AHLFfKNr5z8rfVpP
+KevNGjBGuNOvg0tpIHj9X4VBJi/l+HLs2WtTPH/N45Q/zG3JhBx45AUZgf6Z6b5a8233muzm1XUL
+JLK59X0HiQ842MIA5oT+yxOTMSOf44nFnDhJCcgjbYV33p44GK9DRhTuflirxTT/ADJc+W/zXvvM
+thKWtra5FprlstT6lq7EN/s4G/ejEy5D3tgjcCX1fbzxTwxzwuJIZVDxyLuGVhVSPmDi1rzir59/
+5yE81JrerW/ke2Y/ULNWvdccGiu6RF4IKg/s/wB7IP8AUwgXY/os4x2vomn5Yy/86DovBqqYDQg7
+H4jkIfSET5sm9Rv5jkmKjcTCOCR2JKRqzsOuyip+e2KsQ80/nx5pvrSRPKultpdksdf0vqK/vGFD
+T0bevt9pzhwmM5RF7Tn4f+c3DBKpH+YOJKX8qx3GiaZqnmSWTWvMUtwouL65dpFWpI4wxn4EXj/k
+5ja6fBIRHIzMEQjv/mse8zx2lp5Y1mwEkdspV4raOaRUqBICBVyOwzDxQI1eOVemE/V/pXP10gYA
+eQ+5lem3llf6TBd2rrPbyInpTAAghVC1FfcZtHVonSQBb62QAK2sVduv+lw9cVf/0Z/5wb/nctT8
+fUX/AJNrirB/zW06yv8AyVerdIXECCaEgkcZFcKDt1+13y3DG5gILCovyogsZlGi6vfWjrCZZ2WR
+eJUKK/BsDUt9nNPptbOY4iB6b/2MnYHSx8Lj3tONXg/MfyjNp7eva+ZLG8Xkkrxm2lRgnEIxBK1K
+n4P9XNhjxDKDl7oGUuL+ZNoiZ3GI3qXDFn35U30915W5T2U1hNHcSRvbz05VG5II6rvtls52fhH/
+AHLVkJJN87P3szByLBejfEPnir5m8xvqOjec9b1i0VruwuNRli1HTwORoByEi08PDIDcS8vT/wAr
+G6Ioiv6z6P8AyE80w33luHSzdrcRxIZdKYsTI1sGKshr3gf4f9XGJ6MJgXbPPNnmCLRNFlvOSC5c
+iGxjkrxkuHqI0PHfrk2ID4n1/Udb8w3FzbWcskxSSV9a1k7F3kY81U/tdeO3+rlcpcPr8uByAOIc
+I5c30H+XlrDZeStJs4a+lbxemletAx65Y4zICcVUbmZIraaR6lEjdmAFSQFJNBieSh4NqPmTXtQj
+k0zTPLd080cPqSfXHW2/dkM4YKTypxbxyrR4DjIP+2+JD+twhzsuaR45AemcXNH+beuxxWmo6omk
+WHGqQWaD927j92rv1q3scxtRq4AGdcQgeJh+WIgJE/Urecfyb8vWNjaX31m6uruOB7m9ku5WmEpU
+KpVRtxHJuWXyyHhBHUcTHHCJiSdzYizLyxFDb+WbKCFBHFHEqog6AU98sxH0hqygCRpM9JP+i61/
+zCxf9RcOTa3/0p15zcDzpqntIn/JtcVYN+aN9Pb+VJVhtDei4KwzRK3BgjMDyDUPceGSjk4CCnhv
+ZjieePMUOjjW7rypdjTZozarcwyxyJVyF22DdV8MwdL2cAOCG5lf+zLl5NQYw4JDukv1r827DXrH
+TrRNG1OB4GQqfR9UOI68qcDmZhHh454zz8M4Zf0WuAMZxkQfq44vTPy61q21Xy99YtlmREnkjZZ4
+zG4Ybn4T88iI7k+7/cxa8puRLKQ2Sa16tuMVfPHmHVbuw806uk1lI1umoSXLTwMsjCMrSrRj4lyJ
+h6a7zE/6VvhMjfpXCm/kLXrHTNT0bUNCkRXU3UtzauGTlI0g3AalPg+0v2WyIJ5qaovQPzt1+S91
+vT7G5uY7TTra4jLLyIkYPFycLTu3KnL9nDKVMYDveNfpmylsZNO8vWEk8So8fNQIYlrQk85Kcvsn
+kcqlA0QTzIk2idcg90/L6aWTyXpTzKqytES6o3JQeR6N3y8FxiKT8thQo3Mipbyu32URmbavwqN9
+sjIWCFeLar+Z3ly819rqzttRuBJaNAsS2kgckoVDfFT4RXJY5gY4X/BP/eCLkiREZRo7w4f9kuXz
+tqP1I31t5V1ea0keIpcGNI0JjBWlS1etc1n5IeCcZl9X8TKefiEY1vFK/NX5uazqOnhT5Ruorf0W
+tjK70FHIr9lDv8OZfooRvkOFiYTjEgj6jxM18r3U83liyluLdrSV4wWt3+0ngDUDtl4FCmicrNpt
+pEn+h65/zCRf9RcOFi//05j54k4+d9VHhIn/ACbTFWHefGZ9AooLHnHstSf7weG+U5uVt2I7lPrh
+BH5HvYAqRsTN6cTcU6qaEA0ynMDUK/1XH/peNlnNkf1WN6fqWjabDbiW8tbVEWMgCRNqwcWoFJ/b
++1lueJOqnIfRLxf9l9LkHJ+7xWd4Uyz8tp7eXy3zgkWRTPLV0rQsTXuB2OZeSQJFfzY/7lw8vM/H
+/dFlfLK2tcr7jFXj9/p8o8z6tdShLeCZ1CTzEKrFWaoXu3XwyE7PylH/AIlvxH0kf0kRo1k+s6pY
+W+nQ+oz81jnZAFb4grEDqu/c5CGMgJnIc2R/mdZywec0mli9YI6SIFAqaRBP2u3Ib5YSwhyYPZ6Y
+13A8lkyTBbecvF9iVGlBIUq23L/VOUTiTO/6NN5kOGvN6X+XayReSdJikUpIkRVkYEMCGNQQcvhy
+cWfNkJYZJipTyqkMjv8AYVGLd9gMSrymTVbT6vE/rGFY0Uu0ySQ0U8yCS6jrUZr44JCEgf8AVeL/
+AGIdr+YHFM7+qMfvZNe6zo91o1jb2d9bTFbpWMMcqGilifs1yeoxn0UP4vU4Il6mMaxHImi6sscR
+WKsojCCooZNqUrmt1MD40aH8Tn6qdxjR6J+ZCLcBq14pWv8AqDN+6krtHlrY697WkX/UZBir/9SS
+ef5+Pn3Vx4SJ/wAmkxVivnBUuNAndpJE+rqJP3MjRFqMF4llINN8hksR26M8ZF7i2OXfl61srGaS
+yuZkZIWup2nf6x6pTiOP7ytB8WPYmtlmyesCUan6XL1OKIwcQFSuLLvOGk2X1PRLqwsVS6/dqfq0
+YUcXX4uSqKdurZbpchlp53zlh/2VxacRqce7xAyzykrRaTwcBXErllBBpy3HTKhfEfh/uIteU3I9
+1p4HybW2rCuKvFbyy1DV/NV9EsjPHb6jLyLn91BbiP42Y/y17H7TfAuMt8f+d/vm+BAP+a97/Kfy
+VDpthHdsrcQCLb1RRyGPIuw7M/8Awv2MAapGym35keTv01pv1uzATVLOslu9K1NN1bxVh9oYljb5
+o8zaXXSry9to3hFtWO8gBPqWs3whVb+aOSh9GT/Y/bXIAGJP9KUf0uVinYryeseT3B8tWDUpVDQf
+T75Zd83FTctiqnM4ETknYKan2pkJg0UhgGswPP5iuLu3UTwSWDKzrUkskZoGQ/H8vhy7ENoA9Jf7
+xyI5P3ct9+H/AHzDdb8p6FcTWsklssX76C2kjRVBKzKxYkkc+QI+HMPQ6qfgZckvXOGOU48X8627
+UGoQAA9R+pkXmvQNK0OwtZtGsrW2MVs810zq7NKsfFQoIYUYlq8sslkJiD5NOOEeEk7mwu0+4/3E
+wGv2kVtyzdRXqxLffksZuILTkAEiAjdEnrp/mHxFnCf+n2AZNg//1ZH+Y2ka2PPGq3YsZ/qssiNF
+OI3KMojUVDAU6g4qxm+tfr1lPYSu8BnThURl2B5A9NvDIzFghQnuleSL7VU9KDT2kjkiMLzXRNCj
+UqeC8R+z45RosHgbx5t885lHhrZ6TpP5XSyJF+mLt50jAC24+GMAdAEWi/hmREcIoNCG8w6J+jtT
+nSztXSyCRFZFRiuyUO4HGu2FWNXHmfy9asUutTtYHB+zJKqH8TiqkvnnybX/AI7lj/0kR/1xVAfl
+7plv5j1+8g01CdH+tm71G7rUXdwD8BBG3oRL/dL/ADfvMASS+hLeCOCJIowFRBQAe2FCoQCKEVBx
+V4h+cXk240y4bzPpNulxFIhi1bTnB9K5t2+3HIB96t9pH+NcUgpJ5c85eTV0a3WLUoLNPiKWl1Mg
+niBYnhJv9pelf2sUJoPNvlhj8OrWjfKZT/HFUytVk1CPnZI11E1PihVnU1PioOKs51n8u9A1RORh
+EM1BR02oaY2rAPMP5V61AA0JXULeKQSpFMORDp0IJo21f5sjwjhMf4Zjhl/VTxHa+jEPNEMl5aSW
+WoWz6dc+g9vHKtTHRypqVb/V7NkTj9NDp6WcclCvNKYNNvvq6WtpG94YlCh4UY1pt0FcMI0KYzlx
+G010Xyz5pTSvMDvpN2qy2kKRcoXBZhewOVUEfF8Cs2TYv//W9F6/H5eYf7lJeC+4Yj8AcVY/YQ/l
+ktyDDcRPLXoyt1/2QGKs2s/qXpj6rw9Om3CmKojvirDvP9nb3FiReahLZ2v7Rjjlf/k2rYq8D1fy
+/wDkeZX+u+aHWWp5c7W7Jr/yJxVKB5c/5x59QV82b+H1W8/6o4q+jPynt/JkHl2OPyvdpeWo+1Mq
+shJ9w6q2Ks4xV2KoDXF01tLuBqLKtoUPqs+4AxV8w6xoP5Avqs7nzMIpC5LRrbXRANelRERiqmnl
+/wDIrbh5oP0Wt5/1RxV6n+VGleW7efl5e1qa9t+8bQ3Ea/fJGoxV69irjSm/TFUg8wr5TMDDV2hV
+e5fr+GKsGs7H8qzeFrDUWEtfsxRz0/BKYqzyOHTxosqC4lNqVFZCsnICo6CnL8MVf//Z
+
+------=_NextPart_000_0000_01C38C3F.1572A8D0--

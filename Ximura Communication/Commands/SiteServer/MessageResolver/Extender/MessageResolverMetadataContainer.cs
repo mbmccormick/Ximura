@@ -1,0 +1,50 @@
+﻿#region Copyright
+// *******************************************************************************
+// Copyright (c) 2000-2009 Paul Stancer.
+// All rights reserved. This program and the accompanying materials
+// are made available under the terms of the Eclipse Public License v1.0
+// which accompanies this distribution, and is available at
+// http://www.eclipse.org/legal/epl-v10.html
+//
+// Contributors:
+//     Paul Stancer - initial implementation
+// *******************************************************************************
+#endregion
+#region using
+using System;
+using System.Threading;
+using System.Timers;
+using System.Collections;
+using System.ComponentModel;
+using System.ComponentModel.Design;
+using System.Reflection;
+using System.Drawing;
+using System.Diagnostics;
+
+using Ximura;
+using Ximura.Data;
+using Ximura.Helper;
+using Ximura.Server;
+using Ximura.Command;
+
+#endregion // using
+namespace Ximura.Communication
+{
+    /// <summary>
+    /// This is the authorization handler metadata container used for the MessageResolverExtender.
+    /// </summary>
+    public class MessageResolverMetadataContainer : CommunicationMetadataContainer
+    {
+        #region Declarations
+        #endregion // Declarations
+        #region Constructors
+        /// <summary>
+        /// This is the primary constructor.
+        /// </summary>
+        public MessageResolverMetadataContainer()
+        {
+        }
+        #endregion // Constructors
+    }
+}
+

@@ -1,0 +1,1132 @@
+From: <Saved by Microsoft Internet Explorer 5>
+Subject: RFC 2449
+Date: Mon, 22 Dec 2003 15:12:31 +0800
+MIME-Version: 1.0
+Content-Type: text/html;
+	charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc2449.html
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2800.1165
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" =
+"http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>RFC 2449</TITLE>
+<META http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dwindows-1252">
+<META content=3D"MSHTML 6.00.2800.1276" name=3DGENERATOR></HEAD>
+<BODY>
+<TABLE width=3D"100%">
+  <TBODY>
+  <TR>
+    <TD vAlign=3Dtop align=3Dleft>Network Working Group<BR>Request for =
+Comments:=20
+      2449<BR>Updates: <A=20
+      =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc1939.html">1939</A><=
+BR>Category:=20
+      Standards Track<BR>
+    <TD vAlign=3Dtop align=3Dright>R. Gellens<BR>Qualcomm<BR>C.=20
+      Newman<BR>Innosoft<BR>L. Lundblade<BR>Qualcomm<BR>November=20
+  1998<BR></TD></TR></TBODY></TABLE><EM><A name=3Dpage-1>Page 1</A></EM>
+<P>
+<H3 align=3Dcenter>POP3 Extension Mechanism</H3>
+<P>
+<DL>
+  <DT>Status of this Memo
+  <DD>
+  <P>This document specifies an Internet standards track protocol for =
+the=20
+  Internet community, and requests discussion and suggestions for =
+improvements.=20
+  Please refer to the current edition of the "Internet Official Protocol =
+
+  Standards" (<A=20
+  href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/stdlist.html#s1">STD =
+1</A>)=20
+  for the standardization state and status of this protocol. =
+Distribution of=20
+  this memo is unlimited.=20
+  <P></P>
+  <DT>Copyright Notice
+  <DD>
+  <P>Copyright =A9 The Internet Society (1998). All Rights Reserved.=20
+  <P></P>
+  <DT>IESG Note
+  <DD>
+  <P>This extension to the POP3 protocol is to be used by a server to =
+express=20
+  policy descisions taken by the server administrator. It is not an =
+endorsement=20
+  of implementations of further POP3 extensions generally. It is the =
+general=20
+  view that the POP3 protocol should stay simple, and for the simple =
+purpose of=20
+  downloading email from a mail server. If more complicated operations =
+are=20
+  needed, the IMAP protocol [<A=20
+  href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc2060.html">RFC =
+2060</A>]=20
+  should be used. The first paragraph of <A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc2449.html#sec-7">sec=
+tion=20
+  7</A> should be read very carefully.=20
+  <P></P>
+  <DT>Table of Contents
+  <DD>
+  <P><A =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc2449.html#sec-1">1. =
+
+  Introduction </A><BR><A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc2449.html#sec-2">2. =
+
+  Conventions Used in this Document </A><BR><A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc2449.html#sec-3">3. =
+General=20
+  Command and Response Grammar </A><BR><A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc2449.html#sec-4">4. =
+
+  Parameter and Response Lengths </A><BR><A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc2449.html#sec-5">5. =
+The=20
+  CAPA Command </A><BR><A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc2449.html#sec-6">6. =
+Initial=20
+  Set of Capabilities </A><BR><A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc2449.html#sec-6.1">6=
+.1. TOP=20
+  capability </A><BR><A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc2449.html#sec-6.2">6=
+.2.=20
+  USER capability </A><BR><A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc2449.html#sec-6.3">6=
+.3.=20
+  SASL capability </A><BR><A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc2449.html#sec-6.4">6=
+.4.=20
+  RESP-CODES capability </A><BR><A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc2449.html#sec-6.5">6=
+.5.=20
+  LOGIN-DELAY capability </A><BR><A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc2449.html#sec-6.6">6=
+.6.=20
+  PIPELINING capability </A>
+  <P></P>
+  <DT>
+  <HR>
+  <EM><A name=3Dpage-2>Page 2</A></EM>
+  <DD>
+  <P><A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc2449.html#sec-6.7">6=
+.7.=20
+  EXPIRE capability </A><BR><A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc2449.html#sec-6.8">6=
+.8.=20
+  UIDL capability </A><BR><A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc2449.html#sec-6.9">6=
+.9.=20
+  IMPLEMENTATION capability </A><BR><A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc2449.html#sec-7">7. =
+Future=20
+  Extensions to POP3 </A><BR><A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc2449.html#sec-8">8. =
+
+  Extended POP3 Response Codes </A><BR><A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc2449.html#sec-8.1">8=
+.1.=20
+  Initial POP3 response codes </A><BR><A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc2449.html#sec-8.1.1"=
+>8.1.1.=20
+  The LOGIN-DELAY response code </A><BR><A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc2449.html#sec-8.1.2"=
+>8.1.2.=20
+  The IN-USE response code </A><BR><A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc2449.html#sec-9">9. =
+IANA=20
+  Considerations </A><BR><A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc2449.html#sec-10">10=
+.=20
+  Security Considerations </A><BR><A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc2449.html#sec-11">11=
+.=20
+  Acknowledgments </A><BR><A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc2449.html#sec-12">12=
+.=20
+  References </A><BR><A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc2449.html#sec-13">13=
+.=20
+  Authors' Addresses </A><BR><A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc2449.html#sec-14">14=
+. Full=20
+  Copyright Statement </A><BR></P>
+  <DT><STRONG><A name=3Dsec-1>1</A> Introduction</STRONG>
+  <DD>
+  <P>The Post Office Protocol version 3 [POP3] is very widely used. =
+However,=20
+  while it includes some optional commands (and some useful protocol =
+extensions=20
+  have been published), it lacks a mechanism for advertising support for =
+these=20
+  extensions or for behavior variations.=20
+  <P>Currently these optional features and extensions can only be =
+detected by=20
+  probing, if at all. This is at best inefficient, and possibly worse. =
+As a=20
+  result, some clients have manual configuration options for POP3 server =
+
+  capabilities.=20
+  <P>Because one of the most important characteristics of POP3 is its=20
+  simplicity, it is desirable that extensions be few in number (see <A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc2449.html#sec-7">sec=
+tion=20
+  7</A>). However, some extensions are necessary (such as ones that =
+provide=20
+  improved security [POP-AUTH]), while others are very desirable in =
+certain=20
+  situations. In addition, a means for discovering server behavior is =
+needed.=20
+  <P>This memo updates <A=20
+  href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc1939.html">RFC =
+1939</A>=20
+  [POP3] to define a mechanism to announce support for optional =
+commands,=20
+  extensions, and unconditional server behavior. Included is an initial =
+set of=20
+  currently deployed capabilities which vary between server =
+implementations, and=20
+  several new capabilities (SASL, RESP-CODES, LOGIN-DELAY, PIPELINING, =
+EXPIRE=20
+  and IMPLEMENTATION). This document also extends POP3 error messages so =
+that=20
+  machine parsable codes can be provided to the client. An initial set =
+of=20
+  response codes is included. In addition, an [ABNF] specification of =
+POP3=20
+  commands and responses is defined.=20
+  <P>Public comments should be sent to the IETF POP3 Extensions mailing =
+list,=20
+  &lt;ietf-pop3ext@imc.org&gt;. To subscribe, send a message containing=20
+  SUBSCRIBE to &lt;ietf-pop3ext@imc.org&gt;.=20
+  <P></P>
+  <DT>
+  <HR>
+  <EM><A name=3Dpage-3>Page 3</A></EM>
+  <DD>
+  <P></P>
+  <DT><STRONG><A name=3Dsec-2>2</A> Conventions Used in this =
+Document</STRONG>
+  <DD>
+  <P>The key words "<STRONG>REQUIRED</STRONG>", "<STRONG>MUST</STRONG>", =
+
+  "<STRONG>MUST NOT</STRONG>", "<STRONG>SHOULD</STRONG>", =
+"<STRONG>SHOULD=20
+  NOT</STRONG>", and "<STRONG>MAY</STRONG>" in this document are to be=20
+  interpreted as described in "Key words for use in RFCs to Indicate =
+Requirement=20
+  Levels" [KEYWORDS].=20
+  <P>In examples, "C:" and "S:" indicate lines sent by the client and =
+server=20
+  respectively.=20
+  <P></P>
+  <DT><STRONG><A name=3Dsec-3>3</A> General Command and Response =
+Grammar</STRONG>
+  <DD>
+  <P>The general form of POP3 commands and responses is described using =
+[ABNF]:=20
+  <P>POP3 commands:=20
+  <P><PRE>      command      =3D  keyword *(SP param) CRLF    ;255 =
+octets maximum
+      keyword      =3D  3*4VCHAR
+      param        =3D  1*VCHAR
+</PRE>
+  <P>POP3 responses:=20
+  <P><PRE>      response     =3D  greeting / single-line / capa-resp / =
+multi-line
+      capa-resp    =3D  single-line *capability "." CRLF
+      capa-tag     =3D  1*cchar
+      capability   =3D  capa-tag *(SP param) CRLF   ;512 octets maximum
+      cchar        =3D  %x21-2D / %x2F-7F
+                          ;printable ASCII, excluding "."
+      dot-stuffed  =3D  *CHAR CRLF                  ;must be dot-stuffed
+      gchar        =3D  %x21-3B / %x3D-7F
+                          ;printable ASCII, excluding "&lt;"
+      greeting     =3D  "+OK" [resp-code] *gchar [timestamp] *gchar CRLF
+                          ;512 octets maximum
+      multi-line   =3D  single-line *dot-stuffed "." CRLF
+      rchar        =3D  %x21-2E / %x30-5C / %x5E-7F
+                          ;printable ASCII, excluding "/" and "]"
+      resp-code    =3D  "[" resp-level *("/" resp-level) "]"
+      resp-level   =3D  1*rchar
+      schar        =3D  %x21-5A / %x5C-7F
+                          ;printable ASCII, excluding "["
+      single-line  =3D  status [SP text] CRLF       ;512 octets maximum
+      status       =3D  "+OK" / "-ERR"
+      text         =3D  *schar / resp-code *CHAR
+      timestamp    =3D  "&lt;" *VCHAR "&gt;"
+                          ;<STRONG>MUST</STRONG> conform to <A =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc0822.html">RFC-822</=
+A> msg-id
+</PRE>
+  <P></P>
+  <DT>
+  <HR>
+  <EM><A name=3Dpage-4>Page 4</A></EM>
+  <DD>
+  <P></P>
+  <DT><STRONG><A name=3Dsec-4>4</A> Parameter and Response =
+Lengths</STRONG>
+  <DD>
+  <P>This specification increases the length restrictions on commands =
+and=20
+  parameters imposed by <A=20
+  href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc1939.html">RFC =
+1939</A>.=20
+  <P>The maximum length of a command is increased from 47 characters (4=20
+  character command, single space, 40 character argument, CRLF) to 255 =
+octets,=20
+  including the terminating CRLF.=20
+  <P>Servers which support the CAPA command <STRONG>MUST</STRONG> =
+support=20
+  commands up to 255 octets. Servers <STRONG>MUST</STRONG> also support =
+the=20
+  largest maximum command length specified by any supported capability.=20
+  <P>The maximum length of the first line of a command response =
+(including the=20
+  initial greeting) is unchanged at 512 octets (including the =
+terminating CRLF).=20
+
+  <P></P>
+  <DT><STRONG><A name=3Dsec-5>5</A> The CAPA Command</STRONG>
+  <DD>
+  <P>The POP3 CAPA command returns a list of capabilities supported by =
+the POP3=20
+  server. It is available in both the AUTHORIZATION and TRANSACTION =
+states.=20
+  <P>A capability description <STRONG>MUST</STRONG> document in which =
+states the=20
+  capability is announced, and in which states the commands are valid.=20
+  <P>Capabilities available in the AUTHORIZATION state =
+<STRONG>MUST</STRONG> be=20
+  announced in both states.=20
+  <P>If a capability is announced in both states, but the argument might =
+differ=20
+  after authentication, this possibility <STRONG>MUST</STRONG> be stated =
+in the=20
+  capability description.=20
+  <P>(These requirements allow a client to issue only one CAPA command =
+if it=20
+  does not use any TRANSACTION-only capabilities, or any capabilities =
+whose=20
+  values may differ after authentication.)=20
+  <P>If the authentication step negotiates an integrity protection =
+layer, the=20
+  client <STRONG>SHOULD</STRONG> reissue the CAPA command after =
+authenticating,=20
+  to check for active down-negotiation attacks.=20
+  <P>Each capability may enable additional protocol commands, additional =
+
+  parameters and responses for existing commands, or describe an aspect =
+of=20
+  server behavior. These details are specified in the description of the =
+
+  capability.=20
+  <P></P>
+  <DT>
+  <HR>
+  <EM><A name=3Dpage-5>Page 5</A></EM>
+  <DD>
+  <P><A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc2449.html#sec-3">Sec=
+tion=20
+  3</A> describes the CAPA response using [ABNF]. When a capability =
+response=20
+  describes an optional command, the &lt;capa-tag&gt; =
+<STRONG>SHOULD</STRONG> be=20
+  identical to the command keyword. CAPA response tags are =
+case-insensitive.=20
+  <P>CAPA=20
+  <P>Arguments: <BR>none=20
+  <P>Restrictions: <BR>none=20
+  <P>Discussion: <BR>An -ERR response indicates the capability command =
+is not=20
+  implemented and the client will have to probe for capabilities as =
+before.=20
+  <P>An +OK response is followed by a list of capabilities, one per =
+line. Each=20
+  capability name <STRONG>MAY</STRONG> be followed by a single space and =
+a=20
+  space-separated list of parameters. Each capability line is limited to =
+512=20
+  octets (including the CRLF). The capability list is terminated by a =
+line=20
+  containing a termination octet (".") and a CRLF pair.=20
+  <P>Possible Responses: <PRE>             +OK -ERR
+</PRE>
+  <P>Examples: <PRE>             C: CAPA
+             S: +OK Capability list follows
+             S: TOP
+             S: USER
+             S: SASL CRAM-MD5 KERBEROS_V4
+             S: RESP-CODES
+             S: LOGIN-DELAY 900
+             S: PIPELINING
+             S: EXPIRE 60
+             S: UIDL
+             S: IMPLEMENTATION Shlemazle-Plotz-v302
+             S: .
+</PRE>
+  <P></P>
+  <DT><STRONG><A name=3Dsec-6>6</A> Initial Set of Capabilities</STRONG>
+  <DD>
+  <P>This section defines an initial set of POP3 capabilities. These =
+include the=20
+  optional POP3 commands, already published POP3 extensions, and =
+behavior=20
+  variations between POP3 servers which can impact clients.=20
+  <P></P>
+  <DT>
+  <HR>
+  <EM><A name=3Dpage-6>Page 6</A></EM>
+  <DD>
+  <P>Note that there is no APOP capability, even though APOP is an =
+optional=20
+  command in [POP3]. Clients discover server support of APOP by the =
+presence in=20
+  the greeting banner of an initial challenge enclosed in angle brackets =
+
+  ("&lt;&gt;"). Therefore, an APOP capability would introduce two ways =
+for a=20
+  server to announce the same thing.=20
+  <P></P>
+  <DT><STRONG><A name=3Dsec-6.1>6.1</A> TOP capability</STRONG>
+  <DD>
+  <P>CAPA tag: <BR>TOP=20
+  <P>Arguments: <BR>none=20
+  <P>Added commands: <BR>TOP=20
+  <P>Standard commands affected: <BR>none=20
+  <P>Announced states / possible differences: <BR>both / no=20
+  <P>Commands valid in states: <BR>TRANSACTION=20
+  <P>Specification reference: <BR>[POP3]=20
+  <P>Discussion: <BR>The TOP capability indicates the optional TOP =
+command is=20
+  available.=20
+  <P></P>
+  <DT><STRONG><A name=3Dsec-6.2>6.2</A> USER capability</STRONG>
+  <DD>
+  <P>CAPA tag: <BR>USER=20
+  <P>Arguments: <BR>none=20
+  <P>Added commands: <BR>USER PASS=20
+  <P>Standard commands affected: <BR>none=20
+  <P></P>
+  <DT>
+  <HR>
+  <EM><A name=3Dpage-7>Page 7</A></EM>
+  <DD>
+  <P>Announced states / possible differences: <BR>both / no=20
+  <P>Commands valid in states: <BR>AUTHENTICATION=20
+  <P>Specification reference: <BR>[POP3]=20
+  <P>Discussion: <BR>The USER capability indicates that the USER and =
+PASS=20
+  commands are supported, although they may not be available to all =
+users.=20
+  <P></P>
+  <DT><STRONG><A name=3Dsec-6.3>6.3</A> SASL capability</STRONG>
+  <DD>
+  <P>CAPA tag: <BR>SASL=20
+  <P>Arguments: <BR>Supported SASL mechanisms=20
+  <P>Added commands: <BR>AUTH=20
+  <P>Standard commands affected: <BR>none=20
+  <P>Announced states / possible differences: <BR>both / no=20
+  <P>Commands valid in states: <BR>AUTHENTICATION=20
+  <P>Specification reference: <BR>[POP-AUTH, SASL]=20
+  <P>Discussion: <BR>The POP3 AUTH command [POP-AUTH] permits the use of =
+[SASL]=20
+  authentication mechanisms with POP3. The SASL capability indicates =
+that the=20
+  AUTH command is available and that it supports an optional base64 =
+encoded=20
+  second argument for an initial client response as described in the =
+SASL=20
+  specification. The argument to the SASL capability is a space =
+separated list=20
+  of SASL mechanisms which are supported.=20
+  <P></P>
+  <DT>
+  <HR>
+  <EM><A name=3Dpage-8>Page 8</A></EM>
+  <DD>
+  <P></P>
+  <DT><STRONG><A name=3Dsec-6.4>6.4</A> RESP-CODES capability</STRONG>
+  <DD>
+  <P>CAPA tag: <BR>RESP-CODES=20
+  <P>Arguments: <BR>none=20
+  <P>Added commands: <BR>none=20
+  <P>Standard commands affected: <BR>none=20
+  <P>Announced states / possible differences: <BR>both / no=20
+  <P>Commands valid in states: <BR>n/a=20
+  <P>Specification reference: <BR>this document=20
+  <P>Discussion: <BR>The RESP-CODES capability indicates that any =
+response text=20
+  issued by this server which begins with an open square bracket ("[") =
+is an=20
+  extended response code (see <A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc2449.html#sec-8">sec=
+tion=20
+  8</A>).=20
+  <P></P>
+  <DT><STRONG><A name=3Dsec-6.5>6.5</A> LOGIN-DELAY capability</STRONG>
+  <DD>
+  <P>CAPA tag: <BR>LOGIN-DELAY=20
+  <P>Arguments: <BR>minimum seconds between logins; optionally followed =
+by USER=20
+  in AUTHENTICATION state.=20
+  <P>Added commands: <BR>none=20
+  <P>Standard commands affected: <BR>USER PASS APOP AUTH=20
+  <P>Announced states / possible differences: <BR>both / yes=20
+  <P>Commands valid in states: <BR>n/a=20
+  <P></P>
+  <DT>
+  <HR>
+  <EM><A name=3Dpage-9>Page 9</A></EM>
+  <DD>
+  <P>Specification reference: <BR>this document=20
+  <P>Discussion: <BR>POP3 clients often login frequently to check for =
+new mail.=20
+  Unfortunately, the process of creating a connection, =
+<BR>authenticating the=20
+  user, and opening the user's maildrop can be very resource intensive =
+on the=20
+  server. A number of deployed POP3 servers try to reduce server load by =
+
+  requiring a delay between logins. The LOGIN-DELAY capability includes =
+an=20
+  integer argument which indicates the number of seconds after an "+OK" =
+response=20
+  to a PASS, APOP, or AUTH command before another authentication will be =
+
+  accepted. Clients which permit the user to configure a mail check =
+interval=20
+  <STRONG>SHOULD</STRONG> use this capability to determine the minimum=20
+  permissible interval. Servers which advertise LOGIN- DELAY=20
+  <STRONG>SHOULD</STRONG> enforce it.=20
+  <P>If the minimum login delay period could differ per user (that is, =
+the=20
+  LOGIN-DELAY argument might change after authentication), the server=20
+  <STRONG>MUST</STRONG> announce in AUTHENTICATION state the largest =
+value which=20
+  could be set for any user. This might be the largest value currently =
+in use=20
+  for any user (so only one value per server), or even the largest value =
+which=20
+  the server permits to be set for any user. The server =
+<STRONG>SHOULD</STRONG>=20
+  append the token "USER" to the LOGIN- DELAY parameter in =
+AUTHENTICATION state,=20
+  to inform the client that a more accurate value is available after=20
+  authentication. The server <STRONG>SHOULD</STRONG> announce the more =
+accurate=20
+  value in TRANSACTION state. (The "USER" token allows the client to =
+decide if a=20
+  second CAPA command is needed or not.)=20
+  <P>Servers enforce LOGIN-DELAY by rejecting an authentication command =
+with or=20
+  without the LOGIN-DELAY error response. See <A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc2449.html#sec-8.1.1"=
+>section=20
+  8.1.1</A> for more information.=20
+  <P></P>
+  <DT><STRONG><A name=3Dsec-6.6>6.6</A> PIPELINING capability</STRONG>
+  <DD>
+  <P>CAPA tag: <BR>PIPELINING=20
+  <P>Arguments: <BR>none=20
+  <P>Added commands: <BR>none=20
+  <P>Standard commands affected: <BR>all=20
+  <P></P>
+  <DT>
+  <HR>
+  <EM><A name=3Dpage-10>Page 10</A></EM>
+  <DD>
+  <P>Announced states / possible differences: <BR>both / no=20
+  <P>Commands valid in states: <BR>n/a=20
+  <P>Specification reference: <BR>this document=20
+  <P>Discussion: <BR>The PIPELINING capability indicates the server is =
+capable=20
+  of accepting multiple commands at a time; the client does not have to =
+wait for=20
+  the response to a command before issuing a subsequent command. If a =
+server=20
+  supports PIPELINING, it <STRONG>MUST</STRONG> process each command in =
+turn. If=20
+  a client uses PIPELINING, it <STRONG>MUST</STRONG> keep track of which =
+
+  commands it has outstanding, and match server responses to commands in =
+order.=20
+  If either the client or server uses blocking writes, it =
+<STRONG>MUST</STRONG>=20
+  not exceed the window size of the underlying transport layer.=20
+  <P>Some POP3 clients have an option to indicate the server supports=20
+  "Overlapped POP3 commands." This capability removes the need to =
+configure this=20
+  at the client.=20
+  <P>This is roughly synonymous with the ESMTP PIPELINING extension=20
+  [PIPELINING], however, since SMTP [SMTP] tends to have short commands =
+and=20
+  responses, the benefit is in grouping multiple commands and sending =
+them as a=20
+  unit. While there are cases of this in POP (for example, USER and PASS =
+could=20
+  be batched, multiple RETR and/or DELE commands could be sent as a =
+group),=20
+  because POP has short commands and sometimes lengthy responses, there =
+is also=20
+  an advantage is sending new commands while still receiving the =
+response to an=20
+  earlier command (for example, sending RETR and/or DELE commands while=20
+  processing a UIDL reply).=20
+  <P></P>
+  <DT><STRONG><A name=3Dsec-6.7>6.7</A> EXPIRE capability</STRONG>
+  <DD>
+  <P>CAPA tag: <BR>EXPIRE=20
+  <P>Arguments: <BR>server-guaranteed minimum retention days, or NEVER;=20
+  optionally followed by USER in AUTHENTICATION state=20
+  <P>Added commands: <BR>none=20
+  <P></P>
+  <DT>
+  <HR>
+  <EM><A name=3Dpage-11>Page 11</A></EM>
+  <DD>
+  <P>Standard commands affected: <BR>none=20
+  <P>Announced states / possible differences: <BR>both / yes=20
+  <P>Commands valid in states: <BR>n/a=20
+  <P>Specification reference: <BR>this document=20
+  <P>Discussion: <BR>While POP3 allows clients to leave messages on the =
+server,=20
+  RFC 1939 [POP3] warns about the problems that may arise from this, and =
+allows=20
+  servers to delete messages based on site policy.=20
+  <P>The EXPIRE capability avoids the problems mentioned in <A=20
+  href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc1939.html">RFC =
+1939</A>, by=20
+  allowing the server to inform the client as to the policy in effect. =
+The=20
+  argument to the EXPIRE capability indicates the minimum server =
+retention=20
+  period, in days, for messages on the server.=20
+  <P>EXPIRE 0 indicates the client is not permitted to leave mail on the =
+server;=20
+  when the session enters the UPDATE state the server =
+<STRONG>MAY</STRONG>=20
+  assume an implicit DELE for each message which was downloaded with =
+RETR.=20
+  <P>EXPIRE NEVER asserts that the server does not delete messages.=20
+  <P>The concept of a "retention period" is intentionally vague. Servers =
+may=20
+  start counting days to expiration when a message is added to a =
+maildrop, when=20
+  a client becomes aware of the existence of a message through the LIST =
+or UIDL=20
+  commands, when a message has been acted upon in some way (for example, =
+TOP or=20
+  RETR), or at some other event. The EXPIRE capability cannot provide a =
+precise=20
+  indication as to exactly when any specific message will expire. The =
+capability=20
+  is intended to make it easier for clients to behave in ways which =
+conform to=20
+  site policy and user wishes. For example, a client might display a =
+warning for=20
+  attempts to configure a "leave mail on server" period which is greater =
+than or=20
+  equal to some percentage of the value announced by the server.=20
+  <P>If a site uses any automatic deletion policy, it =
+<STRONG>SHOULD</STRONG>=20
+  use the EXPIRE capability to announce this.=20
+  <P></P>
+  <DT>
+  <HR>
+  <EM><A name=3Dpage-12>Page 12</A></EM>
+  <DD>
+  <P>The EXPIRE capability, with a parameter other than 0 or NEVER, is =
+intended=20
+  to let the client know that the server does permit mail to be left on =
+the=20
+  server, and to present a value which is the smallest which might be in =
+force.=20
+  <P>Sites which permit users to retain messages indefinitely=20
+  <STRONG>SHOULD</STRONG> announce this with the EXPIRE NEVER response.=20
+  <P>If the expiration policy differs per user (that is, the EXPIRE =
+argument=20
+  might change after authentication), the server <STRONG>MUST</STRONG> =
+announce=20
+  in AUTHENTICATION state the smallest value which could be set for any =
+user.=20
+  This might be the smallest value currently in use for any user (so =
+only one=20
+  value per server), or even the smallest value which the server permits =
+to be=20
+  set for any user. The server <STRONG>SHOULD</STRONG> append the token =
+"USER"=20
+  to the EXPIRE parameter in AUTHENTICATION state, to inform the client =
+that a=20
+  more accurate value is available after authentication. The server=20
+  <STRONG>SHOULD</STRONG> announce the more accurate value in =
+TRANSACTION state.=20
+  (The "USER" token allows the client to decide if a second CAPA command =
+is=20
+  needed or not.)=20
+  <P>A site may have a message expiration policy which treats messages=20
+  differently depending on which user actions have been performed, or =
+based on=20
+  other factors. For example, a site might delete unseen messages after =
+60 days,=20
+  and completely- or partially-seen messages after 15 days.=20
+  <P>The announced EXPIRE value is the smallest retention period which =
+is or=20
+  might be used by any category or condition of the current site policy, =
+for any=20
+  user (in AUTHENTICATION state) or the specific user (in TRANSACTION =
+state).=20
+  That is, EXPIRE informs the client of the minimum number of days =
+messages may=20
+  remain on the server under any circumstances.=20
+  <P>Examples: <BR>EXPIRE 5 USER <BR>EXPIRE 30 <BR>EXPIRE NEVER =
+<BR>EXPIRE 0=20
+  <P>The first example indicates the server might delete messages after =
+five=20
+  days, but the period differs per user, and so a more accurate value =
+can be=20
+  obtained by issuing a second CAPA command in TRANSACTION state. The =
+second=20
+  example indicates the server could delete messages after 30 days. In =
+the third=20
+  example, the server announces it does not delete messages. The fourth =
+example=20
+  specifies that the site does not permit messages to be left on the =
+server.=20
+  <P></P>
+  <DT>
+  <HR>
+  <EM><A name=3Dpage-13>Page 13</A></EM>
+  <DD>
+  <P></P>
+  <DT><STRONG><A name=3Dsec-6.8>6.8</A> UIDL capability</STRONG>
+  <DD>
+  <P>CAPA tag: <BR>UIDL=20
+  <P>Arguments: <BR>none=20
+  <P>Added commands: <BR>UIDL=20
+  <P>Standard commands affected: <BR>none=20
+  <P>Announced states / possible differences: <BR>both / no=20
+  <P>Commands valid in states: <BR>TRANSACTION=20
+  <P>Specification reference: <BR>[POP3]=20
+  <P>Discussion: <BR>The UIDL capability indicates that the optional =
+UIDL=20
+  command is supported.=20
+  <P></P>
+  <DT><STRONG><A name=3Dsec-6.9>6.9</A> IMPLEMENTATION =
+capability</STRONG>
+  <DD>
+  <P>CAPA tag: <BR>IMPLEMENTATION=20
+  <P>Arguments: <BR>string giving server implementation information=20
+  <P>Added commands: <BR>none=20
+  <P>Standard commands affected: <BR>none=20
+  <P>Announced states / possible differences: <BR>both (optionally =
+TRANSACTION=20
+  only) / no=20
+  <P>Commands valid in states: <BR>n/a=20
+  <P></P>
+  <DT>
+  <HR>
+  <EM><A name=3Dpage-14>Page 14</A></EM>
+  <DD>
+  <P>Specification reference: <BR>this document=20
+  <P>Discussion: <BR>It is often useful to identify an implementation of =
+a=20
+  particular server (for example, when logging). This is commonly done =
+in the=20
+  welcome banner, but one must guess if a string is an =
+<BR>implementation ID or=20
+  not.=20
+  <P>The argument to the IMPLEMENTATION capability consists of one or =
+more=20
+  tokens which identify the server. (Note that since CAPA response tag =
+arguments=20
+  are space-separated, it may be convenient for the IMPLEMENTATION =
+capability=20
+  argument to not contain spaces, so that it is a single token.)=20
+  <P>Normally, servers announce IMPLEMENTATION in both states. However, =
+a server=20
+  <STRONG>MAY</STRONG> chose to do so only in TRANSACTION state.=20
+  <P>A server <STRONG>MAY</STRONG> include the implementation =
+identification=20
+  both in the welcome banner and in the IMPLEMENTATION capability.=20
+  <P>Clients <STRONG>MUST NOT</STRONG> modify their behavior based on =
+the server=20
+  implementation. Instead the server and client should agree on a =
+private=20
+  extension.=20
+  <P></P>
+  <DT><STRONG><A name=3Dsec-7>7</A> Future Extensions to POP3</STRONG>
+  <DD>
+  <P>Future extensions to POP3 are in general discouraged, as POP3's =
+usefulness=20
+  lies in its simplicity. POP3 is intended as a download- and-delete =
+protocol;=20
+  mail access capabilities are available in IMAP [IMAP4]. Extensions =
+which=20
+  provide support for additional mailboxes, allow uploading of messages =
+to the=20
+  server, or which deviate from POP's download-and-delete model are =
+strongly=20
+  discouraged and unlikely to be permitted on the IETF standards track.=20
+  <P>Clients <STRONG>MUST NOT</STRONG> require the presence of any =
+extension for=20
+  basic functionality, with the exception of the authentication commands =
+(APOP,=20
+  AUTH [<A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc2449.html#sec-6.3">s=
+ection=20
+  6.3</A>] and USER/PASS).=20
+  <P><A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc2449.html#sec-9">Sec=
+tion=20
+  9</A> specifies how additional capabilities are defined.=20
+  <P></P>
+  <DT><STRONG><A name=3Dsec-8>8</A> Extended POP3 Response =
+Codes</STRONG>
+  <DD>
+  <P>Unextended POP3 is only capable of indicating success or failure to =
+most=20
+  commands. Unfortunately, clients often need to know more information =
+about the=20
+  cause of a failure in order to gracefully recover. This is especially=20
+  important in response to a failed login=20
+  <P></P>
+  <DT>
+  <HR>
+  <EM><A name=3Dpage-15>Page 15</A></EM>
+  <DD>
+  <P>(there are widely-deployed clients which attempt to decode the =
+error text=20
+  of a PASS command result, to try and distinguish between "unable to =
+get=20
+  maildrop lock" and "bad login").=20
+  <P>This specification amends the POP3 standard to permit an optional =
+response=20
+  code, enclosed in square brackets, at the beginning of the human =
+readable text=20
+  portion of an "+OK" or "-ERR" response. Clients supporting this =
+extension=20
+  <STRONG>MAY</STRONG> remove any information enclosed in square =
+brackets prior=20
+  to displaying human readable text to the user. Immediately following =
+the open=20
+  square bracket "[" character is a response code which is interpreted =
+in a=20
+  case-insensitive fashion by the client.=20
+  <P>The response code is hierarchical, with a "/" separating levels of =
+detail=20
+  about the error. Clients <STRONG>MUST</STRONG> ignore unknown =
+hierarchical=20
+  detail about the response code. This is important, as it could be =
+necessary to=20
+  provide further detail for response codes in the future.=20
+  <P><A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc2449.html#sec-3">Sec=
+tion=20
+  3</A> describes response codes using [ABNF].=20
+  <P>If a server supports extended response codes, it indicates this by=20
+  including the RESP-CODES capability in the CAPA response.=20
+  <P>Examples: <PRE>           C: APOP mrose =
+c4c9334bac560ecc979e58001b3e22fb
+           S: -ERR [IN-USE] Do you have another POP session running?
+</PRE>
+  <P></P>
+  <DT><STRONG><A name=3Dsec-8.1>8.1</A> Initial POP3 response =
+codes</STRONG>
+  <DD>
+  <P>This specification defines two POP3 response codes which can be =
+used to=20
+  determine the reason for a failed login. <A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc2449.html#sec-9">Sec=
+tion=20
+  9</A> specifies how additional response codes are defined.=20
+  <P></P>
+  <DT><STRONG><A name=3Dsec-8.1.1>8.1.1</A> The LOGIN-DELAY response =
+code</STRONG>
+  <DD>
+  <P>This occurs on an -ERR response to an AUTH, USER (see note), PASS =
+or APOP=20
+  command and indicates that the user has logged in recently and will =
+not be=20
+  allowed to login again until the login delay period has expired.=20
+  <P>NOTE: Returning the LOGIN-DELAY response code to the USER command =
+avoids=20
+  the work of authenticating the user but reveals to the client that the =
+
+  specified user exists. Unless the server is operating in an =
+environment where=20
+  user names are not secret (for example, many popular email clients =
+advertise=20
+  the POP server and user name in an outgoing mail header), or where =
+server=20
+  access is restricted, or the server can verify that the connection is =
+to the=20
+  same user, it is=20
+  <P></P>
+  <DT>
+  <HR>
+  <EM><A name=3Dpage-16>Page 16</A></EM>
+  <DD>
+  <P>strongly recommended that the server not issue this response code =
+to the=20
+  USER command. The server still saves the cost of opening the maildrop, =
+which=20
+  in some environments is the most expensive step.=20
+  <P></P>
+  <DT><STRONG><A name=3Dsec-8.1.2>8.1.2</A> The IN-USE response =
+code</STRONG>
+  <DD>
+  <P>This occurs on an -ERR response to an AUTH, APOP, or PASS command. =
+It=20
+  indicates the authentication was successful, but the user's maildrop =
+is=20
+  currently in use (probably by another POP3 client).=20
+  <P></P>
+  <DT><STRONG><A name=3Dsec-9>9</A> IANA Considerations</STRONG>
+  <DD>
+  <P>This document requests that IANA maintain two new registries: POP3=20
+  capabilities and POP3 response codes.=20
+  <P>New POP3 capabilities <STRONG>MUST</STRONG> be defined in a =
+standards track=20
+  or IESG approved experimental RFC, and <STRONG>MUST NOT</STRONG> begin =
+with=20
+  the letter "X".=20
+  <P>New POP3 capabilities <STRONG>MUST</STRONG> include the following=20
+  information: CAPA tag <BR>Arguments <BR>Added commands <BR>Standard =
+commands=20
+  affected <BR>Announced states / possible differences <BR>Commands =
+valid in=20
+  states <BR>Specification reference <BR>Discussion=20
+  <P>In addition, new limits for POP3 command and response lengths may =
+need to=20
+  be included.=20
+  <P>New POP3 response codes <STRONG>MUST</STRONG> be defined in an RFC =
+or other=20
+  permanent and readily available reference, in sufficient detail so =
+that=20
+  interoperability between independent implementations is possible. =
+(This is the=20
+  "Specification Required" policy described in [IANA]).=20
+  <P>New POP3 response code specifications <STRONG>MUST</STRONG> include =
+the=20
+  following information: the complete response code, for which responses =
+(+OK or=20
+<PRE>   -ERR) and commands it is valid, and a definition of its meaning =
+and
+   expectedNew POP3 response codes <STRONG>MUST</STRONG> be defined in =
+an RFC or other
+   permanent and readily available reference, in sufficient detail so
+   that interoperability between independent implementations is
+   possible.  (This is the "Specification Required" policy described in
+   [IANA]).
+</PRE>
+  <P>New POP3 response code specifications <STRONG>MUST</STRONG> include =
+the=20
+  following information: the complete response code, for which responses =
+(+OK or=20
+<PRE>   -ERR) and commands it is valid, and a definition of its meaning =
+and
+</PRE>
+  <P></P>
+  <DT>
+  <HR>
+  <EM><A name=3Dpage-17>Page 17</A></EM>
+  <DD>
+  <P>expected client behavior. client behavior.=20
+  <P></P>
+  <DT><STRONG><A name=3Dsec-10>10</A> Security Considerations</STRONG>
+  <DD>
+  <P>A capability list can reveal information about the server's =
+authentication=20
+  mechanisms which can be used to determine if certain attacks will be=20
+  successful. However, allowing clients to automatically detect =
+availability of=20
+  stronger mechanisms and alter their configurations to use them can =
+improve=20
+  overall security at a site.=20
+  <P><A=20
+  =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc2449.html#sec-8.1">S=
+ection=20
+  8.1</A> discusses the security issues related to use of the =
+LOGIN-DELAY=20
+  response code with the USER command.=20
+  <P></P>
+  <DT><STRONG><A name=3Dsec-11>11</A> Acknowledgments</STRONG>
+  <DD>
+  <P>This document has been revised in part based on comments and =
+discussions=20
+  which took place on and off the IETF POP3 Extensions mailing list. The =
+help of=20
+  those who took the time to review this memo and make suggestions is=20
+  appreciated, especially that of Alexey Melnikov, Harald Alvestrand, =
+and Mike=20
+  Gahrns.=20
+  <P></P>
+  <DT><STRONG><A name=3Dsec-12>12</A> References</STRONG>
+  <DD>
+  <P><PRE>   [ABNF]       Crocker, D. and P. Overell, "Augmented BNF for =
+Syntax
+                Specifications:  ABNF", <A =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc2234.html">RFC =
+2234</A>, November 1997.
+
+   [IANA]       Narten, T. and H. Alvestrand, "Guidelines for Writing an
+                IANA Considerations Section in RFCs", BCP 26, <A =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc2434.html">RFC =
+2434</A>,
+                October 1998.
+
+   [IMAP4]      Crispin, M., "Internet Message Access Protocol --
+                Version 4rev1", <A =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc2060.html">RFC =
+2060</A>, December 1996.
+
+   [KEYWORDS]   Bradner, S., "Key words for use in RFCs to Indicate
+                Requirement Levels", BCP 14, <A =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc2119.html">RFC =
+2119</A>, March 1997.
+</PRE>
+  <P>[PIPELINING] Freed, N., "SMTP Service Extension for Command =
+Pipelining", <A=20
+  href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc2197.html">RFC =
+2197</A>,=20
+  September 1997.=20
+  <P><PRE>   [POP3]       Myers, J. and M. Rose, "Post Office Protocol =
+-- Version
+                3", <A =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/stdlist.html#s53">STD =
+53</A>, <A =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc1939.html">RFC =
+1939</A>, May 1996.
+
+   [POP-AUTH]   Myers, J., "POP3 AUTHentication command", RFC 1734,
+                December 1994.
+
+   [SASL]       Myers, J., "Simple Authentication and Security Layer
+                (SASL)", <A =
+href=3D"http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc2222.html">RFC =
+2222</A>, October 1997.
+</PRE>
+  <P></P>
+  <DT>
+  <HR>
+  <EM><A name=3Dpage-18>Page 18</A></EM>
+  <DD>
+  <P><PRE>   [SMTP]       Postel, J., "Simple Mail Transfer Protocol", =
+STD 10, RFC
+                821, August 1982.
+</PRE>
+  <P></P>
+  <DT><STRONG><A name=3Dsec-13>13</A> Authors' Addresses</STRONG>
+  <DD>
+  <P>Randall Gellens <BR>QUALCOMM Incorporated <BR>6455 Lusk Blvd. =
+<BR>San=20
+  Diego, CA 92121-2779 <BR>USA=20
+  <P>Phone: +1 619 651 5115 <PRE>   Fax:   +1 619 845 7268
+   EMail: <A href=3D"mailto:randy@qualcomm.com">randy@qualcomm.com</A>
+</PRE>
+  <P>Chris Newman <BR>Innosoft International, Inc. <BR>1050 Lakes Drive =
+<BR>West=20
+  Covina, CA 91790 <BR>USA=20
+  <P>EMail: <A=20
+  =
+href=3D"mailto:chris.newman@innosoft.com">chris.newman@innosoft.com</A>=20
+  <P>Laurence Lundblade <BR>QUALCOMM Incorporated <BR>6455 Lusk Blvd. =
+<BR>San=20
+  Diego, Ca, 92121-2779 <BR>USA=20
+  <P>Phone: +1 619 658 3584 <PRE>   Fax:   +1 619 845 7268
+   EMail: <A href=3D"mailto:lgl@qualcomm.com">lgl@qualcomm.com</A>
+</PRE>
+  <P></P>
+  <DT>
+  <HR>
+  <EM><A name=3Dpage-19>Page 19</A></EM>
+  <DD>
+  <P></P>
+  <DT><STRONG><A name=3Dsec-14>14</A> Full Copyright Statement</STRONG>
+  <DD>
+  <P>Copyright =A9 The Internet Society (1998). All Rights Reserved.=20
+  <P>This document and translations of it may be copied and furnished to =
+others,=20
+  and derivative works that comment on or otherwise explain it or assist =
+in its=20
+  implementation may be prepared, copied, published and distributed, in =
+whole or=20
+  in part, without restriction of any kind, provided that the above =
+copyright=20
+  notice and this paragraph are included on all such copies and =
+derivative=20
+  works. However, this document itself may not be modified in any way, =
+such as=20
+  by removing the copyright notice or references to the Internet Society =
+or=20
+  other Internet organizations, except as needed for the purpose of =
+developing=20
+  Internet standards in which case the procedures for copyrights defined =
+in the=20
+  Internet Standards process must be followed, or as required to =
+translate it=20
+  into languages other than English.=20
+  <P>The limited permissions granted above are perpetual and will not be =
+revoked=20
+  by the Internet Society or its successors or assigns.=20
+  <P>This document and the information contained herein is provided on =
+an "AS=20
+  IS" basis and THE INTERNET SOCIETY AND THE INTERNET ENGINEERING TASK =
+FORCE=20
+  DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT =
+LIMITED TO ANY=20
+  WARRANTY THAT THE USE OF THE INFORMATION HEREIN WILL NOT INFRINGE ANY =
+RIGHTS=20
+  OR ANY IMPLIED WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A =
+PARTICULAR=20
+  PURPOSE.=20
+  <P></P>
+  <DT>
+  <HR>
+
+  <DD></DD></DL></BODY></HTML>

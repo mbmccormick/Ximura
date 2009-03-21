@@ -1,0 +1,869 @@
+From: <Saved by Microsoft Internet Explorer 5>
+Subject: RFC 2476 (rfc2476) - Message Submission
+Date: Sat, 3 Jan 2004 22:34:55 +0800
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	boundary="----=_NextPart_000_0002_01C3D249.CFBC8530";
+	type="text/html"
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2800.1165
+
+This is a multi-part message in MIME format.
+
+------=_NextPart_000_0002_01C3D249.CFBC8530
+Content-Type: text/html;
+	charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://www.faqs.org/rfcs/rfc2476.html
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>RFC 2476 (rfc2476) - Message Submission</TITLE>
+<META http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dwindows-1252">
+<META content=3D"RFC 2476 - Message Submission" name=3Ddescription>
+<SCRIPT language=3DJavaScript1.2>=0A=
+function erfc(s)=0A=
+{document.write("<A href=3D\"/rfccomment.php?rfcnum=3D"+s+"\" =
+target=3D\"_blank\" =
+onclick=3D\"window.open('/rfccomment.php?rfcnum=3D"+s+"','Popup','toolbar=
+=3Dno,location=3Dno,status=3Dno,menubar=3Dno,scrollbars=3Dyes,resizable=3D=
+yes,width=3D680,height=3D530,left=3D30,top=3D43'); return =
+false;\")>Comment on RFC "+s+"</A>\n");}=0A=
+//-->=0A=
+</SCRIPT>
+
+<META content=3D"MSHTML 6.00.2800.1276" name=3DGENERATOR></HEAD>
+<BODY text=3D#000000 bgColor=3D#ffffff>
+<P align=3Dcenter><IMG height=3D62 alt=3D""=20
+src=3D"http://www.faqs.org/images/library.jpg" width=3D150 =
+align=3Dmiddle=20
+border=3D0></P>
+<H1 align=3Dcenter>RFC 2476 (RFC2476)</H1>
+<P align=3Dcenter>Internet RFC/STD/FYI/BCP Archives</P>
+<DIV align=3Dcenter>[ <A href=3D"http://www.faqs.org/rfcs/">RFC =
+Index</A> | <A=20
+href=3D"http://www.faqs.org/rfcs/rfcsearch.html">RFC Search</A> | <A=20
+href=3D"http://www.faqs.org/faqs/">Usenet FAQs</A> | <A=20
+href=3D"http://www.faqs.org/contrib/">Web FAQs</A> | <A=20
+href=3D"http://www.faqs.org/docs/">Documents</A> | <A=20
+href=3D"http://www.city-data.com/">Cities</A> ]=20
+<P><STRONG>Alternate Formats:</STRONG> <A=20
+href=3D"http://www.faqs.org/ftp/rfc/rfc2476.txt">rfc2476.txt</A> | <A=20
+href=3D"http://www.faqs.org/ftp/rfc/pdf/rfc2476.txt.pdf">rfc2476.txt.pdf<=
+/A></P></DIV>
+<P align=3Dcenter>
+<SCRIPT language=3DJavaScript><!--=0A=
+erfc("2476");=0A=
+// --></SCRIPT>
+</P>
+<H3 align=3Dcenter>RFC 2476 - Message Submission</H3>
+<HR noShade SIZE=3D2>
+<PRE>
+Network Working Group                                        R. Gellens
+Request for Comments: 2476                                     QUALCOMM
+Category: Standards Track                                    J. Klensin
+                                                                    MCI
+                                                          December 1998
+
+                           Message Submission
+
+Status of this Memo
+
+   This document specifies an Internet standards track protocol for the
+   Internet community, and requests discussion and suggestions for
+   improvements.  Please refer to the current edition of the "Internet
+   Official Protocol Standards" (STD 1) for the standardization state
+   and status of this protocol.  Distribution of this memo is unlimited.
+
+Copyright Notice
+
+   Copyright (C) The Internet Society (1998).  All Rights Reserved.
+
+Table of Contents
+
+    1.  Abstract . . . . . . . . . . . . . . . . . . . . . . . . . .  2
+    2.  Document Information  . . . . . . . . . . . . . . . . . . .   3
+      2.1.  Definitions of Terms Used in this Memo . . . . . . . . .  3
+      2.2.  Conventions Used in this Document . . . . . . . . . . .   4
+    3.  Message Submission . . . . . . . . . . . . . . . . . . . . .  4
+      3.1.  Submission Identification . . . . . . . . . . . . . . .   4
+      3.2.  Message Rejection and Bouncing . . . . . . . . . . . . .  4
+      3.3.  Authorized Submission . . . . . . . . . . . . . . . . .   5
+      3.4.  Enhanced Status Codes  . . . . . . . . . . . . . . . . .  6
+    4.  Mandatory Actions . . . . . . . . . . . . . . . . . . . . .   6
+      4.1.  General Submission Rejection Code  . . . . . . . . . . .  6
+      4.2.  Ensure All Domains are Fully-Qualified  . . . . . . . .   6
+    5.  Recommended Actions  . . . . . . . . . . . . . . . . . . . .  7
+      5.1.  Enforce Address Syntax  . . . . . . . . . . . . . . . .   7
+      5.2.  Log Errors . . . . . . . . . . . . . . . . . . . . . . .  7
+    6.  Optional Actions  . . . . . . . . . . . . . . . . . . . . .   7
+      6.1.  Enforce Submission Rights  . . . . . . . . . . . . . . .  7
+      6.2.  Require Authentication  . . . . . . . . . . . . . . . .   8
+      6.3.  Enforce Permissions  . . . . . . . . . . . . . . . . . .  8
+      6.4.  Check Message Data  . . . . . . . . . . . . . . . . . .   8
+    7.  Interaction with SMTP Extensions . . . . . . . . . . . . . .  8
+    8.  Message Modifications . . . . . . . . . . . . . . . . . . .   9
+      8.1.  Add 'Sender' . . . . . . . . . . . . . . . . . . . . . .  9
+      8.2.  Add 'Date'  . . . . . . . . . . . . . . . . . . . . . .  10
+      8.3.  Add 'Message-ID' . . . . . . . . . . . . . . . . . . . . 10
+
+      8.4.  Transfer Encode . . . . . . . . . . . . . . . . . . . .  10
+      8.5.  Sign the Message . . . . . . . . . . . . . . . . . . . . 10
+      8.6.  Encrypt the Message . . . . . . . . . . . . . . . . . .  10
+      8.7.  Resolve Aliases  . . . . . . . . . . . . . . . . . . . . 10
+      8.8.  Header Rewriting  . . . . . . . . . . . . . . . . . . .  10
+    9.  Security Considerations  . . . . . . . . . . . . . . . . . . 11
+   10.  Acknowledgments . . . . . . . . . . . . . . . . . . . . . .  11
+   11.  References . . . . . . . . . . . . . . . . . . . . . . . . . 12
+   12.  Authors' Addresses . . . . . . . . . . . . . . . . . . . . . 14
+   13.  Full Copyright Statement  . . . . . . . . . . . . . . . . .  15
+
+1.  Abstract
+
+   SMTP was defined as a message *transfer* protocol, that is, a means
+   to route (if needed) and deliver finished (complete) messages.
+   Message Transfer Agents (MTAs) are not supposed to alter the message
+   text, except to add 'Received', 'Return-Path', and other header
+   fields as required by [SMTP-MTA].
+
+   However, SMTP is now also widely used as a message *submission*
+   protocol, that is, a means for message user agents (MUAs) to
+   introduce new messages into the MTA routing network.  The process
+   which accepts message submissions from MUAs is termed a Message
+   Submission Agent (MSA).
+
+   Messages being submitted are in some cases finished (complete)
+   messages, and in other cases are unfinished (incomplete) in some
+   aspect or other.  Unfinished messages need to be completed to ensure
+   they conform to [MESSAGE-FORMAT], and later requirements.  For
+   example, the message may lack a proper 'Date' header field, and
+   domains might not be fully qualified.  In some cases, the MUA may be
+   unable to generate finished messages (for example, it might not know
+   its time zone).  Even when submitted messages are complete, local
+   site policy may dictate that the message text be examined or modified
+   in some way.  Such completions or modifications have been shown to
+   cause harm when performed by downstream MTAs -- that is, MTAs after
+   the first-hop submission MTA -- and are in general considered to be
+   outside the province of standardized MTA functionality.
+
+   Separating messages into submissions and transfers allows developers
+   and network administrators to more easily:
+
+   *   Implement security policies and guard against unauthorized mail
+       relaying or injection of unsolicited bulk mail
+
+   *   Implement authenticated submission, including off-site submission
+       by authorized users such as travelers
+
+   *   Separate the relevant software code differences, thereby making
+       each code base more straightforward and allowing for different
+       programs for relay and submission
+
+   *   Detect configuration problems with a site's mail clients
+
+   *   Provide a basis for adding enhanced submission services in the
+       future
+
+   This memo describes a low cost, deterministic means for messages to
+   be identified as submissions, and specifies what actions are to be
+   taken by a submission server.
+
+   Public comments should be sent to the IETF Submit mailing list,
+   &lt;<A =
+href=3D"mailto:ietf-submit@imc.org">ietf-submit@imc.org</A>&gt;.  To =
+subscribe, send a message containing
+   SUBSCRIBE to &lt;<A =
+href=3D"mailto:ietf-submit-request@imc.org">ietf-submit-request@imc.org</=
+A>&gt;.  Private comments may be
+   sent to the authors.
+
+2.  Document Information
+
+2.1.  Definitions of Terms Used in this Memo
+
+   Fully-Qualified
+
+   Containing or consisting of a domain which can be globally resolved
+   using the global Domain Name Service; that is, not a local alias or
+   partial specification.
+
+   Message Submission Agent (MSA)
+
+   A process which conforms to this specification, which acts as a
+   submission server to accept messages from MUAs, and either delivers
+   them or acts as an SMTP client to relay them to an MTA.
+
+   Message Transfer Agent (MTA)
+
+   A process which conforms to [SMTP-MTA], which acts as an SMTP server
+   to accept messages from an MSA or another MTA, and either delivers
+   them or acts as an SMTP client to relay them to another MTA.
+
+   Message User Agent (MUA)
+
+   A process which acts (usually on behalf of a user) to compose and
+   submit new messages, and process delivered messages.  In the split-
+   MUA model, POP or IMAP is used to access delivered messages.
+
+2.2.  Conventions Used in this Document
+
+   In examples, "C:" is used to indicate lines sent by the client, and
+   "S:" indicates those sent by the server.  Line breaks within a
+   command example are for editorial purposes only.
+
+   Examples use the 'example.net' domain.
+
+   The key words "MUST", "MUST NOT", "SHOULD", "SHOULD NOT", and "MAY"
+   in this document are to be interpreted as defined in [KEYWORDS].
+
+3.  Message Submission
+
+3.1.  Submission Identification
+
+   Port 587 is reserved for email message submission as specified in
+   this document.  Messages received on this port are defined to be
+   submissions.  The protocol used is ESMTP [SMTP-MTA, ESMTP], with
+   additional restrictions as specified here.
+
+   While most email clients and servers can be configured to use port
+   587 instead of 25, there are cases where this is not possible or
+   convenient.  A site MAY choose to use port 25 for message submission,
+   by designating some hosts to be MSAs and others to be MTAs.
+
+3.2.  Message Rejection and Bouncing
+
+   MTAs and MSAs MAY implement message rejection rules that rely in part
+   on whether the message is a submission or a relay.
+
+   For example, some sites might configure their MTA to reject all RCPT
+   TOs for messages that do not reference local users, and configure
+   their MSA to reject all message submissions that do not come from
+   authorized users, based on IP address, or authenticated identity.
+
+   NOTE:  It is better to reject a message than to risk sending one that
+   is damaged.  This is especially true for problems that are
+   correctable by the MUA, for example, an invalid 'From' field.
+
+   If an MSA is not able to determine a return path to the submitting
+   user, from a valid MAIL FROM, a valid source IP address, or based on
+   authenticated identity, then the MSA SHOULD immediately reject the
+   message.  A message can be immediately rejected by returning a 550
+   code to the MAIL FROM command.
+
+   Note that a null return path, that is, MAIL FROM:&lt;&gt;, is =
+permitted
+   and MUST be accepted. (MUAs need to generate null return-path
+   messages for a variety of reasons, including disposition
+   notifications.)
+
+   Except in the case where the MSA is unable to determine a valid
+   return path for the message being submitted, text in this
+   specification which instructs an MSA to issue a rejection code MAY be
+   complied with by accepting the message and subsequently generating a
+   bounce message. (That is, if the MSA is going to reject a message for
+   any reason except being unable to determine a return path, it can
+   optionally do an immediate rejection or accept the message and then
+   mail a bounce.)
+
+   NOTE:  In the normal case of message submission, immediately
+   rejecting the message is preferred, as it gives the user and MUA
+   direct feedback.  To properly handle delayed bounces the client MUA
+   must maintain a queue of messages it has submitted, and match bounces
+   to them.
+
+3.3.  Authorized Submission
+
+   Numerous methods have been used to ensure that only authorized users
+   are able to submit messages.  These methods include authenticated
+   SMTP, IP address restrictions, secure IP, and prior POP
+   authentication.
+
+   Authenticated SMTP [SMTP-AUTH] has been proposed.  It allows the MSA
+   to determine an authorization identity for the message submission,
+   which is not tied to other protocols.
+
+   IP address restrictions are very widely implemented, but do not allow
+   for travellers and similar situations, and can be spoofed.
+
+   Secure IP [IPSEC] can also be used, and provides additional benefits
+   of protection against eavesdropping and traffic analysis.
+
+   Requiring a POP [POP3] authentication (from the same IP address)
+   within some amount of time (for example, 20 minutes) prior to the
+   start of a message submission session has also been used, but this
+   does impose restrictions on clients as well as servers which may
+   cause difficulties.  Specifically, the client must do a POP
+   authentication before an SMTP submission session, and not all clients
+   are capable and configured for this.  Also, the MSA must coordinate
+   with the POP server, which may be difficult.  There is also a window
+   during which an unauthorized user can submit messages and appear to
+   be a prior authorized user.
+
+3.4.  Enhanced Status Codes
+
+   This memo suggests several enhanced status codes [SMTP-CODES] for
+   submission-specific rejections.  The specific codes used are:
+
+    5.6.0  Bad content.  The content of the header or text is
+           improper.
+
+    5.6.2  Bad domain or address.  Invalid or improper domain or address
+           in MAIL FROM, RCPT TO, or DATA.
+
+    5.7.1  Not allowed.  The address in MAIL FROM appears to have
+           insufficient submission rights, or is invalid, or is not
+           authorized with the authentication used; the address in a
+           RCPT TO command is inconsistent with the permissions given to
+           the user; the message data is rejected based on the
+           submitting user.
+
+    5.7.0  Site policy.  The message appears to violate site policy in
+           some way.
+
+4.  Mandatory Actions
+
+   An MSA MUST do all of the following:
+
+4.1.  General Submission Rejection Code
+
+   Unless covered by a more precise response code, response code 554 is
+   to be used to reject a MAIL FROM, RCPT TO, or DATA command that
+   contains something improper.  Enhanced status code 5.6.0 is to be
+   used if no other code is more specific.
+
+4.2.  Ensure All Domains are Fully-Qualified
+
+   The MSA MUST ensure that all domains in the envelope are fully-
+   qualified.
+
+   If the MSA examines or alters the message text in way, except to add
+   trace header fields [SMTP-MTA], it MUST ensure that all domains in
+   address header fields are fully-qualified.
+
+   Reply code 554 is to be used to reject a MAIL FROM, RCPT TO, or DATA
+   command which contains improper domain references.
+
+   NOTE:  A frequent local convention is to accept single-level domains
+   (for example, 'sales') and then to expand the reference by adding the
+   remaining portion of the domain name (for example, to
+
+   'sales.example.net').  Local conventions that permit single-level
+   domains SHOULD reject, rather than expand, incomplete multi-level
+   domains, since such expansion is particularly risky.
+
+5.  Recommended Actions
+
+   The MSA SHOULD do all of the following:
+
+5.1.  Enforce Address Syntax
+
+   An MSA SHOULD reject messages with illegal syntax in a sender or
+   recipient envelope address.
+
+   If the MSA examines or alters the message text in way, except to add
+   trace header fields, it SHOULD reject messages with illegal address
+   syntax in address header fields.
+
+   Reply code 501 is to be used to reject a MAIL FROM or RCPT TO command
+   that contains a detectably improper address.
+
+   When addresses are resolved after submission of the message body,
+   reply code 554 with enhanced status code 5.6.2 is to be used after
+   end-of-data, if the message contains invalid addresses in the header.
+
+5.2.  Log Errors
+
+   The MSA SHOULD log message errors, especially apparent
+   misconfigurations of client software.
+
+   Note:  It can be very helpful to notify the administrator when
+   problems are detected with local mail clients.  This is another
+   advantage of distinguishing submission from relay: system
+   administrators might be interested in local configuration problems,
+   but not in client problems at other sites.
+
+6.  Optional Actions
+
+   The MSA MAY do any of the following:
+
+6.1.  Enforce Submission Rights
+
+   The MSA MAY issue an error response to the MAIL FROM command if the
+   address in MAIL FROM appears to have insufficient submission rights,
+   or is not authorized with the authentication used (if the session has
+   been authenticated).
+
+   Reply code 550 with enhanced status code 5.7.1 is used for this
+   purpose.
+
+6.2.  Require Authentication
+
+   The MSA MAY issue an error response to the MAIL FROM command if the
+   session has not been authenticated.
+
+   Section 3.3 discusses authentication mechanisms.
+
+   Reply code 530 [SMTP-AUTH] is used for this purpose.
+
+6.3.  Enforce Permissions
+
+   The MSA MAY issue an error response to the RCPT TO command if
+   inconsistent with the permissions given to the user (if the session
+   has been authenticated).
+
+   Reply code 550 with enhanced status code 5.7.1 is used for this
+   purpose.
+
+6.4.  Check Message Data
+
+   The MSA MAY issue an error response to the DATA command or send a
+   failure result after end-of-data if the submitted message is
+   syntactically invalid, or seems inconsistent with permissions given
+   to the user (if known), or violates site policy in some way.
+
+   Reply code 554 is used for syntactic problems in the data.  Reply
+   code 501 is used if the command itself is not syntactically valid.
+   Reply code 550 with enhanced status code 5.7.1 is used to reject
+   based on the submitting user.  Reply code 550 with enhanced status
+   code 5.7.0 is used if the message violates site policy.
+
+7.  Interaction with SMTP Extensions
+
+   The following table lists the current standards-track and
+   Experimental SMTP extensions.  Listed are the RFC, name, an
+   indication as to the use of the extension on the submit port, and a
+   reference:
+
+   RFC   Name             Submission  Reference
+   ----  ---------------  ----------  ------------------
+   2197  Pipelining         SHOULD    [PIPELINING]
+   2034  Error Codes        SHOULD    [CODES-EXTENSION]
+   1985  ETRN              MUST NOT   [ETRN]
+   1893  Extended Codes     SHOULD    [SMTP-CODES]
+   1891  DSN                SHOULD    [DSN]
+   1870  Size                MAY      [SIZE]
+   1846  521               MUST NOT   [521REPLY]
+   1845  Checkpoint          MAY      [Checkpoint]
+
+   1830  Binary              MAY      [CHUNKING]
+   1652  8-bit MIME         SHOULD    [8BITMIME]
+   ----  Authentication     ------    [SMTP-AUTH]
+
+   Future SMTP extensions should explicitly specify if they are valid on
+   the Submission port.
+
+   Some SMTP extensions are especially useful for message submission:
+
+   Extended Status Codes [SMTP-CODES], SHOULD be supported and used
+   according to [CODES-EXTENSION].  This permits the MSA to notify the
+   client of specific configuration or other problems in more detail
+   than the response codes listed in this memo.  Because some rejections
+   are related to a site's security policy, care should be used not to
+   expose more detail than is needed to correct the problem.
+
+   [PIPELINING] SHOULD be supported by the MSA.
+
+   [SMTP-AUTH] allows the MSA to validate the authority and determine
+   the identity of the submitting user.
+
+   Any references to the DATA command in this memo also refer to any
+   substitutes for DATA, such as the BDAT command used with [CHUNKING].
+
+8.  Message Modifications
+
+   Sites MAY modify submissions to ensure compliance with standards and
+   site policy.  This section describes a number of such modifications
+   that are often considered useful.
+
+   NOTE:  As a matter of guidance for local decisions to implement
+   message modification, a paramount rule is to limit such actions to
+   remedies for specific problems that have clear solutions.  This is
+   especially true with address elements.  For example, indiscriminately
+   appending a domain to an address or element which lacks one typically
+   results in more broken addresses.  An unqualified address must be
+   verified to be a valid local part in the domain before the domain can
+   be safely added.
+
+8.1.  Add 'Sender'
+
+   The MSA MAY add or replace the 'Sender' field, if the identity of the
+   sender is known and this is not given in the 'From' field.
+
+   The MSA MUST ensure that any address it places in a 'Sender' field is
+   in fact a valid mail address.
+
+8.2.  Add 'Date'
+
+   The MSA MAY add a 'Date' field to the submitted message, if it lacks
+   it, or correct the 'Date' field if it does not conform to [MESSAGE-
+   FORMAT] syntax.
+
+8.3.  Add 'Message-ID'
+
+   The MSA MAY add or replace the 'Message-ID' field, if it lacks it, or
+   it is not valid syntax (as defined by [MESSAGE-FORMAT]).
+
+8.4.  Transfer Encode
+
+   The MSA MAY apply transfer encoding to the message according to MIME
+   conventions, if needed and not harmful to the MIME type.
+
+8.5.  Sign the Message
+
+   The MSA MAY (digitally) sign or otherwise add authentication
+   information to the message.
+
+8.6.  Encrypt the Message
+
+   The MSA MAY encrypt the message for transport to reflect
+   organizational policies.
+
+   NOTE:  To be useful, the addition of a signature and/or encryption by
+   the MSA generally implies that the connection between the MUA and MSA
+   must itself be secured in some other way, e.g., by operating inside
+   of a secure environment, by securing the submission connection at the
+   transport layer, or by using an [SMTP-AUTH] mechanism that provides
+   for session integrity.
+
+8.7.  Resolve Aliases
+
+   The MSA MAY resolve aliases (CNAME records) for domain names, in the
+   envelope and optionally in address fields of the header, subject to
+   local policy.
+
+   NOTE:  Unconditionally resolving aliases could be harmful.  For
+   example, if www.example.net and ftp.example.net are both aliases for
+   mail.example.net, rewriting them could lose useful information.
+
+8.8.  Header Rewriting
+
+   The MSA MAY rewrite local parts and/or domains, in the envelope and
+   optionally in address fields of the header, according to local
+   policy.  For example, a site may prefer to rewrite 'JRU' as '
+
+   J.Random.User' in order to hide logon names, and/or to rewrite '
+   squeeky.sales.example.net' as 'zyx.example.net' to hide machine names
+   and make it easier to move users.
+
+   However, only addresses, local-parts, or domains which match specific
+   local MSA configuration settings should be altered.  It would be very
+   dangerous for the MSA to apply data-independent rewriting rules, such
+   as always deleting the first element of a domain name.  So, for
+   example, a rule which strips the left-most element of the domain if
+   the complete domain matches '*.foo.example.net' would be acceptable.
+
+9.  Security Considerations
+
+   Separation of submission and relay of messages can allow a site to
+   implement different policies for the two types of services, including
+   requiring use of additional security mechanisms for one or both.  It
+   can do this in a way which is simpler, both technically and
+   administratively.  This increases the likelihood that policies will
+   be applied correctly.
+
+   Separation also can aid in tracking and preventing unsolicited bulk
+   email.
+
+   For example, a site could configure its MSA to require authentication
+   before accepting a message, and could configure its MTA to reject all
+   RCPT TOs for non-local users.  This can be an important element in a
+   site's total email security policy.
+
+   If a site fails to require any form of authorization for message
+   submissions (see section 3.3 for discussion), it is allowing open use
+   of its resources and name; unsolicited bulk email can be injected
+   using its facilities.
+
+10.  Acknowledgments
+
+   This updated memo has been revised in part based on comments and
+   discussions which took place on and off the IETF-Submit mailing list.
+   The help of those who took the time to review the draft and make
+   suggestions is appreciated, especially that of Dave Crocker, Ned
+   Freed, Keith Moore, John Myers, and Chris Newman.
+
+   Special thanks to Harald Alvestrand, who got this effort started.
+
+11.  References
+
+   [521REPLY]        Durand, A. and F. Dupont, "SMTP 521 Reply Code",
+                     <A =
+href=3D"http://www.faqs.org/rfcs/rfc1846.html">RFC 1846</A>, September =
+1995.
+
+   [8BITMIME]        Klensin, J., Freed, N., Rose, M., Stefferud, E. and
+                     D.  Crocker, "SMTP Service Extension for 8bit-
+                     MIMEtransport", <A =
+href=3D"http://www.faqs.org/rfcs/rfc1652.html">RFC 1652</A>, July 1994.
+
+   [ABNF]            Crocker, D., Ed. and P. Overell, "Augmented BNF for
+                     Syntax Specifications: ABNF", <A =
+href=3D"http://www.faqs.org/rfcs/rfc2234.html">RFC 2234</A>, November
+                     1997.
+
+   [CHECKPOINT]      Crocker, D., Freed, N. and A. Cargille, "SMTP
+                     Service Extension for Checkpoint/Restart", RFC
+                     1845, September 1995.
+
+   [CHUNKING]        Vaudreuil, G., "SMTP Service Extensions for
+                     Transmission of Large and Binary MIME Messages",
+                     <A =
+href=3D"http://www.faqs.org/rfcs/rfc1830.html">RFC 1830</A>, August =
+1995.
+
+   [CODES-EXTENSION] Freed, N., "SMTP Service Extension for Returning
+                     Enhanced Error Codes", <A =
+href=3D"http://www.faqs.org/rfcs/rfc2034.html">RFC 2034</A>, October =
+1996.
+
+   [DSN]             Moore, K., "SMTP Service Extension for Delivery
+                     Status Notifications", <A =
+href=3D"http://www.faqs.org/rfcs/rfc1891.html">RFC 1891</A>, January =
+1996.
+
+   [ESMTP]           Klensin, J., Freed, N., Rose, M., Stefferud, E. and
+                     D. Crocker, "SMTP Service Extensions", STD 10, RFC
+                     1869, November 1995.
+
+   [ETRN]            De Winter, J., "SMTP Service Extension for Remote
+                     Message Queue Starting", <A =
+href=3D"http://www.faqs.org/rfcs/rfc1985.html">RFC 1985</A>, August =
+1996.
+
+   [HEADERS]         Palme, J., "Common Internet Message Headers", RFC
+                     2076, February 1997.
+
+   [IPSEC]           Atkinson, R., "Security Architecture for the
+                     Internet Protocol", <A =
+href=3D"http://www.faqs.org/rfcs/rfc1825.html">RFC 1825</A>, August =
+1995.
+
+   [KEYWORDS]        Bradner, S., "Key words for use in RFCs to Indicate
+                     Requirement Levels", BCP 14, <A =
+href=3D"http://www.faqs.org/rfcs/rfc2119.html">RFC 2119</A>, March 1997.
+
+   [MESSAGE-FORMAT]  Crocker, D., "Standard for the format of ARPA
+                     Internet text messages", STD 11, <A =
+href=3D"http://www.faqs.org/rfcs/rfc822.html">RFC 822</A>, August
+                     1982;
+
+                     Braden, R., Editor, "Requirements for Internet
+                     Hosts -- Application and Support", STD 3, <A =
+href=3D"http://www.faqs.org/rfcs/rfc1123.html">RFC 1123</A>,
+                     October 1989.
+
+   [PIPELINING]      Freed, N., "SMTP Service Extension for Command
+                     Pipelining", <A =
+href=3D"http://www.faqs.org/rfcs/rfc2197.html">RFC 2197</A>, September =
+1997.
+
+   [POP3]            Myers, J. and M. Rose, "Post Office Protocol --
+                     Version 3", STD 53, <A =
+href=3D"http://www.faqs.org/rfcs/rfc1939.html">RFC 1939</A>, May 1996.
+
+   [SIZE]            Klensin, J., Freed, N. and K. Moore, "SMTP Service
+                     Extension for Message Size Declaration", STD 10,
+                     <A =
+href=3D"http://www.faqs.org/rfcs/rfc1870.html">RFC 1870</A>, November =
+1995.
+
+   [SMTP-AUTH]       Myers, J., "SMTP Service Extension for
+                     Authentication", Work in Progress.
+
+   [SMTP-CODES]      Vaudreuil, G., "Enhanced Mail System Status Codes",
+                     <A =
+href=3D"http://www.faqs.org/rfcs/rfc1893.html">RFC 1893</A>, January =
+1996.
+
+   [SMTP-MTA]        Postel, J., "Simple Mail Transfer Protocol", STD
+                     10, <A =
+href=3D"http://www.faqs.org/rfcs/rfc821.html">RFC 821</A>, August 1982.
+
+                     Partridge, C., "Mail Routing and the Domain
+                     System", STD 14, <A =
+href=3D"http://www.faqs.org/rfcs/rfc974.html">RFC 974</A>, January 1986.
+
+                     Braden, R., Editor, "Requirements for Internet
+                     Hosts -- Application and Support", STD 3, <A =
+href=3D"http://www.faqs.org/rfcs/rfc1123.html">RFC 1123</A>,
+                     October 1989.
+
+12.  Authors' Addresses
+
+   Randall Gellens
+   QUALCOMM Incorporated
+   6455 Lusk Blvd.
+   San Diego, CA  92121-2779
+   U.S.A.
+
+   Phone: +1 619 651 5115
+   Fax:   +1 619 651 5334
+   EMail: <A href=3D"mailto:Randy@Qualcomm.Com">Randy@Qualcomm.Com</A>
+
+   John C. Klensin
+   MCI Telecommunications
+   800 Boylston St, 7th floor
+   Boston, MA 02199
+   USA
+
+   Phone: +1 617 960 1011
+   EMail: <A href=3D"mailto:klensin@mci.net">klensin@mci.net</A>
+
+13.  Full Copyright Statement
+
+   Copyright (C) The Internet Society (1998).  All Rights Reserved.
+
+   This document and translations of it may be copied and furnished to
+   others, and derivative works that comment on or otherwise explain it
+   or assist in its implementation may be prepared, copied, published
+   and distributed, in whole or in part, without restriction of any
+   kind, provided that the above copyright notice and this paragraph are
+   included on all such copies and derivative works.  However, this
+   document itself may not be modified in any way, such as by removing
+   the copyright notice or references to the Internet Society or other
+   Internet organizations, except as needed for the purpose of
+   developing Internet standards in which case the procedures for
+   copyrights defined in the Internet Standards process must be
+   followed, or as required to translate it into languages other than
+   English.
+
+   The limited permissions granted above are perpetual and will not be
+   revoked by the Internet Society or its successors or assigns.
+
+   This document and the information contained herein is provided on an
+   "AS IS" basis and THE INTERNET SOCIETY AND THE INTERNET ENGINEERING
+   TASK FORCE DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING
+   BUT NOT LIMITED TO ANY WARRANTY THAT THE USE OF THE INFORMATION
+   HEREIN WILL NOT INFRINGE ANY RIGHTS OR ANY IMPLIED WARRANTIES OF
+   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.
+
+</PRE>
+<P align=3Dcenter>
+<SCRIPT language=3DJavaScript><!--=0A=
+erfc("2476");=0A=
+// --></SCRIPT>
+</P>&nbsp;<BR>
+<DIV align=3Dcenter>
+<TABLE cellSpacing=3D3 cellPadding=3D3 width=3D"100%" border=3D0>
+  <TBODY>
+  <TR>
+    <TD width=3D"45%">
+      <P align=3Dleft>Previous: <A=20
+      href=3D"http://www.faqs.org/rfcs/rfc2475.html">RFC 2475 - An =
+Architecture=20
+      for Differentiated Service</A> </P></TD>
+    <TD width=3D"10%">&nbsp;</TD>
+    <TD width=3D"45%">
+      <P align=3Dright>Next: <A =
+href=3D"http://www.faqs.org/rfcs/rfc2477.html">RFC=20
+      2477 - Criteria for Evaluating Roaming Protocols</A>=20
+</P></TD></TR></TBODY></TABLE></DIV>
+<P align=3Dright>&nbsp;</P>
+<HR noShade SIZE=3D2>
+
+<DIV align=3Dcenter>[ <A href=3D"http://www.faqs.org/rfcs/">RFC =
+Index</A> | <A=20
+href=3D"http://www.faqs.org/rfcs/rfcsearch.html">RFC Search</A> | <A=20
+href=3D"http://www.faqs.org/faqs/">Usenet FAQs</A> | <A=20
+href=3D"http://www.faqs.org/contrib/">Web FAQs</A> | <A=20
+href=3D"http://www.faqs.org/docs/">Documents</A> | <A=20
+href=3D"http://www.city-data.com/">Cities</A> ]=20
+<P></P></DIV><SMALL>
+<ADDRESS>
+<P align=3Dcenter></P></ADDRESS></SMALL></BODY></HTML>
+
+------=_NextPart_000_0002_01C3D249.CFBC8530
+Content-Type: image/jpeg
+Content-Transfer-Encoding: base64
+Content-Location: http://www.faqs.org/images/library.jpg
+
+/9j/4AAQSkZJRgABAgEASABIAAD/7QE0UGhvdG9zaG9wIDMuMAA4QklNA+0AAAAAABAASAAAAAEA
+AQBIAAAAAQABOEJJTQPzAAAAAAAIAAAAAAAAAAA4QklNJxAAAAAAAAoAAQAAAAAAAAACOEJJTQP1
+AAAAAABIAC9mZgABAGxmZgAGAAAAAAABAC9mZgABAKGZmgAGAAAAAAABADIAAAABAFoAAAAGAAAA
+AAABADUAAAABAC0AAAAGAAAAAAABOEJJTQP4AAAAAABwAAD/////////////////////////////
+A+gAAAAA/////////////////////////////wPoAAAAAP////////////////////////////8D
+6AAAAAD/////////////////////////////A+gAADhCSU0EBgAAAAAAAgAE/+4ADkFkb2JlAGQA
+AAAAAf/bAIQABgQEBAUEBgUFBgkGBQYJCwgGBggLDAoKCwoKDBAMDAwMDAwQDAwMDAwMDAwMDAwM
+DAwMDAwMDAwMDAwMDAwMDAEHBwcNDA0YEBAYFA4ODhQUDg4ODhQRDAwMDAwREQwMDAwMDBEMDAwM
+DAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwM/8AAEQgAPgCWAwERAAIRAQMRAf/EAaIAAAAHAQEBAQEA
+AAAAAAAAAAQFAwIGAQAHCAkKCwEAAgIDAQEBAQEAAAAAAAAAAQACAwQFBgcICQoLEAACAQMDAgQC
+BgcDBAIGAnMBAgMRBAAFIRIxQVEGE2EicYEUMpGhBxWxQiPBUtHhMxZi8CRygvElQzRTkqKyY3PC
+NUQnk6OzNhdUZHTD0uIIJoMJChgZhJRFRqS0VtNVKBry4/PE1OT0ZXWFlaW1xdXl9WZ2hpamtsbW
+5vY3R1dnd4eXp7fH1+f3OEhYaHiImKi4yNjo+Ck5SVlpeYmZqbnJ2en5KjpKWmp6ipqqusra6voR
+AAICAQIDBQUEBQYECAMDbQEAAhEDBCESMUEFURNhIgZxgZEyobHwFMHR4SNCFVJicvEzJDRDghaS
+UyWiY7LCB3PSNeJEgxdUkwgJChgZJjZFGidkdFU38qOzwygp0+PzhJSktMTU5PRldYWVpbXF1eX1
+RlZmdoaWprbG1ub2R1dnd4eXp7fH1+f3OEhYaHiImKi4yNjo+DlJWWl5iZmpucnZ6fkqOkpaanqK
+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
+
+------=_NextPart_000_0002_01C3D249.CFBC8530--

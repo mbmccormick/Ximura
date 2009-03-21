@@ -1,0 +1,1230 @@
+From: <Saved by Microsoft Internet Explorer 5>
+Subject: (MIME) Part Four: Registration Procedures
+Date: Fri, 5 Apr 2002 12:29:34 +0800
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	boundary="----=_NextPart_000_000F_01C1DC9D.8B665440";
+	type="text/html"
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2600.0000
+
+This is a multi-part message in MIME format.
+
+------=_NextPart_000_000F_01C1DC9D.8B665440
+Content-Type: text/html;
+	charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://www.nacs.uci.edu/indiv/ehood/MIME/2048/rfc2048.html
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>(MIME) Part Four: Registration Procedures</TITLE>
+<META http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dwindows-1252">
+<META content=3D"MSHTML 6.00.2600.0" name=3DGENERATOR></HEAD>
+<BODY background=3Dhttp://www.oac.uci.edu/indiv/ehood/bg/cemstone.gif>
+<TABLE width=3D"100%" border=3D0>
+  <TBODY>
+  <TR>
+    <TD align=3Dleft>
+      <ADDRESS>Network Working Group<BR>Request for Comments: =
+2048<BR>BCP:=20
+      13<BR>Obsoletes: 1521, 1522, 1590<BR>Category: Best Current=20
+      Practice<BR><BR><BR></ADDRESS></TD>
+    <TD align=3Dright>
+      <ADDRESS>N. Freed<BR>Innosoft<BR>J. Klensin<BR>MCI<BR>J.=20
+      Postel<BR>ISI<BR>November =
+1996<BR></ADDRESS></TD></TR></TBODY></TABLE>
+<HR>
+
+<H1 align=3Dcenter>Multipurpose Internet Mail Extensions</H1>
+<H4 align=3Dcenter>(MIME) Part Four:<BR>Registration Procedures</H4>
+<HR>
+
+<H2><A name=3Dstatus>Status of this Memo</A> </H2>
+<P>This document specifies an Internet Best Current Practices for the =
+Internet=20
+Community, and requests discussion and suggestions for improvements.=20
+Distribution of this memo is unlimited. </P>
+<H2><A name=3Dabstract>Abstract</A> </H2>
+<P>STD 11, <A href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC =
+822</A>, defines=20
+a message representation protocol specifying considerable detail about =
+US-ASCII=20
+message headers, and leaves the message content, or message body, as =
+flat=20
+US-ASCII text. This set of documents, collectively called the =
+Multipurpose=20
+Internet Mail Extensions, or MIME, redefines the format of messages to =
+allow for=20
+</P>
+<OL>
+  <LI>
+  <P>textual message bodies in character sets other than US-ASCII, </P>
+  <LI>
+  <P>an extensible set of different formats for non-textual message =
+bodies, </P>
+  <LI>
+  <P>multi-part message bodies, and </P>
+  <LI>
+  <P>textual header information in character sets other than US-ASCII.=20
+</P></LI></OL>
+<P>These documents are based on earlier work documented in <A=20
+href=3D"http://ds.internic.net/rfc/rfc934.txt">RFC 934</A>, STD 11, and =
+<A=20
+href=3D"http://ds.internic.net/rfc/rfc1049.txt">RFC 1049</A>, but =
+extends and=20
+revises them. Because <A =
+href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC=20
+822</A> said so little about message bodies, these documents are largely =
+
+orthogonal to (rather than a revision of) <A=20
+href=3D"http://ds.internic.net/rfc/rfc822.txt">RFC 822</A>. </P>
+<P>This fourth document, <A=20
+href=3D"http://www.nacs.uci.edu/indiv/ehood/MIME/2048/rfc2048.html">RFC =
+2048</A>,=20
+specifies various IANA registration procedures for the following MIME=20
+facilities: </P>
+<OL>
+  <LI>
+  <P>media types, </P>
+  <LI>
+  <P>external body access types, </P>
+  <LI>
+  <P>content-transfer-encodings. </P></LI></OL>
+<P>Registration of character sets for use in MIME is covered elsewhere =
+and is no=20
+longer addressed by this document. </P>
+<P>These documents are revisions of RFCs 1521 and 1522, which themselves =
+were=20
+revisions of RFCs 1341 and 1342. An appendix in <A=20
+href=3D"http://www.nacs.uci.edu/indiv/ehood/MIME/2049/rfc2049.html">RFC =
+2049</A>=20
+describes differences and changes from previous versions. </P>
+<H2><A name=3D1>1. Introduction </A></H2>
+<P>Recent Internet protocols have been carefully designed to be easily=20
+extensible in certain areas. In particular, MIME [<A=20
+href=3D"http://www.nacs.uci.edu/indiv/ehood/MIME/2045/rfc2045.html">RFC =
+2045</A>]=20
+is an open-ended framework and can accommodate additional object types,=20
+character sets, and access methods without any changes to the basic =
+protocol. A=20
+registration process is needed, however, to ensure that the set of such =
+values=20
+is developed in an orderly, well-specified, and public manner. </P>
+<P>This document defines registration procedures which use the Internet =
+Assigned=20
+Numbers Authority (IANA) as a central registry for such values. </P>
+<P>Historical Note: The registration process for media types was =
+initially=20
+defined in the context of the asynchronous Internet mail environment. In =
+this=20
+mail environment there is a need to limit the number of possible media =
+types to=20
+increase the likelihood of interoperability when the capabilities of the =
+remote=20
+mail system are not known. As media types are used in new environments, =
+where=20
+the proliferation of media types is not a hindrance to interoperability, =
+the=20
+original procedure was excessively restrictive and had to be =
+generalized. </P>
+<H2><A name=3D2>2. Media Type Registration </A></H2>
+<P>Registration of a new media type or types starts with the =
+construction of a=20
+registration proposal. Registration may occur in several different =
+registration=20
+trees, which have different requirements as discussed below. In general, =
+the new=20
+registration proposal is circulated and reviewed in a fashion =
+appropriate to the=20
+tree involved. The media type is then registered if the proposal is =
+acceptable.=20
+The following sections describe the requirements and procedures used for =
+each of=20
+the different registration trees. </P>
+<H3><A name=3D2.1>2.1. Registration Trees and Subtype Names </A></H3>
+<P>In order to increase the efficiency and flexibility of the =
+registration=20
+process, different structures of subtype names may be registered to =
+accomodate=20
+the different natural requirements for, e.g., a subtype that will be =
+recommended=20
+for wide support and implementation by the Internet Community or a =
+subtype that=20
+is used to move files associated with proprietary software. The =
+following=20
+subsections define registration "trees", distinguished by the use of =
+faceted=20
+names (e.g., names of the form "tree.subtree...type"). Note that some =
+media=20
+types defined prior to this document do not conform to the naming =
+conventions=20
+described below. See Appendix A for a discussion of them. </P>
+<H4><A name=3D2.1.1>2.1.1. IETF Tree </A></H4>
+<P>The IETF tree is intended for types of general interest to the =
+Internet=20
+Community. Registration in the IETF tree requires approval by the IESG =
+and=20
+publication of the media type registration as some form of RFC. </P>
+<P>Media types in the IETF tree are normally denoted by names that are =
+not=20
+explicitly faceted, i.e., do not contain period (".", full stop) =
+characters.=20
+</P>
+<P>The "owner" of a media type registration in the IETF tree is assumed =
+to be=20
+the IETF itself. Modification or alteration of the specification =
+requires the=20
+same level of processing (e.g. standards track) required for the initial =
+
+registration. </P>
+<H4><A name=3D2.1.2>2.1.2. Vendor Tree </A></H4>
+<P>The vendor tree is used for media types associated with commercially=20
+available products. "Vendor" or "producer" are construed as equivalent =
+and very=20
+broadly in this context. </P>
+<P>A registration may be placed in the vendor tree by anyone who has =
+need to=20
+interchange files associated with the particular product. However, the=20
+registration formally belongs to the vendor or organization producing =
+the=20
+software or file format. Changes to the specification will be made at =
+their=20
+request, as discussed in subsequent sections. </P>
+<P>Registrations in the vendor tree will be distinguished by the leading =
+facet=20
+"vnd.". That may be followed, at the discretion of the registration, by =
+either a=20
+media type name from a well-known producer (e.g., "vnd.mudpie") or by an =
+
+IANA-approved designation of the producer's name which is then followed =
+by a=20
+media type or product designation (e.g., vnd.bigcompany.funnypictures). =
+</P>
+<P>While public exposure and review of media types to be registered in =
+the=20
+vendor tree is not required, using the ietf-types list for review is =
+strongly=20
+encouraged to improve the quality of those specifications. Registrations =
+in the=20
+vendor tree may be submitted directly to the IANA. </P>
+<H4><A name=3D2.1.3>2.1.3. Personal or Vanity Tree </A></H4>
+<P>Registrations for media types created experimentally or as part of =
+products=20
+that are not distributed commercially may be registered in the personal =
+or=20
+vanity tree. The registrations are distinguished by the leading facet =
+"prs.".=20
+</P>
+<P>The owner of "personal" registrations and associated specifications =
+is the=20
+person or entity making the registration, or one to whom responsibility =
+has been=20
+transferred as described below. </P>
+<P>While public exposure and review of media types to be registered in =
+the=20
+personal tree is not required, using the ietf-types list for review is =
+strongly=20
+encouraged to improve the quality of those specifications. Registrations =
+in the=20
+personl tree may be submitted directly to the IANA. </P>
+<H4><A name=3D2.1.4>2.1.4. Special `x.' Tree </A></H4>
+<P>For convenience and symmetry with this registration scheme, media =
+type names=20
+with "x." as the first facet may be used for the same purposes for which =
+names=20
+starting in "x-" are normally used. These types are unregistered, =
+experimental,=20
+and should be used only with the active agreement of the parties =
+exchanging=20
+them. </P>
+<P>However, with the simplified registration procedures described above =
+for=20
+vendor and personal trees, it should rarely, if ever, be necessary to =
+use=20
+unregistered experimental types, and as such use of both "x-" and "x." =
+forms is=20
+discouraged. </P>
+<H4><A name=3D2.1.5>2.1.5. Additional Registration Trees </A></H4>
+<P>From time to time and as required by the community, the IANA may, =
+with the=20
+advice and consent of the IESG, create new top-level registration trees. =
+It is=20
+explicitly assumed that these trees may be created for external =
+registration and=20
+management by well-known permanent bodies, such as scientific societies =
+for=20
+media types specific to the sciences they cover. In general, the quality =
+of=20
+review of specifications for one of these additional registration trees =
+is=20
+expected to be equivalent to that which IETF would give to registrations =
+in its=20
+own tree. Establishment of these new trees will be announced through RFC =
+
+publication approved by the IESG. </P>
+<H3><A name=3D2.2>2.2. Registration Requirements </A></H3>
+<P>Media type registration proposals are all expected to conform to =
+various=20
+requirements laid out in the following sections. Note that requirement =
+specifics=20
+sometimes vary depending on the registration tree, again as detailed in =
+the=20
+following sections. </P>
+<H4><A name=3D2.2.1>2.2.1. Functionality Requirement </A></H4>
+<P>Media types must function as an actual media format: Registration of =
+things=20
+that are better thought of as a transfer encoding, as a character set, =
+or as a=20
+collection of separate entities of another type, is not allowed. For =
+example,=20
+although applications exist to decode the base64 transfer encoding [<A=20
+href=3D"http://www.nacs.uci.edu/indiv/ehood/MIME/2045/rfc2045.html">RFC =
+2045</A>],=20
+base64 cannot be registered as a media type. </P>
+<P>This requirement applies regardless of the registration tree =
+involved. </P>
+<H4><A name=3D2.2.2>2.2.2. Naming Requirements </A></H4>
+<P>All registered media types must be assigned MIME type and subtype =
+names. The=20
+combination of these names then serves to uniquely identify the media =
+type and=20
+the format of the subtype name identifies the registration tree. </P>
+<P>The choice of top-level type name must take the nature of media type =
+involved=20
+into account. For example, media normally used for representing still =
+images=20
+should be a subtype of the image content type, whereas media capable of=20
+representing audio information belongs under the audio content type. See =
+<A=20
+href=3D"http://www.nacs.uci.edu/indiv/ehood/MIME/2046/rfc2046.html">RFC =
+2046</A>=20
+for additional information on the basic set of top-level types and their =
+
+characteristics. </P>
+<P>New subtypes of top-level types must conform to the restrictions of =
+the=20
+top-level type, if any. For example, all subtypes of the multipart =
+content type=20
+must use the same encapsulation syntax. </P>
+<P>In some cases a new media type may not "fit" under any currently =
+defined=20
+top-level content type. Such cases are expected to be quite rare. =
+However, if=20
+such a case arises a new top-level type can be defined to accommodate =
+it. Such a=20
+definition must be done via standards-track RFC; no other mechanism can =
+be used=20
+to define additional top-level content types. </P>
+<P>These requirements apply regardless of the registration tree =
+involved. </P>
+<H4><A name=3D2.2.3>2.2.3. Parameter Requirements </A></H4>
+<P>Media types may elect to use one or more MIME content type =
+parameters, or=20
+some parameters may be automatically made available to the media type by =
+virtue=20
+of being a subtype of a content type that defines a set of parameters =
+applicable=20
+to any of its subtypes. In either case, the names, values, and meanings =
+of any=20
+parameters must be fully specified when a media type is registered in =
+the IETF=20
+tree, and should be specified as completely as possible when media types =
+are=20
+registered in the vendor or personal trees. </P>
+<P>New parameters must not be defined as a way to introduce new =
+functionality in=20
+types registered in the IETF tree, although new parameters may be added =
+to=20
+convey additional information that does not otherwise change existing=20
+functionality. An example of this would be a "revision" parameter to =
+indicate a=20
+revision level of an external specification such as JPEG. Similar =
+behavior is=20
+encouraged for media types registered in the vendor or personal trees =
+but is not=20
+required. </P>
+<H4><A name=3D2.2.4>2.2.4. Canonicalization and Format Requirements =
+</A></H4>
+<P>All registered media types must employ a single, canonical data =
+format,=20
+regardless of registration tree. </P>
+<P>A precise and openly available specification of the format of each =
+media type=20
+is required for all types registered in the IETF tree and must at a =
+minimum be=20
+referenced by, if it isn't actually included in, the media type =
+registration=20
+proposal itself. </P>
+<P>The specifications of format and processing particulars may or may =
+not be=20
+publically available for media types registered in the vendor tree, and =
+such=20
+registration proposals are explicitly permitted to include only a =
+specification=20
+of which software and version produce or process such media types. =
+References to=20
+or inclusion of format specifications in registration proposals is =
+encouraged=20
+but not required. </P>
+<P>Format specifications are still required for registration in the =
+personal=20
+tree, but may be either published as RFCs or otherwise deposited with =
+IANA. The=20
+deposited specifications will meet the same criteria as those required =
+to=20
+register a well-known TCP port and, in particular, need not be made =
+public. </P>
+<P>Some media types involve the use of patented technology. The =
+registration of=20
+media types involving patented technology is specifically permitted. =
+However,=20
+the restrictions set forth in RFC 1602 on the use of patented technology =
+in=20
+standards-track protocols must be respected when the specification of a =
+media=20
+type is part of a standards-track protocol. </P>
+<H4><A name=3D2.2.5>2.2.5. Interchange Recommendations </A></H4>
+<P>Media types should, whenever possible, interoperate across as many =
+systems=20
+and applications as possible. However, some media types will inevitably =
+have=20
+problems interoperating across different platforms. Problems with =
+different=20
+versions, byte ordering, and specifics of gateway handling can and will =
+arise.=20
+</P>
+<P>Universal interoperability of media types is not required, but known=20
+interoperability issues should be identified whenever possible. =
+Publication of a=20
+media type does not require an exhaustive review of interoperability, =
+and the=20
+interoperability considerations section is subject to continuing =
+evaluation.=20
+</P>
+<P>These recommendations apply regardless of the registration tree =
+involved.=20
+</P>
+<H4><A name=3D2.2.6>2.2.6. Security Requirements </A></H4>
+<P>An analysis of security issues is required for for all types =
+registered in=20
+the IETF Tree. (This is in accordance with the basic requirements for =
+all IETF=20
+protocols.) A similar analysis for media types registered in the vendor =
+or=20
+personal trees is encouraged but not required. However, regardless of =
+what=20
+security analysis has or has not been done, all descriptions of security =
+issues=20
+must be as accurate as possible regardless of registration tree. In =
+particular,=20
+a statement that there are "no security issues associated with this =
+type" must=20
+not be confused with "the security issues associates with this type have =
+not=20
+been assessed". </P>
+<P>There is absolutely no requirement that media types registered in any =
+tree be=20
+secure or completely free from risks. Nevertheless, all known security =
+risks=20
+must be identified in the registration of a media type, again regardless =
+of=20
+registration tree. </P>
+<P>The security considerations section of all registrations is subject =
+to=20
+continuing evaluation and modification, and in particular may be =
+extended by use=20
+of the "comments on media types" mechanism described in subsequent =
+sections.=20
+</P>
+<P>Some of the issues that should be looked at in a security analysis of =
+a media=20
+type are: </P>
+<OL>
+  <LI>
+  <P>Complex media types may include provisions for directives that =
+institute=20
+  actions on a recipient's files or other resources. In many cases =
+provision is=20
+  made for originators to specify arbitrary actions in an unrestricted =
+fashion=20
+  which may then have devastating effects. See the registration of the=20
+  application/postscript media type in <A=20
+  =
+href=3D"http://www.nacs.uci.edu/indiv/ehood/MIME/2046/rfc2046.html">RFC =
+2046</A>=20
+  for an example of such directives and how to handle them. </P>
+  <LI>
+  <P>Complex media types may include provisions for directives that =
+institute=20
+  actions which, while not directly harmful to the recipient, may result =
+in=20
+  disclosure of information that either facilitates a subsequent attack =
+or else=20
+  violates a recipient's privacy in some way. Again, the registration of =
+the=20
+  application/postscript media type illustrates how such directives can =
+be=20
+  handled. </P>
+  <LI>
+  <P>A media type might be targeted for applications that require some =
+sort of=20
+  security assurance but not provide the necessary security mechanisms=20
+  themselves. For example, a media type could be defined for storage of=20
+  confidential medical information which in turn requires an external=20
+  confidentiality service. </P></LI></OL>
+<H4><A name=3D2.2.7>2.2.7. Usage and Implementation Non-requirements =
+</A></H4>
+<P>In the asynchronous mail environment, where information on the =
+capabilities=20
+of the remote mail agent is frequently not available to the sender, =
+maximum=20
+interoperability is attained by restricting the number of media types =
+used to=20
+those "common" formats expected to be widely implemented. This was =
+asserted in=20
+the past as a reason to limit the number of possible media types and =
+resulted in=20
+a registration process with a significant hurdle and delay for those =
+registering=20
+media types. </P>
+<P>However, the need for "common" media types does not require limiting =
+the=20
+registration of new media types. If a limited set of media types is =
+recommended=20
+for a particular application, that should be asserted by a separate=20
+applicability statement specific for the application and/or environment. =
+</P>
+<P>As such, universal support and implementation of a media type is NOT =
+a=20
+requirement for registration. If, however, a media type is explicitly =
+intended=20
+for limited use, this should be noted in its registration. </P>
+<H4><A name=3D2.2.8>2.2.8. Publication Requirements </A></H4>
+<P>Proposals for media types registered in the IETF tree must be =
+published as=20
+RFCs. RFC publication of vendor and personal media type proposals is =
+encouraged=20
+but not required. In all cases IANA will retain copies of all media type =
+
+proposals and "publish" them as part of the media types registration =
+tree=20
+itself. </P>
+<P>Other than in the IETF tree, the registration of a data type does not =
+imply=20
+endorsement, approval, or recommendation by IANA or IETF or even =
+certification=20
+that the specification is adequate. To become Internet Standards, =
+protocol, data=20
+objects, or whatever must go through the IETF standards process. This is =
+too=20
+difficult and too lengthy a process for the convenient registration of =
+media=20
+types. </P>
+<P>The IETF tree exists for media types that do require require a =
+substantive=20
+review and approval process with the vendor and personal trees exist for =
+those=20
+that do not. It is expected that applicability statements for particular =
+
+applications will be published from time to time that recommend =
+implementation=20
+of, and support for, media types that have proven particularly useful in =
+those=20
+contexts. </P>
+<P>As discussed above, registration of a top-level type requires =
+standards-track=20
+processing and, hence, RFC publication. </P>
+<H4><A name=3D2.2.9>2.2.9. Additional Information </A></H4>
+<P>Various sorts of optional information may be included in the =
+specification of=20
+a media type if it is available: </P>
+<OL>
+  <LI>
+  <P>Magic number(s) (length, octet values). Magic numbers are byte =
+sequences=20
+  that are always present and thus can be used to identify entities as =
+being of=20
+  a given media type. </P>
+  <LI>
+  <P>File extension(s) commonly used on one or more platforms to =
+indicate that=20
+  some file containing a given type of media. </P>
+  <LI>
+  <P>Macintosh File Type code(s) (4 octets) used to label files =
+containing a=20
+  given type of media. </P></LI></OL>
+<P>Such information is often quite useful to implementors and if =
+available=20
+should be provided. </P>
+<H3><A name=3D2.3>2.3. Registration Procedure </A></H3>
+<P>The following procedure has been implemented by the IANA for review =
+and=20
+approval of new media types. This is not a formal standards process, but =
+rather=20
+an administrative procedure intended to allow community comment and =
+sanity=20
+checking without excessive time delay. For registration in the IETF =
+tree, the=20
+normal IETF processes should be followed, treating posting of an =
+internet-draft=20
+and announcement on the ietf-types list (as described in the next =
+subsection) as=20
+a first step. For registrations in the vendor or personal tree, the =
+initial=20
+review step described below may be omitted and the type registered =
+directly by=20
+submitting the template and an explanation directly to IANA (at =
+iana@iana.org).=20
+However, authors of vendor or personal media type specifications are =
+encouraged=20
+to seek community review and comment whenever that is feasible. </P>
+<H4><A name=3D2.3.1>2.3.1. Present the Media Type to the Community for =
+Review=20
+</A></H4>
+<P>Send a proposed media type registration to the "ietf-types@iana.org" =
+mailing=20
+list for a two week review period. This mailing list has been =
+established for=20
+the purpose of reviewing proposed media and access types. Proposed media =
+types=20
+are not formally registered and must not be used; the "x-" prefix =
+specified in=20
+<A =
+href=3D"http://www.nacs.uci.edu/indiv/ehood/MIME/2045/rfc2045.html">RFC=20
+2045</A> can be used until registration is complete. </P>
+<P>The intent of the public posting is to solicit comments and feedback =
+on the=20
+choice of type/subtype name, the unambiguity of the references with =
+respect to=20
+versions and external profiling information, and a review of any=20
+interoperability or security considerations. The submitter may submit a =
+revised=20
+registration, or withdraw the registration completely, at any time. </P>
+<H4><A name=3D2.3.2>2.3.2. IESG Approval </A></H4>
+<P>Media types registered in the IETF tree must be submitted to the IESG =
+for=20
+approval. </P>
+<H4><A name=3D2.3.3>2.3.3. IANA Registration </A></H4>
+<P>Provided that the media type meets the requirements for media types =
+and has=20
+obtained approval that is necessary, the author may submit the =
+registration=20
+request to the IANA, which will register the media type and make the =
+media type=20
+registration available to the community. </P>
+<H3><A name=3D2.4>2.4. Comments on Media Type Registrations </A></H3>
+<P>Comments on registered media types may be submitted by members of the =
+
+community to IANA. These comments will be passed on to the "owner" of =
+the media=20
+type if possible. Submitters of comments may request that their comment =
+be=20
+attached to the media type registration itself, and if IANA approves of =
+this the=20
+comment will be made accessible in conjunction with the type =
+registration=20
+itself. </P>
+<H3><A name=3D2.5>2.5. Location of Registered Media Type List </A></H3>
+<P>Media type registrations will be posted in the anonymous FTP =
+directory "<A=20
+href=3D"ftp://ftp.isi.edu/in-notes/iana/assignments/media-types/">ftp://f=
+tp.isi.edu/in-notes/iana/assignments/media-types/</A>"=20
+and all registered media types will be listed in the periodically issued =
+
+"Assigned Numbers" RFC [currently STD 2, <A=20
+href=3D"http://ds.internic.net/rfc/rfc1700.txt">RFC 1700</A>]. The media =
+type=20
+description and other supporting material may also be published as an=20
+Informational RFC by sending it to "rfc-editor@isi.edu" (please follow =
+the=20
+instructions to RFC authors [<A=20
+href=3D"http://ds.internic.net/rfc/rfc1543.txt">RFC-1543</A>]). </P>
+<H3><A name=3D2.6>2.6. IANA Procedures for Registering Media Types =
+</A></H3>
+<P>The IANA will only register media types in the IETF tree in response =
+to a=20
+communication from the IESG stating that a given registration has been =
+approved.=20
+Vendor and personal types will be registered by the IANA automatically =
+and=20
+without any formal review as long as the following minimal conditions =
+are met:=20
+</P>
+<OL>
+  <LI>
+  <P>Media types must function as an actual media format. In particular, =
+
+  character sets and transfer encodings may not be registered as media =
+types.=20
+  </P>
+  <LI>
+  <P>All media types must have properly formed type and subtype names. =
+All type=20
+  names must be defined by a standards-track RFC. All subtype names must =
+be=20
+  unique, must conform to the MIME grammar for such names, and must =
+contain the=20
+  proper tree prefix. </P>
+  <LI>
+  <P>Types registered in the personal tree must either provide a format=20
+  specification or a pointer to one. </P>
+  <LI>
+  <P>Any security considerations given must not be obviously bogus. (It =
+is=20
+  neither possible nor necessary for the IANA to conduct a comprehensive =
+
+  security review of media type registrations. Nevertheless, IANA has =
+the=20
+  authority to identify obviously incompetent material and exclude it.)=20
+</P></LI></OL>
+<H3><A name=3D2.7>2.7. Change Control </A></H3>
+<P>Once a media type has been published by IANA, the author may request =
+a change=20
+to its definition. The descriptions of the different registration trees =
+above=20
+designate the "owners" of each type of registration. The change request =
+follows=20
+the same procedure as the registration request: </P>
+<OL>
+  <LI>
+  <P>Publish the revised template on the ietf-types list. </P>
+  <LI>
+  <P>Leave at least two weeks for comments. </P>
+  <LI>
+  <P>Publish using IANA after formal review if required. </P></LI></OL>
+<P>Changes should be requested only when there are serious omission or =
+errors in=20
+the published specification. When review is required, a change request =
+may be=20
+denied if it renders entities that were valid under the previous =
+definition=20
+invalid under the new definition. </P>
+<P>The owner of a content type may pass responsibility for the content =
+type to=20
+another person or agency by informing IANA and the ietf-types list; this =
+can be=20
+done without discussion or review. </P>
+<P>The IESG may reassign responsibility for a media type. The most =
+common case=20
+of this will be to enable changes to be made to types where the author =
+of the=20
+registration has died, moved out of contact or is otherwise unable to =
+make=20
+changes that are important to the community. </P>
+<P>Media type registrations may not be deleted; media types which are no =
+longer=20
+believed appropriate for use can be declared OBSOLETE by a change to =
+their=20
+"intended use" field; such media types will be clearly marked in the =
+lists=20
+published by IANA. </P>
+<H3><A name=3D2.8>2.8. Registration Template </A></H3><PRE>  To: =
+ietf-types@iana.org
+  Subject: Registration of MIME media type XXX/YYY
+
+  MIME media type name:
+
+  MIME subtype name:
+
+  Required parameters:
+
+  Optional parameters:
+
+  Encoding considerations:
+
+  Security considerations:
+
+  Interoperability considerations:
+
+  Published specification:
+
+  Applications which use this media type:
+
+  Additional information:
+
+    Magic number(s):
+    File extension(s):
+    Macintosh File Type Code(s):
+
+  Person &amp; email address to contact for further information:
+
+  Intended usage:
+
+  (One of COMMON, LIMITED USE or OBSOLETE)
+
+  Author/Change controller:
+
+  (Any other information that the author deems interesting may be
+  added below this line.)
+
+</PRE>
+<H2><A name=3D3>3. External Body Access Types </A></H2>
+<P><A =
+href=3D"http://www.nacs.uci.edu/indiv/ehood/MIME/2046/rfc2046.html">RFC=20
+2046</A> defines the message/external-body media type, whereby a MIME =
+entity can=20
+act as pointer to the actual body data in lieu of including the data =
+directly in=20
+the entity body. Each message/external-body reference specifies an =
+access type,=20
+which determines the mechanism used to retrieve the actual body data. =
+RFC 2046=20
+defines an initial set of access types, but allows for the registration =
+of=20
+additional access types to accommodate new retrieval mechanisms. </P>
+<H3><A name=3D3.1>3.1. Registration Requirements </A></H3>
+<P>New access type specifications must conform to a number of =
+requirements as=20
+described below. </P>
+<H4><A name=3D3.1.1>3.1.1. Naming Requirements </A></H4>
+<P>Each access type must have a unique name. This name appears in the=20
+access-type parameter in the message/external-body content-type header =
+field,=20
+and must conform to MIME content type parameter syntax. </P>
+<H4><A name=3D3.1.2>3.1.2. Mechanism Specification Requirements =
+</A></H4>
+<P>All of the protocols, transports, and procedures used by a given =
+access type=20
+must be described, either in the specification of the access type itself =
+or in=20
+some other publicly available specification, in sufficient detail for =
+the access=20
+type to be implemented by any competent implementor. Use of secret =
+and/or=20
+proprietary methods in access types are expressly prohibited. The =
+restrictions=20
+imposed by <A href=3D"http://ds.internic.net/rfc/rfc1602.txt">RFC =
+1602</A> on the=20
+standardization of patented algorithms must be respected as well. </P>
+<H4><A name=3D3.1.3>3.1.3. Publication Requirements </A></H4>
+<P>All access types must be described by an RFC. The RFC may be =
+informational=20
+rather than standards-track, although standard-track review and approval =
+are=20
+encouraged for all access types. </P>
+<H4><A name=3D3.1.4>3.1.4. Security Requirements </A></H4>
+<P>Any known security issues that arise from the use of the access type =
+must be=20
+completely and fully described. It is not required that the access type =
+be=20
+secure or that it be free from risks, but that the known risks be =
+identified.=20
+Publication of a new access type does not require an exhaustive security =
+review,=20
+and the security considerations section is subject to continuing =
+evaluation.=20
+Additional security considerations should be addressed by publishing =
+revised=20
+versions of the access type specification. </P>
+<H3><A name=3D3.2>3.2. Registration Procedure </A></H3>
+<P>Registration of a new access type starts with the construction of a =
+draft of=20
+an RFC. </P>
+<H4><A name=3D3.2.1>3.2.1. Present the Access Type to the Community =
+</A></H4>
+<P>Send a proposed access type specification to the =
+"ietf-types@iana.org"=20
+mailing list for a two week review period. This mailing list has been=20
+established for the purpose of reviewing proposed access and media =
+types.=20
+Proposed access types are not formally registered and must not be used. =
+</P>
+<P>The intent of the public posting is to solicit comments and feedback =
+on the=20
+access type specification and a review of any security considerations. =
+</P>
+<H4><A name=3D3.2.2>3.2.2. Access Type Reviewer </A></H4>
+<P>When the two week period has passed, the access type reviewer, who is =
+
+appointed by the IETF Applications Area Director, either forwards the =
+request to=20
+iana@isi.edu, or rejects it because of significant objections raised on =
+the=20
+list. </P>
+<P>Decisions made by the reviewer must be posted to the ietf-types =
+mailing list=20
+within 14 days. Decisions made by the reviewer may be appealed to the =
+IESG. </P>
+<H4><A name=3D3.2.3>3.2.3. IANA Registration </A></H4>
+<P>Provided that the access type has either passed review or has been=20
+successfully appealed to the IESG, the IANA will register the access =
+type and=20
+make the registration available to the community. The specification of =
+the=20
+access type must also be published as an RFC. Informational RFCs are =
+published=20
+by sending them to "rfc-editor@isi.edu" (please follow the instructions =
+to RFC=20
+authors [<A =
+href=3D"http://ds.internic.net/rfc/rfc1543.txt">RFC-1543</A>]). </P>
+<H3><A name=3D3.3>3.3. Location of Registered Access Type List </A></H3>
+<P>Access type registrations will be posted in the anonymous FTP =
+directory "<A=20
+href=3D"ftp://ftp.isi.edu/in-notes/iana/assignments/access-types/">ftp://=
+ftp.isi.edu/in-notes/iana/assignments/access-types/</A>"=20
+and all registered access types will be listed in the periodically =
+issued=20
+"Assigned Numbers" RFC [currently <A=20
+href=3D"http://ds.internic.net/rfc/rfc1700.txt">RFC-1700</A>]. </P>
+<H3><A name=3D3.4>3.4. IANA Procedures for Registering Access Types =
+</A></H3>
+<P>The identity of the access type reviewer is communicated to the IANA =
+by the=20
+IESG. The IANA then only acts in response to access type definitions =
+that either=20
+are approved by the access type reviewer and forwarded by the reviewer =
+to the=20
+IANA for registration, or in response to a communication from the IESG =
+that an=20
+access type definition appeal has overturned the access type reviewer's =
+ruling.=20
+</P>
+<H2><A name=3D4>4. Transfer Encodings </A></H2>
+<P>Transfer encodings are tranformations applied to MIME media types =
+after=20
+conversion to the media type's canonical form. Transfer encodings are =
+used for=20
+several purposes: </P>
+<OL>
+  <LI>
+  <P>Many transports, especially message transports, can only handle =
+data=20
+  consisting of relatively short lines of text. There can also be severe =
+
+  restrictions on what characters can be used in these lines of text -- =
+some=20
+  transports are restricted to a small subset of US-ASCII and others =
+cannot=20
+  handle certain character sequences. Transfer encodings are used to =
+transform=20
+  binary data into textual form that can survive such transports. =
+Examples of=20
+  this sort of transfer encoding include the base64 and quoted-printable =
+
+  transfer encodings defined in <A=20
+  =
+href=3D"http://www.nacs.uci.edu/indiv/ehood/MIME/2045/rfc2045.html">RFC=20
+  2045</A>. </P>
+  <LI>
+  <P>Image, audio, video, and even application entities are sometimes =
+quite=20
+  large. Compression algorithms are often quite effective in reducing =
+the size=20
+  of large entities. Transfer encodings can be used to apply =
+general-purpose=20
+  non-lossy compression algorithms to MIME entities. </P>
+  <LI>
+  <P>Transport encodings can be defined as a means of representing =
+existing=20
+  encoding formats in a MIME context. </P></LI></OL>
+<P><STRONG>IMPORTANT</STRONG>: The standardization of a large numbers of =
+
+different transfer encodings is seen as a significant barrier to =
+widespread=20
+interoperability and is expressely discouraged. Nevertheless, the =
+following=20
+procedure has been defined to provide a means of defining additional =
+transfer=20
+encodings, should standardization actually be justified. </P>
+<H3><A name=3D4.1>4.1. Transfer Encoding Requirements </A></H3>
+<P>Transfer encoding specifications must conform to a number of =
+requirements as=20
+described below. </P>
+<H4><A name=3D4.1.1>4.1.1. Naming Requirements </A></H4>
+<P>Each transfer encoding must have a unique name. This name appears in =
+the=20
+Content-Transfer-Encoding header field and must conform to the syntax of =
+that=20
+field. </P>
+<H4><A name=3D4.1.2>4.1.2. Algorithm Specification Requirements =
+</A></H4>
+<P>All of the algorithms used in a transfer encoding (e.g. conversion to =
+
+printable form, compression) must be described in their entirety in the =
+transfer=20
+encoding specification. Use of secret and/or proprietary algorithms in=20
+standardized transfer encodings are expressly prohibited. The =
+restrictions=20
+imposed by <A href=3D"http://ds.internic.net/rfc/rfc1602.txt">RFC =
+1602</A> on the=20
+standardization of patented algorithms must be respected as well. </P>
+<H4><A name=3D4.1.3>4.1.3. Input Domain Requirements </A></H4>
+<P>All transfer encodings must be applicable to an arbitrary sequence of =
+octets=20
+of any length. Dependence on particular input forms is not allowed. </P>
+<P>It should be noted that the 7bit and 8bit encodings do not conform to =
+this=20
+requirement. Aside from the undesireability of having specialized =
+encodings, the=20
+intent here is to forbid the addition of additional encodings along the =
+lines of=20
+7bit and 8bit. </P>
+<H4><A name=3D4.1.4>4.1.4. Output Range Requirements </A></H4>
+<P>There is no requirement that a particular tranfer encoding produce a=20
+particular form of encoded output. However, the output format for each =
+transfer=20
+encoding must be fully and completely documented. In particular, each=20
+specification must clearly state whether the output format always lies =
+within=20
+the confines of 7bit data, 8bit data, or is simply pure binary data. =
+</P>
+<H4><A name=3D4.1.5>4.1.5. Data Integrity and Generality Requirements =
+</A></H4>
+<P>All transfer encodings must be fully invertible on any platform; it =
+must be=20
+possible for anyone to recover the original data by performing the =
+corresponding=20
+decoding operation. Note that this requirement effectively excludes all =
+forms of=20
+lossy compression as well as all forms of encryption from use as a =
+transfer=20
+encoding. </P>
+<H4><A name=3D4.1.6>4.1.6. New Functionality Requirements </A></H4>
+<P>All transfer encodings must provide some sort of new functionality. =
+Some=20
+degree of functionality overlap with previously defined transfer =
+encodings is=20
+acceptable, but any new transfer encoding must also offer something no =
+other=20
+transfer encoding provides. </P>
+<H3><A name=3D4.2>4.2. Transfer Encoding Definition Procedure </A></H3>
+<P>Definition of a new transfer encoding starts with the construction of =
+a draft=20
+of a standards-track RFC. The RFC must define the transfer encoding =
+precisely=20
+and completely, and must also provide substantial justification for =
+defining and=20
+standardizing a new transfer encoding. This specification must then be =
+presented=20
+to the IESG for consideration. The IESG can </P>
+<OL>
+  <LI>
+  <P>reject the specification outright as being inappropriate for=20
+  standardization, </P>
+  <LI>
+  <P>approve the formation of an IETF working group to work on the =
+specification=20
+  in accordance with IETF procedures, or, </P>
+  <LI>
+  <P>accept the specification as-is and put it directly on the standards =
+track.=20
+  </P></LI></OL>
+<P>Transfer encoding specifications on the standards track follow normal =
+IETF=20
+rules for standards track documents. A transfer encoding is considered =
+to be=20
+defined and available for use once it is on the standards track. </P>
+<H3><A name=3D4.3>4.3. IANA Procedures for Transfer Encoding =
+Registration=20
+</A></H3>
+<P>There is no need for a special procedure for registering Transfer =
+Encodings=20
+with the IANA. All legitimate transfer encoding registrations must =
+appear as a=20
+standards-track RFC, so it is the IESG's responsibility to notify the =
+IANA when=20
+a new transfer encoding has been approved. </P>
+<H3><A name=3D4.4>4.4. Location of Registered Transfer Encodings List =
+</A></H3>
+<P>Transfer encoding registrations will be posted in the anonymous FTP =
+directory=20
+"<A=20
+href=3D"ftp://ftp.isi.edu/in-notes/iana/assignments/transfer-encodings/">=
+ftp://ftp.isi.edu/in-notes/iana/assignments/transfer-encodings/</A>"=20
+and all registered transfer encodings will be listed in the periodically =
+issued=20
+"Assigned Numbers" RFC [currently <A=20
+href=3D"http://ds.internic.net/rfc/rfc1700.txt">RFC-1700</A>]. </P>
+<H2><A name=3D5>5. Authors' Addresses </A></H2>
+<P>For more information, the authors of this document are best contacted =
+via=20
+Internet mail: </P>
+<ADDRESS>Ned Freed<BR>Innosoft International, Inc.<BR>1050 East Garvey =
+Avenue=20
+South<BR>West Covina, CA 91790<BR>USA<BR>Phone: +1 818 919 3600<BR>Fax: =
++1 818=20
+919 3614<BR>EMail: ned@innosoft.com<BR><BR></ADDRESS>
+<ADDRESS>John Klensin<BR>MCI<BR>2100 Reston Parkway<BR>Reston, VA=20
+22091<BR>Phone: +1 703 715-7361<BR>Fax: +1 703 715-7436<BR>EMail:=20
+klensin@mci.net<BR><BR></ADDRESS>
+<ADDRESS>Jon Postel<BR>USC/Information Sciences Institute<BR>4676 =
+Admiralty=20
+Way<BR>Marina del Rey, CA 90292<BR>USA<BR>Phone: +1 310 822 1511<BR>Fax: =
++1 310=20
+823 6714<BR>EMail: Postel@ISI.EDU<BR><BR></ADDRESS>
+<H2><A name=3DA>Appendix A -- Grandfathered Media Types</A> </H2>
+<P>A number of media types, registered prior to 1996, would, if =
+registered under=20
+the guidelines in this document, be placed into either the vendor or =
+personal=20
+trees. Reregistration of those types to reflect the appropriate trees is =
+
+encouraged, but not required. Ownership and change control principles =
+outlined=20
+in this document apply to those types as if they had been registered in =
+the=20
+trees described<BR>bedi </P>
+<HR>
+
+<ADDRESS><SMALL>HTML version of RFC converted from text version by <A=20
+href=3D"http://www.oac.uci.edu/indiv/ehood/">Earl Hood</A>, <A=20
+href=3D"mailto:ehood@medusa.acs.uci.edu">ehood@medusa.acs.uci.edu</A><BR>=
+HTML Last=20
+Updated: 97/12/03 08:40:50<BR></SMALL></ADDRESS></BODY></HTML>
+
+------=_NextPart_000_000F_01C1DC9D.8B665440
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://www.oac.uci.edu/indiv/ehood/bg/cemstone.gif
+
+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
+
+------=_NextPart_000_000F_01C1DC9D.8B665440--

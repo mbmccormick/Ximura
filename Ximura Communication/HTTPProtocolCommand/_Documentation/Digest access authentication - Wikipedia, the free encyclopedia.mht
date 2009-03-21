@@ -1,0 +1,4448 @@
+From: <Saved by Microsoft Internet Explorer 5>
+Subject: Digest access authentication - Wikipedia, the free encyclopedia
+Date: Tue, 8 Aug 2006 22:49:17 +0800
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	type="text/html";
+	boundary="----=_NextPart_000_0002_01C6BB3C.E0F60810"
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2900.2869
+
+This is a multi-part message in MIME format.
+
+------=_NextPart_000_0002_01C6BB3C.E0F60810
+Content-Type: text/html;
+	charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://en.wikipedia.org/wiki/Digest_access_authentication
+
+=EF=BB=BF<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" =
+"http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML lang=3Den dir=3Dltr xml:lang=3D"en"=20
+xmlns=3D"http://www.w3.org/1999/xhtml"><HEAD><TITLE>Digest access =
+authentication - Wikipedia, the free encyclopedia</TITLE>
+<META http-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8">
+<META=20
+content=3D"Digest access authentication,1993,Basic authentication =
+scheme,CERN,Carriage return,Colon =
+(punctuation),Cryptography,Delimiter,HMAC,HTTP,Hyperlink"=20
+name=3Dkeywords><LINK href=3D"/favicon.ico" rel=3D"shortcut icon"><LINK=20
+href=3D"http://www.gnu.org/copyleft/fdl.html" rel=3Dcopyright>
+<STYLE type=3Dtext/css media=3Dscreen,projection>@import url( =
+/skins-1.5/monobook/main.css?9 );
+</STYLE>
+<LINK media=3Dprint=20
+href=3D"http://en.wikipedia.org/skins-1.5/common/commonPrint.css" =
+type=3Dtext/css=20
+rel=3Dstylesheet><!--[if lt IE 5.5000]><style type=3D"text/css">@import =
+"/skins-1.5/monobook/IE50Fixes.css";</style><![endif]--><!--[if IE =
+5.5000]><style type=3D"text/css">@import =
+"/skins-1.5/monobook/IE55Fixes.css";</style><![endif]--><!--[if IE 6]>
+<STYLE type=3Dtext/css>@import url( /skins-1.5/monobook/IE60Fixes.css );
+</STYLE>
+<![endif]--><!--[if IE 7]><style type=3D"text/css">@import =
+"/skins-1.5/monobook/IE70Fixes.css?1";</style><![endif]--><!--[if lt IE =
+7]>
+<SCRIPT src=3D"http://en.wikipedia.org/skins-1.5/common/IEFixes.js"=20
+type=3Dtext/javascript></SCRIPT>
+
+<META http-equiv=3Dimagetoolbar content=3Dno><![endif]-->
+<SCRIPT type=3Dtext/javascript>=0A=
+			var skin =3D "monobook";=0A=
+			var stylepath =3D "/skins-1.5";=0A=
+=0A=
+			var wgArticlePath =3D "/wiki/$1";=0A=
+			var wgScriptPath =3D "/w";=0A=
+			var wgServer =3D "http://en.wikipedia.org";=0A=
+                        =0A=
+			var wgCanonicalNamespace =3D "";=0A=
+			var wgPageName =3D "Digest_access_authentication";=0A=
+			var wgTitle =3D "Digest access authentication";=0A=
+			var wgArticleId =3D 1381205;=0A=
+                        =0A=
+			var wgUserName =3D null;=0A=
+			var wgUserLanguage =3D "en";=0A=
+			var wgContentLanguage =3D "en";=0A=
+		</SCRIPT>
+
+<SCRIPT src=3D"http://en.wikipedia.org/skins-1.5/common/wikibits.js?1"=20
+type=3Dtext/javascript><!-- wikibits js --></SCRIPT>
+
+<SCRIPT=20
+src=3D"http://en.wikipedia.org/w/index.php?title=3D-&amp;action=3Draw&amp=
+;gen=3Djs"=20
+type=3Dtext/javascript><!-- site js --></SCRIPT>
+
+<STYLE type=3Dtext/css>@import url( =
+/w/index.php?title=3DMediaWiki:Common.css&action=3Draw&ctype=3Dtext/css&s=
+maxage=3D2678400 );
+@import url( =
+/w/index.php?title=3DMediaWiki:Monobook.css&action=3Draw&ctype=3Dtext/css=
+&smaxage=3D2678400 );
+@import url( =
+/w/index.php?title=3D-&action=3Draw&gen=3Dcss&maxage=3D2678400 );
+</STYLE>
+<!-- Head Scripts -->
+<META content=3D"MSHTML 6.00.2900.2912" name=3DGENERATOR></HEAD>
+<BODY class=3D"ns-0 ltr">
+<DIV id=3DglobalWrapper>
+<DIV id=3Dcolumn-content>
+<DIV id=3Dcontent><A id=3Dtop name=3Dtop></A>
+<DIV id=3DsiteNotice>
+<DIV style=3D"FONT-SIZE: 80%; TEXT-ALIGN: right">Your <B><A =
+class=3Dextiw=20
+title=3Dwikimedia:Fundraising=20
+href=3D"http://wikimediafoundation.org/wiki/Fundraising">continued=20
+donations</A></B> keep Wikipedia =
+running!&nbsp;&nbsp;&nbsp;&nbsp;</DIV></DIV>
+<H1 class=3DfirstHeading>Digest access authentication</H1>
+<DIV id=3DbodyContent>
+<H3 id=3DsiteSub>From Wikipedia, the free encyclopedia</H3>
+<DIV id=3DcontentSub></DIV>
+<DIV id=3Djump-to-nav>Jump to: <A=20
+href=3D"http://en.wikipedia.org/wiki/Digest_access_authentication#column-=
+one">navigation</A>,=20
+<A=20
+href=3D"http://en.wikipedia.org/wiki/Digest_access_authentication#searchI=
+nput">search</A></DIV><!-- start content -->
+<P><B>Digest access authentication</B> is one of the agreed methods a =
+web page=20
+can use to negotiate credentials with a web user (using the <A =
+title=3DHTTP=20
+href=3D"http://en.wikipedia.org/wiki/HTTP">HTTP</A> protocol). This =
+method builds=20
+upon (and obsoletes) the <A title=3D"Basic authentication scheme"=20
+href=3D"http://en.wikipedia.org/wiki/Basic_authentication_scheme">basic=20
+authentication scheme</A>, allowing user identity to be established =
+without=20
+having to send a <A title=3DPassword=20
+href=3D"http://en.wikipedia.org/wiki/Password">password</A> in <A =
+title=3DPlaintext=20
+href=3D"http://en.wikipedia.org/wiki/Plaintext">plaintext</A> over the=20
+network.</P>
+<P>The HTTP scheme was designed at <A title=3DCERN=20
+href=3D"http://en.wikipedia.org/wiki/CERN">CERN</A> in <A title=3D1993=20
+href=3D"http://en.wikipedia.org/wiki/1993">1993</A> and does not =
+represent=20
+subsequent improvements in authentication systems, such as the =
+development of=20
+keyed-hash message authentication code (<A title=3DHMAC=20
+href=3D"http://en.wikipedia.org/wiki/HMAC">HMAC</A>). Although the <A=20
+title=3DCryptography=20
+href=3D"http://en.wikipedia.org/wiki/Cryptography">cryptographic</A> =
+construction=20
+that is used is based on the <A title=3DMD5=20
+href=3D"http://en.wikipedia.org/wiki/MD5">MD5</A> hash function which is =
+known to=20
+be compromised, the known attacks against MD5 do not affect its use in =
+this=20
+particular protocol.</P>
+<P>One consequence of the scheme's design is that the server must know =
+the=20
+password (i.e. store it in plain text) or store the same MD5 hash that =
+is used=20
+to calculate the client's response (see example, below). This means that =
+if the=20
+password database at a site is compromised the attacker will be able to=20
+impersonate any user whose access credentials are stolen. Such a =
+compromise=20
+should not affect other sites if the MD5 hash is stored rather than the=20
+password, because the realm information is used as a <A=20
+title=3D"Salt (cryptography)"=20
+href=3D"http://en.wikipedia.org/wiki/Salt_(cryptography)">salt</A>.</P>
+<P>The MD5 calculation is intended to be "<A title=3D"One way function"=20
+href=3D"http://en.wikipedia.org/wiki/One_way_function">one way</A>", =
+meaning that=20
+it should be difficult to determine the original input when only the =
+output is=20
+known. If the password itself is too simple, however, then it may be =
+possible to=20
+test all possible inputs and find a matching output =E2=80=93 perhaps =
+aided by a=20
+dictionary or suitable look-up list. Ideally users should be forced to =
+use long,=20
+non-trivial passwords.</P>
+<P>Digest access authentication was originally specified by <A =
+class=3Dexternal=20
+title=3Dhttp://tools.ietf.org/html/2069 =
+href=3D"http://tools.ietf.org/html/2069">RFC=20
+2069</A> (<I>An Extension to HTTP: Digest Access Authentication</I>), =
+which was=20
+later replaced by <A class=3Dexternal =
+title=3Dhttp://tools.ietf.org/html/2617=20
+href=3D"http://tools.ietf.org/html/2617">RFC 2617</A> (<I>HTTP =
+Authentication:=20
+Basic and Digest Access Authentication</I>).</P>
+<DIV class=3Deditsection style=3D"FLOAT: right; MARGIN-LEFT: 5px">[<A=20
+title=3D"Edit section: Example with explanation"=20
+href=3D"http://en.wikipedia.org/w/index.php?title=3DDigest_access_authent=
+ication&amp;action=3Dedit&amp;section=3D1">edit</A>]</DIV>
+<P><A id=3DExample_with_explanation =
+name=3DExample_with_explanation></A></P>
+<H2>Example with explanation</H2>
+<DL>
+  <DD><I>Warning: Please refer to the original specifications for a more =
+
+  comprehensive discussion of security issues.</I> </DD></DL>
+<P>The following example was originally given in <A class=3Dexternal=20
+title=3Dhttp://tools.ietf.org/html/2617 =
+href=3D"http://tools.ietf.org/html/2617">RFC=20
+2617</A> and is expanded here to show the full text expected for each =
+request=20
+and response. Note that only the "auth" (authentication) quality of =
+protection=20
+code is covered =E2=80=93 at the time of writing only the <A =
+title=3D"Opera (web browser)"=20
+href=3D"http://en.wikipedia.org/wiki/Opera_(web_browser)">Opera</A> <A=20
+title=3D"Web browser" =
+href=3D"http://en.wikipedia.org/wiki/Web_browser">web=20
+browser</A> is known to support "auth-int" (authentication with =
+integrity=20
+protection). Although the specification mentions HTTP version 1.1 the =
+scheme can=20
+be successfully added to a version 1.0 server, as shown here.</P>
+<P>This typical transaction consists of the following steps.</P>
+<UL>
+  <LI>The client asks for a page that requires authentication but does =
+not=20
+  provide a <A title=3D"User name"=20
+  href=3D"http://en.wikipedia.org/wiki/User_name">user name</A> and =
+password.=20
+  Typically this is because the user simply entered the address or =
+followed a <A=20
+  title=3DHyperlink =
+href=3D"http://en.wikipedia.org/wiki/Hyperlink">link</A> to the=20
+  page.=20
+  <LI>The server responds with the "401" response code, providing the=20
+  authentication realm and a randomly-generated, single-use value called =
+<A=20
+  title=3DNonce href=3D"http://en.wikipedia.org/wiki/Nonce">nonce</A>.=20
+  <LI>At this point, the client will present the authentication realm =
+(typically=20
+  a description of the computer or system being accessed) to the user =
+and prompt=20
+  for a user name and password. The user may decide to cancel at this =
+point.=20
+  <LI>Once a user name and password have been supplied, the client =
+re-sends the=20
+  same request but adds an authentication header that includes the =
+response=20
+  code.=20
+  <LI>In this example, the server accepts the authentication and the =
+page is=20
+  returned. If the user name is invalid and/or the password is =
+incorrect, the=20
+  server might return the "401" response code and the client would =
+prompt the=20
+  user again. </LI></UL>
+<P>Note: A client may pre-emptively send the authentication header in =
+its first=20
+request, with no user interaction required.</P>
+<HR>
+
+<P><B>Client request (no authentication)</B>:</P><PRE>GET =
+/dir/index.html HTTP/1.0
+Host: localhost
+</PRE>
+<P>(followed by a <A title=3DNewline=20
+href=3D"http://en.wikipedia.org/wiki/Newline">new line</A>, in the form =
+of a <A=20
+title=3D"Carriage return"=20
+href=3D"http://en.wikipedia.org/wiki/Carriage_return">carriage =
+return</A> followed=20
+by a <A title=3D"Line feed" =
+href=3D"http://en.wikipedia.org/wiki/Line_feed">line=20
+feed</A>).</P>
+<P><B>Server response</B>:</P><PRE>HTTP/1.0 401 Unauthorised
+Server: SokEvo/0.9
+Date: Sun, 10 Apr 2005 20:26:47 GMT
+WWW-Authenticate: Digest realm=3D"testrealm@host.com",
+                         qop=3D"auth,auth-int",
+                         nonce=3D"dcd98b7102dd2f0e8b11d0f600bfb0c093",
+                         opaque=3D"5ccc069c403ebaf9f0171e9517f40e41"
+Content-Type: text/html
+Content-Length: 311
+
+&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+ "http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd"&gt;
+&lt;HTML&gt;
+  &lt;HEAD&gt;
+    &lt;TITLE&gt;Error&lt;/TITLE&gt;
+    &lt;META HTTP-EQUIV=3D"Content-Type" CONTENT=3D"text/html; =
+charset=3DISO-8859-1"&gt;
+  &lt;/HEAD&gt;
+  &lt;BODY&gt;&lt;H1&gt;401 Unauthorised.&lt;/H1&gt;&lt;/BODY&gt;
+&lt;/HTML&gt;
+</PRE>
+<P><B>Client request (user name "Mufasa", password "Circle Of =
+Life")</B>:</P><PRE>GET /dir/index.html HTTP/1.0
+Host: localhost
+Authorization: Digest username=3D"Mufasa",
+                      realm=3D"testrealm@host.com",
+                      nonce=3D"dcd98b7102dd2f0e8b11d0f600bfb0c093",
+                      uri=3D"/dir/index.html",
+                      qop=3Dauth,
+                      nc=3D00000001,
+                      cnonce=3D"0a4f113b",
+                      response=3D"6629fae49393a05397450978507c4ef1",
+                      opaque=3D"5ccc069c403ebaf9f0171e9517f40e41"
+</PRE>
+<P>(followed by a blank line, as before).</P>
+<P><B>Server response</B>:</P><PRE>HTTP/1.0 200 OK
+Server: SokEvo/0.9
+Date: Sun, 10 Apr 2005 20:27:03 GMT
+Content-Type: text/html
+Content-Length: 7984
+</PRE>
+<P>(followed by a blank line and HTML text comprising of the restricted=20
+page).</P>
+<HR>
+
+<P><A class=3Dexternal title=3Dhttp://tools.ietf.org/html/2617=20
+href=3D"http://tools.ietf.org/html/2617">RFC 2617</A> assumes that the =
+scheme is=20
+understood and fails to complete the example by explaining where the =
+"response"=20
+value comes from. It is calculated in three steps, as follows. Where =
+values are=20
+combined, they are <A title=3DDelimiter=20
+href=3D"http://en.wikipedia.org/wiki/Delimiter">delimited</A> by <A=20
+title=3D"Colon (punctuation)"=20
+href=3D"http://en.wikipedia.org/wiki/Colon_(punctuation)">colon</A> =
+symbols.</P>
+<OL>
+  <LI>The MD5 hash of the combined user name, authentication realm and =
+password=20
+  is calculated. The result is referred to as HA1.=20
+  <LI>The MD5 hash of the combined method and digest <A=20
+  title=3D"Uniform Resource Identifier"=20
+  =
+href=3D"http://en.wikipedia.org/wiki/Uniform_Resource_Identifier">URI</A>=
+ is=20
+  calculated, e.g. of <TT>"GET"</TT> and <TT>"/dir/index.html"</TT>. The =
+result=20
+  is referred to as HA2.=20
+  <LI>The MD5 hash of the combined HA1 result, server nonce (nonce), =
+request=20
+  counter (nc), client nonce (cnonce), quality of protection code (qop) =
+and HA2=20
+  result is calculated. The result is the "response" value provided by =
+the=20
+  client. </LI></OL>
+<P>Since the server has the same information as the client, the response =
+can be=20
+checked by performing the same calculation. In the example given above =
+the=20
+result is formed as follows =E2=80=93 where <TT>MD5()</TT> represents a =
+function used to=20
+calculate an MD5 hash, backslashes represent a continuation and the =
+quotes shown=20
+are not used in the calculation.</P><PRE>    HA1 =3D MD5( =
+"Mufasa:testrealm@host.com:Circle Of Life" )
+        =3D 939e7578ed9e3c518a452acee763bce9
+
+    HA2 =3D MD5( "GET:/dir/index.html" )
+        =3D 39aff3a2bab6126f332b942af96d3366
+
+    Response =3D MD5( "939e7578ed9e3c518a452acee763bce9:\
+                     dcd98b7102dd2f0e8b11d0f600bfb0c093:\
+                     00000001:0a4f113b:auth:\
+                     39aff3a2bab6126f332b942af96d3366" )
+             =3D 6629fae49393a05397450978507c4ef1
+</PRE>
+<P>At this point the client may make another request, reusing the server =
+nonce=20
+value (the server only issues a new nonce for each "401" response) but =
+providing=20
+a new client nonce (cnonce). For subsequent requests, the hexadecimal =
+request=20
+counter (nc) must be greater than the last value it used =E2=80=93 =
+otherwise an attacker=20
+could simply "<A title=3D"Replay attack"=20
+href=3D"http://en.wikipedia.org/wiki/Replay_attack">replay</A>" an old =
+request=20
+with the same credentials. It is up to the server to ensure that the =
+counter=20
+increases for each of the nonce values that it has issued, rejecting any =
+bad=20
+requests appropriately. Obviously changing the method, URI and/or =
+counter value=20
+will result in a different response value.</P>
+<P>The server should remember nonce values that it has recently =
+generated. It=20
+may also remember when each nonce value was issued, expiring them after =
+a=20
+certain amount of time. If an expired value is used, the server should =
+respond=20
+with the "401" status code and add <TT>stale=3DTRUE</TT> to the =
+authentication=20
+header =E2=80=93 indicating that the client should re-send with the new =
+nonce provided,=20
+without prompting the user for another user name and password.</P>
+<P>The server does not need to keep any expired nonce values =E2=80=93 =
+it can simply=20
+assume that any unrecognised values have expired. It is also possible =
+for the=20
+server to only allow each nonce value to be returned once, although this =
+forces=20
+the client to repeat every request. Note that expiring a server nonce=20
+immediately will not work, as the client would never get a chance to use =
+it.</P><!-- Saved in parser cache with key =
+enwiki:pcache:idhash:1381205-0!1!0!default!!en!2 and timestamp =
+20060803034933 -->
+<DIV class=3Dprintfooter>Retrieved from "<A=20
+href=3D"http://en.wikipedia.org/wiki/Digest_access_authentication">http:/=
+/en.wikipedia.org/wiki/Digest_access_authentication</A>"</DIV>
+<DIV id=3Dcatlinks>
+<P class=3Dcatlinks><A title=3DSpecial:Categories=20
+href=3D"http://en.wikipedia.org/w/index.php?title=3DSpecial:Categories&am=
+p;article=3DDigest_access_authentication">Category</A>:=20
+<SPAN dir=3Dltr><A title=3DCategory:HTTP=20
+href=3D"http://en.wikipedia.org/wiki/Category:HTTP">HTTP</A></SPAN></P></=
+DIV><!-- end content -->
+<DIV class=3DvisualClear></DIV></DIV></DIV></DIV>
+<DIV id=3Dcolumn-one>
+<DIV class=3Dportlet id=3Dp-cactions>
+<H5>Views</H5>
+<UL>
+  <LI class=3Dselected id=3Dca-nstab-main><A=20
+  =
+href=3D"http://en.wikipedia.org/wiki/Digest_access_authentication">Articl=
+e</A>=20
+  <LI class=3Dnew id=3Dca-talk><A=20
+  =
+href=3D"http://en.wikipedia.org/w/index.php?title=3DTalk:Digest_access_au=
+thentication&amp;action=3Dedit">Discussion</A>=20
+
+  <LI id=3Dca-edit><A=20
+  =
+href=3D"http://en.wikipedia.org/w/index.php?title=3DDigest_access_authent=
+ication&amp;action=3Dedit">Edit=20
+  this page</A>=20
+  <LI id=3Dca-history><A=20
+  =
+href=3D"http://en.wikipedia.org/w/index.php?title=3DDigest_access_authent=
+ication&amp;action=3Dhistory">History</A>=20
+  </LI></UL></DIV>
+<DIV class=3Dportlet id=3Dp-personal>
+<H5>Personal tools</H5>
+<DIV class=3DpBody>
+<UL>
+  <LI id=3Dpt-login><A=20
+  =
+href=3D"http://en.wikipedia.org/w/index.php?title=3DSpecial:Userlogin&amp=
+;returnto=3DDigest_access_authentication">Sign=20
+  in / create account</A> </LI></UL></DIV></DIV>
+<DIV class=3Dportlet id=3Dp-logo><A title=3D"Main Page"=20
+style=3D"BACKGROUND-IMAGE: url(/images/wiki-en.png)"=20
+href=3D"http://en.wikipedia.org/wiki/Main_Page"></A></DIV>
+<SCRIPT type=3Dtext/javascript> if (window.isMSIE55) fixalpha(); =
+</SCRIPT>
+
+<DIV class=3Dportlet id=3Dp-navigation>
+<H5>Navigation</H5>
+<DIV class=3DpBody>
+<UL>
+  <LI id=3Dn-mainpage><A =
+href=3D"http://en.wikipedia.org/wiki/Main_Page">Main=20
+  Page</A>=20
+  <LI id=3Dn-portal><A=20
+  =
+href=3D"http://en.wikipedia.org/wiki/Wikipedia:Community_Portal">Communit=
+y=20
+  Portal</A>=20
+  <LI id=3Dn-Featured-articles><A=20
+  =
+href=3D"http://en.wikipedia.org/wiki/Wikipedia:Featured_articles">Feature=
+d=20
+  articles</A>=20
+  <LI id=3Dn-currentevents><A=20
+  href=3D"http://en.wikipedia.org/wiki/Portal:Current_events">Current =
+events</A>=20
+  <LI id=3Dn-recentchanges><A=20
+  href=3D"http://en.wikipedia.org/wiki/Special:Recentchanges">Recent =
+changes</A>=20
+  <LI id=3Dn-randompage><A=20
+  href=3D"http://en.wikipedia.org/wiki/Special:Random">Random =
+article</A>=20
+  <LI id=3Dn-help><A =
+href=3D"http://en.wikipedia.org/wiki/Help:Contents">Help</A>=20
+  <LI id=3Dn-contact><A=20
+  href=3D"http://en.wikipedia.org/wiki/Wikipedia:Contact_us">Contact =
+Wikipedia</A>=20
+
+  <LI id=3Dn-sitesupport><A=20
+  =
+href=3D"http://wikimediafoundation.org/wiki/Fundraising#Donation_methods"=
+>Donations</A>=20
+  </LI></UL></DIV></DIV>
+<DIV class=3Dportlet id=3Dp-search>
+<H5><LABEL for=3DsearchInput>Search</LABEL></H5>
+<DIV class=3DpBody id=3DsearchBody>
+<FORM id=3Dsearchform action=3D/wiki/Special:Search>
+<DIV><INPUT id=3DsearchInput accessKey=3Df name=3Dsearch> <INPUT =
+class=3DsearchButton id=3DsearchGoButton type=3Dsubmit value=3DGo =
+name=3Dgo>&nbsp; <INPUT class=3DsearchButton type=3Dsubmit =
+value=3DSearch name=3Dfulltext>=20
+</DIV></FORM></DIV></DIV>
+<DIV class=3Dportlet id=3Dp-tb>
+<H5>Toolbox</H5>
+<DIV class=3DpBody>
+<UL>
+  <LI id=3Dt-whatlinkshere><A=20
+  =
+href=3D"http://en.wikipedia.org/w/index.php?title=3DSpecial:Whatlinkshere=
+&amp;target=3DDigest_access_authentication">What=20
+  links here</A>=20
+  <LI id=3Dt-recentchangeslinked><A=20
+  =
+href=3D"http://en.wikipedia.org/w/index.php?title=3DSpecial:Recentchanges=
+linked&amp;target=3DDigest_access_authentication">Related=20
+  changes</A>=20
+  <LI id=3Dt-upload><A =
+href=3D"http://en.wikipedia.org/wiki/Special:Upload">Upload=20
+  file</A>=20
+  <LI id=3Dt-specialpages><A=20
+  href=3D"http://en.wikipedia.org/wiki/Special:Specialpages">Special =
+pages</A>=20
+  <LI id=3Dt-print><A=20
+  =
+href=3D"http://en.wikipedia.org/w/index.php?title=3DDigest_access_authent=
+ication&amp;printable=3Dyes">Printable=20
+  version</A>=20
+  <LI id=3Dt-permalink><A=20
+  =
+href=3D"http://en.wikipedia.org/w/index.php?title=3DDigest_access_authent=
+ication&amp;oldid=3D53220130">Permanent=20
+  link</A>
+  <LI id=3Dt-cite><A=20
+  =
+href=3D"http://en.wikipedia.org/w/index.php?title=3DSpecial:Cite&amp;page=
+=3DDigest_access_authentication&amp;id=3D53220130">Cite=20
+  this article</A> </LI></UL></DIV></DIV></DIV><!-- end of the left (by =
+default at least) column -->
+<DIV class=3DvisualClear></DIV>
+<DIV id=3Dfooter>
+<DIV id=3Df-poweredbyico><A href=3D"http://www.mediawiki.org/"><IMG =
+alt=3DMediaWiki=20
+src=3D"http://en.wikipedia.org/skins-1.5/common/images/poweredby_mediawik=
+i_88x31.png"></A></DIV>
+<DIV id=3Df-copyrightico><A =
+href=3D"http://wikimediafoundation.org/"><IMG=20
+alt=3D"Wikimedia Foundation"=20
+src=3D"http://en.wikipedia.org/images/wikimedia-button.png" =
+border=3D0></A></DIV>
+<UL id=3Df-list>
+  <LI id=3Dlastmod>This page was last modified 22:56, 14 May 2006.=20
+  <LI id=3Dcopyright>All text is available under the terms of the <A=20
+  class=3Dinternal title=3D"Wikipedia:Text of the GNU Free Documentation =
+License"=20
+  =
+href=3D"http://en.wikipedia.org/wiki/Wikipedia:Text_of_the_GNU_Free_Docum=
+entation_License">GNU=20
+  Free Documentation License</A>. (See <B><A class=3Dinternal=20
+  title=3DWikipedia:Copyrights=20
+  =
+href=3D"http://en.wikipedia.org/wiki/Wikipedia:Copyrights">Copyrights</A>=
+</B>=20
+  for details.) <BR>Wikipedia=C2=AE is a registered trademark of the =
+Wikimedia=20
+  Foundation, Inc.<BR>
+  <LI id=3Dprivacy><A title=3D"wikimedia:Privacy policy"=20
+  href=3D"http://wikimediafoundation.org/wiki/Privacy_policy">Privacy =
+policy</A>=20
+  <LI id=3Dabout><A title=3DWikipedia:About=20
+  href=3D"http://en.wikipedia.org/wiki/Wikipedia:About">About =
+Wikipedia</A>=20
+  <LI id=3Ddisclaimer><A title=3D"Wikipedia:General disclaimer"=20
+  =
+href=3D"http://en.wikipedia.org/wiki/Wikipedia:General_disclaimer">Discla=
+imers</A>=20
+  </LI></UL></DIV>
+<SCRIPT type=3Dtext/javascript>if (window.runOnloadHook) =
+runOnloadHook();</SCRIPT>
+</DIV><!-- Served by srv56 in 0.065 secs. --></BODY></HTML>
+
+------=_NextPart_000_0002_01C6BB3C.E0F60810
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-Location: http://en.wikipedia.org/skins-1.5/common/images/poweredby_mediawiki_88x31.png
+
+iVBORw0KGgoAAAANSUhEUgAAAFgAAAAfCAMAAABUFvrSAAAAA3NCSVQICAjb4U/gAAAClFBMVEUC
+KWuqqtbmxQbRvxS1xc+BdgdzlKmEq76qqqpBeZ3HxHrt7OZbZ1LWxE0lX3hxeUWzq2nY3N5WhKPQ
+dQoAUIThyiSwrTY9RpT29vbGwqSjtsTHzdDAaQoAZplPepgATICdo6vp1Asyao7o59vO1NfQx2Ph
+2XiOkTeKjY3yzQnW1smGla7s2yNemLXflg06hK0wO3h2pLvm2D/1sgfn4akHV4uYscEbLHZEdphO
+hKauspWsrr4ObZ3q2RqqbRTWyS8haJa5xJuFhbgrS4Ipe6WrusXX0rXW1tY4cpfBztff2Zrlqg7w
+yhTIuEyFo7dSkbFskKjShg3Yyhj91geVrb7EvnPy3TXd0WchZZKHp7xmi6Ln1lLdxUWMm7ayv8fT
+zZbe3sm7w8/AcA7w8PDNtzQaW4YmJpoybZTOzcXe3taes8D0ywDh5OZAXIvo5Lzg14rk1zTPzr40
+gafr1RBJZJFCU1rbugvlziGWehNqnbd0nLWlvsv13hsIVIaRkqXF0NfwvANEiq0wToIYX4zgnRHm
+0A7UiRL36Efc4OJMf6PoxxqgpJXYzlX/yQYbdKGNkrv4xhHq4RLO1tzo0TKUbg5biqgGHXn31xDu
+3hnj12rHuUSclS1ijqzWzozm3IXsvxLZ2ebBag2ambbMfRU4dJvlpxG1chKdtcb05D3q6M2LpLXz
+3ynExc5ika/VnBnMzMze3t6mu8h8nbMiY42sv8ufq8AQWozGdBXgz0zWvQ6Oq77gsQlNepnDwMLo
+vQJSg6NGYY4XXIvc1644Q2fu2EdNVV31vAf3zwZ7p73m5uYpapTUfQ8AU4mboKarqK2UtMS6sEDR
+ymyVmYq5taFUWZrt0R/Hdg/L0dTBvnnOy4Hi2pLr2FEpPiAVAAAACXBIWXMAAArwAAAK8AFCrDSY
+AAAEkElEQVRIx+3Q+1tTdRwH8NNYzHkiPTQqmfMCA+MST0NDSiBM8uyEjYVcBoa4jsTtO8SNBDbm
+nGN2RgQBrQ1bGt6mY9SBM7nMS2DJ+k5yXUXwn+kckMT19Dz1ID/0PL1/OJ/P+Xy+39cPX2TNKgVZ
+882q5H94OTz7WGo21NTUzK48YXDl0funj1ZWPhkYX5aon6NiKt+o3PtlcnLyo6lPqzX78L+JdmGv
+dYeNw+HCwo7mwtL0yr3jpY/kWAneqsVDMrHYjbvFPrFbJlb7BDhbcIFbsrCXsbJaHQ57vd7ZWe+N
+uVt4lE7H4/F0jYmpzs4bOK72erlDw5JWs1lmFuThWT5JqEtmlmlb8wQCtrCthNtr2WGoQBAOa5pS
+xLteeHN9zJFOa1I9j7fV6XRePv7bLnFKk+YhLJg1D+MSvMBcYM5r7dJqW1txrphD+AKMD2eFCrr+
+8hTISSn+y+0N+DsRHbz66RMn6h09Pf392z7G8ZMId8jAXsZDeS+zzyEhsn4wsB0Lc4UdSri9Nk+L
+ZxWEwRiGTGJ48WFn+nvXbl5rb2/Pnw7odNb9X9zFsEkEYyM1cF8+9zVgfClGGDCCwLiC8bmp1GDg
+YwIJH1sWFqZpREPX/nj7cFLSJ9OnxsbGzn89HeANFu/spmkNQv/T+A2P/S7Bt04/39im23/xzsac
+nI3ntwesJWuf2fKv4LAswpP0obWFzj5nx6l7OS0tOc/lB/oS5z6sWCFMUYiGop76LmrQcfbepZan
+Wy7duRjoa6A+6KYoDUKxMVbVURQeVyWm/oznWXWcnV5o/YyaUmZS0mql3OOJ42bRRopiYQAQDQB3
+15W0JSWlDeR8xj5FfmBrScLtLQBoEMBmZsYFQOzoqBcAguAGJpPHok7xcA0N+BY/LVQBn6Vu5KC+
+mqalwLMJABaGEJmEDacjrNZ9DkfavYGB99tvHrMOJqx7HUINAtm8KmII6BJNSTE7w4wAMDIVZIKm
+SA8YsQRtNq8wGlNNSRWMSfnWiBBGy2nPdQgX4SZ4Zf22hO87fm8LbE97t/1Tx8REydwr5yBsWoQz
+GRkmzwxKXaO+MlHG8Kh+OJg7Kx/KMOpjgyJ+2QUfw2REuzCVQiFUGP1QKFqC96jhuZ33S2JSU/c5
++vqmz7ZlWz/69fNuqN6zCCtHbGV29r5FNWS32G02CA1BQq7nGt+Uz6SSK/1xU8NQ5feLRGUQfrsE
+V1Rcxb56qfhIX3Zzs+PB5aRj2Y3pPT8dx7CrFRUcPKPsZTYXuYPq3KAhZI91qTCoUJnkevsFCENG
+HxQa3YSI6QUsbGEuUEswiqLc7fj4+f4D8+m6+fGJiebUHWfGG1AUAJTLjB19TdTrtvRmWPRD1aZe
+VbV9NLdXPmQKCl0WIx/VjxLYlA2lVH6FTcoIUZcIRVmYfBgU3TGPHrBeKY2IOvPgAestLcjrHrKo
+HOVHY2TG5iofSRJMlUKBRXpQflVVUSRB8ssBiCwiQfnBWCVZxxAZm0hyGUyS8Sja2Yk2dO54+0pi
+A7myPAaTJNxdS5K3Dm2oJdEnCz+5sPCLq5L/JLxK+QOx6XbtY06PNgAAAABJRU5ErkJggg==
+
+------=_NextPart_000_0002_01C6BB3C.E0F60810
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-Location: http://en.wikipedia.org/images/wikimedia-button.png
+
+iVBORw0KGgoAAAANSUhEUgAAAFgAAAAfCAMAAABUFvrSAAAAA3NCSVQICAjb4U/gAAAAilBMVEVj
+ZGeGh4nn6+yZmZni5uTW1taAgYNtbnGkpKYBhbLd3t1svZdCroKtrq/Cv79ztMs7ncDMzMy5t7en
+zL3Hx8h6e37l5eXw8PDK0dOVwtOozdsfkrnKk47E1tUNiba8RjxKs4bN3eKawM2SybIslr5Yp8TV
+4N+80dbY5Oek08O5zNJ+wqW20cf29vZ09tAFAAAACXBIWXMAAArwAAAK8AFCrDSYAAACh0lEQVR4
+Xs3RiZKbMAwGYMu3zX2T+072fP/XqwSUppM0bLfdmf1DxlhmvhGCRV8UFmVfkm8Ig/0beLnZbJYf
+cuNKT8Htr6BLcvuBCAv5o/Pf4HjTJ/4AbCyICVhRXk6JUssBXiqVpK16FCvyXJcPHvgJn5xLVD7C
+ydqdHsKEWjsN7x3B2QC3Kun2k5mE29Rhh4eiH3JcHOgN1vt/h/fIXN7CbZEtl8us2IbFauH6YRir
+FBO0Wqa6K1bM5gzLQDvGtNKMGdEqrcmrRth7fyIlCMPtM26et2EYUGlxwZ0w3jKDz2WWeVSZ9Z5g
+lltGBY8B8LERtHgwLPeUHsZJ7FfoYc/o0vq2X+Ms8Chj1gD+he/gCjzBMasMq6hgbdSJwtCSsaiC
+K3jh1i8FgWFwfg0pxQXhmceAYZkwLO5hMGUPx2DtLWxZLlg2wFJKhC9FBwZ+gFcES0zOhGxZJaVl
+eKmqUrKDVV+QGACJo6ClqgDwDjPC87cRHjveS0rVSimiAZalAdXBQ4ExkEAfTyGcd2WjRhhnPDv3
+o5AdvN3N6OPJT4fguq4T51J5uIJf65RK9efTw3Pn3PwcjHBwnq+dS+qHiadgzvkT9nc8o9zDwWp3
+xEns+MOU412W3Z72MKcG0119CF7lITjIXepw6nesSliuhS0BIg48ByEzDaXW+Z9gnqC0QOoJf3x+
+xN3pXpMRt23FJXAuFHBdRpFQXEbl3Y4bCj85TJrMZrMkXXduc5syaoSHpsGLVl2WStRNE5XNTQju
+Qj1TEKUk5N7CGiypNApcc4BYaVClju7CQ+bY6YCn8+ZusmsArk8ewEQn6WKxOCZz3kzDXEzB71fh
+T7sn/v4/QvBNvjv8RfkBEHe0Bwh42FAAAAAASUVORK5CYII=
+
+------=_NextPart_000_0002_01C6BB3C.E0F60810
+Content-Type: application/octet-stream
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://en.wikipedia.org/skins-1.5/monobook/main.css?9
+
+#column-content {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FLOAT: right; PADDING-BOTTOM: =
+0px; MARGIN: 0px 0px 0.6em -12.2em; WIDTH: 100%; PADDING-TOP: 0px
+}
+#content {
+	BORDER-RIGHT: #aaa 1px; PADDING-RIGHT: 1em; BORDER-TOP: #aaa 1px solid; =
+PADDING-LEFT: 1em; Z-INDEX: 2; BACKGROUND: white; PADDING-BOTTOM: 1.5em; =
+MARGIN: 2.8em 0px 0px 12.2em; BORDER-LEFT: #aaa 1px solid; COLOR: black; =
+LINE-HEIGHT: 1.5em; PADDING-TOP: 0px; BORDER-BOTTOM: #aaa 1px solid; =
+POSITION: relative
+}
+#column-one {
+	PADDING-TOP: 160px
+}
+BODY {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url(headbg.jpg) =
+#f9f9f9 no-repeat 0px 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; FONT: =
+x-small sans-serif; COLOR: black; PADDING-TOP: 0px
+}
+#globalWrapper {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-SIZE: 127%; PADDING-BOTTOM: =
+0px; MARGIN: 0px; WIDTH: 100%; PADDING-TOP: 0px
+}
+.visualClear {
+	CLEAR: both
+}
+TABLE {
+	FONT-SIZE: 100%; COLOR: black
+}
+A {
+	BACKGROUND: none transparent scroll repeat 0% 0%; COLOR: #002bb8; =
+TEXT-DECORATION: none
+}
+A:visited {
+	COLOR: #5a3696
+}
+A:active {
+	COLOR: #faa700
+}
+A:hover {
+	TEXT-DECORATION: underline
+}
+A.stub {
+	COLOR: #772233
+}
+A.new {
+	COLOR: #ba0000
+}
+#p-personal A.new {
+	COLOR: #ba0000
+}
+A.new:visited {
+	COLOR: #a55858
+}
+#p-personal A.new:visited {
+	COLOR: #a55858
+}
+IMG {
+	VERTICAL-ALIGN: middle; BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: =
+none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none
+}
+P {
+	MARGIN: 0.4em 0px 0.5em; LINE-HEIGHT: 1.5em
+}
+P IMG {
+	MARGIN: 0px
+}
+HR {
+	BORDER-TOP-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: =
+0px; MARGIN: 0.2em 0px; COLOR: #aaa; HEIGHT: 1px; BACKGROUND-COLOR: =
+#aaa; BORDER-RIGHT-WIDTH: 0px
+}
+H1 {
+	FONT-WEIGHT: normal; BACKGROUND: none transparent scroll repeat 0% 0%; =
+PADDING-BOTTOM: 0.17em; MARGIN: 0px; COLOR: black; PADDING-TOP: 0.5em; =
+BORDER-BOTTOM: #aaa 1px solid
+}
+H2 {
+	FONT-WEIGHT: normal; BACKGROUND: none transparent scroll repeat 0% 0%; =
+PADDING-BOTTOM: 0.17em; MARGIN: 0px; COLOR: black; PADDING-TOP: 0.5em; =
+BORDER-BOTTOM: #aaa 1px solid
+}
+H3 {
+	FONT-WEIGHT: normal; BACKGROUND: none transparent scroll repeat 0% 0%; =
+PADDING-BOTTOM: 0.17em; MARGIN: 0px; COLOR: black; PADDING-TOP: 0.5em; =
+BORDER-BOTTOM: #aaa 1px solid
+}
+H4 {
+	FONT-WEIGHT: normal; BACKGROUND: none transparent scroll repeat 0% 0%; =
+PADDING-BOTTOM: 0.17em; MARGIN: 0px; COLOR: black; PADDING-TOP: 0.5em; =
+BORDER-BOTTOM: #aaa 1px solid
+}
+H5 {
+	FONT-WEIGHT: normal; BACKGROUND: none transparent scroll repeat 0% 0%; =
+PADDING-BOTTOM: 0.17em; MARGIN: 0px; COLOR: black; PADDING-TOP: 0.5em; =
+BORDER-BOTTOM: #aaa 1px solid
+}
+H6 {
+	FONT-WEIGHT: normal; BACKGROUND: none transparent scroll repeat 0% 0%; =
+PADDING-BOTTOM: 0.17em; MARGIN: 0px; COLOR: black; PADDING-TOP: 0.5em; =
+BORDER-BOTTOM: #aaa 1px solid
+}
+H1 {
+	FONT-SIZE: 188%
+}
+H2 {
+	FONT-SIZE: 150%
+}
+H3 {
+	FONT-WEIGHT: bold; BORDER-BOTTOM-STYLE: none
+}
+H4 {
+	FONT-WEIGHT: bold; BORDER-BOTTOM-STYLE: none
+}
+H5 {
+	FONT-WEIGHT: bold; BORDER-BOTTOM-STYLE: none
+}
+H6 {
+	FONT-WEIGHT: bold; BORDER-BOTTOM-STYLE: none
+}
+H3 {
+	FONT-SIZE: 132%
+}
+H4 {
+	FONT-SIZE: 116%
+}
+H5 {
+	FONT-SIZE: 100%
+}
+H6 {
+	FONT-SIZE: 80%
+}
+UL {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; LIST-STYLE-IMAGE: =
+url(bullet.gif); PADDING-BOTTOM: 0px; MARGIN: 0.3em 0px 0px 1.5em; =
+LINE-HEIGHT: 1.5em; PADDING-TOP: 0px; LIST-STYLE-TYPE: square
+}
+OL {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; LIST-STYLE-IMAGE: none; =
+PADDING-BOTTOM: 0px; MARGIN: 0.3em 0px 0px 3.2em; LINE-HEIGHT: 1.5em; =
+PADDING-TOP: 0px
+}
+LI {
+	MARGIN-BOTTOM: 0.1em
+}
+DT {
+	FONT-WEIGHT: bold; MARGIN-BOTTOM: 0.1em
+}
+DL {
+	MARGIN-TOP: 0.2em; MARGIN-BOTTOM: 0.5em
+}
+DD {
+	MARGIN-BOTTOM: 0.1em; MARGIN-LEFT: 2em; LINE-HEIGHT: 1.5em
+}
+FIELDSET {
+	BORDER-RIGHT: #2f6fab 1px solid; PADDING-RIGHT: 1em; BORDER-TOP: =
+#2f6fab 1px solid; PADDING-LEFT: 1em; PADDING-BOTTOM: 1em; MARGIN: 1em =
+0px; BORDER-LEFT: #2f6fab 1px solid; LINE-HEIGHT: 1.5em; PADDING-TOP: =
+0px; BORDER-BOTTOM: #2f6fab 1px solid
+}
+LEGEND {
+	PADDING-RIGHT: 0.5em; PADDING-LEFT: 0.5em; FONT-SIZE: 95%; =
+PADDING-BOTTOM: 0.5em; PADDING-TOP: 0.5em
+}
+FORM {
+	MARGIN: 0px; BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; =
+BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none
+}
+TEXTAREA {
+	PADDING-RIGHT: 0.1em; PADDING-LEFT: 0.1em; PADDING-BOTTOM: 0.1em; =
+WIDTH: 100%; PADDING-TOP: 0.1em
+}
+INPUT.historysubmit {
+	PADDING-RIGHT: 0.3em! important; PADDING-LEFT: 0.3em! important; =
+FONT-SIZE: 94%; PADDING-BOTTOM: 0.3em! important; MARGIN-LEFT: 1.6em; =
+CURSOR: pointer; PADDING-TOP: 0px! important; HEIGHT: 1.7em! important
+}
+SELECT {
+	VERTICAL-ALIGN: top
+}
+abbr {
+	BACKGROUND: none transparent scroll repeat 0% 0%; CURSOR: help; COLOR: =
+black; BORDER-BOTTOM: black 1px dotted
+}
+ACRONYM {
+	BACKGROUND: none transparent scroll repeat 0% 0%; CURSOR: help; COLOR: =
+black; BORDER-BOTTOM: black 1px dotted
+}
+.explain {
+	BACKGROUND: none transparent scroll repeat 0% 0%; CURSOR: help; COLOR: =
+black; BORDER-BOTTOM: black 1px dotted
+}
+Q {
+	FONT-STYLE: italic; FONT-FAMILY: Times, "Times New Roman", serif
+}
+CODE {
+	BACKGROUND-COLOR: #f9f9f9
+}
+PRE {
+	BORDER-RIGHT: #2f6fab 1px dashed; PADDING-RIGHT: 1em; BORDER-TOP: =
+#2f6fab 1px dashed; PADDING-LEFT: 1em; PADDING-BOTTOM: 1em; BORDER-LEFT: =
+#2f6fab 1px dashed; COLOR: black; LINE-HEIGHT: 1.1em; PADDING-TOP: 1em; =
+BORDER-BOTTOM: #2f6fab 1px dashed; BACKGROUND-COLOR: #f9f9f9
+}
+#siteSub {
+	DISPLAY: none
+}
+#jump-to-nav {
+	DISPLAY: none
+}
+#contentSub {
+	FONT-SIZE: 84%; MARGIN: 0px 0px 1.4em 1em; WIDTH: auto; COLOR: #7d7d7d; =
+LINE-HEIGHT: 1.2em
+}
+#contentSub2 {
+	FONT-SIZE: 84%; MARGIN: 0px 0px 1.4em 1em; WIDTH: auto; COLOR: #7d7d7d; =
+LINE-HEIGHT: 1.2em
+}
+SPAN.subpages {
+	DISPLAY: block
+}
+#bodyContent H1 {
+	MARGIN-BOTTOM: 0.6em
+}
+#bodyContent H2 {
+	MARGIN-BOTTOM: 0.6em
+}
+#bodyContent H3 {
+	MARGIN-BOTTOM: 0.3em
+}
+#bodyContent H4 {
+	MARGIN-BOTTOM: 0.3em
+}
+#bodyContent H5 {
+	MARGIN-BOTTOM: 0.3em
+}
+.firstHeading {
+	MARGIN-BOTTOM: 0.1em
+}
+.usermessage {
+	BORDER-RIGHT: #ffa500 1px solid; PADDING-RIGHT: 1em; BORDER-TOP: =
+#ffa500 1px solid; PADDING-LEFT: 1em; FONT-WEIGHT: bold; PADDING-BOTTOM: =
+0.5em; MARGIN: 2em 0px 1em; VERTICAL-ALIGN: middle; BORDER-LEFT: #ffa500 =
+1px solid; COLOR: black; PADDING-TOP: 0.5em; BORDER-BOTTOM: #ffa500 1px =
+solid; BACKGROUND-COLOR: #ffce7b
+}
+#siteNotice {
+	PADDING-RIGHT: 0.9em; PADDING-LEFT: 0.9em; FONT-SIZE: 95%; =
+PADDING-BOTTOM: 0px; PADDING-TOP: 0px; TEXT-ALIGN: center
+}
+#siteNotice P {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: =
+0px; PADDING-TOP: 0px
+}
+.error {
+	FONT-SIZE: larger; COLOR: red
+}
+.errorbox {
+	BORDER-RIGHT: 2px solid; PADDING-RIGHT: 1em; BORDER-TOP: 2px solid; =
+PADDING-LEFT: 1em; FONT-SIZE: larger; FLOAT: left; MARGIN-BOTTOM: 2em; =
+PADDING-BOTTOM: 0.5em; BORDER-LEFT: 2px solid; COLOR: #000; PADDING-TOP: =
+0.5em; BORDER-BOTTOM: 2px solid
+}
+.successbox {
+	BORDER-RIGHT: 2px solid; PADDING-RIGHT: 1em; BORDER-TOP: 2px solid; =
+PADDING-LEFT: 1em; FONT-SIZE: larger; FLOAT: left; MARGIN-BOTTOM: 2em; =
+PADDING-BOTTOM: 0.5em; BORDER-LEFT: 2px solid; COLOR: #000; PADDING-TOP: =
+0.5em; BORDER-BOTTOM: 2px solid
+}
+.errorbox {
+	BORDER-LEFT-COLOR: red; BORDER-BOTTOM-COLOR: red; BORDER-TOP-COLOR: =
+red; BACKGROUND-COLOR: #fff2f2; BORDER-RIGHT-COLOR: red
+}
+.successbox {
+	BORDER-LEFT-COLOR: green; BORDER-BOTTOM-COLOR: green; BORDER-TOP-COLOR: =
+green; BACKGROUND-COLOR: #dfd; BORDER-RIGHT-COLOR: green
+}
+.errorbox H2 {
+	DISPLAY: inline; FONT-WEIGHT: bold; FONT-SIZE: 1em; MARGIN: 0px 0.5em =
+0px 0px; BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; =
+BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none
+}
+.successbox H2 {
+	DISPLAY: inline; FONT-WEIGHT: bold; FONT-SIZE: 1em; MARGIN: 0px 0.5em =
+0px 0px; BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; =
+BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none
+}
+#catlinks {
+	CLEAR: both; BORDER-RIGHT: #aaa 1px solid; PADDING-RIGHT: 5px; =
+BORDER-TOP: #aaa 1px solid; MARGIN-TOP: 1em; PADDING-LEFT: 5px; =
+PADDING-BOTTOM: 5px; BORDER-LEFT: #aaa 1px solid; PADDING-TOP: 5px; =
+BORDER-BOTTOM: #aaa 1px solid; BACKGROUND-COLOR: #f9f9f9
+}
+.documentDescription {
+	DISPLAY: block; FONT-WEIGHT: bold; MARGIN: 1em 0px; LINE-HEIGHT: 1.5em
+}
+.documentByLine {
+	CLEAR: both; FONT-WEIGHT: normal; FONT-SIZE: 90%; COLOR: #76797c; =
+TEXT-ALIGN: right
+}
+.center {
+	WIDTH: 100%; TEXT-ALIGN: center
+}
+.center  {
+	MARGIN-LEFT: auto; MARGIN-RIGHT: auto
+}
+.small {
+	FONT-SIZE: 94%
+}
+.small  {
+	FONT-SIZE: 94%
+}
+TABLE.small {
+	FONT-SIZE: 100%
+}
+#toc {
+	BORDER-RIGHT: #aaa 1px solid; PADDING-RIGHT: 5px; BORDER-TOP: #aaa 1px =
+solid; PADDING-LEFT: 5px; FONT-SIZE: 95%; PADDING-BOTTOM: 5px; =
+BORDER-LEFT: #aaa 1px solid; PADDING-TOP: 5px; BORDER-BOTTOM: #aaa 1px =
+solid; BACKGROUND-COLOR: #f9f9f9
+}
+.toc {
+	BORDER-RIGHT: #aaa 1px solid; PADDING-RIGHT: 5px; BORDER-TOP: #aaa 1px =
+solid; PADDING-LEFT: 5px; FONT-SIZE: 95%; PADDING-BOTTOM: 5px; =
+BORDER-LEFT: #aaa 1px solid; PADDING-TOP: 5px; BORDER-BOTTOM: #aaa 1px =
+solid; BACKGROUND-COLOR: #f9f9f9
+}
+.mw-warning {
+	BORDER-RIGHT: #aaa 1px solid; PADDING-RIGHT: 5px; BORDER-TOP: #aaa 1px =
+solid; PADDING-LEFT: 5px; FONT-SIZE: 95%; PADDING-BOTTOM: 5px; =
+BORDER-LEFT: #aaa 1px solid; PADDING-TOP: 5px; BORDER-BOTTOM: #aaa 1px =
+solid; BACKGROUND-COLOR: #f9f9f9
+}
+#toc H2 {
+	PADDING-RIGHT: 0px; DISPLAY: inline; PADDING-LEFT: 0px; FONT-WEIGHT: =
+bold; FONT-SIZE: 100%; PADDING-BOTTOM: 0px; BORDER-TOP-STYLE: none; =
+PADDING-TOP: 0px; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; =
+BORDER-BOTTOM-STYLE: none
+}
+.toc H2 {
+	PADDING-RIGHT: 0px; DISPLAY: inline; PADDING-LEFT: 0px; FONT-WEIGHT: =
+bold; FONT-SIZE: 100%; PADDING-BOTTOM: 0px; BORDER-TOP-STYLE: none; =
+PADDING-TOP: 0px; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; =
+BORDER-BOTTOM-STYLE: none
+}
+#toc #toctitle {
+	TEXT-ALIGN: center
+}
+.toc #toctitle {
+	TEXT-ALIGN: center
+}
+#toc .toctitle {
+	TEXT-ALIGN: center
+}
+.toc .toctitle {
+	TEXT-ALIGN: center
+}
+#toc UL {
+	PADDING-LEFT: 0px; LIST-STYLE-IMAGE: none; MARGIN-LEFT: 0px; =
+LIST-STYLE-TYPE: none; TEXT-ALIGN: left
+}
+.toc UL {
+	PADDING-LEFT: 0px; LIST-STYLE-IMAGE: none; MARGIN-LEFT: 0px; =
+LIST-STYLE-TYPE: none; TEXT-ALIGN: left
+}
+#toc UL UL {
+	MARGIN: 0px 0px 0px 2em
+}
+.toc UL UL {
+	MARGIN: 0px 0px 0px 2em
+}
+#toc .toctoggle {
+	FONT-SIZE: 94%
+}
+.toc .toctoggle {
+	FONT-SIZE: 94%
+}
+.mw-warning {
+	MARGIN-LEFT: 50px; MARGIN-RIGHT: 50px; TEXT-ALIGN: center
+}
+DIV.floatright {
+	BORDER-TOP-WIDTH: 0px; CLEAR: right; BORDER-LEFT-WIDTH: 0px; FLOAT: =
+right; BORDER-BOTTOM-WIDTH: 0px; MARGIN: 0px 0px 0.5em 0.5em; POSITION: =
+relative; BORDER-RIGHT-WIDTH: 0px
+}
+TABLE.floatright {
+	BORDER-TOP-WIDTH: 0px; CLEAR: right; BORDER-LEFT-WIDTH: 0px; FLOAT: =
+right; BORDER-BOTTOM-WIDTH: 0px; MARGIN: 0px 0px 0.5em 0.5em; POSITION: =
+relative; BORDER-RIGHT-WIDTH: 0px
+}
+DIV.floatright P {
+	FONT-STYLE: italic
+}
+DIV.floatleft {
+	BORDER-TOP-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px; FLOAT: left; =
+BORDER-BOTTOM-WIDTH: 0px; MARGIN: 0px 0.5em 0.5em 0px; POSITION: =
+relative; BORDER-RIGHT-WIDTH: 0px
+}
+TABLE.floatleft {
+	BORDER-TOP-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px; FLOAT: left; =
+BORDER-BOTTOM-WIDTH: 0px; MARGIN: 0px 0.5em 0.5em 0px; POSITION: =
+relative; BORDER-RIGHT-WIDTH: 0px
+}
+DIV.floatleft P {
+	FONT-STYLE: italic
+}
+DIV.thumb {
+	BORDER-LEFT-COLOR: white; MARGIN-BOTTOM: 0.5em; BORDER-BOTTOM-COLOR: =
+white; WIDTH: auto; BORDER-TOP-STYLE: solid; BORDER-TOP-COLOR: white; =
+BORDER-RIGHT-STYLE: solid; BORDER-LEFT-STYLE: solid; BORDER-RIGHT-COLOR: =
+white; BORDER-BOTTOM-STYLE: solid
+}
+DIV.thumb DIV {
+	BORDER-RIGHT: #ccc 1px solid; PADDING-RIGHT: 3px! important; =
+BORDER-TOP: #ccc 1px solid; PADDING-LEFT: 3px! important; FONT-SIZE: =
+94%; PADDING-BOTTOM: 3px! important; OVERFLOW: hidden; BORDER-LEFT: #ccc =
+1px solid; PADDING-TOP: 3px! important; BORDER-BOTTOM: #ccc 1px solid; =
+BACKGROUND-COLOR: #f9f9f9; TEXT-ALIGN: center
+}
+DIV.thumb DIV A IMG {
+	BORDER-RIGHT: #ccc 1px solid; BORDER-TOP: #ccc 1px solid; BORDER-LEFT: =
+#ccc 1px solid; BORDER-BOTTOM: #ccc 1px solid
+}
+DIV.thumb DIV DIV.thumbcaption {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0.1em; =
+BORDER-TOP-STYLE: none; LINE-HEIGHT: 1.4em; PADDING-TOP: 0.3em; =
+BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; TEXT-ALIGN: left; =
+BORDER-BOTTOM-STYLE: none
+}
+DIV.magnify {
+	BACKGROUND: none transparent scroll repeat 0% 0%; FLOAT: right; =
+BORDER-TOP-STYLE: none! important; BORDER-RIGHT-STYLE: none! important; =
+BORDER-LEFT-STYLE: none! important; BORDER-BOTTOM-STYLE: none! important
+}
+DIV.magnify A {
+	DISPLAY: block; BACKGROUND: none transparent scroll repeat 0% 0%; =
+BORDER-TOP-STYLE: none! important; BORDER-RIGHT-STYLE: none! important; =
+BORDER-LEFT-STYLE: none! important; BORDER-BOTTOM-STYLE: none! important
+}
+DIV.magnify IMG {
+	DISPLAY: block; BACKGROUND: none transparent scroll repeat 0% 0%; =
+BORDER-TOP-STYLE: none! important; BORDER-RIGHT-STYLE: none! important; =
+BORDER-LEFT-STYLE: none! important; BORDER-BOTTOM-STYLE: none! important
+}
+DIV.tright {
+	BORDER-TOP-WIDTH: 0.5em; CLEAR: right; BORDER-LEFT-WIDTH: 1.4em; FLOAT: =
+right; BORDER-BOTTOM-WIDTH: 0.8em; BORDER-RIGHT-WIDTH: 0px
+}
+DIV.tleft {
+	BORDER-TOP-WIDTH: 0.5em; BORDER-LEFT-WIDTH: 0px; FLOAT: left; =
+BORDER-BOTTOM-WIDTH: 0.8em; MARGIN-RIGHT: 0.5em; BORDER-RIGHT-WIDTH: =
+1.4em
+}
+.hiddenStructure {
+	DISPLAY: none; speak: none
+}
+IMG.tex {
+	VERTICAL-ALIGN: middle
+}
+SPAN.texhtml {
+	FONT-FAMILY: serif
+}
+TABLE.rimage {
+	FLOAT: right; MARGIN-BOTTOM: 1em; MARGIN-LEFT: 1em; POSITION: relative; =
+TEXT-ALIGN: center
+}
+.toccolours {
+	BORDER-RIGHT: #aaa 1px solid; PADDING-RIGHT: 5px; BORDER-TOP: #aaa 1px =
+solid; PADDING-LEFT: 5px; FONT-SIZE: 95%; PADDING-BOTTOM: 5px; =
+BORDER-LEFT: #aaa 1px solid; PADDING-TOP: 5px; BORDER-BOTTOM: #aaa 1px =
+solid; BACKGROUND-COLOR: #f9f9f9
+}
+DIV.townBox {
+	CLEAR: right; BORDER-RIGHT: gray 1px solid; PADDING-RIGHT: 0.3em; =
+BORDER-TOP: gray 1px solid; PADDING-LEFT: 0.3em; BACKGROUND: white; =
+FLOAT: right; PADDING-BOTTOM: 0.3em; MARGIN-LEFT: 1em; OVERFLOW: hidden; =
+BORDER-LEFT: gray 1px solid; WIDTH: 200px; PADDING-TOP: 0.3em; =
+BORDER-BOTTOM: gray 1px solid; POSITION: relative
+}
+DIV.townBox DL {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-SIZE: 96%; PADDING-BOTTOM: =
+0px; MARGIN: 0px 0px 0.3em; PADDING-TOP: 0px
+}
+DIV.townBox DL DT {
+	BACKGROUND: none transparent scroll repeat 0% 0%; MARGIN: 0.4em 0px 0px
+}
+DIV.townBox DL DD {
+	MARGIN: 0.1em 0px 0px 1.1em; BACKGROUND-COLOR: #f3f3f3
+}
+.special LI {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: =
+0px; LINE-HEIGHT: 1.4em; PADDING-TOP: 0px
+}
+.autocomment {
+	COLOR: gray
+}
+#pagehistory SPAN.user {
+	MARGIN-LEFT: 1.4em; MARGIN-RIGHT: 0.4em
+}
+#pagehistory SPAN.minor {
+	FONT-WEIGHT: bold
+}
+#pagehistory LI {
+	BORDER-RIGHT: white 1px solid; BORDER-TOP: white 1px solid; =
+BORDER-LEFT: white 1px solid; BORDER-BOTTOM: white 1px solid
+}
+#pagehistory LI.selected {
+	BORDER-RIGHT: #aaa 1px dashed; BORDER-TOP: #aaa 1px dashed; =
+BORDER-LEFT: #aaa 1px dashed; BORDER-BOTTOM: #aaa 1px dashed; =
+BACKGROUND-COLOR: #f9f9f9
+}
+TABLE.diff {
+	BACKGROUND-COLOR: white
+}
+TD.diff-otitle {
+	BACKGROUND-COLOR: white
+}
+TD.diff-ntitle {
+	BACKGROUND-COLOR: white
+}
+TD.diff-addedline {
+	FONT-SIZE: smaller; BACKGROUND: #cfc
+}
+TD.diff-deletedline {
+	FONT-SIZE: smaller; BACKGROUND: #ffa
+}
+TD.diff-context {
+	FONT-SIZE: smaller; BACKGROUND: #eee
+}
+SPAN.diffchange {
+	FONT-WEIGHT: bold; COLOR: red
+}
+UNKNOWN {
+	PADDING-RIGHT: 13px; BACKGROUND: url(external.png) no-repeat right =
+center
+}
+UNKNOWN {
+	PADDING-RIGHT: 16px; BACKGROUND: url(lock_icon.gif) no-repeat right =
+center
+}
+UNKNOWN {
+	PADDING-RIGHT: 18px; BACKGROUND: url(mail_icon.gif) no-repeat right =
+center
+}
+UNKNOWN {
+	PADDING-RIGHT: 18px; BACKGROUND: url(news_icon.png) no-repeat right =
+center
+}
+UNKNOWN {
+	PADDING-RIGHT: 18px; BACKGROUND: url(file_icon.gif) no-repeat right =
+center
+}
+UNKNOWN {
+	PADDING-RIGHT: 18px; BACKGROUND: url(discussionitem_icon.gif) no-repeat =
+right center
+}
+#bodyContent A.extiw {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: none transparent =
+scroll repeat 0% 0%; PADDING-BOTTOM: 0px; COLOR: #36b; PADDING-TOP: 0px
+}
+#bodyContent A.extiw:active {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: none transparent =
+scroll repeat 0% 0%; PADDING-BOTTOM: 0px; COLOR: #36b; PADDING-TOP: 0px
+}
+#bodyContent A.external {
+	COLOR: #36b
+}
+#bodyContent .plainlinks A {
+	PADDING-RIGHT: 0px! important; PADDING-LEFT: 0px! important; =
+BACKGROUND: none transparent scroll repeat 0% 0%; PADDING-BOTTOM: 0px! =
+important; PADDING-TOP: 0px! important
+}
+.portlet {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FLOAT: none; PADDING-BOTTOM: =
+0px; MARGIN: 0px 0px 0.5em; OVERFLOW: hidden; WIDTH: 11.6em; =
+BORDER-TOP-STYLE: none; PADDING-TOP: 0px; BORDER-RIGHT-STYLE: none; =
+BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none
+}
+.portlet H4 {
+	FONT-WEIGHT: normal; FONT-SIZE: 95%; WHITE-SPACE: nowrap
+}
+.portlet H5 {
+	PADDING-RIGHT: 1em; DISPLAY: inline; PADDING-LEFT: 0.5em; FONT-WEIGHT: =
+normal; FONT-SIZE: 91%; BACKGROUND: none transparent scroll repeat 0% =
+0%; PADDING-BOTTOM: 0px; TEXT-TRANSFORM: lowercase; PADDING-TOP: 0px; =
+WHITE-SPACE: nowrap; HEIGHT: 1em
+}
+.portlet H6 {
+	BORDER-RIGHT: #2f6fab 1px solid; PADDING-RIGHT: 1em; BORDER-TOP: =
+#2f6fab 1px solid; DISPLAY: block; PADDING-LEFT: 1em; FONT-WEIGHT: =
+normal; FONT-SIZE: 1em; BACKGROUND: #ffae2e; PADDING-BOTTOM: 0px; =
+TEXT-TRANSFORM: lowercase; BORDER-LEFT: #2f6fab 1px solid; PADDING-TOP: =
+0px; BORDER-BOTTOM: #2f6fab 1px; WHITE-SPACE: nowrap; HEIGHT: 1.2em
+}
+.pBody {
+	BORDER-RIGHT: #aaa 1px solid; PADDING-RIGHT: 0.8em; BORDER-TOP: #aaa =
+1px solid; PADDING-LEFT: 0.5em; FONT-SIZE: 95%; PADDING-BOTTOM: 0.3em; =
+BORDER-LEFT: #aaa 1px solid; COLOR: black; PADDING-TOP: 0px; =
+BORDER-BOTTOM: #aaa 1px solid; BORDER-COLLAPSE: collapse; =
+BACKGROUND-COLOR: white
+}
+.portlet H1 {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: =
+0px; PADDING-TOP: 0px
+}
+.portlet H2 {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: =
+0px; PADDING-TOP: 0px
+}
+.portlet H3 {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: =
+0px; PADDING-TOP: 0px
+}
+.portlet H4 {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: =
+0px; PADDING-TOP: 0px
+}
+.portlet UL {
+	FONT-SIZE: 95%; LIST-STYLE-IMAGE: url(bullet.gif); LINE-HEIGHT: 1.5em; =
+LIST-STYLE-TYPE: square
+}
+.portlet LI {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: =
+0px; PADDING-TOP: 0px
+}
+#p-logo {
+	Z-INDEX: 3; LEFT: 0px; OVERFLOW: visible; WIDTH: 12em; POSITION: =
+absolute; TOP: 0px; HEIGHT: 155px
+}
+#p-logo H5 {
+	DISPLAY: none
+}
+#p-logo A {
+	BACKGROUND-POSITION: 35% 50%; DISPLAY: block; WIDTH: 12.2em; =
+BACKGROUND-REPEAT: no-repeat; HEIGHT: 155px; TEXT-DECORATION: none
+}
+#p-logo A:hover {
+	BACKGROUND-POSITION: 35% 50%; DISPLAY: block; WIDTH: 12.2em; =
+BACKGROUND-REPEAT: no-repeat; HEIGHT: 155px; TEXT-DECORATION: none
+}
+#p-navigation {
+	Z-INDEX: 3; POSITION: relative
+}
+#p-navigation .pBody {
+	PADDING-RIGHT: 0px
+}
+#p-navigation A {
+	DISPLAY: block
+}
+#p-navigation LI.active A {
+	DISPLAY: inline; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+#p-navigation LI.active A:hover {
+	DISPLAY: inline; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+#p-search {
+	Z-INDEX: 3; POSITION: relative
+}
+INPUT.searchButton {
+	MARGIN-TOP: 1px; FONT-SIZE: 95%
+}
+#searchGoButton {
+	PADDING-RIGHT: 0.5em; PADDING-LEFT: 0.5em; FONT-WEIGHT: bold
+}
+#searchInput {
+	FONT-SIZE: 95%; MARGIN: 0px; WIDTH: 10.9em
+}
+#p-search .pBody {
+	PADDING-RIGHT: 0.4em; PADDING-LEFT: 0.4em; PADDING-BOTTOM: 0.4em; =
+PADDING-TOP: 0.5em; TEXT-ALIGN: center
+}
+#p-personal {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: none transparent =
+scroll repeat 0% 0%; LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; =
+OVERFLOW: visible; WIDTH: 100%; BORDER-TOP-STYLE: none; LINE-HEIGHT: =
+1.2em; PADDING-TOP: 0px; BORDER-RIGHT-STYLE: none; WHITE-SPACE: nowrap; =
+BORDER-LEFT-STYLE: none; POSITION: absolute; TOP: 0px; =
+BORDER-BOTTOM-STYLE: none
+}
+#p-personal H5 {
+	DISPLAY: none
+}
+#p-personal .portlet {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: none transparent =
+scroll repeat 0% 0%; PADDING-BOTTOM: 0px; MARGIN: 0px; OVERFLOW: =
+visible; BORDER-TOP-STYLE: none; PADDING-TOP: 0px; BORDER-RIGHT-STYLE: =
+none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none
+}
+#p-personal .pBody {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: none transparent =
+scroll repeat 0% 0%; PADDING-BOTTOM: 0px; MARGIN: 0px; OVERFLOW: =
+visible; BORDER-TOP-STYLE: none; PADDING-TOP: 0px; BORDER-RIGHT-STYLE: =
+none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none
+}
+#p-personal UL {
+	PADDING-RIGHT: 2em; PADDING-LEFT: 3em; BACKGROUND: none transparent =
+scroll repeat 0% 0%; PADDING-BOTTOM: 0px; MARGIN: 0px; TEXT-TRANSFORM: =
+lowercase; CURSOR: default; COLOR: #2f6fab; BORDER-TOP-STYLE: none; =
+LINE-HEIGHT: 1.4em; PADDING-TOP: 0px; BORDER-RIGHT-STYLE: none; =
+BORDER-LEFT-STYLE: none; LIST-STYLE-TYPE: none; TEXT-ALIGN: right; =
+BORDER-BOTTOM-STYLE: none
+}
+#p-personal LI {
+	PADDING-RIGHT: 0px; DISPLAY: inline; PADDING-LEFT: 0px; BACKGROUND: =
+none transparent scroll repeat 0% 0%; PADDING-BOTTOM: 0px; MARGIN-LEFT: =
+1em; COLOR: #2f6fab; BORDER-TOP-STYLE: none; LINE-HEIGHT: 1.2em; =
+PADDING-TOP: 0px; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; =
+BORDER-BOTTOM-STYLE: none
+}
+#p-personal LI.active {
+	FONT-WEIGHT: bold
+}
+#p-personal LI A {
+	BACKGROUND: none transparent scroll repeat 0% 0%; PADDING-BOTTOM: =
+0.2em; COLOR: #005896; TEXT-DECORATION: none
+}
+#p-personal LI A:hover {
+	PADDING-BOTTOM: 0.2em; BACKGROUND-COLOR: white; TEXT-DECORATION: none
+}
+#p-personal LI.active A:hover {
+	BACKGROUND-COLOR: transparent
+}
+LI#pt-userpage {
+	PADDING-LEFT: 20px; BACKGROUND: url(user.gif) no-repeat left top; =
+TEXT-TRANSFORM: none
+}
+LI#pt-anonuserpage {
+	PADDING-LEFT: 20px; BACKGROUND: url(user.gif) no-repeat left top; =
+TEXT-TRANSFORM: none
+}
+LI#pt-login {
+	PADDING-LEFT: 20px; BACKGROUND: url(user.gif) no-repeat left top; =
+TEXT-TRANSFORM: none
+}
+#p-cactions {
+	PADDING-LEFT: 1em; FONT-SIZE: 95%; BACKGROUND: none transparent scroll =
+repeat 0% 0%; LEFT: 11.5em; MARGIN: 0px; OVERFLOW: visible; WIDTH: 76%; =
+LINE-HEIGHT: 1.1em; WHITE-SPACE: nowrap; LIST-STYLE-TYPE: none; =
+POSITION: absolute; TOP: 1.3em; BORDER-COLLAPSE: collapse
+}
+#p-cactions .hiddenStructure {
+	DISPLAY: none
+}
+#p-cactions UL {
+	LIST-STYLE-TYPE: none
+}
+#p-cactions LI {
+	BORDER-RIGHT: #aaa 1px solid; PADDING-RIGHT: 0px; BORDER-TOP: #aaa 1px =
+solid; DISPLAY: inline; PADDING-LEFT: 0px; BACKGROUND: white; =
+PADDING-BOTTOM: 0.1em; MARGIN: 0px 0.3em 0px 0px; OVERFLOW: visible; =
+BORDER-LEFT: #aaa 1px solid; PADDING-TOP: 0px; BORDER-BOTTOM: #aaa 1px
+}
+#p-cactions LI.selected {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-WEIGHT: bold; =
+BORDER-LEFT-COLOR: #fabd23; BORDER-BOTTOM-COLOR: #fabd23; =
+PADDING-BOTTOM: 0.2em; BORDER-TOP-COLOR: #fabd23; PADDING-TOP: 0px; =
+BORDER-RIGHT-COLOR: #fabd23
+}
+#p-cactions LI A {
+	PADDING-RIGHT: 0.8em; PADDING-LEFT: 0.8em; PADDING-BOTTOM: 0.3em; =
+MARGIN: 0px; TEXT-TRANSFORM: lowercase; COLOR: #002bb8; =
+BORDER-TOP-STYLE: none; PADDING-TOP: 0px; BORDER-RIGHT-STYLE: none; =
+BORDER-LEFT-STYLE: none; POSITION: relative; BACKGROUND-COLOR: #fbfbfb; =
+TEXT-DECORATION: none; BORDER-BOTTOM-STYLE: none
+}
+#p-cactions LI.selected A {
+	PADDING-RIGHT: 1em! important; PADDING-LEFT: 1em! important; Z-INDEX: =
+3; PADDING-BOTTOM: 0.2em! important; PADDING-TOP: 0px! important; =
+BACKGROUND-COLOR: #fff
+}
+#p-cactions .new A {
+	COLOR: #ba0000
+}
+#p-cactions LI A:hover {
+	Z-INDEX: 3; BACKGROUND-COLOR: #fff; TEXT-DECORATION: none
+}
+#p-cactions H5 {
+	DISPLAY: none
+}
+#p-cactions LI.istalk {
+	MARGIN-RIGHT: 0px
+}
+#p-cactions LI.istalk A {
+	PADDING-RIGHT: 0.5em
+}
+#p-cactions #ca-addsection A {
+	PADDING-RIGHT: 0.4em; PADDING-LEFT: 0.4em
+}
+LI#ca-talk {
+	MARGIN-RIGHT: 1.6em
+}
+LI#ca-watch {
+	MARGIN-LEFT: 1.6em
+}
+LI#ca-unwatch {
+	MARGIN-LEFT: 1.6em
+}
+LI#ca-varlang-0 {
+	MARGIN-LEFT: 1.6em
+}
+LI#ca-print {
+	MARGIN-LEFT: 1.6em
+}
+#p-tbx {
+	Z-INDEX: 3; POSITION: relative
+}
+#p-lang {
+	Z-INDEX: 3; POSITION: relative
+}
+#t-ispermalink {
+	COLOR: #999
+}
+#t-iscite {
+	COLOR: #999
+}
+#footer {
+	PADDING-RIGHT: 0px; BORDER-TOP: #fabd23 1px solid; PADDING-LEFT: 0px; =
+FONT-SIZE: 90%; PADDING-BOTTOM: 1.2em; MARGIN: 0.6em 0px 1em; =
+PADDING-TOP: 0.4em; BORDER-BOTTOM: #fabd23 1px solid; BACKGROUND-COLOR: =
+white; TEXT-ALIGN: center
+}
+#footer LI {
+	DISPLAY: inline; MARGIN: 0px 1.3em
+}
+UNKNOWN {
+	WHITE-SPACE: nowrap
+}
+#f-poweredbyico {
+	MARGIN: 0px 8px; POSITION: relative; TOP: -2px
+}
+#f-copyrightico {
+	MARGIN: 0px 8px; POSITION: relative; TOP: -2px
+}
+#f-poweredbyico {
+	FLOAT: right; HEIGHT: 1%
+}
+#f-copyrightico {
+	FLOAT: left; HEIGHT: 1%
+}
+#preftoc {
+	CLEAR: both; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: =
+0px; MARGIN: 0px; WIDTH: 100%; PADDING-TOP: 0px
+}
+#preftoc LI {
+	BORDER-RIGHT: #716f64 1px solid; PADDING-RIGHT: 0px; BORDER-TOP: #fff =
+1px solid; PADDING-LEFT: 0px; Z-INDEX: 3; FLOAT: left; LIST-STYLE-IMAGE: =
+none; PADDING-BOTTOM: 3px; MARGIN: 1px -2px 1px 2px; BORDER-LEFT: #fff =
+1px solid; COLOR: #000; PADDING-TOP: 2px; BORDER-BOTTOM: #fff 0px solid; =
+WHITE-SPACE: nowrap; LIST-STYLE-TYPE: none; POSITION: relative; =
+BACKGROUND-COLOR: #f0f0f0
+}
+#preftoc LI.selected {
+	BORDER-RIGHT: #aaa 1px solid; BORDER-TOP: #aaa 1px solid; FONT-WEIGHT: =
+bold; BORDER-LEFT: #aaa 1px solid; CURSOR: default; MARGIN-RIGHT: -3px; =
+PADDING-TOP: 2px; BORDER-BOTTOM: #aaa 1px; TOP: 1px; BACKGROUND-COLOR: =
+#f9f9f9
+}
+UNKNOWN {
+	TOP: 2px
+}
+#preftoc A {
+	PADDING-RIGHT: 0.7em; DISPLAY: block; PADDING-LEFT: 0.7em; =
+PADDING-BOTTOM: 0px; COLOR: #000; PADDING-TOP: 0px; POSITION: relative; =
+TEXT-DECORATION: none
+}
+#preftoc A:active {
+	PADDING-RIGHT: 0.7em; DISPLAY: block; PADDING-LEFT: 0.7em; =
+PADDING-BOTTOM: 0px; COLOR: #000; PADDING-TOP: 0px; POSITION: relative; =
+TEXT-DECORATION: none
+}
+#preftoc LI.selected A {
+	CURSOR: default; TEXT-DECORATION: none
+}
+#prefcontrol {
+	CLEAR: both; PADDING-TOP: 2em
+}
+#preferences {
+	CLEAR: both; BORDER-RIGHT: #aaa 1px solid; PADDING-RIGHT: 1.5em; =
+BORDER-TOP: #aaa 1px solid; PADDING-LEFT: 1.5em; PADDING-BOTTOM: 1.5em; =
+MARGIN: 0px; BORDER-LEFT: #aaa 1px solid; PADDING-TOP: 1.5em; =
+BORDER-BOTTOM: #aaa 1px solid; BACKGROUND-COLOR: #f9f9f9
+}
+.prefsection {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: =
+0px; BORDER-TOP-STYLE: none; PADDING-TOP: 0px; BORDER-RIGHT-STYLE: none; =
+BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none
+}
+.prefsection FIELDSET {
+	BORDER-RIGHT: #aaa 1px solid; BORDER-TOP: #aaa 1px solid; FLOAT: left; =
+BORDER-LEFT: #aaa 1px solid; MARGIN-RIGHT: 2em; BORDER-BOTTOM: #aaa 1px =
+solid
+}
+.prefsection LEGEND {
+	FONT-WEIGHT: bold
+}
+.prefsection TABLE {
+	BACKGROUND-COLOR: #f9f9f9
+}
+.prefsection LEGEND {
+	BACKGROUND-COLOR: #f9f9f9
+}
+.mainLegend {
+	DISPLAY: none
+}
+DIV.prefsectiontip {
+	CLEAR: both; PADDING-RIGHT: 0.7em; MARGIN-TOP: 0px; PADDING-LEFT: =
+0.7em; FONT-SIZE: 95%; PADDING-BOTTOM: 0.2em; PADDING-TOP: 0.2em; =
+BACKGROUND-COLOR: #ffc1c1
+}
+.btnSavePrefs {
+	PADDING-RIGHT: 0.3em; PADDING-LEFT: 0.3em; FONT-WEIGHT: bold
+}
+.preferences-login {
+	CLEAR: both; MARGIN-BOTTOM: 1.5em
+}
+.prefcache {
+	MARGIN-TOP: 2em; FONT-SIZE: 90%
+}
+DIV#userloginForm FORM {
+	CLEAR: both; BORDER-RIGHT: #aaa 1px solid; PADDING-RIGHT: 2em; =
+BORDER-TOP: #aaa 1px solid; PADDING-LEFT: 2em; FLOAT: left; =
+PADDING-BOTTOM: 1.5em; MARGIN: 0px 3em 1em 0px; BORDER-LEFT: #aaa 1px =
+solid; PADDING-TOP: 1.5em; BORDER-BOTTOM: #aaa 1px solid; =
+BACKGROUND-COLOR: #f9f9f9
+}
+DIV#userlogin FORM#userlogin2 {
+	CLEAR: both; BORDER-RIGHT: #aaa 1px solid; PADDING-RIGHT: 2em; =
+BORDER-TOP: #aaa 1px solid; PADDING-LEFT: 2em; FLOAT: left; =
+PADDING-BOTTOM: 1.5em; MARGIN: 0px 3em 1em 0px; BORDER-LEFT: #aaa 1px =
+solid; PADDING-TOP: 1.5em; BORDER-BOTTOM: #aaa 1px solid; =
+BACKGROUND-COLOR: #f9f9f9
+}
+DIV#userloginForm TABLE {
+	BACKGROUND-COLOR: #f9f9f9
+}
+DIV#userlogin FORM#userlogin2 TABLE {
+	BACKGROUND-COLOR: #f9f9f9
+}
+DIV#userloginForm H2 {
+	PADDING-TOP: 0px
+}
+DIV#userlogin FORM#userlogin2 H2 {
+	PADDING-TOP: 0px
+}
+DIV#userlogin .captcha {
+	BORDER-RIGHT: #bbb 1px solid; PADDING-RIGHT: 2em; BORDER-TOP: #bbb 1px =
+solid; PADDING-LEFT: 2em; PADDING-BOTTOM: 1.5em; BORDER-LEFT: #bbb 1px =
+solid; WIDTH: 400px; PADDING-TOP: 1.5em; BORDER-BOTTOM: #bbb 1px solid; =
+BACKGROUND-COLOR: white
+}
+#userloginprompt {
+	FONT-SIZE: 85%
+}
+#languagelinks {
+	FONT-SIZE: 85%
+}
+#login-sectiontip {
+	FONT-SIZE: 85%; LINE-HEIGHT: 1.2; PADDING-TOP: 2em
+}
+#userlogin .loginText {
+	WIDTH: 12em
+}
+#userlogin .loginPassword {
+	WIDTH: 12em
+}
+#userloginlink A {
+	FONT-WEIGHT: bold
+}
+#wpLoginattempt {
+	FONT-WEIGHT: bold
+}
+#wpCreateaccount {
+	FONT-WEIGHT: bold
+}
+UNKNOWN {
+	BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: =
+none; BORDER-BOTTOM-STYLE: none
+}
+UNKNOWN {
+	BORDER-RIGHT: #aaa 1px solid; BORDER-TOP: #aaa 1px solid; BORDER-LEFT: =
+#aaa 1px solid; BORDER-BOTTOM: #aaa 1px
+}
+UNKNOWN {
+	BORDER-LEFT-COLOR: #fabd23; BORDER-BOTTOM-COLOR: #fabd23; =
+BORDER-TOP-COLOR: #fabd23; BORDER-RIGHT-COLOR: #fabd23
+}
+UNKNOWN {
+	WIDTH: 88px
+}
+UNKNOWN {
+	OVERFLOW-X: auto; PADDING-BOTTOM: 25px; WIDTH: 100%
+}
+ HTML #footer {
+	MARGIN-TOP: 0px
+}
+ HTML #column-content {
+	DISPLAY: inline; MARGIN-BOTTOM: 0px
+}
+ HTML DIV.editsection {
+	FONT-SIZE: smaller
+}
+#pagehistory LI.selected {
+	POSITION: relative
+}
+UNKNOWN {
+	FLOAT: none
+}
+UNKNOWN {
+	LEFT: 0px; POSITION: absolute; TOP: 0px
+}
+UNKNOWN {
+	MARGIN-LEFT: 13.2em
+}
+.redirectText {
+	FONT-SIZE: 150%; MARGIN: 5px
+}
+.printfooter {
+	DISPLAY: none
+}
+.not-patrolled {
+	BACKGROUND-COLOR: #ffa
+}
+DIV.patrollink {
+	FONT-SIZE: 75%; TEXT-ALIGN: right
+}
+SPAN.newpage {
+	FONT-WEIGHT: bold
+}
+SPAN.minor {
+	FONT-WEIGHT: bold
+}
+SPAN.searchmatch {
+	FONT-WEIGHT: bold
+}
+SPAN.bot {
+	FONT-WEIGHT: bold
+}
+SPAN.unpatrolled {
+	FONT-WEIGHT: bold; COLOR: red
+}
+SPAN.searchmatch {
+	COLOR: red
+}
+.sharedUploadNotice {
+	FONT-STYLE: italic
+}
+SPAN.updatedmarker {
+	COLOR: black; BACKGROUND-COLOR: #0f0
+}
+SPAN.newpageletter {
+	FONT-WEIGHT: bold; COLOR: black; BACKGROUND-COLOR: yellow
+}
+SPAN.minoreditletter {
+	COLOR: black; BACKGROUND-COLOR: #c5ffe6
+}
+TABLE.gallery {
+	BORDER-RIGHT: #ccc 1px solid; PADDING-RIGHT: 2px; BORDER-TOP: #ccc 1px =
+solid; PADDING-LEFT: 2px; PADDING-BOTTOM: 2px; MARGIN: 2px; BORDER-LEFT: =
+#ccc 1px solid; PADDING-TOP: 2px; BORDER-BOTTOM: #ccc 1px solid; =
+BACKGROUND-COLOR: white
+}
+TABLE.gallery TR {
+	VERTICAL-ALIGN: top
+}
+TABLE.gallery TD {
+	BORDER-RIGHT: white 2px solid; BORDER-TOP: white 2px solid; =
+VERTICAL-ALIGN: top; BORDER-LEFT: white 2px solid; BORDER-BOTTOM: white =
+2px solid; BACKGROUND-COLOR: #f9f9f9
+}
+TABLE.gallery TD.galleryheader {
+	FONT-WEIGHT: bold; TEXT-ALIGN: center
+}
+DIV.gallerybox {
+	MARGIN: 2px; WIDTH: 150px
+}
+DIV.gallerybox DIV.thumb {
+	BORDER-RIGHT: #ccc 1px solid; BORDER-TOP: #ccc 1px solid; MARGIN: 2px; =
+BORDER-LEFT: #ccc 1px solid; BORDER-BOTTOM: #ccc 1px solid; TEXT-ALIGN: =
+center
+}
+DIV.gallerytext {
+	PADDING-RIGHT: 4px; PADDING-LEFT: 4px; FONT-SIZE: 94%; PADDING-BOTTOM: =
+2px; PADDING-TOP: 2px
+}
+SPAN.comment {
+	FONT-STYLE: italic
+}
+SPAN.changedby {
+	FONT-SIZE: 95%
+}
+.previewnote {
+	MARGIN-BOTTOM: 1em; PADDING-BOTTOM: 1em; COLOR: #c00; TEXT-INDENT: 3em; =
+BORDER-BOTTOM: #aaa 1px solid
+}
+.previewnote P {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: =
+0px; PADDING-TOP: 0px
+}
+.editExternally {
+	BORDER-RIGHT: gray 1px solid; PADDING-RIGHT: 3px; BORDER-TOP: gray 1px =
+solid; MARGIN-TOP: 0.5em; PADDING-LEFT: 3px; FONT-SIZE: small; FLOAT: =
+left; PADDING-BOTTOM: 3px; BORDER-LEFT: gray 1px solid; PADDING-TOP: =
+3px; BORDER-BOTTOM: gray 1px solid; BACKGROUND-COLOR: #ffffff; =
+TEXT-ALIGN: center
+}
+.editExternallyHelp {
+	COLOR: gray; FONT-STYLE: italic
+}
+LI SPAN.deleted {
+	COLOR: #888; FONT-STYLE: italic; TEXT-DECORATION: line-through
+}
+SPAN.history-deleted {
+	COLOR: #888; FONT-STYLE: italic; TEXT-DECORATION: line-through
+}
+.toggle {
+	MARGIN-LEFT: 2em; TEXT-INDENT: -2em
+}
+TABLE.mw_metadata {
+	FONT-SIZE: 0.8em; MARGIN-BOTTOM: 0.5em; MARGIN-LEFT: 0.5em; WIDTH: =
+300px
+}
+TABLE.mw_metadata CAPTION {
+	FONT-WEIGHT: bold
+}
+TABLE.mw_metadata TH {
+	FONT-WEIGHT: normal
+}
+TABLE.mw_metadata TD {
+	PADDING-RIGHT: 0.1em; PADDING-LEFT: 0.1em; PADDING-BOTTOM: 0.1em; =
+PADDING-TOP: 0.1em
+}
+TABLE.mw_metadata {
+	BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: =
+none; BORDER-COLLAPSE: collapse; BORDER-BOTTOM-STYLE: none
+}
+TABLE.mw_metadata TD {
+	BORDER-RIGHT: #aaaaaa 1px solid; PADDING-RIGHT: 0.1em; BORDER-TOP: =
+#aaaaaa 1px solid; PADDING-LEFT: 0.1em; BORDER-LEFT: #aaaaaa 1px solid; =
+BORDER-BOTTOM: #aaaaaa 1px solid; TEXT-ALIGN: center
+}
+TABLE.mw_metadata TH {
+	BORDER-RIGHT: #aaaaaa 1px solid; PADDING-RIGHT: 0.1em; BORDER-TOP: =
+#aaaaaa 1px solid; PADDING-LEFT: 0.1em; BORDER-LEFT: #aaaaaa 1px solid; =
+BORDER-BOTTOM: #aaaaaa 1px solid; TEXT-ALIGN: center
+}
+TABLE.mw_metadata TH {
+	BACKGROUND-COLOR: #f9f9f9
+}
+TABLE.mw_metadata TD {
+	BACKGROUND-COLOR: #fcfcfc
+}
+TABLE.collapsed TR.collapsable {
+	DISPLAY: none
+}
+UL#filetoc {
+	BORDER-RIGHT: #aaaaaa 1px solid; PADDING-RIGHT: 5px; BORDER-TOP: =
+#aaaaaa 1px solid; PADDING-LEFT: 5px; FONT-SIZE: 95%; MARGIN-BOTTOM: =
+0.5em; PADDING-BOTTOM: 5px; MARGIN-LEFT: 0px; BORDER-LEFT: #aaaaaa 1px =
+solid; MARGIN-RIGHT: 0px; PADDING-TOP: 5px; BORDER-BOTTOM: #aaaaaa 1px =
+solid; BACKGROUND-COLOR: #f9f9f9; TEXT-ALIGN: center
+}
+#filetoc LI {
+	PADDING-RIGHT: 2em; DISPLAY: inline; LIST-STYLE-TYPE: none
+}
+INPUT#wpSave {
+	MARGIN-RIGHT: 0.33em
+}
+INPUT#wpDiff {
+	MARGIN-RIGHT: 0.33em
+}
+#editform .editOptions {
+	DISPLAY: inline
+}
+#wpSave {
+	FONT-WEIGHT: bold
+}
+TABLE.revisionform_default {
+	BORDER-RIGHT: #000000 1px solid; BORDER-TOP: #000000 1px solid; =
+BORDER-LEFT: #000000 1px solid; BORDER-BOTTOM: #000000 1px solid
+}
+TABLE.revisionform_focus {
+	BORDER-RIGHT: #000000 1px solid; BORDER-TOP: #000000 1px solid; =
+BORDER-LEFT: #000000 1px solid; BORDER-BOTTOM: #000000 1px solid; =
+BACKGROUND-COLOR: #00bbff
+}
+TR.revision_tr_default {
+	BACKGROUND-COLOR: #eeeeee
+}
+TR.revision_tr_first {
+	BACKGROUND-COLOR: #dddddd
+}
+P.revision_saved {
+	FONT-WEIGHT: bold; COLOR: green
+}
+#mw_trackbacks {
+	BORDER-RIGHT: #bbbbff 1px solid; PADDING-RIGHT: 0.2em; BORDER-TOP: =
+#bbbbff 1px solid; PADDING-LEFT: 0.2em; PADDING-BOTTOM: 0.2em; =
+BORDER-LEFT: #bbbbff 1px solid; PADDING-TOP: 0.2em; BORDER-BOTTOM: =
+#bbbbff 1px solid; BACKGROUND-COLOR: #eeeeff
+}
+#allmessagestable TH {
+	BACKGROUND-COLOR: #b2b2ff
+}
+#allmessagestable TR.orig {
+	BACKGROUND-COLOR: #ffe2e2
+}
+#allmessagestable TR.new {
+	BACKGROUND-COLOR: #e2ffe2
+}
+#allmessagestable TR.def {
+	BACKGROUND-COLOR: #f0f0ff
+}
+DIV.noarticletext {
+	BORDER-RIGHT: #ccc 1px solid; PADDING-RIGHT: 1em; BORDER-TOP: #ccc 1px =
+solid; PADDING-LEFT: 1em; BACKGROUND: #fff; PADDING-BOTTOM: 0.2em; =
+BORDER-LEFT: #ccc 1px solid; COLOR: #000; PADDING-TOP: 0.2em; =
+BORDER-BOTTOM: #ccc 1px solid
+}
+DIV#searchTargetContainer {
+	BACKGROUND: white; LEFT: 10px; WIDTH: 90%; TOP: 10px
+}
+DIV#searchTarget {
+	BORDER-RIGHT: blue 1px solid; PADDING-RIGHT: 3px; BORDER-TOP: blue 1px =
+solid; PADDING-LEFT: 3px; BACKGROUND: #f0f0f0; PADDING-BOTTOM: 3px; =
+MARGIN: 5px; BORDER-LEFT: blue 1px solid; PADDING-TOP: 3px; =
+BORDER-BOTTOM: blue 1px solid
+}
+DIV#searchTarget UL LI {
+	LIST-STYLE-TYPE: none
+}
+DIV#searchTarget UL LI:unknown {
+	COLOR: orange; content: "=BB "
+}
+
+------=_NextPart_000_0002_01C6BB3C.E0F60810
+Content-Type: text/css;
+	charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://en.wikipedia.org/skins-1.5/common/commonPrint.css
+
+A.stub {
+	COLOR: #ba0000; TEXT-DECORATION: none
+}
+A.new {
+	COLOR: #ba0000; TEXT-DECORATION: none
+}
+#toc {
+	BORDER-RIGHT: #aaaaaa 1px solid; PADDING-RIGHT: 5px; BORDER-TOP: =
+#aaaaaa 1px solid; PADDING-LEFT: 5px; PADDING-BOTTOM: 5px; BORDER-LEFT: =
+#aaaaaa 1px solid; PADDING-TOP: 5px; BORDER-BOTTOM: #aaaaaa 1px solid; =
+BACKGROUND-COLOR: #f9f9f9
+}
+.tocindent {
+	MARGIN-LEFT: 2em
+}
+.tocline {
+	MARGIN-BOTTOM: 0px
+}
+.toctoggle {
+	FONT-SIZE: smaller
+}
+.editsection {
+	FONT-SIZE: smaller
+}
+DIV.floatright {
+	BORDER-RIGHT: white 0px solid; BORDER-TOP: white 0.5em solid; FLOAT: =
+right; MARGIN: 0px; BORDER-LEFT: white 1.4em solid; BORDER-BOTTOM: white =
+0.8em solid; POSITION: relative
+}
+DIV.floatright P {
+	FONT-STYLE: italic
+}
+DIV.floatleft {
+	BORDER-RIGHT: white 1.4em solid; BORDER-TOP: white 0.5em solid; FLOAT: =
+left; MARGIN: 0.3em 0.5em 0.5em 0px; BORDER-LEFT: white 0px solid; =
+BORDER-BOTTOM: white 0.8em solid; POSITION: relative
+}
+DIV.floatleft P {
+	FONT-STYLE: italic
+}
+DIV.thumb {
+	BORDER-LEFT-COLOR: white; MARGIN-BOTTOM: 0.5em; BORDER-BOTTOM-COLOR: =
+white; OVERFLOW: hidden; WIDTH: auto; BORDER-TOP-STYLE: solid; =
+BORDER-TOP-COLOR: white; BORDER-RIGHT-STYLE: solid; BORDER-LEFT-STYLE: =
+solid; BORDER-RIGHT-COLOR: white; BORDER-BOTTOM-STYLE: solid
+}
+DIV.thumb DIV {
+	BORDER-RIGHT: #cccccc 1px solid; PADDING-RIGHT: 3px! important; =
+BORDER-TOP: #cccccc 1px solid; PADDING-LEFT: 3px! important; FONT-SIZE: =
+94%; PADDING-BOTTOM: 3px! important; BORDER-LEFT: #cccccc 1px solid; =
+PADDING-TOP: 3px! important; BORDER-BOTTOM: #cccccc 1px solid; =
+BACKGROUND-COLOR: #f9f9f9; TEXT-ALIGN: center
+}
+DIV.thumb DIV A IMG {
+	BORDER-RIGHT: #cccccc 1px solid; BORDER-TOP: #cccccc 1px solid; =
+BORDER-LEFT: #cccccc 1px solid; BORDER-BOTTOM: #cccccc 1px solid
+}
+DIV.thumb DIV DIV.thumbcaption {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0.1em; =
+BORDER-TOP-STYLE: none; PADDING-TOP: 0.3em; BORDER-RIGHT-STYLE: none; =
+BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none
+}
+DIV.magnify {
+	DISPLAY: none
+}
+DIV.tright {
+	BORDER-TOP-WIDTH: 0.5em; BORDER-LEFT-WIDTH: 1.4em; FLOAT: right; =
+BORDER-BOTTOM-WIDTH: 0.8em; BORDER-RIGHT-WIDTH: 0px
+}
+DIV.tleft {
+	BORDER-TOP-WIDTH: 0.5em; BORDER-LEFT-WIDTH: 0px; FLOAT: left; =
+BORDER-BOTTOM-WIDTH: 0.8em; MARGIN-RIGHT: 0.5em; BORDER-RIGHT-WIDTH: =
+1.4em
+}
+TABLE.rimage {
+	FLOAT: right; MARGIN-BOTTOM: 1em; MARGIN-LEFT: 1em; WIDTH: 1pt; =
+POSITION: relative; TEXT-ALIGN: center
+}
+BODY {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: white; =
+PADDING-BOTTOM: 0px; MARGIN: 0px; COLOR: black; PADDING-TOP: 0px
+}
+.noprint {
+	DISPLAY: none
+}
+DIV#jump-to-nav {
+	DISPLAY: none
+}
+DIV.top {
+	DISPLAY: none
+}
+DIV#column-one {
+	DISPLAY: none
+}
+#colophon {
+	DISPLAY: none
+}
+.editsection {
+	DISPLAY: none
+}
+.toctoggle {
+	DISPLAY: none
+}
+.tochidden {
+	DISPLAY: none
+}
+DIV#f-poweredbyico {
+	DISPLAY: none
+}
+DIV#f-copyrightico {
+	DISPLAY: none
+}
+LI#f-viewcount {
+	DISPLAY: none
+}
+LI#f-about {
+	DISPLAY: none
+}
+LI#f-disclaimer {
+	DISPLAY: none
+}
+LI#f-privacy {
+	DISPLAY: none
+}
+UL {
+	LIST-STYLE-TYPE: square
+}
+#content {
+	PADDING-RIGHT: 0px! important; PADDING-LEFT: 0px! important; FONT-SIZE: =
+11pt; BACKGROUND: none transparent scroll repeat 0% 0%; PADDING-BOTTOM: =
+0px! important; MARGIN: 0px; BORDER-TOP-STYLE: none! important; =
+PADDING-TOP: 0px! important; BORDER-RIGHT-STYLE: none! important; =
+BORDER-LEFT-STYLE: none! important; BORDER-BOTTOM-STYLE: none! important
+}
+#footer {
+	BORDER-TOP: black 1px solid; BACKGROUND: white; COLOR: black
+}
+H1 {
+	FONT-WEIGHT: bold
+}
+H2 {
+	FONT-WEIGHT: bold
+}
+H3 {
+	FONT-WEIGHT: bold
+}
+H4 {
+	FONT-WEIGHT: bold
+}
+H5 {
+	FONT-WEIGHT: bold
+}
+H6 {
+	FONT-WEIGHT: bold
+}
+P {
+	MARGIN: 1em 0px; LINE-HEIGHT: 1.2em
+}
+.documentDescription {
+	MARGIN: 1em 0px; LINE-HEIGHT: 1.2em
+}
+.tocindent P {
+	MARGIN: 0px
+}
+PRE {
+	BORDER-RIGHT: black 1pt dashed; PADDING-RIGHT: 0px; BORDER-TOP: black =
+1pt dashed; PADDING-LEFT: 0px; FONT-SIZE: 8pt; BACKGROUND: white; =
+PADDING-BOTTOM: 1em; OVERFLOW: auto; BORDER-LEFT: black 1pt dashed; =
+COLOR: black; PADDING-TOP: 1em; BORDER-BOTTOM: black 1pt dashed; =
+WHITE-SPACE: pre
+}
+TABLE.listing {
+	BORDER-RIGHT: black 1pt solid; BORDER-TOP: black 1pt solid; =
+BORDER-LEFT: black 1pt solid; BORDER-BOTTOM: black 1pt solid; =
+BORDER-COLLAPSE: collapse
+}
+TABLE.listing TD {
+	BORDER-RIGHT: black 1pt solid; BORDER-TOP: black 1pt solid; =
+BORDER-LEFT: black 1pt solid; BORDER-BOTTOM: black 1pt solid; =
+BORDER-COLLAPSE: collapse
+}
+A {
+	PADDING-RIGHT: 0px! important; PADDING-LEFT: 0px! important; =
+PADDING-BOTTOM: 0px! important; COLOR: black! important; PADDING-TOP: =
+0px! important
+}
+A:link {
+	BACKGROUND: none transparent scroll repeat 0% 0%; COLOR: #520; =
+TEXT-DECORATION: underline
+}
+A:visited {
+	BACKGROUND: none transparent scroll repeat 0% 0%; COLOR: #520; =
+TEXT-DECORATION: underline
+}
+#content A.text:unknown {
+	content: " (" attr(href) ") "
+}
+#content A.autonumber:unknown {
+	content: " (" attr(href) ") "
+}
+#globalWrapper {
+	WIDTH: 100%! important; min-width: 0
+}
+#content {
+	BACKGROUND: white; COLOR: black
+}
+#column-content {
+	MARGIN: 0px
+}
+#column-content #content {
+	PADDING-RIGHT: 1em; PADDING-LEFT: 1em; PADDING-BOTTOM: 1em; MARGIN: =
+0px; PADDING-TOP: 1em
+}
+A {
+	COLOR: black! important; TEXT-DECORATION: none! important
+}
+A.external {
+	COLOR: black! important; TEXT-DECORATION: none! important
+}
+A.new {
+	COLOR: black! important; TEXT-DECORATION: none! important
+}
+A.stub {
+	COLOR: black! important; TEXT-DECORATION: none! important
+}
+A {
+=09
+}
+A.external {
+=09
+}
+A.new {
+=09
+}
+A.stub {
+=09
+}
+IMG {
+	BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: =
+none; BORDER-BOTTOM-STYLE: none
+}
+IMG.tex {
+	VERTICAL-ALIGN: middle
+}
+SPAN.texhtml {
+	FONT-FAMILY: serif
+}
+DIV.townBox {
+	CLEAR: right; BORDER-RIGHT: gray 1px solid; PADDING-RIGHT: 0.3em; =
+BORDER-TOP: gray 1px solid; PADDING-LEFT: 0.3em; BACKGROUND: white; =
+FLOAT: right; PADDING-BOTTOM: 0.3em; MARGIN-LEFT: 1em; OVERFLOW: hidden; =
+BORDER-LEFT: gray 1px solid; WIDTH: 200px; PADDING-TOP: 0.3em; =
+BORDER-BOTTOM: gray 1px solid; POSITION: relative
+}
+DIV.townBox DL {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-SIZE: 96%; PADDING-BOTTOM: =
+0px; MARGIN: 0px 0px 0.3em; PADDING-TOP: 0px
+}
+DIV.townBox DL DT {
+	BACKGROUND: none transparent scroll repeat 0% 0%; MARGIN: 0.4em 0px 0px
+}
+DIV.townBox DL DD {
+	MARGIN: 0.1em 0px 0px 1.1em; BACKGROUND-COLOR: #f3f3f3
+}
+#siteNotice {
+	DISPLAY: none
+}
+TABLE.gallery {
+	BORDER-RIGHT: #cccccc 1px solid; PADDING-RIGHT: 2px; BORDER-TOP: =
+#cccccc 1px solid; PADDING-LEFT: 2px; PADDING-BOTTOM: 2px; MARGIN: 2px; =
+BORDER-LEFT: #cccccc 1px solid; PADDING-TOP: 2px; BORDER-BOTTOM: #cccccc =
+1px solid; BACKGROUND-COLOR: #ffffff
+}
+TABLE.gallery TR {
+	VERTICAL-ALIGN: top
+}
+DIV.gallerybox {
+	BORDER-RIGHT: #cccccc 1px solid; BORDER-TOP: #cccccc 1px solid; MARGIN: =
+2px; BORDER-LEFT: #cccccc 1px solid; WIDTH: 150px; BORDER-BOTTOM: =
+#cccccc 1px solid; BACKGROUND-COLOR: #f9f9f9
+}
+DIV.gallerybox DIV.thumb {
+	BORDER-RIGHT: #cccccc 1px solid; BORDER-TOP: #cccccc 1px solid; MARGIN: =
+2px; BORDER-LEFT: #cccccc 1px solid; BORDER-BOTTOM: #cccccc 1px solid; =
+TEXT-ALIGN: center
+}
+DIV.gallerytext {
+	PADDING-RIGHT: 4px; PADDING-LEFT: 4px; FONT-SIZE: 94%; PADDING-BOTTOM: =
+2px; PADDING-TOP: 2px
+}
+TABLE.diff {
+	BACKGROUND: white
+}
+TD.diff-otitle {
+	BACKGROUND: #ffffff
+}
+TD.diff-ntitle {
+	BACKGROUND: #ffffff
+}
+TD.diff-addedline {
+	BORDER-RIGHT: black 2px solid; BORDER-TOP: black 2px solid; FONT-SIZE: =
+smaller; BACKGROUND: #ccffcc; BORDER-LEFT: black 2px solid; =
+BORDER-BOTTOM: black 2px solid
+}
+TD.diff-deletedline {
+	BORDER-RIGHT: black 2px dotted; BORDER-TOP: black 2px dotted; =
+FONT-SIZE: smaller; BACKGROUND: #ffffaa; BORDER-LEFT: black 2px dotted; =
+BORDER-BOTTOM: black 2px dotted
+}
+TD.diff-context {
+	FONT-SIZE: smaller; BACKGROUND: #eeeeee
+}
+SPAN.diffchange {
+	FONT-WEIGHT: bold; COLOR: silver; TEXT-DECORATION: underline
+}
+
+------=_NextPart_000_0002_01C6BB3C.E0F60810
+Content-Type: text/css;
+	charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://en.wikipedia.org/skins-1.5/monobook/IE60Fixes.css
+
+#column-content {
+	FLOAT: none; MARGIN-LEFT: 0px; HEIGHT: 1%
+}
+#column-content #content {
+	MARGIN-TOP: 3em; MARGIN-LEFT: 12.2em; HEIGHT: 1%
+}
+#column-one {
+	Z-INDEX: 4; LEFT: 0px; POSITION: absolute; TOP: 0px
+}
+#footer {
+	MARGIN-LEFT: 13.6em; BORDER-LEFT: #fabd23 1px solid
+}
+#p-cactions {
+	Z-INDEX: 3
+}
+#p-cactions LI {
+	FLOAT: none! important; PADDING-BOTTOM: 0px! important; CURSOR: =
+default; BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; =
+BORDER-LEFT-STYLE: none; BACKGROUND-COLOR: transparent; =
+BORDER-BOTTOM-STYLE: none
+}
+#p-cactions LI A {
+	BORDER-RIGHT: #aaa 1px solid; BORDER-TOP: #aaa 1px solid; DISPLAY: =
+inline-block! important; PADDING-BOTTOM: 0px; VERTICAL-ALIGN: top; =
+BORDER-LEFT: #aaa 1px solid; BORDER-BOTTOM: #aaa 0px solid
+}
+#p-cactions LI.selected A {
+	BORDER-LEFT-COLOR: #fabd23; BORDER-BOTTOM-COLOR: #fabd23; =
+PADDING-BOTTOM: 0.17em; BORDER-TOP-COLOR: #fabd23; BORDER-RIGHT-COLOR: =
+#fabd23
+}
+#p-cactions LI A:hover {
+	PADDING-BOTTOM: 0.17em
+}
+#p-navigation A {
+	DISPLAY: inline-block; WIDTH: 100%
+}
+#portal-personaltools {
+	PADDING-BOTTOM: 0.1em
+}
+#bodyContent A.external {
+	PADDING-RIGHT: 13px; BACKGROUND: url(external.png) no-repeat right =
+center
+}
+#p-logo A {
+	CURSOR: pointer
+}
+#p-logo A:hover {
+	CURSOR: pointer
+}
+DIV.visualClear {
+	WIDTH: 100%; LINE-HEIGHT: 0
+}
+TEXTAREA {
+	WIDTH: 96%
+}
+DIV.editsection {
+	POSITION: relative
+}
+#catlinks {
+	POSITION: relative
+}
+DIV.tright {
+	POSITION: relative
+}
+DIV.tleft {
+	POSITION: relative
+}
+
+------=_NextPart_000_0002_01C6BB3C.E0F60810
+Content-Type: application/octet-stream
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://en.wikipedia.org/w/index.php?title=MediaWiki:Common.css&action=raw&ctype=text/css&smaxage=2678400
+
+OL.references {
+	FONT-SIZE: 100%
+}
+.references-small {
+	FONT-SIZE: 90%
+}
+.references-2column {
+	FONT-SIZE: 90%; moz-column-count: 2; column-count: 2
+}
+.same-bg {
+	BACKGROUND: none transparent scroll repeat 0% 0%
+}
+TABLE.wikitable {
+	BORDER-RIGHT: #aaaaaa 1px solid; BORDER-TOP: #aaaaaa 1px solid; =
+BACKGROUND: #f9f9f9; MARGIN: 1em 1em 1em 0px; BORDER-LEFT: #aaaaaa 1px =
+solid; BORDER-BOTTOM: #aaaaaa 1px solid; BORDER-COLLAPSE: collapse
+}
+TABLE.prettytable {
+	BORDER-RIGHT: #aaaaaa 1px solid; BORDER-TOP: #aaaaaa 1px solid; =
+BACKGROUND: #f9f9f9; MARGIN: 1em 1em 1em 0px; BORDER-LEFT: #aaaaaa 1px =
+solid; BORDER-BOTTOM: #aaaaaa 1px solid; BORDER-COLLAPSE: collapse
+}
+TABLE.wikitable TH {
+	BORDER-RIGHT: #aaaaaa 1px solid; PADDING-RIGHT: 0.2em; BORDER-TOP: =
+#aaaaaa 1px solid; PADDING-LEFT: 0.2em; PADDING-BOTTOM: 0.2em; =
+BORDER-LEFT: #aaaaaa 1px solid; PADDING-TOP: 0.2em; BORDER-BOTTOM: =
+#aaaaaa 1px solid
+}
+TABLE.wikitable TD {
+	BORDER-RIGHT: #aaaaaa 1px solid; PADDING-RIGHT: 0.2em; BORDER-TOP: =
+#aaaaaa 1px solid; PADDING-LEFT: 0.2em; PADDING-BOTTOM: 0.2em; =
+BORDER-LEFT: #aaaaaa 1px solid; PADDING-TOP: 0.2em; BORDER-BOTTOM: =
+#aaaaaa 1px solid
+}
+TABLE.prettytable TH {
+	BORDER-RIGHT: #aaaaaa 1px solid; PADDING-RIGHT: 0.2em; BORDER-TOP: =
+#aaaaaa 1px solid; PADDING-LEFT: 0.2em; PADDING-BOTTOM: 0.2em; =
+BORDER-LEFT: #aaaaaa 1px solid; PADDING-TOP: 0.2em; BORDER-BOTTOM: =
+#aaaaaa 1px solid
+}
+TABLE.prettytable TD {
+	BORDER-RIGHT: #aaaaaa 1px solid; PADDING-RIGHT: 0.2em; BORDER-TOP: =
+#aaaaaa 1px solid; PADDING-LEFT: 0.2em; PADDING-BOTTOM: 0.2em; =
+BORDER-LEFT: #aaaaaa 1px solid; PADDING-TOP: 0.2em; BORDER-BOTTOM: =
+#aaaaaa 1px solid
+}
+TABLE.wikitable TH {
+	BACKGROUND: #f2f2f2; TEXT-ALIGN: center
+}
+TABLE.prettytable TH {
+	BACKGROUND: #f2f2f2; TEXT-ALIGN: center
+}
+TABLE.wikitable CAPTION {
+=09
+}
+TABLE.prettytable CAPTION {
+=09
+}
+.notice {
+	PADDING-RIGHT: 0.2em; PADDING-LEFT: 0.2em; PADDING-BOTTOM: 0.2em; =
+MARGIN: 1em; PADDING-TOP: 0.2em; TEXT-ALIGN: justify
+}
+#disambig {
+	BORDER-TOP: #cccccc 3px double; BORDER-BOTTOM: #cccccc 3px double
+}
+#spoiler {
+	BORDER-TOP: #ddd 2px solid; BORDER-BOTTOM: #ddd 2px solid
+}
+.Talk-Notice {
+	BORDER-RIGHT: #c0c090 1px solid; BORDER-TOP: #c0c090 1px solid; =
+MARGIN-BOTTOM: 3px; MARGIN-LEFT: auto; BORDER-LEFT: #c0c090 1px solid; =
+WIDTH: 80%; MARGIN-RIGHT: auto; BORDER-BOTTOM: #c0c090 1px solid; =
+BACKGROUND-COLOR: #f8eaba; border-spacing: 3px
+}
+.Talk-Notice:unknown {
+	content: "The CSS for this template should be changed. See =
+[[Wikipedia:Template Standardisation]]."
+}
+.Talk-Notice TD {
+=09
+}
+TABLE.metadata {
+	BORDER-RIGHT: #aaaaaa 1px solid; BORDER-TOP: #aaaaaa 1px solid; =
+DISPLAY: none; BORDER-LEFT: #aaaaaa 1px solid; BORDER-BOTTOM: #aaaaaa =
+1px solid; speak: none
+}
+.metadata-label {
+	COLOR: #aaaaaa
+}
+.allpagesredirect {
+	FONT-STYLE: italic
+}
+.Use_Default_Date_Convention {
+	DISPLAY: inline
+}
+.Use_AD_and_BC {
+	DISPLAY: none
+}
+.Use_BCE_and_CE {
+	DISPLAY: none
+}
+.audiolink A {
+	PADDING-RIGHT: 0px! important; PADDING-LEFT: 16px! important; =
+BACKGROUND: =
+url(http://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Loudspeaker.=
+svg/11px-Loudspeaker.svg.png) no-repeat left center
+}
+DIV.listenlist {
+	PADDING-LEFT: 40px; BACKGROUND: =
+url(http://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Gnome-speake=
+rnotes.png/30px-Gnome-speakernotes.png)
+}
+DIV.videolist {
+	PADDING-LEFT: 50px; BACKGROUND: =
+url(http://upload.wikimedia.org/wikipedia/en/thumb/2/20/Tango-video-x-gen=
+eric.png/40px-Tango-video-x-generic.png)
+}
+DIV.multivideolist {
+	PADDING-LEFT: 50px; BACKGROUND: =
+url(http://upload.wikimedia.org/wikipedia/en/thumb/2/20/Tango-video-x-gen=
+eric.png/40px-Tango-video-x-generic.png)
+}
+DIV.medialist {
+	BACKGROUND-POSITION: left top; MIN-HEIGHT: 50px; MARGIN: 1em; =
+BACKGROUND-REPEAT: no-repeat
+}
+DIV.medialist UL {
+	LIST-STYLE-IMAGE: none; MARGIN: 0px; LIST-STYLE-TYPE: none
+}
+DIV.medialist UL LI {
+	PADDING-BOTTOM: 0.5em
+}
+DIV.medialist UL LI LI {
+	FONT-SIZE: 91%; PADDING-BOTTOM: 0px
+}
+DIV.columns-2 DIV.column {
+	FLOAT: left; WIDTH: 50%; min-width: 300px
+}
+DIV.columns-3 DIV.column {
+	FLOAT: left; WIDTH: 33.3%; min-width: 200px
+}
+DIV.columns-4 DIV.column {
+	FLOAT: left; WIDTH: 25%; min-width: 150px
+}
+DIV.columns-5 DIV.column {
+	FLOAT: left; WIDTH: 20%; min-width: 120px
+}
+.plainlinksneverexpand {
+	PADDING-RIGHT: 0px! important; PADDING-LEFT: 0px! important; =
+BACKGROUND: none transparent scroll repeat 0% 0%; PADDING-BOTTOM: 0px! =
+important; PADDING-TOP: 0px! important
+}
+.plainlinksneverexpand .urlexpansion {
+	DISPLAY: none! important
+}
+.plainlinksneverexpand A {
+	PADDING-RIGHT: 0px! important; PADDING-LEFT: 0px! important; =
+BACKGROUND: none transparent scroll repeat 0% 0%; PADDING-BOTTOM: 0px! =
+important; PADDING-TOP: 0px! important
+}
+.plainlinksneverexpand A.text:unknown {
+	DISPLAY: none! important
+}
+.plainlinksneverexpand A.autonumber:unknown {
+	DISPLAY: none! important
+}
+.messagebox {
+	BORDER-RIGHT: #aaaaaa 1px solid; PADDING-RIGHT: 0.2em; BORDER-TOP: =
+#aaaaaa 1px solid; PADDING-LEFT: 0.2em; PADDING-BOTTOM: 0.2em; MARGIN: =
+0px auto 1em; BORDER-LEFT: #aaaaaa 1px solid; WIDTH: 80%; PADDING-TOP: =
+0.2em; BORDER-BOTTOM: #aaaaaa 1px solid; BACKGROUND-COLOR: #f9f9f9; =
+TEXT-ALIGN: justify
+}
+.merge {
+	BORDER-RIGHT: #c0b8cc 1px solid; BORDER-TOP: #c0b8cc 1px solid; =
+BORDER-LEFT: #c0b8cc 1px solid; BORDER-BOTTOM: #c0b8cc 1px solid; =
+BACKGROUND-COLOR: #f0e5ff; TEXT-ALIGN: center
+}
+.cleanup {
+	BORDER-RIGHT: #9f9fff 1px solid; BORDER-TOP: #9f9fff 1px solid; =
+BORDER-LEFT: #9f9fff 1px solid; BORDER-BOTTOM: #9f9fff 1px solid; =
+BACKGROUND-COLOR: #efefff; TEXT-ALIGN: center
+}
+.standard-talk {
+	BORDER-RIGHT: #c0c090 1px solid; BORDER-TOP: #c0c090 1px solid; =
+BORDER-LEFT: #c0c090 1px solid; BORDER-BOTTOM: #c0c090 1px solid; =
+BACKGROUND-COLOR: #f8eaba
+}
+.infobox {
+	CLEAR: right; BORDER-RIGHT: #aaaaaa 1px solid; PADDING-RIGHT: 0.2em; =
+BORDER-TOP: #aaaaaa 1px solid; PADDING-LEFT: 0.2em; FLOAT: right; =
+MARGIN-BOTTOM: 0.5em; PADDING-BOTTOM: 0.2em; MARGIN-LEFT: 1em; =
+BORDER-LEFT: #aaaaaa 1px solid; COLOR: black; PADDING-TOP: 0.2em; =
+BORDER-BOTTOM: #aaaaaa 1px solid; BACKGROUND-COLOR: #f9f9f9
+}
+.infobox TD {
+	VERTICAL-ALIGN: top
+}
+.infobox TH {
+	VERTICAL-ALIGN: top
+}
+.infobox CAPTION {
+	FONT-SIZE: larger
+}
+.bordered {
+	BORDER-COLLAPSE: collapse
+}
+.bordered TD {
+	BORDER-RIGHT: #aaaaaa 1px solid; BORDER-TOP: #aaaaaa 1px solid; =
+BORDER-LEFT: #aaaaaa 1px solid; BORDER-BOTTOM: #aaaaaa 1px solid
+}
+.bordered TH {
+	BORDER-RIGHT: #aaaaaa 1px solid; BORDER-TOP: #aaaaaa 1px solid; =
+BORDER-LEFT: #aaaaaa 1px solid; BORDER-BOTTOM: #aaaaaa 1px solid
+}
+.bordered .borderless TD {
+	BORDER-TOP-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: =
+0px; BORDER-RIGHT-WIDTH: 0px
+}
+.bordered .borderless TH {
+	BORDER-TOP-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: =
+0px; BORDER-RIGHT-WIDTH: 0px
+}
+.sisterproject {
+	FONT-SIZE: 90%; WIDTH: 20em
+}
+.bordered .mergedtoprow TD {
+	BORDER-RIGHT: #aaaaaa 1px solid; BORDER-TOP: #aaaaaa 1px solid; =
+BORDER-LEFT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px
+}
+.bordered .mergedtoprow TH {
+	BORDER-RIGHT: #aaaaaa 1px solid; BORDER-TOP: #aaaaaa 1px solid; =
+BORDER-LEFT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px
+}
+.bordered .mergedrow TD {
+	BORDER-TOP-WIDTH: 0px; BORDER-RIGHT: #aaaaaa 1px solid; =
+BORDER-LEFT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px
+}
+.bordered .mergedrow TH {
+	BORDER-TOP-WIDTH: 0px; BORDER-RIGHT: #aaaaaa 1px solid; =
+BORDER-LEFT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px
+}
+.geography {
+	BORDER-RIGHT: #ccd2d9 1px solid; BORDER-TOP: #ccd2d9 1px solid; =
+FONT-SIZE: 90%; BORDER-LEFT: #ccd2d9 1px solid; LINE-HEIGHT: 1.2em; =
+BORDER-BOTTOM: #ccd2d9 1px solid; BORDER-COLLAPSE: collapse; TEXT-ALIGN: =
+left
+}
+.geography TD {
+	PADDING-RIGHT: 0.2em; BORDER-TOP: #ccd2d9 1px solid; PADDING-LEFT: =
+0.8em; PADDING-BOTTOM: 0.4em; PADDING-TOP: 0.4em
+}
+.geography TH {
+	PADDING-RIGHT: 0.2em; BORDER-TOP: #ccd2d9 1px solid; PADDING-LEFT: =
+0.8em; PADDING-BOTTOM: 0.4em; PADDING-TOP: 0.4em
+}
+.geography .mergedtoprow TD {
+	PADDING-RIGHT: 0.2em; BORDER-TOP: #ccd2d9 1px solid; PADDING-LEFT: =
+0.8em; PADDING-BOTTOM: 0.2em; PADDING-TOP: 0.4em
+}
+.geography .mergedtoprow TH {
+	PADDING-RIGHT: 0.2em; BORDER-TOP: #ccd2d9 1px solid; PADDING-LEFT: =
+0.8em; PADDING-BOTTOM: 0.2em; PADDING-TOP: 0.4em
+}
+.geography .mergedrow TD {
+	BORDER-TOP-WIDTH: 0px; PADDING-RIGHT: 0.2em; PADDING-LEFT: 0.8em; =
+BORDER-LEFT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; PADDING-BOTTOM: 0.2em; =
+PADDING-TOP: 0px; BORDER-RIGHT-WIDTH: 0px
+}
+.geography .mergedrow TH {
+	BORDER-TOP-WIDTH: 0px; PADDING-RIGHT: 0.2em; PADDING-LEFT: 0.8em; =
+BORDER-LEFT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; PADDING-BOTTOM: 0.2em; =
+PADDING-TOP: 0px; BORDER-RIGHT-WIDTH: 0px
+}
+.geography .mergedbottomrow TD {
+	BORDER-TOP-WIDTH: 0px; PADDING-RIGHT: 0.2em; PADDING-LEFT: 0.8em; =
+PADDING-BOTTOM: 0.4em; PADDING-TOP: 0px; BORDER-BOTTOM: #ccd2d9 1px =
+solid
+}
+.geography .mergedbottomrow TH {
+	BORDER-TOP-WIDTH: 0px; PADDING-RIGHT: 0.2em; PADDING-LEFT: 0.8em; =
+PADDING-BOTTOM: 0.4em; PADDING-TOP: 0px; BORDER-BOTTOM: #ccd2d9 1px =
+solid
+}
+.geography .maptable TD {
+	BORDER-TOP-WIDTH: 0px; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; =
+BORDER-LEFT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; PADDING-BOTTOM: 0px; =
+PADDING-TOP: 0px; BORDER-RIGHT-WIDTH: 0px
+}
+.geography .maptable TH {
+	BORDER-TOP-WIDTH: 0px; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; =
+BORDER-LEFT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; PADDING-BOTTOM: 0px; =
+PADDING-TOP: 0px; BORDER-RIGHT-WIDTH: 0px
+}
+#file IMG {
+	BACKGROUND: =
+url(http://upload.wikimedia.org/wikipedia/commons/5/5d/Checker-16x16.png)=
+
+}
+.IPA {
+	FONT-FAMILY: Chrysanthi Unicode, Doulos SIL, Gentium, GentiumAlt, =
+Code2000, TITUS Cyberbit Basic, DejaVu Sans, Bitstream Cyberbit, Arial =
+Unicode MS, Lucida Sans Unicode, Hiragino Kaku Gothic Pro, Matrix =
+Unicode
+}
+.Unicode {
+	FONT-FAMILY: TITUS Cyberbit Basic, Code2000, Doulos SIL, Chrysanthi =
+Unicode, Bitstream Cyberbit, Bitstream CyberBase, Thryomanes, Gentium, =
+GentiumAlt, Visual Geez Unicode, Lucida Grande, Arial Unicode MS, =
+Microsoft Sans Serif, Lucida Sans Unicode
+}
+.latinx {
+	FONT-FAMILY: TITUS Cyberbit Basic, Code2000, Microsoft Sans Serif
+}
+.polytonic {
+	FONT-FAMILY: Athena, Gentium, Palatino Linotype, Arial Unicode MS, =
+Lucida Sans Unicode, Lucida Grande, Code2000
+}
+.mufi {
+	FONT-FAMILY: Alphabetum, Cardo, LeedsUni, Junicode, TITUS Cyberbit =
+Basic, ALPHA-Demo
+}
+#wpSave {
+	FONT-WEIGHT: bold
+}
+.hiddenStructure {
+	DISPLAY: none; speak: none
+}
+.nounderlines A {
+	TEXT-DECORATION: none
+}
+#EnWpMainPage {
+	MARGIN-TOP: 1em; WIDTH: 100%
+}
+#EnWpMainPage H2 {
+	BORDER-TOP-WIDTH: 0px; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; =
+FONT-WEIGHT: bold; BORDER-LEFT-WIDTH: 0px; FONT-SIZE: 130%; =
+BORDER-BOTTOM-WIDTH: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: =
+0px; BORDER-RIGHT-WIDTH: 0px
+}
+#EnWpMpMargin {
+	MARGIN-RIGHT: 13.8em
+}
+#EnWpMpCol1 {
+	CLEAR: left; FLOAT: left; WIDTH: 50%
+}
+#EnWpMpCol2 {
+	FLOAT: left; WIDTH: 49.9%
+}
+#EnWpMpBrowse {
+	BORDER-RIGHT: #c7c7c7 1px solid; BORDER-TOP: #c7c7c7 1px solid; =
+BACKGROUND: =
+url(http://upload.wikimedia.org/wikipedia/en/9/9f/MP-three-books.png) =
+#f8fcff no-repeat 180% 9%; BORDER-LEFT: #c7c7c7 1px solid; =
+BORDER-BOTTOM: #c7c7c7 1px solid
+}
+#EnWpMpBrowseCats LI {
+	FONT-SIZE: 85%; MARGIN-LEFT: 1em; LINE-HEIGHT: 1.5
+}
+#EnWpMpBrowseCats H3 {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-WEIGHT: normal; FONT-SIZE: =
+120%; PADDING-BOTTOM: 0px; MARGIN: 0.2em 0px 0.1em -0.8em; PADDING-TOP: =
+0px
+}
+#EnWpMpBrowseCats H3 A {
+	FONT-WEIGHT: bold
+}
+#EnWpMpBook {
+	BACKGROUND-IMAGE: =
+url(http://upload.wikimedia.org/wikipedia/en/7/7e/MP-open-book.png)
+}
+#EnWpMpFeaturedPic {
+	FONT-WEIGHT: bold; FONT-SIZE: 85%; MARGIN: 0px 0px 0.5em; TEXT-ALIGN: =
+center
+}
+#EnWpMpFeaturedPic H2 {
+	FONT-SIZE: 145%; TEXT-ALIGN: left
+}
+.EnWpMpBrowseRight {
+	FLOAT: right; WIDTH: 12.7em
+}
+.EnWpMpBrowseBottom {
+	MARGIN: 1em 0px
+}
+.EnWpMpBrowseBottom #EnWpMpBrowseCats LI {
+	FLOAT: left; MARGIN: 0px; WIDTH: 24%; LINE-HEIGHT: normal
+}
+.EnWpMpBrowseBottom #EnWpMpUsefulLinks {
+	FLOAT: left; MARGIN: 0px; WIDTH: 24%; LINE-HEIGHT: normal
+}
+.EnWpMpBrowseBottom #EnWpMpFeaturedPic {
+	FLOAT: left; MARGIN: 0px; WIDTH: 24%; LINE-HEIGHT: normal
+}
+.EnWpMpBrowseBottom #EnWpMpBrowseCats H3 {
+	MARGIN-LEFT: 0px
+}
+#EnWpMpUsefulLinks {
+	CLEAR: left
+}
+#EnWpMpSearch {
+	BACKGROUND: =
+url(http://upload.wikimedia.org/wikipedia/en/a/ae/MP-magnifying-glass.png=
+) no-repeat right top
+}
+#EnWpMpSearch INPUT {
+	VERTICAL-ALIGN: middle
+}
+#EnWpMpSearchInner {
+	FLOAT: right; WIDTH: 20em; TEXT-ALIGN: center
+}
+#bodySearchMP {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: =
+0px; PADDING-TOP: 0px
+}
+#bodySearchMP .bodySearchWrap {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FLOAT: right; PADDING-BOTTOM: =
+0.8em; WIDTH: 17.5em; PADDING-TOP: 0.8em; TEXT-ALIGN: left
+}
+#bodySearchMP LABEL {
+	DISPLAY: block; FONT-WEIGHT: bold; FONT-SIZE: 95%; MARGIN-BOTTOM: =
+-0.2em
+}
+#bodySearchMP .bodySearchBtnGo {
+	PADDING-RIGHT: 0.3em; PADDING-LEFT: 0.3em; FONT-WEIGHT: bold; =
+MARGIN-LEFT: 0.5em
+}
+.EnWpMpContentBox {
+	BORDER-RIGHT: 1px solid; BORDER-TOP: 1px solid; MARGIN-BOTTOM: 0.9em; =
+BORDER-LEFT: 1px solid; BORDER-BOTTOM: 1px solid
+}
+#EnWpMpCol2 .EnWpMpContentBox {
+	MARGIN-LEFT: 0.9em
+}
+.EnWpMpImage {
+	FLOAT: right; MARGIN: 0px 0px 0.2em 0.2em
+}
+.EnWpMpImage IMG {
+	Z-INDEX: 3; POSITION: relative
+}
+#EnWpMpSisterProjects {
+	FLOAT: left; WIDTH: 49%
+}
+.EnWpMpSisterProject {
+	FLOAT: left; MARGIN: 0px; WIDTH: 17em; HEIGHT: 5.5em
+}
+.EnWpMpSisterImg {
+	FLOAT: left; WIDTH: 40px; HEIGHT: 100%
+}
+#EnWpMpOtherLangs {
+	MARGIN-LEFT: 50%
+}
+#EnWpMainPageNoCSS {
+	DISPLAY: none
+}
+#EnWpMpBook2 {
+	BACKGROUND-IMAGE: =
+url(http://upload.wikimedia.org/wikipedia/en/8/8e/MP-open-book2.png)
+}
+#EnWpMpSearch2 {
+	BACKGROUND: =
+url(http://upload.wikimedia.org/wikipedia/en/3/3a/MP-magnifying-glass2.pn=
+g) no-repeat right top
+}
+.charboxblack A:link {
+	COLOR: black
+}
+.charboxblack A:hover {
+	COLOR: black
+}
+.charboxblack A:visited {
+	COLOR: black
+}
+.charboxblack A:active {
+	COLOR: black
+}
+.charboxsilver A:link {
+	COLOR: silver
+}
+.charboxsilver A:hover {
+	COLOR: silver
+}
+.charboxsilver A:visited {
+	COLOR: silver
+}
+.charboxsilver A:active {
+	COLOR: silver
+}
+.charboxgray A:link {
+	COLOR: gray
+}
+.charboxgray A:hover {
+	COLOR: gray
+}
+.charboxgray A:visited {
+	COLOR: gray
+}
+.charboxgray A:active {
+	COLOR: gray
+}
+.charboxwhite A:link {
+	COLOR: white
+}
+.charboxwhite A:hover {
+	COLOR: white
+}
+.charboxwhite A:visited {
+	COLOR: white
+}
+.charboxwhite A:active {
+	COLOR: white
+}
+.charboxmaroon A:link {
+	COLOR: maroon
+}
+.charboxmaroon A:hover {
+	COLOR: maroon
+}
+.charboxmaroon A:visited {
+	COLOR: maroon
+}
+.charboxmaroon A:active {
+	COLOR: maroon
+}
+.charboxred A:link {
+	COLOR: red
+}
+.charboxred A:hover {
+	COLOR: red
+}
+.charboxred A:visited {
+	COLOR: red
+}
+.charboxred A:active {
+	COLOR: red
+}
+.charboxpurple A:link {
+	COLOR: purple
+}
+.charboxpurple A:hover {
+	COLOR: purple
+}
+.charboxpurple A:visited {
+	COLOR: purple
+}
+.charboxpurple A:active {
+	COLOR: purple
+}
+.charboxfuchsia A:link {
+	COLOR: fuchsia
+}
+.charboxfuchsia A:hover {
+	COLOR: fuchsia
+}
+.charboxfuchsia A:visited {
+	COLOR: fuchsia
+}
+.charboxfuchsia A:active {
+	COLOR: fuchsia
+}
+.charboxgreen A:link {
+	COLOR: green
+}
+.charboxgreen A:hover {
+	COLOR: green
+}
+.charboxgreen A:visited {
+	COLOR: green
+}
+.charboxgreen A:active {
+	COLOR: green
+}
+.charboxlime A:link {
+	COLOR: lime
+}
+.charboxlime A:hover {
+	COLOR: lime
+}
+.charboxlime A:visited {
+	COLOR: lime
+}
+.charboxlime A:active {
+	COLOR: lime
+}
+.charboxolive A:link {
+	COLOR: olive
+}
+.charboxolive A:hover {
+	COLOR: olive
+}
+.charboxolive A:visited {
+	COLOR: olive
+}
+.charboxolive A:active {
+	COLOR: olive
+}
+.charboxyellow A:link {
+	COLOR: yellow
+}
+.charboxyellow A:hover {
+	COLOR: yellow
+}
+.charboxyellow A:visited {
+	COLOR: yellow
+}
+.charboxyellow A:active {
+	COLOR: yellow
+}
+.charboxnavy A:link {
+	COLOR: navy
+}
+.charboxnavy A:hover {
+	COLOR: navy
+}
+.charboxnavy A:visited {
+	COLOR: navy
+}
+.charboxnavy A:active {
+	COLOR: navy
+}
+.charboxblue A:link {
+	COLOR: blue
+}
+.charboxblue A:hover {
+	COLOR: blue
+}
+.charboxblue A:visited {
+	COLOR: blue
+}
+.charboxblue A:active {
+	COLOR: blue
+}
+.charboxteal A:link {
+	COLOR: teal
+}
+.charboxteal A:hover {
+	COLOR: teal
+}
+.charboxteal A:visited {
+	COLOR: teal
+}
+.charboxteal A:active {
+	COLOR: teal
+}
+.charboxaqua A:link {
+	COLOR: aqua
+}
+.charboxaqua A:hover {
+	COLOR: aqua
+}
+.charboxaqua A:visited {
+	COLOR: aqua
+}
+.charboxaqua A:active {
+	COLOR: aqua
+}
+
+@media Print   =20
+{
+#privacy {
+	DISPLAY: none
+}
+#about {
+	DISPLAY: none
+}
+#disclaimer {
+	DISPLAY: none
+}
+    }
+.sysop {
+	DISPLAY: none
+}
+
+------=_NextPart_000_0002_01C6BB3C.E0F60810
+Content-Type: application/octet-stream
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://en.wikipedia.org/w/index.php?title=MediaWiki:Monobook.css&action=raw&ctype=text/css&smaxage=2678400
+
+#siteNotice {
+	MARGIN-TOP: 5px; PADDING-LEFT: 4px; FONT-STYLE: italic; TEXT-ALIGN: =
+center
+}
+#content {
+	BACKGROUND: #f8fcff
+}
+#content DIV.thumb {
+	BORDER-LEFT-COLOR: #f8fcff; BORDER-BOTTOM-COLOR: #f8fcff; =
+BORDER-TOP-COLOR: #f8fcff; BORDER-RIGHT-COLOR: #f8fcff
+}
+.ns-0  #content {
+	BACKGROUND: white
+}
+#mytabs LI {
+	BACKGROUND: #f8fcff
+}
+.ns-0  #mytabs LI {
+	BACKGROUND: white
+}
+#mytabs LI A {
+	BACKGROUND-COLOR: #f8fcff
+}
+.ns-0  #mytabs LI A {
+	BACKGROUND-COLOR: white
+}
+#p-cactions LI A {
+	BACKGROUND-COLOR: #f8fcff
+}
+#p-cactions LI A:hover {
+	BACKGROUND-COLOR: #f8fcff
+}
+#p-cactions LI.selected A {
+	BACKGROUND-COLOR: #f8fcff
+}
+.ns-0  #p-cactions LI A {
+	BACKGROUND-COLOR: #fbfbfb
+}
+.ns-0  #p-cactions LI.selected A {
+	BACKGROUND-COLOR: white
+}
+.ns-0  #p-cactions LI A:hover {
+	BACKGROUND-COLOR: white
+}
+.ns-0  #content DIV.thumb {
+	BORDER-LEFT-COLOR: white; BORDER-BOTTOM-COLOR: white; BORDER-TOP-COLOR: =
+white; BORDER-RIGHT-COLOR: white
+}
+#content BLOCKQUOTE {
+	FONT-SIZE: 93.75%; MARGIN: 1em 1.6em
+}
+#content BLOCKQUOTE P {
+=09
+}
+#siteSub {
+	DISPLAY: inline; FONT-WEIGHT: normal; FONT-SIZE: 92%
+}
+#bodyContent #siteSub A {
+	PADDING-RIGHT: 0px; BACKGROUND-IMAGE: none; COLOR: #000; =
+BACKGROUND-COLOR: transparent; TEXT-DECORATION: none
+}
+#ca-edit A {
+	FONT-WEIGHT: bold! important
+}
+DIV.alreadyloggedin {
+	FONT-WEIGHT: bold; COLOR: red
+}
+
+@media Print   =20
+{
+.editlink {
+	DISPLAY: none
+}
+.noprint {
+	DISPLAY: none
+}
+.metadata {
+	DISPLAY: none
+}
+.dablink {
+	DISPLAY: none
+}
+#content {
+	BACKGROUND: #ffffff
+}
+    }
+.diffchange {
+	FONT-WEIGHT: bold
+}
+TD.diff-addedline {
+	FONT-SIZE: 85%
+}
+TD.diff-deletedline {
+	FONT-SIZE: 85%
+}
+TD.diff-context {
+	FONT-SIZE: 85%
+}
+#pt-login {
+	FONT-WEIGHT: bold; FONT-SIZE: 110%
+}
+FORM#userlogin {
+	BORDER-RIGHT: #fc6 2px solid; PADDING-RIGHT: 1em; BORDER-TOP: #fc6 2px =
+solid; PADDING-LEFT: 1em; FLOAT: left; PADDING-BOTTOM: 0.7em; =
+BORDER-LEFT: #fc6 2px solid; COLOR: #000; MARGIN-RIGHT: 2em; =
+PADDING-TOP: 1em; BORDER-BOTTOM: #fc6 2px solid; BACKGROUND-COLOR: =
+#ffffe6
+}
+FORM#userlogin TABLE {
+	FLOAT: left; COLOR: #000; BACKGROUND-COLOR: #ffffe6
+}
+P.error {
+	FONT-WEIGHT: bold
+}
+.toccolours {
+	BORDER-RIGHT: #aaaaaa 1px solid; PADDING-RIGHT: 5px; BORDER-TOP: =
+#aaaaaa 1px solid; PADDING-LEFT: 5px; FONT-SIZE: 95%; PADDING-BOTTOM: =
+5px; BORDER-LEFT: #aaaaaa 1px solid; PADDING-TOP: 5px; BORDER-BOTTOM: =
+#aaaaaa 1px solid; BACKGROUND-COLOR: #f9f9f9
+}
+#bodyContent .plainlinks A {
+	PADDING-RIGHT: 0px! important; PADDING-LEFT: 0px! important; =
+PADDING-BOTTOM: 0px! important; PADDING-TOP: 0px! important
+}
+#p-nav H5 {
+	DISPLAY: none
+}
+.portlet A {
+	TEXT-DECORATION: none
+}
+.portlet A:hover {
+	TEXT-DECORATION: underline
+}
+#p-nav .pBody {
+	PADDING-RIGHT: 0px
+}
+#p-nav A {
+	DISPLAY: block; WIDTH: 100%
+}
+#editpage-specialchars A {
+	TEXT-DECORATION: none
+}
+#editpage-specialchars A:hover {
+	TEXT-DECORATION: underline
+}
+DIV.thumb DIV A IMG {
+	BACKGROUND-COLOR: #ffffff
+}
+DIV.topicon {
+	DISPLAY: block! important; Z-INDEX: 100; POSITION: absolute; TOP: 10px
+}
+.plainlinksneverexpand A.text:unknown {
+	DISPLAY: none! important
+}
+DIV.Boxmerge {
+	BORDER-RIGHT: #aaaaaa 1px solid; PADDING-RIGHT: 2px; BORDER-TOP: =
+#aaaaaa 1px solid; PADDING-LEFT: 2px; FONT-SIZE: 95%; PADDING-BOTTOM: =
+2px; MARGIN: 0px; BORDER-LEFT: #aaaaaa 1px solid; PADDING-TOP: 2px; =
+BORDER-BOTTOM: #aaaaaa 1px solid; BORDER-COLLAPSE: collapse; TEXT-ALIGN: =
+center
+}
+DIV.NavFrame {
+	BORDER-RIGHT: #aaaaaa 1px solid; PADDING-RIGHT: 2px; BORDER-TOP: =
+#aaaaaa 1px solid; PADDING-LEFT: 2px; FONT-SIZE: 95%; PADDING-BOTTOM: =
+2px; MARGIN: 0px; BORDER-LEFT: #aaaaaa 1px solid; PADDING-TOP: 2px; =
+BORDER-BOTTOM: #aaaaaa 1px solid; BORDER-COLLAPSE: collapse; TEXT-ALIGN: =
+center
+}
+DIV.Boxmerge DIV.NavFrame {
+	BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: =
+none; BORDER-BOTTOM-STYLE: none
+}
+UNKNOWN {
+=09
+}
+DIV.NavPic {
+	PADDING-RIGHT: 2px; PADDING-LEFT: 2px; FLOAT: left; PADDING-BOTTOM: =
+2px; MARGIN: 0px; PADDING-TOP: 2px; BACKGROUND-COLOR: #ffffff
+}
+DIV.NavFrame DIV.NavHead {
+	FONT-WEIGHT: bold; FONT-SIZE: 100%; POSITION: relative; HEIGHT: 1.6em; =
+BACKGROUND-COLOR: #efefef
+}
+DIV.NavFrame P {
+	FONT-SIZE: 100%
+}
+DIV.NavFrame DIV.NavContent {
+	FONT-SIZE: 100%
+}
+DIV.NavFrame DIV.NavContent P {
+	FONT-SIZE: 100%
+}
+DIV.NavEnd {
+	CLEAR: both; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: =
+0px; MARGIN: 0px; LINE-HEIGHT: 1px; PADDING-TOP: 0px
+}
+A.NavToggle {
+	FONT-WEIGHT: normal; FONT-SIZE: smaller; RIGHT: 3px; POSITION: =
+absolute; TOP: 0px
+}
+#coordinates {
+	PADDING-RIGHT: 0em; PADDING-LEFT: 0em; FONT-SIZE: 85%; Z-INDEX: 1; =
+RIGHT: 30px; BACKGROUND: none transparent scroll repeat 0% 0%; FLOAT: =
+right; PADDING-BOTTOM: 0em; MARGIN: 0em; TEXT-TRANSFORM: none; =
+BORDER-TOP-STYLE: none; TEXT-INDENT: 0px; LINE-HEIGHT: 1.5em; =
+PADDING-TOP: 0em; BORDER-RIGHT-STYLE: none; WHITE-SPACE: nowrap; =
+BORDER-LEFT-STYLE: none; POSITION: absolute; TOP: 3.7em; TEXT-ALIGN: =
+right; BORDER-BOTTOM-STYLE: none
+}
+
+------=_NextPart_000_0002_01C6BB3C.E0F60810
+Content-Type: application/octet-stream
+Content-Transfer-Encoding: 7bit
+Content-Location: http://en.wikipedia.org/w/index.php?title=-&action=raw&gen=css&maxage=2678400
+
+A.new {
+	COLOR: #cc2200
+}
+#quickbar A.new {
+	COLOR: #cc2200
+}
+
+------=_NextPart_000_0002_01C6BB3C.E0F60810
+Content-Type: application/octet-stream
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://en.wikipedia.org/skins-1.5/common/IEFixes.js
+
+// IE fixes javascript=0A=
+=0A=
+var isMSIE55 =3D (window.showModalDialog && window.clipboardData && =
+window.createPopup);=0A=
+var doneIETransform;=0A=
+var doneIEAlphaFix;=0A=
+=0A=
+if (document.attachEvent)=0A=
+  document.attachEvent('onreadystatechange', hookit);=0A=
+=0A=
+function hookit() {=0A=
+    if (!doneIETransform && document.getElementById && =
+document.getElementById('bodyContent')) {=0A=
+        doneIETransform =3D true;=0A=
+        relativeforfloats();=0A=
+        fixalpha();=0A=
+    }=0A=
+}=0A=
+=0A=
+// png alpha transparency fixes=0A=
+function fixalpha() {=0A=
+    // bg=0A=
+    if (isMSIE55 && !doneIEAlphaFix)=0A=
+    {=0A=
+        var plogo =3D document.getElementById('p-logo');=0A=
+        if (!plogo) return;=0A=
+=0A=
+        var logoa =3D plogo.getElementsByTagName('a')[0];=0A=
+        if (!logoa) return;=0A=
+=0A=
+        var bg =3D logoa.currentStyle.backgroundImage;=0A=
+        var imageUrl =3D bg.substring(5, bg.length-2);=0A=
+=0A=
+        doneIEAlphaFix =3D true;=0A=
+=0A=
+        if (imageUrl.substr(imageUrl.length-4).toLowerCase() =3D=3D =
+'.png') {=0A=
+            var logospan =3D =
+logoa.appendChild(document.createElement('span'));=0A=
+           =0A=
+            logoa.style.backgroundImage =3D 'none';=0A=
+            logospan.style.filter =3D =
+'progid:DXImageTransform.Microsoft.AlphaImageLoader(src=3D' + imageUrl + =
+')';=0A=
+            logospan.style.height =3D '100%';=0A=
+            logospan.style.position =3D 'absolute';=0A=
+            logospan.style.width =3D logoa.currentStyle.width;=0A=
+            logospan.style.cursor =3D 'hand';=0A=
+            // Center image with hack for IE5.5=0A=
+            if (document.documentElement.dir =3D=3D "rtl") =0A=
+            {=0A=
+              logospan.style.right =3D '50%';=0A=
+              logospan.style.setExpression('marginRight', '"-" + =
+(this.offsetWidth / 2) + "px"');=0A=
+            }=0A=
+            else=0A=
+            {=0A=
+              logospan.style.left =3D '50%';=0A=
+              logospan.style.setExpression('marginLeft', '"-" + =
+(this.offsetWidth / 2) + "px"');=0A=
+            }=0A=
+            logospan.style.top =3D '50%';=0A=
+            logospan.style.setExpression('marginTop', '"-" + =
+(this.offsetHeight / 2) + "px"');=0A=
+ =0A=
+            var linkFix =3D logoa.appendChild(logoa.cloneNode());=0A=
+            linkFix.style.position =3D 'absolute';=0A=
+            linkFix.style.height =3D '100%';=0A=
+            linkFix.style.width =3D '100%';=0A=
+        }=0A=
+    }=0A=
+}=0A=
+=0A=
+// fix ie6 disappering float bug=0A=
+function relativeforfloats() {=0A=
+    var bc =3D document.getElementById('bodyContent');=0A=
+    if (bc) {=0A=
+        var tables =3D bc.getElementsByTagName('table');=0A=
+        var divs =3D bc.getElementsByTagName('div');=0A=
+    }=0A=
+    setrelative(tables);=0A=
+    setrelative(divs);=0A=
+}=0A=
+function setrelative (nodes) {=0A=
+    var i =3D 0;=0A=
+    while (i < nodes.length) {=0A=
+        if(((nodes[i].style.float && nodes[i].style.float !=3D ('none') =
+||=0A=
+        (nodes[i].align && nodes[i].align !=3D ('none'))) &&=0A=
+        (!nodes[i].style.position || nodes[i].style.position !=3D =
+'relative'))) =0A=
+        {=0A=
+            nodes[i].style.position =3D 'relative';=0A=
+        }=0A=
+        i++;=0A=
+    }=0A=
+}=0A=
+=0A=
+=0A=
+// Expand links for printing=0A=
+=0A=
+String.prototype.hasClass =3D function(classWanted)=0A=
+{=0A=
+    var classArr =3D this.split(/\s/);=0A=
+    for (var i=3D0; i<classArr.length; i++)=0A=
+      if (classArr[i].toLowerCase() =3D=3D classWanted.toLowerCase()) =
+return true;=0A=
+    return false;=0A=
+}=0A=
+=0A=
+var expandedURLs;=0A=
+=0A=
+onbeforeprint =3D function() { =0A=
+    expandedURLs =3D [];=0A=
+=0A=
+    var contentEl =3D document.getElementById("content");=0A=
+=0A=
+    if (contentEl)=0A=
+    {=0A=
+      var allLinks =3D contentEl.getElementsByTagName("a");=0A=
+=0A=
+      for (var i=3D0; i < allLinks.length; i++) {=0A=
+          if (allLinks[i].className.hasClass("external") && =
+!allLinks[i].className.hasClass("free")) {=0A=
+              var expandedLink =3D document.createElement("span");=0A=
+              var expandedText =3D document.createTextNode(" (" + =
+allLinks[i].href + ")");=0A=
+              expandedLink.appendChild(expandedText);=0A=
+              allLinks[i].parentNode.insertBefore(expandedLink, =
+allLinks[i].nextSibling);=0A=
+              expandedURLs[i] =3D expandedLink;=0A=
+          }=0A=
+      }=0A=
+   }=0A=
+}=0A=
+=0A=
+onafterprint =3D function()=0A=
+{=0A=
+    for (var i=3D0; i < expandedURLs.length; i++)=0A=
+        if (expandedURLs[i])=0A=
+            expandedURLs[i].removeNode(true);=0A=
+}
+------=_NextPart_000_0002_01C6BB3C.E0F60810
+Content-Type: application/octet-stream
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://en.wikipedia.org/skins-1.5/common/wikibits.js?1
+
+// MediaWiki JavaScript support functions=0A=
+=0A=
+var clientPC =3D navigator.userAgent.toLowerCase(); // Get client info=0A=
+var is_gecko =3D ((clientPC.indexOf('gecko')!=3D-1) && =
+(clientPC.indexOf('spoofer')=3D=3D-1)=0A=
+                && (clientPC.indexOf('khtml') =3D=3D -1) && =
+(clientPC.indexOf('netscape/7.0')=3D=3D-1));=0A=
+var is_safari =3D ((clientPC.indexOf('applewebkit')!=3D-1) && =
+(clientPC.indexOf('spoofer')=3D=3D-1));=0A=
+var is_khtml =3D (navigator.vendor =3D=3D 'KDE' || ( document.childNodes =
+&& !document.all && !navigator.taintEnabled ));=0A=
+if (clientPC.indexOf('opera') !=3D -1) {=0A=
+	var is_opera =3D true;=0A=
+	var is_opera_preseven =3D (window.opera && !document.childNodes);=0A=
+	var is_opera_seven =3D (window.opera && document.childNodes);=0A=
+}=0A=
+=0A=
+// add any onload functions in this hook (please don't hard-code any =
+events in the xhtml source)=0A=
+=0A=
+var doneOnloadHook;=0A=
+=0A=
+if (!window.onloadFuncts)=0A=
+	var onloadFuncts =3D [];=0A=
+=0A=
+function addOnloadHook(hookFunct) {=0A=
+	// Allows add-on scripts to add onload functions=0A=
+	onloadFuncts[onloadFuncts.length] =3D hookFunct;=0A=
+}=0A=
+=0A=
+function runOnloadHook() {=0A=
+	// don't run anything below this for non-dom browsers=0A=
+	if (doneOnloadHook || !(document.getElementById && =
+document.getElementsByTagName))=0A=
+		return;=0A=
+=0A=
+	histrowinit();=0A=
+	unhidetzbutton();=0A=
+	tabbedprefs();=0A=
+	akeytt();=0A=
+	scrollEditBox();=0A=
+	setupCheckboxShiftClick();=0A=
+=0A=
+	// Run any added-on functions=0A=
+	for (var i =3D 0; i < onloadFuncts.length; i++)=0A=
+		onloadFuncts[i]();=0A=
+=0A=
+	doneOnloadHook =3D true;=0A=
+}=0A=
+=0A=
+function hookEvent(hookName, hookFunct) {=0A=
+	if (window.addEventListener)=0A=
+		addEventListener(hookName, hookFunct, false);=0A=
+	else if (window.attachEvent)=0A=
+		attachEvent("on" + hookName, hookFunct);=0A=
+}=0A=
+=0A=
+//note: all skins shoud call runOnloadHook() at the end of html output,=0A=
+//      so the below should be redundant. It's there just in case.=0A=
+hookEvent("load", runOnloadHook);=0A=
+=0A=
+// document.write special stylesheet links=0A=
+if (typeof stylepath !=3D 'undefined' && typeof skin !=3D 'undefined') {=0A=
+	if (is_opera_preseven) {=0A=
+		document.write('<link rel=3D"stylesheet" type=3D"text/css" =
+href=3D"'+stylepath+'/'+skin+'/Opera6Fixes.css">');=0A=
+	} else if (is_opera_seven) {=0A=
+		document.write('<link rel=3D"stylesheet" type=3D"text/css" =
+href=3D"'+stylepath+'/'+skin+'/Opera7Fixes.css">');=0A=
+	} else if (is_khtml) {=0A=
+		document.write('<link rel=3D"stylesheet" type=3D"text/css" =
+href=3D"'+stylepath+'/'+skin+'/KHTMLFixes.css">');=0A=
+	}=0A=
+}=0A=
+// Un-trap us from framesets=0A=
+if (window.top !=3D window)=0A=
+	window.top.location =3D window.location;=0A=
+=0A=
+// for enhanced RecentChanges=0A=
+function toggleVisibility(_levelId, _otherId, _linkId) {=0A=
+	var thisLevel =3D document.getElementById(_levelId);=0A=
+	var otherLevel =3D document.getElementById(_otherId);=0A=
+	var linkLevel =3D document.getElementById(_linkId);=0A=
+	if (thisLevel.style.display =3D=3D 'none') {=0A=
+		thisLevel.style.display =3D 'block';=0A=
+		otherLevel.style.display =3D 'none';=0A=
+		linkLevel.style.display =3D 'inline';=0A=
+	} else {=0A=
+		thisLevel.style.display =3D 'none';=0A=
+		otherLevel.style.display =3D 'inline';=0A=
+		linkLevel.style.display =3D 'none';=0A=
+	}=0A=
+}=0A=
+=0A=
+// page history stuff=0A=
+// attach event handlers to the input elements on history page=0A=
+function histrowinit() {=0A=
+	var hf =3D document.getElementById('pagehistory');=0A=
+	if (!hf)=0A=
+		return;=0A=
+	var lis =3D hf.getElementsByTagName('li');=0A=
+	for (var i =3D 0; i < lis.length; i++) {=0A=
+		var inputs =3D historyRadios(lis[i]);=0A=
+		if (inputs[0] && inputs[1]) {=0A=
+			inputs[0].onclick =3D diffcheck;=0A=
+			inputs[1].onclick =3D diffcheck;=0A=
+		}=0A=
+	}=0A=
+	diffcheck();=0A=
+}=0A=
+=0A=
+function historyRadios(parent) {=0A=
+	var inputs =3D parent.getElementsByTagName('input');=0A=
+	var radios =3D [];=0A=
+	for (var i =3D 0; i < inputs.length; i++) {=0A=
+		if (inputs[i].name =3D=3D "diff" || inputs[i].name =3D=3D "oldid")=0A=
+			radios[radios.length] =3D inputs[i];=0A=
+	}=0A=
+	return radios;=0A=
+}=0A=
+=0A=
+// check selection and tweak visibility/class onclick=0A=
+function diffcheck() {=0A=
+	var dli =3D false; // the li where the diff radio is checked=0A=
+	var oli =3D false; // the li where the oldid radio is checked=0A=
+	var hf =3D document.getElementById('pagehistory');=0A=
+	if (!hf)=0A=
+		return true;=0A=
+	var lis =3D hf.getElementsByTagName('li');=0A=
+	for (i=3D0;i<lis.length;i++) {=0A=
+		var inputs =3D historyRadios(lis[i]);=0A=
+		if (inputs[1] && inputs[0]) {=0A=
+			if (inputs[1].checked || inputs[0].checked) { // this row has a =
+checked radio button=0A=
+				if (inputs[1].checked && inputs[0].checked && inputs[0].value =3D=3D =
+inputs[1].value)=0A=
+					return false;=0A=
+				if (oli) { // it's the second checked radio=0A=
+					if (inputs[1].checked) {=0A=
+						oli.className =3D "selected";=0A=
+						return false;=0A=
+					}=0A=
+				} else if (inputs[0].checked) {=0A=
+					return false;=0A=
+				}=0A=
+				if (inputs[0].checked)=0A=
+					dli =3D lis[i];=0A=
+				if (!oli)=0A=
+					inputs[0].style.visibility =3D 'hidden';=0A=
+				if (dli)=0A=
+					inputs[1].style.visibility =3D 'hidden';=0A=
+				lis[i].className =3D "selected";=0A=
+				oli =3D lis[i];=0A=
+			}  else { // no radio is checked in this row=0A=
+				if (!oli)=0A=
+					inputs[0].style.visibility =3D 'hidden';=0A=
+				else=0A=
+					inputs[0].style.visibility =3D 'visible';=0A=
+				if (dli)=0A=
+					inputs[1].style.visibility =3D 'hidden';=0A=
+				else=0A=
+					inputs[1].style.visibility =3D 'visible';=0A=
+				lis[i].className =3D "";=0A=
+			}=0A=
+		}=0A=
+	}=0A=
+	return true;=0A=
+}=0A=
+=0A=
+// generate toc from prefs form, fold sections=0A=
+// XXX: needs testing on IE/Mac and safari=0A=
+// more comments to follow=0A=
+function tabbedprefs() {=0A=
+	var prefform =3D document.getElementById('preferences');=0A=
+	if (!prefform || !document.createElement)=0A=
+		return;=0A=
+	if (prefform.nodeName.toLowerCase() =3D=3D 'a')=0A=
+		return; // Occasional IE problem=0A=
+	prefform.className =3D prefform.className + 'jsprefs';=0A=
+	var sections =3D new Array();=0A=
+	var children =3D prefform.childNodes;=0A=
+	var seci =3D 0;=0A=
+	for (var i =3D 0; i < children.length; i++) {=0A=
+		if (children[i].nodeName.toLowerCase() =3D=3D 'fieldset') {=0A=
+			children[i].id =3D 'prefsection-' + seci;=0A=
+			children[i].className =3D 'prefsection';=0A=
+			if (is_opera || is_khtml)=0A=
+				children[i].className =3D 'prefsection operaprefsection';=0A=
+			var legends =3D children[i].getElementsByTagName('legend');=0A=
+			sections[seci] =3D new Object();=0A=
+			legends[0].className =3D 'mainLegend';=0A=
+			if (legends[0] && legends[0].firstChild.nodeValue)=0A=
+				sections[seci].text =3D legends[0].firstChild.nodeValue;=0A=
+			else=0A=
+				sections[seci].text =3D '# ' + seci;=0A=
+			sections[seci].secid =3D children[i].id;=0A=
+			seci++;=0A=
+			if (sections.length !=3D 1)=0A=
+				children[i].style.display =3D 'none';=0A=
+			else=0A=
+				var selectedid =3D children[i].id;=0A=
+		}=0A=
+	}=0A=
+	var toc =3D document.createElement('ul');=0A=
+	toc.id =3D 'preftoc';=0A=
+	toc.selectedid =3D selectedid;=0A=
+	for (i =3D 0; i < sections.length; i++) {=0A=
+		var li =3D document.createElement('li');=0A=
+		if (i =3D=3D 0)=0A=
+			li.className =3D 'selected';=0A=
+		var a =3D document.createElement('a');=0A=
+		a.href =3D '#' + sections[i].secid;=0A=
+		a.onmousedown =3D a.onclick =3D uncoversection;=0A=
+		a.appendChild(document.createTextNode(sections[i].text));=0A=
+		a.secid =3D sections[i].secid;=0A=
+		li.appendChild(a);=0A=
+		toc.appendChild(li);=0A=
+	}=0A=
+	prefform.parentNode.insertBefore(toc, =
+prefform.parentNode.childNodes[0]);=0A=
+	document.getElementById('prefsubmit').id =3D 'prefcontrol';=0A=
+}=0A=
+=0A=
+function uncoversection() {=0A=
+	var oldsecid =3D this.parentNode.parentNode.selectedid;=0A=
+	var newsec =3D document.getElementById(this.secid);=0A=
+	if (oldsecid !=3D this.secid) {=0A=
+		var ul =3D document.getElementById('preftoc');=0A=
+		document.getElementById(oldsecid).style.display =3D 'none';=0A=
+		newsec.style.display =3D 'block';=0A=
+		ul.selectedid =3D this.secid;=0A=
+		var lis =3D ul.getElementsByTagName('li');=0A=
+		for (var i =3D 0; i< lis.length; i++) {=0A=
+			lis[i].className =3D '';=0A=
+		}=0A=
+		this.parentNode.className =3D 'selected';=0A=
+	}=0A=
+	return false;=0A=
+}=0A=
+=0A=
+// Timezone stuff=0A=
+// tz in format [+-]HHMM=0A=
+function checkTimezone(tz, msg) {=0A=
+	var localclock =3D new Date();=0A=
+	// returns negative offset from GMT in minutes=0A=
+	var tzRaw =3D localclock.getTimezoneOffset();=0A=
+	var tzHour =3D Math.floor( Math.abs(tzRaw) / 60);=0A=
+	var tzMin =3D Math.abs(tzRaw) % 60;=0A=
+	var tzString =3D ((tzRaw >=3D 0) ? "-" : "+") + ((tzHour < 10) ? "0" : =
+"") + tzHour + ((tzMin < 10) ? "0" : "") + tzMin;=0A=
+	if (tz !=3D tzString) {=0A=
+		var junk =3D msg.split('$1');=0A=
+		document.write(junk[0] + "UTC" + tzString + junk[1]);=0A=
+	}=0A=
+}=0A=
+=0A=
+function unhidetzbutton() {=0A=
+	var tzb =3D document.getElementById('guesstimezonebutton');=0A=
+	if (tzb)=0A=
+		tzb.style.display =3D 'inline';=0A=
+}=0A=
+=0A=
+// in [-]HH:MM format...=0A=
+// won't yet work with non-even tzs=0A=
+function fetchTimezone() {=0A=
+	// FIXME: work around Safari bug=0A=
+	var localclock =3D new Date();=0A=
+	// returns negative offset from GMT in minutes=0A=
+	var tzRaw =3D localclock.getTimezoneOffset();=0A=
+	var tzHour =3D Math.floor( Math.abs(tzRaw) / 60);=0A=
+	var tzMin =3D Math.abs(tzRaw) % 60;=0A=
+	var tzString =3D ((tzRaw >=3D 0) ? "-" : "") + ((tzHour < 10) ? "0" : =
+"") + tzHour +=0A=
+		":" + ((tzMin < 10) ? "0" : "") + tzMin;=0A=
+	return tzString;=0A=
+}=0A=
+=0A=
+function guessTimezone(box) {=0A=
+	document.getElementsByName("wpHourDiff")[0].value =3D fetchTimezone();=0A=
+}=0A=
+=0A=
+function showTocToggle() {=0A=
+	if (document.createTextNode) {=0A=
+		// Uses DOM calls to avoid document.write + XHTML issues=0A=
+=0A=
+		var linkHolder =3D document.getElementById('toctitle')=0A=
+		if (!linkHolder)=0A=
+			return;=0A=
+=0A=
+		var outerSpan =3D document.createElement('span');=0A=
+		outerSpan.className =3D 'toctoggle';=0A=
+=0A=
+		var toggleLink =3D document.createElement('a');=0A=
+		toggleLink.id =3D 'togglelink';=0A=
+		toggleLink.className =3D 'internal';=0A=
+		toggleLink.href =3D 'javascript:toggleToc()';=0A=
+		toggleLink.appendChild(document.createTextNode(tocHideText));=0A=
+=0A=
+		outerSpan.appendChild(document.createTextNode('['));=0A=
+		outerSpan.appendChild(toggleLink);=0A=
+		outerSpan.appendChild(document.createTextNode(']'));=0A=
+=0A=
+		linkHolder.appendChild(document.createTextNode(' '));=0A=
+		linkHolder.appendChild(outerSpan);=0A=
+=0A=
+		var cookiePos =3D document.cookie.indexOf("hidetoc=3D");=0A=
+		if (cookiePos > -1 && document.cookie.charAt(cookiePos + 8) =3D=3D 1)=0A=
+			toggleToc();=0A=
+	}=0A=
+}=0A=
+=0A=
+function changeText(el, newText) {=0A=
+	// Safari work around=0A=
+	if (el.innerText)=0A=
+		el.innerText =3D newText;=0A=
+	else if (el.firstChild && el.firstChild.nodeValue)=0A=
+		el.firstChild.nodeValue =3D newText;=0A=
+}=0A=
+=0A=
+function toggleToc() {=0A=
+	var toc =3D =
+document.getElementById('toc').getElementsByTagName('ul')[0];=0A=
+	var toggleLink =3D document.getElementById('togglelink')=0A=
+=0A=
+	if (toc && toggleLink && toc.style.display =3D=3D 'none') {=0A=
+		changeText(toggleLink, tocHideText);=0A=
+		toc.style.display =3D 'block';=0A=
+		document.cookie =3D "hidetoc=3D0";=0A=
+	} else {=0A=
+		changeText(toggleLink, tocShowText);=0A=
+		toc.style.display =3D 'none';=0A=
+		document.cookie =3D "hidetoc=3D1";=0A=
+	}=0A=
+}=0A=
+=0A=
+var mwEditButtons =3D [];=0A=
+var mwCustomEditButtons =3D []; // eg to add in MediaWiki:Common.js=0A=
+=0A=
+// this function generates the actual toolbar buttons with localized text=0A=
+// we use it to avoid creating the toolbar where javascript is not =
+enabled=0A=
+function addButton(imageFile, speedTip, tagOpen, tagClose, sampleText) {=0A=
+	// Don't generate buttons for browsers which don't fully=0A=
+	// support it.=0A=
+	mwEditButtons[mwEditButtons.length] =3D=0A=
+		{"imageFile": imageFile,=0A=
+		 "speedTip": speedTip,=0A=
+		 "tagOpen": tagOpen,=0A=
+		 "tagClose": tagClose,=0A=
+		 "sampleText": sampleText};=0A=
+}=0A=
+=0A=
+// this function generates the actual toolbar buttons with localized text=0A=
+// we use it to avoid creating the toolbar where javascript is not =
+enabled=0A=
+function mwInsertEditButton(parent, item) {=0A=
+	var image =3D document.createElement("img");=0A=
+	image.width =3D 23;=0A=
+	image.height =3D 22;=0A=
+	image.src =3D item.imageFile;=0A=
+	image.border =3D 0;=0A=
+	image.alt =3D item.speedTip;=0A=
+	image.title =3D item.speedTip;=0A=
+	image.style.cursor =3D "pointer";=0A=
+	image.onclick =3D function() {=0A=
+		insertTags(item.tagOpen, item.tagClose, item.sampleText);=0A=
+		return false;=0A=
+	}=0A=
+	=0A=
+	parent.appendChild(image);=0A=
+	return true;=0A=
+}=0A=
+=0A=
+function mwSetupToolbar() {=0A=
+	var toolbar =3D document.getElementById('toolbar');=0A=
+	if (!toolbar) return false;=0A=
+=0A=
+	var textbox =3D document.getElementById('wpTextbox1');=0A=
+	if (!textbox) return false;=0A=
+	=0A=
+	// Don't generate buttons for browsers which don't fully=0A=
+	// support it.=0A=
+	if (!document.selection && textbox.selectionStart =3D=3D null)=0A=
+		return false;=0A=
+	=0A=
+	for (var i in mwEditButtons) {=0A=
+		mwInsertEditButton(toolbar, mwEditButtons[i]);=0A=
+	}=0A=
+	for (var i in mwCustomEditButtons) {=0A=
+		mwInsertEditButton(toolbar, mwCustomEditButtons[i]);=0A=
+	}=0A=
+	return true;=0A=
+}=0A=
+=0A=
+function escapeQuotes(text) {=0A=
+	var re =3D new RegExp("'","g");=0A=
+	text =3D text.replace(re,"\\'");=0A=
+	re =3D new RegExp("\\n","g");=0A=
+	text =3D text.replace(re,"\\n");=0A=
+	return escapeQuotesHTML(text);=0A=
+}=0A=
+=0A=
+function escapeQuotesHTML(text) {=0A=
+	var re =3D new RegExp('&',"g");=0A=
+	text =3D text.replace(re,"&amp;");=0A=
+	var re =3D new RegExp('"',"g");=0A=
+	text =3D text.replace(re,"&quot;");=0A=
+	var re =3D new RegExp('<',"g");=0A=
+	text =3D text.replace(re,"&lt;");=0A=
+	var re =3D new RegExp('>',"g");=0A=
+	text =3D text.replace(re,"&gt;");=0A=
+	return text;=0A=
+}=0A=
+=0A=
+// apply tagOpen/tagClose to selection in textarea,=0A=
+// use sampleText instead of selection if there is none=0A=
+// copied and adapted from phpBB=0A=
+function insertTags(tagOpen, tagClose, sampleText) {=0A=
+	if (document.editform)=0A=
+		var txtarea =3D document.editform.wpTextbox1;=0A=
+	else {=0A=
+		// some alternate form? take the first one we can find=0A=
+		var areas =3D document.getElementsByTagName('textarea');=0A=
+		var txtarea =3D areas[0];=0A=
+	}=0A=
+=0A=
+	// IE=0A=
+	if (document.selection  && !is_gecko) {=0A=
+		var theSelection =3D document.selection.createRange().text;=0A=
+		if (!theSelection)=0A=
+			theSelection=3DsampleText;=0A=
+		txtarea.focus();=0A=
+		if (theSelection.charAt(theSelection.length - 1) =3D=3D " ") { // =
+exclude ending space char, if any=0A=
+			theSelection =3D theSelection.substring(0, theSelection.length - 1);=0A=
+			document.selection.createRange().text =3D tagOpen + theSelection + =
+tagClose + " ";=0A=
+		} else {=0A=
+			document.selection.createRange().text =3D tagOpen + theSelection + =
+tagClose;=0A=
+		}=0A=
+=0A=
+	// Mozilla=0A=
+	} else if(txtarea.selectionStart || txtarea.selectionStart =3D=3D '0') {=0A=
+		var replaced =3D false;=0A=
+		var startPos =3D txtarea.selectionStart;=0A=
+		var endPos =3D txtarea.selectionEnd;=0A=
+		if (endPos-startPos)=0A=
+			replaced =3D true;=0A=
+		var scrollTop =3D txtarea.scrollTop;=0A=
+		var myText =3D (txtarea.value).substring(startPos, endPos);=0A=
+		if (!myText)=0A=
+			myText=3DsampleText;=0A=
+		if (myText.charAt(myText.length - 1) =3D=3D " ") { // exclude ending =
+space char, if any=0A=
+			subst =3D tagOpen + myText.substring(0, (myText.length - 1)) + =
+tagClose + " ";=0A=
+		} else {=0A=
+			subst =3D tagOpen + myText + tagClose;=0A=
+		}=0A=
+		txtarea.value =3D txtarea.value.substring(0, startPos) + subst +=0A=
+			txtarea.value.substring(endPos, txtarea.value.length);=0A=
+		txtarea.focus();=0A=
+		//set new selection=0A=
+		if (replaced) {=0A=
+			var cPos =3D startPos+(tagOpen.length+myText.length+tagClose.length);=0A=
+			txtarea.selectionStart =3D cPos;=0A=
+			txtarea.selectionEnd =3D cPos;=0A=
+		} else {=0A=
+			txtarea.selectionStart =3D startPos+tagOpen.length;=0A=
+			txtarea.selectionEnd =3D startPos+tagOpen.length+myText.length;=0A=
+		}=0A=
+		txtarea.scrollTop =3D scrollTop;=0A=
+=0A=
+	// All other browsers get no toolbar.=0A=
+	// There was previously support for a crippled "help"=0A=
+	// bar, but that caused more problems than it solved.=0A=
+	}=0A=
+	// reposition cursor if possible=0A=
+	if (txtarea.createTextRange)=0A=
+		txtarea.caretPos =3D document.selection.createRange().duplicate();=0A=
+}=0A=
+=0A=
+function akeytt() {=0A=
+	if (typeof ta =3D=3D "undefined" || !ta)=0A=
+		return;=0A=
+	var pref =3D 'alt-';=0A=
+	if (is_safari || navigator.userAgent.toLowerCase().indexOf('mac') + 1=0A=
+		|| navigator.userAgent.toLowerCase().indexOf('konqueror') + 1 )=0A=
+		pref =3D 'control-';=0A=
+	if (is_opera)=0A=
+		pref =3D 'shift-esc-';=0A=
+=0A=
+	for (var id in ta) {=0A=
+		var n =3D document.getElementById(id);=0A=
+		if (n) {=0A=
+			var a =3D null;=0A=
+			var ak =3D '';=0A=
+			// Are we putting accesskey in it=0A=
+			if (ta[id][0].length > 0) {=0A=
+				// Is this object a object? If not assume it's the next child.=0A=
+=0A=
+				if (n.nodeName.toLowerCase() =3D=3D "a") {=0A=
+					a =3D n;=0A=
+				} else {=0A=
+					a =3D n.childNodes[0];=0A=
+				}=0A=
+=0A=
+				if (a) {=0A=
+					a.accessKey =3D ta[id][0];=0A=
+					ak =3D ' ['+pref+ta[id][0]+']';=0A=
+				}=0A=
+			} else {=0A=
+				// We don't care what type the object is when assigning tooltip=0A=
+				a =3D n;=0A=
+				ak =3D '';=0A=
+			}=0A=
+=0A=
+			if (a) {=0A=
+				a.title =3D ta[id][1]+ak;=0A=
+			}=0A=
+		}=0A=
+	}=0A=
+}=0A=
+=0A=
+function setupRightClickEdit() {=0A=
+	if (document.getElementsByTagName) {=0A=
+		var divs =3D document.getElementsByTagName('div');=0A=
+		for (var i =3D 0; i < divs.length; i++) {=0A=
+			var el =3D divs[i];=0A=
+			if(el.className =3D=3D 'editsection') {=0A=
+				addRightClickEditHandler(el);=0A=
+			}=0A=
+		}=0A=
+	}=0A=
+}=0A=
+=0A=
+function addRightClickEditHandler(el) {=0A=
+	for (var i =3D 0; i < el.childNodes.length; i++) {=0A=
+		var link =3D el.childNodes[i];=0A=
+		if (link.nodeType =3D=3D 1 && link.nodeName.toLowerCase() =3D=3D 'a') {=0A=
+			var editHref =3D link.getAttribute('href');=0A=
+=0A=
+			// find the following a=0A=
+			var next =3D el.nextSibling;=0A=
+			while (next.nodeType !=3D 1)=0A=
+				next =3D next.nextSibling;=0A=
+=0A=
+			// find the following header=0A=
+			next =3D next.nextSibling;=0A=
+			while (next.nodeType !=3D 1)=0A=
+				next =3D next.nextSibling;=0A=
+=0A=
+			if (next && next.nodeType =3D=3D 1 &&=0A=
+				next.nodeName.match(/^[Hh][1-6]$/)) {=0A=
+				next.oncontextmenu =3D function() {=0A=
+					document.location =3D editHref;=0A=
+					return false;=0A=
+				}=0A=
+			}=0A=
+		}=0A=
+	}=0A=
+}=0A=
+=0A=
+function setupCheckboxShiftClick() {=0A=
+	if (document.getElementsByTagName) {=0A=
+		var uls =3D document.getElementsByTagName('ul');=0A=
+		var len =3D uls.length;=0A=
+		for (var i =3D 0; i < len; ++i) {=0A=
+			addCheckboxClickHandlers(uls[i]);=0A=
+		}=0A=
+	}=0A=
+}=0A=
+=0A=
+function addCheckboxClickHandlers(ul, start, finish) {=0A=
+	if (ul.checkboxHandlersTimer) {=0A=
+		clearInterval(ul.checkboxHandlersTimer);=0A=
+	}=0A=
+	if ( !ul.childNodes ) {=0A=
+		return;=0A=
+	}=0A=
+	var len =3D ul.childNodes.length;=0A=
+	if (len < 2) {=0A=
+		return;=0A=
+	}=0A=
+	start =3D start || 0;=0A=
+	finish =3D finish || start + 250;=0A=
+	if ( finish > len ) { finish =3D len; }=0A=
+	ul.checkboxes =3D ul.checkboxes || [];=0A=
+	ul.lastCheckbox =3D ul.lastCheckbox || null;=0A=
+	for (var i =3D start; i<finish; ++i) {=0A=
+		var child =3D ul.childNodes[i];=0A=
+		if ( child && child.childNodes && child.childNodes[0] ) {=0A=
+			var cb =3D child.childNodes[0];=0A=
+			if ( !cb.nodeName || cb.nodeName.toLowerCase() !=3D 'input' ||=0A=
+			     !cb.type || cb.type.toLowerCase() !=3D 'checkbox' ) {=0A=
+				return;=0A=
+			}=0A=
+			cb.index =3D ul.checkboxes.push(cb) - 1;=0A=
+			cb.container =3D ul;=0A=
+			cb.onmouseup =3D checkboxMouseupHandler;=0A=
+		}=0A=
+	}=0A=
+	if (finish < len) {=0A=
+	  var f=3Dfunction(){ addCheckboxClickHandlers(ul, finish, finish+250); =
+};=0A=
+	  ul.checkboxHandlersTimer=3DsetInterval(f, 200);=0A=
+	}=0A=
+}=0A=
+=0A=
+function checkboxMouseupHandler(e) {=0A=
+	if (typeof e =3D=3D 'undefined') {=0A=
+		e =3D window.event;=0A=
+	}=0A=
+	if ( !e.shiftKey || this.container.lastCheckbox =3D=3D=3D null ) {=0A=
+		this.container.lastCheckbox =3D this.index;=0A=
+		return true;=0A=
+	}=0A=
+	var endState =3D !this.checked;=0A=
+	if ( is_opera ) { // opera has already toggled the checkbox by this =
+point=0A=
+		endState =3D !endState;=0A=
+	}=0A=
+	var start, finish;=0A=
+	if ( this.index < this.container.lastCheckbox ) {=0A=
+		start =3D this.index + 1;=0A=
+		finish =3D this.container.lastCheckbox;=0A=
+	} else {=0A=
+		start =3D this.container.lastCheckbox;=0A=
+		finish =3D this.index - 1;=0A=
+	}=0A=
+	for (var i =3D start; i <=3D finish; ++i ) {=0A=
+		this.container.checkboxes[i].checked =3D endState;=0A=
+	}=0A=
+	this.container.lastCheckbox =3D this.index;=0A=
+	return true;=0A=
+}=0A=
+=0A=
+function fillDestFilename() {=0A=
+	if (!document.getElementById)=0A=
+		return;=0A=
+	var path =3D document.getElementById('wpUploadFile').value;=0A=
+	// Find trailing part=0A=
+	var slash =3D path.lastIndexOf('/');=0A=
+	var backslash =3D path.lastIndexOf('\\');=0A=
+	var fname;=0A=
+	if (slash =3D=3D -1 && backslash =3D=3D -1) {=0A=
+		fname =3D path;=0A=
+	} else if (slash > backslash) {=0A=
+		fname =3D path.substring(slash+1, 10000);=0A=
+	} else {=0A=
+		fname =3D path.substring(backslash+1, 10000);=0A=
+	}=0A=
+=0A=
+	// Capitalise first letter and replace spaces by underscores=0A=
+	fname =3D =
+fname.charAt(0).toUpperCase().concat(fname.substring(1,10000)).replace(/ =
+/g, '_');=0A=
+=0A=
+	// Output result=0A=
+	var destFile =3D document.getElementById('wpDestFile');=0A=
+	if (destFile)=0A=
+		destFile.value =3D fname;=0A=
+}=0A=
+=0A=
+=0A=
+function considerChangingExpiryFocus() {=0A=
+	if (!document.getElementById)=0A=
+		return;=0A=
+	var drop =3D document.getElementById('wpBlockExpiry');=0A=
+	if (!drop)=0A=
+		return;=0A=
+	var field =3D document.getElementById('wpBlockOther');=0A=
+	if (!field)=0A=
+		return;=0A=
+	var opt =3D drop.value;=0A=
+	if (opt =3D=3D 'other')=0A=
+		field.style.display =3D '';=0A=
+	else=0A=
+		field.style.display =3D 'none';=0A=
+}=0A=
+=0A=
+function scrollEditBox() {=0A=
+	var editBoxEl =3D document.getElementById("wpTextbox1");=0A=
+	var scrollTopEl =3D document.getElementById("wpScrolltop");=0A=
+	var editFormEl =3D document.getElementById("editform");=0A=
+=0A=
+	if (editBoxEl && scrollTopEl) {=0A=
+		if (scrollTopEl.value) editBoxEl.scrollTop =3D scrollTopEl.value;=0A=
+		editFormEl.onsubmit =3D function() {=0A=
+			document.getElementById("wpScrolltop").value =3D =
+document.getElementById("wpTextbox1").scrollTop;=0A=
+		}=0A=
+	}=0A=
+}=0A=
+=0A=
+hookEvent("load", scrollEditBox);=0A=
+=0A=
+function allmessagesfilter() {=0A=
+	text =3D document.getElementById('allmessagesinput').value;=0A=
+	k =3D document.getElementById('allmessagestable');=0A=
+	if (!k) { return;}=0A=
+=0A=
+	var items =3D k.getElementsByTagName('span');=0A=
+=0A=
+	if ( text.length > allmessages_prev.length ) {=0A=
+		for (var i =3D items.length-1, j =3D 0; i >=3D 0; i--) {=0A=
+			j =3D allmessagesforeach(items, i, j);=0A=
+		}=0A=
+	} else {=0A=
+		for (var i =3D 0, j =3D 0; i < items.length; i++) {=0A=
+			j =3D allmessagesforeach(items, i, j);=0A=
+		}=0A=
+	}=0A=
+	allmessages_prev =3D text;=0A=
+}=0A=
+=0A=
+function allmessagesforeach(items, i, j) {=0A=
+	var hItem =3D items[i].getAttribute('id');=0A=
+	if (hItem.substring(0,17) =3D=3D 'sp-allmessages-i-') {=0A=
+		if (items[i].firstChild && items[i].firstChild.nodeName =3D=3D '#text' =
+&& items[i].firstChild.nodeValue.indexOf(text) !=3D -1) {=0A=
+			var itemA =3D document.getElementById( hItem.replace('i', 'r1') );=0A=
+			var itemB =3D document.getElementById( hItem.replace('i', 'r2') );=0A=
+			if ( itemA.style.display !=3D '' ) {=0A=
+				var s =3D "allmessageshider(\"" + hItem.replace('i', 'r1') + "\", =
+\"" + hItem.replace('i', 'r2') + "\", '')";=0A=
+				var k =3D window.setTimeout(s,j++*5);=0A=
+			}=0A=
+		} else {=0A=
+			var itemA =3D document.getElementById( hItem.replace('i', 'r1') );=0A=
+			var itemB =3D document.getElementById( hItem.replace('i', 'r2') );=0A=
+			if ( itemA.style.display !=3D 'none' ) {=0A=
+				var s =3D "allmessageshider(\"" + hItem.replace('i', 'r1') + "\", =
+\"" + hItem.replace('i', 'r2') + "\", 'none')";=0A=
+				var k =3D window.setTimeout(s,j++*5);=0A=
+			}=0A=
+		}=0A=
+	}=0A=
+	return j;=0A=
+}=0A=
+=0A=
+=0A=
+function allmessageshider(idA, idB, cstyle) {=0A=
+	var itemA =3D document.getElementById( idA );=0A=
+	var itemB =3D document.getElementById( idB );=0A=
+	if (itemA) { itemA.style.display =3D cstyle; }=0A=
+	if (itemB) { itemB.style.display =3D cstyle; }=0A=
+}=0A=
+=0A=
+function allmessagesmodified() {=0A=
+	allmessages_modified =3D !allmessages_modified;=0A=
+	k =3D document.getElementById('allmessagestable');=0A=
+	if (!k) { return;}=0A=
+	var items =3D k.getElementsByTagName('tr');=0A=
+	for (var i =3D 0, j =3D 0; i< items.length; i++) {=0A=
+		if (!allmessages_modified ) {=0A=
+			if ( items[i].style.display !=3D '' ) {=0A=
+				var s =3D "allmessageshider(\"" + items[i].getAttribute('id') + "\", =
+null, '')";=0A=
+				var k =3D window.setTimeout(s,j++*5);=0A=
+			}=0A=
+		} else if (items[i].getAttribute('class') =3D=3D 'def' && =
+allmessages_modified) {=0A=
+			if ( items[i].style.display !=3D 'none' ) {=0A=
+				var s =3D "allmessageshider(\"" + items[i].getAttribute('id') + "\", =
+null, 'none')";=0A=
+				var k =3D window.setTimeout(s,j++*5);=0A=
+			}=0A=
+		}=0A=
+	}=0A=
+}=0A=
+=0A=
+function allmessagesshow() {=0A=
+	k =3D document.getElementById('allmessagesfilter');=0A=
+	if (k) { k.style.display =3D ''; }=0A=
+=0A=
+	allmessages_prev =3D '';=0A=
+	allmessages_modified =3D false;=0A=
+}=0A=
+=0A=
+hookEvent("load", allmessagesshow);=0A=
+hookEvent("load", mwSetupToolbar);=0A=
+
+------=_NextPart_000_0002_01C6BB3C.E0F60810
+Content-Type: application/octet-stream
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://en.wikipedia.org/w/index.php?title=-&action=raw&gen=js
+
+/* generated javascript */var skin =3D 'monobook';=0A=
+var stylepath =3D '/skins-1.5';/* MediaWiki:Monobook */=0A=
+/*=0A=
+<pre>=0A=
+*/=0A=
+/* tooltips and access keys */=0A=
+ta =3D new Object();=0A=
+ta['pt-userpage'] =3D new Array('.','My user page'); =0A=
+ta['pt-anonuserpage'] =3D new Array('.','The user page for the ip =
+you\'re editing as'); =0A=
+ta['pt-mytalk'] =3D new Array('n','My talk page'); =0A=
+ta['pt-anontalk'] =3D new Array('n','Discussion about edits from this ip =
+address'); =0A=
+ta['pt-preferences'] =3D new Array('','My preferences'); =0A=
+ta['pt-watchlist'] =3D new Array('l','The list of pages you\'re =
+monitoring for changes.'); =0A=
+ta['pt-mycontris'] =3D new Array('y','List of my contributions'); =0A=
+ta['pt-login'] =3D new Array('o','Logging in is not required, but brings =
+many benefits.'); =0A=
+ta['pt-anonlogin'] =3D new Array('o','Logging in is not required, but =
+brings many benefits.'); =0A=
+ta['pt-logout'] =3D new Array('o','Log out'); =0A=
+ta['ca-talk'] =3D new Array('t','Discussion about the content page'); =0A=
+ta['ca-edit'] =3D new Array('e','You can edit this page. Please use the =
+preview button before saving.'); =0A=
+ta['ca-addsection'] =3D new Array('+','Start a new discussion'); =0A=
+ta['ca-viewsource'] =3D new Array('e','This page is protected. You can =
+view its source.'); =0A=
+ta['ca-history'] =3D new Array('h','Past versions of this page.'); =0A=
+ta['ca-protect'] =3D new Array('=3D','Protect this page'); =0A=
+ta['ca-unprotect'] =3D new Array('','Unprotect this page');=0A=
+ta['ca-delete'] =3D new Array('d','Delete this page'); =0A=
+ta['ca-undelete'] =3D new Array('d','Restore the edits done to this page =
+before it was deleted'); =0A=
+ta['ca-move'] =3D new Array('m','Move this page'); =0A=
+ta['ca-nomove'] =3D new Array('','You don\'t have the permissions to =
+move this page'); =0A=
+ta['ca-watch'] =3D new Array('w','Add this page to your watchlist'); =0A=
+ta['ca-unwatch'] =3D new Array('w','Remove this page from your =
+watchlist'); =0A=
+ta['search'] =3D new Array('f','Search Wikipedia'); =0A=
+ta['p-logo'] =3D new Array('','Main Page'); =0A=
+ta['n-mainpage'] =3D new Array('z','Visit the Main Page'); =0A=
+ta['n-portal'] =3D new Array('','About the project, what you can do, =
+where to find things');=0A=
+ta['n-Featured-articles'] =3D new Array('','Featured articles - the best =
+of Wikipedia'); =0A=
+ta['n-currentevents'] =3D new Array('','Find background information on =
+current events'); =0A=
+ta['n-recentchanges'] =3D new Array('r','List of recent changes in =
+Wikipedia'); =0A=
+ta['n-randompage'] =3D new Array('x','Load a random page'); =0A=
+ta['n-help'] =3D new Array('','The place to find out about Wikipedia'); =0A=
+ta['n-contact'] =3D new Array('','How to contact Wikipedia');=0A=
+ta['n-sitesupport'] =3D new Array('','Support us'); =0A=
+ta['t-whatlinkshere'] =3D new Array('j','List of all wiki pages that =
+link here'); =0A=
+ta['t-recentchangeslinked'] =3D new Array('k','Recent changes in pages =
+linked from this page'); =0A=
+ta['feed-rss'] =3D new Array('','RSS feed for this page'); =0A=
+ta['feed-atom'] =3D new Array('','Atom feed for this page'); =0A=
+ta['t-contributions'] =3D new Array('','View the list of contributions =
+of this user'); =0A=
+ta['t-emailuser'] =3D new Array('','Send a mail to this user'); =0A=
+ta['t-upload'] =3D new Array('u','Upload images or media files'); =0A=
+ta['t-specialpages'] =3D new Array('q','List of all special pages');=0A=
+ta['t-print'] =3D new Array('','Printable version of this page');=0A=
+ta['t-permalink'] =3D new Array('','Permanent link to this version of =
+the page');=0A=
+ta['t-cite'] =3D new Array('','Cite this Wikipedia article');=0A=
+ta['ca-nstab-main'] =3D new Array('c','View the content page'); =0A=
+ta['ca-nstab-user'] =3D new Array('c','View the user page'); =0A=
+ta['ca-nstab-media'] =3D new Array('c','View the media page'); =0A=
+ta['ca-nstab-special'] =3D new Array('','This is a special page; you =
+can\'t edit the page itself.'); =0A=
+ta['ca-nstab-wp'] =3D new Array('c','View the project page'); =0A=
+ta['ca-nstab-image'] =3D new Array('c','View the image page'); =0A=
+ta['ca-nstab-mediawiki'] =3D new Array('c','View the system message'); =0A=
+ta['ca-nstab-template'] =3D new Array('c','View the template'); =0A=
+ta['ca-nstab-help'] =3D new Array('c','View the help page'); =0A=
+ta['ca-nstab-category'] =3D new Array('c','View the category page');=0A=
+=0A=
+if (window.showModalDialog && document.compatMode && document.compatMode =
+=3D=3D "CSS1Compat")=0A=
+{=0A=
+  var oldWidth;=0A=
+  var docEl =3D document.documentElement;=0A=
+=0A=
+  function fixIEScroll()=0A=
+  {=0A=
+    if (!oldWidth || docEl.clientWidth > oldWidth)=0A=
+      doFixIEScroll();=0A=
+    else=0A=
+      setTimeout(doFixIEScroll, 1);=0A=
+  =0A=
+    oldWidth =3D docEl.clientWidth;=0A=
+  }=0A=
+=0A=
+  function doFixIEScroll() {=0A=
+    docEl.style.overflowX =3D (docEl.scrollWidth - docEl.clientWidth < =
+4) ? "hidden" : "";=0A=
+  }=0A=
+=0A=
+  document.attachEvent("onreadystatechange", fixIEScroll);=0A=
+  attachEvent("onresize", fixIEScroll);=0A=
+}=0A=
+=0A=
+function addLoadEvent(func) =0A=
+{=0A=
+  if (window.addEventListener) =0A=
+    window.addEventListener("load", func, false);=0A=
+  else if (window.attachEvent) =0A=
+    window.attachEvent("onload", func);=0A=
+}=0A=
+=0A=
+function LinkFA() =0A=
+{=0A=
+   // iterate over all <span>-elements=0A=
+   for(var i=3D0; a =3D document.getElementsByTagName("span")[i]; i++) {=0A=
+      // if found a FA span=0A=
+      if(a.className =3D=3D "FA") {=0A=
+         // iterate over all <li>-elements=0A=
+         for(var j=3D0; b =3D document.getElementsByTagName("li")[j]; =
+j++) {=0A=
+            // if found a FA link=0A=
+            if(b.className =3D=3D "interwiki-" + a.id) {=0A=
+               b.style.padding =3D "0 0 0 16px";=0A=
+               b.style.backgroundImage =3D =
+"url('http://upload.wikimedia.org/wikipedia/en/6/60/LinkFA-star.png')";=0A=
+               b.style.backgroundRepeat =3D "no-repeat";=0A=
+               b.title =3D "This article has gained featured status";=0A=
+            }=0A=
+         }=0A=
+      }=0A=
+   }=0A=
+}=0A=
+=0A=
+addLoadEvent(LinkFA);=0A=
+=0A=
+ // =
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=0A=
+ // BEGIN Dynamic Navigation Bars (experimantal)=0A=
+ =0A=
+ // set up the words in your language=0A=
+ var NavigationBarHide =3D '[ Hide ]';=0A=
+ var NavigationBarShow =3D '[ Show ]';=0A=
+ =0A=
+ // set up max count of Navigation Bars on page,=0A=
+ // if there are more, all will be hidden=0A=
+ // NavigationBarShowDefault =3D 0; // all bars will be hidden=0A=
+ // NavigationBarShowDefault =3D 1; // on pages with more than 1 bar all =
+bars will be hidden=0A=
+ var NavigationBarShowDefault =3D 1;=0A=
+ =0A=
+ =0A=
+ // shows and hides content and picture (if available) of navigation bars=0A=
+ // Parameters:=0A=
+ //     indexNavigationBar: the index of navigation bar to be toggled=0A=
+ function toggleNavigationBar(indexNavigationBar)=0A=
+ {=0A=
+    var NavToggle =3D document.getElementById("NavToggle" + =
+indexNavigationBar);=0A=
+    var NavFrame =3D document.getElementById("NavFrame" + =
+indexNavigationBar);=0A=
+ =0A=
+    if (!NavFrame || !NavToggle) {=0A=
+        return false;=0A=
+    }=0A=
+ =0A=
+    // if shown now=0A=
+    if (NavToggle.firstChild.data =3D=3D NavigationBarHide) {=0A=
+        for (=0A=
+                var NavChild =3D NavFrame.firstChild;=0A=
+                NavChild !=3D null;=0A=
+                NavChild =3D NavChild.nextSibling=0A=
+            ) {=0A=
+            if (NavChild.className =3D=3D 'NavPic') {=0A=
+                NavChild.style.display =3D 'none';=0A=
+            }=0A=
+            if (NavChild.className =3D=3D 'NavContent') {=0A=
+                NavChild.style.display =3D 'none';=0A=
+            }=0A=
+        }=0A=
+    NavToggle.firstChild.data =3D NavigationBarShow;=0A=
+ =0A=
+    // if hidden now=0A=
+    } else if (NavToggle.firstChild.data =3D=3D NavigationBarShow) {=0A=
+        for (=0A=
+                var NavChild =3D NavFrame.firstChild;=0A=
+                NavChild !=3D null;=0A=
+                NavChild =3D NavChild.nextSibling=0A=
+            ) {=0A=
+            if (NavChild.className =3D=3D 'NavPic') {=0A=
+                NavChild.style.display =3D 'block';=0A=
+            }=0A=
+            if (NavChild.className =3D=3D 'NavContent') {=0A=
+                NavChild.style.display =3D 'block';=0A=
+            }=0A=
+        }=0A=
+    NavToggle.firstChild.data =3D NavigationBarHide;=0A=
+    }=0A=
+ }=0A=
+ =0A=
+ // adds show/hide-button to navigation bars=0A=
+ function createNavigationBarToggleButton()=0A=
+ {=0A=
+    var indexNavigationBar =3D 0;=0A=
+    // iterate over all < div >-elements=0A=
+    for(=0A=
+            var i=3D0; =0A=
+            NavFrame =3D document.getElementsByTagName("div")[i]; =0A=
+            i++=0A=
+        ) {=0A=
+        // if found a navigation bar=0A=
+        if (NavFrame.className =3D=3D "NavFrame") {=0A=
+ =0A=
+            indexNavigationBar++;=0A=
+            var NavToggle =3D document.createElement("a");=0A=
+            NavToggle.className =3D 'NavToggle';=0A=
+            NavToggle.setAttribute('id', 'NavToggle' + =
+indexNavigationBar);=0A=
+            NavToggle.setAttribute('href', =
+'javascript:toggleNavigationBar(' + indexNavigationBar + ');');=0A=
+            =0A=
+            var NavToggleText =3D =
+document.createTextNode(NavigationBarHide);=0A=
+            NavToggle.appendChild(NavToggleText);=0A=
+            // Find the NavHead and attach the toggle link (Must be this =
+complicated because Moz's firstChild handling is borked)=0A=
+            for(=0A=
+              var j=3D0; =0A=
+              j < NavFrame.childNodes.length; =0A=
+              j++=0A=
+            ) {=0A=
+              if (NavFrame.childNodes[j].className =3D=3D "NavHead") {=0A=
+                NavFrame.childNodes[j].appendChild(NavToggle);=0A=
+              }=0A=
+            }=0A=
+            NavFrame.setAttribute('id', 'NavFrame' + indexNavigationBar);=0A=
+        }=0A=
+    }=0A=
+    // if more Navigation Bars found than Default: hide all=0A=
+    if (NavigationBarShowDefault < indexNavigationBar) {=0A=
+        for(=0A=
+                var i=3D1; =0A=
+                i<=3DindexNavigationBar; =0A=
+                i++=0A=
+        ) {=0A=
+            toggleNavigationBar(i);=0A=
+        }=0A=
+    }=0A=
+ =0A=
+ }=0A=
+ =0A=
+ addLoadEvent(createNavigationBarToggleButton);=0A=
+ =0A=
+ // END Dynamic Navigation Bars=0A=
+ // =
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=0A=
+=0A=
+=0A=
+=0A=
+=0A=
+var mpTitle =3D "Main Page";=0A=
+var isMainPage =3D (document.title.substr(0, =
+document.title.lastIndexOf(" - ")) =3D=3D mpTitle);=0A=
+var isDiff =3D (document.location.search && =
+(document.location.search.indexOf("diff=3D") !=3D -1 || =
+document.location.search.indexOf("oldid=3D") !=3D -1));=0A=
+=0A=
+if (isMainPage && !isDiff) =0A=
+{=0A=
+document.write('<style type=3D"text/css">/*<![CDATA[*/ #lastmod, =
+#siteSub, #contentSub, h1.firstHeading { display: none !important; } =
+/*]]>*/</style>');=0A=
+=0A=
+var mpSmallEnabled;=0A=
+var mpMinWidth =3D 700;=0A=
+=0A=
+function mainPageTransform()=0A=
+{=0A=
+       if ((isMainPage || /[\/=3D:]Main_Page/.test(document.location)) =
+&& document.getElementById('ca-nstab-main'))     =0A=
+       document.getElementById('ca-nstab-main').firstChild.innerHTML =3D =
+'Main Page';=0A=
+	var mpContentEl =3D document.getElementById("bodyContent");=0A=
+	var mpBrowseEl =3D document.getElementById("EnWpMpBrowse");=0A=
+	var mpContainEl =3D document.getElementById("EnWpMpBrowseContainer");=0A=
+	var mpMarginEl =3D document.getElementById("EnWpMpMargin");=0A=
+	var mpEl =3D document.getElementById("EnWpMainPage");=0A=
+=0A=
+	if (!mpContentEl || !mpBrowseEl || !mpContainEl || !mpMarginEl || !mpEl)=0A=
+		return;=0A=
+=0A=
+	if (!mpSmallEnabled && mpContentEl.offsetWidth < mpMinWidth)=0A=
+	{=0A=
+		mpContainEl.insertBefore(mpBrowseEl, mpContainEl.firstChild);=0A=
+		mpBrowseEl.className =3D "EnWpMpBrowseBottom";=0A=
+		mpMarginEl.style.marginRight =3D 0;=0A=
+		mpSmallEnabled =3D true;=0A=
+	}=0A=
+	else if (mpSmallEnabled && mpContentEl.offsetWidth > mpMinWidth)=0A=
+	{=0A=
+		mpEl.insertBefore(mpBrowseEl, mpEl.firstChild);=0A=
+		mpBrowseEl.className =3D "EnWpMpBrowseRight";=0A=
+		mpMarginEl.style.marginRight =3D "13.8em";=0A=
+		mpSmallEnabled =3D false;=0A=
+	}=0A=
+}=0A=
+=0A=
+var onloadFuncts =3D [ mainPageTransform ];=0A=
+=0A=
+if (window.addEventListener) =0A=
+  window.addEventListener("resize", mainPageTransform, false);=0A=
+else if (window.attachEvent) =0A=
+  window.attachEvent("onresize", mainPageTransform);=0A=
+=0A=
+}=0A=
+=0A=
+/* add a redirect button to the edit page toolbar */=0A=
+if (mwCustomEditButtons) {=0A=
+  mwCustomEditButtons[mwCustomEditButtons.length] =3D {=0A=
+    "imageFile": =
+"http://upload.wikimedia.org/wikipedia/en/c/c8/Button_redirect.png",=0A=
+    "speedTip": "Redirect",=0A=
+    "tagOpen": "#REDIRECT [[",=0A=
+    "tagClose": "]]",=0A=
+    "sampleText": "Insert text"};=0A=
+};=0A=
+=0A=
+=0A=
+=0A=
+=0A=
+/*=0A=
+</pre>=0A=
+*/
+------=_NextPart_000_0002_01C6BB3C.E0F60810--
