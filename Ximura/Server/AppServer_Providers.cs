@@ -121,13 +121,31 @@ namespace Ximura.Server
         }
         #endregion
 
+        #region PoolManagerCreate()
+        /// <summary>
+        /// This method creates the pool manager for the system.
+        /// </summary>
+        protected virtual void PoolManagerCreate()
+        {
+            PoolManager = new PoolManager(true);
+        }
+        #endregion // PoolManagerCreate()
+        #region PoolManagerDispose()
+        /// <summary>
+        /// This method disposes of the pool manager for the system.
+        /// </summary>
+        protected virtual void PoolManagerDispose()
+        {
+            PoolManager.Dispose();
+            PoolManager = null;
+        }
+        #endregion // PoolManagerDestroy()
         #region PoolManagerStart()
         /// <summary>
         /// This protected method creates the default pool manager for the application.
         /// </summary>
         protected override void PoolManagerStart()
         {
-            PoolManager = new PoolManager(true);
         }
         #endregion // PoolManagerStart()
         #region PoolManagerStop()
@@ -136,8 +154,6 @@ namespace Ximura.Server
         /// </summary>
         protected override void PoolManagerStop()
         {
-            PoolManager.Dispose();
-            PoolManager = null;
         }
         #endregion // PoolManagerStop()
 

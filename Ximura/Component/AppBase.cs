@@ -101,6 +101,7 @@ namespace Ximura
 		/// <param name="container">The container to be added to</param>
         public AppBase(System.ComponentModel.IContainer container) : base(container) 
         {
+            PerformanceCreate();
             InitializeComponents();
             CommandExtenderInitialize();
             RegisterContainer(components);
@@ -214,10 +215,12 @@ namespace Ximura
         /// <summary>
         /// This is the performance counter for the command.
         /// </summary>
-        protected virtual PERF Performance
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public virtual PERF Performance
         {
             get;
-            set;
+            protected set;
         }
         #endregion // PerformanceCounter
         #region PerformanceManager
@@ -236,13 +239,45 @@ namespace Ximura
             }
         }
         #endregion
+
+        #region PerformanceCreate()/PerformanceInitialize(PERF perf)
+        /// <summary>
+        /// This method creates the performance object and calls the extended PerformanceInitialize method before setting 
+        /// the component performance property object.
+        /// </summary>
+        protected virtual void PerformanceCreate()
+        {
+            PERF perf = new PERF();
+            PerformanceInitialize(perf);
+            Performance = perf;
+        }
+        /// <summary>
+        /// This method should be used to set the specific performance properties before the 
+        /// performance object is registered with the component.
+        /// </summary>
+        /// <param name="perf">The performance object.</param>
+        protected virtual void PerformanceInitialize(PERF perf)
+        {
+
+        }
+        #endregion // PerformanceInitialize
+        #region PerformanceDispose()
+        /// <summary>
+        /// This method removes all references to the performance object.
+        /// </summary>
+        protected virtual void PerformanceDispose()
+        {
+            PERF perf = Performance;
+            Performance = null;
+        }
+        #endregion // PerformanceDispose()
+
         #region PerformanceStart()
         /// <summary>
         /// This method starts the performance counters.
         /// </summary>
         protected virtual void PerformanceStart()
         {
-            Performance = new PERF();
         }
         #endregion // PerformanceStart()
         #region PerformanceStop()
@@ -251,7 +286,6 @@ namespace Ximura
         /// </summary>
         protected virtual void PerformanceStop()
         {
-            Performance = null;
         }
         #endregion // PerformanceStop()
 

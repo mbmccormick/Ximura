@@ -51,12 +51,6 @@ namespace Ximura.Server
         {
             try
             {
-                //Create the control containers for the server components.
-                InitializeControlContainer();
-
-                //This method adds the application specific services that identify the application to its components.
-                ApplicationServicesStart();
-
                 //Load and verify the config files - if no settings can be found throw an error and exit
                 if (!ConfigurationStart())
                     throw new AppServerException("Configuration error - the configuration cannot be loaded.");
@@ -166,8 +160,6 @@ namespace Ximura.Server
                 LoggingStop();
 
                 PoolManagerStop();
-
-                ApplicationServicesStop();
             }
             catch (Exception ex)
             {

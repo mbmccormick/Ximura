@@ -1671,6 +1671,24 @@
             This method unregisters and destpys the configuration data object.
             </summary>
         </member>
+        <member name="M:Ximura.AppBase`3.PerformanceCreate">
+            <summary>
+            This method creates the performance object and calls the extended PerformanceInitialize method before setting 
+            the component performance property object.
+            </summary>
+        </member>
+        <member name="M:Ximura.AppBase`3.PerformanceInitialize(`1)">
+            <summary>
+            This method should be used to set the specific performance properties before the 
+            performance object is registered with the component.
+            </summary>
+            <param name="perf">The performance object.</param>
+        </member>
+        <member name="M:Ximura.AppBase`3.PerformanceDispose">
+            <summary>
+            This method removes all references to the performance object.
+            </summary>
+        </member>
         <member name="M:Ximura.AppBase`3.PerformanceStart">
             <summary>
             This method starts the performance counters.
@@ -1807,7 +1825,7 @@
         </member>
         <member name="T:Ximura.Persistence.SQLDBPersistenceManager`2">
             <summary>
-            This is the base persistence manager for SQL based storage for the Aegea system.
+            This is the base persistence manager for SQL based storage.
             </summary>
         </member>
         <member name="T:Ximura.Persistence.PersistenceManagerCDSState`3">
@@ -2727,12 +2745,6 @@
             This is an override of the IDisposable method which cleans up any resources being used.
             </summary>
         </member>
-        <member name="M:Ximura.Server.AppServer`3.InitializeControlContainer">
-            <summary>
-            This method initializes the base components container 
-            and the Application control container
-            </summary>
-        </member>
         <member name="M:Ximura.Server.AppServer`3.SiteBeforeChange(System.ComponentModel.ISite,System.ComponentModel.ISite)">
             <summary>
             This overriden method does nothing. AppServer does not care about the site property.
@@ -2771,6 +2783,16 @@
         <member name="M:Ximura.Server.AppServer`3.ApplicationServicesStop">
             <summary>
             This method removes specific application information.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.PoolManagerCreate">
+            <summary>
+            This method creates the pool manager for the system.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.PoolManagerDispose">
+            <summary>
+            This method disposes of the pool manager for the system.
             </summary>
         </member>
         <member name="M:Ximura.Server.AppServer`3.PoolManagerStart">
@@ -2845,6 +2867,16 @@
         <member name="M:Ximura.Server.AppServer`3.JobPriorityQueueCreate">
             <summary>
             This method returns a new job priority queue class.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.GatewayCreate">
+            <summary>
+            This method creates the Gateway service and creates and adds the Gateway agents to the service.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.GatewayDispose">
+            <summary>
+            This method disposes of the Gateway service.
             </summary>
         </member>
         <member name="M:Ximura.Server.AppServer`3.GatewayStart">
@@ -2954,21 +2986,34 @@
             <param name="fileName">The file to search for.</param>
             <returns>The full file path.</returns>
         </member>
+        <member name="F:Ximura.Server.AppServer`3.mCommandBridge">
+            <summary>
+            This is the internal command bridge.
+            </summary>
+        </member>
         <member name="M:Ximura.Server.AppServer`3.CommandBridgeStart">
             <summary>
-            This method register the command bridge with the command collection.
+            This method creates the command bridge and adds the command bridge services.
             </summary>
         </member>
         <member name="M:Ximura.Server.AppServer`3.CommandBridgeStop">
             <summary>
-            This method removes the command bridge services
+            This method removes the command bridge services.
             </summary>
         </member>
         <member name="M:Ximura.Server.AppServer`3.CommandBridgeServiceAdd(System.Type,System.Object)">
             <summary>
             This method adds a service to the command bridge
             </summary>
-            <param name="service">The service type</param>
+            <param name="service">The service type.</param>
+            <param name="serviceobj">The service object.</param>
+            <returns>Returns true is the service was added successfully.</returns>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.CommandBridgeServiceAdd``1(``0)">
+            <summary>
+            This method adds a service to the command bridge
+            </summary>
+            <typeparam name="T">The service type.</typeparam>
             <param name="serviceobj">The service object.</param>
             <returns>Returns true is the service was added successfully.</returns>
         </member>
@@ -2979,11 +3024,25 @@
             <param name="service">The service type.</param>
             <returns>The service object, or null is the service is not present.</returns>
         </member>
+        <member name="M:Ximura.Server.AppServer`3.CommandBridgeServiceGet``1">
+            <summary>
+            This method returns a command bridge service.
+            </summary>
+            <typeparam name="T">The service type.</typeparam>
+            <returns>The service object, or null is the service is not present.</returns>
+        </member>
         <member name="M:Ximura.Server.AppServer`3.CommandBridgeServiceRemove(System.Type)">
             <summary>
             This method removes a service from the command bridge.
             </summary>
             <param name="service">The service type to remove.</param>
+            <returns>Returns true if the service was removed successfully.</returns>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.CommandBridgeServiceRemove``1">
+            <summary>
+            This method removes a service from the command bridge.
+            </summary>
+            <typeparam name="T">The service type to remove.</typeparam>
             <returns>Returns true if the service was removed successfully.</returns>
         </member>
         <member name="F:Ximura.Server.AppServer`3.mJobActiveCollection">
@@ -3077,6 +3136,16 @@
             </summary>
             <param name="token"></param>
         </member>
+        <member name="M:Ximura.Server.AppServer`3.StorageCreate">
+            <summary>
+            This method creates the storage managers and the storage agents.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.StorageDispose">
+            <summary>
+            This method removes the storage services and disposes of the storage manager.
+            </summary>
+        </member>
         <member name="M:Ximura.Server.AppServer`3.StorageStart">
             <summary>
             This private method checks whether a Logging and Performance manager is active
@@ -3140,6 +3209,16 @@
             <param name="username">The username for the session or null.</param>
             <returns>A session object, or null if the session manager cannot be resolved.</returns>
         </member>
+        <member name="M:Ximura.Server.AppServer`3.PerformanceCreate">
+            <summary>
+            This method creates the performance manager and add the performance agents.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.PerformanceDispose">
+            <summary>
+            This method removes the performance agents and disposes of the performance manager.
+            </summary>
+        </member>
         <member name="M:Ximura.Server.AppServer`3.PerformanceStart">
             <summary>
             This protected method checks whether a Logging and Performance manager is active
@@ -3182,6 +3261,27 @@
         <member name="M:Ximura.Server.AppServer`3.LoggingStop">
             <summary>
             This method is used to cleanup and stop logging.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.ServerComponentsCreate">
+            <summary>
+            This method is used to create the server components.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.ServerComponentsDispose">
+            <summary>
+            This method is used to dispose the server components.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.ControlContainerCreate">
+            <summary>
+            This method initializes the base components container 
+            and the Application control container
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.AppServer`3.ControlContainerDispose">
+            <summary>
+            This method disposes of the control container.
             </summary>
         </member>
         <member name="P:Ximura.Server.AppServer`3.ControlServiceContainer">
@@ -8315,6 +8415,11 @@
             <param name="info"></param>
             <param name="context"></param>
         </member>
+        <member name="T:Ximura.Server.InstallerConfiguration">
+            <summary>
+            This installer class installs the configuration for the app server.
+            </summary>
+        </member>
         <member name="T:Ximura.IXimuraFSMConfigSH">
             <summary>
             IXimuraFSMConfigSH is used to provide specific settings for the context pool.
@@ -11221,6 +11326,11 @@
         <member name="T:Ximura.XimuraAppTrace.QueueItem">
             <summary>
             The QueueItem class holds a log item.
+            </summary>
+        </member>
+        <member name="T:Ximura.Server.AppServerInstaller">
+            <summary>
+            This installer class creates the necessary installers to properly configure the app server for its environment.
             </summary>
         </member>
         <member name="M:Ximura.Server.SessionAgentSystem.#ctor(System.ComponentModel.IContainer)">

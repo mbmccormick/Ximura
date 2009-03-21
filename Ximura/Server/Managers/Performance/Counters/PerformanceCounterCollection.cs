@@ -54,11 +54,11 @@ namespace Ximura
         /// <summary>
         /// This method creates the performance counters for the collection. You should override this method to add your own counters.
         /// </summary>
-        protected virtual void PerformanceCountersCreate()
+        public virtual void PerformanceCountersCreate()
         {
 
         }
-        #endregion // ChildCountersCreate()
+        #endregion
 
         #region Add(IXimuraPerformanceCounter item)
         /// <summary>

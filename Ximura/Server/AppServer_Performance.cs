@@ -52,41 +52,6 @@ namespace Ximura.Server
         }
         #endregion // Logging
 
-        #region PerformanceStart()
-        /// <summary>
-        /// This protected method checks whether a Logging and Performance manager is active
-        /// in the application, and if not creates a default one.
-        /// </summary>
-        protected override void PerformanceStart()
-        {
-            base.PerformanceStart();
-
-            PerformanceService = new PerformanceManager(ControlContainer);
-
-            AgentsAdd<XimuraAppServerPerformanceAgentAttribute>(PerformanceAgentsDefault, PerformanceService);
-
-            PerformanceService.Start();
-
-            //Performance.CommandID = this.ApplicationID;
-            //Performance.PCID = this.ApplicationID;
-            //Performance.Name = this.ApplicationIDAttribute.;
-            //Performance.Category = "Command";
-
-            //if (PerformanceManager != null)
-            //    PerformanceManager.PerformanceCounterCollectionRegister(Performance);
-        }
-        #endregion
-        #region PerformanceStop()
-        /// <summary>
-        /// This method stops and performance related logging.
-        /// </summary>
-        protected override void PerformanceStop()
-        {
-            AgentsRemove<XimuraAppServerPerformanceAgentAttribute>(PerformanceAgentsDefault, PerformanceService);
-
-            base.PerformanceStop();
-        }
-        #endregion
         #region PerformanceManager
         /// <summary>
         /// This is the performance manager for the application which commands and services can register their performance counters with,
@@ -104,6 +69,59 @@ namespace Ximura.Server
         }
         #endregion // PerformanceManager
 
+        #region PerformanceCreate()
+        /// <summary>
+        /// This method creates the performance manager and add the performance agents.
+        /// </summary>
+        protected virtual void PerformanceCreate()
+        {
+            PerformanceService = new PerformanceManager(ControlContainer);
+
+            AgentsAdd<XimuraAppServerPerformanceAgentAttribute>(PerformanceAgentsDefault, PerformanceService);
+        }
+        #endregion // PerformanceCreate()
+        #region PerformanceDispose()
+        /// <summary>
+        /// This method removes the performance agents and disposes of the performance manager.
+        /// </summary>
+        protected virtual void PerformanceDispose()
+        {
+            AgentsRemove<XimuraAppServerPerformanceAgentAttribute>(PerformanceAgentsDefault, PerformanceService);
+
+            PerformanceService = null;
+        }
+        #endregion // PerformanceDispose()
+        
+        #region PerformanceStart()
+        /// <summary>
+        /// This protected method checks whether a Logging and Performance manager is active
+        /// in the application, and if not creates a default one.
+        /// </summary>
+        protected override void PerformanceStart()
+        {
+            base.PerformanceStart();
+
+            PerformanceService.Start();
+
+            //Performance.CommandID = this.ApplicationID;
+            //Performance.PCID = this.ApplicationID;
+            //Performance.Name = this.ApplicationIDAttribute.;
+            //Performance.Category = "Command";
+
+            PerformanceManager.PerformanceCounterCollectionRegister(Performance);
+        }
+        #endregion
+        #region PerformanceStop()
+        /// <summary>
+        /// This method stops and performance related logging.
+        /// </summary>
+        protected override void PerformanceStop()
+        {
+            PerformanceService.Stop();
+
+            base.PerformanceStop();
+        }
+        #endregion
 
         #region PerformanceAgentsDefault
         /// <summary>

@@ -52,6 +52,23 @@ namespace Ximura.Server
         }
         #endregion // Logging
 
+        protected virtual void LoggingCreate()
+        {
+            LoggingService = new LoggingManager(ControlContainer);
+
+            //Add the loggers.
+            AgentsAdd<XimuraAppServerLoggerAttribute>(LoggersDefault, LoggingService);
+        }
+
+        protected virtual void LoggingDispose()
+        {
+            //Remove the loggers.
+            AgentsRemove<XimuraAppServerLoggerAttribute>(LoggersDefault, LoggingService);
+
+            //XimuraAppTrace.Close();
+            XimuraAppTrace.Close();
+        }
+
         #region LoggingStart()
         /// <summary>
         /// This private method checks whether a Logging and Performance manager is active
@@ -59,15 +76,6 @@ namespace Ximura.Server
         /// </summary>
         protected virtual void LoggingStart()
         {
-            ////Check whether there is a logging manager defined for the application
-            //mLoggingMan = ControlServiceContainer.GetService(typeof(IXimuraLogging)) as LoggingManager;
-            ////No, then create a default one.
-            //if (mLoggingMan == null)
-            LoggingService = new LoggingManager(ControlContainer);
-
-            //Add the loggers.
-            AgentsAdd<XimuraAppServerLoggerAttribute>(LoggersDefault, LoggingService);
-
             //We wait until here to start the services as they have reference to themselves.
             if (((IXimuraService)LoggingService).ServiceStatus != XimuraServiceStatus.Started)
                 ((IXimuraService)LoggingService).Start();
@@ -84,10 +92,7 @@ namespace Ximura.Server
         /// </summary>
         protected virtual void LoggingStop()
         {
-            //Remove the loggers.
-            AgentsRemove<XimuraAppServerLoggerAttribute>(LoggersDefault, LoggingService);
-
-            //XimuraAppTrace.Close();
+            ((IXimuraService)LoggingService).Stop();
         }
         #endregion
 

@@ -84,10 +84,10 @@ namespace Ximura.Server
         public AppServer(IContainer container)
             : base(container)
         {
-            //Set the default value for the domain status.
-            //mSeperateDomain = AppServerAttribute.DomainRequired;
+            ServerComponentsCreate();
 
             InitializeComponents();
+
             RegisterContainer(components);
         }
         #endregion
@@ -101,36 +101,10 @@ namespace Ximura.Server
 
             if (disposing)
             {
-                if (ControlContainer != null)
-                {
-                    ControlContainer.Dispose();
-                }
-
-                ControlContainer = null;
+                ServerComponentsDispose();
 
                 XimuraAppTrace.Close();
             }
-        }
-        #endregion
-
-        #region InitializeComponents()
-        private void InitializeComponents()
-        {
-            components = new System.ComponentModel.Container();
-        }
-        #endregion // InitializeComponents()
-        #region InitializeControlContainer()
-        /// <summary>
-        /// This method initializes the base components container 
-        /// and the Application control container
-        /// </summary>
-        protected virtual void InitializeControlContainer()
-        {
-            //Set up the control container
-            ControlServiceContainer = new XimuraServiceContainer();
-
-            //Check that we only do this once
-            ControlContainer = new XimuraAppContainer(ControlServiceContainer, this);
         }
         #endregion
 

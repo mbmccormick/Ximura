@@ -152,10 +152,29 @@
     <OutputPath>bin\x64\SQLBudubu\</OutputPath>
     <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'XSSocNet x64 Release|AnyCPU' ">
+    <OutputPath>bin\XSSocNet x64 Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'XSSocNet x64 Release|x86' ">
+    <OutputPath>bin\x86\XSSocNet x64 Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'XSSocNet x64 Release|x64' ">
+    <OutputPath>bin\x64\XSSocNet x64 Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'XSSocNet x86 Release|AnyCPU' ">
+    <OutputPath>bin\XSSocNet x86 Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'XSSocNet x86 Release|x86' ">
+    <OutputPath>bin\x86\XSSocNet x86 Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'XSSocNet x86 Release|x64' ">
+    <OutputPath>bin\x64\XSSocNet x86 Release\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System">
       <Name>System</Name>
     </Reference>
+    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -233,6 +252,9 @@
     <Compile Include="Server\AppServer_Gateway.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Server\AppServer_Initialization.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Server\AppServer_Job.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -252,6 +274,24 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Server\AppServer_Threading.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Server\Installers\AppServerInstaller.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Server\Installers\InstallerConfiguration.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Server\Installers\InstallerLogging.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Server\Installers\InstallerPerformance.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Server\Installers\InstallerStorage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Server\Installers\InstallerBase.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Server\Managers\AgentInvalidTypeException.cs" />
@@ -325,7 +365,6 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Command\Configuration\CommandContainerConfiguration.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Server\Exceptions\AppServerException.cs">
       <SubType>Code</SubType>
@@ -586,22 +625,16 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Server\SecurityManager\SecurityManager.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Server\SecurityManager\SecurityManager_CommandBridge.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Server\SecurityManager\SecurityManager_Job.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Server\SecurityManager\SecurityManager_JobPools.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Server\SecurityManager\SecurityManager_Session.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Server\SecurityManager\SecurityManager_Threading.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Server\Security\XimuraPrincipal.cs" />
     <Compile Include="Server\Session\SessionActionType.cs" />

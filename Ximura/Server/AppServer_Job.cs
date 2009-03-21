@@ -57,8 +57,7 @@ namespace Ximura.Server
 
         #endregion // Declarations
 
-        #region JobProcessStart()/JobProcessStop()
-
+        #region JobProcessStart()
         /// <summary>
         /// This method creates the job pools for the security manager.
         /// </summary>
@@ -69,7 +68,8 @@ namespace Ximura.Server
 
             mPoolJob = new PoolInvocator<Job>(delegate() { return new Job(); });
         }
-
+        #endregion
+        #region JobProcessStop()
         /// <summary>
         /// This method clears and disposes of the job pools for the security manager.
         /// </summary>
@@ -79,8 +79,7 @@ namespace Ximura.Server
             mPoolJob = null;
             mJobActiveCollection = null;
         }
-
-        #endregion // JobProcessStart()
+        #endregion
 
         #region MAIN ENTRY POINT ->> JobProcess
         /// <summary>

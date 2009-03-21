@@ -34,7 +34,7 @@ using AH = Ximura.Helper.AttributeHelper;
 namespace Ximura.Persistence
 {
     /// <summary>
-    /// This is the base persistence manager for SQL based storage for the Aegea system.
+    /// This is the base persistence manager for SQL based storage.
     /// </summary>
     //[CDSStateActionPermit(CDSStateAction.Create)]
     //[CDSStateActionPermit(CDSStateAction.Update)]

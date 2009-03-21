@@ -43,12 +43,15 @@ namespace Ximura.Server
     public partial class AppServer<CONFSYS, CONFCOM, PERF>
     {
         #region Declarations
+        /// <summary>
+        /// This is the internal command bridge.
+        /// </summary>
         private CommandBridge mCommandBridge;
         #endregion // Declarations
 
         #region CommandBridgeStart()
         /// <summary>
-        /// This method register the command bridge with the command collection.
+        /// This method creates the command bridge and adds the command bridge services.
         /// </summary>
         protected virtual void CommandBridgeStart()
         {
@@ -64,7 +67,7 @@ namespace Ximura.Server
         #endregion
         #region CommandBridgeStop()
         /// <summary>
-        /// This method removes the command bridge services
+        /// This method removes the command bridge services.
         /// </summary>
         protected virtual void CommandBridgeStop()
         {
@@ -89,14 +92,19 @@ namespace Ximura.Server
         /// <summary>
         /// This method adds a service to the command bridge
         /// </summary>
-        /// <param name="service">The service type</param>
+        /// <param name="service">The service type.</param>
         /// <param name="serviceobj">The service object.</param>
         /// <returns>Returns true is the service was added successfully.</returns>
         protected bool CommandBridgeServiceAdd(Type service, object serviceobj)
         {
             return CommandBridge.AddContainerService(service, serviceobj);
         }
-
+        /// <summary>
+        /// This method adds a service to the command bridge
+        /// </summary>
+        /// <typeparam name="T">The service type.</typeparam>
+        /// <param name="serviceobj">The service object.</param>
+        /// <returns>Returns true is the service was added successfully.</returns>
         protected bool CommandBridgeServiceAdd<T>(T serviceobj)
         {
             return CommandBridge.AddContainerService(typeof(T), serviceobj);
@@ -114,7 +122,11 @@ namespace Ximura.Server
             // TODO:  Add SecurityManager.GetCommandBridgeService implementation
             return CommandBridge.GetContainerService(service);
         }
-
+        /// <summary>
+        /// This method returns a command bridge service.
+        /// </summary>
+        /// <typeparam name="T">The service type.</typeparam>
+        /// <returns>The service object, or null is the service is not present.</returns>
         protected T CommandBridgeServiceGet<T>()
         {
             // TODO:  Add SecurityManager.GetCommandBridgeService implementation
@@ -131,7 +143,11 @@ namespace Ximura.Server
         {
             return CommandBridge.RemoveContainerService(service);
         }
-
+        /// <summary>
+        /// This method removes a service from the command bridge.
+        /// </summary>
+        /// <typeparam name="T">The service type to remove.</typeparam>
+        /// <returns>Returns true if the service was removed successfully.</returns>
         public bool CommandBridgeServiceRemove<T>()
         {
             return CommandBridge.RemoveContainerService(typeof(T));

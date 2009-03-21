@@ -101,6 +101,7 @@ namespace Ximura.Server
             base.ConfigurationStop();
         }
         #endregion
+
         #region ConfigurationSystem
         /// <summary>
         /// The system configuration object.
@@ -139,6 +140,8 @@ namespace Ximura.Server
         {
             return ConfigurationLoadGeneric(commandConfiguration, mAttrConfigCommand, ConfigurationDefault);
         }
+        #endregion // ConfigurationLoad(CONFCOM commandConfiguration)
+        #region ConfigurationDefault()
         /// <summary>
         /// This method returns the default command configuration as a stream.
         /// </summary>
@@ -148,7 +151,8 @@ namespace Ximura.Server
             return RH.ResourceLoadFromUriAsStream(new Uri(
                 "xmrres://Ximura/Ximura.Server.AppServer/Ximura.Server.Configuration.Command.AppServerCommandConfiguration_Default.xml"));
         }
-        #endregion // ConfigurationLoad(CONFCOM commandConfiguration)
+        #endregion // ConfigurationDefault()
+
         #region ConfigurationSystemLoad(CONFSYS systemConfiguration)
         /// <summary>
         /// This method loads the system configuration.
@@ -159,6 +163,8 @@ namespace Ximura.Server
         {
             return ConfigurationLoadGeneric(systemConfiguration, mAttrConfigSystem, ConfigurationSystemDefault);
         }
+        #endregion // ConfigurationSystemLoad(CONFSYS systemConfiguration)
+        #region ConfigurationSystemDefault()
         /// <summary>
         /// This method returns the default system configuration as a stream.
         /// </summary>
@@ -168,7 +174,8 @@ namespace Ximura.Server
             return RH.ResourceLoadFromUriAsStream(new Uri(
                 "xmrres://Ximura/Ximura.Server.AppServer/Ximura.Server.Configuration.System.AppServerSystemConfiguration_Default.xml"));
         }
-        #endregion // ConfigurationSystemLoad(CONFSYS systemConfiguration)
+        #endregion // protected virtual Stream ConfigurationSystemDefault()
+
 
         #region LoadConfigFile() method and helper methods
         /// <summary>

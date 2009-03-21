@@ -52,17 +52,37 @@ namespace Ximura.Server
         }
         #endregion // Storage
 
+        #region GatewayCreate()
+        /// <summary>
+        /// This method creates the Gateway service and creates and adds the Gateway agents to the service.
+        /// </summary>
+        public virtual void GatewayCreate()
+        {
+            StorageService = new StorageManager(ControlContainer);
+
+            //Add the storage agents.
+            AgentsAdd<XimuraAppServerGatewayAttribute>(StorageDefault, StorageService);
+        }
+        #endregion // GatewayCreate()
+        #region GatewayDispose()
+        /// <summary>
+        /// This method disposes of the Gateway service.
+        /// </summary>
+        public virtual void GatewayDispose()
+        {
+            //Remove the loggers.
+            AgentsRemove<XimuraAppServerGatewayAttribute>(GatewayDefault, GatewayService);
+
+            StorageService.Dispose();
+        }
+        #endregion // GatewayDispose()
+
         #region GatewayStart()
         /// <summary>
         /// This method starts the Gateway Manager
         /// </summary>
         protected virtual void GatewayStart()
         {
-            StorageService = new StorageManager(ControlContainer);
-
-            //Add the storage agents.
-            AgentsAdd<XimuraAppServerGatewayAttribute>(StorageDefault, StorageService);
-
             //We wait until here to start the services as they have reference to themselves.
             if (((IXimuraService)StorageService).ServiceStatus != XimuraServiceStatus.Started)
                 ((IXimuraService)StorageService).Start();
@@ -74,9 +94,7 @@ namespace Ximura.Server
         /// </summary>
         protected virtual void GatewayStop()
         {
-            //Remove the loggers.
-            AgentsRemove<XimuraAppServerGatewayAttribute>(GatewayDefault, GatewayService);
-
+            ((IXimuraService)StorageService).Stop();
         }
         #endregion
 

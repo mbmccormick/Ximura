@@ -41,7 +41,7 @@ namespace Ximura.Server
 {
     public partial class AppServer<CONFSYS, CONFCOM, PERF>
     {
-        #region Storage
+        #region StorageService
         /// <summary>
         /// This is the storage manager for the application.
         /// </summary>
@@ -52,6 +52,32 @@ namespace Ximura.Server
         }
         #endregion // Storage
 
+        #region StorageCreate()
+        /// <summary>
+        /// This method creates the storage managers and the storage agents.
+        /// </summary>
+        protected virtual void StorageCreate()
+        {
+            StorageService = new StorageManager(ControlContainer);
+
+            //Add the storage agents.
+            AgentsAdd<XimuraAppServerStorageAttribute>(StorageDefault, StorageService);
+        }
+        #endregion // StorageStart()
+        #region StorageDispose()
+        /// <summary>
+        /// This method removes the storage services and disposes of the storage manager.
+        /// </summary>
+        protected virtual void StorageDispose()
+        {
+            //Remove the loggers.
+            AgentsRemove<XimuraAppServerStorageAttribute>(StorageDefault, StorageService);
+
+            StorageService.Dispose();
+            StorageService = null;
+        }
+        #endregion // StorageDispose()
+
         #region StorageStart()
         /// <summary>
         /// This private method checks whether a Logging and Performance manager is active
@@ -59,11 +85,6 @@ namespace Ximura.Server
         /// </summary>
         protected virtual void StorageStart()
         {
-            StorageService = new StorageManager(ControlContainer);
-
-            //Add the storage agents.
-            AgentsAdd<XimuraAppServerStorageAttribute>(StorageDefault, StorageService);
-
             //We wait until here to start the services as they have reference to themselves.
             if (((IXimuraService)StorageService).ServiceStatus != XimuraServiceStatus.Started)
                 ((IXimuraService)StorageService).Start();
@@ -75,9 +96,8 @@ namespace Ximura.Server
         /// </summary>
         protected virtual void StorageStop()
         {
-            //Remove the loggers.
-            AgentsRemove<XimuraAppServerStorageAttribute>(StorageDefault, StorageService);
-
+            if (((IXimuraService)StorageService).ServiceStatus != XimuraServiceStatus.Stopped)
+                ((IXimuraService)StorageService).Stop();
         }
         #endregion
 

@@ -44,7 +44,6 @@
           <ExtensibleLoggingManager>
             <trace autoflush="false" indentsize="0">
               <listeners>
-                <!--add name="W3CExtendedLogger" type="Aegea.Connect.W3CExtendedLogger, AegeaConnectCMS" /-->
               </listeners>
               <listenersConfig>
                 <DebugLogger>
@@ -70,7 +69,6 @@
           <ExtensibleLoggingManager>
             <trace autoflush="false" indentsize="0">
               <listeners>
-                <!--add name="W3CExtendedLogger" type="Aegea.Connect.W3CExtendedLogger, AegeaConnectCMS" /-->
               </listeners>
               <listenersConfig>
                 <DebugLogger>

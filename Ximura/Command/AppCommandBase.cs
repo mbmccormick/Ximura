@@ -77,7 +77,7 @@ namespace Ximura.Command
     {
 		#region Declarations
 
-        private XimuraAppModuleAttribute m_AppCommandAttribute = null;
+        private XimuraAppModuleAttribute mAppCommandAttribute = null;
 
         private XimuraAppConfigurationAttribute mAppConfigurationAttribute = null;
 
@@ -165,17 +165,17 @@ namespace Ximura.Command
 		{
 			get
 			{
-				if (m_AppCommandAttribute == null)
+				if (mAppCommandAttribute == null)
 				{
 //					Type meType = this.GetType();
 //					object[] meattrs = meType.GetCustomAttributes(true);
 					object[] attrs = this.GetType().GetCustomAttributes(typeof(XimuraAppModuleAttribute),true);
 					if (attrs.Length>0)
-						m_AppCommandAttribute=attrs[0] as XimuraAppModuleAttribute;
+						mAppCommandAttribute=attrs[0] as XimuraAppModuleAttribute;
 					else
-						m_AppCommandAttribute=new XimuraAppModuleAttribute(Guid.Empty.ToString());
+						mAppCommandAttribute=new XimuraAppModuleAttribute(Guid.Empty.ToString());
 				}
-				return m_AppCommandAttribute;
+				return mAppCommandAttribute;
 			}
 		}
 		#endregion
@@ -258,7 +258,7 @@ namespace Ximura.Command
 		{
 			get
 			{
-				if (mDescription == null)
+                if (mDescription == null || mDescription == "")
 					return AppCommandAttribute.Description;
 				else
 					return mDescription;
@@ -427,12 +427,14 @@ namespace Ximura.Command
         /// </summary>
         protected override void PerformanceStart()
         {
-            base.PerformanceStart();
+            Performance = new PERF();
 
             Performance.ID = this.CommandID;
             Performance.PCID = this.CommandID;
             Performance.Name = this.CommandName;
             Performance.Category = "Command";
+
+            Performance.PerformanceCountersCreate();
 
             if (PerformanceManager != null)
                 PerformanceManager.PerformanceCounterCollectionRegister(Performance);

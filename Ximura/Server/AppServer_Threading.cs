@@ -166,7 +166,6 @@ namespace Ximura.Server
                 //Remove the thread from the collection
                 mWorkerThreads.Remove(Thread.CurrentThread);
 
-
                 try
                 {
                     Thread.CurrentThread.Abort();

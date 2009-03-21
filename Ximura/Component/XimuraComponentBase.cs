@@ -78,7 +78,7 @@ namespace Ximura
 		/// </summary>
 		protected override void Dispose( bool disposing )
 		{
-			if( disposing )
+			if (disposing)
 			{
 				if (mConnectedComponents != null)
 					mConnectedComponents.Clear();
