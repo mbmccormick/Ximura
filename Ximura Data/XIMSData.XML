@@ -1520,6 +1520,120 @@
             <param name="pMan">The pool manager to retrieve the new object. This can be null.</param>
             <returns>Returns an object specified in the stream.</returns>
         </member>
+        <member name="T:Ximura.Data.XimuraDataContentVersionMappingAttribute">
+            <summary>
+            The XimuraDataContentVersionMappingAttribute is used to map the version ID of the entity 
+            to the relevant field and table in the DataContent collection.
+            </summary>
+        </member>
+        <member name="T:Ximura.Data.XimuraDataContentBaseMappingAttribute">
+            <summary>
+            XimuraDataContentBaseMappingAttribute is the astract class for the DataContent 
+            table mapping attributes.
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.XimuraDataContentBaseMappingAttribute.mTable">
+            <summary>
+            The table.
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.XimuraDataContentBaseMappingAttribute.mField">
+            <summary>
+            The field
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.XimuraDataContentBaseMappingAttribute.#ctor(System.String,System.String)">
+            <summary>
+            This is the primary constructor.
+            </summary>
+            <param name="table">The ID table.</param>
+            <param name="field">The ID field.</param>
+        </member>
+        <member name="P:Ximura.Data.XimuraDataContentBaseMappingAttribute.Table">
+            <summary>
+            This is the dataset table name.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.XimuraDataContentBaseMappingAttribute.Field">
+            <summary>
+            This is the table field.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.XimuraDataContentVersionMappingAttribute.#ctor(System.String,System.String)">
+            <summary>
+            This is the primary constructor.
+            </summary>
+            <param name="table">The Version ID primary table.</param>
+            <param name="field">The Version ID field.</param>
+        </member>
+        <member name="T:Ximura.Data.XimuraEntityType">
+            <summary>
+            This enumeration specifies the type of content.
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.XimuraEntityType.Entity">
+            <summary>
+            The entity is full content.
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.XimuraEntityType.EntityFragment">
+            <summary>
+            The entity is partial content.
+            </summary>
+        </member>
+        <member name="T:Ximura.Data.XimuraContentIDAttribute">
+            <summary>
+            The XimuraContentTypeID attribute uniquely identifies a content type. This is useful
+            as it allows the Ximura to identify different content implementations within the system.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.XimuraContentIDAttribute.#ctor(System.String)">
+            <summary>
+            The attribute constructor.
+            </summary>
+            <param name="ContentID">The content GUID string.</param>
+        </member>
+        <member name="M:Ximura.Data.XimuraContentIDAttribute.#ctor(System.String,System.String)">
+            <summary>
+            The attribute constructor.
+            </summary>
+            <param name="ContentID">The content GUID string.</param>
+            <param name="ContentDescription">The content description.</param>
+        </member>
+        <member name="M:Ximura.Data.XimuraContentIDAttribute.#ctor(System.String,Ximura.Data.XimuraEntityType)">
+            <summary>
+            The attribute constructor.
+            </summary>
+            <param name="ContentID">The content GUID string.</param>
+            <param name="entityType">The entity type. This specifies whether the content is an
+            entity in its own right, or just a fragment of a bigger entity. This is useful for caching
+            purposes.</param>
+        </member>
+        <member name="M:Ximura.Data.XimuraContentIDAttribute.#ctor(System.String,System.String,Ximura.Data.XimuraEntityType)">
+            <summary>
+            The attribute constructor.
+            </summary>
+            <param name="ContentID">The content GUID string.</param>
+            <param name="ContentDescription">The content description.</param>
+            <param name="entityType">The entity type. This specifies whether the content is an
+            entity in its own right, or just a fragment of a bigger entity. This is useful for caching
+            purposes.</param>
+        </member>
+        <member name="P:Ximura.Data.XimuraContentIDAttribute.ID">
+            <summary>
+            This is the ID of the content.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.XimuraContentIDAttribute.Description">
+            <summary>
+            This is the description fo the content type. This description may be output during debugging.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.XimuraContentIDAttribute.EntityType">
+            <summary>
+            This is the content type of
+            </summary>
+        </member>
         <member name="T:Ximura.Data.CRLFMatchCollectionState">
             <summary>
             This class matches on CRLF
@@ -1773,61 +1887,10 @@
             <param name="info">The serialization info.</param>
             <param name="context">The serialization context.</param>
         </member>
-        <member name="T:Ximura.Data.XimuraDataContentIDMappingAttribute">
+        <member name="T:Ximura.Data.XimuraDataContentSummaryAttribute">
             <summary>
-            The DataContentIDMappingAttribute is used to map the primary ID of the entity to the relevant field
-            and table in the DataContent collection.
-            </summary>
-        </member>
-        <member name="T:Ximura.Data.XimuraDataContentBaseMappingAttribute">
-            <summary>
-            XimuraDataContentBaseMappingAttribute is the astract class for the DataContent 
-            table mapping attributes.
-            </summary>
-        </member>
-        <member name="F:Ximura.Data.XimuraDataContentBaseMappingAttribute.mTable">
-            <summary>
-            The table.
-            </summary>
-        </member>
-        <member name="F:Ximura.Data.XimuraDataContentBaseMappingAttribute.mField">
-            <summary>
-            The field
-            </summary>
-        </member>
-        <member name="M:Ximura.Data.XimuraDataContentBaseMappingAttribute.#ctor(System.String,System.String)">
-            <summary>
-            This is the primary constructor.
-            </summary>
-            <param name="table">The ID table.</param>
-            <param name="field">The ID field.</param>
-        </member>
-        <member name="P:Ximura.Data.XimuraDataContentBaseMappingAttribute.Table">
-            <summary>
-            This is the dataset table name.
-            </summary>
-        </member>
-        <member name="P:Ximura.Data.XimuraDataContentBaseMappingAttribute.Field">
-            <summary>
-            This is the table field.
-            </summary>
-        </member>
-        <member name="M:Ximura.Data.XimuraDataContentIDMappingAttribute.#ctor(System.String,System.String)">
-            <summary>
-            This is the primary constructor.
-            </summary>
-            <param name="table">The ID primary table.</param>
-            <param name="field">The ID field.</param>
-        </member>
-        <member name="P:Ximura.Data.XimuraDataContentIDMappingAttribute.listenEvents">
-            <summary>
-            This property determines whether the DataContent should signal
-            changes to this table.
-            </summary>
-        </member>
-        <member name="T:Ximura.Data.XimuraDataContentDefaultAttribute">
-            <summary>
-            This attribute is used to define the default content for DataContent.
+            The DataContentSchema attribute is used to specify a data schema for 
+            design time integration.
             </summary>
         </member>
         <member name="T:Ximura.Data.XimuraSchemaAttribute">
@@ -1852,47 +1915,38 @@
             This property resolves the embedded resource and returns it as a byte array.
             </summary>
         </member>
-        <member name="M:Ximura.Data.XimuraDataContentDefaultAttribute.#ctor(System.String)">
+        <member name="M:Ximura.Data.XimuraDataContentSummaryAttribute.#ctor(System.String)">
             <summary>
-            This is the default constructor.
+            This is extended constructor that should be used when you want to 
+            provide a new record.
             </summary>
-            <param name="resPath">The resource path of the default data for the DataContent.</param>
+            <param name="styleSheet">The schema name.</param>
         </member>
-        <member name="M:Ximura.Data.XimuraDataContentDefaultAttribute.#ctor(System.String,System.Boolean)">
+        <member name="M:Ximura.Data.XimuraDataContentSummaryAttribute.#ctor(Ximura.Data.DataContentSummaryType,System.String)">
             <summary>
-            This is the default constructor.
+            This is extended constructor that should be used when you want to 
+            provide a new record.
             </summary>
-            <param name="resPath">The resource path of the default data for the DataContent.</param>
-            <param name="autoLoad">This property specifies if the data should load the default data automatically
-            when the object is first created.</param>
+            <param name="summaryType">The schema name.</param>
+            <param name="styleSheet">The name of the default content.</param>
         </member>
-        <member name="P:Ximura.Data.XimuraDataContentDefaultAttribute.AutoLoad">
+        <member name="M:Ximura.Data.XimuraDataContentSummaryAttribute.#ctor(Ximura.Data.DataContentSummaryType,System.String,System.String)">
             <summary>
-            This property informs the content on whether it should autoload the default content when the 
-            object is first created.
+            This is extended constructor that should be used when you want to 
+            provide a new record.
             </summary>
+            <param name="summaryType">The schema name.</param>
+            <param name="styleSheet">The name of the default content.</param>
+            <param name="id">The id.</param>
         </member>
-        <member name="T:Ximura.Data.XimuraContentSerializationAttribute">
+        <member name="P:Ximura.Data.XimuraDataContentSummaryAttribute.Id">
             <summary>
-            This attribute can be used to specify a specific formatter 
-            for a content class serialization.
-            </summary>
-        </member>
-        <member name="M:Ximura.Data.XimuraContentSerializationAttribute.#ctor(System.String)">
-            <summary>
-            This is the default constructor for the class.
-            </summary>
-            <param name="serializer">The serializer formatter.</param>
-        </member>
-        <member name="P:Ximura.Data.XimuraContentSerializationAttribute.FormatterName">
-            <summary>
-            This is the name of the formatter.
+            This is the schema name for the DataContent object.
             </summary>
         </member>
-        <member name="P:Ximura.Data.XimuraContentSerializationAttribute.Formatter">
+        <member name="P:Ximura.Data.XimuraDataContentSummaryAttribute.SummaryType">
             <summary>
-            This is the formatter for the specific attribute. This formatter
-            is taken from the flywight threadpool for formatters.
+            The new record content location.
             </summary>
         </member>
         <member name="T:Ximura.Data.FragmentTerminationType">
@@ -2115,6 +2169,48 @@
             This is the Uri of the external path.
             </summary>
         </member>
+        <member name="T:Ximura.Data.XimuraDataContentIDMappingAttribute">
+            <summary>
+            The DataContentIDMappingAttribute is used to map the primary ID of the entity to the relevant field
+            and table in the DataContent collection.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.XimuraDataContentIDMappingAttribute.#ctor(System.String,System.String)">
+            <summary>
+            This is the primary constructor.
+            </summary>
+            <param name="table">The ID primary table.</param>
+            <param name="field">The ID field.</param>
+        </member>
+        <member name="P:Ximura.Data.XimuraDataContentIDMappingAttribute.listenEvents">
+            <summary>
+            This property determines whether the DataContent should signal
+            changes to this table.
+            </summary>
+        </member>
+        <member name="T:Ximura.Data.XimuraContentSerializationAttribute">
+            <summary>
+            This attribute can be used to specify a specific formatter 
+            for a content class serialization.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.XimuraContentSerializationAttribute.#ctor(System.String)">
+            <summary>
+            This is the default constructor for the class.
+            </summary>
+            <param name="serializer">The serializer formatter.</param>
+        </member>
+        <member name="P:Ximura.Data.XimuraContentSerializationAttribute.FormatterName">
+            <summary>
+            This is the name of the formatter.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.XimuraContentSerializationAttribute.Formatter">
+            <summary>
+            This is the formatter for the specific attribute. This formatter
+            is taken from the flywight threadpool for formatters.
+            </summary>
+        </member>
         <member name="T:Ximura.Data.ArrayHelper">
             <summary>
             This static class provides a number of extension method for array objects.
@@ -2279,6 +2375,31 @@
         <member name="T:Ximura.Data.DataChangeEventArgs">
             <summary>
             DataChangedEventArgs is used to transmit data change details..
+            </summary>
+        </member>
+        <member name="T:Ximura.Data.XimuraDataContentDefaultAttribute">
+            <summary>
+            This attribute is used to define the default content for DataContent.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.XimuraDataContentDefaultAttribute.#ctor(System.String)">
+            <summary>
+            This is the default constructor.
+            </summary>
+            <param name="resPath">The resource path of the default data for the DataContent.</param>
+        </member>
+        <member name="M:Ximura.Data.XimuraDataContentDefaultAttribute.#ctor(System.String,System.Boolean)">
+            <summary>
+            This is the default constructor.
+            </summary>
+            <param name="resPath">The resource path of the default data for the DataContent.</param>
+            <param name="autoLoad">This property specifies if the data should load the default data automatically
+            when the object is first created.</param>
+        </member>
+        <member name="P:Ximura.Data.XimuraDataContentDefaultAttribute.AutoLoad">
+            <summary>
+            This property informs the content on whether it should autoload the default content when the 
+            object is first created.
             </summary>
         </member>
         <member name="T:Ximura.Data.MaxSizeMessageException">
@@ -2604,20 +2725,6 @@
             <param name="info">The serialization info.</param>
             <param name="context">The serialization context.</param>
         </member>
-        <member name="T:Ximura.Data.XimuraDataContentSchemaAttribute">
-            <summary>
-            The DataContentSchema attribute is used to specify a data schema for 
-            design time integration.
-            </summary>
-        </member>
-        <member name="M:Ximura.Data.XimuraDataContentSchemaAttribute.#ctor(System.String,System.String)">
-            <summary>
-            This is extended constructor that should be used when you want to 
-            provide a new record.
-            </summary>
-            <param name="schemaName">The schema name.</param>
-            <param name="dataName">The name of the default content.</param>
-        </member>
         <member name="T:Ximura.Data.Message">
             <summary>
             The message contect class is used to receive data using specific byte markers.
@@ -2840,6 +2947,20 @@
             Identifies when there is a match.
             </summary>
         </member>
+        <member name="T:Ximura.Data.XimuraDataContentSchemaAttribute">
+            <summary>
+            The DataContentSchema attribute is used to specify a data schema for 
+            design time integration.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.XimuraDataContentSchemaAttribute.#ctor(System.String,System.String)">
+            <summary>
+            This is extended constructor that should be used when you want to 
+            provide a new record.
+            </summary>
+            <param name="schemaName">The schema name.</param>
+            <param name="dataName">The name of the default content.</param>
+        </member>
         <member name="T:Ximura.Data.MessageTerminatorBase">
             <summary>
             This is base class for message termination. This class is used to provide custom termination logic for messages
@@ -3050,19 +3171,6 @@
             The number of carry over bytes in the buffer.
             </summary>
         </member>
-        <member name="T:Ximura.Data.XimuraDataContentVersionMappingAttribute">
-            <summary>
-            The XimuraDataContentVersionMappingAttribute is used to map the version ID of the entity 
-            to the relevant field and table in the DataContent collection.
-            </summary>
-        </member>
-        <member name="M:Ximura.Data.XimuraDataContentVersionMappingAttribute.#ctor(System.String,System.String)">
-            <summary>
-            This is the primary constructor.
-            </summary>
-            <param name="table">The Version ID primary table.</param>
-            <param name="field">The Version ID field.</param>
-        </member>
         <member name="T:Ximura.Data.XimuraCore">
             <summary>
             The ximura core content has the necessary overrides to automatically implement
@@ -3161,74 +3269,6 @@
         <member name="P:Ximura.Data.Serialization.ContentSerializationReaderWriter.BaseStream">
             <summary>
             This is the base stream that will be used when a stream is not specified.
-            </summary>
-        </member>
-        <member name="T:Ximura.Data.XimuraEntityType">
-            <summary>
-            This enumeration specifies the type of content.
-            </summary>
-        </member>
-        <member name="F:Ximura.Data.XimuraEntityType.Entity">
-            <summary>
-            The entity is full content.
-            </summary>
-        </member>
-        <member name="F:Ximura.Data.XimuraEntityType.EntityFragment">
-            <summary>
-            The entity is partial content.
-            </summary>
-        </member>
-        <member name="T:Ximura.Data.XimuraContentIDAttribute">
-            <summary>
-            The XimuraContentTypeID attribute uniquely identifies a content type. This is useful
-            as it allows the Ximura to identify different content implementations within the system.
-            </summary>
-        </member>
-        <member name="M:Ximura.Data.XimuraContentIDAttribute.#ctor(System.String)">
-            <summary>
-            The attribute constructor.
-            </summary>
-            <param name="ContentID">The content GUID string.</param>
-        </member>
-        <member name="M:Ximura.Data.XimuraContentIDAttribute.#ctor(System.String,System.String)">
-            <summary>
-            The attribute constructor.
-            </summary>
-            <param name="ContentID">The content GUID string.</param>
-            <param name="ContentDescription">The content description.</param>
-        </member>
-        <member name="M:Ximura.Data.XimuraContentIDAttribute.#ctor(System.String,Ximura.Data.XimuraEntityType)">
-            <summary>
-            The attribute constructor.
-            </summary>
-            <param name="ContentID">The content GUID string.</param>
-            <param name="entityType">The entity type. This specifies whether the content is an
-            entity in its own right, or just a fragment of a bigger entity. This is useful for caching
-            purposes.</param>
-        </member>
-        <member name="M:Ximura.Data.XimuraContentIDAttribute.#ctor(System.String,System.String,Ximura.Data.XimuraEntityType)">
-            <summary>
-            The attribute constructor.
-            </summary>
-            <param name="ContentID">The content GUID string.</param>
-            <param name="ContentDescription">The content description.</param>
-            <param name="entityType">The entity type. This specifies whether the content is an
-            entity in its own right, or just a fragment of a bigger entity. This is useful for caching
-            purposes.</param>
-        </member>
-        <member name="P:Ximura.Data.XimuraContentIDAttribute.ID">
-            <summary>
-            This is the ID of the content.
-            </summary>
-        </member>
-        <member name="P:Ximura.Data.XimuraContentIDAttribute.Description">
-            <summary>
-            This is the description fo the content type. This description may be output during debugging.
-            </summary>
-        </member>
-        <member name="P:Ximura.Data.XimuraContentIDAttribute.EntityType">
-            <summary>
-            This is the content type of
             </summary>
         </member>
         <member name="T:Ximura.Data.AtomTextType">
@@ -3600,39 +3640,6 @@
             <param name="info">The serialization info.</param>
             <param name="context">The context.</param>
         </member>
-        <member name="T:Ximura.Data.XimuraDataContentFragmentAttribute">
-            <summary>
-            Summary description for XimuraDataContentFragmentAttribute.
-            </summary>
-        </member>
-        <member name="M:Ximura.Data.XimuraDataContentFragmentAttribute.#ctor">
-            <summary>
-            This is the default constructor.
-            </summary>
-        </member>
-        <member name="T:Ximura.Data.XimuraContentReferenceAttribute">
-            <summary>
-            The XimuraContentReference attribute uniquely identifies a content. This is useful
-            as it allows the Ximura to identify different content implementations within the system.
-            </summary>
-        </member>
-        <member name="M:Ximura.Data.XimuraContentReferenceAttribute.#ctor(System.String,System.String)">
-            <summary>
-            The attribute constructor.
-            </summary>
-            <param name="ReferenceType">The Reference Type string.</param>
-            <param name="ReferenceField">The Reference Field string.</param>
-        </member>
-        <member name="P:Ximura.Data.XimuraContentReferenceAttribute.ReferenceType">
-            <summary>
-            This is the Reference Type of the content.
-            </summary>
-        </member>
-        <member name="P:Ximura.Data.XimuraContentReferenceAttribute.ReferenceField">
-            <summary>
-            This is the Reference Field use for reference which field reflecting the Reference Value.
-            </summary>
-        </member>
         <member name="T:Ximura.Data.MessageCRLFFragment">
             <summary>
             This is the default CRLF fragment that does not support folding.
@@ -3641,6 +3648,29 @@
         <member name="M:Ximura.Data.MessageCRLFFragment.#ctor">
             <summary>
             The default constructor
+            </summary>
+        </member>
+        <member name="T:Ximura.Data.XimuraContentTypeIDAttribute">
+            <summary>
+            The XimuraContentTypeID attribute uniquely identifies a content type. This is useful
+            as it allows the Ximura to identify different content implementations within the system.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.XimuraContentTypeIDAttribute.#ctor(System.String)">
+            <summary>
+            The attribute constructor.
+            </summary>
+            <param name="ContentID">The content GUID string.</param>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Ximura.Data.XimuraContentTypeIDAttribute.#ctor(System.String,System.String)" -->
+        <member name="P:Ximura.Data.XimuraContentTypeIDAttribute.ID">
+            <summary>
+            This is the ID of the content.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.XimuraContentTypeIDAttribute.Description">
+            <summary>
+            This is the description fo the content type. This description may be output during debugging.
             </summary>
         </member>
         <!-- Badly formed XML comment ignored for member "T:Ximura.Data.AtomFeed" -->
@@ -3704,53 +3734,14 @@
             This override sets the default namespace to "r"
             </summary>
         </member>
-        <member name="T:Ximura.Data.ContentCacheOptions">
+        <member name="T:Ximura.Data.XimuraDataContentFragmentAttribute">
             <summary>
-            Summary description for ContentAttributes.
+            Summary description for XimuraDataContentFragmentAttribute.
             </summary>
         </member>
-        <member name="F:Ximura.Data.ContentCacheOptions.Cacheable">
-            <summary>
-            The content object is always cacheable
-            </summary>
-        </member>
-        <member name="F:Ximura.Data.ContentCacheOptions.VersionCheck">
-            <summary>
-            Each individual content object should be polled to check the cache status.
-            </summary>
-        </member>
-        <member name="F:Ximura.Data.ContentCacheOptions.CannotCache">
-            <summary>
-            The content cannot be cached under any circumstances.
-            </summary>
-        </member>
-        <member name="T:Ximura.Data.XimuraContentCachePolicyAttribute">
-            <summary>
-            This attribute sets the cache metadata properties for particular content objects.
-            </summary>
-        </member>
-        <member name="M:Ximura.Data.XimuraContentCachePolicyAttribute.#ctor(Ximura.Data.ContentCacheOptions)">
+        <member name="M:Ximura.Data.XimuraDataContentFragmentAttribute.#ctor">
             <summary>
             This is the default constructor.
-            </summary>
-            <param name="CacheStyle">The cache policy for the content object.</param>
-        </member>
-        <member name="M:Ximura.Data.XimuraContentCachePolicyAttribute.#ctor(Ximura.Data.ContentCacheOptions,System.Int32)">
-            <summary>
-            This is the default constructor.
-            </summary>
-            <param name="CacheStyle">The cache policy for the content object.</param>
-            <param name="TimeOut">The time out in seconds.</param>
-        </member>
-        <member name="P:Ximura.Data.XimuraContentCachePolicyAttribute.CacheStyle">
-            <summary>
-            This is cache policy.
-            </summary>
-        </member>
-        <member name="P:Ximura.Data.XimuraContentCachePolicyAttribute.TimeOut">
-            <summary>
-            This is the time in seconds that the item can remain in the cache
-            without expiring, or being version checked against the CDS.
             </summary>
         </member>
         <!-- Badly formed XML comment ignored for member "T:Ximura.Data.AtomEntry" -->
@@ -3845,29 +3836,6 @@
             The published date
             </summary>
         </member>
-        <member name="T:Ximura.Data.XimuraContentTypeIDAttribute">
-            <summary>
-            The XimuraContentTypeID attribute uniquely identifies a content type. This is useful
-            as it allows the Ximura to identify different content implementations within the system.
-            </summary>
-        </member>
-        <member name="M:Ximura.Data.XimuraContentTypeIDAttribute.#ctor(System.String)">
-            <summary>
-            The attribute constructor.
-            </summary>
-            <param name="ContentID">The content GUID string.</param>
-        </member>
-        <!-- Badly formed XML comment ignored for member "M:Ximura.Data.XimuraContentTypeIDAttribute.#ctor(System.String,System.String)" -->
-        <member name="P:Ximura.Data.XimuraContentTypeIDAttribute.ID">
-            <summary>
-            This is the ID of the content.
-            </summary>
-        </member>
-        <member name="P:Ximura.Data.XimuraContentTypeIDAttribute.Description">
-            <summary>
-            This is the description fo the content type. This description may be output during debugging.
-            </summary>
-        </member>
         <member name="T:Ximura.Server.IXimuraDataEntityServer">
             <summary>
             IXimuraDataEntityServer is used by DataContent Entities to load
@@ -3888,6 +3856,55 @@
             content in the model folder.
             </summary>
             <param name="item">The DataContent Entity to link.</param>
+        </member>
+        <member name="T:Ximura.Data.ContentCacheOptions">
+            <summary>
+            Summary description for ContentAttributes.
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.ContentCacheOptions.Cacheable">
+            <summary>
+            The content object is always cacheable
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.ContentCacheOptions.VersionCheck">
+            <summary>
+            Each individual content object should be polled to check the cache status.
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.ContentCacheOptions.CannotCache">
+            <summary>
+            The content cannot be cached under any circumstances.
+            </summary>
+        </member>
+        <member name="T:Ximura.Data.XimuraContentCachePolicyAttribute">
+            <summary>
+            This attribute sets the cache metadata properties for particular content objects.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.XimuraContentCachePolicyAttribute.#ctor(Ximura.Data.ContentCacheOptions)">
+            <summary>
+            This is the default constructor.
+            </summary>
+            <param name="CacheStyle">The cache policy for the content object.</param>
+        </member>
+        <member name="M:Ximura.Data.XimuraContentCachePolicyAttribute.#ctor(Ximura.Data.ContentCacheOptions,System.Int32)">
+            <summary>
+            This is the default constructor.
+            </summary>
+            <param name="CacheStyle">The cache policy for the content object.</param>
+            <param name="TimeOut">The time out in seconds.</param>
+        </member>
+        <member name="P:Ximura.Data.XimuraContentCachePolicyAttribute.CacheStyle">
+            <summary>
+            This is cache policy.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.XimuraContentCachePolicyAttribute.TimeOut">
+            <summary>
+            This is the time in seconds that the item can remain in the cache
+            without expiring, or being version checked against the CDS.
+            </summary>
         </member>
         <member name="T:Ximura.Data.MessageTerminatorCRLFFolding">
             <summary>
@@ -4037,44 +4054,27 @@
             <param name="info">The serialization info.</param>
             <param name="context">The context.</param>
         </member>
-        <member name="T:Ximura.Data.XimuraDataContentSummaryAttribute">
+        <member name="T:Ximura.Data.XimuraContentReferenceAttribute">
             <summary>
-            The DataContentSchema attribute is used to specify a data schema for 
-            design time integration.
+            The XimuraContentReference attribute uniquely identifies a content. This is useful
+            as it allows the Ximura to identify different content implementations within the system.
             </summary>
         </member>
-        <member name="M:Ximura.Data.XimuraDataContentSummaryAttribute.#ctor(System.String)">
+        <member name="M:Ximura.Data.XimuraContentReferenceAttribute.#ctor(System.String,System.String)">
             <summary>
-            This is extended constructor that should be used when you want to 
-            provide a new record.
+            The attribute constructor.
             </summary>
-            <param name="styleSheet">The schema name.</param>
+            <param name="ReferenceType">The Reference Type string.</param>
+            <param name="ReferenceField">The Reference Field string.</param>
         </member>
-        <member name="M:Ximura.Data.XimuraDataContentSummaryAttribute.#ctor(Ximura.Data.DataContentSummaryType,System.String)">
+        <member name="P:Ximura.Data.XimuraContentReferenceAttribute.ReferenceType">
             <summary>
-            This is extended constructor that should be used when you want to 
-            provide a new record.
-            </summary>
-            <param name="summaryType">The schema name.</param>
-            <param name="styleSheet">The name of the default content.</param>
-        </member>
-        <member name="M:Ximura.Data.XimuraDataContentSummaryAttribute.#ctor(Ximura.Data.DataContentSummaryType,System.String,System.String)">
-            <summary>
-            This is extended constructor that should be used when you want to 
-            provide a new record.
-            </summary>
-            <param name="summaryType">The schema name.</param>
-            <param name="styleSheet">The name of the default content.</param>
-            <param name="id">The id.</param>
-        </member>
-        <member name="P:Ximura.Data.XimuraDataContentSummaryAttribute.Id">
-            <summary>
-            This is the schema name for the DataContent object.
+            This is the Reference Type of the content.
             </summary>
         </member>
-        <member name="P:Ximura.Data.XimuraDataContentSummaryAttribute.SummaryType">
+        <member name="P:Ximura.Data.XimuraContentReferenceAttribute.ReferenceField">
             <summary>
-            The new record content location.
+            This is the Reference Field use for reference which field reflecting the Reference Value.
             </summary>
         </member>
     </members>
