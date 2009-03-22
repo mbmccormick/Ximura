@@ -435,7 +435,6 @@ namespace Ximura
 		/// </summary>
 		/// <param name="action">The action required</param>
 		/// <param name="components">The components to which the action should be provided</param>
-		/// <param name="componentType">The component type.</param>
         public virtual void ComponentsStatusChange(XimuraServiceStatusAction action, 
 			ICollection components)
 		{

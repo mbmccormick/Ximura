@@ -22,8 +22,15 @@ namespace Ximura
     /// </summary>
     public interface IXimuraPerformanceManager
     {
+        /// <summary>
+        /// This method registers a performance counter will the application.
+        /// </summary>
+        /// <param name="collection">The counter collection to register.</param>
         void PerformanceCounterCollectionRegister(IXimuraPerformanceCounterCollection collection);
-
+        /// <summary>
+        /// This method removes a performance counter collection from the application.
+        /// </summary>
+        /// <param name="collection"></param>
         void PerformanceCounterCollectionUnregister(IXimuraPerformanceCounterCollection collection);
     }
 }

@@ -25,6 +25,9 @@ using CH = Ximura.Helper.Common;
 #endregion
 namespace Ximura.Data
 {
+    /// <summary>
+    /// The message fragment class is the base class for message based communication.
+    /// </summary>
     public class MessageFragment : MessageFragment<IXimuraMessageTermination>
     {
         #region Constructor
@@ -37,17 +40,23 @@ namespace Ximura.Data
         }
         #endregion
 
+        #region ResetTerminator()
+        /// <summary>
+        /// The method resets the terminator and returns it to the pool.
+        /// </summary>
         protected override void ResetTerminator()
         {
             if (mTerminator != null && mTerminator.ObjectPoolCanReturn)
                 mTerminator.ObjectPoolReturn();
 
             mTerminator = null;
-        }
+        } 
+        #endregion
     }
     /// <summary>
     /// This is the base fragment class that implements fragment functionality.
     /// </summary>
+    /// <typeparam name="TERM">The termination class.</typeparam>
     public class MessageFragment<TERM> : MessageStreamBase, IXimuraMessage, IXimuraMessageLoadData<TERM>, IXimuraPoolManagerDirectAccess
         where TERM: class, IXimuraMessageTermination
     {
@@ -514,7 +523,7 @@ namespace Ximura.Data
         /// <summary>
         /// This method outputs the current byte array.
         /// </summary>
-        /// <param name="Copy">The boolean value should be set to true if you require a copy 
+        /// <param name="copy">The boolean value should be set to true if you require a copy 
         /// of the internal array, or the actual array.</param>
         /// <returns>Returns a byte array.</returns>
         public virtual byte[] ToArray(bool copy)

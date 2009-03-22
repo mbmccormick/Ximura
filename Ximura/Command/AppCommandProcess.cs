@@ -431,7 +431,7 @@ namespace Ximura.Command
         /// <summary>
         /// This method can be used to initiate a callback.
         /// </summary>
-        /// <param name="subCommand">The subcommand.</param>
+        /// <param name="job">The timer poll job.</param>
         /// <param name="callback">The callback delegate.</param>
         protected virtual void TimerHelperAsyncSelfCall(TimerPollJob job, CommandRSCallback callback)
         {
@@ -440,7 +440,7 @@ namespace Ximura.Command
         /// <summary>
         /// This method can be used to initiate a callback.
         /// </summary>
-        /// <param name="subCommand">The subcommand.</param>
+        /// <param name="job">The timer poll job.</param>
         /// <param name="callback">The callback delegate.</param>
         /// <param name="priority">The request priority.</param>
         /// <param name="rqFormat">The delegate used to format the request. This parameter can be null.</param>

@@ -9731,7 +9731,13 @@
             <param name="GrowthFactor">The growth factor.</param>
         </member>
         <!-- Badly formed XML comment ignored for member "M:Ximura.Server.DispatcherJobPriorityQueueList.Push(System.Guid,Ximura.JobPriority,System.TimeSpan)" -->
-        <!-- Badly formed XML comment ignored for member "M:Ximura.Server.DispatcherJobPriorityQueueList.Push(Ximura.Server.JobPriorityRecord)" -->
+        <member name="M:Ximura.Server.DispatcherJobPriorityQueueList.Push(Ximura.Server.JobPriorityRecord)">
+            <sumary>
+            This method pushes a new item onto the queue.
+            </sumary>
+            <param name="newJob">The job to be inserted in to the queue</param>
+            <returns>The job position.</returns>
+        </member>
         <member name="M:Ximura.Server.DispatcherJobPriorityQueueList.GetExpiredJobs(System.Boolean)">
             <summary>
             This method returns the Guids of the expired jobs

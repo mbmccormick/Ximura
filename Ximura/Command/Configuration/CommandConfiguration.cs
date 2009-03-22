@@ -435,7 +435,7 @@ namespace Ximura.Command
                     foreach (XmlElement node in nl)
                         TimerPollJobCreate(jobs, node);
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
 
                 }
