@@ -915,7 +915,7 @@ namespace Ximura.Command
                     .Where(job => job.NextPollTime.HasValue && job.NextPollTime.Value <= DateTime.Now)
                     .ForEach(job => TimerPollJobExecute(job));
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
 

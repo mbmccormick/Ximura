@@ -773,6 +773,7 @@ namespace Ximura.Server
 		/// <param name="ProgressCallback">The request progress delegate. Set this to null if not needed.</param>
 		/// <param name="priority">The request priority.</param>
 		/// <param name="dependencyKey">The dependency key, if this is set to null the key is ignored.</param>
+        /// <param name="ValidateRSCallBack">The delegate should contain the code to validate the callback.</param>
 		/// <returns>The job guid.</returns>
 		public Guid ProcessRequestAsyncWithDependency(Guid jobID, IXimuraRQRSEnvelope data, CommandRSCallback RSCallback, 
 			CommandProgressCallback ProgressCallback, JobPriority priority, string dependencyKey,

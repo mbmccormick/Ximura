@@ -17,6 +17,9 @@ using Ximura.Communication;
 #endregion // using
 namespace Ximura.Communication
 {
+    /// <summary>
+    /// This class holds the Atom publishng protocol service document.
+    /// </summary>
     public class AtomPPServiceDocument: AtomPPBase
     {
         #region Constructor
