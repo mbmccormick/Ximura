@@ -118,7 +118,7 @@ namespace Ximura.Windows
                 //OK, start the services in order.
                 appServerHolders.Start();
             }
-            catch (ServiceStartException ssex)
+            catch (ServiceStartException)
             {
                 AppServerStop();
 

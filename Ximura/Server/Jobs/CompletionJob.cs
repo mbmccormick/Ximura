@@ -994,7 +994,7 @@ namespace Ximura.Server
                 if (oldJob.RSCallback != null)
                     oldJob.RSCallback(sender, args);
             }
-            catch (CompletionJobDependencyException cjdex)
+            catch (CompletionJobDependencyException)
             {
                 //This exception will be fired by the parent if the job was not successful.
                 //We should mark the dependency ID as erroneous and any dependent jobs should be cancelled.

@@ -169,7 +169,7 @@ namespace Ximura.Persistence
                 }
                 return resolved;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //oops
                 return false;

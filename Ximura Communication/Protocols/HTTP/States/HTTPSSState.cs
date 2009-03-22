@@ -60,7 +60,6 @@ namespace Ximura.Communication
         /// This method extracts the request uri from the message.
         /// </summary>
         /// <param name="httpRQ">The internet message.</param>
-        /// <param name="URILocal">The local uri.</param>
         /// <returns>Returns a formatted uri containging the request.</returns>
         protected string ExtractUserAgent(HTTPRequestMessage httpRQ)
         {

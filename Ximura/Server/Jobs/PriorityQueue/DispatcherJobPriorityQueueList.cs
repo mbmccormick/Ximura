@@ -69,7 +69,7 @@ namespace Ximura.Server
         }
         /// <sumary>
         /// This method pushes a new item onto the queue.
-        /// </summary>
+        /// </sumary>
         /// <param name="newJob">The job to be inserted in to the queue</param>
         /// <returns>The job position.</returns>
         public void Push(JobPriorityRecord newJob)

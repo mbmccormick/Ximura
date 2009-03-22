@@ -795,7 +795,7 @@ namespace Ximura.Command
                     }
                 }
             }
-            catch (Exception ex) { }
+            catch (Exception) { }
         }
         #endregion // TimerChange(object state,int dueTime, int period)
 
