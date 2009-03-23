@@ -213,7 +213,7 @@
       <Name>Ximura Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Ximura\Ximura.csproj">
-      <Name>Ximura %28Ximura\Ximura%29</Name>
+      <Name>Ximura</Name>
       <Project>{218ED92E-5D40-40DF-B6A2-11DEF3133589}</Project>
       <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
     </ProjectReference>

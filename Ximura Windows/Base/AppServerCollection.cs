@@ -31,19 +31,14 @@ using AH = Ximura.Helper.AttributeHelper;
 namespace Ximura.Windows
 {
     /// <summary>
-    /// THis class holds the collection of AppServers that will be managed.
+    /// This class holds the collection of AppServers that will be managed.
     /// </summary>
+    [Serializable()]
     public class AppServerCollection : IXimuraService, IEnumerable<AppServerHolder>
     {
         #region Declarations
         List<AppServerHolder> mAppServerHolders = null;
         #endregion // Declarations
-        #region Events
-        /// <summary>
-        /// This event is raised when an unhandled exception is thrown by an AppServer.
-        /// </summary>
-        public event UnhandledExceptionEventHandler UnhandledExceptions;
-        #endregion // EEvents
 
         #region Constructors
         /// <summary>
@@ -67,20 +62,12 @@ namespace Ximura.Windows
                 .ForEach(a =>
                 {
                     AppServerHolder holder = new AppServerHolder(a);
-                    holder.UnhandledException += new UnhandledExceptionEventHandler(holder_UnhandledException);
                     holder.RaiseMessage += new AppServerHolder.RaiseDialogMessage(AppServerHolder_RaiseMessage);
                     mAppServerHolders.Add(holder);
                 });
 
             ServiceStatus = XimuraServiceStatus.NotStarted;
         }
-
-        void holder_UnhandledException(object sender, UnhandledExceptionEventArgs e)
-        {
-            if (UnhandledExceptions != null)
-                UnhandledExceptions(sender, e);
-        }
-
         #endregion // Constructors
 
         MessageBoxResult AppServerHolder_RaiseMessage(AppServerHolder sender, string message, string title, MessageBoxButton options)

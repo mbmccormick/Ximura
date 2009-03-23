@@ -228,7 +228,7 @@
     </ProjectReference>
     <ProjectReference Include="..\..\Ximura\Ximura.csproj">
       <Project>{218ED92E-5D40-40DF-B6A2-11DEF3133589}</Project>
-      <Name>Ximura %28Ximura\Ximura%29</Name>
+      <Name>Ximura</Name>
     </ProjectReference>
     <ProjectReference Include="..\Base\Ximura Windows Base.csproj">
       <Project>{6AB7C1E0-3CCE-47AA-8CB1-583A3368C10F}</Project>
