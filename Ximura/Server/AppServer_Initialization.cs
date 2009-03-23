@@ -41,11 +41,11 @@ namespace Ximura.Server
 {
     public partial class AppServer<CONFSYS, CONFCOM, PERF>
     {
-        #region ServerComponentsCreate()
+        #region ServerComponentsInitialize()
         /// <summary>
         /// This method is used to create the server components.
         /// </summary>
-        protected virtual void ServerComponentsCreate()
+        protected virtual void ServerComponentsInitialize()
         {
             //Create the control containers for the server components.
             ControlContainerCreate();
@@ -54,6 +54,18 @@ namespace Ximura.Server
 
             //This method adds the application specific services that identify the application to its components.
             ApplicationServicesStart();
+
+            ConfigurationInitialize();
+
+            LoggingCreate();
+
+            PerformanceCreate();
+
+            StorageCreate();
+
+            SessionManagerCreate();
+
+            GatewayCreate();
         }
         #endregion // InitializeServerComponents()
         #region ServerComponentsDispose()
@@ -62,6 +74,16 @@ namespace Ximura.Server
         /// </summary>
         protected virtual void ServerComponentsDispose()
         {
+            GatewayDispose();
+
+            SessionManagerDispose();
+            
+            StorageDispose();
+
+            PerformanceDispose();
+
+            LoggingDispose();
+
             ApplicationServicesStop();
 
             PoolManagerDispose();

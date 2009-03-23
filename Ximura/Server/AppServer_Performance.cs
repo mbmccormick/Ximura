@@ -86,8 +86,6 @@ namespace Ximura.Server
         /// </summary>
         protected virtual void PerformanceDispose()
         {
-            AgentsRemove<XimuraAppServerPerformanceAgentAttribute>(PerformanceAgentsDefault, PerformanceService);
-
             PerformanceService = null;
         }
         #endregion // PerformanceDispose()

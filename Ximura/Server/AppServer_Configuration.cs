@@ -64,6 +64,15 @@ namespace Ximura.Server
         }
         #endregion // ConfigurationAttributesGet()
 
+
+        protected virtual void ConfigurationInitialize()
+        {
+            //Get the server configuration attributes.
+            ConfigurationAttributesGet();
+
+
+        }
+
         #region ConfigurationStart()
         /// <summary>
         /// This protected method checks whether the configuration service is active, 
@@ -71,8 +80,6 @@ namespace Ximura.Server
         /// </summary>
         protected override bool ConfigurationStart()
         {
-            //Get the server configuration attributes.
-            ConfigurationAttributesGet();
 
             //Create the system configuration
             ConfigurationSystem = new CONFSYS();

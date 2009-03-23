@@ -52,6 +52,10 @@ namespace Ximura.Server
         }
         #endregion // Logging
 
+        #region LoggingCreate()
+        /// <summary>
+        /// This method creates the logging manager.
+        /// </summary>
         protected virtual void LoggingCreate()
         {
             LoggingService = new LoggingManager(ControlContainer);
@@ -59,15 +63,19 @@ namespace Ximura.Server
             //Add the loggers.
             AgentsAdd<XimuraAppServerLoggerAttribute>(LoggersDefault, LoggingService);
         }
-
+        #endregion // LoggingCreate()
+        #region LoggingDispose()
+        /// <summary>
+        /// This method disposes the logging manager and closes the XimuraAppTrace static object.
+        /// </summary>
         protected virtual void LoggingDispose()
         {
-            //Remove the loggers.
-            AgentsRemove<XimuraAppServerLoggerAttribute>(LoggersDefault, LoggingService);
-
-            //XimuraAppTrace.Close();
             XimuraAppTrace.Close();
+
+            LoggingService.Dispose();
+            LoggingService = null;
         }
+        #endregion // LoggingDispose()
 
         #region LoggingStart()
         /// <summary>

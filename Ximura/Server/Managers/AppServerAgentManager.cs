@@ -70,7 +70,7 @@ namespace Ximura.Server
         }
         #endregion
 
-        #region AgentAdd/AgentRemove
+        #region AgentAdd
         /// <summary>
         /// This method creates an agent based on the type passed in the holder and adds it to the agent collection.
         /// </summary>
@@ -89,20 +89,6 @@ namespace Ximura.Server
         public virtual void AgentAdd(AGENT agent, string id)
         {
             mAgents.Add(id, agent);
-        }
-        /// <summary>
-        /// This method removes the agent from the service.
-        /// </summary>
-        /// <param name="holder">The agent metadata holder.</param>
-        public virtual void AgentRemove(XimuraServerAgentHolder holder)
-        {
-            if (mAgents.ContainsKey(holder.AgentID))
-            {
-                mAgents.Remove(holder.AgentID);
-                return;
-            }
-
-            throw new NotSupportedException();
         }
         #endregion
 

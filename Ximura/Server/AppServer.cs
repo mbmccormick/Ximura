@@ -84,7 +84,7 @@ namespace Ximura.Server
         public AppServer(IContainer container)
             : base(container)
         {
-            ServerComponentsCreate();
+            ServerComponentsInitialize();
 
             InitializeComponents();
 
@@ -242,21 +242,6 @@ namespace Ximura.Server
                 .ForEach(a => Service.AgentAdd(a));
         }
         #endregion // AgentsAdd<A>
-        #region AgentsRemove<A>
-        /// <summary>
-        /// This method is used to remove a collection of agent holders from a particular service.
-        /// </summary>
-        /// <typeparam name="A">The agent attribute type.</typeparam>
-        /// <param name="AgentsDefault">The default agent collection.</param>
-        /// <param name="Service">The service to remove the agent holder from.</param>
-        protected virtual void AgentsRemove<A>(IEnumerable<XimuraServerAgentHolder> AgentsDefault, IXimuraAppServerAgentService Service)
-            where A : XimuraAppServerAgentAttributeBase
-        {
-            AgentsDefault
-                .Union(AH.GetAttributes<A>(GetType()).Select(t => t.Agent))
-                .Reverse()
-                .ForEach(a => Service.AgentRemove(a));
-        }
-        #endregion // AgentsRemove<A>
+
     }
 }

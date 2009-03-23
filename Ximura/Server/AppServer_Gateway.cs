@@ -58,10 +58,10 @@ namespace Ximura.Server
         /// </summary>
         public virtual void GatewayCreate()
         {
-            StorageService = new StorageManager(ControlContainer);
+            GatewayService = new GatewayManager(ControlContainer);
 
             //Add the storage agents.
-            AgentsAdd<XimuraAppServerGatewayAttribute>(StorageDefault, StorageService);
+            AgentsAdd<XimuraAppServerGatewayAttribute>(GatewayDefault, GatewayService);
         }
         #endregion // GatewayCreate()
         #region GatewayDispose()
@@ -70,9 +70,6 @@ namespace Ximura.Server
         /// </summary>
         public virtual void GatewayDispose()
         {
-            //Remove the loggers.
-            AgentsRemove<XimuraAppServerGatewayAttribute>(GatewayDefault, GatewayService);
-
             StorageService.Dispose();
         }
         #endregion // GatewayDispose()

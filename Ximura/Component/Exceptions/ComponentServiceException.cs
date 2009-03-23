@@ -36,6 +36,7 @@ namespace Ximura
     /// <summary>
     /// This exception is thrown when an error is encountered during the component status change event.
     /// </summary>
+    [Serializable()]
     public class XimuraComponentServiceException: XimuraException
     {
 		/// <summary>

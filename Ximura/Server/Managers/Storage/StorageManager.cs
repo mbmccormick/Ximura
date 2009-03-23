@@ -31,6 +31,11 @@ using Ximura.Command;
 #endregion // using
 namespace Ximura.Server
 {
+    /// <summary>
+    /// The storage manager is responsible for managing persistence data for the application. This can be something as simple as a set of SQL connection strings,
+    /// or more complicated such as the storage loaction and backup of central files. The manager is implemented to abstract the 
+    /// relationship between the application and the physical data store.
+    /// </summary>
     [XimuraAppModule("834F904B-21B2-4721-ACCA-F2B3D67FF311", "StorageManager")]
     public class StorageManager : 
         AppServerAgentManager<StorageAgentBase, StorageManagerConfiguration, StorageManagerPerformance>, IXimuraStorageManagerService

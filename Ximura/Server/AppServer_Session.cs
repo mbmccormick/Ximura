@@ -41,7 +41,14 @@ namespace Ximura.Server
 {
     public partial class AppServer<CONFSYS, CONFCOM, PERF>
     {
-        #region Sessions
+        #region Declarations
+        /// <summary>
+        /// This dictionary holds the session tokens.
+        /// </summary>
+        protected Dictionary<Guid, SessionToken> mSessionTokens;
+        #endregion // Declarations
+
+        #region SessionService
         /// <summary>
         /// This is the session manager for the application.
         /// </summary>
@@ -52,12 +59,47 @@ namespace Ximura.Server
         }
         #endregion // Sessions
 
-        #region Declarations
+        #region SessionManagerCreate()
         /// <summary>
-        /// This dictionary holds the session tokens.
+        /// This method creates the session manager and adds the session agents.
         /// </summary>
-        protected Dictionary<Guid, SessionToken> mSessionTokens;
-        #endregion // Declarations
+        protected virtual void SessionManagerCreate()
+        {
+            SessionService = new SessionManager(ControlContainer);
+            AgentsAdd<XimuraSessionManagerAttribute>(SessionAgentsDefault, SessionService);
+        }
+        #endregion // SessionCreate()
+        #region SessionManagerDispose()
+        /// <summary>
+        /// This method disposes of the session manager and its agents.
+        /// </summary>
+        protected virtual void SessionManagerDispose()
+        {
+            SessionService.Dispose();
+            SessionService = null;
+        }
+        #endregion // SessionDispose()
+
+        #region SessionManagerStart()
+        /// <summary>
+        /// This method starts the session managers, and related services.
+        /// </summary>
+        protected virtual void SessionManagerStart()
+        {
+            mSessionTokens = new Dictionary<Guid, SessionToken>();
+
+            SessionService.Start();
+        }
+        #endregion // SessionManagersStart()
+        #region SessionManagerStop()
+        /// <summary>
+        /// This method stops the session managers and related services.
+        /// </summary>
+        protected virtual void SessionManagerStop()
+        {
+            mSessionTokens.Clear();
+        }
+        #endregion // SessionManagersStop()
 
         #region SessionAgentsDefault
         /// <summary>
@@ -72,31 +114,6 @@ namespace Ximura.Server
             }
         }
         #endregion // SessionManagersDefault
-
-        #region SessionManagerStart()
-        /// <summary>
-        /// This method starts the session managers, and related services.
-        /// </summary>
-        protected virtual void SessionManagerStart()
-        {
-            mSessionTokens = new Dictionary<Guid, SessionToken>();
-            SessionService = new SessionManager(ControlContainer);
-            AgentsAdd<XimuraSessionManagerAttribute>(SessionAgentsDefault, SessionService);
-
-            SessionService.Start();
-        }
-        #endregion // SessionManagersStart()
-        #region SessionManagerStop()
-        /// <summary>
-        /// This method stops the session managers and related services.
-        /// </summary>
-        protected virtual void SessionManagerStop()
-        {
-            AgentsRemove<XimuraSessionManagerAttribute>(SessionAgentsDefault, SessionService);
-
-            mSessionTokens.Clear();
-        }
-        #endregion // SessionManagersStop()
 
         #region SessionManagerAction
         /// <summary>
@@ -202,7 +219,5 @@ namespace Ximura.Server
             return null;// mSessionManagers.Values.Single().CreateSession(domain, username);
         }
         #endregion // internalCreateRemote
-
-
     }
 }

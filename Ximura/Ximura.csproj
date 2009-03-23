@@ -918,6 +918,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Server\Managers\Gateway\Agents\" />
+    <Folder Include="Server\Managers\Pool\" />
     <Folder Include="Server\Managers\Session\Agents\Configuration\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

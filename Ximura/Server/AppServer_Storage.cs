@@ -59,7 +59,6 @@ namespace Ximura.Server
         protected virtual void StorageCreate()
         {
             StorageService = new StorageManager(ControlContainer);
-
             //Add the storage agents.
             AgentsAdd<XimuraAppServerStorageAttribute>(StorageDefault, StorageService);
         }
@@ -70,9 +69,6 @@ namespace Ximura.Server
         /// </summary>
         protected virtual void StorageDispose()
         {
-            //Remove the loggers.
-            AgentsRemove<XimuraAppServerStorageAttribute>(StorageDefault, StorageService);
-
             StorageService.Dispose();
             StorageService = null;
         }
