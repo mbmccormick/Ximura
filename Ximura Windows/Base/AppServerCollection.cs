@@ -39,21 +39,29 @@ namespace Ximura.Windows
         #region Declarations
         List<AppServerHolder> mAppServerHolders = null;
         #endregion // Declarations
+        #region Events
+        /// <summary>
+        /// This event is used to attach a message dialog provider for dialog prompts.
+        /// </summary>
+        public event RaiseDialogMessage RaiseMessage;
+        #endregion // Events
 
         #region Constructors
         /// <summary>
-        /// This constructor passes the 
+        /// This constructor accepts a class type. The class should contain a collection of  AppServerAttributes, so that the collection
+        /// can initialize them in turn.
         /// </summary>
-        /// <param name="baseType"></param>
+        /// <param name="baseType">The class type.</param>
         public AppServerCollection(Type baseType): this(AH.GetAttributes<AppServerAttribute>(baseType))
         {
 
         }
         /// <summary>
-        /// 
+        /// This constructor accepts an AppServerAttribute collection containing the AppServers and creates a AppServerHolder
+        /// for each one in turn.
         /// </summary>
-        /// <param name="baseType"></param>
-        public AppServerCollection(AppServerAttribute[] attrs)
+        /// <param name="baseType">An AppServerAttribute collection.</param>
+        public AppServerCollection(IEnumerable<AppServerAttribute> attrs)
         {
             mAppServerHolders = new List<AppServerHolder>();
 
@@ -62,7 +70,7 @@ namespace Ximura.Windows
                 .ForEach(a =>
                 {
                     AppServerHolder holder = new AppServerHolder(a);
-                    holder.RaiseMessage += new AppServerHolder.RaiseDialogMessage(AppServerHolder_RaiseMessage);
+                    holder.RaiseMessage += new RaiseDialogMessage(AppServerHolder_RaiseMessage);
                     mAppServerHolders.Add(holder);
                 });
 
@@ -70,10 +78,24 @@ namespace Ximura.Windows
         }
         #endregion // Constructors
 
+        #region AppServerHolder_RaiseMessage
+        /// <summary>
+        /// This method intercepts the individual AppServerHolder message and passes it on.
+        /// </summary>
+        /// <param name="sender">The specific AppServerHolder instance.</param>
+        /// <param name="message">The message.</param>
+        /// <param name="title">The message title.</param>
+        /// <param name="options">The button options.</param>
+        /// <returns>The message response.</returns>
         MessageBoxResult AppServerHolder_RaiseMessage(AppServerHolder sender, string message, string title, MessageBoxButton options)
         {
+            if (RaiseMessage != null)
+                return RaiseMessage(sender, message, title, options);
+
             return MessageBoxResult.None;
         }
+        #endregion // AppServerHolder_RaiseMessage
+
 
         #region Start()
         /// <summary>

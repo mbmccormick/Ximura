@@ -28,24 +28,24 @@ using AH = Ximura.Helper.AttributeHelper;
 #endregion // using
 namespace Ximura.Windows
 {
+    #region Delegates
+    /// <summary>
+    /// This delegate is used to raise external dialog messages.
+    /// </summary>
+    /// <param name="sender">The specific AppServerHolder instance.</param>
+    /// <param name="message">The message.</param>
+    /// <param name="title">The message title.</param>
+    /// <param name="options">The button options.</param>
+    /// <returns>The message response.</returns>
+    public delegate MessageBoxResult RaiseDialogMessage(AppServerHolder sender, string message, string title, MessageBoxButton options);
+    #endregion // Delegates
+
     /// <summary>
     /// This class holds the AppServer and the AppDomain. In addition this class provides the metadata to allow the AppServerControl
     /// to display the current status of the appserver.
     /// </summary>
     public class AppServerHolder : INotifyPropertyChanged, IXimuraService
     {
-        #region Delegates
-        /// <summary>
-        /// This delegate is used to raise external dialog messages.
-        /// </summary>
-        /// <param name="sender">The specific AppServerHolder instance.</param>
-        /// <param name="message">The message.</param>
-        /// <param name="title">The message title.</param>
-        /// <param name="options">The button options.</param>
-        /// <returns>The message response.</returns>
-        public delegate MessageBoxResult RaiseDialogMessage(AppServerHolder sender, string message, string title, MessageBoxButton options);
-        #endregion // Delegates
-
         #region Events
         /// <summary>
         /// This event is used to attach a message dialog provider for dialog prompts.

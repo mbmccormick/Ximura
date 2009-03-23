@@ -4,287 +4,140 @@
         <name>XimuraWinServ</name>
     </assembly>
     <members>
-        <member name="T:Ximura.Windows.Applications.XimuraEventLoggerInstallerAttribute">
+        <member name="T:Ximura.Windows.ServiceInstallerAttribute">
             <summary>
-            The XimuraAppServerAttribute attribute is used to set friendly names and descriptions for
-            the server which will be used in the server performance counters.
+            This attribute specifies the service installer properties.
             </summary>
         </member>
-        <member name="T:Ximura.Windows.Applications.EventLogLogger">
+        <member name="M:Ximura.Windows.ServiceInstallerAttribute.#ctor(System.Type,System.ServiceProcess.ServiceStartMode,System.String,System.String,System.String)">
             <summary>
-            The EventLogLogger class is used to log specific occurences in to the 
-            Windows Event Log.
+            
             </summary>
+            <param name="ServiceType"></param>
+            <param name="StartMode"></param>
+            <param name="ServiceName"></param>
+            <param name="DisplayName"></param>
+            <param name="Description"></param>
         </member>
-        <member name="M:Ximura.Windows.Applications.EventLogLogger.Initialize(Ximura.IXimuraLoggerSettings)">
+        <member name="M:Ximura.Windows.ServiceInstallerAttribute.#ctor(System.Type,System.ServiceProcess.ServiceStartMode,System.String,System.String,System.String,System.ServiceProcess.ServiceAccount,System.String,System.String)">
             <summary>
-            This method initializes the logger.
+            
             </summary>
-            <param name="ApplicationDefinition">The application definition.</param>
-            <param name="settings">The logger settings.</param>
+            <param name="ServiceType"></param>
+            <param name="StartMode"></param>
+            <param name="ServiceName"></param>
+            <param name="DisplayName"></param>
+            <param name="Description"></param>
+            <param name="Account"></param>
+            <param name="Username"></param>
+            <param name="Password"></param>
         </member>
-        <member name="M:Ximura.Windows.Applications.EventLogLogger.AcceptCategory(System.String,System.Diagnostics.EventLogEntryType)">
+        <member name="T:Ximura.Windows.ServiceAppInstaller">
             <summary>
-            This method inform the Logging Manager whether it will accept the 
-            category for logging.
+            This is the base installer used to install the service.
             </summary>
-            <param name="category">The logging category.</param>
-            <param name="type">The envent log entry type category.</param>
-            <returns>A boolean value. True indicates the category is accepted.</returns>
         </member>
-        <member name="M:Ximura.Windows.Applications.EventLogLogger.WriteLine(System.String)">
+        <member name="M:Ximura.Windows.ServiceAppInstaller.#ctor">
             <summary>
-            This method does nothing in the null logger.
+            The default constructor.
             </summary>
-            <param name="message">The message</param>
         </member>
-        <member name="M:Ximura.Windows.Applications.EventLogLogger.Write(System.String)">
+        <member name="M:Ximura.Windows.ServiceAppInstaller.InitializeService(Ximura.Windows.ServiceInstallerAttribute)">
             <summary>
-            This method does nothing in the null logger.
-            </summary>
-            <param name="message">The message</param>
-        </member>
-        <member name="M:Ximura.Windows.Applications.EventLogLogger.Write(System.String,System.String)">
-            <summary>
-            Writes a category name and message to the trace listeners in the Listeners
-             collection.
-            </summary>
-            <param name="message">A message to write. </param>
-            <param name="category">A category name used to organize the output.</param>
-        </member>
-        <member name="M:Ximura.Windows.Applications.EventLogLogger.WriteLine(System.String,System.String,System.Diagnostics.EventLogEntryType)">
-            <summary>
-            This base method is used to write to the event log.
-            </summary>
-            <param name="message">The message</param>
-            <param name="category">The category</param>
-            <param name="type">The event type</param>
-        </member>
-        <member name="M:Ximura.Windows.Applications.EventLogLogger.Write(System.String,System.String,System.Diagnostics.EventLogEntryType)">
-            <summary>
-            This base method is used to write to the event log.
-            </summary>
-            <param name="message">The message</param>
-            <param name="category">The category</param>
-            <param name="type">The event type</param>
-        </member>
-        <member name="T:Ximura.Server.ApplicationService">
-            <summary>
-            ApplicationService is the base service container for the Ximura
-            Application model.
+            This method creates the service and service process installer based on the information passed in the ServiceInstallerAttribute class.
             </summary>
         </member>
-        <member name="F:Ximura.Server.ApplicationService.m_ServiceContainer">
-            <summary>
-            The service container contains all the components for the container.
-            </summary>
-        </member>
-        <member name="M:Ximura.Server.ApplicationService.#ctor">
-            <summary>
-            This is the default constructor for the application
-            </summary>
-        </member>
-        <member name="M:Ximura.Server.ApplicationService.Dispose(System.Boolean)">
-            <summary> 
-            This is an override of the IDisposable method which cleans up any resources being used.
-            </summary>
-        </member>
-        <member name="M:Ximura.Server.ApplicationService.CurrentDomain_UnhandledException(System.Object,System.UnhandledExceptionEventArgs)">
-            <summary>
-            This method is used to trap unhanded exceptions in the service and log them before the service closes.
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The exception arguments.</param>
-        </member>
-        <member name="M:Ximura.Server.ApplicationService.OnStart(System.String[])">
-            <summary>
-            Set things in motion so your service can do its work.
-            </summary>
-        </member>
-        <member name="M:Ximura.Server.ApplicationService.OnStop">
-            <summary>
-            Stop this service and all applications within this container
-            </summary>
-        </member>
-        <member name="M:Ximura.Server.ApplicationService.OnPause">
-            <summary>
-            Pauses this service and all contained applications
-            </summary>
-        </member>
-        <member name="M:Ximura.Server.ApplicationService.OnContinue">
-            <summary>
-            Continues this application after it has been paused
-            </summary>
-        </member>
-        <member name="M:Ximura.Server.ApplicationService.ComponentsStatusChange(Ximura.XimuraServiceStatusAction,System.Collections.ICollection)">
-            <summary>
-            This method can start, stop, resume or pause a group of components.
-            </summary>
-            <param name="action">The action required</param>
-            <param name="components">The components to which the action should be provided</param>
-        </member>
-        <member name="M:Ximura.Server.ApplicationService.ConnectComponents">
-            <summary>
-            This method will connect the components held in the 
-            containers in to the Ximura messaging architecture.
-            </summary>
-        </member>
-        <member name="M:Ximura.Server.ApplicationService.ProcessContainer(System.Collections.ICollection)">
-            <summary>
-            This method sets each Ximura based component site property to point to this component
-            and adds the component to the ServiceComponents list.
-            </summary>
-            <param name="componentList">The components to add.</param>
-        </member>
-        <member name="M:Ximura.Server.ApplicationService.ProcessContainer(System.Collections.ICollection,System.Collections.IList)">
-            <summary>
-            This method sets each Ximura based component site property to point to this component
-            and adds the component to the new list passed.
-            </summary>
-            <param name="componentList">The components to add.</param>
-            <param name="newList">The new list to which the parameter will be added to.</param>
-        </member>
-        <member name="M:Ximura.Server.ApplicationService.RegisterContainer(System.ComponentModel.IContainer)">
-            <summary>
-            This method is used to register the containers for the inherited classes that wish to participate
-            is the Ximura messaging infrastructure.
-            </summary>
-            <param name="components">The component collection to add.</param>
-        </member>
-        <member name="P:Ximura.Server.ApplicationService.ServiceComponents">
-            <summary>
-            This is the list containing the service components. This list will be only be
-            populated after ConnectComponents has been called. 
-            </summary>
-        </member>
-        <member name="T:Ximura.Windows.Applications.DebugLogger">
-            <summary>
-            The DebugLogger uses the windows Debug object.
-            </summary>
-        </member>
-        <member name="M:Ximura.Windows.Applications.DebugLogger.Close">
-            <summary>
-            This method closes the logger.
-            </summary>
-        </member>
-        <member name="M:Ximura.Windows.Applications.DebugLogger.Flush">
-            <summary>
-            This method flushes the logger
-            </summary>
-        </member>
-        <member name="M:Ximura.Windows.Applications.DebugLogger.Write(System.String)">
-            <summary>
-            This message writes a string.
-            </summary>
-            <param name="message"></param>
-        </member>
-        <member name="M:Ximura.Windows.Applications.DebugLogger.WriteLine(System.String)">
-            <summary>
-            This message writes a string with a line end
-            </summary>
-            <param name="message">The message to write.</param>
-        </member>
-        <member name="T:Ximura.Windows.Applications.TraceLogger">
-            <summary>
-            The TraceLogger uses the windows Trace method.
-            </summary>
-        </member>
-        <member name="M:Ximura.Windows.Applications.TraceLogger.Close">
-            <summary>
-            This method closes the logger.
-            </summary>
-        </member>
-        <member name="M:Ximura.Windows.Applications.TraceLogger.Flush">
-            <summary>
-            This method flushes the logger.
-            </summary>
-        </member>
-        <member name="M:Ximura.Windows.Applications.TraceLogger.Write(System.String)">
-            <summary>
-            This method writes an object to the logger
-            </summary>
-            <param name="value">The message.</param>
-        </member>
-        <member name="M:Ximura.Windows.Applications.TraceLogger.WriteLine(System.String)">
-            <summary>
-            This method writes a string to the logger.
-            </summary>
-            <param name="message"></param>
-        </member>
-        <member name="T:Ximura.Windows.Applications.XimuraAppServerConfigInstallerAttribute">
-            <summary>
-            This attribute indicates to the installer which config file to install for which appserver class.
-            </summary>
-        </member>
-        <member name="P:Ximura.Windows.Applications.XimuraAppServerConfigInstallerAttribute.AppServerType">
-            <summary>
-            This is the app server type to process.
-            </summary>
-        </member>
-        <member name="T:Ximura.Server.ApplicationInstaller">
+        <member name="T:Ximura.Windows.AppServerInstaller">
             <summary>
             The ApplicationServiceInstaller is responsible for providing the config file from the base stream.
             </summary>
         </member>
-        <member name="F:Ximura.Server.ApplicationInstaller.components">
-            <summary>
-            Required designer variable.
-            </summary>
-        </member>
-        <member name="M:Ximura.Server.ApplicationInstaller.#ctor">
+        <member name="M:Ximura.Windows.AppServerInstaller.#ctor(Ximura.Windows.AppServerAttribute)">
             <summary>
             This is the default constructor for the service.
             </summary>
         </member>
-        <member name="M:Ximura.Server.ApplicationInstaller.Dispose(System.Boolean)">
-            <summary> 
-            Clean up any resources being used.
-            </summary>
-        </member>
-        <member name="M:Ximura.Server.ApplicationInstaller.InitializeComponent">
-            <summary>
-            Required method for Designer support - do not modify
-            the contents of this method with the code editor.
-            </summary>
-        </member>
-        <member name="M:Ximura.Server.ApplicationInstaller.Install(System.Collections.IDictionary)">
+        <member name="M:Ximura.Windows.AppServerInstaller.Install(System.Collections.IDictionary)">
             <summary>
             This override of the install method copies any config files to the install directory
             </summary>
             <param name="stateSaver">The state saver</param>
         </member>
-        <member name="M:Ximura.Server.ApplicationInstaller.Uninstall(System.Collections.IDictionary)">
+        <member name="M:Ximura.Windows.AppServerInstaller.Uninstall(System.Collections.IDictionary)">
             <summary>
             This method uninstalls the application.
             </summary>
             <param name="savedState"></param>
         </member>
-        <member name="M:Ximura.Server.ApplicationInstaller.ProcessAssemblies(System.Collections.IDictionary)">
+        <member name="M:Ximura.Windows.AppServerInstaller.ProcessAssemblies(System.Collections.IDictionary)">
             <summary>
             This method processes the installer assemblies
              the export the config file where specified.
             </summary>
             <param name="savedState">The saved state parameter.</param>
         </member>
-        <member name="M:Ximura.Server.ApplicationInstaller.EventLoggersRemove(System.Collections.IDictionary)">
+        <member name="M:Ximura.Windows.AppServerInstaller.EventLoggersRemove(System.Collections.IDictionary)">
             <summary>
             This method removes any installed loggers.
             </summary>
             <param name="savedState">The saved state that contains the log install history.</param>
         </member>
-        <member name="M:Ximura.Server.ApplicationInstaller.EventLoggerRemove(System.String)">
+        <member name="M:Ximura.Windows.AppServerInstaller.EventLoggerRemove(System.String)">
             <summary>
             This method removes the specified logger.
             </summary>
             <param name="logName">The log name to remove.</param>
         </member>
-        <member name="M:Ximura.Server.ApplicationInstaller.GetArrayList(System.Collections.IDictionary,System.String)">
+        <member name="M:Ximura.Windows.AppServerInstaller.GetArrayList(System.Collections.IDictionary,System.String)">
             <summary>
             This method retrieves the array list.
             </summary>
             <param name="savedState">The persisted state.</param>
             <param name="key">The collection key.</param>
             <returns></returns>
+        </member>
+        <member name="T:Ximura.Windows.AppServerService">
+            <summary>
+            ApplicationService is the base service container for the Ximura
+            Application model.
+            </summary>
+        </member>
+        <member name="F:Ximura.Windows.AppServerService.appServerHolders">
+            <summary>
+            This collection holds the service components
+            </summary>
+        </member>
+        <member name="M:Ximura.Windows.AppServerService.#ctor">
+            <summary>
+            This is the default constructor for the application
+            </summary>
+        </member>
+        <member name="M:Ximura.Windows.AppServerService.CurrentDomain_UnhandledException(System.Object,System.UnhandledExceptionEventArgs)">
+            <summary>
+            This method is used to trap unhanded exceptions in the service and log them before the service closes.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The exception arguments.</param>
+        </member>
+        <member name="M:Ximura.Windows.AppServerService.OnStart(System.String[])">
+            <summary>
+            Set things in motion so your service can do its work.
+            </summary>
+        </member>
+        <member name="M:Ximura.Windows.AppServerService.OnStop">
+            <summary>
+            Stop this service and all applications within this container
+            </summary>
+        </member>
+        <member name="M:Ximura.Windows.AppServerService.OnPause">
+            <summary>
+            Pauses this service and all contained applications
+            </summary>
+        </member>
+        <member name="M:Ximura.Windows.AppServerService.OnContinue">
+            <summary>
+            Continues this application after it has been paused
+            </summary>
         </member>
     </members>
 </doc>
