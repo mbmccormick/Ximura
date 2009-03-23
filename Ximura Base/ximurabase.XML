@@ -4,273 +4,169 @@
         <name>XimuraBase</name>
     </assembly>
     <members>
-        <member name="T:Ximura.XimuraServiceStatusAction">
+        <member name="T:Ximura.Data.IXimuraDataEntity">
             <summary>
-            This enumerations is used to signal an action for the collection
+            This interface is retired and is currently only used by old data
+            entities.
             </summary>
         </member>
-        <member name="F:Ximura.XimuraServiceStatusAction.Start">
+        <member name="T:Ximura.Data.IXimuraContent">
             <summary>
-            Start the collection
+            IXimuraContent is the default interface for the content object.
             </summary>
         </member>
-        <member name="F:Ximura.XimuraServiceStatusAction.Stop">
+        <member name="T:Ximura.Data.IXimuraContentEntityPersistence">
             <summary>
-            Stop the collection
+            This interface implements the basic entity properties for persistence storage.
             </summary>
         </member>
-        <member name="F:Ximura.XimuraServiceStatusAction.Pause">
+        <member name="P:Ximura.Data.IXimuraContentEntityPersistence.EntityType">
             <summary>
-            Pause the collection
+            This is the entity type used for searching.
             </summary>
         </member>
-        <member name="F:Ximura.XimuraServiceStatusAction.Continue">
+        <member name="P:Ximura.Data.IXimuraContentEntityPersistence.EntitySubtype">
             <summary>
-            Continue the collection
+            This is the entity subtype used for searching
             </summary>
         </member>
-        <member name="T:Ximura.IXimuraServiceParentSettings">
+        <member name="P:Ximura.Data.IXimuraContentEntityPersistence.EntityAQN">
             <summary>
-            This interface is implemented by commands that can be nested in other commands.
+            This is the assembly qualified name used for seaching. This
+            may differ from the actual name as it will not have the specific
+            version number to enable consistency across multiple version.
             </summary>
         </member>
-        <member name="P:Ximura.IXimuraServiceParentSettings.ParentCommandName">
+        <member name="P:Ximura.Data.IXimuraContentEntityPersistence.EntityName">
             <summary>
-            The parent command service name.
+            This is the entity name used for search display.
             </summary>
         </member>
-        <member name="T:Ximura.IXimuraPerformanceAgent">
+        <member name="P:Ximura.Data.IXimuraContentEntityPersistence.EntityDescription">
             <summary>
-            The IXimuraPerformanceAgent interface is implemented by class that recieve 
-            performance information from the performance counters.
+            This is the entity description used for search display.
             </summary>
         </member>
-        <member name="T:Ximura.Data.IXimuraFolder">
+        <member name="T:Ximura.IXimuraPoolableObjectDeserializable">
             <summary>
-            IXimuraFolder is the facade interface that extends the content class and allows it to 
-            include additional content and parameters.
+            This interface is implemented by poolable object that also support deserialization.
             </summary>
         </member>
-        <member name="T:Ximura.Data.IXimuraParameter">
+        <member name="T:Ximura.IXimuraPoolableObject">
             <summary>
-            The IXimuraParameter interface is used by the parameter element. 
-            The interface is defined from IDictionary and is based on a the Composite design pattern.
+            This interface is implemented by poolable objects.
             </summary>
         </member>
-        <member name="M:Ximura.Data.IXimuraParameter.Add(System.String,System.Object)">
+        <member name="M:Ximura.IXimuraPoolableObject.Reset">
             <summary>
-            This method will add a new parameter based on the key and the value.
-            </summary>
-            <param name="key">The key of the new parameter</param>
-            <param name="Value">The value of the new parameter</param>
-        </member>
-        <member name="M:Ximura.Data.IXimuraParameter.Add(System.String,Ximura.Data.IXimuraParameter)">
-            <summary>
-            This method will append an existing parameter to the parameter collection.
-            </summary>
-            <param name="key">The key you wish to use for this parameter in the collection</param>
-            <param name="Value">The parameter.</param>
-        </member>
-        <member name="M:Ximura.Data.IXimuraParameter.Contains(System.String)">
-            <summary>
-            This method checks whether a key exists in the parameter collection.
-            </summary>
-            <param name="key">The key to check</param>
-            <returns>Returns true if the key exist in the folder collection</returns>
-        </member>
-        <member name="M:Ximura.Data.IXimuraParameter.Contains(Ximura.Data.IXimuraParameter)">
-            <summary>
-            This method checks whether a parameter exists within the parameter collection.
-            </summary>
-            <param name="childParameter">The child parameter.</param>
-            <returns>Returns true if the parameter exists</returns>
-        </member>
-        <member name="M:Ximura.Data.IXimuraParameter.Remove(System.String)">
-            <summary>
-            This method removes a parameter from the collection based on the key passed.
-            </summary>
-            <param name="key">The key of the parameter to remove</param>
-        </member>
-        <member name="M:Ximura.Data.IXimuraParameter.Remove(Ximura.Data.IXimuraParameter)">
-            <summary>
-            This method removes a parameter from the collection based on the parameter passed.
-            </summary>
-            <param name="childParameter">The child parameter to be removed.</param>
-        </member>
-        <member name="M:Ximura.Data.IXimuraParameter.AddParameter(System.String,System.Object)">
-            <summary>
-            This method creates a new parameter and adds it to the collection.
-            </summary>
-            <param name="Key">The parameter key.</param>
-            <param name="Value">The parameter value.</param>
-            <returns>This method returns the newly created parameter.</returns>
-        </member>
-        <member name="M:Ximura.Data.IXimuraParameter.SetAsRootParameter">
-            <summary>
-            This method sets the parameter as the root parameter within a collection.
+            This method resets the object in to its default state.
             </summary>
         </member>
-        <member name="M:Ximura.Data.IXimuraParameter.IsRootParameter">
+        <member name="P:Ximura.IXimuraPoolableObject.CanPool">
             <summary>
-            This method checks whether the parameter is the root parameter within the collection.
-            </summary>
-            <returns>Returns true if the parameter is the root parameter.</returns>
-        </member>
-        <member name="M:Ximura.Data.IXimuraParameter.HasChildParameters">
-            <summary>
-            This method checks whether the parameter has any children.
-            </summary>
-            <returns>Returns true if the parameter has children.</returns>
-        </member>
-        <member name="M:Ximura.Data.IXimuraParameter.ParameterValue(System.String)">
-            <summary>
-            This helper method retieves a parameter value from the collection.
-            </summary>
-            <param name="key">The key to retrieve.</param>
-            <returns>Returns the valus of the parameter.</returns>
-        </member>
-        <member name="P:Ximura.Data.IXimuraParameter.Key">
-            <summary>
-            This is the root key of the parameter.
+            This property returns true if the object can pool. This allows inherited objects to turn
+            off the ability to be pooled. By default, objects that implement this interface should
+            return true if they wish to pool.
             </summary>
         </member>
-        <member name="P:Ximura.Data.IXimuraParameter.Value">
+        <member name="P:Ximura.IXimuraPoolableObject.TrackID">
             <summary>
-            This is the root value of the paramter. A parameter can contain any type of object.
+            This property is used by the object pool for statistical tracking
+            of the object through the system. This Guid should be created when the object
+            is first created and should not change. The ID is independent of any data actually 
+            stored in the object.
             </summary>
         </member>
-        <member name="P:Ximura.Data.IXimuraParameter.Item(System.String)">
+        <member name="M:Ximura.IXimuraPoolableObjectDeserializable.Reset(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
             <summary>
-            This is the default enumerator for the parameter and will return the value of the 
-            sub-paramters based on the key supplied.
+            This method resets the object in to the deserialized state specified in the info and context.
+            </summary>
+            <param name="info">The serialization information.</param>
+            <param name="context">The serialization context.</param>
+        </member>
+        <member name="P:Ximura.IXimuraPoolableObjectDeserializable.CanResetWithDeserialization">
+            <summary>
+            This propoerty indicates whether the object support a deserialization reset.
             </summary>
         </member>
-        <member name="M:Ximura.Data.IXimuraFolder.ContentCount">
+        <member name="T:Ximura.IXimuraPoolReturnable">
             <summary>
-            This property returns the count of the folder content objects.
-            </summary>
-            <returns>The number of Content object.</returns>
-        </member>
-        <member name="M:Ximura.Data.IXimuraFolder.ParameterCount">
-            <summary>
-            This property returns the count of the child parameter object.
-            </summary>
-            <returns>The number of child parameter objects.</returns>
-        </member>
-        <member name="M:Ximura.Data.IXimuraFolder.Add(System.String,Ximura.Data.IXimuraContent)">
-            <summary>
-            This method add a content object to the Folder collection.
-            </summary>
-            <param name="Key">The content key.</param>
-            <param name="theContent">The content object to add.</param>
-        </member>
-        <member name="M:Ximura.Data.IXimuraFolder.Contains(Ximura.Data.IXimuraContent)">
-            <summary>
-            This method checks whether the Folder contains this Content object.
-            </summary>
-            <param name="theContent">The content object to check</param>
-            <returns>Returns true is the content object is in the Folder</returns>
-        </member>
-        <member name="M:Ximura.Data.IXimuraFolder.Remove(Ximura.Data.IXimuraContent)">
-            <summary>
-            This method removes a content object from the Folder collection.
-            </summary>
-            <param name="theContent">The content object to remove.</param>
-        </member>
-        <member name="P:Ximura.Data.IXimuraFolder.ContentKeys">
-            <summary>
-            This property returns a collection of Content keys.
+            This interface is implemented by objects that are poolable, and in addition 
+            can return themselves to the pool without the need for child objects to have a reference
+            to the pool.
             </summary>
         </member>
-        <member name="P:Ximura.Data.IXimuraFolder.ContentValues">
+        <member name="M:Ximura.IXimuraPoolReturnable.ObjectPoolReturn">
             <summary>
-            This property returns a collection of Content values.
+            This method returns the object to the pool
+            </summary>
+            <returns>Returns true if the object has been successfully returned to the pool.</returns>
+        </member>
+        <member name="P:Ximura.IXimuraPoolReturnable.ObjectPool">
+            <summary>
+            This property sets or gets the object pool for the object.
             </summary>
         </member>
-        <member name="P:Ximura.Data.IXimuraFolder.ParameterKeys">
+        <member name="P:Ximura.IXimuraPoolReturnable.ObjectPoolCanReturn">
             <summary>
-            This property returns a collection of Parameters keys.
+            This boolean property determines whether the object can be returned to the pool
+            for reuse.
             </summary>
         </member>
-        <member name="P:Ximura.Data.IXimuraFolder.ParameterValues">
+        <member name="M:Ximura.Data.IXimuraContent.IsDirty">
             <summary>
-            This property returns a collection of Parameters values.
+            This is a public function that indicated whether the object
+            internal data has been changed since it was created or last saved.
+            </summary>
+            <returns>A boolean value - true indicates the object has been changed.</returns>
+        </member>
+        <member name="P:Ximura.Data.IXimuraContent.TypeID">
+            <summary>
+            This is the Content Type ID.
             </summary>
         </member>
-        <member name="T:Ximura.IXimuraCommandScheduleProcessConfigSH">
+        <member name="P:Ximura.Data.IXimuraContent.ID">
             <summary>
-            This is the default interface for a scheduler config section handler
+            This is the Content Instance ID.
             </summary>
         </member>
-        <member name="M:Ximura.IXimuraCommandScheduleProcessConfigSH.GetNextSchedules(System.Double)">
+        <member name="P:Ximura.Data.IXimuraContent.Version">
             <summary>
-            Get Next Schedules within interval(in minutes)
-            </summary>
-            <param name="interval">interval in minutes</param>
-            <returns>return all upcoming schedules in time/schedule pairs</returns>
-        </member>
-        <member name="T:Ximura.IXimuraCommandProcessConfigSH">
-            <summary>
-            This is the default interface for an application config section handler
+            This is the Content Version ID.
             </summary>
         </member>
-        <member name="T:Ximura.IXimuraConfigSH">
+        <member name="P:Ximura.Data.IXimuraContent.Dirty">
             <summary>
-            This is the default interface for an application config section handler
+            This boolean property indicates whether the object has been changed.
             </summary>
         </member>
-        <member name="M:Ximura.IXimuraConfigSH.GetSetting(System.String)">
+        <member name="P:Ximura.Data.IXimuraDataEntity.SatelliteEntity">
             <summary>
-            Get the config setting by specific Type
-            </summary>
-            <param name="Type">setting type</param>
-            <returns>setting value</returns>
-        </member>
-        <member name="M:Ximura.IXimuraConfigSH.GetSettingExtended(System.String,System.String)">
-            <summary>
-            This method returns the extended setting object or null if the type 
-            specified does not exist.
-            </summary>
-            <param name="Type">The name of the type.</param>
-            <param name="subType">The name of the subtype.</param>
-            <returns>The settings object containing the specific settings or null if the object can not be found.</returns>
-        </member>
-        <member name="P:Ximura.IXimuraConfigSH.Enabled">
-            <summary>
-            This property determines whether the command is enabled.
+            This property returns true if the content is a satelite entity.
             </summary>
         </member>
-        <member name="M:Ximura.IXimuraCommandProcessConfigSH.getPasswordHash(System.Byte[])">
+        <member name="P:Ximura.Data.IXimuraDataEntity.GetDataSet">
             <summary>
-            Returns the hash of the password based on the session seed value
-            </summary>
-            <param name="seed">The session seed.</param>
-            <returns>The hash of the password.</returns>
-        </member>
-        <member name="P:Ximura.IXimuraCommandProcessConfigSH.UserName">
-            <summary>
-            The username of the process.
+            This method returns the internal dataset for the Data Entity
             </summary>
         </member>
-        <member name="P:Ximura.IXimuraCommandProcessConfigSH.UserRealm">
+        <member name="M:Ximura.Data.IXimuraDataContentLoad.Load(System.Data.DataSet)">
+            <summary> 
+            This method loads the DataContent from a DataSet.
+            </summary>
+            <param name="data">The DataSet this content should hold.</param>
+        </member>
+        <member name="M:Ximura.Data.IXimuraDataContentLoad.Load">
             <summary>
-            This is the realm for the user to connect to.
+            This method is used to create a new entity.
             </summary>
         </member>
-        <member name="P:Ximura.IXimuraCommandProcessConfigSH.UserSessionRealm">
+        <member name="M:Ximura.Data.IXimuraDataContentLoad.Load(System.Boolean)">
             <summary>
-            This is the realm for the user to connect to.
+            This method is used to create a new entity.
             </summary>
-        </member>
-        <member name="P:Ximura.IXimuraCommandProcessConfigSH.RequiresProcessSession">
-            <summary>
-            This method determines whether the process command requires a process session.
-            </summary>
-        </member>
-        <member name="P:Ximura.IXimuraCommandProcessConfigSH.SecurityData">
-            <summary>
-            Returns the security data.
-            </summary>
+            <param name="force">if this property is set to true the entity will discard any changes if set to true.</param>
+            <returns>Returns true if a new entity was created.</returns>
         </member>
         <member name="T:Ximura.Command.RQRSEnvelopeHelper">
             <summary>
@@ -443,6 +339,11 @@
             <param name="commandName">This is the name of the command which is used by the performance counters.</param>
             <param name="objectType">The envelope type to register.</param>
             <param name="objectCallbackType">The envelope callback type to register.</param>
+        </member>
+        <member name="T:Ximura.Server.IXimuraStorage">
+            <summary>
+            This interface is implemented by storage manager.
+            </summary>
         </member>
         <member name="T:Ximura.PoolBase`1">
             <summary>
@@ -821,104 +722,6 @@
             </summary>
             <returns>Returns the new object.</returns>
         </member>
-        <member name="T:Ximura.Helper.ServiceEvent">
-            <summary>
-            This delegate is used by the Services to report back progress
-            </summary>
-        </member>
-        <member name="T:Ximura.Helper.IXimuraServiceWithEvent">
-            <summary>
-            This interface is used by Ximura Service based component that wish to fire events for 
-            service actions
-            </summary>
-        </member>
-        <member name="T:Ximura.IXimuraService">
-            <summary>
-            This interface is used by Ximura Service based components.
-            </summary>
-        </member>
-        <member name="M:Ximura.IXimuraService.Start">
-            <summary>
-            This method starts the service
-            </summary>
-        </member>
-        <member name="M:Ximura.IXimuraService.Pause">
-            <summary>
-            This method pauses the service
-            </summary>
-        </member>
-        <member name="M:Ximura.IXimuraService.Continue">
-            <summary>
-            This method continues a paused service
-            </summary>
-        </member>
-        <member name="M:Ximura.IXimuraService.Stop">
-            <summary>
-            This method stops a running service
-            </summary>
-        </member>
-        <member name="P:Ximura.IXimuraService.ServiceStatus">
-            <summary>
-            This method will return the current service status
-            </summary>
-        </member>
-        <member name="P:Ximura.IXimuraService.ServiceEnabled">
-            <summary>
-            This property determines whether the component is enable and can start.
-            </summary>
-        </member>
-        <member name="E:Ximura.Helper.IXimuraServiceWithEvent.ServiceStarted">
-            <summary>
-            This event will be fired when the service starts
-            </summary>
-        </member>
-        <member name="E:Ximura.Helper.IXimuraServiceWithEvent.ServicePaused">
-            <summary>
-            This event will be fired when the service pauses
-            </summary>
-        </member>
-        <member name="E:Ximura.Helper.IXimuraServiceWithEvent.ServiceResumed">
-            <summary>
-            This event will be fired when the service is resumed from a paused state
-            </summary>
-        </member>
-        <member name="E:Ximura.Helper.IXimuraServiceWithEvent.ServiceStopped">
-            <summary>
-            This event will be fired when the service is stopped
-            </summary>
-        </member>
-        <member name="T:Ximura.IXimuraComponentService">
-            <summary>
-            Summary description for IXimuraComponentService.
-            </summary>
-        </member>
-        <member name="T:Ximura.IXimuraComponentBase">
-            <summary>
-            This is the base interface supported by components that support the Ximura component architecture.
-            </summary>
-        </member>
-        <member name="T:Ximura.IXimuraServiceContainer">
-            <summary>
-            This interface provides extended functionality for the service based architecture.
-            </summary>
-        </member>
-        <member name="M:Ximura.IXimuraServiceContainer.AddService(System.Type,System.Object,System.Boolean,System.Int32)">
-            <summary>
-            Adds the service specified to the service container.
-            </summary>
-            <param name="serviceType">The type of service to add.</param>
-            <param name="serviceInstance">The service.</param>
-            <param name="promote">True promotes this service to the parent service container.</param>
-            <param name="depth">The depth the service should be promoted. Set this value to -1 if you require it to be unlimited.</param>
-        </member>
-        <member name="M:Ximura.IXimuraServiceContainer.GetService(System.Type,System.Int32)">
-            <summary>
-            This method returns the requested service.
-            </summary>
-            <param name="serviceType">The service type.</param>
-            <param name="depth">The service depth. If this is set to -1 the depth is unlimited.</param>
-            <returns>Returns the service requested, or null if the service cannot be found.</returns>
-        </member>
         <member name="T:Ximura.Data.DataContentLinkType">
             <summary>
             This is the linkage option for the DataContent
@@ -956,169 +759,79 @@
             The job type is a straight call back.
             </summary>
         </member>
-        <member name="T:Ximura.Data.IXimuraDataEntity">
+        <member name="T:Ximura.IXimuraPerformanceCounter">
             <summary>
-            This interface is retired and is currently only used by old data
-            entities.
+            This interface is used by performance counter classes.
             </summary>
         </member>
-        <member name="T:Ximura.Data.IXimuraContent">
+        <member name="T:Ximura.IXimuraPerformance">
             <summary>
-            IXimuraContent is the default interface for the content object.
+            THis is the base interface for the performance architecture.
             </summary>
         </member>
-        <member name="T:Ximura.Data.IXimuraContentEntityPersistence">
+        <member name="P:Ximura.IXimuraPerformance.PCID">
             <summary>
-            This interface implements the basic entity properties for persistence storage.
+            The unique performance counter ID.
             </summary>
         </member>
-        <member name="P:Ximura.Data.IXimuraContentEntityPersistence.EntityType">
+        <member name="P:Ximura.IXimuraPerformance.AppID">
             <summary>
-            This is the entity type used for searching.
+            This is the application ID for the counter.
             </summary>
         </member>
-        <member name="P:Ximura.Data.IXimuraContentEntityPersistence.EntitySubtype">
+        <member name="P:Ximura.IXimuraPerformance.ID">
             <summary>
-            This is the entity subtype used for searching
+            The container id.
             </summary>
         </member>
-        <member name="P:Ximura.Data.IXimuraContentEntityPersistence.EntityAQN">
+        <member name="P:Ximura.IXimuraPerformance.Name">
             <summary>
-            This is the assembly qualified name used for seaching. This
-            may differ from the actual name as it will not have the specific
-            version number to enable consistency across multiple version.
+            The friendly name.
             </summary>
         </member>
-        <member name="P:Ximura.Data.IXimuraContentEntityPersistence.EntityName">
+        <member name="P:Ximura.IXimuraPerformance.Category">
             <summary>
-            This is the entity name used for search display.
+            The category.
             </summary>
         </member>
-        <member name="P:Ximura.Data.IXimuraContentEntityPersistence.EntityDescription">
+        <member name="M:Ximura.IXimuraPerformanceCounter.Increment">
             <summary>
-            This is the entity description used for search display.
+            This method increments the counter by 1.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ximura.IXimuraPerformanceCounter.IncrementBy(System.Int64)">
+            <summary>
+            This method increments or decrements the counter by the value specified.
+            </summary>
+            <param name="value"></param>
+            <returns>Returns the new value of the counter.</returns>
+        </member>
+        <member name="M:Ximura.IXimuraPerformanceCounter.Decrement">
+            <summary>
+            This method decrements the counter by 1.
+            </summary>
+            <returns>Returns the new value of the counter.</returns>
+        </member>
+        <member name="P:Ximura.IXimuraPerformanceCounter.CounterType">
+            <summary>
+            This is the system counter type.
             </summary>
         </member>
-        <member name="T:Ximura.IXimuraPoolableObjectDeserializable">
+        <member name="P:Ximura.IXimuraPerformanceCounter.RawValue">
             <summary>
-            This interface is implemented by poolable object that also support deserialization.
+            This property gets or sets the raw value of the counter directly.
             </summary>
         </member>
-        <member name="T:Ximura.IXimuraPoolableObject">
+        <member name="P:Ximura.IXimuraPerformanceCounter.Active">
             <summary>
-            This interface is implemented by poolable objects.
+            This property indicates whether the counter is active.
             </summary>
         </member>
-        <member name="M:Ximura.IXimuraPoolableObject.Reset">
+        <member name="P:Ximura.IXimuraPerformanceCounter.Dirty">
             <summary>
-            This method resets the object in to its default state.
+            This readonly property determines whether the counter has been read since it was last changed.
             </summary>
-        </member>
-        <member name="P:Ximura.IXimuraPoolableObject.CanPool">
-            <summary>
-            This property returns true if the object can pool. This allows inherited objects to turn
-            off the ability to be pooled. By default, objects that implement this interface should
-            return true if they wish to pool.
-            </summary>
-        </member>
-        <member name="P:Ximura.IXimuraPoolableObject.TrackID">
-            <summary>
-            This property is used by the object pool for statistical tracking
-            of the object through the system. This Guid should be created when the object
-            is first created and should not change. The ID is independent of any data actually 
-            stored in the object.
-            </summary>
-        </member>
-        <member name="M:Ximura.IXimuraPoolableObjectDeserializable.Reset(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <summary>
-            This method resets the object in to the deserialized state specified in the info and context.
-            </summary>
-            <param name="info">The serialization information.</param>
-            <param name="context">The serialization context.</param>
-        </member>
-        <member name="P:Ximura.IXimuraPoolableObjectDeserializable.CanResetWithDeserialization">
-            <summary>
-            This propoerty indicates whether the object support a deserialization reset.
-            </summary>
-        </member>
-        <member name="T:Ximura.IXimuraPoolReturnable">
-            <summary>
-            This interface is implemented by objects that are poolable, and in addition 
-            can return themselves to the pool without the need for child objects to have a reference
-            to the pool.
-            </summary>
-        </member>
-        <member name="M:Ximura.IXimuraPoolReturnable.ObjectPoolReturn">
-            <summary>
-            This method returns the object to the pool
-            </summary>
-            <returns>Returns true if the object has been successfully returned to the pool.</returns>
-        </member>
-        <member name="P:Ximura.IXimuraPoolReturnable.ObjectPool">
-            <summary>
-            This property sets or gets the object pool for the object.
-            </summary>
-        </member>
-        <member name="P:Ximura.IXimuraPoolReturnable.ObjectPoolCanReturn">
-            <summary>
-            This boolean property determines whether the object can be returned to the pool
-            for reuse.
-            </summary>
-        </member>
-        <member name="M:Ximura.Data.IXimuraContent.IsDirty">
-            <summary>
-            This is a public function that indicated whether the object
-            internal data has been changed since it was created or last saved.
-            </summary>
-            <returns>A boolean value - true indicates the object has been changed.</returns>
-        </member>
-        <member name="P:Ximura.Data.IXimuraContent.TypeID">
-            <summary>
-            This is the Content Type ID.
-            </summary>
-        </member>
-        <member name="P:Ximura.Data.IXimuraContent.ID">
-            <summary>
-            This is the Content Instance ID.
-            </summary>
-        </member>
-        <member name="P:Ximura.Data.IXimuraContent.Version">
-            <summary>
-            This is the Content Version ID.
-            </summary>
-        </member>
-        <member name="P:Ximura.Data.IXimuraContent.Dirty">
-            <summary>
-            This boolean property indicates whether the object has been changed.
-            </summary>
-        </member>
-        <member name="P:Ximura.Data.IXimuraDataEntity.SatelliteEntity">
-            <summary>
-            This property returns true if the content is a satelite entity.
-            </summary>
-        </member>
-        <member name="P:Ximura.Data.IXimuraDataEntity.GetDataSet">
-            <summary>
-            This method returns the internal dataset for the Data Entity
-            </summary>
-        </member>
-        <member name="M:Ximura.Data.IXimuraDataContentLoad.Load(System.Data.DataSet)">
-            <summary> 
-            This method loads the DataContent from a DataSet.
-            </summary>
-            <param name="data">The DataSet this content should hold.</param>
-        </member>
-        <member name="M:Ximura.Data.IXimuraDataContentLoad.Load">
-            <summary>
-            This method is used to create a new entity.
-            </summary>
-        </member>
-        <member name="M:Ximura.Data.IXimuraDataContentLoad.Load(System.Boolean)">
-            <summary>
-            This method is used to create a new entity.
-            </summary>
-            <param name="force">if this property is set to true the entity will discard any changes if set to true.</param>
-            <returns>Returns true if a new entity was created.</returns>
         </member>
         <member name="T:Ximura.Data.DataContentSummaryType">
             <summary>
@@ -1140,138 +853,106 @@
             Summary is custom.
             </summary>
         </member>
-        <member name="T:Ximura.XimuraAppModuleAttribute">
+        <member name="T:Ximura.Server.IXimuraAppServer">
             <summary>
-            This attribute is used to define command properties.
+            Summary description for IXimuraAppServer.
             </summary>
         </member>
-        <member name="M:Ximura.XimuraAppModuleAttribute.#ctor(System.String)">
+        <member name="T:Ximura.IXimuraApplication">
             <summary>
-            The XimuraAppCommandIDAttribute is used to uniquely identify a command within the Ximura system.
-            </summary>
-            <param name="ID">A string representation of a GUID, i.e. in the form 6364755B-97B9-4799-B8BC-3D98EB786C92</param>
-        </member>
-        <member name="M:Ximura.XimuraAppModuleAttribute.#ctor(System.String,System.String)">
-            <summary>
-            The XimuraAppCommandIDAttribute is used to uniquely identify a command within the Ximura system.
-            </summary>
-            <param name="ID">A string representation of a GUID, i.e. in the form 
-            6364755B-97B9-4799-B8BC-3D98EB786C92</param>
-            <param name="name">The friendly name of the command. 
-            This will be used in the config file when parsing command set up paramters.</param>
-        </member>
-        <member name="M:Ximura.XimuraAppModuleAttribute.#ctor(System.String,System.String,System.String)">
-            <summary>
-            The XimuraAppCommandIDAttribute is used to uniquely identify a command within the Ximura system.
-            </summary>
-            <param name="ID">A string representation of a GUID, i.e. in the form 
-            6364755B-97B9-4799-B8BC-3D98EB786C92</param>
-            <param name="name">The friendly name of the command. 
-            This will be used in the config file when parsing command set up paramters.</param>
-            <param name="configClass">The config class for the command.</param>
-        </member>
-        <member name="M:Ximura.XimuraAppModuleAttribute.#ctor(System.String,System.String,System.String,System.Boolean,System.String)">
-            <summary>
-            The XimuraAppCommandIDAttribute is used to uniquely identify a command within the Ximura system.
-            </summary>
-            <param name="ID">A string representation of a GUID, i.e. in the form 
-            6364755B-97B9-4799-B8BC-3D98EB786C92</param>
-            <param name="name">The friendly name of the command. 
-            This will be used in the config file when parsing command set up paramters.</param>
-            <param name="configClass">The config class for the command.</param>
-            <param name="description">The description for the command.</param>
-        </member>
-        <member name="P:Ximura.XimuraAppModuleAttribute.ID">
-            <summary>
-            The Guid of the module
+            Summary description for IXimuraApplication.
             </summary>
         </member>
-        <member name="P:Ximura.XimuraAppModuleAttribute.Name">
+        <member name="P:Ximura.IXimuraApplication.ApplicationID">
             <summary>
-            The name of the module. This is used to retrieve app settings.
+            This is the application ID.
             </summary>
         </member>
-        <member name="P:Ximura.XimuraAppModuleAttribute.ConfigClass">
+        <member name="T:Ximura.XimuraRemotingException">
             <summary>
-            This class returns the class type for the config settings class for the command.
+            This class is used to signal an exception when using Ximura remoting
             </summary>
         </member>
-        <member name="P:Ximura.XimuraAppModuleAttribute.ForceConfigClass">
+        <member name="M:Ximura.XimuraRemotingException.#ctor">
+            <summary>Initializes a new instance of the SecureRemotingException class with default properties.</summary>
+        </member>
+        <member name="M:Ximura.XimuraRemotingException.#ctor(System.String)">
+            <summary>Initializes a new instance of the SecureRemotingException class with the given message.</summary>
+            <param name="message">The error message that explains why the exception occurred.</param>
+        </member>
+        <member name="M:Ximura.XimuraRemotingException.#ctor(System.String,System.Exception)">
+            <summary>Initializes a new instance of the SecureRemotingException class with the specified properties.</summary>
+            <param name="message">The error message that explains why the exception occurred.</param>
+            <param name="innerException">The exception that is the cause of the current exception.</param>
+        </member>
+        <member name="M:Ximura.XimuraRemotingException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>Initializes the exception with serialized information.</summary>
+            <param name="info">Serialization information.</param>
+            <param name="context">Streaming context.</param>
+        </member>
+        <member name="M:Ximura.XimuraRemotingException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>Provides serialization functionality.</summary>
+            <param name="info">Serialization information.</param>
+            <param name="context">Streaming context.</param>
+        </member>
+        <member name="T:Ximura.Server.IXimuraStorageManagerService">
             <summary>
-            This class returns the class type for the config settings class for the command.
+            This interface is implemented by storage manager.
             </summary>
         </member>
-        <member name="P:Ximura.XimuraAppModuleAttribute.Description">
+        <member name="T:Ximura.Server.IXimuraAppServerAgentService">
             <summary>
-            The friendly description of the module.
+            THis interface is implemented by application server components that need the ability to register specific agents, 
+            such as logging providers, session managers etc.
             </summary>
         </member>
-        <member name="T:Ximura.Data.IXimuraMessageStream">
+        <member name="M:Ximura.Server.IXimuraAppServerAgentService.AgentAdd(Ximura.Server.XimuraServerAgentHolder)">
             <summary>
-            This interface is used to interface between the protocol and the message
+            This method adds an agent to the service.
+            </summary>
+            <param name="holder">The agent identifying information.</param>
+        </member>
+        <member name="M:Ximura.Server.IXimuraAppServerAgentService.AgentRemove(Ximura.Server.XimuraServerAgentHolder)">
+            <summary>
+            This method removes an agent from the service.
+            </summary>
+            <param name="holder">The agent identifying information.</param>
+        </member>
+        <member name="T:Ximura.Server.IXimuraGatewayAgent">
+            <summary>
+            This interface is implemented by system gateway agents.
             </summary>
         </member>
-        <member name="T:Ximura.Data.IXimuraMessageStreamLoad">
+        <member name="T:Ximura.Server.IXimuraServerAgent">
             <summary>
-            This interface is used to load the message with its initial data.
+            This is the base interface implemented by all server agents.
             </summary>
         </member>
-        <member name="P:Ximura.Data.IXimuraMessageLoad.CanLoad">
+        <member name="T:Ximura.Server.IXimuraConfigurationManager">
             <summary>
-            This boolean property determines whether the message can be loaded.
+            This is the configuration manager.
             </summary>
         </member>
-        <member name="P:Ximura.Data.IXimuraMessage.Direction">
+        <member name="T:Ximura.IXimuraCommandScheduleProcessConfigSH">
             <summary>
-            This property indicates the message direction.
+            This is the default interface for a scheduler config section handler
             </summary>
         </member>
-        <member name="P:Ximura.Data.IXimuraMessage.IsTerminator">
+        <member name="M:Ximura.IXimuraCommandScheduleProcessConfigSH.GetNextSchedules(System.Double)">
             <summary>
-            This property indicates whether this section signals the end of the message.
+            Get Next Schedules within interval(in minutes)
+            </summary>
+            <param name="interval">interval in minutes</param>
+            <returns>return all upcoming schedules in time/schedule pairs</returns>
+        </member>
+        <member name="T:Ximura.IXimuraApplicationDefinition">
+            <summary>
+            This interface is used to provide application based configuration settings.
             </summary>
         </member>
-        <member name="T:Ximura.IXimuraCommandPermissions">
+        <member name="P:Ximura.IXimuraApplicationDefinition.ApplicationName">
             <summary>
-            This interface determines the specific permissions that the command presents to the application.
-            </summary>
-        </member>
-        <member name="T:Ximura.IXimuraCommand">
-            <summary>
-            IXimuraCommand is the base interface for the command object.
-            </summary>
-        </member>
-        <member name="P:Ximura.IXimuraCommand.CommandID">
-            <summary>
-            The command unique identifier.
-            </summary>
-        </member>
-        <member name="P:Ximura.IXimuraCommand.CommandName">
-            <summary>
-            The command name. This is used in to the config file to retrieve the
-            settings.
-            </summary>
-        </member>
-        <member name="P:Ximura.IXimuraCommand.CommandDescription">
-            <summary>
-            The command friendly description
-            </summary>
-        </member>
-        <member name="T:Ximura.IXimuraCommandNotification">
-            <summary>
-            This interface is implemented by commands that support notification.
-            </summary>
-        </member>
-        <member name="M:Ximura.IXimuraCommandNotification.Notify(System.Type,System.Object)">
-            <summary>
-            This method is called when there is a system notification.
-            </summary>
-            <param name="notificationType">The notification object type.</param>
-            <param name="notification">The notification object.</param>
-        </member>
-        <member name="P:Ximura.IXimuraCommandNotification.SupportsNotifications">
-            <summary>
-            This boolean property specifies that the object supports system notification.
+            This is the application name.
             </summary>
         </member>
         <member name="T:Ximura.Helper.DateTimeHelper">
@@ -1315,49 +996,6 @@
             <param name="intervalStart"></param>
             <param name="internalEnd"></param>
             <returns></returns>
-        </member>
-        <member name="T:Ximura.XimuraException">
-            <summary>
-            XimuraException is the root exception object for the Ximura system.
-            </summary>
-        </member>
-        <member name="M:Ximura.XimuraException.#ctor">
-            <summary>
-            Initializes a new instance of the XimuraException class.
-            </summary>
-        </member>
-        <member name="M:Ximura.XimuraException.#ctor(System.String)">
-            <summary>
-            Initializes a new instance of the XimuraException class.
-            </summary>
-            <param name="message">The error message.</param>
-        </member>
-        <member name="M:Ximura.XimuraException.#ctor(System.String,System.Exception)">
-            <summary>
-            Initializes a new instance of the XimuraException class.
-            </summary>
-            <param name="message">The error message.</param>
-            <param name="ex">The base exception.</param>
-        </member>
-        <member name="M:Ximura.XimuraException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <summary>
-            This exception is used for deserialization.
-            </summary>
-            <param name="info">The serialization info.</param>
-            <param name="context">The serialization context.</param>
-        </member>
-        <member name="M:Ximura.XimuraException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <summary>Provides serialization functionality.</summary>
-            <param name="info">Serialization information.</param>
-            <param name="context">Streaming context.</param>
-        </member>
-        <member name="M:Ximura.XimuraException.LogException(Ximura.IXimuraLogging)">
-            <summary>
-            This is a shortcut to log the exception message to the Ximura Logging provider. 
-            This may be overriden in derived classes to provide a more detailed breakdown.
-            </summary>
-            <param name="provider">The Ximura logging provider to log to.</param>
-            <returns>A boolean value. True indicated that the message was successfully logged.</returns>
         </member>
         <member name="T:Ximura.ElementSite">
             <summary>
@@ -1490,149 +1128,136 @@
             The service container.
             </summary>
         </member>
-        <member name="T:Ximura.IXimuraPerformanceCounterCollection">
+        <member name="T:Ximura.IXimuraLogging">
             <summary>
-            This interface is used by classes that provide performance counter consolidation.
+            The IXimuraLogging interface provides the necessary methods to enable logging.
             </summary>
         </member>
-        <member name="P:Ximura.IXimuraPerformanceCounterCollection.CommandID">
+        <member name="M:Ximura.IXimuraLogging.AcceptCategory(System.String,System.Diagnostics.EventLogEntryType)">
             <summary>
-            The command id.
+            This method inform the Logging Manager whether it will accept the 
+            category for logging.
+            </summary>
+            <param name="category">The logging category.</param>
+            <returns>A boolean value. True indicated the category is accepted.</returns>
+        </member>
+        <member name="M:Ximura.IXimuraLogging.Close">
+            <summary>
+            Flushes the output buffer and then closes the Listeners.
             </summary>
         </member>
-        <member name="P:Ximura.IXimuraPerformanceCounterCollection.PCID">
+        <member name="M:Ximura.IXimuraLogging.Flush">
             <summary>
-            The parent command id.
+            Flushes the output buffer and causes buffered data to write to the Listeners
+            collection.
             </summary>
         </member>
-        <member name="P:Ximura.IXimuraPerformanceCounterCollection.Name">
+        <member name="M:Ximura.IXimuraLogging.Fail(System.String,System.String)">
             <summary>
-            The counter name.
+            Emits an error message and a detailed error message.
+            </summary>
+            <param name="message">A message to emit.</param>
+            <param name="detailMessage">A detailed message to emit.</param>
+        </member>
+        <member name="M:Ximura.IXimuraLogging.Fail(System.String)">
+            <summary>
+            Emits the specified error message.
+            </summary>
+            <param name="message">A message to emit.</param>
+        </member>
+        <member name="M:Ximura.IXimuraLogging.Indent">
+            <summary>
+            Increases the current IndentLevel by one.
             </summary>
         </member>
-        <member name="P:Ximura.IXimuraPerformanceCounterCollection.Category">
+        <member name="M:Ximura.IXimuraLogging.Unindent">
             <summary>
-            The category name.
+            Decreases the current IndentLevel by one.
             </summary>
         </member>
-        <member name="T:Ximura.Data.IXimuraMessageStreamFeedback">
+        <member name="M:Ximura.IXimuraLogging.Write(System.Object,System.String)">
             <summary>
-            This message provides immediate feedback when characters are received.
+            Writes a category name and the value of the object's ToString method to 
+            the trace listeners in the Listeners collection.
+            </summary>
+            <param name="value">An object whose name is sent to the Listeners.</param>
+            <param name="category">A category name used to organize the output.</param>
+        </member>
+        <member name="M:Ximura.IXimuraLogging.Write(System.String)">
+            <summary>
+            Writes a category name and message to the trace listeners in the Listeners
+             collection.
+            </summary>
+            <param name="message">A message to write. </param>
+        </member>
+        <member name="M:Ximura.IXimuraLogging.Write(System.String,System.String)">
+            <summary>
+            Writes a category name and message to the trace listeners in the Listeners
+             collection.
+            </summary>
+            <param name="message">A message to write. </param>
+            <param name="category">A category name used to organize the output.</param>
+        </member>
+        <member name="M:Ximura.IXimuraLogging.Write(System.Object)">
+            <summary>
+            Writes the value of the object's ToString method to the trace listeners
+            in the Listeners collection.
+            </summary>
+            <param name="value">An object whose name is sent to the Listeners.</param>
+        </member>
+        <member name="M:Ximura.IXimuraLogging.WriteLine(System.Object,System.String)">
+            <summary>
+            Writes a category name and the value of the object's ToString method to the trace 
+            listeners in the Listeners collection.
+            </summary>
+            <param name="value">An object whose name is sent to the Listeners.</param>
+            <param name="category">A category name used to organize the output.</param>
+        </member>
+        <member name="M:Ximura.IXimuraLogging.WriteLine(System.String,System.String)">
+            <summary>
+            Writes a category name and message to the trace listeners in the Listeners collection.
+            </summary>
+            <param name="message">A message to write.</param>
+            <param name="category">A category name used to organize the output.</param>
+        </member>
+        <member name="M:Ximura.IXimuraLogging.WriteLine(System.Object)">
+            <summary>
+            Writes the value of the object's ToString method to the trace listeners
+            in the Listeners collection.
+            </summary>
+            <param name="value">An object whose name is sent to the Listeners. </param>
+        </member>
+        <member name="M:Ximura.IXimuraLogging.WriteLine(System.String)">
+            <summary>
+            Writes a category name and message to the trace listeners in the
+            Listeners collection.
+            </summary>
+            <param name="message">A message to write.</param>
+        </member>
+        <member name="P:Ximura.IXimuraLogging.Name">
+            <summary>
+            Gets or sets a name for this LoggingProvider.
             </summary>
         </member>
-        <member name="T:Ximura.Data.IXimuraContentEntityFragment">
+        <member name="P:Ximura.IXimuraLogging.AutoFlush">
             <summary>
-            This interface is used to identify the fragmentation options for the entity.
+            Gets or sets a value indicating whether Flush should be called on the 
+            Listeners after every write.
             </summary>
         </member>
-        <member name="M:Ximura.Data.IXimuraContentEntityFragment.IsFragment">
+        <member name="P:Ximura.IXimuraLogging.IndentLevel">
             <summary>
-            This property identifies whether the content is a fragment type.
-            </summary>
-            <returns>Returns true if the object is a fragment, or supports fragmentation.</returns>
-        </member>
-        <member name="M:Ximura.Data.IXimuraContentEntityFragment.FragmentBaseType">
-            <summary>
-            This is the fragment base type. If this property is supported the persistence manager 
-            will store this property in the serialization blob. Should the original type be unavailable 
-            the content will be deserialized using this type.
-            </summary>
-            <returns>Return the base content type if supported.</returns>
-        </member>
-        <member name="M:Ximura.Data.IXimuraContentEntityFragment.SupportsFragmentBaseType">
-            <summary>
-            This method identifies whether the content supports the base type content.
-            </summary>
-            <returns>Returns true if this property is supported.</returns>
-        </member>
-        <member name="M:Ximura.Data.IXimuraContentEntityFragment.CanConvertToPrimaryEntity">
-            <summary>
-            This boolean property identifies whether a fragment can convert to a primary entity.
-            </summary>
-            <returns>Returns true if the entity can convert.</returns>
-        </member>
-        <member name="M:Ximura.Data.IXimuraContentEntityFragment.ConvertFragmentToPrimaryEntity">
-            <summary>
-            This method converts the fragment entity to the primary entity.
+            Gets or sets the indent level.
             </summary>
         </member>
-        <member name="M:Ximura.Data.IXimuraContentEntityFragment.MergeContent(Ximura.Data.IXimuraContent)">
+        <member name="P:Ximura.IXimuraLogging.IndentSize">
             <summary>
-            This method is implemented by the fragment content and will be used to merge any
-            changes back in to the root content.
-            </summary>
-            <param name="baseContent">The base content to merge in to.</param>
-        </member>
-        <member name="M:Ximura.Data.IXimuraContentEntityFragment.AddBaseContent">
-            <summary>
-            This method is implemented by the fragment content and will be used to convert any
-            changes back in to the root content.
+            Gets or sets the number of spaces in an indent.
             </summary>
         </member>
-        <member name="M:Ximura.Data.IXimuraContentEntityFragment.UpdateBaseContent(Ximura.Data.IXimuraContent)">
+        <member name="T:Ximura.Server.IXimuraLoggingManagerService">
             <summary>
-            This method is implemented by the fragment content and will be used to update any
-            changes back in to the root content.
-            </summary>
-            <param name="baseContent">The base content to merge in to.</param>
-        </member>
-        <member name="M:Ximura.Data.IXimuraContentEntityFragment.DeleteBaseContent(Ximura.Data.IXimuraContent)">
-            <summary>
-            This method is implemented by the fragment content and will be used to
-            delete the root content.
-            </summary>
-            <param name="baseContent">The base content to merge in to.</param>
-        </member>
-        <member name="M:Ximura.Data.IXimuraContentEntityFragment.FragmentIDIsByReference">
-            <summary>
-            this method tells whether the fragment id is a by-reference id or not
-            </summary>
-            <returns>Returns turs if the fragment id is by-reference</returns>
-        </member>
-        <member name="M:Ximura.Data.IXimuraContentEntityFragment.FragmentReferenceType">
-            <summary>
-            this method returns the fragment reference type
-            </summary>
-            <returns>fragment reference type</returns>
-        </member>
-        <member name="M:Ximura.Data.IXimuraContentEntityFragment.SetFragmentReferenceType(System.String)">
-            <summary>
-            this method set the fragment reference type 
-            </summary>
-            <param name="referenceType"></param>
-        </member>
-        <member name="M:Ximura.Data.IXimuraContentEntityFragment.FragmentReferenceID">
-            <summary>
-            this method returns the fragment reference id
-            </summary>
-            <returns>fragment reference id</returns>
-        </member>
-        <member name="M:Ximura.Data.IXimuraContentEntityFragment.SetFragmentReferenceID(System.String)">
-            <summary>
-            this method set the fragment reference id 
-            </summary>
-            <param name="referenceID"></param>
-        </member>
-        <member name="T:Ximura.XimuraAppModuleConfigAttribute">
-            <summary>
-            This attribute is used to set the default command configurations setting.
-            </summary>
-        </member>
-        <member name="M:Ximura.XimuraAppModuleConfigAttribute.#ctor(System.String,System.String)">
-            <summary>
-            This attribute is used to specify the default XML for the parent configuration settings.
-            </summary>
-            <param name="ResourceFile">The name of the resource file that contains the base XML fragment.</param>
-            <param name="ConfigHelperType">This is the .NET type name of the command config section handler.</param>
-        </member>
-        <member name="P:Ximura.XimuraAppModuleConfigAttribute.ResourceFile">
-            <summary>
-            The name of the resource file that contains the base XML fragment.
-            </summary>
-        </member>
-        <member name="P:Ximura.XimuraAppModuleConfigAttribute.ConfigHelperType">
-            <summary>
-            The >NET type name of the command config section handler.
+            This interface is registered by the logging manager in the control container.
             </summary>
         </member>
         <member name="T:Ximura.PoolManager">
@@ -1776,69 +1401,167 @@
             this is the current session state
             </summary>
         </member>
-        <member name="T:Ximura.XimuraServiceStatus">
+        <member name="T:Ximura.XimuraServiceStatusAction">
             <summary>
-            The CatalogProcessStatus shows the current status of the Catalog Process.
+            This enumerations is used to signal an action for the collection
             </summary>
         </member>
-        <member name="F:Ximura.XimuraServiceStatus.Undefined">
+        <member name="F:Ximura.XimuraServiceStatusAction.Start">
             <summary>
-            The status is undefined.
+            Start the collection
             </summary>
         </member>
-        <member name="F:Ximura.XimuraServiceStatus.NotStarted">
+        <member name="F:Ximura.XimuraServiceStatusAction.Stop">
             <summary>
-            The process has not started.
+            Stop the collection
             </summary>
         </member>
-        <member name="F:Ximura.XimuraServiceStatus.Starting">
+        <member name="F:Ximura.XimuraServiceStatusAction.Pause">
             <summary>
-            The process is starting up.
+            Pause the collection
             </summary>
         </member>
-        <member name="F:Ximura.XimuraServiceStatus.Started">
+        <member name="F:Ximura.XimuraServiceStatusAction.Continue">
             <summary>
-            The process is processing.
+            Continue the collection
             </summary>
         </member>
-        <member name="F:Ximura.XimuraServiceStatus.Pausing">
+        <member name="T:Ximura.IXimuraServiceParentSettings">
             <summary>
-            The process is pausing.
+            This interface is implemented by commands that can be nested in other commands.
             </summary>
         </member>
-        <member name="F:Ximura.XimuraServiceStatus.Paused">
+        <member name="P:Ximura.IXimuraServiceParentSettings.ParentCommandName">
             <summary>
-            The process is paused.
+            The parent command service name.
             </summary>
         </member>
-        <member name="F:Ximura.XimuraServiceStatus.Resuming">
+        <member name="T:Ximura.IXimuraService">
             <summary>
-            The process is resuming.
+            This interface is used by Ximura Service based components.
             </summary>
         </member>
-        <member name="F:Ximura.XimuraServiceStatus.Stopping">
+        <member name="M:Ximura.IXimuraService.Start">
             <summary>
-            The process is stopping.
+            This method starts the service
             </summary>
         </member>
-        <member name="F:Ximura.XimuraServiceStatus.Stopped">
+        <member name="M:Ximura.IXimuraService.Pause">
             <summary>
-            The process has stopped.
+            This method pauses the service
             </summary>
         </member>
-        <member name="F:Ximura.XimuraServiceStatus.Completed">
+        <member name="M:Ximura.IXimuraService.Continue">
             <summary>
-            The process has completed.
+            This method continues a paused service
             </summary>
         </member>
-        <member name="F:Ximura.XimuraServiceStatus.Resumed">
+        <member name="M:Ximura.IXimuraService.Stop">
             <summary>
-            The process has resumed.
+            This method stops a running service
             </summary>
         </member>
-        <member name="P:Ximura.Data.IXimuraMessageTermination.IsTerminator">
+        <member name="P:Ximura.IXimuraService.ServiceStatus">
             <summary>
-            This property specifies whether the fragment byte array has reached the termination requirements
+            This method will return the current service status
+            </summary>
+        </member>
+        <member name="P:Ximura.IXimuraService.ServiceEnabled">
+            <summary>
+            This property determines whether the component is enable and can start.
+            </summary>
+        </member>
+        <member name="T:Ximura.IXimuraPoolManagerDirectAccess">
+            <summary>
+            This method is for poolable objects that require access to the base pool manager, so that they can retrieve
+            additional internal objects from the pool.
+            </summary>
+        </member>
+        <member name="M:Ximura.IXimuraPoolManagerDirectAccess.PoolGet(System.Type)">
+            <summary>
+            This method returns the specific pool manager for the type.
+            </summary>
+            <param name="objectType"></param>
+            <returns>Returns the pool for the object type.</returns>
+        </member>
+        <member name="M:Ximura.IXimuraPoolManagerDirectAccess.PoolGetObject(System.Type)">
+            <summary>
+            Returns a new object of the type specified.
+            </summary>
+            <param name="objectType">The object type required.</param>
+            <returns>Returns a poolable object of the type defined.</returns>
+        </member>
+        <member name="M:Ximura.IXimuraPoolManagerDirectAccess.PoolGetReturn(System.Object)">
+            <summary>
+            This method returns the object to the appropriate pool.
+            </summary>
+            <param name="poolObject">The object to return.</param>
+        </member>
+        <member name="P:Ximura.IXimuraPoolManagerDirectAccess.PoolManager">
+            <summary>
+            This is the pool manager for the object.
+            </summary>
+        </member>
+        <member name="T:Ximura.Data.IXimuraMessageStream">
+            <summary>
+            This interface is used to interface between the protocol and the message
+            </summary>
+        </member>
+        <member name="T:Ximura.Data.IXimuraMessageStreamLoad">
+            <summary>
+            This interface is used to load the message with its initial data.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.IXimuraMessageLoad.CanLoad">
+            <summary>
+            This boolean property determines whether the message can be loaded.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.IXimuraMessage.Direction">
+            <summary>
+            This property indicates the message direction.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.IXimuraMessage.IsTerminator">
+            <summary>
+            This property indicates whether this section signals the end of the message.
+            </summary>
+        </member>
+        <member name="T:Ximura.IXimuraComponentBase">
+            <summary>
+            This is the base interface supported by components that support the Ximura component architecture.
+            </summary>
+        </member>
+        <member name="T:Ximura.IXimuraServiceContainer">
+            <summary>
+            This interface provides extended functionality for the service based architecture.
+            </summary>
+        </member>
+        <member name="M:Ximura.IXimuraServiceContainer.AddService(System.Type,System.Object,System.Boolean,System.Int32)">
+            <summary>
+            Adds the service specified to the service container.
+            </summary>
+            <param name="serviceType">The type of service to add.</param>
+            <param name="serviceInstance">The service.</param>
+            <param name="promote">True promotes this service to the parent service container.</param>
+            <param name="depth">The depth the service should be promoted. Set this value to -1 if you require it to be unlimited.</param>
+        </member>
+        <member name="M:Ximura.IXimuraServiceContainer.GetService(System.Type,System.Int32)">
+            <summary>
+            This method returns the requested service.
+            </summary>
+            <param name="serviceType">The service type.</param>
+            <param name="depth">The service depth. If this is set to -1 the depth is unlimited.</param>
+            <returns>Returns the service requested, or null if the service cannot be found.</returns>
+        </member>
+        <member name="T:Ximura.IXimuraCommandPermissions">
+            <summary>
+            This interface determines the specific permissions that the command presents to the application.
+            </summary>
+        </member>
+        <member name="T:Ximura.IXimuraCommandKnownService">
+            <summary>
+            This interface is used to identify known services.
             </summary>
         </member>
         <member name="T:Ximura.XimuraAppContainer">
@@ -1925,29 +1648,195 @@
             for the XimuraAppContainer object.
             </summary>
         </member>
-        <member name="T:Ximura.IXimuraPerformanceManager">
+        <member name="T:Ximura.XimuraAppModuleConfigAttribute">
             <summary>
-            This interface should be used by all services providing performance services
+            This attribute is used to set the default command configurations setting.
             </summary>
         </member>
-        <member name="T:Ximura.Server.IXimuraConfigurationManager">
+        <member name="M:Ximura.XimuraAppModuleConfigAttribute.#ctor(System.String,System.String)">
             <summary>
-            This is the configuration manager.
+            This attribute is used to specify the default XML for the parent configuration settings.
+            </summary>
+            <param name="ResourceFile">The name of the resource file that contains the base XML fragment.</param>
+            <param name="ConfigHelperType">This is the .NET type name of the command config section handler.</param>
+        </member>
+        <member name="P:Ximura.XimuraAppModuleConfigAttribute.ResourceFile">
+            <summary>
+            The name of the resource file that contains the base XML fragment.
             </summary>
         </member>
-        <member name="T:Ximura.IXimuraCommandKnownService">
+        <member name="P:Ximura.XimuraAppModuleConfigAttribute.ConfigHelperType">
             <summary>
-            This interface is used to identify known services.
+            The >NET type name of the command config section handler.
             </summary>
         </member>
-        <member name="T:Ximura.IXimuraApplication">
+        <member name="T:Ximura.Server.IXimuraGatewayManagerService">
             <summary>
-            Summary description for IXimuraApplication.
+            This interface is implemented by the Gateway service.
             </summary>
         </member>
-        <member name="P:Ximura.IXimuraApplication.ApplicationID">
+        <member name="T:Ximura.IXimuraPerformanceCounterCollection">
             <summary>
-            This is the application ID.
+            This interface is used by classes that provide performance counter consolidation.
+            </summary>
+        </member>
+        <member name="T:Ximura.Data.IXimuraMessageStreamFeedback">
+            <summary>
+            This message provides immediate feedback when characters are received.
+            </summary>
+        </member>
+        <member name="T:Ximura.IXimuraLoggerConfigSH">
+            <summary>
+            This interface is used by the logging config section handlers
+            </summary>
+        </member>
+        <member name="M:Ximura.IXimuraLoggerSettings.GetSwitchValue(System.String)">
+            <summary>
+            This method returns a specific switch value for the type of message.
+            </summary>
+            <param name="Type">The switch type.</param>
+            <returns>An integer value with the switch value.</returns>
+        </member>
+        <member name="M:Ximura.IXimuraLoggerSettings.GetSetting(System.String)">
+            <summary>
+            Get the config setting by specific Type
+            </summary>
+            <param name="Type">setting type</param>
+            <returns>setting value</returns>
+        </member>
+        <member name="P:Ximura.IXimuraLoggerSettings.LoggerID">
+            <summary>
+            This is the logger identifier.
+            </summary>
+        </member>
+        <member name="P:Ximura.IXimuraLoggerSettings.LoggerName">
+            <summary>
+            This is the logger public name.
+            </summary>
+        </member>
+        <member name="P:Ximura.IXimuraLoggerSettings.LogLevel">
+            <summary>
+            This is the default log level
+            </summary>
+        </member>
+        <member name="T:Ximura.IXimuraConfigSH">
+            <summary>
+            This is the default interface for an application config section handler
+            </summary>
+        </member>
+        <member name="M:Ximura.IXimuraConfigSH.GetSetting(System.String)">
+            <summary>
+            Get the config setting by specific Type
+            </summary>
+            <param name="Type">setting type</param>
+            <returns>setting value</returns>
+        </member>
+        <member name="M:Ximura.IXimuraConfigSH.GetSettingExtended(System.String,System.String)">
+            <summary>
+            This method returns the extended setting object or null if the type 
+            specified does not exist.
+            </summary>
+            <param name="Type">The name of the type.</param>
+            <param name="subType">The name of the subtype.</param>
+            <returns>The settings object containing the specific settings or null if the object can not be found.</returns>
+        </member>
+        <member name="P:Ximura.IXimuraConfigSH.Enabled">
+            <summary>
+            This property determines whether the command is enabled.
+            </summary>
+        </member>
+        <member name="T:Ximura.Data.IXimuraParameter">
+            <summary>
+            The IXimuraParameter interface is used by the parameter element. 
+            The interface is defined from IDictionary and is based on a the Composite design pattern.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.IXimuraParameter.Add(System.String,System.Object)">
+            <summary>
+            This method will add a new parameter based on the key and the value.
+            </summary>
+            <param name="key">The key of the new parameter</param>
+            <param name="Value">The value of the new parameter</param>
+        </member>
+        <member name="M:Ximura.Data.IXimuraParameter.Add(System.String,Ximura.Data.IXimuraParameter)">
+            <summary>
+            This method will append an existing parameter to the parameter collection.
+            </summary>
+            <param name="key">The key you wish to use for this parameter in the collection</param>
+            <param name="Value">The parameter.</param>
+        </member>
+        <member name="M:Ximura.Data.IXimuraParameter.Contains(System.String)">
+            <summary>
+            This method checks whether a key exists in the parameter collection.
+            </summary>
+            <param name="key">The key to check</param>
+            <returns>Returns true if the key exist in the folder collection</returns>
+        </member>
+        <member name="M:Ximura.Data.IXimuraParameter.Contains(Ximura.Data.IXimuraParameter)">
+            <summary>
+            This method checks whether a parameter exists within the parameter collection.
+            </summary>
+            <param name="childParameter">The child parameter.</param>
+            <returns>Returns true if the parameter exists</returns>
+        </member>
+        <member name="M:Ximura.Data.IXimuraParameter.Remove(System.String)">
+            <summary>
+            This method removes a parameter from the collection based on the key passed.
+            </summary>
+            <param name="key">The key of the parameter to remove</param>
+        </member>
+        <member name="M:Ximura.Data.IXimuraParameter.Remove(Ximura.Data.IXimuraParameter)">
+            <summary>
+            This method removes a parameter from the collection based on the parameter passed.
+            </summary>
+            <param name="childParameter">The child parameter to be removed.</param>
+        </member>
+        <member name="M:Ximura.Data.IXimuraParameter.AddParameter(System.String,System.Object)">
+            <summary>
+            This method creates a new parameter and adds it to the collection.
+            </summary>
+            <param name="Key">The parameter key.</param>
+            <param name="Value">The parameter value.</param>
+            <returns>This method returns the newly created parameter.</returns>
+        </member>
+        <member name="M:Ximura.Data.IXimuraParameter.SetAsRootParameter">
+            <summary>
+            This method sets the parameter as the root parameter within a collection.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.IXimuraParameter.IsRootParameter">
+            <summary>
+            This method checks whether the parameter is the root parameter within the collection.
+            </summary>
+            <returns>Returns true if the parameter is the root parameter.</returns>
+        </member>
+        <member name="M:Ximura.Data.IXimuraParameter.HasChildParameters">
+            <summary>
+            This method checks whether the parameter has any children.
+            </summary>
+            <returns>Returns true if the parameter has children.</returns>
+        </member>
+        <member name="M:Ximura.Data.IXimuraParameter.ParameterValue(System.String)">
+            <summary>
+            This helper method retieves a parameter value from the collection.
+            </summary>
+            <param name="key">The key to retrieve.</param>
+            <returns>Returns the valus of the parameter.</returns>
+        </member>
+        <member name="P:Ximura.Data.IXimuraParameter.Key">
+            <summary>
+            This is the root key of the parameter.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.IXimuraParameter.Value">
+            <summary>
+            This is the root value of the paramter. A parameter can contain any type of object.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.IXimuraParameter.Item(System.String)">
+            <summary>
+            This is the default enumerator for the parameter and will return the value of the 
+            sub-paramters based on the key supplied.
             </summary>
         </member>
         <member name="T:Ximura.Helper.XMLHelper">
@@ -1959,6 +1848,40 @@
             <summary>
             The <b>Common</b> class includes a number of useful utilities.
             </summary>
+        </member>
+        <member name="M:Ximura.Helper.Common.ParseArgs(System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="Args"></param>
+            <returns>Returns a dictionary containing the collection of parameters and values.</returns>
+        </member>
+        <member name="M:Ximura.Helper.Common.ParseArgs(System.String[],System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="Args"></param>
+            <param name="throwErrors"></param>
+            <returns>Returns a dictionary containing the collection of parameters and values.</returns>
+        </member>
+        <member name="M:Ximura.Helper.Common.ParseArgs(System.String[],System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="Args"></param>
+            <param name="strStart"></param>
+            <param name="throwErrors"></param>
+            <returns>Returns a dictionary containing the collection of parameters and values.</returns>
+        </member>
+        <member name="M:Ximura.Helper.Common.ParseArgs(System.String[],System.String,System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="Args"></param>
+            <param name="strStart"></param>
+            <param name="strDelim"></param>
+            <param name="throwErrors"></param>
+            <returns>Returns a dictionary containing the collection of parameters and values.</returns>
         </member>
         <member name="M:Ximura.Helper.Common.ASCByt(System.String)">
             <summary>
@@ -2397,132 +2320,185 @@
             Message supports both reading and writing.
             </summary>
         </member>
-        <member name="T:Ximura.IXimuraLogging">
+        <member name="T:Ximura.Data.IXimuraFolder">
             <summary>
-            The IXimuraLogging interface provides the necessary methods to enable logging.
+            IXimuraFolder is the facade interface that extends the content class and allows it to 
+            include additional content and parameters.
             </summary>
         </member>
-        <member name="M:Ximura.IXimuraLogging.AcceptCategory(System.String,System.Diagnostics.EventLogEntryType)">
+        <member name="M:Ximura.Data.IXimuraFolder.ContentCount">
             <summary>
-            This method inform the Logging Manager whether it will accept the 
-            category for logging.
+            This property returns the count of the folder content objects.
             </summary>
-            <param name="category">The logging category.</param>
-            <returns>A boolean value. True indicated the category is accepted.</returns>
+            <returns>The number of Content object.</returns>
         </member>
-        <member name="M:Ximura.IXimuraLogging.Close">
+        <member name="M:Ximura.Data.IXimuraFolder.ParameterCount">
             <summary>
-            Flushes the output buffer and then closes the Listeners.
+            This property returns the count of the child parameter object.
             </summary>
+            <returns>The number of child parameter objects.</returns>
         </member>
-        <member name="M:Ximura.IXimuraLogging.Flush">
+        <member name="M:Ximura.Data.IXimuraFolder.Add(System.String,Ximura.Data.IXimuraContent)">
             <summary>
-            Flushes the output buffer and causes buffered data to write to the Listeners
-            collection.
+            This method add a content object to the Folder collection.
             </summary>
+            <param name="Key">The content key.</param>
+            <param name="theContent">The content object to add.</param>
         </member>
-        <member name="M:Ximura.IXimuraLogging.Fail(System.String,System.String)">
+        <member name="M:Ximura.Data.IXimuraFolder.Contains(Ximura.Data.IXimuraContent)">
             <summary>
-            Emits an error message and a detailed error message.
+            This method checks whether the Folder contains this Content object.
             </summary>
-            <param name="message">A message to emit.</param>
-            <param name="detailMessage">A detailed message to emit.</param>
+            <param name="theContent">The content object to check</param>
+            <returns>Returns true is the content object is in the Folder</returns>
         </member>
-        <member name="M:Ximura.IXimuraLogging.Fail(System.String)">
+        <member name="M:Ximura.Data.IXimuraFolder.Remove(Ximura.Data.IXimuraContent)">
             <summary>
-            Emits the specified error message.
+            This method removes a content object from the Folder collection.
             </summary>
-            <param name="message">A message to emit.</param>
+            <param name="theContent">The content object to remove.</param>
         </member>
-        <member name="M:Ximura.IXimuraLogging.Indent">
+        <member name="P:Ximura.Data.IXimuraFolder.ContentKeys">
             <summary>
-            Increases the current IndentLevel by one.
-            </summary>
-        </member>
-        <member name="M:Ximura.IXimuraLogging.Unindent">
-            <summary>
-            Decreases the current IndentLevel by one.
+            This property returns a collection of Content keys.
             </summary>
         </member>
-        <member name="M:Ximura.IXimuraLogging.Write(System.Object,System.String)">
+        <member name="P:Ximura.Data.IXimuraFolder.ContentValues">
             <summary>
-            Writes a category name and the value of the object's ToString method to 
-            the trace listeners in the Listeners collection.
-            </summary>
-            <param name="value">An object whose name is sent to the Listeners.</param>
-            <param name="category">A category name used to organize the output.</param>
-        </member>
-        <member name="M:Ximura.IXimuraLogging.Write(System.String)">
-            <summary>
-            Writes a category name and message to the trace listeners in the Listeners
-             collection.
-            </summary>
-            <param name="message">A message to write. </param>
-        </member>
-        <member name="M:Ximura.IXimuraLogging.Write(System.String,System.String)">
-            <summary>
-            Writes a category name and message to the trace listeners in the Listeners
-             collection.
-            </summary>
-            <param name="message">A message to write. </param>
-            <param name="category">A category name used to organize the output.</param>
-        </member>
-        <member name="M:Ximura.IXimuraLogging.Write(System.Object)">
-            <summary>
-            Writes the value of the object's ToString method to the trace listeners
-            in the Listeners collection.
-            </summary>
-            <param name="value">An object whose name is sent to the Listeners.</param>
-        </member>
-        <member name="M:Ximura.IXimuraLogging.WriteLine(System.Object,System.String)">
-            <summary>
-            Writes a category name and the value of the object's ToString method to the trace 
-            listeners in the Listeners collection.
-            </summary>
-            <param name="value">An object whose name is sent to the Listeners.</param>
-            <param name="category">A category name used to organize the output.</param>
-        </member>
-        <member name="M:Ximura.IXimuraLogging.WriteLine(System.String,System.String)">
-            <summary>
-            Writes a category name and message to the trace listeners in the Listeners collection.
-            </summary>
-            <param name="message">A message to write.</param>
-            <param name="category">A category name used to organize the output.</param>
-        </member>
-        <member name="M:Ximura.IXimuraLogging.WriteLine(System.Object)">
-            <summary>
-            Writes the value of the object's ToString method to the trace listeners
-            in the Listeners collection.
-            </summary>
-            <param name="value">An object whose name is sent to the Listeners. </param>
-        </member>
-        <member name="M:Ximura.IXimuraLogging.WriteLine(System.String)">
-            <summary>
-            Writes a category name and message to the trace listeners in the
-            Listeners collection.
-            </summary>
-            <param name="message">A message to write.</param>
-        </member>
-        <member name="P:Ximura.IXimuraLogging.Name">
-            <summary>
-            Gets or sets a name for this LoggingProvider.
+            This property returns a collection of Content values.
             </summary>
         </member>
-        <member name="P:Ximura.IXimuraLogging.AutoFlush">
+        <member name="P:Ximura.Data.IXimuraFolder.ParameterKeys">
             <summary>
-            Gets or sets a value indicating whether Flush should be called on the 
-            Listeners after every write.
+            This property returns a collection of Parameters keys.
             </summary>
         </member>
-        <member name="P:Ximura.IXimuraLogging.IndentLevel">
+        <member name="P:Ximura.Data.IXimuraFolder.ParameterValues">
             <summary>
-            Gets or sets the indent level.
+            This property returns a collection of Parameters values.
             </summary>
         </member>
-        <member name="P:Ximura.IXimuraLogging.IndentSize">
+        <member name="T:Ximura.Data.Serialization.IXimuraContentFormatterCapabilities">
             <summary>
-            Gets or sets the number of spaces in an indent.
+            Summary description for IXimuraContentFormatterCapabilities.
             </summary>
+        </member>
+        <member name="M:Ximura.Data.Serialization.IXimuraContentFormatterCapabilities.Load(System.IO.Stream)">
+            <summary>
+            This method loads the header from the stream.
+            </summary>
+            <param name="inStream">The stream to read from.</param>
+        </member>
+        <member name="M:Ximura.Data.Serialization.IXimuraContentFormatterCapabilities.Output(System.IO.Stream,Ximura.Data.IXimuraContent,System.Runtime.Serialization.SerializationInfo)">
+            <summary>
+            This method outputs the header for the stream.
+            </summary>
+            <param name="outStream">The stream to write to.</param>
+            <param name="entity">The entity specified.</param>
+        </member>
+        <member name="P:Ximura.Data.Serialization.IXimuraContentFormatterCapabilities.Max">
+            <summary>
+            The maximum version value up to a maximum of 63.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.Serialization.IXimuraContentFormatterCapabilities.Min">
+            <summary>
+            The minimum version number, between 0 and 63.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.Serialization.IXimuraContentFormatterCapabilities.Revision">
+            <summary>
+            The revision number between 0 and 63.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.Serialization.IXimuraContentFormatterCapabilities.TypeID">
+            <summary>
+            The Type ID
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.Serialization.IXimuraContentFormatterCapabilities.ContentID">
+            <summary>
+            The Content ID
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.Serialization.IXimuraContentFormatterCapabilities.VersionID">
+            <summary>
+            The Version ID
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.Serialization.IXimuraContentFormatterCapabilities.ContentType">
+            <summary>
+            The content type specified.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.Serialization.IXimuraContentFormatterCapabilities.ContentBaseType">
+            <summary>
+            The content base type specified.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.Serialization.IXimuraContentFormatterCapabilities.AllowRelativeType">
+            <summary>
+            This specifies whether the deserializer can use the best match for creating
+            the object from the type.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.Serialization.IXimuraContentFormatterCapabilities.SupportsBaseType">
+            <summary>
+            This method identifies whether the content supports a base type.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.Serialization.IXimuraContentFormatterCapabilities.RWHelper">
+            <summary>
+            This is the helper used to read and write objects to the stream.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.Serialization.IXimuraContentFormatterCapabilities.StreamCompressed">
+            <summary>
+            This property indicates whether the body data is compressed.
+            </summary>
+        </member>
+        <member name="T:Ximura.XimuraException">
+            <summary>
+            XimuraException is the root exception object for the Ximura system.
+            </summary>
+        </member>
+        <member name="M:Ximura.XimuraException.#ctor">
+            <summary>
+            Initializes a new instance of the XimuraException class.
+            </summary>
+        </member>
+        <member name="M:Ximura.XimuraException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the XimuraException class.
+            </summary>
+            <param name="message">The error message.</param>
+        </member>
+        <member name="M:Ximura.XimuraException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the XimuraException class.
+            </summary>
+            <param name="message">The error message.</param>
+            <param name="ex">The base exception.</param>
+        </member>
+        <member name="M:Ximura.XimuraException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            This exception is used for deserialization.
+            </summary>
+            <param name="info">The serialization info.</param>
+            <param name="context">The serialization context.</param>
+        </member>
+        <member name="M:Ximura.XimuraException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>Provides serialization functionality.</summary>
+            <param name="info">Serialization information.</param>
+            <param name="context">Streaming context.</param>
+        </member>
+        <member name="M:Ximura.XimuraException.LogException(Ximura.IXimuraLogging)">
+            <summary>
+            This is a shortcut to log the exception message to the Ximura Logging provider. 
+            This may be overriden in derived classes to provide a more detailed breakdown.
+            </summary>
+            <param name="provider">The Ximura logging provider to log to.</param>
+            <returns>A boolean value. True indicated that the message was successfully logged.</returns>
         </member>
         <member name="T:Ximura.IXimuraSessionNegotiatePlainText">
             <summary>
@@ -2562,46 +2538,40 @@
             <param name="username">The username.</param>
             <param name="password">The password.</param>
         </member>
-        <member name="T:Ximura.IXimuraLoggingManagerConfigSH">
+        <member name="T:Ximura.Helper.ServiceEvent">
             <summary>
-            This interface is used by the logging config section handler.
+            This delegate is used by the Services to report back progress
             </summary>
         </member>
-        <member name="M:Ximura.IXimuraLoggingManagerConfigSH.Loggers">
+        <member name="T:Ximura.Helper.IXimuraServiceWithEvent">
             <summary>
-            This method returns an ArrayList containing a collection of strings with the name of the 
-            logging providers.
-            </summary>
-            <returns>An ArrayList containing a collection of strings.</returns>
-        </member>
-        <member name="M:Ximura.IXimuraLoggingManagerConfigSH.LoggerType(System.String)">
-            <summary>
-            This method returns the specific logger type.
-            </summary>
-            <param name="provider">The provider.</param>
-            <returns>An ArrayList containing the list of loggers.</returns>
-        </member>
-        <member name="M:Ximura.IXimuraLoggingManagerConfigSH.getLoggerSettings(System.String)">
-            <summary>
-            This method returns the specific logger settings object.
-            </summary>
-            <param name="provider">The provider to return the settings for.</param>
-            <returns>The logging object.</returns>
-        </member>
-        <member name="T:Ximura.Data.IXimuraDataContentLinkage">
-            <summary>
-            This interface specifically identifies the linkage behaviour of the data content.
+            This interface is used by Ximura Service based component that wish to fire events for 
+            service actions
             </summary>
         </member>
-        <member name="P:Ximura.Data.IXimuraDataContentLinkage.LinkType">
+        <member name="E:Ximura.Helper.IXimuraServiceWithEvent.ServiceStarted">
             <summary>
-            This property defines the DataContent linkage type.
+            This event will be fired when the service starts
             </summary>
         </member>
-        <member name="P:Ximura.Data.IXimuraDataContentLinkage.LinkTypeIdentifier">
+        <member name="E:Ximura.Helper.IXimuraServiceWithEvent.ServicePaused">
             <summary>
-            This property identifies the specific object to link to, when the LinkType property
-            is set to Link.
+            This event will be fired when the service pauses
+            </summary>
+        </member>
+        <member name="E:Ximura.Helper.IXimuraServiceWithEvent.ServiceResumed">
+            <summary>
+            This event will be fired when the service is resumed from a paused state
+            </summary>
+        </member>
+        <member name="E:Ximura.Helper.IXimuraServiceWithEvent.ServiceStopped">
+            <summary>
+            This event will be fired when the service is stopped
+            </summary>
+        </member>
+        <member name="T:Ximura.IXimuraComponentService">
+            <summary>
+            Summary description for IXimuraComponentService.
             </summary>
         </member>
         <member name="T:Ximura.Data.ITextSummary">
@@ -2614,52 +2584,28 @@
             The text summary of the content.
             </summary>
         </member>
-        <member name="T:Ximura.XimuraAppConfigurationAttribute">
+        <member name="T:Ximura.Helper.XimuraServiceException">
             <summary>
-            This attribute is used to define command properties.
+            XimuraException is the root exception object for the Ximura system.
             </summary>
         </member>
-        <member name="M:Ximura.XimuraAppConfigurationAttribute.#ctor(Ximura.ConfigurationLocation,System.String)">
+        <member name="M:Ximura.Helper.XimuraServiceException.#ctor">
             <summary>
-            This attribute is used to specify where a command should get their settings from.
-            </summary>
-            <param name="configType">The configuration type.</param>
-            <param name="configLocation">The configuration location.</param>
-        </member>
-        <member name="P:Ximura.XimuraAppConfigurationAttribute.ConfigType">
-            <summary>
-            This is the configuration type.
+            Initializes a new instance of the XimuraException class.
             </summary>
         </member>
-        <member name="P:Ximura.XimuraAppConfigurationAttribute.ConfigLocation">
+        <member name="M:Ximura.Helper.XimuraServiceException.#ctor(System.String)">
             <summary>
-            The configuration location.
+            Initializes a new instance of the XimuraException class.
             </summary>
+            <param name="message"></param>
         </member>
-        <member name="T:Ximura.ConfigurationLocation">
+        <member name="M:Ximura.Helper.XimuraServiceException.#ctor(System.String,System.Exception)">
             <summary>
-            This enumeration specifies the action the command should take to load the configuration.
+            Initializes a new instance of the XimuraException class.
             </summary>
-        </member>
-        <member name="F:Ximura.ConfigurationLocation.None">
-            <summary>
-            The command uses the legacy config setting handler system.
-            </summary>
-        </member>
-        <member name="F:Ximura.ConfigurationLocation.Resource">
-            <summary>
-            The configuration file is a resource embedded in the application.
-            </summary>
-        </member>
-        <member name="F:Ximura.ConfigurationLocation.ConfigurationManager">
-            <summary>
-            The configuration should be retrieved from the configuration manager.
-            </summary>
-        </member>
-        <member name="F:Ximura.ConfigurationLocation.Hybrid">
-            <summary>
-            The configuration file is a resource embedded by the system, but should be updated using the settings class.
-            </summary>
+            <param name="message"></param>
+            <param name="ex"></param>
         </member>
         <member name="T:Ximura.SessionState">
             <summary>
@@ -2751,6 +2697,78 @@
             <param name="hash">The MD5 hash of the username and the seed</param>
             <param name="sessionCulture">The session culture</param>
             <returns>The session state after the authtication attempt</returns>
+        </member>
+        <member name="T:Ximura.IXimuraPoolDeserializable">
+            <summary>
+            This interface is used to retrieve an object that support the deserializable interface.
+            </summary>
+        </member>
+        <member name="M:Ximura.IXimuraPoolDeserializable.Get(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            This method returns an object from the pool and deserializes this information in the serialization
+            objects.
+            </summary>
+            <param name="info">The serialization information.</param>
+            <param name="context">The serialization context.</param>
+            <returns>Returns the object specified from the pool.</returns>
+        </member>
+        <member name="P:Ximura.IXimuraPoolDeserializable.SupportsDeserialization">
+            <summary>
+            This boolean property returns true if the object type for the pool supports deserialization.
+            </summary>
+        </member>
+        <member name="T:Ximura.IXimuraPoolDeserializable`1">
+            <summary>
+            This is the generic interface for poolable deserializable objects.
+            </summary>
+            <typeparam name="T">The poolable object type.</typeparam>
+        </member>
+        <member name="M:Ximura.IXimuraPoolDeserializable`1.Get(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            This method returns an object of type T from the pool and deserializes this 
+            information in the serialization objects.
+            </summary>
+            <param name="info">The serialization information.</param>
+            <param name="context">The serialization context.</param>
+            <returns>Returns the object specified from the pool.</returns>
+        </member>
+        <member name="T:Ximura.IXimuraCommand">
+            <summary>
+            IXimuraCommand is the base interface for the command object.
+            </summary>
+        </member>
+        <member name="P:Ximura.IXimuraCommand.CommandID">
+            <summary>
+            The command unique identifier.
+            </summary>
+        </member>
+        <member name="P:Ximura.IXimuraCommand.CommandName">
+            <summary>
+            The command name. This is used in to the config file to retrieve the
+            settings.
+            </summary>
+        </member>
+        <member name="P:Ximura.IXimuraCommand.CommandDescription">
+            <summary>
+            The command friendly description
+            </summary>
+        </member>
+        <member name="T:Ximura.IXimuraCommandNotification">
+            <summary>
+            This interface is implemented by commands that support notification.
+            </summary>
+        </member>
+        <member name="M:Ximura.IXimuraCommandNotification.Notify(System.Type,System.Object)">
+            <summary>
+            This method is called when there is a system notification.
+            </summary>
+            <param name="notificationType">The notification object type.</param>
+            <param name="notification">The notification object.</param>
+        </member>
+        <member name="P:Ximura.IXimuraCommandNotification.SupportsNotifications">
+            <summary>
+            This boolean property specifies that the object supports system notification.
+            </summary>
         </member>
         <member name="T:Ximura.SCMJobCompletionType">
             <summary>
@@ -2853,38 +2871,32 @@
             The completion job has been aborted.
             </summary>
         </member>
-        <member name="T:Ximura.IXimuraLoggerConfigSH">
+        <member name="T:Ximura.IXimuraPerformanceManager">
             <summary>
-            This interface is used by the logging config section handlers
+            This interface should be used by all services providing performance services
             </summary>
         </member>
-        <member name="M:Ximura.IXimuraLoggerSettings.GetSwitchValue(System.String)">
+        <member name="P:Ximura.Data.IXimuraMessageTermination.IsTerminator">
             <summary>
-            This method returns a specific switch value for the type of message.
-            </summary>
-            <param name="Type">The switch type.</param>
-            <returns>An integer value with the switch value.</returns>
-        </member>
-        <member name="M:Ximura.IXimuraLoggerSettings.GetSetting(System.String)">
-            <summary>
-            Get the config setting by specific Type
-            </summary>
-            <param name="Type">setting type</param>
-            <returns>setting value</returns>
-        </member>
-        <member name="P:Ximura.IXimuraLoggerSettings.LoggerID">
-            <summary>
-            This is the logger identifier.
+            This property specifies whether the fragment byte array has reached the termination requirements
             </summary>
         </member>
-        <member name="P:Ximura.IXimuraLoggerSettings.LoggerName">
+        <member name="T:Ximura.IXimuraLoggingProvider">
             <summary>
-            This is the logger public name.
+            The logging provider interface is used by implemented by loggers and is used 
+            by the logging manager to initialize logger in preperation for being inserted
+            in the application logging collection.
             </summary>
         </member>
-        <member name="P:Ximura.IXimuraLoggerSettings.LogLevel">
+        <member name="M:Ximura.IXimuraLoggingProvider.Initialize(Ximura.IXimuraLoggerSettings)">
             <summary>
-            This is the default log level
+            This method initializes a logger
+            </summary>
+            <param name="settings">The logger settings.</param>
+        </member>
+        <member name="M:Ximura.IXimuraLoggingProvider.Deinitialize">
+            <summary>
+            This method should be used to free up any resources used by the logger.
             </summary>
         </member>
         <member name="T:Ximura.Server.JobSignature">
@@ -2925,166 +2937,9 @@
             This is the static constructor.
             </summary>
         </member>
-        <member name="T:Ximura.IXimuraPoolManagerDirectAccess">
+        <member name="T:Ximura.IXimuraPerformanceItem">
             <summary>
-            This method is for poolable objects that require access to the base pool manager, so that they can retrieve
-            additional internal objects from the pool.
-            </summary>
-        </member>
-        <member name="M:Ximura.IXimuraPoolManagerDirectAccess.PoolGet(System.Type)">
-            <summary>
-            This method returns the specific pool manager for the type.
-            </summary>
-            <param name="objectType"></param>
-            <returns>Returns the pool for the object type.</returns>
-        </member>
-        <member name="M:Ximura.IXimuraPoolManagerDirectAccess.PoolGetObject(System.Type)">
-            <summary>
-            Returns a new object of the type specified.
-            </summary>
-            <param name="objectType">The object type required.</param>
-            <returns>Returns a poolable object of the type defined.</returns>
-        </member>
-        <member name="M:Ximura.IXimuraPoolManagerDirectAccess.PoolGetReturn(System.Object)">
-            <summary>
-            This method returns the object to the appropriate pool.
-            </summary>
-            <param name="poolObject">The object to return.</param>
-        </member>
-        <member name="P:Ximura.IXimuraPoolManagerDirectAccess.PoolManager">
-            <summary>
-            This is the pool manager for the object.
-            </summary>
-        </member>
-        <member name="T:Ximura.IXimuraPoolDeserializable">
-            <summary>
-            This interface is used to retrieve an object that support the deserializable interface.
-            </summary>
-        </member>
-        <member name="M:Ximura.IXimuraPoolDeserializable.Get(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <summary>
-            This method returns an object from the pool and deserializes this information in the serialization
-            objects.
-            </summary>
-            <param name="info">The serialization information.</param>
-            <param name="context">The serialization context.</param>
-            <returns>Returns the object specified from the pool.</returns>
-        </member>
-        <member name="P:Ximura.IXimuraPoolDeserializable.SupportsDeserialization">
-            <summary>
-            This boolean property returns true if the object type for the pool supports deserialization.
-            </summary>
-        </member>
-        <member name="T:Ximura.IXimuraPoolDeserializable`1">
-            <summary>
-            This is the generic interface for poolable deserializable objects.
-            </summary>
-            <typeparam name="T">The poolable object type.</typeparam>
-        </member>
-        <member name="M:Ximura.IXimuraPoolDeserializable`1.Get(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <summary>
-            This method returns an object of type T from the pool and deserializes this 
-            information in the serialization objects.
-            </summary>
-            <param name="info">The serialization information.</param>
-            <param name="context">The serialization context.</param>
-            <returns>Returns the object specified from the pool.</returns>
-        </member>
-        <member name="T:Ximura.IXimuraLoggingProvider">
-            <summary>
-            The logging provider interface is used by implemented by loggers and is used 
-            by the logging manager to initialize logger in preperation for being inserted
-            in the application logging collection.
-            </summary>
-        </member>
-        <member name="M:Ximura.IXimuraLoggingProvider.Initialize(Ximura.IXimuraLoggerSettings)">
-            <summary>
-            This method initializes a logger
-            </summary>
-            <param name="settings">The logger settings.</param>
-        </member>
-        <member name="M:Ximura.IXimuraLoggingProvider.Deinitialize">
-            <summary>
-            This method should be used to free up any resources used by the logger.
-            </summary>
-        </member>
-        <member name="T:Ximura.Data.Serialization.IXimuraContentFormatterCapabilities">
-            <summary>
-            Summary description for IXimuraContentFormatterCapabilities.
-            </summary>
-        </member>
-        <member name="M:Ximura.Data.Serialization.IXimuraContentFormatterCapabilities.Load(System.IO.Stream)">
-            <summary>
-            This method loads the header from the stream.
-            </summary>
-            <param name="inStream">The stream to read from.</param>
-        </member>
-        <member name="M:Ximura.Data.Serialization.IXimuraContentFormatterCapabilities.Output(System.IO.Stream,Ximura.Data.IXimuraContent,System.Runtime.Serialization.SerializationInfo)">
-            <summary>
-            This method outputs the header for the stream.
-            </summary>
-            <param name="outStream">The stream to write to.</param>
-            <param name="entity">The entity specified.</param>
-        </member>
-        <member name="P:Ximura.Data.Serialization.IXimuraContentFormatterCapabilities.Max">
-            <summary>
-            The maximum version value up to a maximum of 63.
-            </summary>
-        </member>
-        <member name="P:Ximura.Data.Serialization.IXimuraContentFormatterCapabilities.Min">
-            <summary>
-            The minimum version number, between 0 and 63.
-            </summary>
-        </member>
-        <member name="P:Ximura.Data.Serialization.IXimuraContentFormatterCapabilities.Revision">
-            <summary>
-            The revision number between 0 and 63.
-            </summary>
-        </member>
-        <member name="P:Ximura.Data.Serialization.IXimuraContentFormatterCapabilities.TypeID">
-            <summary>
-            The Type ID
-            </summary>
-        </member>
-        <member name="P:Ximura.Data.Serialization.IXimuraContentFormatterCapabilities.ContentID">
-            <summary>
-            The Content ID
-            </summary>
-        </member>
-        <member name="P:Ximura.Data.Serialization.IXimuraContentFormatterCapabilities.VersionID">
-            <summary>
-            The Version ID
-            </summary>
-        </member>
-        <member name="P:Ximura.Data.Serialization.IXimuraContentFormatterCapabilities.ContentType">
-            <summary>
-            The content type specified.
-            </summary>
-        </member>
-        <member name="P:Ximura.Data.Serialization.IXimuraContentFormatterCapabilities.ContentBaseType">
-            <summary>
-            The content base type specified.
-            </summary>
-        </member>
-        <member name="P:Ximura.Data.Serialization.IXimuraContentFormatterCapabilities.AllowRelativeType">
-            <summary>
-            This specifies whether the deserializer can use the best match for creating
-            the object from the type.
-            </summary>
-        </member>
-        <member name="P:Ximura.Data.Serialization.IXimuraContentFormatterCapabilities.SupportsBaseType">
-            <summary>
-            This method identifies whether the content supports a base type.
-            </summary>
-        </member>
-        <member name="P:Ximura.Data.Serialization.IXimuraContentFormatterCapabilities.RWHelper">
-            <summary>
-            This is the helper used to read and write objects to the stream.
-            </summary>
-        </member>
-        <member name="P:Ximura.Data.Serialization.IXimuraContentFormatterCapabilities.StreamCompressed">
-            <summary>
-            This property indicates whether the body data is compressed.
+            This method is 
             </summary>
         </member>
         <member name="T:Ximura.Data.IDataContentSummary">
@@ -3106,21 +2961,6 @@
             <param name="type">The summary type.</param>
             <param name="id">An identifier.</param>
             <returns>An object containing the summary.</returns>
-        </member>
-        <member name="T:Ximura.Server.IXimuraAppServer">
-            <summary>
-            Summary description for IXimuraAppServer.
-            </summary>
-        </member>
-        <member name="T:Ximura.IXimuraApplicationDefinition">
-            <summary>
-            This interface is used to provide application based configuration settings.
-            </summary>
-        </member>
-        <member name="P:Ximura.IXimuraApplicationDefinition.ApplicationName">
-            <summary>
-            This is the application name.
-            </summary>
         </member>
         <member name="T:Ximura.Helper.StringHelper">
             <summary>
@@ -3426,6 +3266,80 @@
             The Response property
             </summary>
         </member>
+        <member name="T:Ximura.XimuraAppConfigurationAttribute">
+            <summary>
+            This attribute is used to define command properties.
+            </summary>
+        </member>
+        <member name="M:Ximura.XimuraAppConfigurationAttribute.#ctor(Ximura.ConfigurationLocation,System.String)">
+            <summary>
+            This attribute is used to specify where a command should get their settings from.
+            </summary>
+            <param name="configType">The configuration type.</param>
+            <param name="configLocation">The configuration location.</param>
+        </member>
+        <member name="P:Ximura.XimuraAppConfigurationAttribute.ConfigType">
+            <summary>
+            This is the configuration type.
+            </summary>
+        </member>
+        <member name="P:Ximura.XimuraAppConfigurationAttribute.ConfigLocation">
+            <summary>
+            The configuration location.
+            </summary>
+        </member>
+        <member name="T:Ximura.XimuraAppConfigurationExternalAttribute">
+            <summary>
+            This attribute is used to define command properties for the external configuration.
+            </summary>
+        </member>
+        <member name="M:Ximura.XimuraAppConfigurationExternalAttribute.#ctor(Ximura.ConfigurationLocation,System.String)">
+            <summary>
+            This attribute is used to specify where a command should get their settings from.
+            </summary>
+            <param name="configType">The configuration type.</param>
+            <param name="configLocation">The configuration location.</param>
+        </member>
+        <member name="P:Ximura.XimuraAppConfigurationExternalAttribute.ConfigType">
+            <summary>
+            This is the configuration type.
+            </summary>
+        </member>
+        <member name="P:Ximura.XimuraAppConfigurationExternalAttribute.ConfigLocation">
+            <summary>
+            The configuration location.
+            </summary>
+        </member>
+        <member name="T:Ximura.ConfigurationLocation">
+            <summary>
+            This enumeration specifies the action the command should take to load the configuration.
+            </summary>
+        </member>
+        <member name="F:Ximura.ConfigurationLocation.None">
+            <summary>
+            The command uses the legacy config setting handler system.
+            </summary>
+        </member>
+        <member name="F:Ximura.ConfigurationLocation.Resource">
+            <summary>
+            The configuration file is a resource embedded in the application.
+            </summary>
+        </member>
+        <member name="F:Ximura.ConfigurationLocation.ConfigurationManager">
+            <summary>
+            The configuration should be retrieved from the configuration manager.
+            </summary>
+        </member>
+        <member name="F:Ximura.ConfigurationLocation.Hybrid">
+            <summary>
+            The configuration file is a resource embedded by the system, but should be updated using the settings class.
+            </summary>
+        </member>
+        <member name="T:Ximura.Server.IXimuraPerformanceManagerService">
+            <summary>
+            This interface is implemented by performance manager service.
+            </summary>
+        </member>
         <member name="T:Ximura.PoolableObjectBase">
             <summary>
             This is the base class for object that can be used by the pool. Although you do not need to inherit 
@@ -3564,111 +3478,6 @@
             The default constructor.
             </summary>
         </member>
-        <member name="T:Ximura.IXimuraSchedulerCommandRegister">
-            <summary>
-            The IXimuraSchedulerCommandRegister interface provides an interaction between the scheduler and the 
-            application commands.
-            </summary>
-        </member>
-        <member name="M:Ximura.IXimuraSchedulerCommandRegister.RegisterCommand(System.Guid)">
-            <summary>
-            This method is used by a command to register with the scheduler, a valid Guid identifies that the 
-            scheduler is able to process the schedules.
-            </summary>
-            <param name="CommandID">Returns true if the command was registered successfully.</param>
-        </member>
-        <member name="M:Ximura.IXimuraSchedulerCommandRegister.RegisterSubCommand(System.Guid,System.String,System.String,System.String,System.Object,Ximura.JobPriority)">
-            <summary>
-            This method is used to register a subcommand. The scheduler will then call the command based
-            on the schedule set in entity.
-            </summary>
-            <param name="registerID">The register ID.</param>
-            <param name="subCommandID">The sub command id, this can be null if it is the default command.</param>
-            <param name="description">The sub command description.</param>
-            <param name="subCommand">The subcommand object that will be sent to the command as a subcommand parameter.</param>
-            <param name="priority">The priority set for the request.</param>
-            <returns>Returns true if the command is registered correctly.</returns>
-        </member>
-        <member name="M:Ximura.IXimuraSchedulerCommandRegister.RegisterSubCommand(System.Guid,System.String,System.String,System.String,System.Object,Ximura.JobPriority,System.Boolean)">
-            <summary>
-            This method is used to register a subcommand. The scheduler will then call the command based
-            on the schedule set in entity.
-            </summary>
-            <param name="registerID">The register ID.</param>
-            <param name="subCommandID">The sub command id, this can be null if it is the default command.</param>
-            <param name="description">The sub command description.</param>
-            <param name="subCommand">The subcommand object that will be sent to the command as a subcommand parameter.</param>
-            <param name="priority">The priority set for the request.</param>
-            <param name="active">This method specifies whether the subcommand is active. This property can be used to remove a subcommand
-            that has been depreciated in a new version of a command. If this is set to false
-            the Scheduler will remove all references to this command if they exist in the schedule.</param>
-            <returns>Returns true if the command is registered correctly.</returns>
-        </member>
-        <member name="M:Ximura.IXimuraSchedulerCommandRegister.UnregisterSubCommand(System.Guid,System.String)">
-            <summary>
-            This method is used to specifically disable/unregister a subcommand that has already been registered.
-            </summary>
-            <param name="registerID">The registerID previously passed back from the scheduler.</param>
-            <param name="subCommandID">The subcommand id.</param>
-            <returns>Returns true if the command was successfully unregistered.</returns>
-        </member>
-        <member name="M:Ximura.IXimuraSchedulerCommandRegister.UnregisterCommand(System.Guid)">
-            <summary>
-            This method is used by the command to signal that it is completed/stopped and no longer wishes
-            to receive shedule requests.
-            </summary>
-            <param name="schedulerID"></param>
-        </member>
-        <member name="T:Ximura.Helper.XimuraServiceException">
-            <summary>
-            XimuraException is the root exception object for the Ximura system.
-            </summary>
-        </member>
-        <member name="M:Ximura.Helper.XimuraServiceException.#ctor">
-            <summary>
-            Initializes a new instance of the XimuraException class.
-            </summary>
-        </member>
-        <member name="M:Ximura.Helper.XimuraServiceException.#ctor(System.String)">
-            <summary>
-            Initializes a new instance of the XimuraException class.
-            </summary>
-            <param name="message"></param>
-        </member>
-        <member name="M:Ximura.Helper.XimuraServiceException.#ctor(System.String,System.Exception)">
-            <summary>
-            Initializes a new instance of the XimuraException class.
-            </summary>
-            <param name="message"></param>
-            <param name="ex"></param>
-        </member>
-        <member name="T:Ximura.XimuraRemotingException">
-            <summary>
-            This class is used to signal an exception when using Ximura remoting
-            </summary>
-        </member>
-        <member name="M:Ximura.XimuraRemotingException.#ctor">
-            <summary>Initializes a new instance of the SecureRemotingException class with default properties.</summary>
-        </member>
-        <member name="M:Ximura.XimuraRemotingException.#ctor(System.String)">
-            <summary>Initializes a new instance of the SecureRemotingException class with the given message.</summary>
-            <param name="message">The error message that explains why the exception occurred.</param>
-        </member>
-        <member name="M:Ximura.XimuraRemotingException.#ctor(System.String,System.Exception)">
-            <summary>Initializes a new instance of the SecureRemotingException class with the specified properties.</summary>
-            <param name="message">The error message that explains why the exception occurred.</param>
-            <param name="innerException">The exception that is the cause of the current exception.</param>
-        </member>
-        <member name="M:Ximura.XimuraRemotingException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <summary>Initializes the exception with serialized information.</summary>
-            <param name="info">Serialization information.</param>
-            <param name="context">Streaming context.</param>
-        </member>
-        <member name="M:Ximura.XimuraRemotingException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <summary>Provides serialization functionality.</summary>
-            <param name="info">Serialization information.</param>
-            <param name="context">Streaming context.</param>
-        </member>
         <member name="T:Ximura.XimuraServiceContainer">
             <summary>
             Summary description for ServiceContainer.
@@ -3725,6 +3534,72 @@
         <member name="P:Ximura.XimuraServiceContainer.ParentProvider">
             <summary>
             This property sets the parent provider.
+            </summary>
+        </member>
+        <member name="T:Ximura.XimuraAppModuleAttribute">
+            <summary>
+            This attribute is used to define command properties.
+            </summary>
+        </member>
+        <member name="M:Ximura.XimuraAppModuleAttribute.#ctor(System.String)">
+            <summary>
+            The XimuraAppCommandIDAttribute is used to uniquely identify a command within the Ximura system.
+            </summary>
+            <param name="ID">A string representation of a GUID, i.e. in the form 6364755B-97B9-4799-B8BC-3D98EB786C92</param>
+        </member>
+        <member name="M:Ximura.XimuraAppModuleAttribute.#ctor(System.String,System.String)">
+            <summary>
+            The XimuraAppCommandIDAttribute is used to uniquely identify a command within the Ximura system.
+            </summary>
+            <param name="ID">A string representation of a GUID, i.e. in the form 
+            6364755B-97B9-4799-B8BC-3D98EB786C92</param>
+            <param name="name">The friendly name of the command. 
+            This will be used in the config file when parsing command set up paramters.</param>
+        </member>
+        <member name="M:Ximura.XimuraAppModuleAttribute.#ctor(System.String,System.String,System.String)">
+            <summary>
+            The XimuraAppCommandIDAttribute is used to uniquely identify a command within the Ximura system.
+            </summary>
+            <param name="ID">A string representation of a GUID, i.e. in the form 
+            6364755B-97B9-4799-B8BC-3D98EB786C92</param>
+            <param name="name">The friendly name of the command. 
+            This will be used in the config file when parsing command set up paramters.</param>
+            <param name="configClass">The config class for the command.</param>
+        </member>
+        <member name="M:Ximura.XimuraAppModuleAttribute.#ctor(System.String,System.String,System.String,System.Boolean,System.String)">
+            <summary>
+            The XimuraAppCommandIDAttribute is used to uniquely identify a command within the Ximura system.
+            </summary>
+            <param name="ID">A string representation of a GUID, i.e. in the form 
+            6364755B-97B9-4799-B8BC-3D98EB786C92</param>
+            <param name="name">The friendly name of the command. 
+            This will be used in the config file when parsing command set up paramters.</param>
+            <param name="configClass">The config class for the command.</param>
+            <param name="description">The description for the command.</param>
+        </member>
+        <member name="P:Ximura.XimuraAppModuleAttribute.ID">
+            <summary>
+            The Guid of the module
+            </summary>
+        </member>
+        <member name="P:Ximura.XimuraAppModuleAttribute.Name">
+            <summary>
+            The name of the module. This is used to retrieve app settings.
+            </summary>
+        </member>
+        <member name="P:Ximura.XimuraAppModuleAttribute.ConfigClass">
+            <summary>
+            This class returns the class type for the config settings class for the command.
+            </summary>
+        </member>
+        <member name="P:Ximura.XimuraAppModuleAttribute.ForceConfigClass">
+            <summary>
+            This class returns the class type for the config settings class for the command.
+            </summary>
+        </member>
+        <member name="P:Ximura.XimuraAppModuleAttribute.Description">
+            <summary>
+            The friendly description of the module.
             </summary>
         </member>
         <member name="T:Ximura.Server.JobBase">
@@ -3806,6 +3681,44 @@
             This property is used to track the object through the object pool.
             </summary>
         </member>
+        <member name="T:Ximura.Server.XimuraServerAgentHolder">
+            <summary>
+            The agent holder class is used by the agent based attributes to pass common information to the 
+            server processes.
+            </summary>
+        </member>
+        <member name="T:Ximura.Server.IXimuraSessionManagerService">
+            <summary>
+            This interface is implemented by storage manager.
+            </summary>
+        </member>
+        <member name="T:Ximura.Server.IXimuraSessionManager">
+            <summary>
+            The IXimuraSessionManager interface is the public face of the session manager and is registered
+            in the components collection of the Application.
+            </summary>
+        </member>
+        <member name="M:Ximura.Server.IXimuraSessionManager.SessionCreate">
+            <summary>
+            This method creates a blank session.
+            </summary>
+            <returns>A IXimuraSession object is returned.</returns>
+        </member>
+        <member name="M:Ximura.Server.IXimuraSessionManager.SessionCreate(System.String)">
+            <summary>
+            This method creates a session object for the named user.
+            </summary>
+            <param name="username">The user ID of the user.</param>
+            <returns>A IXimuraSession object is returned.</returns>
+        </member>
+        <member name="M:Ximura.Server.IXimuraSessionManager.SessionCreate(System.String,System.String)">
+            <summary>
+            This method creates a session object for the named user.
+            </summary>
+            <param name="domain">The domain for the session or null if the default is to be used.</param>
+            <param name="username">The user ID of the user.</param>
+            <returns>A IXimuraSession object is returned.</returns>
+        </member>
         <member name="T:Ximura.IXimuraSessionRQAsyncWithDependency">
             <summary>
             This is the async interface
@@ -3853,10 +3766,98 @@
             <param name="dependencyKey">The dependency key, if this is set to null the key is ignored.</param>
             <returns>The job guid.</returns>
         </member>
-        <member name="T:Ximura.IXimuraLoggingAudit">
+        <member name="T:Ximura.Data.IXimuraContentEntityFragment">
             <summary>
-            This 
+            This interface is used to identify the fragmentation options for the entity.
             </summary>
+        </member>
+        <member name="M:Ximura.Data.IXimuraContentEntityFragment.IsFragment">
+            <summary>
+            This property identifies whether the content is a fragment type.
+            </summary>
+            <returns>Returns true if the object is a fragment, or supports fragmentation.</returns>
+        </member>
+        <member name="M:Ximura.Data.IXimuraContentEntityFragment.FragmentBaseType">
+            <summary>
+            This is the fragment base type. If this property is supported the persistence manager 
+            will store this property in the serialization blob. Should the original type be unavailable 
+            the content will be deserialized using this type.
+            </summary>
+            <returns>Return the base content type if supported.</returns>
+        </member>
+        <member name="M:Ximura.Data.IXimuraContentEntityFragment.SupportsFragmentBaseType">
+            <summary>
+            This method identifies whether the content supports the base type content.
+            </summary>
+            <returns>Returns true if this property is supported.</returns>
+        </member>
+        <member name="M:Ximura.Data.IXimuraContentEntityFragment.CanConvertToPrimaryEntity">
+            <summary>
+            This boolean property identifies whether a fragment can convert to a primary entity.
+            </summary>
+            <returns>Returns true if the entity can convert.</returns>
+        </member>
+        <member name="M:Ximura.Data.IXimuraContentEntityFragment.ConvertFragmentToPrimaryEntity">
+            <summary>
+            This method converts the fragment entity to the primary entity.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.IXimuraContentEntityFragment.MergeContent(Ximura.Data.IXimuraContent)">
+            <summary>
+            This method is implemented by the fragment content and will be used to merge any
+            changes back in to the root content.
+            </summary>
+            <param name="baseContent">The base content to merge in to.</param>
+        </member>
+        <member name="M:Ximura.Data.IXimuraContentEntityFragment.AddBaseContent">
+            <summary>
+            This method is implemented by the fragment content and will be used to convert any
+            changes back in to the root content.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.IXimuraContentEntityFragment.UpdateBaseContent(Ximura.Data.IXimuraContent)">
+            <summary>
+            This method is implemented by the fragment content and will be used to update any
+            changes back in to the root content.
+            </summary>
+            <param name="baseContent">The base content to merge in to.</param>
+        </member>
+        <member name="M:Ximura.Data.IXimuraContentEntityFragment.DeleteBaseContent(Ximura.Data.IXimuraContent)">
+            <summary>
+            This method is implemented by the fragment content and will be used to
+            delete the root content.
+            </summary>
+            <param name="baseContent">The base content to merge in to.</param>
+        </member>
+        <member name="M:Ximura.Data.IXimuraContentEntityFragment.FragmentIDIsByReference">
+            <summary>
+            this method tells whether the fragment id is a by-reference id or not
+            </summary>
+            <returns>Returns turs if the fragment id is by-reference</returns>
+        </member>
+        <member name="M:Ximura.Data.IXimuraContentEntityFragment.FragmentReferenceType">
+            <summary>
+            this method returns the fragment reference type
+            </summary>
+            <returns>fragment reference type</returns>
+        </member>
+        <member name="M:Ximura.Data.IXimuraContentEntityFragment.SetFragmentReferenceType(System.String)">
+            <summary>
+            this method set the fragment reference type 
+            </summary>
+            <param name="referenceType"></param>
+        </member>
+        <member name="M:Ximura.Data.IXimuraContentEntityFragment.FragmentReferenceID">
+            <summary>
+            this method returns the fragment reference id
+            </summary>
+            <returns>fragment reference id</returns>
+        </member>
+        <member name="M:Ximura.Data.IXimuraContentEntityFragment.SetFragmentReferenceID(System.String)">
+            <summary>
+            this method set the fragment reference id 
+            </summary>
+            <param name="referenceID"></param>
         </member>
         <member name="T:Ximura.Helper.AttributeHelper">
             <summary>
@@ -3962,37 +3963,82 @@
             The session create remote delegate.
             </summary>
         </member>
-        <member name="T:Ximura.Server.IXimuraSessionManager">
+        <member name="T:Ximura.Data.IXimuraElement">
             <summary>
-            The IXimuraSessionManager interface is the public face of the session manager and is registered
-            in the components collection of the Application.
+            IXimuraElement is the base interface for the Element object.
             </summary>
         </member>
-        <member name="M:Ximura.Server.IXimuraSessionManager.SessionCreate">
+        <member name="T:Ximura.Data.IXimuraElementLeaf">
             <summary>
-            This method creates a blank session.
+            This interface is used as the default intreface of the Data Element Composite pattern.
             </summary>
-            <returns>A IXimuraSession object is returned.</returns>
         </member>
-        <member name="M:Ximura.Server.IXimuraSessionManager.SessionCreate(System.String)">
+        <member name="M:Ximura.Data.IXimuraElementLeaf.IsDirty">
             <summary>
-            This method creates a session object for the named user.
+            This is a public function that indicated whether the object
+            internal data has been changed since it was created or last saved.
             </summary>
-            <param name="username">The user ID of the user.</param>
-            <returns>A IXimuraSession object is returned.</returns>
+            <returns>A boolean value - true indicates the object has been changed.</returns>
         </member>
-        <member name="M:Ximura.Server.IXimuraSessionManager.SessionCreate(System.String,System.String)">
+        <member name="P:Ximura.Data.IXimuraElementLeaf.Dirty">
             <summary>
-            This method creates a session object for the named user.
+            This boolean property indicates whether the object has been changed.
             </summary>
-            <param name="domain">The domain for the session or null if the default is to be used.</param>
-            <param name="username">The user ID of the user.</param>
-            <returns>A IXimuraSession object is returned.</returns>
         </member>
-        <member name="T:Ximura.IXimuraPerformanceCounter">
+        <member name="T:Ximura.IXimuraSchedulerCommandRegister">
             <summary>
-            This interface is used by performance counter classes.
+            The IXimuraSchedulerCommandRegister interface provides an interaction between the scheduler and the 
+            application commands.
             </summary>
+        </member>
+        <member name="M:Ximura.IXimuraSchedulerCommandRegister.RegisterCommand(System.Guid)">
+            <summary>
+            This method is used by a command to register with the scheduler, a valid Guid identifies that the 
+            scheduler is able to process the schedules.
+            </summary>
+            <param name="CommandID">Returns true if the command was registered successfully.</param>
+        </member>
+        <member name="M:Ximura.IXimuraSchedulerCommandRegister.RegisterSubCommand(System.Guid,System.String,System.String,System.String,System.Object,Ximura.JobPriority)">
+            <summary>
+            This method is used to register a subcommand. The scheduler will then call the command based
+            on the schedule set in entity.
+            </summary>
+            <param name="registerID">The register ID.</param>
+            <param name="subCommandID">The sub command id, this can be null if it is the default command.</param>
+            <param name="description">The sub command description.</param>
+            <param name="subCommand">The subcommand object that will be sent to the command as a subcommand parameter.</param>
+            <param name="priority">The priority set for the request.</param>
+            <returns>Returns true if the command is registered correctly.</returns>
+        </member>
+        <member name="M:Ximura.IXimuraSchedulerCommandRegister.RegisterSubCommand(System.Guid,System.String,System.String,System.String,System.Object,Ximura.JobPriority,System.Boolean)">
+            <summary>
+            This method is used to register a subcommand. The scheduler will then call the command based
+            on the schedule set in entity.
+            </summary>
+            <param name="registerID">The register ID.</param>
+            <param name="subCommandID">The sub command id, this can be null if it is the default command.</param>
+            <param name="description">The sub command description.</param>
+            <param name="subCommand">The subcommand object that will be sent to the command as a subcommand parameter.</param>
+            <param name="priority">The priority set for the request.</param>
+            <param name="active">This method specifies whether the subcommand is active. This property can be used to remove a subcommand
+            that has been depreciated in a new version of a command. If this is set to false
+            the Scheduler will remove all references to this command if they exist in the schedule.</param>
+            <returns>Returns true if the command is registered correctly.</returns>
+        </member>
+        <member name="M:Ximura.IXimuraSchedulerCommandRegister.UnregisterSubCommand(System.Guid,System.String)">
+            <summary>
+            This method is used to specifically disable/unregister a subcommand that has already been registered.
+            </summary>
+            <param name="registerID">The registerID previously passed back from the scheduler.</param>
+            <param name="subCommandID">The subcommand id.</param>
+            <returns>Returns true if the command was successfully unregistered.</returns>
+        </member>
+        <member name="M:Ximura.IXimuraSchedulerCommandRegister.UnregisterCommand(System.Guid)">
+            <summary>
+            This method is used by the command to signal that it is completed/stopped and no longer wishes
+            to receive shedule requests.
+            </summary>
+            <param name="schedulerID"></param>
         </member>
         <member name="T:Ximura.Helper.StreamCounter">
             <summary>
@@ -4040,6 +4086,76 @@
             <param name="hash">The hash.</param>
             <returns>The session state after the authentication request.</returns>
         </member>
+        <member name="T:Ximura.XimuraServiceStatus">
+            <summary>
+            The CatalogProcessStatus shows the current status of the Catalog Process.
+            </summary>
+        </member>
+        <member name="F:Ximura.XimuraServiceStatus.Undefined">
+            <summary>
+            The status is undefined.
+            </summary>
+        </member>
+        <member name="F:Ximura.XimuraServiceStatus.NotStarted">
+            <summary>
+            The process has not started.
+            </summary>
+        </member>
+        <member name="F:Ximura.XimuraServiceStatus.Starting">
+            <summary>
+            The process is starting up.
+            </summary>
+        </member>
+        <member name="F:Ximura.XimuraServiceStatus.Started">
+            <summary>
+            The process is processing.
+            </summary>
+        </member>
+        <member name="F:Ximura.XimuraServiceStatus.Pausing">
+            <summary>
+            The process is pausing.
+            </summary>
+        </member>
+        <member name="F:Ximura.XimuraServiceStatus.Paused">
+            <summary>
+            The process is paused.
+            </summary>
+        </member>
+        <member name="F:Ximura.XimuraServiceStatus.Resuming">
+            <summary>
+            The process is resuming.
+            </summary>
+        </member>
+        <member name="F:Ximura.XimuraServiceStatus.Stopping">
+            <summary>
+            The process is stopping.
+            </summary>
+        </member>
+        <member name="F:Ximura.XimuraServiceStatus.Stopped">
+            <summary>
+            The process has stopped.
+            </summary>
+        </member>
+        <member name="F:Ximura.XimuraServiceStatus.Completed">
+            <summary>
+            The process has completed.
+            </summary>
+        </member>
+        <member name="F:Ximura.XimuraServiceStatus.Resumed">
+            <summary>
+            The process has resumed.
+            </summary>
+        </member>
+        <member name="F:Ximura.XimuraServiceStatus.Failed">
+            <summary>
+            The service has failed to start.
+            </summary>
+        </member>
+        <member name="F:Ximura.XimuraServiceStatus.Disabled">
+            <summary>
+            The service is disabled.
+            </summary>
+        </member>
         <member name="T:Ximura.ServiceEventArgs">
             <summary>
             The ServiceEventArgs class is used by the component to pass notification 
@@ -4062,9 +4178,10 @@
             The status of the service
             </summary>
         </member>
-        <member name="T:Ximura.IXimuraPerformanceItem">
+        <member name="T:Ximura.Server.IXimuraPerformanceAgent">
             <summary>
-            This method is 
+            The IXimuraPerformanceAgent interface is implemented by class that recieve 
+            performance information from the performance counters.
             </summary>
         </member>
         <member name="T:Ximura.IXimuraLoggingExtended">
@@ -4090,26 +4207,46 @@
             <param name="category">A category name used to organize the output.</param>
             <param name="type">The event log type.</param>
         </member>
-        <member name="T:Ximura.Data.IXimuraElement">
+        <member name="T:Ximura.IXimuraLoggingAudit">
             <summary>
-            IXimuraElement is the base interface for the Element object.
+            This 
             </summary>
         </member>
-        <member name="T:Ximura.Data.IXimuraElementLeaf">
+        <member name="T:Ximura.IXimuraCommandProcessConfigSH">
             <summary>
-            This interface is used as the default intreface of the Data Element Composite pattern.
+            This is the default interface for an application config section handler
             </summary>
         </member>
-        <member name="M:Ximura.Data.IXimuraElementLeaf.IsDirty">
+        <member name="M:Ximura.IXimuraCommandProcessConfigSH.getPasswordHash(System.Byte[])">
             <summary>
-            This is a public function that indicated whether the object
-            internal data has been changed since it was created or last saved.
+            Returns the hash of the password based on the session seed value
             </summary>
-            <returns>A boolean value - true indicates the object has been changed.</returns>
+            <param name="seed">The session seed.</param>
+            <returns>The hash of the password.</returns>
         </member>
-        <member name="P:Ximura.Data.IXimuraElementLeaf.Dirty">
+        <member name="P:Ximura.IXimuraCommandProcessConfigSH.UserName">
             <summary>
-            This boolean property indicates whether the object has been changed.
+            The username of the process.
+            </summary>
+        </member>
+        <member name="P:Ximura.IXimuraCommandProcessConfigSH.UserRealm">
+            <summary>
+            This is the realm for the user to connect to.
+            </summary>
+        </member>
+        <member name="P:Ximura.IXimuraCommandProcessConfigSH.UserSessionRealm">
+            <summary>
+            This is the realm for the user to connect to.
+            </summary>
+        </member>
+        <member name="P:Ximura.IXimuraCommandProcessConfigSH.RequiresProcessSession">
+            <summary>
+            This method determines whether the process command requires a process session.
+            </summary>
+        </member>
+        <member name="P:Ximura.IXimuraCommandProcessConfigSH.SecurityData">
+            <summary>
+            Returns the security data.
             </summary>
         </member>
         <member name="T:Ximura.Command.RQRSEnvTypes">
@@ -4390,6 +4527,48 @@
         <member name="T:Ximura.IXimuraSessionThread">
             <summary>
             This interface is used by an app process to request a thread from the thread pool.
+            </summary>
+        </member>
+        <member name="T:Ximura.IXimuraLoggingManagerConfigSH">
+            <summary>
+            This interface is used by the logging config section handler.
+            </summary>
+        </member>
+        <member name="M:Ximura.IXimuraLoggingManagerConfigSH.Loggers">
+            <summary>
+            This method returns an ArrayList containing a collection of strings with the name of the 
+            logging providers.
+            </summary>
+            <returns>An ArrayList containing a collection of strings.</returns>
+        </member>
+        <member name="M:Ximura.IXimuraLoggingManagerConfigSH.LoggerType(System.String)">
+            <summary>
+            This method returns the specific logger type.
+            </summary>
+            <param name="provider">The provider.</param>
+            <returns>An ArrayList containing the list of loggers.</returns>
+        </member>
+        <member name="M:Ximura.IXimuraLoggingManagerConfigSH.getLoggerSettings(System.String)">
+            <summary>
+            This method returns the specific logger settings object.
+            </summary>
+            <param name="provider">The provider to return the settings for.</param>
+            <returns>The logging object.</returns>
+        </member>
+        <member name="T:Ximura.Data.IXimuraDataContentLinkage">
+            <summary>
+            This interface specifically identifies the linkage behaviour of the data content.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.IXimuraDataContentLinkage.LinkType">
+            <summary>
+            This property defines the DataContent linkage type.
+            </summary>
+        </member>
+        <member name="P:Ximura.Data.IXimuraDataContentLinkage.LinkTypeIdentifier">
+            <summary>
+            This property identifies the specific object to link to, when the LinkType property
+            is set to Link.
             </summary>
         </member>
         <member name="T:Ximura.Command.EnvelopeAddress">

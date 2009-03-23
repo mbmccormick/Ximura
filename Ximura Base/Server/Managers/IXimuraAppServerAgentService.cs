@@ -49,10 +49,5 @@ namespace Ximura.Server
         /// </summary>
         /// <param name="holder">The agent identifying information.</param>
         void AgentAdd(XimuraServerAgentHolder holder);
-        /// <summary>
-        /// This method removes an agent from the service.
-        /// </summary>
-        /// <param name="holder">The agent identifying information.</param>
-        void AgentRemove(XimuraServerAgentHolder holder);
     }
 }
