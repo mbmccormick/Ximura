@@ -55,7 +55,7 @@ namespace Ximura.Communication
                 listener.ProtocolContextID = EnvRS.ProtocolContextID;
                 listener.ProtocolUri = EnvRS.ProtocolUri;
 
-                EnvConfirm = CreateSystemRequest(listener.ProtocolListenConfirmAddress);
+                EnvConfirm = listener.CreateSystemRequest(listener.ProtocolListenConfirmAddress);
                 IXimuraTransportRequest Request = EnvConfirm.Request as IXimuraTransportRequest;
                 Request.ProtocolContextID = listener.ProtocolContextID;
                 Request.MessageType = listener.InitialMessageType;

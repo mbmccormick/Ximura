@@ -50,7 +50,7 @@ namespace Ximura.Communication
             //Ok, we need to call the Content Compiler to build the output content.
             try
             {
-                Env = RQRSEnvelopeHelper.Get<ContentCompilerRequest, ContentCompilerResponse>();
+                Env = context.EnvelopeHelper.Get<ContentCompilerRequest, ContentCompilerResponse>();
 
                 Env.ContractRequest.Data = context.ScriptRequest;
                 Env.ContractRequest.Settings = context.ScriptSettings;

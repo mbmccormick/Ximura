@@ -58,7 +58,7 @@ namespace Ximura.Communication
             {
                 httpRQ = Request.Message as HTTPRequestMessage;
 
-                Env = RQRSEnvelopeHelper.Get(mSiteManager) as
+                Env = context.EnvelopeHelper.Get(mSiteManager) as
                     RQRSContract<SiteControllerRequest, SiteControllerResponse>;
 
                 context.SenderIdentitySet((IXimuraRQRSEnvelope)Env);

@@ -41,7 +41,7 @@ namespace Ximura.Communication
         #region Close
         protected IXimuraRQRSEnvelope EnvTransportClose(SiteServerContext<RQ, RS> context)
         {
-            IXimuraRQRSEnvelope EnvClose = CreateSystemRequest(context.ProtocolCloseRequestAddress);
+            IXimuraRQRSEnvelope EnvClose = context.CreateSystemRequest(context.ProtocolCloseRequestAddress);
             IXimuraTransportRequest Request = EnvClose.Request as IXimuraTransportRequest;
             Request.ProtocolContextID = context.ProtocolContextID;
             Request.MessageType = null;

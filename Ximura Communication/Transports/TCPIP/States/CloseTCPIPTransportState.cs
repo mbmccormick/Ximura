@@ -87,7 +87,7 @@ namespace Ximura.Communication
             IXimuraRQRSEnvelope Env = null;
             try
             {
-                Env = RQRSEnvelopeHelper.GetCallback(context.ServerCommandID.Value);
+                Env = context.EnvelopeHelper.GetCallback(context.ServerCommandID.Value);
                 context.SenderIdentitySet(Env);
                 Env.DestinationAddress = new EnvelopeAddress(context.ServerCommandID.Value, "Close");
                 IXimuraProtocolConnectionRequest Request = Env.Request as IXimuraProtocolConnectionRequest;

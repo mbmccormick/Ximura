@@ -51,19 +51,19 @@ namespace Ximura.Communication
 		}
 		#endregion // Constructors
 
-        #region CreateSystemRequest
-        /// <summary>
-        /// This method creates the system request.
-        /// </summary>
-        /// <returns>A new envelope with the correct destination address.</returns>
-        protected IXimuraRQRSEnvelope CreateSystemRequest(EnvelopeAddress address)
-        {
-            IXimuraRQRSEnvelope Env = RQRSEnvelopeHelper.Get(address.command);
-            Env.Request.ID = Guid.NewGuid();
-            Env.DestinationAddress = address;
-            return Env;
-        }
-        #endregion // CreateSystemRequest
+        //#region CreateSystemRequest
+        ///// <summary>
+        ///// This method creates the system request.
+        ///// </summary>
+        ///// <returns>A new envelope with the correct destination address.</returns>
+        //protected IXimuraRQRSEnvelope CreateSystemRequest(EnvelopeAddress address)
+        //{
+        //    IXimuraRQRSEnvelope Env = RQRSEnvelopeHelper.Get(address.command);
+        //    Env.Request.ID = Guid.NewGuid();
+        //    Env.DestinationAddress = address;
+        //    return Env;
+        //}
+        //#endregion // CreateSystemRequest
 
         #region Close
         /// <summary>

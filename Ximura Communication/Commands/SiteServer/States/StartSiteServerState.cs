@@ -63,7 +63,7 @@ namespace Ximura.Communication
                 IXimuraRQRSEnvelope Env = null;
                 try
                 {
-                    Env = CreateSystemRequest(context.ProtocolListenRequestAddress);
+                    Env = context.CreateSystemRequest(context.ProtocolListenRequestAddress);
 
                     Request = Env.Request as IXimuraTransportRequest;
                     Response = Env.Response as IXimuraTransportResponse;

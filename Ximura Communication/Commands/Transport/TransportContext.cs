@@ -487,7 +487,7 @@ namespace Ximura.Communication
                     if (message == null)
                         return;
 
-                    IXimuraRQRSEnvelope Env = RQRSEnvelopeHelper.GetCallback(ServerCommandID.Value);
+                    IXimuraRQRSEnvelope Env = EnvelopeHelper.GetCallback(ServerCommandID.Value);
                     SenderIdentitySet(Env);
                     Env.DestinationAddress = new EnvelopeAddress(ServerCommandID.Value, "Receive");
                     IXimuraProtocolMessageReceived Request = Env.Request as IXimuraProtocolMessageReceived;

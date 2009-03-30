@@ -45,7 +45,7 @@ namespace Ximura.Communication
             //Ok, we need to call the Content Compiler to build the output content.
             try
             {
-                Env = RQRSEnvelopeHelper.Get<ResourceManagerRequest, ResourceManagerResponse>();
+                Env = context.EnvelopeHelper.Get<ResourceManagerRequest, ResourceManagerResponse>();
                 Env.DestinationAddress = new EnvelopeAddress(mResourceManager, "Receive");
 
                 Env.ContractRequest.Data = context.ScriptRequest;

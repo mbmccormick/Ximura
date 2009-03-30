@@ -479,7 +479,7 @@ namespace Ximura.Communication
                 Action<RQRSContract<SiteControllerRequest, SiteControllerResponse>> action)
         {
             RQRSContract<SiteControllerRequest, SiteControllerResponse> Env =
-                RQRSEnvelopeHelper.Get(ContextSettings.Configuration.SiteControllerID) as RQRSContract<SiteControllerRequest, SiteControllerResponse>;
+                EnvelopeHelper.Get(ContextSettings.Configuration.SiteControllerID) as RQRSContract<SiteControllerRequest, SiteControllerResponse>;
 
             SenderIdentitySet((IXimuraRQRSEnvelope)Env);
             Env.DestinationAddress = new EnvelopeAddress(ContextSettings.Configuration.SiteControllerID, "Receive");
@@ -511,7 +511,7 @@ namespace Ximura.Communication
                 Action<RQRSContract<SiteControllerRequest, SiteControllerResponse>> actionEnv)
         {
             RQRSContract<SiteControllerRequest, SiteControllerResponse> Env =
-                RQRSEnvelopeHelper.Get(ContextSettings.Configuration.SiteControllerID) as RQRSContract<SiteControllerRequest, SiteControllerResponse>;
+                EnvelopeHelper.Get(ContextSettings.Configuration.SiteControllerID) as RQRSContract<SiteControllerRequest, SiteControllerResponse>;
 
             InternetMessageRequest message = GetObjectPool<InternetMessageRequest>().Get();
 
@@ -595,5 +595,18 @@ namespace Ximura.Communication
         }
         #endregion // ConnectionTimeoutInSeconds
 
+        #region CreateSystemRequest
+        /// <summary>
+        /// This method creates the system request.
+        /// </summary>
+        /// <returns>A new envelope with the correct destination address.</returns>
+        public IXimuraRQRSEnvelope CreateSystemRequest(EnvelopeAddress address)
+        {
+            IXimuraRQRSEnvelope Env = EnvelopeHelper.Get(address.command);
+            Env.Request.ID = Guid.NewGuid();
+            Env.DestinationAddress = address;
+            return Env;
+        }
+        #endregion // CreateSystemRequest
     }
 }
