@@ -450,7 +450,7 @@ namespace Ximura.Command
             RQRSContract<RQ, RS> Env = null;
             try
             {
-                Env = RQRSEnvelopeHelper.Get<RQ, RS>();
+                Env = CommandBridge.EnvelopeHelper.Get<RQ, RS>();
                 Env.DestinationAddress = new EnvelopeAddress(CommandID, job.Subcommand);
 
                 if (rqFormat != null)

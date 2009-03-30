@@ -220,6 +220,16 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Command\Context\ContextSettings.cs" />
+    <Compile Include="Command\Context\Context_Pooling.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Command\Context\Context_Security.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Command\Context\Context_State.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Command\FiniteStateMachine.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -264,6 +274,9 @@
     <Compile Include="Server\AppServer_Performance.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Server\AppServer_Pooling.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Server\AppServer_Providers.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -276,6 +289,7 @@
     <Compile Include="Server\AppServer_Threading.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Server\CommandBridge\RQRSEnvelopeHelper.cs" />
     <Compile Include="Server\Installers\AppServerInstaller.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -314,6 +328,7 @@
     <Compile Include="Server\Managers\Performance\PerformanceManager_Manager.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Server\Managers\Pool\PoolManager.cs" />
     <Compile Include="Server\Managers\Session\Agents\Performance\SessionAgentPerformance.cs" />
     <Compile Include="Server\Managers\Storage\Agents\FileSystem\FileSystemStorageAgent.cs">
       <SubType>Component</SubType>
@@ -604,9 +619,8 @@
     <Compile Include="Server\Interfaces\IXimuraSecurityManagerConfigSH.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Server\Session\SessionProfileLevel.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="Server\Session\Enumerations\SessionActionType.cs" />
+    <Compile Include="Server\Session\Enumerations\SessionProfileLevel.cs" />
     <Compile Include="Server\Jobs\CompletionJob.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -637,9 +651,6 @@
     <Compile Include="Server\SecurityManager\SecurityManager_Threading.cs">
     </Compile>
     <Compile Include="Server\Security\XimuraPrincipal.cs" />
-    <Compile Include="Server\Session\SessionActionType.cs" />
-    <Compile Include="Server\Session\SessionToken.cs" />
-    <Compile Include="Server\Session\SessionAccessToken.cs" />
     <Compile Include="Server\Managers\Session\Configuration\SSMConfiguration.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -735,7 +746,6 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Command\Pool\FSMContextPoolAccess.cs" />
-    <Compile Include="Command\Context\FSMContextSettings.cs" />
     <Compile Include="Command\Interfaces\IXimuraConnectionToFSM.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -801,6 +811,9 @@
     <Compile Include="Server\Managers\Storage\StorageManager.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Server\Session\Tokens\SessionAccessToken.cs" />
+    <Compile Include="Server\Session\Tokens\SessionDelegate.cs" />
+    <Compile Include="Server\Session\Tokens\SessionToken.cs" />
     <EmbeddedResource Include="Command\Configuration\CommandConfiguration.xsd" />
     <EmbeddedResource Include="Persistence\CDS\Configuration\CDSConfiguration.xsd" />
     <EmbeddedResource Include="Server\Managers\Logging\Configuration\LoggingManagerConfiguration.xsd" />
@@ -918,8 +931,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Server\Managers\Gateway\Agents\" />
-    <Folder Include="Server\Managers\Pool\" />
     <Folder Include="Server\Managers\Session\Agents\Configuration\" />
+    <Folder Include="Server\Session\Exceptions\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

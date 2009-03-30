@@ -276,8 +276,8 @@ namespace Ximura.Server
 			get{return this.mBaseJob;}
 		}
 		#endregion // BaseJob
-		#region activeThread
-		/// <summary>
+        #region ActiveThread
+        /// <summary>
 		/// This property is the active thread for the command.
 		/// </summary>
 		public Thread ActiveThread
@@ -561,5 +561,6 @@ namespace Ximura.Server
 //			}
 		}
 		#endregion // SetCompletionType
+
     }
 }

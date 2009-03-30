@@ -84,6 +84,8 @@ namespace Ximura.Server
         #endregion
 
         #region IXimuraCommandBridge Members
+
+        public IXimuraEnvelopeHelper EnvelopeHelper { get { return null; } }
         /// <summary>
 		/// This method is used to register a command in the command collection.
 		/// </summary>
@@ -95,6 +97,11 @@ namespace Ximura.Server
 				return false;
 
 			cmdCollection.Add(command.CommandID,command);
+
+            //Register the contract type with the envelope helper.
+            RQRSEnvelopeHelper.RegisterCommand(command.CommandID, command.CommandName, 
+                command.EnvelopeContractType, command.EnvelopeCallbackContractType);
+
 			return true;
 		}
 		/// <summary>
@@ -112,47 +119,6 @@ namespace Ximura.Server
 			cmdCollection.Remove(command.CommandID);
 			return true;
 		}
-        ///// <summary>
-        ///// This method registers a known service with the command bridge,
-        ///// </summary>
-        ///// <param name="serviceType">The service type.</param>
-        ///// <param name="service">The service object.</param>
-        ///// <returns>Returns true if the service was registered successfully.</returns>
-        //public bool RegisterCommandKnownService(Type serviceType, object service)
-        //{
-        //    if (!ServiceAllowedCheck(serviceType, false)) return false;
-        //    this.SiteExtended.ServiceContainer.AddService(serviceType, service);
-        //    return true;
-        //}
-        ///// <summary>
-        ///// This method unregisters a known service with the command bridge.
-        ///// </summary>
-        ///// <param name="serviceType">The service type to unregister.</param>
-        ///// <returns>Returns true if the service can be unregistered successfully.</returns>
-        //public bool UnregisterCommandKnownService(Type serviceType)
-        //{
-        //    if (!ServiceAllowedCheck(serviceType, false)) return false;
-        //    this.SiteExtended.ServiceContainer.RemoveService(serviceType);
-        //    return true;
-        //}
-        ///// <summary>
-        ///// This method retrieves a known service from the service container.
-        ///// </summary>
-        ///// <param name="serviceType"></param>
-        ///// <returns></returns>
-        //public object GetCommandKnownService(Type serviceType)
-        //{
-        //    return GetService(serviceType);
-        //}
-        ///// <summary>
-        ///// This method is used by a command to cancel a registered callback.
-        ///// </summary>
-        ///// <param name="callbackID">The ID of the callback to cancel.</param>
-        ///// <returns>Returns true if the callback was successfully unregistered.</returns>
-        //public bool CancelCallback(Guid callbackID)
-        //{
-        //    throw new NotImplementedException("The method or operation is not implemented.");
-        //}
 		#endregion
 
         #region IXimuraSessionManager Members
@@ -286,7 +252,5 @@ namespace Ximura.Server
         }
 
         #endregion
-
-
     }
 }

@@ -23,7 +23,7 @@ using System.Diagnostics;
 
 using Ximura;
 using Ximura.Server;
-
+using Ximura.Command;
 using Ximura.Helper;
 using CH=Ximura.Helper.Common;
 #endregion // using
@@ -534,6 +534,20 @@ namespace Ximura.Server
             }
 		}
 		#endregion // SubmitJob
+
+        #region EnvelopeHelper
+        /// <summary>
+        /// The completion job EnvelopeHelper is copied from the ParentJob helper.
+        /// </summary>
+        public override IXimuraEnvelopeHelper EnvelopeHelper
+        {
+            get 
+            {
+                return ParentJob.EnvelopeHelper;
+            }
+        }
+        #endregion // EnvelopeHelper
+
 
         protected virtual int SubmissionRetrySteps
         {

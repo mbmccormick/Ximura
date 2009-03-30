@@ -76,7 +76,7 @@ namespace Ximura
         /// <param name="poolManager">The pool manager.</param>
         /// <param name="sessionManager">The session mamanger.</param>
         void InitializeSettings(IXimuraCommand baseCommand, IXimuraApplicationDefinition baseApplication,
-            StateExtender<ST> extender, IXimuraPoolManager poolManager, 
+            StateExtender<ST> extender, IXimuraPoolManager poolManager, IXimuraEnvelopeHelper envelopeHelper,
             IXimuraSessionManager sessionManager, IXimuraSession processSession, CONF config, PERF perf);
 
         IXimuraSession ProcessSession { get;}
@@ -99,5 +99,9 @@ namespace Ximura
         /// This is the default domian user for creating context sessions.
         /// </summary>
         string DomainDefault { get;}
+        /// <summary>
+        /// This is the envelope helper.
+        /// </summary>
+        IXimuraEnvelopeHelper EnvelopeHelper { get; }
     }
 }

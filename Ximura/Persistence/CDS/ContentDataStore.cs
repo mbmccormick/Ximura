@@ -539,6 +539,7 @@ namespace Ximura.Persistence
                 ApplicationDefinition,
                 mStateExtender, 
                 PoolManager, 
+                EnvelopeHelper,
                 mSessionMan,
                 mProcessSession,Configuration,Performance, 
                 mCacheManagerBridge);

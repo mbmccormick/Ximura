@@ -20,8 +20,8 @@ using System.Threading;
 
 using Ximura;
 using Ximura.Helper;
+using Ximura.Command;
 using CH=Ximura.Helper.Common;
-
 #endregion // using
 namespace Ximura.Server
 {
@@ -323,5 +323,16 @@ namespace Ximura.Server
         }
 
         #endregion
+
+        #region EnvelopeHelper
+        /// <summary>
+        /// This method returns the envelope helper for the base job.
+        /// </summary>
+        public override IXimuraEnvelopeHelper EnvelopeHelper
+        {
+            get { return mBaseJob.EnvelopeHelper; }
+        }
+        #endregion // EnvelopeHelper
+
 	}
 }

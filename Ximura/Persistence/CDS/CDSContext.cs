@@ -314,13 +314,16 @@ namespace Ximura.Persistence
         /// </summary>
         protected class CDSDirectAccess : IXimuraSessionRQ
         {
+            #region Declarations
             SecurityManagerJob mJob = null;
             DelCDSProcessRQ mDel = null;
-
+            #endregion // Declarations
+            #region Constructors
             public CDSDirectAccess()
             {
 
             }
+            #endregion // Constructors
 
             #region IXimuraSessionRQ Members
 
@@ -375,6 +378,7 @@ namespace Ximura.Persistence
 
             #endregion
 
+            #region Job
             /// <summary>
             /// This is the job for the current context;
             /// </summary>
@@ -383,12 +387,24 @@ namespace Ximura.Persistence
                 get { return mJob; }
                 set { mJob = value; }
             }
+            #endregion // Job
+
 
             public DelCDSProcessRQ DelProcessRequest
             {
                 get { return mDel; }
                 set { mDel = value; }
             }
+
+            #region EnvelopeHelper
+            /// <summary>
+            /// This property returns the envelope helper from the current job.
+            /// </summary>
+            public IXimuraEnvelopeHelper EnvelopeHelper
+            {
+                get { return mJob.EnvelopeHelper; }
+            }
+            #endregion
         }
         #endregion // CDSDirectAccess --> Class
 

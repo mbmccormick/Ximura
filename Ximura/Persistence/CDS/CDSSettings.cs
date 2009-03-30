@@ -220,11 +220,11 @@ namespace Ximura.Persistence
         /// <param name="processSession">The current process session that the command is running under.</param>
         /// <param name="cacheManagerBridge">The cache manager bridge, which allows cache managers to share information.</param>
         public virtual void InitializeSettings(IXimuraCommand baseCommand, 
-            IXimuraApplicationDefinition baseApplication, StateExtender<ICDSState> extender, 
-                IXimuraPoolManager poolManager, IXimuraSessionManager sessionManager, 
+            IXimuraApplicationDefinition baseApplication, StateExtender<ICDSState> extender,
+                IXimuraPoolManager poolManager, IXimuraEnvelopeHelper envelopeHelper, IXimuraSessionManager sessionManager, 
                     IXimuraSession processSession, CDSConfiguration config, CDSPerformance perf, ICDSCacheManagerBridge cacheManagerBridge)
         {
-            base.InitializeSettings(baseCommand, baseApplication, extender, poolManager, sessionManager, processSession, config, perf);
+            base.InitializeSettings(baseCommand, baseApplication, extender, poolManager, envelopeHelper, sessionManager, processSession, config, perf);
             this.mCacheManagerBridge = cacheManagerBridge;
         }
         #endregion

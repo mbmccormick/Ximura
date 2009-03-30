@@ -223,9 +223,6 @@ namespace Ximura.Command
 		{
 			base.ServicesProvide ();
 
-            //Register the contract type with the envelope helper.
-            RQRSEnvelopeHelper.RegisterCommand(CommandID, CommandName, EnvelopeContractType, EnvelopeCallbackContractType);
-
             //Get a reference to the system wide pool manager
             PoolManagerStart();
 

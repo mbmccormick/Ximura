@@ -299,6 +299,13 @@ namespace Ximura
             set;
         }
         #endregion // PerformanceCounter
+
+        protected virtual IXimuraEnvelopeHelper EnvelopeHelper
+        {
+            get;
+            set;
+        }
+
         #region PoolManagerStart()
         /// <summary>
         /// This protected method creates the default pool manager for the application.

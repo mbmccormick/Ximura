@@ -305,7 +305,7 @@ namespace Ximura.Command
         /// <returns>A new envelope with the correct destination address.</returns>
         protected IXimuraRQRSEnvelope CreateSystemRequest(EnvelopeAddress address)
         {
-            IXimuraRQRSEnvelope Env = RQRSEnvelopeHelper.Get(address.command);
+            IXimuraRQRSEnvelope Env = CommandBridge.EnvelopeHelper.Get(address.command);
             Env.Request.ID = Guid.NewGuid();
             Env.DestinationAddress = address;
             return Env;
@@ -440,7 +440,7 @@ namespace Ximura.Command
             //mContextConnection = new ContextSettings<ST>(mStateExtender) as SET;
             mContextSettings = new SET();
             mContextSettings.InitializeSettings(CommandDefinition,ApplicationDefinition,
-                mStateExtender, PoolManager, mSessionMan, mProcessSession, Configuration, Performance);
+                mStateExtender, PoolManager, EnvelopeHelper, mSessionMan, mProcessSession, Configuration, Performance);
         }
         #endregion // InitializeContextCollection()
         #region InitializeContextConnectionSettings()

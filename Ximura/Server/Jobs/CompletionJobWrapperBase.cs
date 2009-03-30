@@ -19,10 +19,10 @@ using System.Collections;
 using System.Threading;
 
 using Ximura;
+using Ximura.Command;
 using Ximura.Server;
 using Ximura.Helper;
 using CH=Ximura.Helper.Common;
-
 #endregion // using
 namespace Ximura.Server
 {
@@ -206,5 +206,5 @@ namespace Ximura.Server
 			get{return mParentJob;}
 		}
 		#endregion // ParentJob
-	}
+    }
 }

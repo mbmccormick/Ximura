@@ -17,6 +17,7 @@ using System.ComponentModel;
 using System.ComponentModel.Design;
 
 using Ximura;
+using Ximura.Command;
 using Ximura.Helper;
 #endregion // using
 namespace Ximura.Server
@@ -27,12 +28,6 @@ namespace Ximura.Server
 	/// </summary>
 	public interface IXimuraCommandBridge
 	{
-        ///// <summary>
-        ///// This method is used to cancel a registered callback with the security manager.
-        ///// </summary>
-        ///// <param name="callbackID"></param>
-        ///// <returns></returns>
-        //bool CancelCallback(Guid callbackID);
 		/// <summary>
 		/// This method is used to register a command in the command collection.
 		/// </summary>
@@ -47,24 +42,10 @@ namespace Ximura.Server
 		/// from the collection. Returns false if the command was not a member
 		/// of the collection.</returns>
 		bool Unregister(IXimuraCommandRQ command);
-        ///// <summary>
-        ///// This method registers a known service with the command bridge,
-        ///// </summary>
-        ///// <param name="serviceType">The service type.</param>
-        ///// <param name="service">The service object.</param>
-        ///// <returns>Returns true if the service was registered successfully.</returns>
-        //bool RegisterCommandKnownService(Type serviceType, object service);
-        ///// <summary>
-        ///// This method unregisters a known service with the command bridge.
-        ///// </summary>
-        ///// <param name="serviceType">The service type to unregister.</param>
-        ///// <returns>Returns true if the service can be unregistered successfully.</returns>
-        //bool UnregisterCommandKnownService(Type serviceType);
-        ///// <summary>
-        ///// This method retrieves a known service from the service container.
-        ///// </summary>
-        ///// <param name="serviceType"></param>
-        ///// <returns></returns>
-        //object GetCommandKnownService(Type serviceType);
+
+        /// <summary>
+        /// This is the envelope helper.
+        /// </summary>
+        IXimuraEnvelopeHelper EnvelopeHelper { get; }
 	}
 }

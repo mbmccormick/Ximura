@@ -19,6 +19,7 @@ using System.Collections;
 using System.Threading;
 
 using Ximura;
+using Ximura.Command;
 using Ximura.Server;
 using Ximura.Helper;
 using CH=Ximura.Helper.Common;
@@ -263,5 +264,16 @@ namespace Ximura.Server
             set { mDependencyID = value; }
         }
         #endregion // DependencyID
+
+        #region EnvelopeHelper
+        /// <summary>
+        /// This property is not supported.
+        /// </summary>
+        /// <exception cref="System.NotSupportedException">This exception is thrown.</exception>
+        public override IXimuraEnvelopeHelper EnvelopeHelper
+        {
+            get { throw new NotSupportedException("EnvelopeHelper is not supported in the JobHolder class."); }
+        }
+        #endregion // EnvelopeHelper
 	}
 }

@@ -72,6 +72,7 @@ namespace Ximura.Server
 
                 //Start the Security components
                 JobProcessStart();
+
                 ThreadPoolStart();
 
                 //This method register the Security Manager Command bridge object with the dispatcher.

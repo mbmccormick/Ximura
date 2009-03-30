@@ -30,18 +30,6 @@ using CH = Ximura.Helper.Common;
 #endregion // using
 namespace Ximura.Server
 {
-
-    public class SessionDelegate
-    {
-        public delegate SessionJob SessionJobGet(Guid sessionID, Guid jobID, IXimuraRQRSEnvelope data,
-            CommandRSCallback RSCallback, CommandProgressCallback ProgressCallback,
-                JobSignature? signature, JobPriority priority);
-
-        public Action<JobBase, bool> delSessionJobProcess = null;
-        public Action<JobBase> delSessionJobReturn = null;
-        public Action<Guid> delSessionJobCancel = null;
-        public SessionJobGet delSessionJobGet = null;
-    }
     /// <summary>
     /// This class is the base.
     /// </summary>
@@ -59,6 +47,7 @@ namespace Ximura.Server
         private Action<JobBase> delSessionJobReturn = null;
         private Action<Guid> delSessionJobCancel = null;
         private SessionDelegate.SessionJobGet delSessionJobGet = null;
+        private Func<IXimuraEnvelopeHelper> delEnvelopeHelperGet = null;
 
         #region ProcessRequest
         /// <summary>
@@ -231,6 +220,22 @@ namespace Ximura.Server
             return newJob;
         }
         #endregion // processRQAsyncInternal
+
+        #region IXimuraSessionRQAsync / EnvelopeHelper
+        /// <summary>
+        /// This is the envelope helper that provides access to the Envelope pool.
+        /// </summary>
+        public IXimuraEnvelopeHelper EnvelopeHelper
+        {
+            get 
+            {
+                if (delEnvelopeHelperGet == null)
+                    throw new Exception();
+
+                return delEnvelopeHelperGet(); 
+            }
+        }
+        #endregion
 
         #region OnJobComplete(Guid jobID)
         /// <summary>

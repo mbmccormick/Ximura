@@ -342,6 +342,7 @@ namespace Ximura.Persistence
             }
         }
         #endregion
+
         #region EnvelopeRequest/EnvelopeReturn
         /// <summary>
         /// This methos is used to get an envelope for the request from the pool.

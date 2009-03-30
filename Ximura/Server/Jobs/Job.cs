@@ -20,8 +20,8 @@ using System.Threading;
 
 using Ximura;
 using Ximura.Helper;
+using Ximura.Command;
 using CH=Ximura.Helper.Common;
-
 #endregion // using
 namespace Ximura.Server
 {
@@ -138,6 +138,7 @@ namespace Ximura.Server
 		private Guid? mJobID;
 		private IXimuraRQRSEnvelope mData;
 		private JobSignature? mSignature;
+        private IXimuraEnvelopeHelper mEnvelopeHelper;
 		#endregion // Declarations
 		#region Constructors
 		/// <summary>
@@ -159,6 +160,7 @@ namespace Ximura.Server
 			mData = null;
 			mSignature = null;
 			mPriority= JobPriority.Normal;
+            mEnvelopeHelper = null;
 		}
 		#endregion // Reset()
 		#region Initialize()
@@ -170,8 +172,8 @@ namespace Ximura.Server
 		/// <param name="data">The data</param>
 		/// <param name="signature">The signature</param>
 		/// <param name="priority">The job priority.</param>
-		private void Initialize(Guid sessionid, Guid id, IXimuraRQRSEnvelope data, 
-			JobSignature signature, JobPriority priority)
+		private void Initialize(Guid sessionid, Guid id, IXimuraRQRSEnvelope data,
+            JobSignature signature, JobPriority priority, IXimuraEnvelopeHelper envelopeHelper)
 		{
 			try
 			{
@@ -179,7 +181,8 @@ namespace Ximura.Server
 				mJobID = id;
 				mData = data;
 				mSignature = signature;
-				mPriority=priority;
+				mPriority = priority;
+                mEnvelopeHelper = envelopeHelper;
 			}
 			catch (Exception ex)
 			{
@@ -255,5 +258,18 @@ namespace Ximura.Server
 				this.mSessionID.Value, this.mJobID.Value, this.Data.Request.ID);
 		}
 		#endregion // IDBuffer()
+
+        #region EnvelopeHelper
+        /// <summary>
+        /// This property provides access to the envelope object pool.
+        /// </summary>
+        public override IXimuraEnvelopeHelper EnvelopeHelper
+        {
+            get
+            {
+                return mEnvelopeHelper;
+            }
+        }
+        #endregion // EnvelopeHelper
 	}
 }
