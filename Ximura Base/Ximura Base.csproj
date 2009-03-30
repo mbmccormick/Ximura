@@ -205,9 +205,9 @@
     </Compile>
     <Compile Include="Command\CommandCallbacks.cs" />
     <Compile Include="Command\Data\EnvelopeAddress.cs" />
+    <Compile Include="Command\Interfaces\IXimuraEnvelopeHelper.cs" />
     <Compile Include="Command\Interfaces\IXimuraRQRSEnvelope.cs" />
     <Compile Include="Command\Data\RQRSContract.cs" />
-    <Compile Include="Command\Data\RQRSEnvelopeHelper.cs" />
     <Compile Include="Command\Data\RQRSEnvTypes.cs" />
     <Compile Include="Command\Data\RQRSFolder.cs" />
     <Compile Include="Component\AppContainer.cs">

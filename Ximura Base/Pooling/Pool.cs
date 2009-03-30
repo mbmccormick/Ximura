@@ -656,7 +656,7 @@ namespace Ximura
     }
     #endregion // Pool<T>
 
-    #region PoolInvoker<T>
+    #region PoolInvocator<T>
     /// <summary>
     /// This is the base object pool. 
     /// </summary>

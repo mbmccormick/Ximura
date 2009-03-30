@@ -18,13 +18,13 @@ using Ximura.Data;
 #endregion // using
 namespace Ximura.Command
 {
-	/// <summary>
-	/// EnvelopeAddress is used to route a request to the relevant destination within
-	/// the Ximura Application framework.
-	/// </summary>
-	[Serializable]
-	public struct EnvelopeAddress: IEquatable<EnvelopeAddress>
-	{
+    /// <summary>
+    /// EnvelopeAddress is used to route a request to the relevant destination within
+    /// the Ximura Application framework.
+    /// </summary>
+    [Serializable]
+    public struct EnvelopeAddress : IEquatable<EnvelopeAddress>
+    {
         #region NullDestination
         /// <summary>
         /// This is the null destination property.
@@ -32,18 +32,18 @@ namespace Ximura.Command
         public static readonly EnvelopeAddress NullDestination;
         #endregion // NullDestination
 
-		#region Properties
-		/// <summary>
-		/// The destination command ID
-		/// </summary>
-		public Guid command;
-		/// <summary>
-		/// The subcommand.
-		/// </summary>
-		public object SubCommand;
-		#endregion
+        #region Properties
+        /// <summary>
+        /// The destination command ID
+        /// </summary>
+        public Guid command;
+        /// <summary>
+        /// The subcommand.
+        /// </summary>
+        public object SubCommand;
+        #endregion
 
-		#region Static Constructor
+        #region Static Constructor
         /// <summary>
         /// This is the default static constructor that creates the Null destination address.
         /// </summary>
@@ -55,24 +55,24 @@ namespace Ximura.Command
 
         #region Constructor
         //public EnvelopeAddress(string command) : this(new Guid(command), null) { }
-		//public EnvelopeAddress(string command, object subcommand):this(new Guid(command),subcommand){}
+        //public EnvelopeAddress(string command, object subcommand):this(new Guid(command),subcommand){}
         /// <summary>
         /// This is the default constructor for the address command.
         /// </summary>
         /// <param name="command">The destination command ID.</param>
-		public EnvelopeAddress(Guid command):this(command,null){}
+        public EnvelopeAddress(Guid command) : this(command, null) { }
         /// <summary>
         /// This is the default constructor for the Envelope address where a sub command is specified..
         /// </summary>
         /// <param name="command">The destination id of the command this message should be sent to.</param>
         /// <param name="subcommand">The sub address for the command. 
         /// Set this to Null if you do not require a subcommand.</param>
-		public EnvelopeAddress(Guid command, object subcommand)
-		{
-			this.command=command;
-			this.SubCommand=subcommand;
-		}
-		#endregion
+        public EnvelopeAddress(Guid command, object subcommand)
+        {
+            this.command = command;
+            this.SubCommand = subcommand;
+        }
+        #endregion
 
         #region Equals
         /// <summary>
@@ -88,7 +88,7 @@ namespace Ximura.Command
             }
 
             return Equals((EnvelopeAddress)obj);
-        } 
+        }
         #endregion
 
         #region GetHashCode()
@@ -111,7 +111,7 @@ namespace Ximura.Command
         /// <returns>Returns true if the address is equal.</returns>
         public bool Equals(EnvelopeAddress other)
         {
-            return this==other;
+            return this == other;
         }
 
         /// <summary>

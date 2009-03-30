@@ -16,6 +16,7 @@ using System.Globalization;
 using System.Security.Cryptography;
 
 using Ximura;
+using Ximura.Command;
 using Ximura.Data;
 using Ximura.Server;
 
@@ -63,5 +64,10 @@ namespace Ximura
         /// <returns>The job guid.</returns>
         Guid ProcessRequestAsync(Guid jobID, IXimuraRQRSEnvelope data, CommandRSCallback RSCallback,
             CommandProgressCallback ProgressCallback, JobPriority priority);
+
+        /// <summary>
+        /// This is the envelope helper, used for creating requests.
+        /// </summary>
+        IXimuraEnvelopeHelper EnvelopeHelper { get; }
     }
 }

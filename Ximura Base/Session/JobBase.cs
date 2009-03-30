@@ -20,9 +20,9 @@ using System.Threading;
 using System.ComponentModel;
 
 using Ximura;
+using Ximura.Command;
 using Ximura.Helper;
-using CH=Ximura.Helper.Common;
-
+using CH = Ximura.Helper.Common;
 #endregion // using
 namespace Ximura.Server
 {
@@ -82,6 +82,11 @@ namespace Ximura.Server
 		/// <returns>The byte array containing the buffer.</returns>
 		public abstract byte[] IDBuffer();
 
+        /// <summary>
+        /// This property provides access to the envelope helper.
+        /// </summary>
+        public abstract IXimuraEnvelopeHelper EnvelopeHelper { get; }
+
         #region IDisposable Members
         /// <summary>
         /// This is the dispose method for the job.
@@ -91,13 +96,13 @@ namespace Ximura.Server
             this.Dispose(true);
             GC.SuppressFinalize(this);
         }
-        ///// <summary>
-        ///// The class destructor.
-        ///// </summary>
-        //~JobBase()
-        //{
-        //      this.Dispose(false);
-        //}
+        /// <summary>
+        /// The class destructor.
+        /// </summary>
+        ~JobBase()
+        {
+            this.Dispose(false);
+        }
         /// <summary>
         /// This method should be overriden to provide specific clean up code.
         /// Specifically, any delegates references in the object should be set to null;
@@ -107,6 +112,7 @@ namespace Ximura.Server
         {
             if (!mDisposed && disposing)
                 Reset();
+
             mDisposed = true;
         }
         #endregion
