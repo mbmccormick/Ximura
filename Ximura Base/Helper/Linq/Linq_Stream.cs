@@ -33,6 +33,13 @@ namespace Ximura.Helper
 {
     public static partial class LinqHelper
     {
+        #region StreamFrom<T>(this Stream str)
+        /// <summary>
+        /// This method reads a set of items from a stream, based on the type parameter.
+        /// </summary>
+        /// <typeparam name="T">The type to read from the stream and to return in the enumeration.</typeparam>
+        /// <param name="str">The stream to read from.</param>
+        /// <returns>Returns an enumeration of the items deserialized from the stream.</returns>
         public static IEnumerable<T> StreamFrom<T>(this Stream str)
         {
             Func<BinaryReader, T> conv = null;
@@ -70,7 +77,16 @@ namespace Ximura.Helper
 
             return str.StreamFrom<T>(conv);
         }
+        #endregion // IEnumerable<T> StreamFrom<T>(this Stream str)
 
+        #region StreamFrom<T>(this Stream str, Func<BinaryReader, T> conv)
+        /// <summary>
+        /// This method reads a set of items from a stream, based on the type parameter.
+        /// </summary>
+        /// <typeparam name="T">The type to read from the stream and to return in the enumeration.</typeparam>
+        /// <param name="str">The stream to read from.</param>
+        /// <param name="conv">The conversion function to read from the stream.</param>
+        /// <returns>Returns an enumeration of the items deserialized from the stream.</returns>
         public static IEnumerable<T> StreamFrom<T>(this Stream str, Func<BinaryReader, T> conv)
         {
             str.Position = 0;
@@ -81,5 +97,6 @@ namespace Ximura.Helper
                 yield return conv(br);
             }
         }
+        #endregion // StreamFrom<T>(this Stream str, Func<BinaryReader, T> conv)
     }
 }

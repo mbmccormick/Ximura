@@ -33,8 +33,7 @@ namespace Ximura.Helper
 {
     public static partial class LinqHelper
     {
-        // F# - Currying Functions
-
+        // Currying Functions
         public static Func<T1, Func<TResult>> Curry<T1, TResult>(this Func<T1, TResult> f)
         {
             return p1 => () => f(p1);
@@ -55,7 +54,7 @@ namespace Ximura.Helper
             return p1 => (p2, p3, p4) => f(p1, p2, p3, p4);
         }
 
-        // F# - Currying Actions
+        // Currying Actions
         public static Func<T1, Action> Curry<T1>(this Action<T1> f)
         {
             return p1 => () => f(p1);
@@ -75,13 +74,5 @@ namespace Ximura.Helper
         {
             return p1 => (p2, p3, p4) => f(p1, p2, p3, p4);
         }
-
-
-
-        //public static Func<T1, Func<T1, TResult>> Uncurry<T1, TResult>(this Func<TResult> f)
-        //{
-        //    return p1 => p2 => f();
-        //}
-
     }
 }
