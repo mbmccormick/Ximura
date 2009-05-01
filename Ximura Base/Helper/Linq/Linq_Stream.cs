@@ -35,34 +35,50 @@ namespace Ximura.Helper
     {
         public static IEnumerable<T> StreamFrom<T>(this Stream str)
         {
-            Func<Stream, T> conv = null;
+            Func<BinaryReader, T> conv = null;
 
             if (typeof(T) == typeof(int))
-                conv = (s) => (T)(object)(((s.ReadByte() | (s.ReadByte() << 8)) | (s.ReadByte() << 0x10)) | (s.ReadByte() << 0x18));
+                conv = (s) => (T)(object)(s.ReadInt32());
+            else if (typeof(T) == typeof(uint))
+                conv = (s) => (T)(object)(s.ReadUInt32());
             else if (typeof(T) == typeof(short))
-                conv = (s) => (T)(object)(s.ReadByte() | (s.ReadByte() << 8));
+                conv = (s) => (T)(object)(s.ReadInt16());
+            else if (typeof(T) == typeof(UInt16))
+                conv = (s) => (T)(object)(s.ReadUInt16());
+            else if (typeof(T) == typeof(sbyte))
+                conv = (s) => (T)(object)(s.ReadSByte());
             else if (typeof(T) == typeof(byte))
                 conv = (s) => (T)(object)(s.ReadByte());
             else if (typeof(T) == typeof(long))
-                conv = (s) =>
-                    {
-                        uint num = (uint)(((s.ReadByte() | (s.ReadByte() << 8)) | (s.ReadByte() << 0x10)) | (s.ReadByte() << 0x18));
-                        uint num2 = (uint)(((s.ReadByte() | (s.ReadByte() << 8)) | (s.ReadByte() << 0x10)) | (s.ReadByte() << 0x18));
-                        return (T)(object)((long)((num2 << 0x20) | num));
-                    };
+                conv = (s) => (T)(object)(s.ReadInt64());
+            else if (typeof(T) == typeof(UInt64))
+                conv = (s) => (T)(object)(s.ReadUInt64());
+            else if (typeof(T) == typeof(double))
+                conv = (s) => (T)(object)(s.ReadDouble());
+            else if (typeof(T) == typeof(decimal))
+                conv = (s) => (T)(object)(s.ReadDecimal());
+            else if (typeof(T) == typeof(float))
+                conv = (s) => (T)(object)(s.ReadSingle());
+            else if (typeof(T) == typeof(bool))
+                conv = (s) => (T)(object)(s.ReadBoolean());
+            else if (typeof(T) == typeof(char))
+                conv = (s) => (T)(object)(s.ReadChar());
+            else if (typeof(T) == typeof(string))
+                conv = (s) => (T)(object)(s.ReadString());
             else
                 throw new NotSupportedException(typeof(T).Name + " is not supported.");
 
             return str.StreamFrom<T>(conv);
         }
 
-        public static IEnumerable<T> StreamFrom<T>(this Stream str, Func<Stream, T> conv)
+        public static IEnumerable<T> StreamFrom<T>(this Stream str, Func<BinaryReader, T> conv)
         {
             str.Position = 0;
+            BinaryReader br = new BinaryReader(str);
 
             while (str.CanRead && str.Position<str.Length)
             {
-                yield return conv(str);
+                yield return conv(br);
             }
         }
     }
