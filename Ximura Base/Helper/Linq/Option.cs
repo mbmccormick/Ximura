@@ -88,6 +88,7 @@ namespace Ximura.Helper
         {
             get { return none; }
         }
+
         public static Option<T> Some(T value)
         {
             return new Option<T>(value);

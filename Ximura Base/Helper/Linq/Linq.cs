@@ -10,7 +10,7 @@
 //     Paul Stancer - initial implementation
 // *******************************************************************************
 #endregion
-﻿#region using
+#region using
 using System;
 using System.Text;
 using System.IO;
@@ -31,47 +31,33 @@ using Ximura.Server;
 #endregion // using
 namespace Ximura.Helper
 {
-    public static class Linq
+    public static partial class LinqHelper
     {
-        public static IEnumerable<U> Convert<T, U>(this IEnumerable<T> items, Func<T, U> convert)
-        {
-            if (items == null) throw new ArgumentNullException("items");
-            if (convert == null) throw new ArgumentNullException("convert");
-
-            foreach (var item in items)
-                yield return convert(item);
-        }
-
-        public static IEnumerable<T> InsertStart<T>(this IEnumerable<T> items, T insert)
-        {
-            yield return insert;
-
-            foreach (var item in items)
-                yield return item;
-        }
-
-        public static IEnumerable<T> InsertEnd<T>(this IEnumerable<T> items, T insert)
-        {
-            foreach (var item in items)
-                yield return item;
-
-            yield return insert;
-        }
-
-        // F# Seq.iter
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="items"></param>
+        /// <param name="action"></param>
         public static void ForEach<T>(this IEnumerable<T> items, Action<T> action)
         {
-            if (items == null) throw new ArgumentNullException("items");
-            if (action == null) throw new ArgumentNullException("action");
+            if (items == null) throw new ArgumentNullException("items","items enumeration is null");
+            if (action == null) throw new ArgumentNullException("action","the action delegate is null");
 
             foreach (var item in items)
                 action(item);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="items"></param>
+        /// <param name="action"></param>
         public static void ForIndex<T>(this IEnumerable<T> items, Action<int, T> action)
         {
-            if (items == null) throw new ArgumentNullException("items");
-            if (action == null) throw new ArgumentNullException("action");
+            if (items == null) throw new ArgumentNullException("items", "items enumeration is null");
+            if (action == null) throw new ArgumentNullException("action", "the action delegate is null");
 
             int index = 0;
             foreach (var item in items)
@@ -81,88 +67,21 @@ namespace Ximura.Helper
             }
         }
 
-        #region Currying
-        // F# - Currying
-        public static Func<TArg1, Func<TArg2, TResult>> Curry<TArg1, TArg2, TResult>(this Func<TArg1, TArg2, TResult> func)
+        /// <summary>
+        /// This method converts an enumerable collection in to a collection of items that have been converted.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="U"></typeparam>
+        /// <param name="items"></param>
+        /// <param name="convert"></param>
+        /// <returns></returns>
+        public static IEnumerable<U> Convert<T, U>(this IEnumerable<T> items, Func<T, U> convert)
         {
-            return a1 => a2 => func(a1, a2);
-        }
+            if (items == null) throw new ArgumentNullException("items", "items enumeration is null");
+            if (convert == null) throw new ArgumentNullException("convert", "convert function is null");
 
-        // F# - Currying
-        public static Func<TArg1, Action<TArg2>> Curry<TArg1, TArg2>(this Action<TArg1, TArg2> action)
-        {
-            return a1 => a2 => action(a1, a2);
-        }
-        #endregion // Currying
-
-
-        // Seq.fold
-        public static T Fold<T, U>(this IEnumerable<U> items, Func<T, U, T> func, T acc)
-        {
             foreach (var item in items)
-                acc = func(acc, item);
-
-            return acc;
+                yield return convert(item);
         }
-
-        // F# List.fold_left
-        public static T FoldLeft<T, U>(this IList<U> list, Func<T, U, T> func, T acc)
-        {
-            for (int index = 0; index < list.Count; index++)
-                acc = func(acc, list[index]);
-
-            return acc;
-        }
-
-        // F# List.fold_right
-        public static T FoldRight<T, U>(this IList<U> list, Func<T, U, T> func, T acc)
-        {
-            for (int index = list.Count - 1; index >= 0; index--)
-                acc = func(acc, list[index]);
-
-            return acc;
-        }
-
-        // F# Seq.unfold
-        public static IEnumerable<TResult> Unfold<T, TResult>(Func<T, Option<Tuple<TResult, T>>> generator, T start)
-        {
-            var next = start;
-
-            while (true)
-            {
-                var res = generator(next);
-                if (res.IsNone)
-                    yield break;
-
-                yield return res.Value.Item1;
-
-                next = res.Value.Item2;
-            }
-        }
-
-        // F# - |>
-        public static TResult Forward<TArg1, TArg2, TResult>(this TArg1 arg1, Func<TArg1, TArg2, TResult> func, TArg2 arg2)
-        {
-            return func(arg1, arg2);
-        }
-
-        // F# - |>
-        public static void Forward<TArg1, TArg2>(this TArg1 arg1, Action<TArg1, TArg2> action, TArg2 arg2)
-        {
-            action(arg1, arg2);
-        }
-
-        // F# <|
-        public static TResult Rev<TArg1, TArg2, TResult>(this TArg2 arg2, Func<TArg1, TArg2, TResult> func, TArg1 arg1)
-        {
-            return func(arg1, arg2);
-        }
-
-        // F# - <|
-        public static void Rev<TArg1, TArg2>(this TArg2 arg2, Action<TArg1, TArg2> action, TArg1 arg1)
-        {
-            action(arg1, arg2);
-        }
-
     }
 }

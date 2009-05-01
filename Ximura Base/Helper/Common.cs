@@ -30,7 +30,6 @@ using Ximura.Server;
 #endregion // using
 namespace Ximura.Helper
 {
-    #region Common helper
     /// <summary>
     /// The <b>Common</b> class includes a number of useful utilities.
     /// </summary>
@@ -1452,6 +1451,5 @@ namespace Ximura.Helper
                 };
         #endregion // ConvStripSpeechMarks
     }
-    #endregion
 }
 
