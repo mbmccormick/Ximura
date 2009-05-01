@@ -95,7 +95,7 @@ namespace Ximura.Windows
             GetType().Assembly.GetReferencedAssemblies()
                 .Select(an => GetAssemblyFromName(an))
                 .Where(a => a != null)
-                .InsertStart(GetType().Assembly)
+                .InsertAtStart(GetType().Assembly)
                 .ForEach(a => ProcessAssembly(a, savedState));
         }
         #endregion // ProcessConfigFiles(IDictionary savedState)

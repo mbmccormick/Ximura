@@ -118,10 +118,8 @@
     <Compile Include="Logging\XimuraAppServerConfigInstallerAttribute.cs" />
     <Compile Include="Logging\XimuraEventLoggerInstallerAttribute.cs" />
     <Compile Include="Performance\Configuration\WindowsPerformanceAgentConfiguration.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Performance\WindowsPerformanceAgent.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceStartException.cs" />
