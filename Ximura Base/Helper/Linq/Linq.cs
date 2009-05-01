@@ -52,8 +52,8 @@ namespace Ximura.Helper
         /// <param name="action">The action to be executed against each item in the collection.</param>
         public static void ForEach<T>(this IEnumerable<T> items, Action<T> action)
         {
-            if (items == null) throw new ArgumentNullException("items","items enumeration is null");
-            if (action == null) throw new ArgumentNullException("action","the action delegate is null");
+            if (items == null) throw new ArgumentNullException("items", "The items enumeration cannot be null.");
+            if (action == null) throw new ArgumentNullException("action", "The action delegate cannot be null.");
 
             foreach (var item in items)
                 action(item);
