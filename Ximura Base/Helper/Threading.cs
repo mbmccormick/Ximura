@@ -50,7 +50,8 @@ namespace Ximura.Helper
 
         //public static Func<Action<T1>, Thread> ActionExecuteParam = t1 => ActionExecute.Curry()(t1);
 
-        public static Func<Action, Thread> ActionExecute =
+
+        public static Func<Action, Thread> fnActionExecute =
             (act) =>
             {
                 Thread t = new Thread(new ThreadStart(act));
@@ -75,7 +76,7 @@ namespace Ximura.Helper
 
             var threads = ts.Select(a =>
                 {
-                    Thread t = ActionExecute(a);
+                    Thread t = fnActionExecute(a);
 
                     while (threadLimit > 0 && active >= threadLimit)
                         ThreadWait();
@@ -88,7 +89,7 @@ namespace Ximura.Helper
 
             return DateTime.Now - start;
         }
-        #endregion // ExecuteParallelInt(IEnumerable<Action> ts)
+        #endregion
 
         #region ExecuteParallel(IEnumerable<Action> ts, int maxThreads)
         /// <summary>
@@ -104,29 +105,25 @@ namespace Ximura.Helper
         #region Execute(this IEnumerable<Action> ts, int maxThreads)
         /// <summary>
         /// This method enumerates the actions and executes them in parallel and waits until they are complete.
+        /// By default this method sets the number of parallel jobs to the number of processors in the machine.
         /// </summary>
         /// <param name="ts">The action enumeration.</param>
         /// <returns>Returns a timespan containing the time taken to execute the job.</returns>
         public static TimeSpan Execute(this IEnumerable<Action> ts)
         {
-            return ExecuteActionsInt(ts, -1);
+            return ExecuteActionsInt(ts, Environment.ProcessorCount);
         }
         /// <summary>
-        /// 
+        /// This method enumerates the actions and executes them in parallel and waits until they are complete.
         /// </summary>
-        /// <param name="ts"></param>
-        /// <param name="maxThreads"></param>
-        /// <returns></returns>
+        /// <param name="ts">The action enumeration.</param>
+        /// <param name="maxThreads">The maximum number of parallel executions.</param>
+        /// <returns>Returns a timespan containing the time taken to execute the job.</returns>
         public static TimeSpan Execute(this IEnumerable<Action> ts, int maxThreads)
         {
             return ExecuteActionsInt(ts, maxThreads);
         }
         #endregion
-
-
-
-
-
     }
 
 
