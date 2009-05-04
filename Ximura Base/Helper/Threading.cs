@@ -48,9 +48,10 @@ namespace Ximura.Helper
         }
         #endregion
 
-        //public static Func<Action<T1>, Thread> ActionExecuteParam = t1 => ActionExecute.Curry()(t1);
-
-
+        #region Func<Action, Thread> fnActionExecute
+        /// <summary>
+        /// This function creates a new thread and executes the action on that thread.
+        /// </summary>
         public static Func<Action, Thread> fnActionExecute =
             (act) =>
             {
@@ -58,7 +59,7 @@ namespace Ximura.Helper
                 t.Start();
                 return t;
             };
-
+        #endregion // Func<Action, Thread> fnActionExecute
 
         #region ExecuteActionsInt(IEnumerable<Action> ts, int threadLimit)
         private static TimeSpan ExecuteActionsInt(IEnumerable<Action> ts, int threadLimit)
@@ -125,10 +126,4 @@ namespace Ximura.Helper
         }
         #endregion
     }
-
-
-
-
-
-
 }

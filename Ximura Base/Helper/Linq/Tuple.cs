@@ -36,8 +36,13 @@ namespace Ximura.Helper
     /// </summary>
     /// <typeparam name="T1">The first item type.</typeparam>
     /// <typeparam name="T2">The second item type.</typeparam>
-    public sealed class Tuple<T1, T2> : IEquatable<Tuple<T1, T2>>
+    public struct Tuple<T1, T2> : IEquatable<Tuple<T1, T2>>
     {
+        #region Declarations
+        private T1 mItem1;
+        private T2 mItem2;
+        #endregion // Declarations
+
         #region Constructor
         /// <summary>
         /// This is the default constructor.
@@ -46,8 +51,8 @@ namespace Ximura.Helper
         /// <param name="item2">The second item.</param>
         public Tuple(T1 item1, T2 item2)
         {
-            Item1 = item1;
-            Item2 = item2;
+            mItem1 = item1;
+            mItem2 = item2;
         }
         #endregion // Constructor
 
@@ -58,7 +63,7 @@ namespace Ximura.Helper
         /// <returns>Returns a string representation of the Tuple.</returns>
         public override string ToString()
         {
-            return string.Format("Tuple:[{0}]-[{1}]",Item1.ToString(),Item2.ToString());
+            return string.Format("Tuple:[{0}]-[{1}]",mItem1.ToString(),mItem2.ToString());
         }
         #endregion // ToString()
 
@@ -70,7 +75,7 @@ namespace Ximura.Helper
         /// <returns>Returns true if the two items are identical, false otherwise.</returns>
         public override bool Equals(object obj)
         {
-            return (obj is Tuple<T1, T2>)?Equals((Tuple<T1, T2>)obj):false;
+            return (obj is Tuple<T1, T2>) ? Equals((Tuple<T1, T2>)obj) : false;
         }
         #endregion // Equals(object obj)
         #region Equals(Tuple<T1, T2> other)
@@ -81,13 +86,10 @@ namespace Ximura.Helper
         /// <returns>Returns true if the two tuples are identical, false otherwise.</returns>
         public bool Equals(Tuple<T1, T2> other)
         {
-            if (!EqualityComparer<T1>.Default.Equals(Item1, other.Item1) || 
-                !EqualityComparer<T2>.Default.Equals(Item2, other.Item2))
-                return false;
-
-            return true;
+            return this==other;
         }
         #endregion // Equals(Tuple<T1, T2> other)
+
         #region Operator !=
         /// <summary>
         /// This is the inequality operator for the Tuples.
@@ -97,7 +99,7 @@ namespace Ximura.Helper
         /// <returns>Returns true if the two tuples are different, otherwise false.</returns>
         public static bool operator !=(Tuple<T1, T2> a, Tuple<T1, T2> b)
         {
-            return !(a.Equals(b));
+            return !(a==b);
         }
         #endregion // !=
         #region Operator ==
@@ -109,7 +111,11 @@ namespace Ximura.Helper
         /// <returns>Returns true if the two tuples are identical, otherwise false.</returns>
         public static bool operator ==(Tuple<T1, T2> a, Tuple<T1, T2> b)
         {
-            return (a.Equals(b));
+            if (!EqualityComparer<T1>.Default.Equals(a.Item1, b.Item1) ||
+                !EqualityComparer<T2>.Default.Equals(a.Item2, b.Item2))
+                return false;
+
+            return true;
         }
         #endregion // ==
 
@@ -120,8 +126,8 @@ namespace Ximura.Helper
         /// <returns>The hash code.</returns>
         public override int GetHashCode()
         {
-            int result = EqualityComparer<T1>.Default.GetHashCode(Item1);
-            result ^= EqualityComparer<T2>.Default.GetHashCode(Item2);
+            int result = EqualityComparer<T1>.Default.GetHashCode(mItem1);
+            result ^= EqualityComparer<T2>.Default.GetHashCode(mItem2);
             return result;
         }
         #endregion // GetHashCode()
@@ -132,8 +138,7 @@ namespace Ximura.Helper
         /// </summary>
         public T1 Item1
         {
-            get;
-            private set;
+            get { return mItem1; }
         }
         #endregion // Item1
         #region Item2
@@ -142,8 +147,7 @@ namespace Ximura.Helper
         /// </summary>
         public T2 Item2
         {
-            get;
-            private set;
+            get { return mItem2; }
         }
         #endregion // Item2
     }

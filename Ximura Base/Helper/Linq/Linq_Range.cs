@@ -48,21 +48,38 @@ namespace Ximura.Helper
                     currentBlock++;
                     lastblock--;
                 }
+
                 yield return new Tuple<int,int>(i, currentBlock);
 
                 i += currentBlock;
             }
         }
 
+        #region RangeFromTo(Tuple<int, int> range)
+        /// <summary>
+        /// This extended range method takes an integer tuple as the range.
+        /// </summary>
+        /// <param name="range">The range of integers.</param>
+        /// <returns>Returns an enumeration of integers based on the range specified.</returns>
         public static IEnumerable<int> RangeFromTo(Tuple<int, int> range)
         {
             return RangeFromTo(range.Item1, range.Item2);
         }
+        #endregion // RangeFromTo(Tuple<int, int> range)
 
+        #region RangeFromTo(int start, int end)
+        /// <summary>
+        /// This extended range method takes an integer range and returns an enumeration of integers.
+        /// </summary>
+        /// <param name="start">The first integer.</param>
+        /// <param name="end">The last integer.</param>
+        /// <returns>Returns an enumeration of integers based on the range specified.</returns>
         public static IEnumerable<int> RangeFromTo(int start, int end)
         {
             for (int loop = start; loop <= end; loop++)
                 yield return loop;
         }
+        #endregion // RangeFromTo(int start, int end)
+
     }
 }
