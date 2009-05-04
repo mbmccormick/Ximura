@@ -69,19 +69,18 @@ namespace Ximura
         /// This property returns the number of active objects.
         /// </summary>
         int Count { get;}
-        /// <summary>
-        /// This method is used to clear the pool of all objects.
-        /// </summary>
-        void Clear();
+
         /// <summary>
         /// This property indicates whether the pool is buffered. Buffered pools are shared amongst multiple 
-        /// clients and do not implement the clear method.
+        /// clients and do not expose the PoolManager.
         /// </summary>
         bool IsBuffered { get;}
         /// <summary>
         /// This property is used to set the pool manager for the specific pool.
         /// </summary>
         IXimuraPoolManager PoolManager { get;set;}
+
+        string Stats { get;}
     }
 
     /// <summary>
@@ -110,7 +109,6 @@ namespace Ximura
         /// <param name="value">The object to return to the pool.</param>
         void Return(T value);
 
-        string Stats { get;}
     }
 
     public interface IXimuraPoolInitialize<T> : IXimuraPool<T>

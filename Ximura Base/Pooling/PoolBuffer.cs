@@ -33,8 +33,7 @@ namespace Ximura
     {
         #region Declarations
         private IXimuraPool<T> internalPool = null;
-        private bool mDisposed;
-        private object syncPoolBuffer = new object();
+        private bool mDisposed = false;
         #endregion
         #region Constructors
         /// <summary>
@@ -44,50 +43,78 @@ namespace Ximura
         public PoolBuffer(IXimuraPool pool)
         {
             internalPool = (IXimuraPool<T>)pool;
-            mDisposed = false;
+        }
+        #endregion
+        #region IDisposable Members
+        /// <summary>
+        /// This method disposes the pool buffer class.
+        /// </summary>
+        public void Dispose()
+        {
+            mDisposed = true;
+            internalPool = null;
         }
         #endregion
 
-        #region IXimuraPool<T> Members
-
+        #region DisposedCheck()
+        /// <summary>
+        /// This method checks whether the pool buffer has been disposed.
+        /// </summary>
         private void DisposedCheck()
         {
             if (mDisposed)
                 throw new ObjectDisposedException("PoolBuffer", "PoolBuffer is disposed.");
-
-            if (Disconnected)
-                throw new ObjectDisposedException("PoolBuffer", "This pool buffer has been disconnected.");
         }
-
-        internal bool Disconnected
+        #endregion // DisposedCheck()
+        #region DisconnectCheck()
+        /// <summary>
+        /// This method checks whether the buffer has been disconnected from the pool.
+        /// </summary>
+        private void DisconnectCheck()
         {
-            get { return internalPool == null; }
+            DisposedCheck();
+            if (internalPool == null)
+                throw new InvalidOperationException("This pool buffer has been disconnected.");
         }
-
-        internal void Disconnect()
+        #endregion // DisconnectCheck()
+        #region Disconnect()
+        /// <summary>
+        /// This method disconnects the buffer from the pool.
+        /// </summary>
+        private void Disconnect()
         {
-            lock (syncPoolBuffer)
-            {
-                internalPool = null;
-            }
+            DisposedCheck();
+            internalPool = null;
         }
+        #endregion // Disconnect()
+
+        #region IXimuraPool<T> Members
 
         T IXimuraPool<T>.Get()
         {
-            DisposedCheck();
+            DisconnectCheck();
             return internalPool.Get();
         }
 
         T IXimuraPool<T>.Get(SerializationInfo info, StreamingContext context)
         {
-            DisposedCheck();
+            DisconnectCheck();
             return internalPool.Get(info, context);
         }
 
         void IXimuraPool<T>.Return(T value)
         {
-            DisposedCheck();
+            DisconnectCheck();
             internalPool.Return(value);
+        }
+
+        string IXimuraPool.Stats
+        {
+            get
+            {
+                DisconnectCheck();
+                return internalPool.Stats;
+            }
         }
 
         #endregion
@@ -96,32 +123,36 @@ namespace Ximura
 
         object IXimuraPool.Get()
         {
-            DisposedCheck();
+            DisconnectCheck();
             return internalPool.Get();
         }
 
         object IXimuraPool.Get(SerializationInfo info, StreamingContext context)
         {
-            DisposedCheck();
+            DisconnectCheck();
             return internalPool.Get(info, context);
         }
 
         void IXimuraPool.Return(object value)
         {
-            DisposedCheck();
+            DisconnectCheck();
             internalPool.Return(value);
         }
 
         bool IXimuraPool.Available
         {
-            get { return !Disconnected && internalPool.Available; }
+            get 
+            {
+                DisconnectCheck();
+                return internalPool.Available; 
+            }
         }
 
         int IXimuraPool.Max
         {
             get
             {
-                DisposedCheck();
+                DisconnectCheck();
                 return internalPool.Max;
             }
         }
@@ -130,7 +161,7 @@ namespace Ximura
         {
             get
             {
-                DisposedCheck();
+                DisconnectCheck();
                 return internalPool.Min;
             }
         }
@@ -139,7 +170,7 @@ namespace Ximura
         {
             get
             {
-                DisposedCheck();
+                DisconnectCheck();
                 return internalPool.Prefered;
             }
         }
@@ -148,80 +179,45 @@ namespace Ximura
         {
             get
             {
-                DisposedCheck();
+                DisconnectCheck();
                 return internalPool.Count;
             }
         }
 
-        void IXimuraPool.Clear()
-        {
-            DisposedCheck();
-            throw new NotSupportedException("Clear is not supported for a buffered pool.");
-        }
+        //void IXimuraPool.Clear()
+        //{
+        //    DisconnectCheck();
+        //    throw new NotSupportedException("Clear is not supported for a buffered pool.");
+        //}
 
         bool IXimuraPool.IsBuffered
         {
             get
             {
-                DisposedCheck();
+                DisconnectCheck();
                 return true;
             }
         }
-
         #endregion
 
-        #region IXimuraPoolBuffer Members
+        #region IXimuraPoolBuffer.ResetBuffer()
         void IXimuraPoolBuffer.ResetBuffer()
         {
-            lock (this)
-            {
-                internalPool = null;
-            }
+            Disconnect();
         }
         #endregion
 
-        #region IXimuraPool Members
-        /// <summary>
-        /// This method is not implemented in the buffer.
-        /// </summary>
-        public IXimuraPoolManager PoolManager
+        #region IXimuraPool.PoolManager
+
+        IXimuraPoolManager IXimuraPool.PoolManager
         {
             get
             {
-                throw new NotImplementedException("The method or operation is not implemented in the pool buffer class.");
+                throw new NotSupportedException("PoolManager is not supported in the pool buffer class.");
             }
             set
             {
-                throw new NotImplementedException("The method or operation is not implemented in the pool buffer class.");
-            }
-        }
-        #endregion
-
-        #region IDisposable Members
-        /// <summary>
-        /// This method disposes the pool buffer class.
-        /// </summary>
-        public void Dispose()
-        {
-            lock (syncPoolBuffer)
-            {
-                internalPool = null;
-                mDisposed = true;
-            }
-        }
-        #endregion
-
-
-
-        #region IXimuraPool<T> Members
-
-
-        public string Stats
-        {
-            get
-            {
-                DisposedCheck();
-                return internalPool.Stats;
+                throw new NotSupportedException("PoolManager is not supported in the pool buffer class.");
             }
         }
 

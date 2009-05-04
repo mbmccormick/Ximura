@@ -10,7 +10,7 @@
 //     Paul Stancer - initial implementation
 // *******************************************************************************
 #endregion
-﻿#region using
+#region using
 using System;
 using System.Linq;
 using System.ComponentModel;
@@ -26,39 +26,28 @@ using Ximura.Helper;
 namespace Ximura
 {
     /// <summary>
-    /// This is the base object pool.
+    /// This is the base object pool. 
     /// </summary>
     /// <typeparam name="T">The pool type.</typeparam>
-    public class Pool<T> : PoolInvocator<T>
-        where T : class, IXimuraPoolableObject, new()
+    public class PoolInvocator<T> : PoolBase<T>, IXimuraPool<T>
+        where T : class, IXimuraPoolableObject
     {
+        #region Declarations
+        /// <summary>
+        /// This is the pool invocator that can be used to invoke a new object.
+        /// </summary>
+        protected Func<T> mRemoteInvocator;
+        #endregion // Declarations
+
         #region Constructors
         /// <summary>
         /// The default constructor.
         /// </summary>
-        public Pool()
-            : base(null)
-        {
-
-        }
-        /// <summary>
-        /// The default constructor.
-        /// </summary>
         /// <param name="remoteInvocator">This delegate can be used to create a new pool object.</param>
-        public Pool(Func<T> remoteInvocator)
-            : base(remoteInvocator)
+        public PoolInvocator(Func<T> remoteInvocator)
+            : base()
         {
-        }
-        /// <summary>
-        /// This is the pool constructor with default arguments.
-        /// </summary>
-        /// <param name="min">This is the minimum size.</param>
-        /// <param name="max">This is the maximum size.</param>
-        /// <param name="prefer">This is the prefered size.</param>
-        public Pool(int min, int max, int prefer)
-            : base(null, min, max, prefer)
-        {
-
+            mRemoteInvocator = remoteInvocator;
         }
         /// <summary>
         /// This is the pool constructor with default arguments.
@@ -67,9 +56,10 @@ namespace Ximura
         /// <param name="max">This is the maximum size.</param>
         /// <param name="prefer">This is the prefered size.</param>
         /// <param name="remoteInvocator">This delegate can be used to create a new pool object.</param>
-        public Pool(Func<T> remoteInvocator, int min, int max, int prefer)
-            : base(remoteInvocator, min, max, prefer)
+        public PoolInvocator(Func<T> remoteInvocator, int min, int max, int prefer)
+            : base(min, max, prefer)
         {
+            mRemoteInvocator = remoteInvocator;
         }
         #endregion // Constructors
 
@@ -80,12 +70,9 @@ namespace Ximura
         /// <returns>Returns the new object.</returns>
         protected override T CreateNewPoolObject()
         {
-            T obj;
-
             if (mRemoteInvocator == null)
-                obj = new T();
-            else
-                obj = mRemoteInvocator();
+                throw new ArgumentNullException("The remote invocator delegate is null.");
+            T obj = mRemoteInvocator();
 
             return obj;
         }

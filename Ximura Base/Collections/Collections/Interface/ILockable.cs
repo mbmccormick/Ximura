@@ -10,27 +10,29 @@
 //     Paul Stancer - initial implementation
 // *******************************************************************************
 #endregion
+#region using
 using System;
+using System.Linq;
+using System.ComponentModel;
+using System.Collections;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Reflection;
-using System.Runtime.CompilerServices;
+using System.Runtime.Serialization;
 using System.Runtime.InteropServices;
-using System.Resources;
+using System.Threading;
 
-[assembly: ComVisible(false)]
-
-[assembly: AssemblyTitle("Ximura Base")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Ximura")]
-[assembly: AssemblyProduct("Ximura Framework")]
-[assembly: AssemblyCopyright("\x00a9 Ximura 2000-2009")]
-[assembly: AssemblyTrademark("")]
-
-[assembly: AssemblyVersion("3.0.0.*")]
-
-[assembly: CLSCompliant(true)]
-
-[assembly: AssemblyDelaySign(false)]
-//[assembly: AssemblyKeyFile(@"../../../Keys/Ximura.snk")]
-
-[assembly: NeutralResourcesLanguage("en-US")]
+using Ximura;
+using Ximura.Helper;
+#endregion // using
+namespace Ximura.Collections
+{
+    public interface ILockable
+    {
+        bool IsLocked();
+        void Lock();
+        void LockWait();
+        bool TryLock();
+        void Unlock();
+    }
+}

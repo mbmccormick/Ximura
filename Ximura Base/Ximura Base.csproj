@@ -98,17 +98,19 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\x86\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;PROFILING</DefineConstants>
     <BaseAddress>285212672</BaseAddress>
     <DocumentationFile>bin\x86\Debug\XimuraBase.xml</DocumentationFile>
     <FileAlignment>4096</FileAlignment>
     <DebugType>full</DebugType>
     <PlatformTarget>x86</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
+    <Optimize>false</Optimize>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <OutputPath>bin\x86\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>
+    </DefineConstants>
     <BaseAddress>285212672</BaseAddress>
     <Optimize>true</Optimize>
     <FileAlignment>4096</FileAlignment>
@@ -136,7 +138,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
     <OutputPath>bin\x64\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>x64</DefineConstants>
     <BaseAddress>285212672</BaseAddress>
     <Optimize>true</Optimize>
     <FileAlignment>4096</FileAlignment>
@@ -203,6 +205,48 @@
     <Compile Include="Attributes\XimuraAppModuleConfigAttribute.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Collections\Collections\Interface\ILockable.cs" />
+    <Compile Include="Collections\Collections\Interface\IQueue.cs" />
+    <Compile Include="Collections\Collections\LockableBase.cs" />
+    <Compile Include="Collections\Collections\LockFree2DMatrix.cs" />
+    <Compile Include="Collections\Collections\LockFreeArray.cs" />
+    <Compile Include="Collections\Collections\LockFreeCollectionBase.cs" />
+    <Compile Include="Collections\Collections\LockFreeCollectionBase_Slots.cs" />
+    <Compile Include="Collections\Collections\LockFreeCollectionBase_Debug.cs" />
+    <Compile Include="Collections\Collections\LockFreeCollectionBase_Empty.cs" />
+    <Compile Include="Collections\Collections\LockFreeCollectionBase_Enumeration.cs" />
+    <Compile Include="Collections\Collections\LockFreeCollectionBase_Debug_Profiling.cs" />
+    <Compile Include="Collections\Collections\LockFreeCollectionBase_Buckets.cs" />
+    <Compile Include="Collections\Collections\LockFreeCollectionBase_World.cs" />
+    <Compile Include="Collections\Collections\LockFreeDictionary.cs" />
+    <Compile Include="Collections\Collections\LockFreeHashSet.cs" />
+    <Compile Include="Collections\Collections\LockFreeCollection.cs" />
+    <Compile Include="Collections\Collections\LockFreeList.cs" />
+    <Compile Include="Collections\Collections\LockFreePool.cs" />
+    <Compile Include="Collections\Collections\LockFreeQueue.cs" />
+    <Compile Include="Collections\Collections\LockFreeStack.cs" />
+    <Compile Include="Collections\Collections\LockWrappers\CourseGrainedICollectionWrapper.cs" />
+    <Compile Include="Collections\Collections\LockWrappers\ICollectionWrapper.cs" />
+    <Compile Include="Collections\Collections\LockWrappers\InterlockedICollectionWrapper.cs" />
+    <Compile Include="Collections\Collections\LockWrappers\ReadWriteICollectionWrapper.cs" />
+    <Compile Include="Collections\Collections\LockWrappers\WrapperBase.cs" />
+    <Compile Include="Collections\Collections\Test\TestFunctions.cs" />
+    <Compile Include="Collections\Data\BalancedBinaryVertex.cs" />
+    <Compile Include="Collections\Data\Edge.cs" />
+    <Compile Include="Collections\Data\EdgeAttribute.cs" />
+    <Compile Include="Collections\Data\EdgeReference.cs" />
+    <Compile Include="Collections\Data\Vertex.cs" />
+    <Compile Include="Collections\Data\VertexReference.cs" />
+    <Compile Include="Collections\Graphs\DirectedAcyclicalGraph.cs" />
+    <Compile Include="Collections\Graphs\Graph.cs" />
+    <Compile Include="Collections\Interfaces\IGraph.cs" />
+    <Compile Include="Collections\Interfaces\IXimuraBinarySerializable.cs" />
+    <Compile Include="Collections\Trees\ExpandableFineGrainedLockArray\Array\FineGrainedLockArray.cs" />
+    <Compile Include="Collections\Trees\ExpandableFineGrainedLockArray\ExpandableFineGrainedLockArrayVertex.cs" />
+    <Compile Include="Collections\Trees\ExpandableFineGrainedLockArray\ExpandableFineGrainedLockArray.cs" />
+    <Compile Include="Collections\Trees\RedBlackTree\LockFreeRedBlackTreeBase.cs" />
+    <Compile Include="Collections\Trees\RedBlackTree\LockFreeRedBlackVertex.cs" />
+    <Compile Include="Collections\Trees\RedBlackTree\LockFreeRedBlackVertexState.cs" />
     <Compile Include="Command\CommandCallbacks.cs" />
     <Compile Include="Command\Data\EnvelopeAddress.cs" />
     <Compile Include="Command\Interfaces\IXimuraEnvelopeHelper.cs" />
@@ -224,11 +268,13 @@
     <Compile Include="Helper\Linq\Linq_Insert.cs" />
     <Compile Include="Helper\Linq\Linq_Range.cs" />
     <Compile Include="Helper\Linq\Linq_Stream.cs" />
+    <Compile Include="Helper\Prime.cs" />
+    <Compile Include="Helper\StreamHelper.cs" />
+    <Compile Include="Helper\Threading.cs" />
     <Compile Include="Interfaces\Component\IXimuraServiceContainer.cs" />
     <Compile Include="Component\ServiceContainer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Helper\Linq\Option.cs" />
     <Compile Include="Helper\Linq\Tuple.cs" />
     <Compile Include="Exceptions\XimuraException.cs">
       <SubType>Code</SubType>
@@ -322,12 +368,28 @@
     <Compile Include="Interfaces\Session\IXimuraSessionSCM.cs" />
     <Compile Include="Interfaces\Session\IXimuraSessionThread.cs" />
     <Compile Include="Interfaces\Session\SessionState.cs" />
+    <Compile Include="Pooling\Exception\PoolObjectInvalidException.cs" />
+    <Compile Include="Pooling\Exception\PoolObjectUnavailableException.cs" />
+    <Compile Include="Pooling\Object\PoolableObjectBase.cs" />
+    <Compile Include="Pooling\Object\PoolableObjectPoolManagerDirectAccess.cs" />
+    <Compile Include="Pooling\Object\PoolableReturnableObjectBase.cs" />
     <Compile Include="Pooling\Pool.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Pooling\PoolBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Pooling\PoolBaseParallel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Pooling\PoolBaseParallel_Collection.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Pooling\PoolBuffer.cs" />
+    <Compile Include="Pooling\PoolInvocator.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Pooling\PoolManager.cs" />
-    <Compile Include="Pooling\PoolObjectBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Server\Managers\Agents\IXimuraGatewayAgent.cs" />
     <Compile Include="Server\Managers\Agents\IXimuraSessionAgent.cs" />
