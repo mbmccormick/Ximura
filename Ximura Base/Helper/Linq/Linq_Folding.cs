@@ -34,76 +34,77 @@ namespace Ximura.Helper
     public static partial class LinqHelper
     {
         // Seq.fold
-        public static T Fold<T, U>(this IEnumerable<U> items,
-            Func<T, U, T> fn, T acc)
+        public static T Fold<T, U>(this IEnumerable<U> items, Func<T, U, T> f, T result)
         {
-            foreach (var item in items)
-                acc = fn(acc, item);
-
-            return acc;
+            return items.FoldLeft(f, result);
         }
 
         // F# List.fold_left
-        public static T FoldLeft<T, U>(this IList<U> list, 
-            Func<T, U, T> fn, T acc)
+        public static T FoldLeft<T, U>(this IEnumerable<U> items, Func<T, U, T> f, T result)
         {
-            for (int index = 0; index < list.Count; index++)
-                acc = fn(acc, list[index]);
+            foreach (var item in items)
+                result = f(result, item);
 
-            return acc;
+            return result;
         }
 
         // F# List.fold_right
-        public static T FoldRight<T, U>(this IList<U> list,
-            Func<T, U, T> fn, T acc)
+        public static T FoldRight<T, U>(this IEnumerable<U> items, Func<T, U, T> f, T result)
         {
-            for (int index = list.Count - 1; index >= 0; index--)
-                acc = fn(acc, list[index]);
+            if (items is IList<U>)
+            {
+                IList<U> list = items as IList<U>;
+                for (int index = list.Count - 1; index >= 0; index--)
+                    result = f(result, list[index]);
+            }
+            else
+                foreach (var item in items.Reverse())
+                    result = f(result, item);
 
-            return acc;
+            return result;
         }
 
         // F# Seq.unfold
-        public static IEnumerable<TResult> Unfold<T, TResult>(
-            Func<T, Option<Tuple<TResult, T>>> generator,
-            T start)
+        public static IEnumerable<TResult> Unfold<T, TResult>(Func<T, Tuple<TResult, T>?> generator, T start)
         {
             var next = start;
 
             while (true)
             {
-                var res = generator(next);
-                if (res.IsNone)
+                var result = generator(next);
+
+                if (!result.HasValue)
                     yield break;
 
-                yield return res.Value.Item1;
+                yield return result.Value.Item1;
 
-                next = res.Value.Item2;
+                next = result.Value.Item2;
             }
         }
 
         // F# - |>
-        public static TResult Forward<T1, T2, TResult>(this T1 arg1, Func<T1, T2, TResult> fn, T2 arg2)
+        public static TResult Forward<T1, T2, TResult>(this T1 p1, Func<T1, T2, TResult> f, T2 p2)
         {
-            return fn(arg1, arg2);
-        }
-
-        // F# - |>
-        public static void Forward<T1, T2>(this T1 arg1, Action<T1, T2> action, T2 arg2)
-        {
-            action(arg1, arg2);
+            return f(p1, p2);
         }
 
         // F# <|
-        public static TResult Rev<T1, T2, TResult>(this T2 arg2, Func<T1, T2, TResult> fn, T1 arg1)
+        public static TResult Reverse<T1, T2, TResult>(this T2 p2, Func<T1, T2, TResult> f, T1 p1)
         {
-            return fn(arg1, arg2);
+            return f(p1, p2);
+        }
+
+
+        // F# - |>
+        public static void Forward<T1, T2>(this T1 p1, Action<T1, T2> f, T2 p2)
+        {
+            f(p1, p2);
         }
 
         // F# - <|
-        public static void Rev<T1, T2>(this T2 arg2, Action<T1, T2> action, T1 arg1)
+        public static void Reverse<T1, T2>(this T2 p2, Action<T1, T2> f, T1 p1)
         {
-            action(arg1, arg2);
+            f(p1, p2);
         }
     }
 }
