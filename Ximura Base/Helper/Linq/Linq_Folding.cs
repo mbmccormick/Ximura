@@ -33,46 +33,42 @@ namespace Ximura.Helper
 {
     public static partial class LinqHelper
     {
-        #region Fold<T, U>(this IEnumerable<U> items, Func<T, U, T> f, T result)
-        // Seq.fold
+        #region Fold
         /// <summary>
         /// 
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <typeparam name="U"></typeparam>
-        /// <param name="items"></param>
+        /// <typeparam name="T">The result type.</typeparam>
+        /// <typeparam name="U">The enumeration type.</typeparam>
+        /// <param name="items">The collection to fold.</param>
         /// <param name="f">The folding function.</param>
-        /// <returns></returns>
+        /// <returns>Returns the result of the folding process.</returns>
         public static T Fold<T, U>(this IEnumerable<U> items, Func<T, U, T> f)
         {
             return items.FoldLeft(f, default(T));
         }
         /// <summary>
-        /// 
+        /// This method applies the folding function on the collection and returns the result.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <typeparam name="U"></typeparam>
-        /// <param name="items"></param>
-        /// <param name="f"></param>
+        /// <typeparam name="T">The result type.</typeparam>
+        /// <typeparam name="U">The enumeration type.</typeparam>
+        /// <param name="items">The collection to fold.</param>
+        /// <param name="f">The folding function.</param>
         /// <param name="result"></param>
-        /// <returns></returns>
+        /// <returns>Returns the result of the folding process.</returns>
         public static T Fold<T, U>(this IEnumerable<U> items, Func<T, U, T> f, T result)
         {
             return items.FoldLeft(f, result);
         }
-        #endregion // Fold<T, U>(this IEnumerable<U> items, Func<T, U, T> f, T result)
-
-
-        #region FoldLeft<T, U>(this IEnumerable<U> items, Func<T, U, T> f, T result)
-        // F# List.fold_left
+        #endregion
+        #region FoldLeft
         /// <summary>
         /// 
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <typeparam name="U"></typeparam>
-        /// <param name="items"></param>
+        /// <typeparam name="T">The result type.</typeparam>
+        /// <typeparam name="U">The enumeration type.</typeparam>
+        /// <param name="items">The collection to fold.</param>
         /// <param name="f">The folding function.</param>
-        /// <returns></returns>
+        /// <returns>Returns the result of the folding process.</returns>
         public static T FoldLeft<T, U>(this IEnumerable<U> items, Func<T, U, T> f)
         {
             return items.FoldLeft(f, default(T));
@@ -80,12 +76,12 @@ namespace Ximura.Helper
         /// <summary>
         /// 
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <typeparam name="U"></typeparam>
-        /// <param name="items"></param>
-        /// <param name="f"></param>
-        /// <param name="result"></param>
-        /// <returns></returns>
+        /// <typeparam name="T">The result type.</typeparam>
+        /// <typeparam name="U">The enumeration type.</typeparam>
+        /// <param name="items">The collection to fold.</param>
+        /// <param name="f">The folding function.</param>
+        /// <param name="result">The folding result initial value.</param>
+        /// <returns>Returns the result of the folding process.</returns>
         public static T FoldLeft<T, U>(this IEnumerable<U> items, Func<T, U, T> f, T result)
         {
             foreach (var item in items)
@@ -93,32 +89,29 @@ namespace Ximura.Helper
 
             return result;
         }
-        #endregion // FoldLeft<T, U>(this IEnumerable<U> items, Func<T, U, T> f, T result)
-
-
-        #region FoldRight<T, U>(this IEnumerable<U> items, Func<T, U, T> f, T result)
-        // F# List.fold_right
+        #endregion
+        #region FoldRight
         /// <summary>
-        /// 
+        /// This method folds the collection from the right, i.e the collection is reversed and the folding function is applied.
         /// </summary>
         /// <typeparam name="T">The result type.</typeparam>
         /// <typeparam name="U">The enumeration type.</typeparam>
-        /// <param name="items">The enumeration.</param>
+        /// <param name="items">The collection to fold.</param>
         /// <param name="f">The folding function.</param>
-        /// <returns></returns>
+        /// <returns>Returns the result of the folding process.</returns>
         public static T FoldRight<T, U>(this IEnumerable<U> items, Func<T, U, T> f)
         {
             return items.FoldRight(f, default(T));
         }
         /// <summary>
-        /// 
+        /// This method folds the collection from the right, i.e the collection is reversed and the folding function is applied.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <typeparam name="U"></typeparam>
-        /// <param name="items"></param>
-        /// <param name="f"></param>
+        /// <typeparam name="T">The result type.</typeparam>
+        /// <typeparam name="U">The enumeration type.</typeparam>
+        /// <param name="items">The collection to fold.</param>
+        /// <param name="f">The folding function.</param>
         /// <param name="result">The folding result initial value.</param>
-        /// <returns></returns>
+        /// <returns>Returns the result of the folding process.</returns>
         public static T FoldRight<T, U>(this IEnumerable<U> items, Func<T, U, T> f, T result)
         {
             if (items is IList<U>)
@@ -133,78 +126,6 @@ namespace Ximura.Helper
 
             return result;
         }
-        #endregion // FoldRight<T, U>(this IEnumerable<U> items, Func<T, U, T> f, T result)
-
-
-        #region Unfold<T, TResult>(Func<T, Tuple<TResult, T>?> generator, T start)
-        // F# Seq.unfold
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <typeparam name="TResult"></typeparam>
-        /// <param name="generator">The sequence generator.</param>
-        /// <returns>Returns an enumeration of items based on the generator function.</returns>
-        public static IEnumerable<TResult> Unfold<T, TResult>(Func<T, Tuple<TResult, T>?> generator)
-        {
-            return Unfold(generator, default(T));
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <typeparam name="TResult"></typeparam>
-        /// <param name="generator"></param>
-        /// <param name="start"></param>
-        /// <returns></returns>
-        public static IEnumerable<TResult> Unfold<T, TResult>(Func<T, Tuple<TResult, T>?> generator, T start)
-        {
-            var next = start;
-
-            while (true)
-            {
-                Tuple<TResult, T>? result = generator(next);
-
-                if (!result.HasValue)
-                    yield break;
-
-                yield return result.Value.Item1;
-
-                next = result.Value.Item2;
-            }
-        }
-        #endregion // Unfold<T, TResult>(Func<T, Tuple<TResult, T>?> generator, T start)
-
-
-        #region Forward
-        // F# - |>
-        public static TResult Forward<T1, T2, TResult>(this T1 p1, Func<T1, T2, TResult> f, T2 p2)
-        {
-            return f(p1, p2);
-        }
-
-        // F# - |>
-        public static void Forward<T1, T2>(this T1 p1, Action<T1, T2> f, T2 p2)
-        {
-            f(p1, p2);
-        }
-        #endregion // Forward
-
-        #region Reverse
-        // F# <|
-        public static TResult Reverse<T1, T2, TResult>(this T2 p2, Func<T1, T2, TResult> f, T1 p1)
-        {
-            return f(p1, p2);
-        }
-
-        // F# - <|
-        public static void Reverse<T1, T2>(this T2 p2, Action<T1, T2> f, T1 p1)
-        {
-            f(p1, p2);
-        }
-        #endregion // Reverse
-
-
-
+        #endregion
     }
 }

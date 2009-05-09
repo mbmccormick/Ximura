@@ -33,6 +33,14 @@ namespace Ximura.Helper
 {
     public static partial class LinqHelper
     {
+        #region RangeTuple(int start, int count, int parts)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="start"></param>
+        /// <param name="count"></param>
+        /// <param name="parts"></param>
+        /// <returns></returns>
         public static IEnumerable<Tuple<int, int>> RangeTuple(int start, int count, int parts)
         {
             int block = count / parts;
@@ -49,11 +57,12 @@ namespace Ximura.Helper
                     lastblock--;
                 }
 
-                yield return new Tuple<int,int>(i, currentBlock);
+                yield return new Tuple<int, int>(i, currentBlock);
 
                 i += currentBlock;
             }
         }
+        #endregion // RangeTuple(int start, int count, int parts)
 
         #region RangeFromTo(Tuple<int, int> range)
         /// <summary>
@@ -80,6 +89,5 @@ namespace Ximura.Helper
                 yield return loop;
         }
         #endregion // RangeFromTo(int start, int end)
-
     }
 }
