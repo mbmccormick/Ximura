@@ -585,6 +585,16 @@
             <param name="insert">The item to insert at the end.</param>
             <returns>Returns the collection and an additional item at the end.</returns>
         </member>
+        <member name="M:Ximura.Helper.LinqHelper.Convert``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})">
+            <summary>
+            This method converts an enumerable collection in to a collection of converted items.
+            </summary>
+            <typeparam name="T">The type to convert.</typeparam>
+            <typeparam name="U">The output type.</typeparam>
+            <param name="items">The collection to convert.</param>
+            <param name="convert">The conversion function.</param>
+            <returns>Returns a enumeration of converted items.</returns>
+        </member>
         <member name="M:Ximura.Helper.LinqHelper.RangeTuple(System.Int32,System.Int32,System.Int32)">
             <summary>
             
@@ -642,6 +652,31 @@
             <param name="coll">The collection.</param>
             <param name="str">The stream.</param>
             <param name="act">The action that writes the data to the stream.</param>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Ximura.Helper.LinqHelper.Compare``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})" -->
+        <member name="M:Ximura.Helper.LinqHelper.Compare``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEqualityComparer{``0})">
+            <summary>
+            This extension method compares two collections for equality. The comparison of individual items is done using 
+            the equality comparer.
+            </summary>
+            <typeparam name="T">The collection type.</typeparam>
+            <param name="source">The source collection.</param>
+            <param name="comparand">The collection to compare against.</param>
+            <param name="comparer">The equality comparer.</param>
+            <returns>Returns true if the two collections are identical, otherwise returns false. 
+            Note: two empty collections will return true.</returns>
+        </member>
+        <member name="M:Ximura.Helper.LinqHelper.Compare``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Boolean})">
+            <summary>
+            This extension method compares two collections for equality. The comparison of individual items is done using 
+            the equality function passed as a parameter.
+            </summary>
+            <typeparam name="T">The collection type.</typeparam>
+            <param name="source">The source collection.</param>
+            <param name="comparand">The collection to compare against.</param>
+            <param name="eqFunc">The comparison function.</param>
+            <returns>Returns true if the two collections are identical, otherwise returns false. 
+            Note: two empty collections will return true.</returns>
         </member>
         <member name="M:Ximura.Helper.LinqHelper.Curry``2(System.Func{``0,``1})">
             <summary>
@@ -723,6 +758,25 @@
             <param name="f">The action to be curried.</param>
             <returns>Returns a new action with the T1 parameter contained in the new function.</returns>
         </member>
+        <member name="M:Ximura.Helper.LinqHelper.Unfold``2(System.Func{``0,System.Nullable{Ximura.Helper.Tuple{``1,``0}}})">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TResult"></typeparam>
+            <param name="generator">The sequence generator.</param>
+            <returns>Returns an enumeration of items based on the generator function.</returns>
+        </member>
+        <member name="M:Ximura.Helper.LinqHelper.Unfold``2(System.Func{``0,System.Nullable{Ximura.Helper.Tuple{``1,``0}}},``0)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TResult"></typeparam>
+            <param name="generator"></param>
+            <param name="start"></param>
+            <returns></returns>
+        </member>
         <member name="M:Ximura.Helper.LinqHelper.Fold``2(System.Collections.Generic.IEnumerable{``1},System.Func{``0,``1,``0})">
             <summary>
             
@@ -785,60 +839,6 @@
             <param name="f">The folding function.</param>
             <param name="result">The folding result initial value.</param>
             <returns>Returns the result of the folding process.</returns>
-        </member>
-        <!-- Badly formed XML comment ignored for member "M:Ximura.Helper.LinqHelper.Compare``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})" -->
-        <member name="M:Ximura.Helper.LinqHelper.Compare``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEqualityComparer{``0})">
-            <summary>
-            This extension method compares two collections for equality. The comparison of individual items is done using 
-            the equality comparer.
-            </summary>
-            <typeparam name="T">The collection type.</typeparam>
-            <param name="source">The source collection.</param>
-            <param name="comparand">The collection to compare against.</param>
-            <param name="comparer">The equality comparer.</param>
-            <returns>Returns true if the two collections are identical, otherwise returns false. 
-            Note: two empty collections will return true.</returns>
-        </member>
-        <member name="M:Ximura.Helper.LinqHelper.Compare``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Boolean})">
-            <summary>
-            This extension method compares two collections for equality. The comparison of individual items is done using 
-            the equality function passed as a parameter.
-            </summary>
-            <typeparam name="T">The collection type.</typeparam>
-            <param name="source">The source collection.</param>
-            <param name="comparand">The collection to compare against.</param>
-            <param name="eqFunc">The comparison function.</param>
-            <returns>Returns true if the two collections are identical, otherwise returns false. 
-            Note: two empty collections will return true.</returns>
-        </member>
-        <member name="M:Ximura.Helper.LinqHelper.Convert``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})">
-            <summary>
-            This method converts an enumerable collection in to a collection of converted items.
-            </summary>
-            <typeparam name="T">The type to convert.</typeparam>
-            <typeparam name="U">The output type.</typeparam>
-            <param name="items">The collection to convert.</param>
-            <param name="convert">The conversion function.</param>
-            <returns>Returns a enumeration of converted items.</returns>
-        </member>
-        <member name="M:Ximura.Helper.LinqHelper.Unfold``2(System.Func{``0,System.Nullable{Ximura.Helper.Tuple{``1,``0}}})">
-            <summary>
-            
-            </summary>
-            <typeparam name="T"></typeparam>
-            <typeparam name="TResult"></typeparam>
-            <param name="generator">The sequence generator.</param>
-            <returns>Returns an enumeration of items based on the generator function.</returns>
-        </member>
-        <member name="M:Ximura.Helper.LinqHelper.Unfold``2(System.Func{``0,System.Nullable{Ximura.Helper.Tuple{``1,``0}}},``0)">
-            <summary>
-            
-            </summary>
-            <typeparam name="T"></typeparam>
-            <typeparam name="TResult"></typeparam>
-            <param name="generator"></param>
-            <param name="start"></param>
-            <returns></returns>
         </member>
         <member name="T:Ximura.Collections.LockFreeRedBlackVertexState">
             <summary>
@@ -4145,6 +4145,31 @@
             This value specifies whether items can be added or removed from the tree. The default is false.
             </summary>
         </member>
+        <member name="T:Ximura.ConfigurationLocation">
+            <summary>
+            This enumeration specifies the action the command should take to load the configuration.
+            </summary>
+        </member>
+        <member name="F:Ximura.ConfigurationLocation.None">
+            <summary>
+            The command uses the legacy config setting handler system.
+            </summary>
+        </member>
+        <member name="F:Ximura.ConfigurationLocation.Resource">
+            <summary>
+            The configuration file is a resource embedded in the application.
+            </summary>
+        </member>
+        <member name="F:Ximura.ConfigurationLocation.ConfigurationManager">
+            <summary>
+            The configuration should be retrieved from the configuration manager.
+            </summary>
+        </member>
+        <member name="F:Ximura.ConfigurationLocation.Hybrid">
+            <summary>
+            The configuration file is a resource embedded by the system, but should be updated using the settings class.
+            </summary>
+        </member>
         <member name="T:Ximura.PoolManager">
             <summary>
             The pool manager is a static class which controls system wide object pooling within the 
@@ -6451,31 +6476,6 @@
             <param name="intervalStart"></param>
             <param name="internalEnd"></param>
             <returns></returns>
-        </member>
-        <member name="T:Ximura.ConfigurationLocation">
-            <summary>
-            This enumeration specifies the action the command should take to load the configuration.
-            </summary>
-        </member>
-        <member name="F:Ximura.ConfigurationLocation.None">
-            <summary>
-            The command uses the legacy config setting handler system.
-            </summary>
-        </member>
-        <member name="F:Ximura.ConfigurationLocation.Resource">
-            <summary>
-            The configuration file is a resource embedded in the application.
-            </summary>
-        </member>
-        <member name="F:Ximura.ConfigurationLocation.ConfigurationManager">
-            <summary>
-            The configuration should be retrieved from the configuration manager.
-            </summary>
-        </member>
-        <member name="F:Ximura.ConfigurationLocation.Hybrid">
-            <summary>
-            The configuration file is a resource embedded by the system, but should be updated using the settings class.
-            </summary>
         </member>
         <member name="T:Ximura.XimuraAppConfigurationExternalAttribute">
             <summary>
