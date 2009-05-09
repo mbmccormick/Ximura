@@ -10,7 +10,7 @@
 //     Paul Stancer - initial implementation
 // *******************************************************************************
 #endregion
-﻿#region using
+#region using
 using System;
 
 using Ximura;
@@ -19,10 +19,10 @@ using Ximura.Helper;
 namespace Ximura
 {
     /// <summary>
-    /// This attribute is used to define command properties.
+    /// This attribute is used to define command properties for the external configuration.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
-    public sealed class XimuraAppConfigurationAttribute : System.Attribute
+    public sealed class XimuraAppConfigurationExternalAttribute : System.Attribute
     {
         #region Declaration
         private ConfigurationLocation mConfigType;
@@ -35,7 +35,7 @@ namespace Ximura
         /// </summary>
         /// <param name="configType">The configuration type.</param>
         /// <param name="configLocation">The configuration location.</param>
-        public XimuraAppConfigurationAttribute(ConfigurationLocation configType, string configLocation)
+        public XimuraAppConfigurationExternalAttribute(ConfigurationLocation configType, string configLocation)
         {
             mConfigType = configType;
             mConfigLocation = configLocation;
