@@ -48,8 +48,6 @@ namespace Ximura.UnitTest
         }
         #endregion // TestContext
 
-
-
         #region TestCollectionState()
         [TestMethod]
         public void TestCollectionState()
