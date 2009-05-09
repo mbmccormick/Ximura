@@ -170,6 +170,10 @@ namespace Ximura.Collections
             /// The next vertex.
             /// </summary>
             public Vertex<T> Next;
+            /// <summary>
+            /// This property identifies whether the slots are locked.
+            /// </summary>
+            public bool Locked;
             #endregion // Public properties
 
             #region Constructor
@@ -184,6 +188,7 @@ namespace Ximura.Collections
                 CurrIndexPlus1 = index;
                 Curr = curr;
                 Next = next;
+                Locked = false;
             }
             #endregion // Constructor
 
@@ -225,7 +230,6 @@ namespace Ximura.Collections
             }
             #endregion // MoveUp(Vertex<T> next)
 
-
             #region Snip()
             /// <summary>
             /// This method returns a new vertex that removes the Next vertex in the list.
@@ -236,16 +240,6 @@ namespace Ximura.Collections
                 return new Vertex<T>(Curr.HashCode, Curr.Value, Next.NextIDPlus1);
             }
             #endregion // Snip()
-
-            public override bool Equals(object obj)
-            {
-                return base.Equals(obj);
-            }
-
-            public override int GetHashCode()
-            {
-                return base.GetHashCode();
-            }
 
             #region Insert()
             /// <summary>
@@ -309,6 +303,68 @@ namespace Ximura.Collections
         }
         #endregion // InitializeAllocation(int capacity)
 
+        #region AddInternalWithHashAndSentinel(T item, int hashCode, int index, bool allowMultiple)
+        /// <summary>
+        /// This method is used internally, specifically for entering sentinel nodes.
+        /// </summary>
+        /// <param name="item">The item to add.</param>
+        /// <param name="hashCode">The item hasCode.</param>
+        /// <param name="index">The sentinel ID to start the scan.</param>
+        /// <param name="allowMultiple">This property specifies whether multiple entries are allowed.</param>
+        /// <returns>Returns the position of the inserted vertex, or -1 if the insertion fails.</returns>
+        protected virtual int AddInternalWithHashAndSentinel(T item, int hashCode, int index, bool allowMultiple)
+        {
+            int insert;
+#if (PROFILING)
+            int prf_start = Environment.TickCount;
+            int prf_endfal = 0;
+            int prf_endinsert = 0;
+            try
+            {
+#endif
+                VertexWindow<T> vWin = new VertexWindow<T>();
+
+                try
+                {
+                    //Find the position within the collection.
+                    if (FindAndLock(item, hashCode, index, out vWin) && !allowMultiple)
+                        return -1;
+#if (PROFILING)
+                    prf_endfal = Environment.TickCount;
+#endif
+                    //Get a free slot in the collection.
+                    insert = EmptyGet();
+
+                    //insert the item in to the collection.
+                    mSlots[insert] = new Vertex<T>(hashCode, item, vWin.Curr.NextIDPlus1);
+
+                    mSlots[vWin.CurrIndexPlus1 - 1] = vWin.Insert(insert + 1);
+#if (PROFILING)
+                    prf_endinsert = Environment.TickCount;
+#endif
+                    return insert;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                finally
+                {
+                    if (vWin.Locked)
+                        VertexWindowUnlock(vWin);
+                }
+#if (PROFILING)
+            }
+            finally
+            {
+                Profile(ProfileAction.Time_AddIntHAS, Environment.TickCount - prf_start);
+                Profile(ProfileAction.Time_AddIntHAS_FindAndLock, prf_endfal - prf_start);
+                Profile(ProfileAction.Time_AddIntHAS_Insert, prf_endinsert - prf_endfal);
+            }
+#endif
+        }
+        #endregion // AddInternalWithHashAndSentinel(T item, int hashCode, int index, bool allowMultiple)
+
         #region FindAndLock(T item, int hashCode, int index, out VertexWindow<T> vWin)
         /// <summary>
         /// This method scans the collection for the item and returns true if the item is found.
@@ -330,6 +386,7 @@ namespace Ximura.Collections
             {
 #endif
                 vWin = new VertexWindow<T>();
+                vWin.Locked = true;
 
                 //Lock the start index immediately.
                 slotLocks1 = mSlots.ItemLock(index);
@@ -355,7 +412,6 @@ namespace Ximura.Collections
                     if (slotLocks2 > 0)
                         ProfileHotspot(ProfileArrayType.Slots, vWin.Curr.NextIDPlus1 - 1);
 #endif
-
                     vWin.Next = mSlots[vWin.Curr.NextIDPlus1 - 1];
 
                     //If the hashCode of the current item is greater than the search hashCode then exit,
@@ -375,7 +431,6 @@ namespace Ximura.Collections
 
                     break;
                 }
-
                 return true;
 #if (PROFILING)
             }
@@ -386,6 +441,75 @@ namespace Ximura.Collections
                 Profile(ProfileAction.Count_FindAndLockSlotLocks, slotLocks1 + slotLocks2);
             }
 #endif
+        }
+        #endregion // ContainsScanInternal(T item, int hashCode, int index)
+        #region VertexWindowUnlock(VertexWindow<T> vWin)
+        /// <summary>
+        /// This method provides common functionality to unlock a VertexWindow.
+        /// </summary>
+        /// <param name="vWin">The VertexWindow containing the lock data.</param>
+        protected void VertexWindowUnlock(VertexWindow<T> vWin)
+        {
+            if (vWin.Curr.NextIDPlus1 > 0) mSlots.ItemUnlock(vWin.Curr.NextIDPlus1 - 1);
+            if (vWin.CurrIndexPlus1 > 0) mSlots.ItemUnlock(vWin.CurrIndexPlus1 - 1);
+        }
+        #endregion // VertexWindowUnlock(VertexWindow<T> vWin)
+
+        #region Find(T item, int hashCode, int index, out VertexWindow<T> vWin)
+        /// <summary>
+        /// This method scans the collection for the item and returns true if the item is found.
+        /// </summary>
+        /// <param name="item">The item to scan.</param>
+        /// <param name="hashCode">The item hash code.</param>
+        /// <param name="index">The item scan index.</param>
+        /// <param name="vWin">Returns the vertex window containing the data.</param>
+        /// <returns>Returns true if the item is found in the collection.</returns>
+        protected bool Find(T item, int hashCode, int index, out VertexWindow<T> vWin)
+        {
+            int slotLocks1 = 0;
+            int slotLocks2 = 0;
+
+            vWin = new VertexWindow<T>();
+            vWin.Locked = true;
+
+            //Lock the start index immediately.
+            slotLocks1 = mSlots.ItemLock(index);
+
+            vWin.SetCurrent(index + 1, mSlots[index]);
+
+            while (true)
+            {
+
+                //If this is the last item in the list and does not contain data then exit.
+                if (vWin.Curr.IsTerminator)
+                    return false;
+
+                //OK, lock the next item.
+                slotLocks2 = mSlots.ItemLock(vWin.Curr.NextIDPlus1 - 1);
+
+
+                vWin.Next = mSlots[vWin.Curr.NextIDPlus1 - 1];
+
+                //If the hashCode of the current item is greater than the search hashCode then exit,
+                //as we order by hashCode.
+                if (vWin.Next.HashCode > hashCode)
+                {
+                    return false;
+                }
+
+                if (vWin.Next.IsSentinel ||
+                    vWin.Next.HashCode != hashCode || !mEqualityComparer.Equals(item, vWin.Next.Value))
+                {
+                    mSlots.ItemUnlock(vWin.CurrIndexPlus1 - 1);
+                    vWin.MoveUp();
+                    continue;
+                }
+
+                break;
+            }
+
+            return true;
+
         }
         #endregion // ContainsScanInternal(T item, int hashCode, int index)
     }

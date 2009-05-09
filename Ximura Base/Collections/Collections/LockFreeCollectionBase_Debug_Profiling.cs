@@ -133,7 +133,7 @@ namespace Ximura.Collections
                     .StreamRead<int>()
                     .GroupBy(s => s, s => s, (a, b) => new { Key = a, Count = b.Count() })
                     .OrderByDescending(i => i.Count)
-                    .Take(10)
+                    .Take(20)
                     .ForEach(g => sb.AppendFormat("{0}-{1}\r\n", g.Key, g.Count));
                 sb.AppendLine("Bucket Create--------------------------------------------------------");
                 bwc.BaseStream.Position = 0;
@@ -141,7 +141,7 @@ namespace Ximura.Collections
                     .StreamRead<int>()
                     .GroupBy(s => s, s => s, (a, b) => new { Key = a, Count = b.Count() })
                     .OrderByDescending(i => i.Count)
-                    .Take(10)
+                    .Take(20)
                     .ForEach(g => sb.AppendFormat("{0}-{1}\r\n", g.Key, g.Count));
                 sb.AppendLine("Slots----------------------------------------------------------------");
                 bws.BaseStream.Position = 0;
@@ -149,7 +149,7 @@ namespace Ximura.Collections
                     .StreamRead<int>()
                     .GroupBy(s => s, s => s, (a, b) => new { Key = a, Count = b.Count() })
                     .OrderByDescending(i => i.Count)
-                    .Take(10)
+                    .Take(20)
                     .ForEach(g => sb.AppendFormat("{0}-{1}\r\n", g.Key, g.Count));
                 sb.AppendLine("---------------------------------------------------------------------");
 

@@ -198,7 +198,9 @@
     <Compile Include="Applications\DJobType.cs" />
     <Compile Include="Applications\JobPriority.cs" />
     <Compile Include="Applications\SCMJobCompletionType.cs" />
+    <Compile Include="Attributes\ConfigurationLocation.cs" />
     <Compile Include="Attributes\XimuraAppConfigurationAttribute.cs" />
+    <Compile Include="Attributes\XimuraAppConfigurationExternalAttribute.cs" />
     <Compile Include="Attributes\XimuraAppModuleAttribute.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -263,11 +265,15 @@
     <Compile Include="Component\ElementSite.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Helper\Linq\Linq_Compare.cs" />
+    <Compile Include="Helper\Linq\Linq_Convert.cs" />
     <Compile Include="Helper\Linq\Linq_Currying.cs" />
     <Compile Include="Helper\Linq\Linq_Folding.cs" />
+    <Compile Include="Helper\Linq\Linq_Forward_Reverse.cs" />
     <Compile Include="Helper\Linq\Linq_Insert.cs" />
     <Compile Include="Helper\Linq\Linq_Range.cs" />
     <Compile Include="Helper\Linq\Linq_Stream.cs" />
+    <Compile Include="Helper\Linq\Linq_Unfolding.cs" />
     <Compile Include="Helper\Prime.cs" />
     <Compile Include="Helper\StreamHelper.cs" />
     <Compile Include="Helper\Threading.cs" />

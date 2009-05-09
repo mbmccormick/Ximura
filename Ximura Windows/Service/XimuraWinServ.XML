@@ -32,21 +32,6 @@
             <param name="Username"></param>
             <param name="Password"></param>
         </member>
-        <member name="T:Ximura.Windows.ServiceAppInstaller">
-            <summary>
-            This is the base installer used to install the service.
-            </summary>
-        </member>
-        <member name="M:Ximura.Windows.ServiceAppInstaller.#ctor">
-            <summary>
-            The default constructor.
-            </summary>
-        </member>
-        <member name="M:Ximura.Windows.ServiceAppInstaller.InitializeService(Ximura.Windows.ServiceInstallerAttribute)">
-            <summary>
-            This method creates the service and service process installer based on the information passed in the ServiceInstallerAttribute class.
-            </summary>
-        </member>
         <member name="T:Ximura.Windows.AppServerInstaller">
             <summary>
             The ApplicationServiceInstaller is responsible for providing the config file from the base stream.
@@ -137,6 +122,21 @@
         <member name="M:Ximura.Windows.AppServerService.OnContinue">
             <summary>
             Continues this application after it has been paused
+            </summary>
+        </member>
+        <member name="T:Ximura.Windows.ServiceAppInstaller">
+            <summary>
+            This is the base installer used to install the service.
+            </summary>
+        </member>
+        <member name="M:Ximura.Windows.ServiceAppInstaller.#ctor">
+            <summary>
+            The default constructor.
+            </summary>
+        </member>
+        <member name="M:Ximura.Windows.ServiceAppInstaller.InitializeService(Ximura.Windows.ServiceInstallerAttribute)">
+            <summary>
+            This method creates the service and service process installer based on the information passed in the ServiceInstallerAttribute class.
             </summary>
         </member>
     </members>

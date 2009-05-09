@@ -68,14 +68,6 @@ namespace Ximura.UnitTest
             (list, coll, limit) => { list.Take(limit).ForEach(i => coll.Add(i)); return coll.Sum(); };
 
 
-
-        [TestMethod]
-        public void TestUnfolding()
-        {
-            //LinqHelper.Unfold<ICollection<byte>, string>((arr) => new Tuple<, new byte[2999]);
-        }
-
-
         public static IEnumerable<long> Fibonacci
         {
             get

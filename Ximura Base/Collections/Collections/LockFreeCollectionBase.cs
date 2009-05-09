@@ -240,62 +240,6 @@ namespace Ximura.Collections
 #endif
         }
         #endregion // AddInternal(T item)
-        #region AddInternalWithHashAndSentinel(T item, int hashCode, int index, bool allowMultiple)
-        /// <summary>
-        /// This method is used internally, specifically for entering sentinel nodes.
-        /// </summary>
-        /// <param name="item">The item to add.</param>
-        /// <param name="hashCode">The item hasCode.</param>
-        /// <param name="index">The sentinel ID to start the scan.</param>
-        /// <param name="allowMultiple">This property specifies whether multiple entries are allowed.</param>
-        /// <returns>Returns the position of the inserted vertex, or -1 if the insertion fails.</returns>
-        protected virtual int AddInternalWithHashAndSentinel(T item, int hashCode, int index, bool allowMultiple)
-        {
-            int insert;
-#if (PROFILING)
-            int prf_start = Environment.TickCount;
-            int prf_endfal=0;
-            int prf_endinsert = 0;
-            try
-            {
-#endif
-                VertexWindow<T> vWin = new VertexWindow<T>();
-
-                try
-                {
-                    if (FindAndLock(item, hashCode, index, out vWin) && !allowMultiple)
-                        return -1;
-#if (PROFILING)
-                    prf_endfal = Environment.TickCount;
-#endif
-                    insert = EmptyGet();
-
-                    mSlots[insert] = new Vertex<T>(hashCode, item, vWin.Curr.NextIDPlus1);
-                    mSlots[vWin.CurrIndexPlus1 - 1] = vWin.Insert(insert + 1);
-#if (PROFILING)
-                    prf_endinsert = Environment.TickCount;
-#endif
-                    return insert;
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
-                finally
-                {
-                    VertexWindowUnlock(vWin);
-                }
-#if (PROFILING)
-            }
-            finally
-            {
-                Profile(ProfileAction.Time_AddIntHAS, Environment.TickCount - prf_start);
-                Profile(ProfileAction.Time_AddIntHAS_FindAndLock, prf_endfal - prf_start);
-                Profile(ProfileAction.Time_AddIntHAS_Insert, prf_endinsert - prf_endfal);
-            }
-#endif
-        }
-        #endregion // AddInternalWithHashAndSentinel(T item, int hashCode, int index, bool allowMultiple)
 
         #region RemoveInternal(T item)
         /// <summary>
@@ -399,11 +343,14 @@ namespace Ximura.Collections
                     bool success = false;
                     try
                     {
-                        success = FindAndLock(item, hashCode, index, out vWin);
+                        success = Find(item, hashCode, index, out vWin);
                     }
                     finally
                     {
-                        VertexWindowUnlock(vWin);
+                        if (vWin.Locked)
+                            VertexWindowUnlock(vWin);
+                        else
+                            throw new Exception();
                     }
 
                     return success;
@@ -422,18 +369,6 @@ namespace Ximura.Collections
 #endif
         }
         #endregion // ContainsInternal(T item)
-
-        #region VertexWindowUnlock(VertexWindow<T> vWin)
-        /// <summary>
-        /// This method provides common functionality to unlock a VertexWindow.
-        /// </summary>
-        /// <param name="vWin">The VertexWindow containing the lock data.</param>
-        protected void VertexWindowUnlock(VertexWindow<T> vWin)
-        {
-            if (vWin.Curr.NextIDPlus1 > 0) mSlots.ItemUnlock(vWin.Curr.NextIDPlus1 - 1);
-            if (vWin.CurrIndexPlus1 > 0) mSlots.ItemUnlock(vWin.CurrIndexPlus1 - 1);
-        }
-        #endregion // VertexWindowUnlock(VertexWindow<T> vWin)
 
         #region ClearInternal()
         /// <summary>
