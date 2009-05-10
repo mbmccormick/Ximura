@@ -16,8 +16,23 @@ namespace Ximura.UnitTest
 {
     public partial class Test_Helper_Linq
     {
+
         [TestMethod]
-        public void TestCurry()
+        public void TestCurry1()
+        {
+            Action<int, int> fnOutput = (total, start) => Enumerable.Range(start, total).ForEach(i => Console.WriteLine(i));
+
+            fnOutput(40, 20);
+            fnOutput(40, 45);
+
+            Action<int> fnOutput40 = fnOutput.Curry()(40);
+
+            fnOutput40(20);
+            fnOutput40(45);
+        }
+
+        [TestMethod]
+        public void TestCurry2()
         {
             List<int> list = new List<int>();
 

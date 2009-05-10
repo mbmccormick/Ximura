@@ -70,6 +70,17 @@ namespace Ximura.UnitTest
             Console.Write("INSERTS = ");
             Console.WriteLine(result2.ToString());
 
+            Console.Write("TICKS = ");
+            Console.WriteLine(Environment.TickCount - start);
+
+#if (DEBUG)
+            Console.WriteLine(list.DebugDump);
+            list.DebugReset();
+#endif
+
+
+            start = Environment.TickCount;
+
             var resultnc2 = TestFunctions.fnTest4MContains(list, 4);
             Console.Write("CONTAIN = ");
             Console.WriteLine(resultnc2.ToString());

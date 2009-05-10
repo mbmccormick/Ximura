@@ -2,6 +2,7 @@
 using System;
 using System.Linq;
 using System.Text;
+using System.IO;
 using System.Threading;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -17,7 +18,7 @@ namespace Ximura.UnitTest
     public partial class Test_Helper_Linq
     {
         [TestMethod()]
-        public void FoldTest()
+        public void Test_Fold()
         {
             IEnumerable<int> items = new int[] { 234, 21, 34, 23423, 6, 8, 34, 34, 67, 8, 85, 5745, 978978, 2354346 };
 
@@ -33,7 +34,7 @@ namespace Ximura.UnitTest
         }
 
         [TestMethod()]
-        public void FoldLeftTest()
+        public void Test_FoldLeft()
         {
             IEnumerable<int> items = new int[] { 234, 21, 34, 23423, 6, 8, 34, 34, 67, 8, 85, 5745, 978978, 2354346 };
 
@@ -49,7 +50,7 @@ namespace Ximura.UnitTest
         }
 
         [TestMethod()]
-        public void FoldRightTest()
+        public void Test_FoldRight()
         {
             IEnumerable<int> items = new int[] { 234, 21, 34, 23423, 6, 8, 34, 34, 67, 8, 85, 5745, 978978, 2354346 };
 
@@ -63,5 +64,6 @@ namespace Ximura.UnitTest
 
             Assert.AreEqual(expected, actual);
         }
+
     }
 }

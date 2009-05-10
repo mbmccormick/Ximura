@@ -80,6 +80,8 @@ namespace Ximura.UnitTest
             t1.Join();
             t2.Join();
             t3.Join();
+
+            TestContext.WriteLine("Hello");
         }
     }
 }

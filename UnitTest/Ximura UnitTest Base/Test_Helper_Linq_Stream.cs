@@ -292,5 +292,43 @@ namespace Ximura.UnitTest
             }
         }
         #endregion // TestStream<T>(Func<IEnumerable<T>> fnCreate)
+
+        #region Tuple
+        [TestMethod]
+        public void Test_Stream_Tuple()
+        {
+            try
+            {
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    Tuple<int, int>[] coll = LinqHelper.RangeTuple(0, 500, 216).ToArray();
+
+                    coll.StreamWrite(ms,
+                        (stm, tuple) =>
+                        {
+                            StreamHelper.Write(stm, tuple.Item1);
+                            StreamHelper.Write(stm, tuple.Item2);
+                        });
+
+                    ms.Position = 0;
+
+                    Tuple<int, int>[] result = ms.StreamRead<Tuple<int, int>>(
+                        (stm) =>
+                        {
+                            int item1 = StreamHelper.ReadInt32(stm);
+                            int item2 = StreamHelper.ReadInt32(stm);
+
+                            return new Tuple<int, int>(item1, item2);
+                        }).ToArray();
+
+                    Assert.IsTrue(coll.Compare(result));
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        #endregion    
     }
 }
