@@ -81,6 +81,5 @@ namespace Ximura.Collections
             }
         }
         #endregion // AllowMultipleEntries
-
     }
 }

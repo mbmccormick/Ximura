@@ -240,7 +240,6 @@ namespace Ximura.Collections
 #endif
         }
         #endregion // AddInternal(T item)
-
         #region RemoveInternal(T item)
         /// <summary>
         /// The method removes an item from the collection.
@@ -310,7 +309,6 @@ namespace Ximura.Collections
             }
         }
         #endregion // RemoveInternal(T item)
-
         #region ContainsInternal(T item)
         /// <summary>
         /// This method checks whether the item exists in the collection.
@@ -349,8 +347,8 @@ namespace Ximura.Collections
                     {
                         if (vWin.Locked)
                             VertexWindowUnlock(vWin);
-                        else
-                            throw new Exception();
+                        //else
+                        //    throw new Exception();
                     }
 
                     return success;

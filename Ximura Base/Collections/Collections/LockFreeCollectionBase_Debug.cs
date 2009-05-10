@@ -81,5 +81,12 @@ namespace Ximura.Collections
         }
 #endif
         #endregion // DebugScan
+
+        public void DebugReset()
+        {
+#if (PROFILING)
+            ProfilingSetup();
+#endif
+        }
     }
 }

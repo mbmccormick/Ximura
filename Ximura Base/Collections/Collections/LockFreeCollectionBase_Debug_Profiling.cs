@@ -37,8 +37,8 @@ namespace Ximura.Collections
             Time_FindAndLock =0,
             Time_AddInternal=1,
             Time_AddInternalHAS = 2,
-            Time_HashAndSentinel_GetHashCode = 3,
-            Time_HashAndSentinel_FindSentinel = 4,
+            Time_EmptyGet = 3,
+            Time_EmptyAdd = 4,
             Time_AddIntHAS=5,
             Time_AddIntHAS_FindAndLock = 6,
             Time_AddIntHAS_Insert = 7,
@@ -48,13 +48,14 @@ namespace Ximura.Collections
             Count_FindAndLockSlotLocks = 11,
             Time_GetSentinelVertexID = 12,
             Time_GetSentinelVertexID_Insert = 13,
-            Time_GetSentinelVertexID_LockWait1 = 14,
-            Time_GetSentinelVertexID_LockWait2 = 15,
+            Time_GetSentinelVertexID_TimeWait1 = 14,
+            Time_GetSentinelVertexID_TimeWait2 = 15,
             Lock_GetSentinelCreate = 16,
             Lock_GetSentinelWait = 17,
             Time_BitSizeCalculate = 18,
-            Time_EmptyGet = 19,
-            Time_EmptyAdd = 20
+            Time_HashAndSentinel = 19,
+            Time_HashAndSentinel_GetHashCode = 20,
+            Time_HashAndSentinel_FindSentinel = 21
         }
 
         private enum ProfileArrayType : int
@@ -64,9 +65,9 @@ namespace Ximura.Collections
             BucketsCreate = 2
         }
 
-        BinaryWriter bwb = new BinaryWriter(new MemoryStream());
-        BinaryWriter bwc = new BinaryWriter(new MemoryStream());
-        BinaryWriter bws = new BinaryWriter(new MemoryStream());
+        BinaryWriter bwb;
+        BinaryWriter bwc;
+        BinaryWriter bws;
 
         int[] pflCount;
         long[] pflTotal;
@@ -76,6 +77,9 @@ namespace Ximura.Collections
             int count = Enum.GetNames(typeof(ProfileAction)).Length;
             pflCount = new int[count];
             pflTotal = new long[count];
+            bwb = new BinaryWriter(new MemoryStream());
+            bwc = new BinaryWriter(new MemoryStream());
+            bws = new BinaryWriter(new MemoryStream());
         }
 
         private void Profile(ProfileAction action, long timespan)
@@ -120,7 +124,7 @@ namespace Ximura.Collections
                             , name
                             , pflTotal[pos]
                             , pflCount[pos]
-                            , (double)pflTotal[pos]*1000 / (double)pflCount[pos]
+                            , name.StartsWith("Time")?(double)pflTotal[pos]*1000 / (double)pflCount[pos]:(double)pflTotal[pos] / (double)pflCount[pos]
                             , name.StartsWith("Time")?"ms":""
                              );
                         sb.AppendLine();

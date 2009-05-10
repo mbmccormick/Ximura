@@ -105,7 +105,7 @@ namespace Ximura.Helper
         #region uint
         public static uint ReadUInt32(Stream str)
         {
-            return (uint)ReadUInt32(str);
+            return (uint)ReadInt32(str);
         }
 
         public static void Write(Stream str, uint value)
@@ -118,9 +118,9 @@ namespace Ximura.Helper
         #region long
         public static long ReadInt64(Stream str)
         {
-            uint num = ReadUInt32(str);
-            uint num2 = ReadUInt32(str);
-            return (long)((num2 << 0x20) | num);
+            byte[] data = new byte[8];
+            str.Read(data, 0, 8);
+            return BitConverter.ToInt64(data, 0);
         }
 
         public static void Write(Stream str, long value)
@@ -133,9 +133,9 @@ namespace Ximura.Helper
         #region ulong
         public static ulong ReadUInt64(Stream str)
         {
-            uint num = ReadUInt32(str);
-            uint num2 = ReadUInt32(str);
-            return (ulong)((num2 << 0x20) | num);
+            byte[] data = new byte[8];
+            str.Read(data, 0, 8);
+            return BitConverter.ToUInt64(data, 0);
         }
 
         public static void Write(Stream str, ulong value)

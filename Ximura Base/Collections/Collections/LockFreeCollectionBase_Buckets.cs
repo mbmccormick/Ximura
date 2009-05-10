@@ -186,7 +186,8 @@ namespace Ximura.Collections
         {
 #if (PROFILING)
             int start = Environment.TickCount;
-            int midway = 0;
+            int midway=0;
+            int findSent=0;
             try
             {
 #endif
@@ -198,6 +199,9 @@ namespace Ximura.Collections
 
                 indexSentinel = FindSentinel(hashCode, canCreate);
 
+#if (PROFILING)
+                findSent = Environment.TickCount;
+#endif
                 if (hashCode == -1)
                     return;
 
@@ -206,8 +210,9 @@ namespace Ximura.Collections
             }
             finally
             {
+                Profile(ProfileAction.Time_HashAndSentinel, Environment.TickCount - start);
                 Profile(ProfileAction.Time_HashAndSentinel_GetHashCode, midway - start);
-                Profile(ProfileAction.Time_HashAndSentinel_FindSentinel, Environment.TickCount - midway);
+                Profile(ProfileAction.Time_HashAndSentinel_FindSentinel, findSent - midway);
             }
 #endif
         }
@@ -239,15 +244,15 @@ namespace Ximura.Collections
         /// <returns>Returns the vertexID of the specific sentinel, or the nearest parent ID.</returns>
         protected virtual int GetSentinelVertexID(int currentBits, int hashCode, bool canCreate)
         {
-            int lockSpinWait = 0;
-            int lockSpinCreate = 0;
+            int lockSentinelWait = 0;
+            int lockSentinelCreate = 0;
             int bucketID = 0;
 
 #if (PROFILING)
             int start = Environment.TickCount;
             int insert = 0;
-            int lockwait1 = 0;
-            int lockwait2 = 0;
+            int timewait1 = 0;
+            int timewait2 = 0;
             try
             {
 #endif
@@ -270,13 +275,13 @@ namespace Ximura.Collections
                 if (bucketID == 0 || currentBits == 0)
                     return cnIndexData;
 #if (PROFILING)
-                lockwait1 = Environment.TickCount;
+                timewait1 = Environment.TickCount;
 #endif
                 //Wait if the bucket is locked. This will only happen if the sentinel is being created.
-                lockSpinWait += mBuckets.ItemLockWait(bucketID);
+                lockSentinelWait += mBuckets.ItemLockWait(bucketID);
 
 #if (PROFILING)
-                lockwait1 = Environment.TickCount - lockwait1;
+                timewait1 = Environment.TickCount - timewait1;
 #endif
                 //Get the sentinel slot id.
                 int sentID = mBuckets[bucketID];
@@ -290,23 +295,19 @@ namespace Ximura.Collections
 
                 //OK, we need to get the parent ID, as this will be the start of the insert for the sentinel vertex.
                 //This call will also create the parent sentinels if they have not been created already if we can create.
-                //int parentSentID = GetSentinelVertexID(currentBits - 1, hashCode, canCreate);
-                int parentSentID = GetSentinelVertexID(currentBits - 1, hashCode, false);
+                int parentSentID = GetSentinelVertexID(currentBits - 1, hashCode, canCreate);
 
                 if (!canCreate)
-                {
                     //Ok, we cannot create the bucket, so we will just return the first available parent bucket.
                     return parentSentID;
-                }
 
 #if (PROFILING)
                 insert = Environment.TickCount;
 #endif
                 //OK, we need to create the sentinel, and its parents. First we need to lock the bucket.
-                lockSpinCreate += mBuckets.ItemLock(bucketID);
-
+                lockSentinelCreate += mBuckets.ItemLock(bucketID);
 #if (PROFILING)
-                lockwait2 = Environment.TickCount - insert;
+                timewait2 = Environment.TickCount - insert;
 #endif
                 try
                 {
@@ -320,8 +321,10 @@ namespace Ximura.Collections
 
                     if (position == -1)
                         throw new Exception();
+
                     //OK, set the sentinel position in the bucket.
                     mBuckets[bucketID] = position + 1;
+
                     //Return the position.
                     return position;
                 }
@@ -335,23 +338,23 @@ namespace Ximura.Collections
             {
                 Profile(ProfileAction.Time_GetSentinelVertexID, Environment.TickCount - start);
 
-                if (lockSpinWait>0)
-                    Profile(ProfileAction.Lock_GetSentinelWait, lockSpinWait);
+                if (lockSentinelWait>0)
+                    Profile(ProfileAction.Lock_GetSentinelWait, lockSentinelWait);
 
-                if (lockSpinCreate>0)
-                    Profile(ProfileAction.Lock_GetSentinelCreate, lockSpinCreate);
+                if (lockSentinelCreate>0)
+                    Profile(ProfileAction.Lock_GetSentinelCreate, lockSentinelCreate);
 
-                Profile(ProfileAction.Time_GetSentinelVertexID_LockWait1, lockwait1);
-                Profile(ProfileAction.Time_GetSentinelVertexID_LockWait2, lockwait2);
+                Profile(ProfileAction.Time_GetSentinelVertexID_TimeWait1, timewait1);
+                Profile(ProfileAction.Time_GetSentinelVertexID_TimeWait2, timewait2);
 
                 if (insert>0)
                     Profile(ProfileAction.Time_GetSentinelVertexID_Insert, Environment.TickCount - insert);
 
 
-                if (lockSpinWait > 0)
+                if (lockSentinelWait > 0)
                     ProfileHotspot(ProfileArrayType.BucketsWait, bucketID);
 
-                if (lockSpinCreate > 0)
+                if (lockSentinelCreate > 0)
                     ProfileHotspot(ProfileArrayType.BucketsCreate, bucketID);
             }
 #endif

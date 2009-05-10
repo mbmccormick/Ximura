@@ -2789,13 +2789,6 @@
             This function creates a new thread and executes the action on that thread.
             </summary>
         </member>
-        <member name="M:Ximura.Helper.Threading.ExecuteParallel(System.Collections.Generic.IEnumerable{System.Action},System.Int32)">
-            <summary>
-            Executes a number of actions in parallel and then waits until they are complete.
-            </summary>
-            <param name="ts">The action enumeration.</param>
-            <returns>Returns a timespan containing the time taken to execute the job.</returns>
-        </member>
         <member name="M:Ximura.Helper.Threading.Execute(System.Collections.Generic.IEnumerable{System.Action})">
             <summary>
             This method enumerates the actions and executes them in parallel and waits until they are complete.

@@ -52,45 +52,14 @@ namespace Ximura.Helper
         /// <summary>
         /// This function creates a new thread and executes the action on that thread.
         /// </summary>
-        public static Func<Action, Thread> fnActionExecute =
+        public static Func<ThreadStart, Thread> fnActionExecute =
             (act) =>
             {
-                Thread t = new Thread(new ThreadStart(act));
+                Thread t = new Thread(act);
                 t.Start();
                 return t;
             };
         #endregion // Func<Action, Thread> fnActionExecute
-
-        #region ExecuteActionsInt(IEnumerable<Action> ts, int threadLimit)
-        private static TimeSpan ExecuteActionsInt(IEnumerable<Action> ts, int threadLimit)
-        {
-            DateTime start = DateTime.Now;
-
-            int active = 0;
-
-            Func<Action, ThreadStart> fnCountWrapper = (j) => new ThreadStart(() =>
-                {
-                    Interlocked.Increment(ref active);
-                    j();
-                    Interlocked.Decrement(ref active);
-                });
-
-            var threads = ts.Select(a =>
-                {
-                    Thread t = fnActionExecute(a);
-
-                    while (threadLimit > 0 && active >= threadLimit)
-                        ThreadWait();
-
-                    return t;
-                }
-                ).ToArray();
-
-            threads.Where(t => t.IsAlive).ForEach(t => t.Join());
-
-            return DateTime.Now - start;
-        }
-        #endregion
 
         #region ExecuteParallel(IEnumerable<Action> ts, int maxThreads)
         /// <summary>
@@ -100,7 +69,7 @@ namespace Ximura.Helper
         /// <returns>Returns a timespan containing the time taken to execute the job.</returns>
         public static TimeSpan ExecuteParallel(IEnumerable<Action> ts, int maxThreads)
         {
-            return ExecuteActionsInt(ts, maxThreads);
+            return ts.Execute(maxThreads);
         }
         #endregion // ThreadCheck(IEnumerable<ThreadStart> ts)
         #region Execute(this IEnumerable<Action> ts, int maxThreads)
@@ -112,7 +81,7 @@ namespace Ximura.Helper
         /// <returns>Returns a timespan containing the time taken to execute the job.</returns>
         public static TimeSpan Execute(this IEnumerable<Action> ts)
         {
-            return ExecuteActionsInt(ts, Environment.ProcessorCount);
+            return ts.Execute(Environment.ProcessorCount);
         }
         /// <summary>
         /// This method enumerates the actions and executes them in parallel and waits until they are complete.
@@ -122,7 +91,34 @@ namespace Ximura.Helper
         /// <returns>Returns a timespan containing the time taken to execute the job.</returns>
         public static TimeSpan Execute(this IEnumerable<Action> ts, int maxThreads)
         {
-            return ExecuteActionsInt(ts, maxThreads);
+            DateTime start = DateTime.Now;
+
+            int threadsActive = 0;
+
+            Func<Action, ThreadStart> fnCountWrapper = (j) => new ThreadStart(() =>
+            {
+                Interlocked.Increment(ref threadsActive);
+                j();
+                Interlocked.Decrement(ref threadsActive);
+            });
+
+            var threads = ts.Select(a =>
+                    {
+                        Thread t = fnActionExecute(fnCountWrapper(a));
+
+                        //This loop ensures that we keep the number of active threads to the threadLimit.
+                        while (maxThreads > 0 && threadsActive >= maxThreads)
+                            ThreadWait();
+
+                        return t;
+                    }
+                ).ToArray();
+
+            //Ok, wait for any running threads to complete execution.
+            threads.Where(t => t.IsAlive).ForEach(t => t.Join());
+
+            //Calculate the timespan for the process.
+            return DateTime.Now - start;
         }
         #endregion
     }

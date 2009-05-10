@@ -137,16 +137,6 @@ namespace Ximura.Collections
                     return string.Format("V->{0}  H{1:X} = {2}", IsTerminator ? "END" : (NextIDPlus1 - 1).ToString(), HashCode, Value.ToString());
             }
             #endregion // ToString()
-
-            public override bool Equals(object obj)
-            {
-                return base.Equals(obj);
-            }
-
-            public override int GetHashCode()
-            {
-                return base.GetHashCode();
-            }
         }
         #endregion // struct LockFreeSlot<T>
         #region Struct -> VertexWindow<T>
@@ -469,47 +459,68 @@ namespace Ximura.Collections
             int slotLocks1 = 0;
             int slotLocks2 = 0;
 
-            vWin = new VertexWindow<T>();
-            vWin.Locked = true;
-
-            //Lock the start index immediately.
-            slotLocks1 = mSlots.ItemLock(index);
-
-            vWin.SetCurrent(index + 1, mSlots[index]);
-
-            while (true)
+#if (PROFILING)
+            int start = Environment.TickCount;
+            int hopCount = 0;
+            try
             {
+#endif
+                vWin = new VertexWindow<T>();
+                vWin.Locked = false;
 
-                //If this is the last item in the list and does not contain data then exit.
-                if (vWin.Curr.IsTerminator)
-                    return false;
+                //Lock the start index immediately.
+                slotLocks1 = mSlots.ItemLockWait(index);
+#if (PROFILING)
+                hopCount++;
+                if (slotLocks1 > 0)
+                    ProfileHotspot(ProfileArrayType.Slots, index);
+#endif
+                vWin.SetCurrent(index + 1, mSlots[index]);
 
-                //OK, lock the next item.
-                slotLocks2 = mSlots.ItemLock(vWin.Curr.NextIDPlus1 - 1);
-
-
-                vWin.Next = mSlots[vWin.Curr.NextIDPlus1 - 1];
-
-                //If the hashCode of the current item is greater than the search hashCode then exit,
-                //as we order by hashCode.
-                if (vWin.Next.HashCode > hashCode)
+                while (true)
                 {
-                    return false;
-                }
+#if (PROFILING)
+                    hopCount++;
+#endif
+                    //If this is the last item in the list and does not contain data then exit.
+                    if (vWin.Curr.IsTerminator)
+                        return false;
 
-                if (vWin.Next.IsSentinel ||
-                    vWin.Next.HashCode != hashCode || !mEqualityComparer.Equals(item, vWin.Next.Value))
-                {
-                    mSlots.ItemUnlock(vWin.CurrIndexPlus1 - 1);
-                    vWin.MoveUp();
-                    continue;
-                }
+                    //OK, lock the next item.
+                    slotLocks2 = mSlots.ItemLockWait(vWin.Curr.NextIDPlus1 - 1);
+#if (PROFILING)
+                    if (slotLocks2 > 0)
+                        ProfileHotspot(ProfileArrayType.Slots, vWin.Curr.NextIDPlus1 - 1);
+#endif
+                    vWin.Next = mSlots[vWin.Curr.NextIDPlus1 - 1];
 
-                break;
+                    //If the hashCode of the current item is greater than the search hashCode then exit,
+                    //as we order by hashCode.
+                    if (vWin.Next.HashCode > hashCode)
+                    {
+                        return false;
+                    }
+
+                    if (vWin.Next.IsSentinel ||
+                        vWin.Next.HashCode != hashCode || !mEqualityComparer.Equals(item, vWin.Next.Value))
+                    {
+                        //mSlots.ItemUnlock(vWin.CurrIndexPlus1 - 1);
+                        vWin.MoveUp();
+                        continue;
+                    }
+
+                    break;
+                }
+                return true;
+#if (PROFILING)
             }
-
-            return true;
-
+            finally
+            {
+                Profile(ProfileAction.Time_FindAndLock, Environment.TickCount - start);
+                Profile(ProfileAction.Count_FindAndLockHopCount, hopCount);
+                Profile(ProfileAction.Count_FindAndLockSlotLocks, slotLocks1 + slotLocks2);
+            }
+#endif
         }
         #endregion // ContainsScanInternal(T item, int hashCode, int index)
     }

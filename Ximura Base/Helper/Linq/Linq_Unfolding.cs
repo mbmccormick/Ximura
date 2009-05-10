@@ -35,25 +35,35 @@ namespace Ximura.Helper
     {
         #region Unfold
         /// <summary>
-        /// 
+        /// The Unfold extension method "unfolds" and object in to a collection.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <typeparam name="TResult"></typeparam>
-        /// <param name="generator">The sequence generator.</param>
-        /// <returns>Returns an enumeration of items based on the generator function.</returns>
-        public static IEnumerable<TResult> Unfold<T, TResult>(Func<T, Tuple<TResult, T>?> generator)
+        /// <param name="start">The initial object to unfold.</param>
+        /// <param name="generator">The generator function that will create the collection.</param>
+        /// <returns>Returns an enumeration of object.</returns>
+        public static IEnumerable Unfold(this object start, Func<object, Tuple<object, object>?> generator)
         {
-            return Unfold(generator, default(T));
+            return start.Unfold<object, object>(generator);
         }
         /// <summary>
-        /// 
+        /// The Unfold extension method "unfolds" and object in to a collection.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
         /// <typeparam name="TResult"></typeparam>
-        /// <param name="generator"></param>
-        /// <param name="start"></param>
-        /// <returns></returns>
-        public static IEnumerable<TResult> Unfold<T, TResult>(Func<T, Tuple<TResult, T>?> generator, T start)
+        /// <param name="start">The initial object to unfold.</param>
+        /// <param name="generator">The generator function that will create the collection.</param>
+        /// <returns>Returns an enumeration of objects of type TResult.</returns>
+        public static IEnumerable<TResult> Unfold<TResult>(this object start, Func<object, Tuple<TResult, object>?> generator)
+        {
+            return start.Unfold<object, TResult>(generator);
+        }
+        /// <summary>
+        /// The Unfold extension method "unfolds" and object in to a collection.
+        /// </summary>
+        /// <typeparam name="T">The source type.</typeparam>
+        /// <typeparam name="TResult">The enumeration type.</typeparam>
+        /// <param name="start">The initial object to unfold.</param>
+        /// <param name="generator">The generator function that will create the collection.</param>
+        /// <returns>Returns an enumeration of objects of type TResult.</returns>
+        public static IEnumerable<TResult> Unfold<T, TResult>(this T start, Func<T, Tuple<TResult, T>?> generator)
         {
             var next = start;
 
