@@ -89,5 +89,18 @@ namespace Ximura.Helper
                 yield return loop;
         }
         #endregion // RangeFromTo(int start, int end)
+
+
+        //public static IEnumerable<T> For<T>(Func<T> fnStart, Func<T, bool> fnCont, Func<T, T> fnNext)
+        //{
+        //    T current = fnStart();
+        //    yield return current;
+
+        //    while (fnCont(current))
+        //    {
+        //        current = fnNext(current);
+        //        yield return current;
+        //    }
+        //}
     }
 }

@@ -67,6 +67,16 @@ namespace Ximura.Helper
         /// </summary>
         /// <param name="ts">The action enumeration.</param>
         /// <returns>Returns a timespan containing the time taken to execute the job.</returns>
+        public static TimeSpan ExecuteParallel(IEnumerable<Action> ts)
+        {
+            return ts.Execute(Environment.ProcessorCount);
+        }        
+        /// <summary>
+        /// Executes a number of actions in parallel and then waits until they are complete.
+        /// </summary>
+        /// <param name="ts">The action enumeration.</param>
+        /// <param name="maxThreads">The maximum number of threads to use during execution.</param>
+        /// <returns>Returns a timespan containing the time taken to execute the job.</returns>
         public static TimeSpan ExecuteParallel(IEnumerable<Action> ts, int maxThreads)
         {
             return ts.Execute(maxThreads);
