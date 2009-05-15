@@ -63,7 +63,6 @@ namespace Ximura.Helper
             }
         }
         #endregion // RangeTuple(int start, int count, int parts)
-
         #region RangeFromTo(Tuple<int, int> range)
         /// <summary>
         /// This extended range method takes an integer tuple as the range.
@@ -75,7 +74,6 @@ namespace Ximura.Helper
             return RangeFromTo(range.Item1, range.Item2);
         }
         #endregion // RangeFromTo(Tuple<int, int> range)
-
         #region RangeFromTo(int start, int end)
         /// <summary>
         /// This extended range method takes an integer range and returns an enumeration of integers.

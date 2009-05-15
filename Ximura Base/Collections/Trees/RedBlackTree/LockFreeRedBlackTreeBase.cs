@@ -26,12 +26,38 @@ using Ximura.Helper;
 #endregion // using
 namespace Ximura.Collections
 {
+    #region Class --> LockFreeRedBlackTreeBase<TKey, TVal>
     /// <summary>
-    /// This class is a base class for RedBlack Tree implementations.
+    /// This class is a base class for Red-Black Tree implementations.
     /// </summary>
-    /// <typeparam name="TKey">The tree key type.</typeparam>
-    /// <typeparam name="TVal"></typeparam>
-    public class LockFreeRedBlackTreeBase<TKey, TVal, TVert> : LockableBase, IDisposable
+    /// <typeparam name="TKey">The key type.</typeparam>
+    /// <typeparam name="TVal">The value type.</typeparam>
+    public class LockFreeRedBlackTreeBase<TKey, TVal> : LockFreeRedBlackTreeBase<TKey, TVal, LockFreeRedBlackVertex<TKey, TVal>>
+    {
+        #region Constructors
+        /// <summary>
+        /// This is the default constructor.
+        /// </summary>
+        public LockFreeRedBlackTreeBase()
+            : this(Comparer<TKey>.Default, EqualityComparer<TVal>.Default) { }
+        /// <summary>
+        /// This constructor requires custom comparers for both the key data and an equality comparer for the value data.
+        /// </summary>
+        /// <param name="vertexComparer">The key comparer.</param>
+        /// <param name="valueEqComparer">The value equality comparer. </param>
+        public LockFreeRedBlackTreeBase(Comparer<TKey> keyComparer, EqualityComparer<TVal> valueEqComparer)
+            : base(keyComparer, valueEqComparer) { }
+        #endregion // Constructors
+    }
+    #endregion // Class --> LockFreeRedBlackTreeBase<TKey, TVal>
+
+    /// <summary>
+    /// This class is a base class for Red-Black Tree implementations.
+    /// </summary>
+    /// <typeparam name="TKey">The key type.</typeparam>
+    /// <typeparam name="TVal">The value type.</typeparam>
+    /// <typeparam name="TVert">The vertex type.</typeparam>
+    public partial class LockFreeRedBlackTreeBase<TKey, TVal, TVert> : IDisposable
         where TVert : LockFreeRedBlackVertex<TKey, TVal>, new()
     {
         #region Declarations
@@ -40,24 +66,56 @@ namespace Ximura.Collections
         /// </summary>
         protected int mVersionID;
         
-        private int mVertexCount;
+        /// <summary>
+        /// This is the internal count for the collection.
+        /// </summary>
+        private int mCount;
+
+        /// <summary>
+        /// This internal value indicates whether the collection has been disposed.
+        /// </summary>
         private bool mDisposed = false;
+
         /// <summary>
         /// This is the root vertex.
         /// </summary>
-        protected TVert mRoot;
+        protected LockFreeRedBlackVertex<TKey, TVal> mRoot;
+
+        /// <summary>
+        /// This is the equality comparer for the values.
+        /// </summary>
+        protected EqualityComparer<TVal> mTvalEqComparer;
+        /// <summary>
+        /// This is the key comparer.
+        /// </summary>
+        protected Comparer<TKey> mTKeyComparer;
         #endregion // Declarations
 
         #region Constructors
         /// <summary>
-        /// This is the default constructor. You must supply an appropriate comparer for the collection.
+        /// This is the default constructor.
         /// </summary>
-        /// <param name="comparer"></param>
-        public LockFreeRedBlackTreeBase()
+        public LockFreeRedBlackTreeBase() : this(Comparer<TKey>.Default, EqualityComparer<TVal>.Default) { }
+        /// <summary>
+        /// This constructor requires a comparison function and an equality comparer for the value data.
+        /// </summary>
+        /// <param name="keyComparer">The key comparer.</param>
+        /// <param name="valueEqComparer">The value equality comparer. </param>
+        public LockFreeRedBlackTreeBase(Comparer<TKey> keyComparer, EqualityComparer<TVal> valueEqComparer)
         {
+            if (keyComparer == null)
+                throw new ArgumentNullException("keyComparer cannot be null.");
+
+            if (valueEqComparer == null)
+                throw new ArgumentNullException("valueEqComparer cannot be null.");
+
             mVersionID = int.MinValue;
-            mVertexCount = 0;
+            mCount = 0;
+
+            mTKeyComparer = keyComparer;
+            mTvalEqComparer = valueEqComparer;
         }
+
         #endregion // Constructors
         #region IDisposable Members
         /// <summary>
@@ -106,6 +164,22 @@ namespace Ximura.Collections
 
         #endregion
 
+        #region Compare(TKey key, LockFreeRedBlackVertex<TKey, TVal> vertex)
+        /// <summary>
+        /// This method compares the key with the vertex key and returns an integer which identifies which is the greater value.
+        /// </summary>
+        /// <param name="key">The key.</param>
+        /// <param name="vertex">The vertex to compare.</param>
+        /// <returns>
+        /// Returns 0 if the key is equal to the vertex. 
+        /// Returns -1 if the key is less than the vertex, and returns 1 if the key is greater than the vertex.
+        /// </returns>
+        protected virtual int Compare(TKey key, LockFreeRedBlackVertex<TKey, TVal> vertex)
+        {
+            return mTKeyComparer.Compare(key, vertex.Key);
+        }
+        #endregion // Compare(TKey key, LockFreeRedBlackVertex<TKey, TVal> vertex)
+
         #region AddInternal(TKey key, TVal item)
         /// <summary>
         /// This method adds an item to the tree.
@@ -115,94 +189,205 @@ namespace Ximura.Collections
         /// <returns>Returns true if the item is successfully added to the list, false if the item is already in the tree.</returns>
         protected virtual bool AddInternal(TKey key, TVal item)
         {
-            LockWait();
+            //Create a new vertex and set the values in the vertex.
+            LockFreeRedBlackVertex<TKey, TVal> insert = new TVert();
+            insert.Key = key;
+            insert.Value = item;
+            return AddInternal(insert);
+        }
 
-            TVert vItem = new TVert();
-            vItem.Key = key;
-            vItem.Value = item;
-
+        protected virtual bool AddInternal(LockFreeRedBlackVertex<TKey, TVal> insert)
+        {
             bool success = false;
+            //We lock the insert node in case it becomes the root node, as we need to set the colour before we can allow other 
+            //actions to proceed past the root node.
+            insert.Lock();
 
-            //Ok, check whether we are adding the root node.
-            if (Interlocked.CompareExchange<TVert>(ref mRoot, vItem, null) == null)
-                success = true;
-            else
+            try
             {
-                //No, so we need to lock the root node and continue, the root node will be unlocked as we traverse the tree.
-                success = mRoot.Insert(key, vItem);
+                LockFreeRedBlackVertex<TKey, TVal> rootVertex = null;
+
+                //Ok, we need to get the root node, or set the root node.
+                while (rootVertex == null)
+                {
+                    //Ok, check whether we are adding the root node.
+                    if (Interlocked.CompareExchange<LockFreeRedBlackVertex<TKey, TVal>>(ref mRoot, insert, null) == null)
+                    {
+                        //OK, as this is now the root node, we need to set it to black.
+                        insert.IsBlack = true;
+                        //Unlock the root node.
+                        insert.Unlock();
+                        success = true;
+                        return true;
+                    }
+                    else
+                        rootVertex = mRoot;
+                }
+
+                //Unlock the insert node as we are no longer working on it.
+                insert.Unlock();
+
+                //OK, need to insert the item in the tree.
+                success = InsertInternal(rootVertex, insert);
+
+                return success;
+            }
+            finally
+            {
                 if (success)
-                    RebalanceTree(vItem);
-            }
+                {
+                    Interlocked.Increment(ref mCount);
+                    Interlocked.Increment(ref mVersionID);
+                }
 
-            if (success)
-            {
-                Interlocked.Increment(ref mVertexCount);
-                Interlocked.Increment(ref mVersionID);
             }
-
-            return success;
         }
         #endregion // AddInternal(TKey key, TVal item)
-
-        #region Tree rebalancing
-        #region RebalanceTree(LockFreeRedBlackVertex<TKey, TVal> vItem)
+        #region InsertInternal(LockFreeRedBlackVertex<TKey, TVal> vertex)
         /// <summary>
-        /// This method rebalances the tree based on the specific vertex.
+        /// This method inserts the new vertex in the correct part of the tree.
         /// </summary>
-        /// <param name="vItem">The vertex to rebalance around.</param>
-        protected virtual void RebalanceTree(TVert vItem)
+        /// <param name="parent">The parent vertex where the search should begin.</param>
+        /// <param name="newVertex">The new vertex to insert.</param>
+        /// <returns>Returns true if the vertex is inserted successfully.</returns>
+        protected virtual bool InsertInternal(LockFreeRedBlackVertex<TKey, TVal> parent, LockFreeRedBlackVertex<TKey, TVal> newVertex)
         {
-            //Interlocked.CompareExchange<LockFreeRedBlackVertex<TKey, TVal>>(ref mRoot, vItem, mRoot);
+            TreeTraversalWindow<TKey, TVal> window = new TreeTraversalWindow<TKey, TVal>(true);
+            try
+            {
+                window.MoveDown(parent);
+
+                while (true)
+                {
+                    int result = Compare(newVertex.Key, window.Current);
+
+                    if (result == 0)
+                    {
+                        //Ok, we have a match, and we cannot insert duplicate items.
+                        window.Release();
+                        return false;
+                    }
+
+                    if (result > 0)
+                    {
+                        //Ok, the new vertex is greater than the source vertex.
+                        if (window.Current.Right == null)
+                        {
+                            newVertex.Parent = window.Current;
+                            window.Current.Right = newVertex;
+                            window.MoveDown(newVertex);
+                            break;
+                        }
+                        //Ok, we are searching right.
+                        window.MoveDown(window.Current.Right);
+                    }
+                    else
+                    {
+                        //OK, the new vertex is less than the source vertex.
+                        if (window.Current.Left == null)
+                        {
+                            newVertex.Parent = window.Current;
+                            window.Current.Left = newVertex;
+                            window.MoveDown(newVertex);
+                            break;
+                        }
+                        //Ok, we are searching left.
+                        window.MoveDown(window.Current.Left);
+                    }
+                }
+
+                //Enforce the red-black tree rules.
+                InsertFixup(window);
+
+                //Release any vertexes currently held.
+                window.Release();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                window.Release();
+                throw ex;
+            }
+        }
+        #endregion
+
+        #region FindInternal(TKey key, bool lockVertexes, out TreeTraversalWindow<TKey, TVal> window)
+        /// <summary>
+        /// This method returns true if the key can be matched by a vertex in the tree.
+        /// </summary>
+        /// <param name="key">The key to search.</param>
+        /// <returns>Returns true if the comparer returns that the key has satisfied the conditions for a match.</returns>
+        protected virtual bool FindInternal(TKey key, bool lockVertexes, out TreeTraversalWindow<TKey, TVal> window)
+        {
+
+            window = new TreeTraversalWindow<TKey, TVal>(lockVertexes);
+
+            window.MoveDown(mRoot);
+
+            //Check whether we have a root vertex.
+            if (window.Current == null)
+                return false;
+
+            while (true)
+            {
+                int result = Compare(key, window.Current);
+
+                if (result == 0)
+                {
+                    //Ok, we have a match.
+                    return true;
+                }
+
+                if (result > 0)
+                {
+                    //Ok, the new vertex is greater than the source vertex.
+                    if (window.Current.Right == null)
+                        return false;
+
+                    //Ok, we are searching right.
+                    window.MoveDown(window.Current.Right);
+                }
+                else
+                {
+                    //OK, the new vertex is less than the source vertex.
+                    if (window.Current.Left == null)
+                        return false;
+
+                    //Ok, we are searching left.
+                    window.MoveDown(window.Current.Left);
+                }
+            }
 
         }
-        #endregion // RebalanceTree(LockFreeRedBlackVertex<TKey, TVal> vItem)
+        #endregion // ContainsInternal(TKey key)
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="vertex"></param>
-        protected void RotateLeft(TVert vertex)
-        {
-
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="vertex"></param>
-        protected void RotateRight(TVert vertex)
-        {
-
-        }
-        #endregion // Tree rebalancing
-
-        #region RemoveInternal(TKey key)
+        #region RemoveInternal(TreeTraversalWindow<TKey, TVal> window)
         /// <summary>
         /// This method removes the vertex with the key from the collection.
         /// </summary>
         /// <param name="key">The vertex key.</param>
         /// <returns>Returns true if the vertex is removed.</returns>
-        protected virtual bool RemoveInternal(TKey key)
+        protected virtual bool RemoveInternal(TreeTraversalWindow<TKey, TVal> window)
         {
-            LockWait();
+            ThreadEnter(TreeAction.Remove);
 
-            throw new NotImplementedException();
+            try
+            {
+                if (window.Current == null)
+                {
+                    window.Release();
+                    return false;
+                }
+
+                throw new NotImplementedException();
+            }
+            finally
+            {
+                ThreadExit();
+            }
         }
         #endregion // RemoveInternal(TKey key)
-
-        #region ContainsInternal(TKey key)
-        /// <summary>
-        /// This method returns true if the key can be satisfied by a vertex in the tree.
-        /// </summary>
-        /// <param name="key">The key to search.</param>
-        /// <returns>Returns true if the comparer returns that the key has satisfied the conditions for a match.</returns>
-        protected virtual bool ContainsInternal(TKey key)
-        {
-            LockWait();
-
-            LockFreeRedBlackVertex<TKey, TVal> vertex;
-            return mRoot.Search(key, out vertex);
-        }
-        #endregion // ContainsInternal(TKey key)
 
         #region ClearInternal()
         /// <summary>
@@ -210,14 +395,14 @@ namespace Ximura.Collections
         /// </summary>
         protected virtual void ClearInternal()
         {
-            TVert oldRoot = mRoot;
+            LockFreeRedBlackVertex<TKey, TVal> oldRoot = mRoot;
 
-            while (Interlocked.CompareExchange<TVert>(ref mRoot, oldRoot, null) != oldRoot)
+            while (Interlocked.CompareExchange<LockFreeRedBlackVertex<TKey, TVal>>(ref mRoot, oldRoot, null) != oldRoot)
             {
                 oldRoot = mRoot;
             }
             //Ok, reset the counters. New threads will get the
-            mVertexCount = 0;
+            mCount = 0;
             Interlocked.Increment(ref mVersionID);
 
             //Ok, now we need to wait for any other threads to finish their business on the old collection.
@@ -229,19 +414,13 @@ namespace Ximura.Collections
         /// <summary>
         /// This is the current collection version.
         /// </summary>
-        public long VersionInternal
-        {
-            get
-            {
-                return mVersionID;
-            }
-        }
+        public long VersionInternal{get{return mVersionID;}}
         #endregion // Version
         #region CountInternal
         /// <summary>
         /// This property returns the number of items in the tree.
         /// </summary>
-        protected virtual int CountInternal { get { return mVertexCount; } }
+        protected virtual int CountInternal { get { return mCount; } }
         #endregion // Count
         #region IsReadOnly
         /// <summary>

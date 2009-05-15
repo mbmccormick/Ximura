@@ -155,7 +155,8 @@ namespace Ximura.Collections
         /// <returns>Returns true if the item was successfully locked.</returns>
         public bool ItemTryLock(int index)
         {
-            return Interlocked.CompareExchange(ref mArrayLocks[index - mOffset], Thread.CurrentThread.ManagedThreadId + 1, 0) == 0;
+            int id = index - mOffset;
+            return Interlocked.CompareExchange(ref mArrayLocks[id], Thread.CurrentThread.ManagedThreadId + 1, 0) == 0;
         }
         #endregion // ItemTryLock
         #region ItemUnlock(int index)
@@ -165,7 +166,8 @@ namespace Ximura.Collections
         /// <param name="index">The index of the item you wish to unlock.</param>
         public void ItemUnlock(int index)
         {
-            mArrayLocks[index - mOffset] = 0;
+            int id = index - mOffset;
+            mArrayLocks[id] = 0;
         }
         #endregion // ItemUnlock(int index)
 

@@ -405,12 +405,12 @@ namespace Ximura.Collections
                     vWin.Next = mSlots[vWin.Curr.NextIDPlus1 - 1];
 
                     //If the hashCode of the current item is greater than the search hashCode then exit,
-                    //as we order by hashCode.
+                    //as we order by hashCode and have passed the item position.
                     if (vWin.Next.HashCode > hashCode)
-                    {
                         return false;
-                    }
 
+                    //OK, if the vertex is a sentinel, or the hashcodes do not match, or the objects do not match,
+                    //then we continue the scan.
                     if (vWin.Next.IsSentinel ||
                         vWin.Next.HashCode != hashCode || !mEqualityComparer.Equals(item, vWin.Next.Value))
                     {
@@ -419,8 +419,11 @@ namespace Ximura.Collections
                         continue;
                     }
 
+                    //OK, we have a match, so exit.
                     break;
                 }
+
+                //Success
                 return true;
 #if (PROFILING)
             }

@@ -30,50 +30,21 @@ namespace Ximura.Collections
     /// </summary>
     /// <typeparam name="TKey">The vertex key type.</typeparam>
     /// <typeparam name="TVal">The vertex value type.</typeparam>
-    public abstract class LockFreeRedBlackVertex<TKey, TVal> : LockableBase
+    public class LockFreeRedBlackVertex<TKey, TVal> : LockFreeVertexBase<TKey, TVal>
     {
         #region Constructor
         /// <summary>
         /// This is the default constructor.
         /// </summary>
-        public LockFreeRedBlackVertex()
+        public LockFreeRedBlackVertex():base()
         {
-            Key = default(TKey);
-            Value = default(TVal);
-
             Parent = null;
             Left = null;
             Right = null;
 
-            State = LockFreeRedBlackVertexState.Black;
+            IsRed = true;
         }
         #endregion // BalancedBinaryVertex
-
-        #region Abstract --> Comparer(LockFreeRedBlackVertex<TKey, TVal> vertex, TKey key);
-        /// <summary>
-        /// This abstract method should be overriden to provide the correct compare logic.
-        /// </summary>
-        /// <param name="vertex">The vertex to compare against.</param>
-        /// <param name="key">The key to compare with.</param>
-        /// <returns>
-        /// Returns 0 if the key is equal to the vertex. 
-        /// Returns -1 if the key is less than the vertex, and returns 1 if the key is greater than the vertex.
-        /// </returns>
-        protected abstract int Comparer(LockFreeRedBlackVertex<TKey, TVal> vertex, TKey key);
-        #endregion
-
-        #region Key
-        /// <summary>
-        /// This is the vertex key used for partitioning.
-        /// </summary>
-        public TKey Key { get; set; }
-        #endregion // Key
-        #region Value
-        /// <summary>
-        /// This is the value encapsulated by the vertex.
-        /// </summary>
-        public TVal Value { get; set; }
-        #endregion // Value
 
         #region Parent
         /// <summary>
@@ -94,105 +65,21 @@ namespace Ximura.Collections
         public LockFreeRedBlackVertex<TKey, TVal> Right { get; set; }
         #endregion // Right
 
-        #region State
+        #region IsRed
         /// <summary>
         /// This is the state of the vertex, either black or red.
         /// </summary>
-        public LockFreeRedBlackVertexState State { get; set; }
-        #endregion // State
-
-        #region Search(TKey key, out LockFreeRedBlackVertex<TKey, TVal> vertex)
-        /// <summary>
-        /// This method traverses the tree
-        /// </summary>
-        /// <param name="key">The key to search for.</param>
-        /// <param name="vertex">The vertex that matches the key.</param>
-        /// <returns>Returns true if the search is matched, false if not found.</returns>
-        public virtual bool Search(TKey key, out LockFreeRedBlackVertex<TKey, TVal> vertex)
-        {
-            //If the vertex is locked we wait until it is unlocked before proceeding.
-            LockWait();
-
-            vertex = null;
-            switch (Comparer(this, key))
-            {
-                case 0:
-                    vertex = this;
-                    return true;
-                case 1:
-                    if (Right != null)
-                        return Right.Search(key, out vertex);
-                    break;
-                case -1:
-                    if (Left != null)
-                        return Left.Search(key, out vertex);
-                    break;
-            }
-
-            return false;
-        }
-        #endregion
-        #region Insert(TKey key, LockFreeRedBlackVertex<TKey, TVal> vertex)
-        /// <summary>
-        /// This method inserts the vertex in the correct part of the tree.
-        /// </summary>
-        /// <param name="key">The insert key.</param>
-        /// <param name="vertex">The vertex.</param>
-        /// <returns>Returns true if the vertex is inserted successfully, false if the vertex already exists or clashes with another
-        /// key and is rejected.</returns>
-        public virtual bool Insert(TKey key, LockFreeRedBlackVertex<TKey, TVal> vertex)
-        {
-            //We lock the vertex so that other threads cannot proceed until we are unlocked.
-            Lock();
-
-            bool traversed = false;
-
-            if (Parent != null)
-                Parent.Unlock();
-
-            try
-            {
-                switch (Comparer(this, key))
-                {
-                    case 0:
-                        //Ok, we have a match, so we cannot insert duplicate items.
-                        return false;
-                    case 1:
-                        if (Right != null)
-                        {
-                            traversed = true;
-                            return Right.Insert(key, vertex);
-                        }
-
-                        Right = vertex;
-                        Right.Parent = this;
-                        break;
-                    case -1:
-                        if (Left != null)
-                        {
-                            traversed = true;
-                            return Left.Insert(key, vertex);
-                        }
-
-                        Left = vertex;
-                        Left.Parent = this;
-                        break;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                if (!traversed)
-                    Unlock();
-            }
-
-            return true;
-        }
+        public bool IsRed { get; set; }
         #endregion
 
+        public bool IsBlack { get { return !IsRed; } set { IsRed = !value; } }
+
+        #region IsRoot
+        /// <summary>
+        /// This property determines whether the vertex is the root vertex, i.e. it does not have a parent.
+        /// </summary>
+        public bool IsRoot { get { return Parent == null; } }
+        #endregion
         #region IsSentinel
         /// <summary>
         /// This property determines whether the vertex is a sentinel, i.e. a vertex without any child vertexes.
@@ -203,17 +90,29 @@ namespace Ximura.Collections
         /// <summary>
         /// This property determines whether the vertex is a sentinel, i.e. a vertex without any child vertexes.
         /// </summary>
-        public bool IsLeaf { get { return Left != null || Right != null; } }
+        public bool IsLeaf { get { return !IsSentinel; } }
         #endregion
 
         #region ToString()
+        private string RB(bool isRed)
+        {
+            return isRed ? "R" : "B";
+        }
         /// <summary>
         /// This override provides useful debug information.
         /// </summary>
         /// <returns>Returns a string representation of the vertex data.</returns>
         public override string ToString()
         {
-            return string.Format("{0} -> {1} ==>", Key, Value);
+            return string.Format("{0}K={1} V={2} |{3}| L:{4}{5} R:{6}{7}"
+                , IsRoot?"ROOT ":"CHLD "
+                , Key
+                , Value
+                , RB(IsRed)
+                , Left == null ? "NULL" : "K=" + Left.Key.ToString()
+                , Left == null ? "" : RB(Left.IsRed)
+                , Right == null ? "NULL" : "K=" + Right.Key.ToString()
+                , Right == null ? "" : RB(Right.IsRed));
         }
         #endregion
     }

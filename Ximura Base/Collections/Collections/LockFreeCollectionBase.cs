@@ -140,8 +140,8 @@ namespace Ximura.Collections
             mAllowNullValues = typeof(T).IsValueType || AllowNullValues;
             mAllowMultipleEntries = AllowMultipleEntries;
 
-            InitializeData(capacity);
             InitializeBuckets(capacity);
+            InitializeData(mRecalculateThreshold);
 
             if (collection != null)
                 collection.ForEach(i => AddInternal(i));
@@ -217,7 +217,8 @@ namespace Ximura.Collections
                     {
                         Interlocked.Increment(ref mCount);
                         Interlocked.Increment(ref mVersion);
-                        BitSizeCalculate();
+                        if (mCount > mRecalculateThreshold)
+                            BitSizeCalculate();
                     }
 
                     return position > -1;
@@ -338,20 +339,7 @@ namespace Ximura.Collections
                         return mAllowNullValues ? mDefaultTCount > 0 : false;
 
                     VertexWindow<T> vWin = new VertexWindow<T>();
-                    bool success = false;
-                    try
-                    {
-                        success = Find(item, hashCode, index, out vWin);
-                    }
-                    finally
-                    {
-                        if (vWin.Locked)
-                            VertexWindowUnlock(vWin);
-                        //else
-                        //    throw new Exception();
-                    }
-
-                    return success;
+                    return Find(item, hashCode, index, out vWin);
                 }
                 finally
                 {

@@ -31,14 +31,14 @@ namespace Ximura.Collections
     /// parts as the tree grows
     /// </summary>
     /// <typeparam name="T">The array type.</typeparam>
-    public class ExpandableFineGrainedLockArray<T> : 
-        LockFreeRedBlackTreeBase<int, FineGrainedLockArray<T>, ExpandableFineGrainedLockArrayVertex<T>>
+    public class ExpandableFineGrainedLockArray<T> :
+        LockFreeRedBlackTreeBase<int, FineGrainedLockArray<T>, LockFreeRedBlackVertex<int, FineGrainedLockArray<T>>>
     {
         #region Declarations
+        private LockFreeRedBlackVertex<int, FineGrainedLockArray<T>> initial;
         private int mCapacity;
         private Func<int, int> fnCalculateAutogrow;
         #endregion // Declarations
-
         #region Constructor
         /// <summary>
         /// This is the default constructor.
@@ -56,9 +56,9 @@ namespace Ximura.Collections
         /// <param name="fnCalculateAutogrow">The growth function, if this is not set, the array will be of a fixed size.</param>
         public ExpandableFineGrainedLockArray(int capacity, Func<int, int> fnCalculateAutogrow)
         {
-            this.fnCalculateAutogrow = fnCalculateAutogrow;
-
             IncreaseCapacity(capacity);
+            //We set this after the IncreaseCapacity call to ensure that the capacity is set specifically to the value passed.
+            this.fnCalculateAutogrow = fnCalculateAutogrow;
         }
         #endregion // Constructor
 
@@ -91,7 +91,6 @@ namespace Ximura.Collections
         }
         #endregion // Length
 
-        #region Item methods
         #region ItemLockWait(int index)
         /// <summary>
         /// This method waits for the lock to become available on the index.
@@ -146,7 +145,6 @@ namespace Ximura.Collections
             ResolveArray(index).ItemUnlock(index);
         }
         #endregion // ItemUnlock(int index)
-        #endregion // Item methods
 
         #region ResolveArray(int index)
         /// <summary>
@@ -160,13 +158,19 @@ namespace Ximura.Collections
             if (index < 0)
                 throw new IndexOutOfRangeException("The index cannot be less that zero.");
 
-            LockFreeRedBlackVertex<int, FineGrainedLockArray<T>> vertex = null;
+            //OK, we a shorcut test on the last item added to the collection. Usually this is the largest item so we will check
+            //it first. 
+            LockFreeRedBlackVertex<int, FineGrainedLockArray<T>> vertex = initial;
+            if (vertex != null && Compare(index, vertex) == 0)
+                return vertex.Value;
+
+            TreeTraversalWindow<int, FineGrainedLockArray<T>> window;
 
             //Let's get the current version ID, we will need to check whis later.
             int currentVersionID = mVersionID;
 
             //Ok, we are going to loop until we have capacity.
-            while (!mRoot.Search(index, out vertex))
+            while (!FindInternal(index, false, out window))
             {
                 if (currentVersionID == mVersionID)
                     IncreaseCapacity(index + 1);
@@ -174,9 +178,9 @@ namespace Ximura.Collections
                     currentVersionID = mVersionID;
             }
 
-            return vertex.Value;
+            return window.Current.Value;
         }
-        #endregion // ResolveArray(int index)
+        #endregion // ResolveArray(int index) 
 
         #region IncreaseCapacity()
         /// <summary>
@@ -200,9 +204,42 @@ namespace Ximura.Collections
 
             int additional = newCapacity - mCapacity;
 
-            if (AddInternal(mCapacity, new FineGrainedLockArray<T>(additional, mCapacity)))
+            LockFreeRedBlackVertex<int, FineGrainedLockArray<T>> vertex = new LockFreeRedBlackVertex<int, FineGrainedLockArray<T>>();
+
+            vertex = new LockFreeRedBlackVertex<int, FineGrainedLockArray<T>>();
+            vertex.Key = mCapacity;
+            vertex.Value = new FineGrainedLockArray<T>(additional, mCapacity);
+
+
+            if (AddInternal(vertex))
+            {
                 Interlocked.Add(ref mCapacity, additional);
+                Interlocked.Exchange<LockFreeRedBlackVertex<int, FineGrainedLockArray<T>>>(ref initial, vertex);
+            }
         }
         #endregion // IncreaseCapacity(int newCapacity)
+
+        #region Comparer(LockFreeRedBlackVertex<int, FineGrainedLockArray<T>> vertex, int key)
+        /// <summary>
+        /// This is the specific comparer for the Expandable array.
+        /// </summary>
+        /// <param name="vertex">The lock array vertex.</param>
+        /// <param name="key">The position key.</param>
+        /// <returns>
+        /// Returns 0 if the key is equal to the vertex. 
+        /// Returns -1 if the key is less than the vertex, and returns 1 if the key is greater than the vertex.
+        /// </returns>
+        protected override int Compare(int key, LockFreeRedBlackVertex<int, FineGrainedLockArray<T>> vertex)
+        {
+            //Ok check if the key is lower than this key.
+            if (key < vertex.Key)
+                return -1;
+            //Is the key within the range contained within this collection, yes then this is a match.
+            if (key < vertex.Key + vertex.Value.Length)
+                return 0;
+            //Key must be greater.
+            return 1;
+        }
+        #endregion // Comparer(LockFreeRedBlackVertex<int, FineGrainedLockArray<T>> vertex, int key)
     }
 }

@@ -244,11 +244,14 @@
     <Compile Include="Collections\Interfaces\IGraph.cs" />
     <Compile Include="Collections\Interfaces\IXimuraBinarySerializable.cs" />
     <Compile Include="Collections\Trees\ExpandableFineGrainedLockArray\Array\FineGrainedLockArray.cs" />
-    <Compile Include="Collections\Trees\ExpandableFineGrainedLockArray\ExpandableFineGrainedLockArrayVertex.cs" />
     <Compile Include="Collections\Trees\ExpandableFineGrainedLockArray\ExpandableFineGrainedLockArray.cs" />
+    <Compile Include="Collections\Trees\LockFreeVertexBase.cs" />
+    <Compile Include="Collections\Trees\RedBlackTree\LockFreeRedBlackTree.cs" />
     <Compile Include="Collections\Trees\RedBlackTree\LockFreeRedBlackTreeBase.cs" />
+    <Compile Include="Collections\Trees\RedBlackTree\LockFreeRedBlackTreeBase_Profiling.cs" />
+    <Compile Include="Collections\Trees\RedBlackTree\LockFreeRedBlackTreeBase_Rebalancing.cs" />
+    <Compile Include="Collections\Trees\RedBlackTree\LockFreeRedBlackTreeBase_Sync.cs" />
     <Compile Include="Collections\Trees\RedBlackTree\LockFreeRedBlackVertex.cs" />
-    <Compile Include="Collections\Trees\RedBlackTree\LockFreeRedBlackVertexState.cs" />
     <Compile Include="Command\CommandCallbacks.cs" />
     <Compile Include="Command\Data\EnvelopeAddress.cs" />
     <Compile Include="Command\Interfaces\IXimuraEnvelopeHelper.cs" />

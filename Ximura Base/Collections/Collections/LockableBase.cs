@@ -25,63 +25,74 @@ using Ximura.Helper;
 #endregion // using
 namespace Ximura.Collections
 {
+    /// <summary>
+    /// The lockable base class is for objects that require fine-grained locking.
+    /// </summary>
     public abstract class LockableBase: ILockable
     {
         #region Declarations
+        /// <summary>
+        /// The private value that indicates whether the class is locked.
+        /// </summary>
         private int mLocked;
+#if (DEBUG)
+        /// <summary>
+        /// The managed ID of the locking thread.
+        /// </summary>
         private int? mLockingThread = null;
+#endif
         #endregion // Declarations
 
-
         #region ILockable Members
-
+        /// <summary>
+        /// Returns true if the item is locked.
+        /// </summary>
+        /// <returns>Returns true if the item is locked.</returns>
         public bool IsLocked()
         {
             return mLocked == 1;
         }
-
+        /// <summary>
+        /// This method locks the particular item.
+        /// </summary>
         public void Lock()
         {
             while (!TryLock())
-                ThreadWait();
+                Threading.ThreadWait();
         }
-
+        /// <summary>
+        /// This method halts any threads if the item is locked.
+        /// </summary>
         public void LockWait()
         {
             while (IsLocked())
-                ThreadWait();
+                Threading.ThreadWait();
         }
-
+        /// <summary>
+        /// This method attempts to lock the item.
+        /// </summary>
+        /// <returns>Returns true if the item is successfully locked.</returns>
         public bool TryLock()
         {
             bool result = (Interlocked.CompareExchange(ref mLocked, 1, 0) == 0);
 
+#if (DEBUG)
             if (result)
                 mLockingThread = Thread.CurrentThread.ManagedThreadId;
-
+#endif
             return result;
         }
-
+        /// <summary>
+        /// This method unlocks the item.
+        /// </summary>
         public void Unlock()
         {
             mLocked = 0;
+#if (DEBUG)
             mLockingThread = null;
+#endif
         }
 
-        #endregion
-
-        #region ThreadWait()
-        protected void ThreadWait()
-        {
-            if ((Environment.ProcessorCount > 1))
-            {
-                Thread.SpinWait(20);
-            }
-            else
-            {
-                Thread.Sleep(0);
-            }
-        }
         #endregion
 
     }

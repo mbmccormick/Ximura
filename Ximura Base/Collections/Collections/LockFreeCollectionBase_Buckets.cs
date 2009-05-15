@@ -38,15 +38,12 @@ namespace Ximura.Collections
         private const int cnLower28BitMask = 0x00FFFFFF;
         private const int cnLower31BitMask = 0x7fffffff;
 
-        private const uint cnMixer1 = 0xA5A5A5A5;
-        private const uint cnMixer2 = 0x5A5A5A5A;
-        private const uint cnMixer3 = 0xF0F0F0F0;
-        private const uint cnMixer4 = 0x0F0F0F0F;
+        //private const uint cnMixer1 = 0xA5A5A5A5;
+        //private const uint cnMixer2 = 0x5A5A5A5A;
+        //private const uint cnMixer3 = 0xF0F0F0F0;
+        //private const uint cnMixer4 = 0x0F0F0F0F;
 
         private const double elog2 = 0.693147181;
-        private const int cnRecalculateBuffer = 1024;
-
-        private const int cnWalkLimit = 5;
         #endregion // Declarations
         #region Declarations
         /// <summary>
@@ -72,9 +69,9 @@ namespace Ximura.Collections
         /// </summary>
         protected virtual void InitializeBuckets(int capacity)
         {
-            mCurrentBits = 0;
+            mCurrentBits = (int)(Math.Log(capacity) / elog2) + 1; ;
             mDefaultTCount = 0;
-            mRecalculateThreshold = 0;
+            mRecalculateThreshold = (int)Math.Pow(2, mCurrentBits); ;
             BitSizeCalculate();
             mBuckets = new ExpandableFineGrainedLockArray<int>(capacity);
         }
@@ -89,17 +86,23 @@ namespace Ximura.Collections
 #if (PROFILING)
             int start = Environment.TickCount;
 #endif
-            int total = mLastIndex + cnRecalculateBuffer;
-            if (total > mRecalculateThreshold)
-            {
-                mCurrentBits = (int)(Math.Log(total) / elog2) + 1;
-                mRecalculateThreshold += (int)Math.Pow(2, mCurrentBits);
-            }
+            int total = mCount;
+            int currentBits = mCurrentBits;
+            int recalculateThreshold = mRecalculateThreshold;
+
+            int newBits = (int)(Math.Log(total) / elog2)+1;
+            int newThreshold = (int)Math.Pow(2, newBits);
+            if (newBits>currentBits)
+                Interlocked.CompareExchange(ref mCurrentBits, newBits, currentBits);
+            if (newThreshold>recalculateThreshold)
+                Interlocked.CompareExchange(ref mRecalculateThreshold, newThreshold, recalculateThreshold);
+
 #if (PROFILING)
             Profile(ProfileAction.Time_BitSizeCalculate, Environment.TickCount - start);
 #endif
         }
-        #endregion // CalculateCurrentBits()
+        #endregion
+
         #region BitReverse(int data, int wordSize)
         /// <summary>
         /// This method reverses the hashcode so that it is ordered in reverse based on bit value, i.e.
@@ -125,7 +128,7 @@ namespace Ximura.Collections
 
             return result;
         }
-
+        
         protected uint BitReverse(uint data, int wordSize, uint hiMask)
         {
             uint loMask = 1;
