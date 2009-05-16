@@ -71,7 +71,7 @@ namespace Ximura.Collections
                 yield return default(T);
             //Enumerate the data.
             foreach (var item in InternalScan(true))
-                if (!item.Value.IsSentinel)
+                if (!item.Value.IsSentinel(mEqualityComparer))
                     yield return item.Value.Value;
         }
         #endregion // GetEnumerator()

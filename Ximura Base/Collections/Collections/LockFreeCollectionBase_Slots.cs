@@ -72,18 +72,24 @@ namespace Ximura.Collections
             }
             #endregion // Static methods
 
+            #region HashCode
             /// <summary>
             /// The item hashcode.
             /// </summary>
             public int HashCode;
+            #endregion // HashCode
+            #region NextIDPlus1
             /// <summary>
             /// The next item in the list.
             /// </summary>
             public int NextIDPlus1;
+            #endregion // NextIDPlus1
+            #region Value
             /// <summary>
             /// The slot value.
             /// </summary>
             public T Value;
+            #endregion // Value
 
             #region Constructor
             /// <summary>
@@ -117,11 +123,14 @@ namespace Ximura.Collections
             public bool IsTerminator { get { return NextIDPlus1 == 0; } }
             #endregion // IsTerminator
 
-            #region IsSentinel
+            #region IsSentinel(EqualityComparer<T> mEqualityComparer)
             /// <summary>
             /// This property identifies whether the vertex is a sentinel vertex.
             /// </summary>
-            public bool IsSentinel { get { return Value.Equals(default(T)); } }
+            public bool IsSentinel(EqualityComparer<T> mEqualityComparer)
+            {
+                return mEqualityComparer.Equals(default(T), Value);
+            }
             #endregion // IsSentinel
 
             #region ToString()
@@ -131,7 +140,7 @@ namespace Ximura.Collections
             /// <returns></returns>
             public override string ToString()
             {
-                if (IsSentinel)
+                if (IsSentinel(EqualityComparer<T>.Default))
                     return string.Format("V->{0}  H{1:X} SNTL", IsTerminator ? "END" : (NextIDPlus1 - 1).ToString(), HashCode);
                 else
                     return string.Format("V->{0}  H{1:X} = {2}", IsTerminator ? "END" : (NextIDPlus1 - 1).ToString(), HashCode, Value.ToString());
@@ -304,7 +313,6 @@ namespace Ximura.Collections
         /// <returns>Returns the position of the inserted vertex, or -1 if the insertion fails.</returns>
         protected virtual int AddInternalWithHashAndSentinel(T item, int hashCode, int index, bool allowMultiple)
         {
-            int insert;
 #if (PROFILING)
             int prf_start = Environment.TickCount;
             int prf_endfal = 0;
@@ -323,7 +331,7 @@ namespace Ximura.Collections
                     prf_endfal = Environment.TickCount;
 #endif
                     //Get a free slot in the collection.
-                    insert = EmptyGet();
+                    int insert = EmptyGet();
 
                     //insert the item in to the collection.
                     mSlots[insert] = new Vertex<T>(hashCode, item, vWin.Curr.NextIDPlus1);
@@ -411,7 +419,7 @@ namespace Ximura.Collections
 
                     //OK, if the vertex is a sentinel, or the hashcodes do not match, or the objects do not match,
                     //then we continue the scan.
-                    if (vWin.Next.IsSentinel ||
+                    if (vWin.Next.IsSentinel(mEqualityComparer) ||
                         vWin.Next.HashCode != hashCode || !mEqualityComparer.Equals(item, vWin.Next.Value))
                     {
                         mSlots.ItemUnlock(vWin.CurrIndexPlus1 - 1);
@@ -426,6 +434,10 @@ namespace Ximura.Collections
                 //Success
                 return true;
 #if (PROFILING)
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
             finally
             {
@@ -500,11 +512,9 @@ namespace Ximura.Collections
                     //If the hashCode of the current item is greater than the search hashCode then exit,
                     //as we order by hashCode.
                     if (vWin.Next.HashCode > hashCode)
-                    {
                         return false;
-                    }
 
-                    if (vWin.Next.IsSentinel ||
+                    if (vWin.Next.IsSentinel(mEqualityComparer) ||
                         vWin.Next.HashCode != hashCode || !mEqualityComparer.Equals(item, vWin.Next.Value))
                     {
                         //mSlots.ItemUnlock(vWin.CurrIndexPlus1 - 1);

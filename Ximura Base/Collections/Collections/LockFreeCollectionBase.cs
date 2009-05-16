@@ -43,15 +43,12 @@ namespace Ximura.Collections
         /// This is the equality comparer for the collection.
         /// </summary>
         protected EqualityComparer<T> mEqualityComparer;
-#if (x64)
-        //This is the 64 bit version. Interlocked works better in a 664 bit environment when working with 64 bit values.
-        private long mVersion = int.MinValue;
-#else
+
+
         /// <summary>
         /// The version value is set for integer for 32bit systems.
         /// </summary>
         protected int mVersion = int.MinValue;
-#endif
         /// <summary>
         /// This is the current item count.
         /// </summary>
@@ -180,15 +177,9 @@ namespace Ximura.Collections
 #endif
                 try
                 {
-                    //WorldEnter();
-
                     //Get the hash code and sentinel ID for the item.
-                    HashAndSentinel(item, true, out hashCode, out sentinelID);
-#if (PROFILING)
-                    has = Environment.TickCount;
-#endif
                     //Is this a null or default value?
-                    if (hashCode == -1)
+                    if (!GetHashAndSentinel(item, true, out hashCode, out sentinelID))
                     {
                         if (!mAllowNullValues)
                             throw new ArgumentNullException("Null values are not accepted in this collection.");
@@ -209,6 +200,9 @@ namespace Ximura.Collections
                         return true;
                     }
 
+#if (PROFILING)
+                    has = Environment.TickCount;
+#endif
                     //Ok, add the item to the collection.
                     position = AddInternalWithHashAndSentinel(item, hashCode, sentinelID, mAllowMultipleEntries);
 
@@ -227,16 +221,13 @@ namespace Ximura.Collections
                 {
                     throw ex;
                 }
-                finally
-                {
-                    //WorldLeave();
-                }
 #if (PROFILING)
             }
             finally
             {
                 Profile(ProfileAction.Time_AddInternal, Environment.TickCount - start);
-                Profile(ProfileAction.Time_AddInternalHAS, Environment.TickCount - has);
+                if (has > 0)
+                    Profile(ProfileAction.Time_AddInternalHAS, Environment.TickCount - has);
             }
 #endif
         }
@@ -249,65 +240,55 @@ namespace Ximura.Collections
         /// <returns>Returns true if the removal is successful.</returns>
         protected virtual bool RemoveInternal(T item)
         {
-            try
+            int hashCode, sentinelID;
+
+            //Is this a null or default value?
+            if (!GetHashAndSentinel(item, false, out hashCode, out sentinelID))
             {
-                //WorldEnter();
+                if (!mAllowNullValues)
+                    return false;
 
-                int hashCode, sentinelID;
-                HashAndSentinel(item, false, out hashCode, out sentinelID);
+                int currentCount = mDefaultTCount;
+                if (currentCount == 0)
+                    return false;
 
-                //Is this a null or default value?
-                if (hashCode == -1)
+                //We check whether another thread has changes the value before us.
+                while (Interlocked.CompareExchange(ref mDefaultTCount, currentCount - 1, currentCount) != currentCount)
                 {
-                    if (!mAllowNullValues)
-                        return false;
+                    currentCount = mDefaultTCount;
 
-                    int currentCount = mDefaultTCount;
                     if (currentCount == 0)
                         return false;
-
-                    //We check whether another thread has changes the value before us.
-                    while (Interlocked.CompareExchange(ref mDefaultTCount, currentCount - 1, currentCount) != currentCount)
-                    {
-                        currentCount = mDefaultTCount;
-
-                        if (currentCount == 0)
-                            return false;
-                    }
-
-                    Interlocked.Decrement(ref mCount);
-                    Interlocked.Increment(ref mVersion);
-                    return true;
                 }
 
-                VertexWindow<T> vWin = new VertexWindow<T>();
-
-                //Get the window for the item in the collection.
-                if (!FindAndLock(item, hashCode, sentinelID, out vWin))
-                {
-                    //OK, item cannot be found. Release the lock on the current item and leave.
-                    VertexWindowUnlock(vWin);
-                    return false;
-                }
-
-                //Snip out the item.
-                mSlots[vWin.CurrIndexPlus1 - 1] = vWin.Snip();
-                //Update the version and reduce the item count.
                 Interlocked.Decrement(ref mCount);
                 Interlocked.Increment(ref mVersion);
-
-                //Release the parent lock so scans on other threads can continue.
-                VertexWindowUnlock(vWin);
-
-                //Add the index to the empty item for re-allocation.
-                EmptyAdd(vWin.Curr.NextIDPlus1 - 1);
-
                 return true;
             }
-            finally
+
+            VertexWindow<T> vWin = new VertexWindow<T>();
+
+            //Get the window for the item in the collection.
+            if (!FindAndLock(item, hashCode, sentinelID, out vWin))
             {
-                //WorldLeave();
+                //OK, item cannot be found. Release the lock on the current item and leave.
+                VertexWindowUnlock(vWin);
+                return false;
             }
+
+            //Snip out the item.
+            mSlots[vWin.CurrIndexPlus1 - 1] = vWin.Snip();
+            //Update the version and reduce the item count.
+            Interlocked.Decrement(ref mCount);
+            Interlocked.Increment(ref mVersion);
+
+            //Release the parent lock so scans on other threads can continue.
+            VertexWindowUnlock(vWin);
+
+            //Add the index to the empty item for re-allocation.
+            EmptyAdd(vWin.Curr.NextIDPlus1 - 1);
+
+            return true;
         }
         #endregion // RemoveInternal(T item)
         #region ContainsInternal(T item)
@@ -324,27 +305,17 @@ namespace Ximura.Collections
             try
             {
 #endif
-                try
-                {
-                    //WorldEnter();
-
-                    int hashCode, index;
-                    HashAndSentinel(item, false, out hashCode, out index);
+                int hashCode, index;
+                //Is this a null or default value?
+                if (!GetHashAndSentinel(item, false, out hashCode, out index))
+                    return mAllowNullValues ? mDefaultTCount > 0 : false;
 
 #if (PROFILING)
-                    endhal = Environment.TickCount;
+                endhal = Environment.TickCount;
 #endif
-                    //Is this a null or default value?
-                    if (hashCode == -1)
-                        return mAllowNullValues ? mDefaultTCount > 0 : false;
+                VertexWindow<T> vWin = new VertexWindow<T>();
+                return Find(item, hashCode, index, out vWin);
 
-                    VertexWindow<T> vWin = new VertexWindow<T>();
-                    return Find(item, hashCode, index, out vWin);
-                }
-                finally
-                {
-                    //WorldLeave();
-                }
 #if (PROFILING)
             }
             finally
@@ -362,17 +333,7 @@ namespace Ximura.Collections
         /// </summary>
         protected virtual void ClearInternal()
         {
-            try
-            {
-                //WorldStop();
-
-                throw new NotImplementedException();
-
-            }
-            finally
-            {
-                //WorldRelease();
-            }
+            throw new NotImplementedException();
         }
         #endregion // ClearInternal()
 
@@ -390,7 +351,7 @@ namespace Ximura.Collections
         /// <summary>
         /// This is the current collection version.
         /// </summary>
-        public long Version
+        public int Version
         {
             get
             {
@@ -400,7 +361,7 @@ namespace Ximura.Collections
         }
         #endregion // Version
         #region VersionCheck(long version)
-        private bool VersionCheck(long version)
+        private bool VersionCheck(int version)
         {
             return mVersion == version;
         }
