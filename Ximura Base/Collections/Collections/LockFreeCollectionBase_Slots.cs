@@ -49,34 +49,31 @@ namespace Ximura.Collections
         {
             #region Static methods
             /// <summary>
-            /// This is the empty vertex.
-            /// </summary>
-            public static readonly Vertex<T> Empty;
-            /// <summary>
-            /// The static constructor creates the empty vertex.
-            /// </summary>
-            static Vertex()
-            {
-                Empty = new Vertex<T>(0, default(T), 0);
-            }
-            /// <summary>
             /// This static method creates a sentinel vertex. Sentinel vertexes are vertexes that do not include data,
             /// but are used by the hash table to mark a shortcut to data sets based on their hashcode.
             /// </summary>
             /// <param name="hashCode">The hashcode.</param>
-            /// <param name="next">The ID of the next vertex in the chain (plus 1).</param>
-            /// <returns></returns>
+            /// <param name="nextIDPlus1">The ID of the next vertex in the chain (plus 1).</param>
+            /// <returns>Returns a new sentinel for the specific hash code.</returns>
             public static Vertex<T> Sentinel(int hashCode, int nextIDPlus1)
             {
-                return new Vertex<T>(hashCode, default(T), nextIDPlus1);
+                return new Vertex<T>(hashCode, nextIDPlus1);
             }
             #endregion // Static methods
+            #region Constants
+            private const int cnSentinelMaskSet = 0x40000000;
+            private const int cnSentinelMaskRemove = 0x3FFFFFFF;
+            #endregion // Constants
 
             #region HashCode
             /// <summary>
+            /// The internal hash code.
+            /// </summary>
+            private int mHashCode;
+            /// <summary>
             /// The item hashcode.
             /// </summary>
-            public int HashCode;
+            public int HashCode { get { return mHashCode & cnSentinelMaskRemove; } }
             #endregion // HashCode
             #region NextIDPlus1
             /// <summary>
@@ -95,10 +92,11 @@ namespace Ximura.Collections
             /// <summary>
             /// This constructor creates a slot as a sentinel, with only the next parameter set.
             /// </summary>
-            /// <param name="next"></param>
+            /// <param name="hashcode">The item hashcode.</param>
+            /// <param name="nextIDPlus1">The next item in the list.</param>
             public Vertex(int hashcode, int nextIDPlus1)
             {
-                HashCode = hashcode;
+                mHashCode = hashcode | cnSentinelMaskSet;
                 Value = default(T);
                 NextIDPlus1 = nextIDPlus1;
             }
@@ -107,10 +105,10 @@ namespace Ximura.Collections
             /// </summary>
             /// <param name="hashCode">The item hashcode.</param>
             /// <param name="value">The slot value.</param>
-            /// <param name="next">The next item in the list.</param>
+            /// <param name="nextIDPlus1">The next item in the list.</param>
             public Vertex(int hashCode, T value, int nextIDPlus1)
             {
-                HashCode = hashCode;
+                mHashCode = hashCode;
                 Value = value;
                 NextIDPlus1 = nextIDPlus1;
             }
@@ -123,24 +121,21 @@ namespace Ximura.Collections
             public bool IsTerminator { get { return NextIDPlus1 == 0; } }
             #endregion // IsTerminator
 
-            #region IsSentinel(EqualityComparer<T> mEqualityComparer)
+            #region IsSentinel
             /// <summary>
             /// This property identifies whether the vertex is a sentinel vertex.
             /// </summary>
-            public bool IsSentinel(EqualityComparer<T> mEqualityComparer)
-            {
-                return mEqualityComparer.Equals(default(T), Value);
-            }
+            public bool IsSentinel { get { return (mHashCode & cnSentinelMaskSet) > 0; } }
             #endregion // IsSentinel
 
             #region ToString()
             /// <summary>
             /// This override provides quick and easy debugging support.
             /// </summary>
-            /// <returns></returns>
+            /// <returns>Returns a string representation of the vertex.</returns>
             public override string ToString()
             {
-                if (IsSentinel(EqualityComparer<T>.Default))
+                if (IsSentinel)
                     return string.Format("V->{0}  H{1:X} SNTL", IsTerminator ? "END" : (NextIDPlus1 - 1).ToString(), HashCode);
                 else
                     return string.Format("V->{0}  H{1:X} = {2}", IsTerminator ? "END" : (NextIDPlus1 - 1).ToString(), HashCode, Value.ToString());
@@ -212,7 +207,7 @@ namespace Ximura.Collections
             {
                 CurrIndexPlus1 = Curr.NextIDPlus1; ;
                 Curr = Next;
-                Next = Vertex<T>.Empty;
+                Next = new Vertex<T>();
             }
             #endregion // MoveUp()
 
@@ -282,6 +277,7 @@ namespace Ximura.Collections
         /// This is the current next free position in the data collection.
         /// </summary>
         private int mLastIndex;
+
         #endregion 
 
         #region InitializeData(int capacity)
@@ -307,11 +303,11 @@ namespace Ximura.Collections
         /// This method is used internally, specifically for entering sentinel nodes.
         /// </summary>
         /// <param name="item">The item to add.</param>
-        /// <param name="hashCode">The item hasCode.</param>
+        /// <param name="hashID">The item hasCode.</param>
         /// <param name="index">The sentinel ID to start the scan.</param>
         /// <param name="allowMultiple">This property specifies whether multiple entries are allowed.</param>
         /// <returns>Returns the position of the inserted vertex, or -1 if the insertion fails.</returns>
-        protected virtual int AddInternalWithHashAndSentinel(T item, int hashCode, int index, bool allowMultiple)
+        protected virtual int AddInternalWithHashAndSentinel(bool isSentinel, T item, int hashID, int index, bool allowMultiple)
         {
 #if (PROFILING)
             int prf_start = Environment.TickCount;
@@ -325,7 +321,7 @@ namespace Ximura.Collections
                 try
                 {
                     //Find the position within the collection.
-                    if (FindAndLock(item, hashCode, index, out vWin) && !allowMultiple)
+                    if (FindAndLock(item, hashID, index, out vWin) && !allowMultiple)
                         return -1;
 #if (PROFILING)
                     prf_endfal = Environment.TickCount;
@@ -334,7 +330,10 @@ namespace Ximura.Collections
                     int insert = EmptyGet();
 
                     //insert the item in to the collection.
-                    mSlots[insert] = new Vertex<T>(hashCode, item, vWin.Curr.NextIDPlus1);
+                    if (isSentinel)
+                        mSlots[insert] = new Vertex<T>(hashID, vWin.Curr.NextIDPlus1);
+                    else
+                        mSlots[insert] = new Vertex<T>(hashID, item, vWin.Curr.NextIDPlus1);
 
                     mSlots[vWin.CurrIndexPlus1 - 1] = vWin.Insert(insert + 1);
 #if (PROFILING)
@@ -363,16 +362,16 @@ namespace Ximura.Collections
         }
         #endregion // AddInternalWithHashAndSentinel(T item, int hashCode, int index, bool allowMultiple)
 
-        #region FindAndLock(T item, int hashCode, int index, out VertexWindow<T> vWin)
+        #region FindAndLock(T item, int hashID, int index, out VertexWindow<T> vWin)
         /// <summary>
         /// This method scans the collection for the item and returns true if the item is found.
         /// </summary>
         /// <param name="item">The item to scan.</param>
-        /// <param name="hashCode">The item hash code.</param>
+        /// <param name="hashID">The item hash id. The is the bit reverse of the hashcode.</param>
         /// <param name="index">The item scan index.</param>
         /// <param name="vWin">Returns the vertex window containing the data.</param>
         /// <returns>Returns true if the item is found in the collection.</returns>
-        protected bool FindAndLock(T item, int hashCode, int index, out VertexWindow<T> vWin)
+        protected bool FindAndLock(T item, int hashID, int index, out VertexWindow<T> vWin)
         {
             int slotLocks1 = 0;
             int slotLocks2 = 0;
@@ -400,7 +399,7 @@ namespace Ximura.Collections
 #if (PROFILING)
                     hopCount++;
 #endif
-                    //If this is the last item in the list and does not contain data then exit.
+                    //If this is the last item in the list then exit..
                     if (vWin.Curr.IsTerminator)
                         return false;
 
@@ -414,13 +413,13 @@ namespace Ximura.Collections
 
                     //If the hashCode of the current item is greater than the search hashCode then exit,
                     //as we order by hashCode and have passed the item position.
-                    if (vWin.Next.HashCode > hashCode)
+                    if (vWin.Next.HashCode > hashID)
                         return false;
 
                     //OK, if the vertex is a sentinel, or the hashcodes do not match, or the objects do not match,
                     //then we continue the scan.
-                    if (vWin.Next.IsSentinel(mEqualityComparer) ||
-                        vWin.Next.HashCode != hashCode || !mEqualityComparer.Equals(item, vWin.Next.Value))
+                    if (vWin.Next.IsSentinel ||
+                        vWin.Next.HashCode != hashID || !mEqualityComparer.Equals(item, vWin.Next.Value))
                     {
                         mSlots.ItemUnlock(vWin.CurrIndexPlus1 - 1);
                         vWin.MoveUp();
@@ -460,16 +459,15 @@ namespace Ximura.Collections
         }
         #endregion // VertexWindowUnlock(VertexWindow<T> vWin)
 
-        #region Find(T item, int hashCode, int index, out VertexWindow<T> vWin)
+        #region Find(T item, int hashID, int index, out VertexWindow<T> vWin)
         /// <summary>
         /// This method scans the collection for the item and returns true if the item is found.
         /// </summary>
         /// <param name="item">The item to scan.</param>
-        /// <param name="hashCode">The item hash code.</param>
+        /// <param name="hashID">The item hash code.</param>
         /// <param name="index">The item scan index.</param>
-        /// <param name="vWin">Returns the vertex window containing the data.</param>
         /// <returns>Returns true if the item is found in the collection.</returns>
-        protected bool Find(T item, int hashCode, int index, out VertexWindow<T> vWin)
+        protected bool Find(T item, int hashID, int index)
         {
             int slotLocks1 = 0;
             int slotLocks2 = 0;
@@ -480,7 +478,7 @@ namespace Ximura.Collections
             try
             {
 #endif
-                vWin = new VertexWindow<T>();
+                VertexWindow<T> vWin = new VertexWindow<T>();
                 vWin.Locked = false;
 
                 //Lock the start index immediately.
@@ -511,11 +509,11 @@ namespace Ximura.Collections
 
                     //If the hashCode of the current item is greater than the search hashCode then exit,
                     //as we order by hashCode.
-                    if (vWin.Next.HashCode > hashCode)
+                    if (vWin.Next.HashCode > hashID)
                         return false;
 
-                    if (vWin.Next.IsSentinel(mEqualityComparer) ||
-                        vWin.Next.HashCode != hashCode || !mEqualityComparer.Equals(item, vWin.Next.Value))
+                    if (vWin.Next.IsSentinel ||
+                        vWin.Next.HashCode != hashID || !mEqualityComparer.Equals(item, vWin.Next.Value))
                     {
                         //mSlots.ItemUnlock(vWin.CurrIndexPlus1 - 1);
                         vWin.MoveUp();

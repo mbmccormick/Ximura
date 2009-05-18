@@ -38,26 +38,33 @@ namespace Ximura.Collections
         /// <summary>
         /// This variables determines whether the collection has been disposed.
         /// </summary>
-        private bool mDisposed = false;
+        private bool mDisposed;
         /// <summary>
         /// This is the equality comparer for the collection.
         /// </summary>
         protected EqualityComparer<T> mEqualityComparer;
 
-
         /// <summary>
         /// The version value is set for integer for 32bit systems.
         /// </summary>
-        protected int mVersion = int.MinValue;
+        protected int mVersion;
         /// <summary>
         /// This is the current item count.
         /// </summary>
-        protected int mCount = 0;
+        protected int mCount;
+
         /// <summary>
         /// This property determines whether the collection will allow null or default(T) values.
         /// </summary>
         private bool mAllowNullValues;
+        /// <summary>
+        /// This property specifies whether the collection accepts multiple entries of the same object.
+        /// </summary>
         private bool mAllowMultipleEntries;
+        /// <summary>
+        /// This is the current default(T) item capacity. 
+        /// </summary>
+        private int mDefaultTCount;
         #endregion
 
         #region Constructor
@@ -134,11 +141,17 @@ namespace Ximura.Collections
             if (capacity < 0)
                 throw new ArgumentOutOfRangeException("The capacity cannot be less than 0.");
 
+            mDisposed = false;
+            mCount = 0;
+            mVersion = int.MinValue;
+
             mAllowNullValues = typeof(T).IsValueType || AllowNullValues;
             mAllowMultipleEntries = AllowMultipleEntries;
 
+            mDefaultTCount = 0;
+
             InitializeBuckets(capacity);
-            InitializeData(mRecalculateThreshold);
+            InitializeData(capacity);
 
             if (collection != null)
                 collection.ForEach(i => AddInternal(i));
@@ -204,7 +217,7 @@ namespace Ximura.Collections
                     has = Environment.TickCount;
 #endif
                     //Ok, add the item to the collection.
-                    position = AddInternalWithHashAndSentinel(item, hashCode, sentinelID, mAllowMultipleEntries);
+                    position = AddInternalWithHashAndSentinel(false, item, hashCode, sentinelID, mAllowMultipleEntries);
 
                     //Have we added successfully?
                     if (position > -1)
@@ -313,8 +326,8 @@ namespace Ximura.Collections
 #if (PROFILING)
                 endhal = Environment.TickCount;
 #endif
-                VertexWindow<T> vWin = new VertexWindow<T>();
-                return Find(item, hashCode, index, out vWin);
+                
+                return Find(item, hashCode, index);
 
 #if (PROFILING)
             }

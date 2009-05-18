@@ -33,9 +33,9 @@ namespace Ximura.Collections
         #region Static Declarations
         private const int cnWordsize = 24;
         private const int cnLoMask = 0x00000001;
-        private const int cnHiMask = 0x00800000;
+        private const int cnHiMask = 0x08000000;
 
-        private const int cnLower28BitMask = 0x00FFFFFF;
+        private const int cnLowerBitMask = 0x07FFFFFF;
         private const int cnLower31BitMask = 0x7fffffff;
 
         //private const uint cnMixer1 = 0xA5A5A5A5;
@@ -58,10 +58,6 @@ namespace Ximura.Collections
         /// This is the recalculate threshold, where the system recalculates the system bucket capacity.
         /// </summary>
         private int mRecalculateThreshold;
-        /// <summary>
-        /// This is the current default(T) item capacity. 
-        /// </summary>
-        private int mDefaultTCount;
         #endregion 
         #region InitializeBuckets(int capacity)
         /// <summary>
@@ -69,15 +65,12 @@ namespace Ximura.Collections
         /// </summary>
         protected virtual void InitializeBuckets(int capacity)
         {
-            mCurrentBits = (int)(Math.Log(capacity) / elog2) + 1; ;
-            mDefaultTCount = 0;
-            mRecalculateThreshold = (int)Math.Pow(2, mCurrentBits); ;
-            BitSizeCalculate();
-            mBuckets = new ExpandableFineGrainedLockArray<int>(capacity);
+            mCurrentBits = (int)(Math.Log(capacity) / elog2) + 1;
+            mRecalculateThreshold = 2 << mCurrentBits;
+            mBuckets = new ExpandableFineGrainedLockArray<int>(mRecalculateThreshold);
 
             //Initialize the first bucket to the root sentinel vertex.
             mBuckets[0] = cnIndexData + 1;
-
         }
         #endregion // InitializeAllocation(int capacity)
 
@@ -95,7 +88,7 @@ namespace Ximura.Collections
             int recalculateThreshold = mRecalculateThreshold;
 
             int newBits = (int)(Math.Log(total) / elog2)+1;
-            int newThreshold = (int)Math.Pow(2, newBits);
+            int newThreshold = 2 << newBits;
 
             if (newBits>currentBits)
                 Interlocked.CompareExchange(ref mCurrentBits, newBits, currentBits);
@@ -156,10 +149,9 @@ namespace Ximura.Collections
                     return false;
                 }
 
-                int hashCode = mEqualityComparer.GetHashCode(item) & cnLower28BitMask;
+                int hashCode = mEqualityComparer.GetHashCode(item) & cnLowerBitMask;
 
-                //indexSentinel = GetSentinelVertexID(mCurrentBits, hashCode, canCreate);
-                indexSentinel = GetSentinelVertexIDNoRecursion(hashCode, canCreate);
+                indexSentinel = GetSentinelVertexID(hashCode, canCreate);
 
                 hashID = BitReverse(hashCode);
 
@@ -172,134 +164,15 @@ namespace Ximura.Collections
             }
 #endif
         }
-        #endregion // HashAndSentinel(T item, out int hashCode, out int indexSentinel)
-
-        #region GetSentinelVertexID(int bucketID, bool canCreate)
-        /// <summary>
-        /// The method returns the position of a specific sentinel ID based on its bucketID.
-        /// </summary>
-        /// <param name="currentBits">The number of bits we are interested in.</param>
-        /// <param name="hashCode">The hash code for the sentinel we require.</param>
-        /// <param name="canCreate">The parameter specifies whether we can create a new sentinel.</param>
-        /// <returns>Returns the vertexID of the specific sentinel, or the nearest parent ID.</returns>
-        protected virtual int GetSentinelVertexID(int currentBits, int hashCode, bool canCreate)
-        {
-            int lockSentinelWait = 0;
-            int lockSentinelCreate = 0;
-            int bucketID = 0;
-
-#if (PROFILING)
-            int start = Environment.TickCount;
-            int insert = 0;
-            int timewait2 = 0;
-            try
-            {
-#endif
-                if (currentBits == 0)
-                    return cnIndexData;
-
-                //OK, calculate the divisor, this is the number of bits that we are currently interested in for
-                //the size of the collection.
-                int divisor = 2 << (currentBits - 1);
-
-                //OK, the divisor is 0, so we will just return the initial sentinel.
-                //This will happen quite often as we recursively call the GetSentinelVertexID function.
-                if (divisor == 0) return cnIndexData;
-
-                //Ok, get the specific bucketID for the hashCode and the divisor.
-                bucketID = hashCode % divisor;
-
-                //OK, if we have got down to the bottom, just return the root sentinel.
-                if (bucketID == 0 || currentBits == 0) return cnIndexData;
-
-                //Wait if the bucket is locked. This will only happen if the sentinel is being created.
-                lockSentinelWait += mBuckets.ItemLockWait(bucketID);
-
-                //Get the sentinel slot id.
-                int sentID = mBuckets[bucketID];
-
-                //OK, we have the sentinel ID, so finish.
-                if (sentID > 0)
-                    return sentID - 1;
-
-                if (currentBits == 1)
-                    return cnIndexData;
-
-                //OK, we need to get the parent ID, as this will be the start of the insert for the sentinel vertex.
-                //This call will also create the parent sentinels if they have not been created already if we can create.
-                int parentSentID = GetSentinelVertexID(currentBits - 1, hashCode, canCreate);
-
-                if (!canCreate)
-                    //Ok, we cannot create the bucket, so we will just return the first available parent bucket.
-                    return parentSentID;
-
-#if (PROFILING)
-                insert = Environment.TickCount;
-#endif
-                //OK, we need to create the sentinel, and its parents. First we need to lock the bucket.
-                lockSentinelCreate += mBuckets.ItemLock(bucketID);
-#if (PROFILING)
-                timewait2 = Environment.TickCount - insert;
-#endif
-                try
-                {
-                    //Let's just check whether another thread has created it in the meantime.
-                    sentID = mBuckets[bucketID];
-                    if (sentID > 0)
-                        return sentID - 1;
-
-                    //OK, we need to create the sentinel vertex.
-                    int position = AddInternalWithHashAndSentinel(default(T), BitReverse(bucketID), parentSentID, false);
-
-                    if (position == -1)
-                        throw new Exception();
-
-                    //OK, set the sentinel position in the bucket.
-                    mBuckets[bucketID] = position + 1;
-
-                    //Return the position.
-                    return position;
-                }
-                finally
-                {
-                    mBuckets.ItemUnlock(bucketID);
-                }
-#if (PROFILING)
-            }
-            finally
-            {
-                Profile(ProfileAction.Time_GetSentinelVertexID, Environment.TickCount - start);
-
-                if (lockSentinelWait > 0)
-                    Profile(ProfileAction.Lock_GetSentinelWait, lockSentinelWait);
-
-                if (lockSentinelCreate > 0)
-                    Profile(ProfileAction.Lock_GetSentinelCreate, lockSentinelCreate);
-
-                Profile(ProfileAction.Time_GetSentinelVertexID_TimeWait2, timewait2);
-
-                if (insert > 0)
-                    Profile(ProfileAction.Time_GetSentinelVertexID_Insert, Environment.TickCount - insert);
-
-
-                if (lockSentinelWait > 0)
-                    ProfileHotspot(ProfileArrayType.BucketsWait, bucketID);
-
-                if (lockSentinelCreate > 0)
-                    ProfileHotspot(ProfileArrayType.BucketsCreate, bucketID);
-            }
-#endif
-        }
-        #endregion // GetSentinelVertexID(int bucketID, bool canCreate)
-
-        #region GetSentinelVertexIDNoRecursion(int bucketID, bool canCreate)
+        #endregion
+        #region GetSentinelVertexID(int hashCode, bool canCreate)
         /// <summary>
         /// The method returns the position of a specific sentinel ID based on its bucketID.
         /// </summary>
         /// <param name="hashCode">The hash code for the sentinel we require.</param>
         /// <param name="canCreate">The parameter specifies whether we can create a new sentinel.</param>
         /// <returns>Returns the vertexID of the specific sentinel, or the nearest parent ID.</returns>
-        protected virtual int GetSentinelVertexIDNoRecursion(int hashCode, bool canCreate)
+        protected virtual int GetSentinelVertexID(int hashCode, bool canCreate)
         {
             //int lockSentinelWait = 0;
             int lockSentinelCreate = 0;
@@ -307,15 +180,11 @@ namespace Ximura.Collections
             int startBits = mCurrentBits;
             int currentBits = startBits;
             int sentID = 0;
-            int bucketID =0;
+            int bucketID = 0;
 
             while (true)
             {
-                //OK, calculate the divisor, this is the number of bits that we are currently interested in for
-                //the size of the collection.
-                int divisor = 1 << (currentBits);
-                //Ok, get the specific bucketID for the hashCode and the divisor.
-                bucketID = hashCode % divisor;
+                bucketID = hashCode % (1 << (currentBits));
 
                 //Get the sentinel slot id. There is no need to check for lock as the value is atomic and will not move once
                 //it has been set, and any unnecessary recursion will be skipped in the next stage.
@@ -331,54 +200,52 @@ namespace Ximura.Collections
 
                 //OK, we have the sentinel ID, so finish.
                 //If we can create new sentinels and have looped down to the parent then continue
-                if (canCreate & currentBits<startBits)
+                if (canCreate & currentBits < startBits)
                     break;
+
                 //No, then just return the current sentinel ID.
                 return sentID - 1;
             }
 
-            int parentSentID;
-            //int parentBucketID = bucketID;
+            int parentSentID = sentID;
+            int parentBucketID = bucketID;
 
-            //Ok, let's loop up from the parent and create the child sentinels if they haven't been created anyway.
+            //Ok, let's loop up from the parent and create the parent sentinels if they haven't been created anyway.
             for (currentBits++; currentBits <= startBits; currentBits++)
             {
-                parentSentID = sentID;
-                //OK, calculate the divisor, this is the number of bits that we are currently interested in for
-                //the size of the collection.
-                int divisor = 1 << (currentBits);
-                //Ok, get the specific bucketID for the hashCode and the divisor.
-                bucketID = hashCode % divisor;
+                bucketID = hashCode % (1 << (currentBits));
 
-                //if (bucketID != parentBucketID)
-                try
-                {
-                    //OK, we need to lock the bucket
-                    lockSentinelCreate += mBuckets.ItemLock(bucketID);
+                if (bucketID != parentBucketID)
+                    try
+                    {
+                        //OK, we need to lock the bucket
+                        lockSentinelCreate += mBuckets.ItemLock(bucketID);
 
-                    //Let's just check whether another thread has created it in the meantime.
-                    sentID = mBuckets[bucketID];
-                    //Ok, it has already been set so move up to the child sentinel.
-                    if (sentID > 0)
-                        continue;
+                        //Let's just check whether another thread has created it in the meantime.
+                        sentID = mBuckets[bucketID];
 
-                    //OK, we need to create the sentinel vertex.
-                    sentID = AddInternalWithHashAndSentinel(default(T), BitReverse(bucketID), parentSentID - 1, false);
+                        //Ok, it has already been set so move up to the child sentinel.
+                        if (sentID > 0)
+                            continue;
 
-                    if (sentID == -1)
-                        throw new Exception();
-                    else
-                        sentID++;
+                        //OK, we need to create the sentinel vertex.
+                        sentID = AddInternalWithHashAndSentinel(true, default(T), BitReverse(bucketID), parentSentID - 1, false);
 
-                    //OK, set the sentinel position in the bucket.
-                    mBuckets[bucketID] = sentID;
-                }
-                finally
-                {
-                    //Unlock the bucket we have locked.
-                    mBuckets.ItemUnlock(bucketID);
-                }
+                        if (sentID == -1)
+                            throw new Exception();
+                        else
+                            sentID++;
 
+                        //OK, set the sentinel position in the bucket.
+                        mBuckets[bucketID] = sentID;
+                    }
+                    finally
+                    {
+                        //Unlock the bucket we have locked.
+                        mBuckets.ItemUnlock(bucketID);
+                    }
+
+                parentBucketID = bucketID;
             }
 
             //Ok, return the sentinel.

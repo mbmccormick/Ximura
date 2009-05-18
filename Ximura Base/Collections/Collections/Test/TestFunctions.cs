@@ -37,6 +37,10 @@ namespace Ximura.Collections
             (coll, start, count) =>
                 Enumerable.Range(start, count).ForEach(i => coll.Add(i));
 
+        public static Action<ICollection<int>, int, int> fnCollectionRemove =
+            (coll, start, count) =>
+                Enumerable.Range(start, count).ForEach(i => coll.Remove(i));
+
         public static Action<ICollection<int>, int, int> fnCollectionContains =
             (coll, start, count) =>
                 Enumerable.Range(start, count).ForEach(i => coll.Contains(i));
@@ -47,6 +51,10 @@ namespace Ximura.Collections
         public static Func<ICollection<int>, int, TimeSpan> fnTest4MAdd =
             (coll, blocks) =>
                 fnBlocksCreate(fnCollectionAdd.Curry()(coll), 0, 4000000, blocks).Execute();
+
+        public static Func<ICollection<int>, int, TimeSpan> fnTest4MRemove =
+            (coll, blocks) =>
+                fnBlocksCreate(fnCollectionRemove.Curry()(coll), 0, 4000000, blocks).Execute();
 
         public static Func<ICollection<int>, int, TimeSpan> fnTest4MContains =
             (coll, blocks) =>
