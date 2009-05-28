@@ -43,7 +43,11 @@ namespace Ximura.Collections
 
         public static Action<ICollection<int>, int, int> fnCollectionContains =
             (coll, start, count) =>
-                Enumerable.Range(start, count).ForEach(i => coll.Contains(i));
+                Enumerable.Range(start, count).ForEach(i => 
+                    {
+                        if (!coll.Contains(i))
+                            throw new IndexOutOfRangeException();
+                    });
 
         /// <summary>
         /// This test function loads a collection with 4 million records in blocks as specified by the blocks parameter.

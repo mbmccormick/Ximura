@@ -49,7 +49,7 @@ namespace Ximura.Collections
 
             while (!item.Value.IsTerminator)
             {
-                item = new KeyValuePair<int, Vertex<T>>(item.Value.NextIDPlus1 - 1, mSlots[item.Value.NextIDPlus1 - 1]);
+                item = new KeyValuePair<int, Vertex<T>>(item.Value.NextSlotIDPlus1 - 1, mSlots[item.Value.NextSlotIDPlus1 - 1]);
                 if (changeException && currentVersion != mVersion)
                     throw new InvalidOperationException("The version has changed");
                 yield return item;

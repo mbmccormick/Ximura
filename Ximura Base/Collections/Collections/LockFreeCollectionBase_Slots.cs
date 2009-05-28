@@ -29,7 +29,7 @@ namespace Ximura.Collections
 {
     public abstract partial class LockFreeCollectionBase<T>
     {
-        #region Static Declarations
+        #region Constants
         /// <summary>
         /// This is the reserved vertex position for the initial sentinel.
         /// </summary>
@@ -39,6 +39,7 @@ namespace Ximura.Collections
         /// </summary>
         private const int cnIndexEmptyQueue = 1;
         #endregion // Declarations
+
         #region Struct -> Vertex<T>
         /// <summary>
         /// This structure is used to hold the item in the collection.
@@ -52,12 +53,12 @@ namespace Ximura.Collections
             /// This static method creates a sentinel vertex. Sentinel vertexes are vertexes that do not include data,
             /// but are used by the hash table to mark a shortcut to data sets based on their hashcode.
             /// </summary>
-            /// <param name="hashCode">The hashcode.</param>
-            /// <param name="nextIDPlus1">The ID of the next vertex in the chain (plus 1).</param>
-            /// <returns>Returns a new sentinel for the specific hash code.</returns>
-            public static Vertex<T> Sentinel(int hashCode, int nextIDPlus1)
+            /// <param name="hashID">The hashID.</param>
+            /// <param name="nextSlotIDPlus1">The ID of the next vertex in the chain (plus 1).</param>
+            /// <returns>Returns a new sentinel for the specific hash ID.</returns>
+            public static Vertex<T> Sentinel(int hashID, int nextSlotIDPlus1)
             {
-                return new Vertex<T>(hashCode, nextIDPlus1);
+                return new Vertex<T>(hashID, nextSlotIDPlus1);
             }
             #endregion // Static methods
             #region Constants
@@ -65,22 +66,22 @@ namespace Ximura.Collections
             private const int cnSentinelMaskRemove = 0x3FFFFFFF;
             #endregion // Constants
 
-            #region HashCode
+            #region HashID
             /// <summary>
-            /// The internal hash code.
+            /// The internal hashid.
             /// </summary>
-            private int mHashCode;
+            private int mHashID;
             /// <summary>
-            /// The item hashcode.
+            /// The item hashid.
             /// </summary>
-            public int HashCode { get { return mHashCode & cnSentinelMaskRemove; } }
-            #endregion // HashCode
-            #region NextIDPlus1
+            public int HashID { get { return mHashID & cnSentinelMaskRemove; } }
+            #endregion
+            #region NextSlotIDPlus1
             /// <summary>
             /// The next item in the list.
             /// </summary>
-            public int NextIDPlus1;
-            #endregion // NextIDPlus1
+            public int NextSlotIDPlus1;
+            #endregion
             #region Value
             /// <summary>
             /// The slot value.
@@ -92,25 +93,25 @@ namespace Ximura.Collections
             /// <summary>
             /// This constructor creates a slot as a sentinel, with only the next parameter set.
             /// </summary>
-            /// <param name="hashcode">The item hashcode.</param>
-            /// <param name="nextIDPlus1">The next item in the list.</param>
-            public Vertex(int hashcode, int nextIDPlus1)
+            /// <param name="hashID">The item hashcode.</param>
+            /// <param name="nextSlotIDPlus1">The next item in the list.</param>
+            public Vertex(int hashID, int nextSlotIDPlus1)
             {
-                mHashCode = hashcode | cnSentinelMaskSet;
+                mHashID = hashID | cnSentinelMaskSet;
                 Value = default(T);
-                NextIDPlus1 = nextIDPlus1;
+                NextSlotIDPlus1 = nextSlotIDPlus1;
             }
             /// <summary>
             /// This constructor sets the value for the slot.
             /// </summary>
-            /// <param name="hashCode">The item hashcode.</param>
+            /// <param name="hashID">The item hashcode.</param>
             /// <param name="value">The slot value.</param>
-            /// <param name="nextIDPlus1">The next item in the list.</param>
-            public Vertex(int hashCode, T value, int nextIDPlus1)
+            /// <param name="nextSlotIDPlus1">The next item in the list.</param>
+            public Vertex(int hashID, T value, int nextSlotIDPlus1)
             {
-                mHashCode = hashCode;
+                mHashID = hashID;
                 Value = value;
-                NextIDPlus1 = nextIDPlus1;
+                NextSlotIDPlus1 = nextSlotIDPlus1;
             }
             #endregion // Constructor
 
@@ -118,14 +119,14 @@ namespace Ximura.Collections
             /// <summary>
             /// This property identifies whether the vertex is the last item in the data chain.
             /// </summary>
-            public bool IsTerminator { get { return NextIDPlus1 == 0; } }
+            public bool IsTerminator { get { return NextSlotIDPlus1 == 0; } }
             #endregion // IsTerminator
 
             #region IsSentinel
             /// <summary>
             /// This property identifies whether the vertex is a sentinel vertex.
             /// </summary>
-            public bool IsSentinel { get { return (mHashCode & cnSentinelMaskSet) > 0; } }
+            public bool IsSentinel { get { return (mHashID & cnSentinelMaskSet) > 0; } }
             #endregion // IsSentinel
 
             #region ToString()
@@ -136,9 +137,9 @@ namespace Ximura.Collections
             public override string ToString()
             {
                 if (IsSentinel)
-                    return string.Format("V->{0}  H{1:X} SNTL", IsTerminator ? "END" : (NextIDPlus1 - 1).ToString(), HashCode);
+                    return string.Format("V->{0}  H{1:X} SNTL", IsTerminator ? "END" : (NextSlotIDPlus1 - 1).ToString(), HashID);
                 else
-                    return string.Format("V->{0}  H{1:X} = {2}", IsTerminator ? "END" : (NextIDPlus1 - 1).ToString(), HashCode, Value.ToString());
+                    return string.Format("V->{0}  H{1:X} = {2}", IsTerminator ? "END" : (NextSlotIDPlus1 - 1).ToString(), HashID, Value.ToString());
             }
             #endregion // ToString()
         }
@@ -153,9 +154,9 @@ namespace Ximura.Collections
         {
             #region Public properties
             /// <summary>
-            /// The current index plus 1.
+            /// The current slot ID plus 1.
             /// </summary>
-            public int CurrIndexPlus1;
+            public int CurrSlotIDPlus1;
             /// <summary>
             /// THe current vertex.
             /// </summary>
@@ -164,25 +165,20 @@ namespace Ximura.Collections
             /// The next vertex.
             /// </summary>
             public Vertex<T> Next;
-            /// <summary>
-            /// This property identifies whether the slots are locked.
-            /// </summary>
-            public bool Locked;
             #endregion // Public properties
 
             #region Constructor
             /// <summary>
-            /// THis constructor sets all the values for the window.
+            /// This constructor sets all the values for the window.
             /// </summary>
-            /// <param name="index">The current index.</param>
+            /// <param name="slotIDPlus1">The current slotID plus 1.</param>
             /// <param name="curr">The current vertex.</param>
             /// <param name="next">The next vertex.</param>
-            public VertexWindow(int index, Vertex<T> curr, Vertex<T> next)
+            public VertexWindow(int slotIDPlus1, Vertex<T> curr, Vertex<T> next)
             {
-                CurrIndexPlus1 = index;
+                CurrSlotIDPlus1 = slotIDPlus1;
                 Curr = curr;
                 Next = next;
-                Locked = false;
             }
             #endregion // Constructor
 
@@ -190,11 +186,11 @@ namespace Ximura.Collections
             /// <summary>
             /// This method sets the current values.
             /// </summary>
-            /// <param name="indexPlus1">The vertex index plus 1.</param>
+            /// <param name="slotIDPlus1">The slotID index plus 1.</param>
             /// <param name="curr">The vertex.</param>
-            public void SetCurrent(int indexPlus1, Vertex<T> curr)
+            public void SetCurrent(int slotIDPlus1, Vertex<T> curr)
             {
-                CurrIndexPlus1 = indexPlus1;
+                CurrSlotIDPlus1 = slotIDPlus1;
                 Curr = curr;
             }
             #endregion // SetCurrent(int indexPlus1, Vertex<T> curr)
@@ -205,12 +201,11 @@ namespace Ximura.Collections
             /// </summary>
             public void MoveUp()
             {
-                CurrIndexPlus1 = Curr.NextIDPlus1; ;
+                CurrSlotIDPlus1 = Curr.NextSlotIDPlus1;
                 Curr = Next;
                 Next = new Vertex<T>();
             }
             #endregion // MoveUp()
-
             #region MoveUp(Vertex<T> next)
             /// <summary>
             /// This method moves up the next vertex to current and sets a new next vertex.
@@ -218,7 +213,7 @@ namespace Ximura.Collections
             /// <param name="next">The next vertex.</param>
             public void MoveUp(Vertex<T> next)
             {
-                CurrIndexPlus1 = Curr.NextIDPlus1;
+                CurrSlotIDPlus1 = Curr.NextSlotIDPlus1;
                 Curr = Next;
                 Next = next;
             }
@@ -231,21 +226,26 @@ namespace Ximura.Collections
             /// <returns>The new Curr vertex that skips the Next vertex.</returns>
             public Vertex<T> Snip()
             {
-                return new Vertex<T>(Curr.HashCode, Curr.Value, Next.NextIDPlus1);
+                if (Curr.IsSentinel)
+                    return Vertex<T>.Sentinel(Curr.HashID, Next.NextSlotIDPlus1);
+
+                return new Vertex<T>(Curr.HashID, Curr.Value, Next.NextSlotIDPlus1);
             }
             #endregion // Snip()
-
             #region Insert()
             /// <summary>
             /// This method returns a new vertex that removes the Next vertex in the list.
             /// </summary>
+            /// <param name="nextSlotIDPlus1">The next slotID plus 1.</param>
             /// <returns>The new Curr vertex that skips the Next vertex.</returns>
-            public Vertex<T> Insert(int nextIndexPlus1)
+            public Vertex<T> Insert(int nextSlotIDPlus1)
             {
-                return new Vertex<T>(Curr.HashCode, Curr.Value, nextIndexPlus1);
+                if (Curr.IsSentinel)
+                    return Vertex<T>.Sentinel(Curr.HashID, nextSlotIDPlus1);
+
+                return new Vertex<T>(Curr.HashID, Curr.Value, nextSlotIDPlus1);
             }
             #endregion // Snip()
-
             #region ToString()
             /// <summary>
             /// This override provides a debug friendly representation of the structure.
@@ -253,9 +253,152 @@ namespace Ximura.Collections
             /// <returns>Returns the structure value.</returns>
             public override string ToString()
             {
-                return string.Format("{0}[{1}] -> {2}[{3}]", CurrIndexPlus1 - 1, Curr, Curr.NextIDPlus1 - 1, Next);
+                return string.Format("{0}[{1}] -> {2}[{3}]", CurrSlotIDPlus1 - 1, Curr, Curr.NextSlotIDPlus1 - 1, Next);
             }
             #endregion // ToString()
+
+
+            #region SlotsInsertItem(ExpandableFineGrainedLockArray<Vertex<T>> slots, int newSlot, int hashID, T value)
+            public void SlotsInsertItem(ExpandableFineGrainedLockArray<Vertex<T>> slots, int newSlot, int hashID, T value)
+            {
+                slots.ItemLock(newSlot);
+
+                if (!Curr.IsTerminator)
+                    slots.ItemUnlock(Curr.NextSlotIDPlus1 - 1);
+
+                Next = new Vertex<T>(hashID, value, Curr.NextSlotIDPlus1);
+
+                Curr.NextSlotIDPlus1 = newSlot + 1;
+
+                slots[newSlot] = Next;
+                slots[CurrSlotIDPlus1 - 1] = Curr;
+            }
+            #endregion // InsertItem(ExpandableFineGrainedLockArray<Vertex<T>> slots, int newSlot, int hashID, T value)
+            #region SlotsInsertSentinel(ExpandableFineGrainedLockArray<Vertex<T>> slots, int newSlot, int hashID)
+            public void SlotsInsertSentinel(ExpandableFineGrainedLockArray<Vertex<T>> slots, int newSlot, int hashID)
+            {
+                slots.ItemLock(newSlot);
+
+                if (!Curr.IsTerminator)
+                    slots.ItemUnlock(Curr.NextSlotIDPlus1 - 1);
+
+                Next = Vertex<T>.Sentinel(hashID, Curr.NextSlotIDPlus1);
+
+                Curr.NextSlotIDPlus1 = newSlot + 1;
+
+                slots[newSlot] = Next;
+                slots[CurrSlotIDPlus1 - 1] = Curr;
+            }
+            #endregion // InsertSentinel(ExpandableFineGrainedLockArray<Vertex<T>> slots, int newSlot, int hashID)
+            #region SlotsUnlock(ExpandableFineGrainedLockArray<Vertex<T>> slots)
+            /// <summary>
+            /// This method provides common functionality to unlock a VertexWindow.
+            /// </summary>
+            /// <param name="mSlots">The slot data.</param>
+            public void SlotsUnlock(ExpandableFineGrainedLockArray<Vertex<T>> slots)
+            {
+                if (Curr.NextSlotIDPlus1 > 0) slots.ItemUnlock(Curr.NextSlotIDPlus1 - 1);
+                if (CurrSlotIDPlus1 > 0) slots.ItemUnlock(CurrSlotIDPlus1 - 1);
+            }
+            #endregion // Unlock(ExpandableFineGrainedLockArray<Vertex<T>> mSlots)
+            #region SlotsScanAndLock(int hashID, ExpandableFineGrainedLockArray<Vertex<T>> slots)
+            /// <summary>
+            /// This method scans through the slot data until is reaches the end of the data, or the position 
+            /// where the hashID meets a slot with a hashID that is greater than itself.
+            /// </summary>
+            /// <param name="slots">The slot collection</param>
+            /// <param name="hashID">The hashID to search for and lock.</param>
+            public int SlotsScanAndLock(ExpandableFineGrainedLockArray<Vertex<T>> slots, int hashID)
+            {
+                //If the current is the last item in the linked list then exit.
+                if (Curr.IsTerminator)
+                    return 0;
+
+                int hopCount = 0;
+
+                while (Next.HashID < hashID)
+                {
+                    hopCount++;
+
+                    //Unlock the old current item.
+                    slots.ItemUnlock(CurrSlotIDPlus1 - 1);
+
+                    CurrSlotIDPlus1 = Curr.NextSlotIDPlus1;
+
+                    //If this is the last item in the list then move up and exit.
+                    if (Next.IsTerminator)
+                    {
+                        Curr = Next;
+                        Next = new Vertex<T>();
+                        break;
+                    }
+
+                    //OK, lock the next item and move up.
+                    slots.ItemLock(Next.NextSlotIDPlus1 - 1);
+                    Curr = Next;
+                    Next = slots[Curr.NextSlotIDPlus1 - 1];
+                }
+
+                return hopCount;
+            }
+            #endregion
+            #region SlotsSetCurrentAndLock(ExpandableFineGrainedLockArray<Vertex<T>> slots, int slotID)
+            /// <summary>
+            /// This method sets the current slot and locks the position.
+            /// </summary>
+            /// <param name="slots">The slot collection.</param>
+            /// <param name="slotID">The slot ID.</param>
+            public void SlotsSetCurrentAndLock(ExpandableFineGrainedLockArray<Vertex<T>> slots, int slotID)
+            {
+                slots.ItemLock(slotID);
+                CurrSlotIDPlus1 = slotID + 1;
+                Curr = slots[slotID];
+
+                if (!Curr.IsTerminator)
+                {
+                    slots.ItemLock(Curr.NextSlotIDPlus1 - 1);
+                    Next = slots[Curr.NextSlotIDPlus1 - 1];
+                }
+                else
+                    Next = new Vertex<T>();
+            }
+            #endregion
+            #region SlotsMoveUp(ExpandableFineGrainedLockArray<Vertex<T>> slots)
+            /// <summary>
+            /// This method moves up the Next vertex to the current position.
+            /// </summary>
+            public bool SlotsMoveUp(ExpandableFineGrainedLockArray<Vertex<T>> slots)
+            {
+                if (Curr.IsTerminator)
+                    return false;
+
+                slots.ItemUnlock(CurrSlotIDPlus1 - 1);
+                CurrSlotIDPlus1 = Curr.NextSlotIDPlus1;
+                Curr = Next;
+
+                if (!Curr.IsTerminator)
+                {
+                    slots.ItemLock(Curr.NextSlotIDPlus1 - 1);
+                    Next = slots[Curr.NextSlotIDPlus1 - 1];
+                }
+                else
+                    Next = new Vertex<T>();
+
+                return true;
+            }
+            #endregion // MoveUp()
+
+            public int SlotsRemoveItem(ExpandableFineGrainedLockArray<Vertex<T>> slots)
+            {
+                int removedItem = Curr.NextSlotIDPlus1 - 1;
+
+                Curr.NextSlotIDPlus1 = Next.NextSlotIDPlus1;
+
+                slots[CurrSlotIDPlus1 - 1] = Curr;
+                slots.ItemUnlock(removedItem);
+
+                return removedItem;
+            }
         }
         #endregion // Struct -> Vertex<T>
 
@@ -298,241 +441,118 @@ namespace Ximura.Collections
         }
         #endregion // InitializeAllocation(int capacity)
 
-        #region AddInternalWithHashAndSentinel(T item, int hashCode, int index, bool allowMultiple)
+        #region EmptyGet()
         /// <summary>
-        /// This method is used internally, specifically for entering sentinel nodes.
+        /// This method returns the next free item, either from empty space, or from a free item in the collection.
         /// </summary>
-        /// <param name="item">The item to add.</param>
-        /// <param name="hashID">The item hasCode.</param>
-        /// <param name="index">The sentinel ID to start the scan.</param>
-        /// <param name="allowMultiple">This property specifies whether multiple entries are allowed.</param>
-        /// <returns>Returns the position of the inserted vertex, or -1 if the insertion fails.</returns>
-        protected virtual int AddInternalWithHashAndSentinel(bool isSentinel, T item, int hashID, int index, bool allowMultiple)
+        /// <returns>Returns the index for the next free item.</returns>
+        protected int EmptyGet()
         {
 #if (PROFILING)
-            int prf_start = Environment.TickCount;
-            int prf_endfal = 0;
-            int prf_endinsert = 0;
+            int start = Environment.TickCount;
             try
             {
 #endif
-                VertexWindow<T> vWin = new VertexWindow<T>();
+                //If there are free items, try and lock the empty sentinel, 
+                //but if already locked, just take a new item from the end of the collection.
+                while (mFreeListCount > 0 && mSlots.ItemTryLock(cnIndexEmptyQueue))
+                {
+                    try
+                    {
+                        //Get the free sentinel pointer.
+                        Vertex<T> freeSent = mSlots[cnIndexEmptyQueue];
+
+                        //If there are no items in the list then get a new item.
+                        if (freeSent.IsTerminator)
+                            break;
+
+                        //See if we can lock the free item, if not then just get a new item.
+                        int freeItem = freeSent.NextSlotIDPlus1 - 1;
+                        if (!mSlots.ItemTryLock(freeItem))
+                            break;
+
+                        //OK get the item.
+                        Vertex<T> item = mSlots[freeSent.NextSlotIDPlus1 - 1];
+
+                        //OK, remove the free item from the list and set the sentinel to the next item.
+                        mSlots[cnIndexEmptyQueue] = Vertex<T>.Sentinel(0, item.NextSlotIDPlus1);
+
+                        if (freeItem == mFreeListTail)
+                            mFreeListTail = cnIndexEmptyQueue;
+
+                        //Unlock the free item.
+                        mSlots.ItemUnlock(freeItem);
+
+                        Interlocked.Decrement(ref mFreeListCount);
+
+                        //Returns the index of the free item.
+                        return freeItem;
+                    }
+                    finally
+                    {
+                        //Unlock the empty sentinel pointer.
+                        mSlots.ItemUnlock(cnIndexEmptyQueue);
+                    }
+                }
+
+                int nextItem = Interlocked.Increment(ref mLastIndex);
+
+                if (nextItem == 0)
+                    throw new ArgumentOutOfRangeException("The list has exceeeded the capacity of the maximum integer value.");
+
+                return nextItem;
+#if (PROFILING)
+            }
+            finally
+            {
+                Profile(ProfileAction.Time_EmptyGet, Environment.TickCount - start);
+            }
+#endif
+        }
+        #endregion // EmptyGet()
+        #region EmptyAdd(int index)
+        /// <summary>
+        /// This method adds an empty item to the free list.
+        /// </summary>
+        /// <param name="index">The index of the item to add to the sentinel.</param>
+        protected void EmptyAdd(int index)
+        {
+#if (PROFILING)
+            int profilestart = Environment.TickCount;
+            try
+            {
+#endif
+                int pos = mFreeListTail;
+                while (mSlots.ItemTryLock(pos))
+                {
+                    if (pos != mFreeListTail)
+                    {
+                        mSlots.ItemUnlock(pos);
+                        pos = mFreeListTail;
+                        Threading.ThreadWait();
+                        continue;
+                    }
+                }
 
                 try
                 {
-                    //Find the position within the collection.
-                    if (FindAndLock(item, hashID, index, out vWin) && !allowMultiple)
-                        return -1;
-#if (PROFILING)
-                    prf_endfal = Environment.TickCount;
-#endif
-                    //Get a free slot in the collection.
-                    int insert = EmptyGet();
-
-                    //insert the item in to the collection.
-                    if (isSentinel)
-                        mSlots[insert] = new Vertex<T>(hashID, vWin.Curr.NextIDPlus1);
-                    else
-                        mSlots[insert] = new Vertex<T>(hashID, item, vWin.Curr.NextIDPlus1);
-
-                    mSlots[vWin.CurrIndexPlus1 - 1] = vWin.Insert(insert + 1);
-#if (PROFILING)
-                    prf_endinsert = Environment.TickCount;
-#endif
-                    return insert;
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
+                    mSlots[index] = Vertex<T>.Sentinel(0, 0);
+                    mSlots[pos] = Vertex<T>.Sentinel(0, index + 1);
+                    mFreeListTail = index;
+                    Interlocked.Increment(ref mFreeListCount);
                 }
                 finally
                 {
-                    if (vWin.Locked)
-                        VertexWindowUnlock(vWin);
+                    mSlots.ItemUnlock(pos);
                 }
 #if (PROFILING)
             }
             finally
             {
-                Profile(ProfileAction.Time_AddIntHAS, Environment.TickCount - prf_start);
-                Profile(ProfileAction.Time_AddIntHAS_FindAndLock, prf_endfal - prf_start);
-                Profile(ProfileAction.Time_AddIntHAS_Insert, prf_endinsert - prf_endfal);
+                Profile(ProfileAction.Time_EmptyAdd, Environment.TickCount - profilestart);
             }
 #endif
         }
-        #endregion // AddInternalWithHashAndSentinel(T item, int hashCode, int index, bool allowMultiple)
-
-        #region FindAndLock(T item, int hashID, int index, out VertexWindow<T> vWin)
-        /// <summary>
-        /// This method scans the collection for the item and returns true if the item is found.
-        /// </summary>
-        /// <param name="item">The item to scan.</param>
-        /// <param name="hashID">The item hash id. The is the bit reverse of the hashcode.</param>
-        /// <param name="index">The item scan index.</param>
-        /// <param name="vWin">Returns the vertex window containing the data.</param>
-        /// <returns>Returns true if the item is found in the collection.</returns>
-        protected bool FindAndLock(T item, int hashID, int index, out VertexWindow<T> vWin)
-        {
-            int slotLocks1 = 0;
-            int slotLocks2 = 0;
-
-#if (PROFILING)
-            int start = Environment.TickCount;
-            int hopCount = 0;
-            try
-            {
-#endif
-                vWin = new VertexWindow<T>();
-                vWin.Locked = true;
-
-                //Lock the start index immediately.
-                slotLocks1 = mSlots.ItemLock(index);
-#if (PROFILING)
-                hopCount++;
-                if (slotLocks1 > 0)
-                    ProfileHotspot(ProfileArrayType.Slots, index);
-#endif
-                vWin.SetCurrent(index + 1, mSlots[index]);
-
-                while (true)
-                {
-#if (PROFILING)
-                    hopCount++;
-#endif
-                    //If this is the last item in the list then exit..
-                    if (vWin.Curr.IsTerminator)
-                        return false;
-
-                    //OK, lock the next item.
-                    slotLocks2 = mSlots.ItemLock(vWin.Curr.NextIDPlus1 - 1);
-#if (PROFILING)
-                    if (slotLocks2 > 0)
-                        ProfileHotspot(ProfileArrayType.Slots, vWin.Curr.NextIDPlus1 - 1);
-#endif
-                    vWin.Next = mSlots[vWin.Curr.NextIDPlus1 - 1];
-
-                    //If the hashCode of the current item is greater than the search hashCode then exit,
-                    //as we order by hashCode and have passed the item position.
-                    if (vWin.Next.HashCode > hashID)
-                        return false;
-
-                    //OK, if the vertex is a sentinel, or the hashcodes do not match, or the objects do not match,
-                    //then we continue the scan.
-                    if (vWin.Next.IsSentinel ||
-                        vWin.Next.HashCode != hashID || !mEqualityComparer.Equals(item, vWin.Next.Value))
-                    {
-                        mSlots.ItemUnlock(vWin.CurrIndexPlus1 - 1);
-                        vWin.MoveUp();
-                        continue;
-                    }
-
-                    //OK, we have a match, so exit.
-                    break;
-                }
-
-                //Success
-                return true;
-#if (PROFILING)
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                Profile(ProfileAction.Time_FindAndLock, Environment.TickCount - start);
-                Profile(ProfileAction.Count_FindAndLockHopCount, hopCount);
-                Profile(ProfileAction.Count_FindAndLockSlotLocks, slotLocks1 + slotLocks2);
-            }
-#endif
-        }
-        #endregion // ContainsScanInternal(T item, int hashCode, int index)
-        #region VertexWindowUnlock(VertexWindow<T> vWin)
-        /// <summary>
-        /// This method provides common functionality to unlock a VertexWindow.
-        /// </summary>
-        /// <param name="vWin">The VertexWindow containing the lock data.</param>
-        protected void VertexWindowUnlock(VertexWindow<T> vWin)
-        {
-            if (vWin.Curr.NextIDPlus1 > 0) mSlots.ItemUnlock(vWin.Curr.NextIDPlus1 - 1);
-            if (vWin.CurrIndexPlus1 > 0) mSlots.ItemUnlock(vWin.CurrIndexPlus1 - 1);
-        }
-        #endregion // VertexWindowUnlock(VertexWindow<T> vWin)
-
-        #region Find(T item, int hashID, int index, out VertexWindow<T> vWin)
-        /// <summary>
-        /// This method scans the collection for the item and returns true if the item is found.
-        /// </summary>
-        /// <param name="item">The item to scan.</param>
-        /// <param name="hashID">The item hash code.</param>
-        /// <param name="index">The item scan index.</param>
-        /// <returns>Returns true if the item is found in the collection.</returns>
-        protected bool Find(T item, int hashID, int index)
-        {
-            int slotLocks1 = 0;
-            int slotLocks2 = 0;
-
-#if (PROFILING)
-            int start = Environment.TickCount;
-            int hopCount = 0;
-            try
-            {
-#endif
-                VertexWindow<T> vWin = new VertexWindow<T>();
-                vWin.Locked = false;
-
-                //Lock the start index immediately.
-                slotLocks1 = mSlots.ItemLockWait(index);
-#if (PROFILING)
-                hopCount++;
-                if (slotLocks1 > 0)
-                    ProfileHotspot(ProfileArrayType.Slots, index);
-#endif
-                vWin.SetCurrent(index + 1, mSlots[index]);
-
-                while (true)
-                {
-#if (PROFILING)
-                    hopCount++;
-#endif
-                    //If this is the last item in the list and does not contain data then exit.
-                    if (vWin.Curr.IsTerminator)
-                        return false;
-
-                    //OK, lock the next item.
-                    slotLocks2 = mSlots.ItemLockWait(vWin.Curr.NextIDPlus1 - 1);
-#if (PROFILING)
-                    if (slotLocks2 > 0)
-                        ProfileHotspot(ProfileArrayType.Slots, vWin.Curr.NextIDPlus1 - 1);
-#endif
-                    vWin.Next = mSlots[vWin.Curr.NextIDPlus1 - 1];
-
-                    //If the hashCode of the current item is greater than the search hashCode then exit,
-                    //as we order by hashCode.
-                    if (vWin.Next.HashCode > hashID)
-                        return false;
-
-                    if (vWin.Next.IsSentinel ||
-                        vWin.Next.HashCode != hashID || !mEqualityComparer.Equals(item, vWin.Next.Value))
-                    {
-                        //mSlots.ItemUnlock(vWin.CurrIndexPlus1 - 1);
-                        vWin.MoveUp();
-                        continue;
-                    }
-
-                    break;
-                }
-                return true;
-#if (PROFILING)
-            }
-            finally
-            {
-                Profile(ProfileAction.Time_FindAndLock, Environment.TickCount - start);
-                Profile(ProfileAction.Count_FindAndLockHopCount, hopCount);
-                Profile(ProfileAction.Count_FindAndLockSlotLocks, slotLocks1 + slotLocks2);
-            }
-#endif
-        }
-        #endregion // ContainsScanInternal(T item, int hashCode, int index)
+        #endregion // EmptyAdd(int index)
     }
 }

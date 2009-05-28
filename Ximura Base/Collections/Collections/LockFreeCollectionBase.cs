@@ -181,10 +181,12 @@ namespace Ximura.Collections
         /// <returns>Returns true if the addition is successful.</returns>
         protected virtual bool AddInternal(T item)
         {
-            int hashCode, sentinelID, position;
 #if (PROFILING)
+            int hopsData = 0;
             int start = Environment.TickCount;
             int has = 0;
+            int hopsSentinel = 0;
+            int hopsBucketSkip = 0;
             try
             {
 #endif
@@ -192,8 +194,9 @@ namespace Ximura.Collections
                 {
                     //Get the hash code and sentinel ID for the item.
                     //Is this a null or default value?
-                    if (!GetHashAndSentinel(item, true, out hashCode, out sentinelID))
+                    if (mEqualityComparer.Equals(item, default(T)))
                     {
+                        #region Null Checking
                         if (!mAllowNullValues)
                             throw new ArgumentNullException("Null values are not accepted in this collection.");
 
@@ -211,24 +214,109 @@ namespace Ximura.Collections
                         Interlocked.Increment(ref mCount);
                         Interlocked.Increment(ref mVersion);
                         return true;
+                        #endregion
+                    }
+
+                    //Add any required sentinels and retrieve the nearest sentinel slot ID.
+                    int hashCode = mEqualityComparer.GetHashCode(item);
+
+                    Sentinel sent = new Sentinel(hashCode, mCurrentBits, mBuckets);
+                    int hashID = sent.HashIDCalculate();
+
+                    VertexWindow<T> vWin = new VertexWindow<T>();
+
+                    int tBitsCurrent = sent.BitsCurrent;
+                    int tBitsStart = sent.BitsStart;
+                    int tBucketID = sent.BucketID;
+
+                    while (tBitsCurrent < tBitsStart)
+                    {
+                        tBitsCurrent++;
+
+                        //int newBucketID = HashCode % (1 << (tBitsCurrent));
+                        int bucketID = sent.HashCode & (int.MaxValue >> (31 - tBitsCurrent));
+
+                        if (bucketID == tBucketID)
+                            continue;
+
+                        tBucketID = bucketID;
+
+                        mBuckets.ItemLock(bucketID);
+                        //Check whether the bucket has been created, shouldn't happen but best to be safe.
+                        if (mBuckets[bucketID] > 0)
+                        {
+                            mBuckets.ItemUnlock(bucketID);
+                            continue;
+                        }
+
+                        int bucketHashID = Sentinel.BitReverse(bucketID);
+
+                        //Ok, insert the sentinel.
+                        vWin.SlotsSetCurrentAndLock(mSlots, sent.SlotID);
+
+                        //Scan for the correct position to insert the sentinel.
+                        vWin.SlotsScanAndLock(mSlots, bucketHashID);
+
+                        //Get a new slot for the sentinel.
+                        int newPosition = EmptyGet();
+
+                        //Insert the new sentinel.
+                        vWin.SlotsInsertSentinel(mSlots, newPosition, bucketHashID);
+
+                        //Ok, unlock the bucket.
+                        mBuckets[bucketID] = newPosition + 1;
+
+                        sent.SlotID = newPosition;
+                        sent.BucketIDParent = bucketID;
+
+                        vWin.SlotsUnlock(mSlots);
+                        mBuckets.ItemUnlock(bucketID);
                     }
 
 #if (PROFILING)
                     has = Environment.TickCount;
 #endif
-                    //Ok, add the item to the collection.
-                    position = AddInternalWithHashAndSentinel(false, item, hashCode, sentinelID, mAllowMultipleEntries);
+                    //Ok, let's add the data from the sentinel position.
+                    //Lock the start index and initialize the window.
+                    vWin.SlotsSetCurrentAndLock(mSlots, sent.SlotID);
 
-                    //Have we added successfully?
-                    if (position > -1)
+#if (PROFILING)
+                    hopsData = vWin.SlotsScanAndLock(mSlots, hashID);
+#else
+                    vWin.SlotsScanAndLock(mSlots, hashID);
+#endif
+                    //Ok, we need to scan for hash collisions and multiple entries.
+                    while (!vWin.Curr.IsTerminator && vWin.Next.HashID == hashID)
                     {
-                        Interlocked.Increment(ref mCount);
-                        Interlocked.Increment(ref mVersion);
-                        if (mCount > mRecalculateThreshold)
-                            BitSizeCalculate();
+                        if (!vWin.Next.IsSentinel && mEqualityComparer.Equals(item, vWin.Next.Value))
+                        {
+                            if (mAllowMultipleEntries)
+                                break;
+                            else
+                            {
+                                vWin.SlotsUnlock(mSlots);
+                                return false;
+                            }
+                        }
+
+                        vWin.SlotsMoveUp(mSlots);
+#if (PROFILING)
+                        hopsData++;
+#endif
                     }
 
-                    return position > -1;
+                    //Ok, add the data in the collection.
+                    vWin.SlotsInsertItem(mSlots, EmptyGet(), hashID, item);
+                    vWin.SlotsUnlock(mSlots);
+
+                    //Have we added successfully?
+                    Interlocked.Increment(ref mCount);
+                    Interlocked.Increment(ref mVersion);
+
+                    if (mCount > mRecalculateThreshold)
+                        BitSizeCalculate();
+
+                    return true;
                 }
                 catch (Exception ex)
                 {
@@ -238,13 +326,18 @@ namespace Ximura.Collections
             }
             finally
             {
+                Profile(ProfileAction.Count_HopData, hopsData);
+                Profile(ProfileAction.Count_HopBucketSkip, hopsBucketSkip);
+                Profile(ProfileAction.Count_HopSentinel, hopsSentinel); 
+
                 Profile(ProfileAction.Time_AddInternal, Environment.TickCount - start);
                 if (has > 0)
-                    Profile(ProfileAction.Time_AddInternalHAS, Environment.TickCount - has);
+                    Profile(ProfileAction.Time_AddInternalHAS, has - start);
             }
 #endif
         }
         #endregion // AddInternal(T item)
+
         #region RemoveInternal(T item)
         /// <summary>
         /// The method removes an item from the collection.
@@ -253,11 +346,10 @@ namespace Ximura.Collections
         /// <returns>Returns true if the removal is successful.</returns>
         protected virtual bool RemoveInternal(T item)
         {
-            int hashCode, sentinelID;
-
             //Is this a null or default value?
-            if (!GetHashAndSentinel(item, false, out hashCode, out sentinelID))
+            if (mEqualityComparer.Equals(item, default(T)))
             {
+                #region Null Check
                 if (!mAllowNullValues)
                     return false;
 
@@ -277,33 +369,46 @@ namespace Ximura.Collections
                 Interlocked.Decrement(ref mCount);
                 Interlocked.Increment(ref mVersion);
                 return true;
+                #endregion
             }
+
+            Sentinel sent = new Sentinel(mEqualityComparer.GetHashCode(item), mCurrentBits, mBuckets);
+            int hashID = sent.HashIDCalculate();
 
             VertexWindow<T> vWin = new VertexWindow<T>();
 
-            //Get the window for the item in the collection.
-            if (!FindAndLock(item, hashCode, sentinelID, out vWin))
+            //Lock the start index and initialize the window.
+            vWin.SlotsSetCurrentAndLock(mSlots, sent.SlotID);
+
+            //Ok, we need to scan for hash collisions and multiple entries.
+            while (!vWin.Curr.IsTerminator && vWin.Next.HashID == hashID)
             {
-                //OK, item cannot be found. Release the lock on the current item and leave.
-                VertexWindowUnlock(vWin);
-                return false;
+                if (!vWin.Next.IsSentinel && mEqualityComparer.Equals(item, vWin.Next.Value))
+                {
+                    //Remove the item from the linked list.
+                    int emptyPos = vWin.SlotsRemoveItem(mSlots);
+
+                    //Add the empty item for re-allocation.
+                    EmptyAdd(emptyPos);
+
+                    //Update the version and reduce the item count.
+                    Interlocked.Decrement(ref mCount);
+                    Interlocked.Increment(ref mVersion);
+
+                    mSlots.ItemUnlock(vWin.CurrSlotIDPlus1 - 1);
+                    return true;
+                }
+
+                vWin.SlotsMoveUp(mSlots);
             }
 
-            //Snip out the item.
-            mSlots[vWin.CurrIndexPlus1 - 1] = vWin.Snip();
-            //Update the version and reduce the item count.
-            Interlocked.Decrement(ref mCount);
-            Interlocked.Increment(ref mVersion);
+            vWin.SlotsUnlock(mSlots);
+            //Ok, the item cannot be found.
+            return false;
 
-            //Release the parent lock so scans on other threads can continue.
-            VertexWindowUnlock(vWin);
-
-            //Add the index to the empty item for re-allocation.
-            EmptyAdd(vWin.Curr.NextIDPlus1 - 1);
-
-            return true;
         }
         #endregion // RemoveInternal(T item)
+
         #region ContainsInternal(T item)
         /// <summary>
         /// This method checks whether the item exists in the collection.
@@ -312,27 +417,62 @@ namespace Ximura.Collections
         /// <returns>Returns true if the item is in the collection.</returns>
         protected virtual bool ContainsInternal(T item)
         {
+
 #if (PROFILING)
+            int hopCount = 0;
             int start = Environment.TickCount;
             int endhal = 0;
+
             try
             {
 #endif
-                int hashCode, index;
                 //Is this a null or default value?
-                if (!GetHashAndSentinel(item, false, out hashCode, out index))
+                if (mEqualityComparer.Equals(item, default(T)))
                     return mAllowNullValues ? mDefaultTCount > 0 : false;
+
+                Sentinel sent = new Sentinel(mEqualityComparer.GetHashCode(item), mCurrentBits, mBuckets);
+                int hashID = sent.HashIDCalculate();
 
 #if (PROFILING)
                 endhal = Environment.TickCount;
 #endif
-                
-                return Find(item, hashCode, index);
+                VertexWindow<T> vWin = new VertexWindow<T>();
+                //Ok, let's add the data from the sentinel position.
+                //Lock the start index and initialize the window.
+                vWin.SlotsSetCurrentAndLock(mSlots, sent.SlotID);
+
+                //Ok, find the first instance of the hashID.
+#if (PROFILING)
+                hopCount = vWin.SlotsScanAndLock(mSlots, hashID);
+#else
+                vWin.SlotsScanAndLock(mSlots, hashID);
+#endif
+
+                //Ok, we need to scan for hash collisions and multiple entries.
+                while (!vWin.Curr.IsTerminator && vWin.Next.HashID == hashID)
+                {
+                    if (!vWin.Next.IsSentinel && mEqualityComparer.Equals(item, vWin.Next.Value))
+                    {
+                        vWin.SlotsUnlock(mSlots);
+                        return true;
+                    }
+
+                    vWin.SlotsMoveUp(mSlots);
+#if (PROFILING)
+                    hopCount++;
+#endif
+                }
+
+                vWin.SlotsUnlock(mSlots);
+                return false;
 
 #if (PROFILING)
             }
             finally
             {
+                Profile(ProfileAction.Time_FindAndLock, Environment.TickCount - start);
+                Profile(ProfileAction.Count_FindAndLockHopCount, hopCount);
+                //Profile(ProfileAction.Count_FindAndLockSlotLocks, slotLocks1 + slotLocks2);
                 Profile(ProfileAction.Time_ContainsTot, Environment.TickCount - start);
                 Profile(ProfileAction.Time_ContainsHAL, endhal - start);
             }
@@ -346,7 +486,10 @@ namespace Ximura.Collections
         /// </summary>
         protected virtual void ClearInternal()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+
+            mCount = 0;
+            Interlocked.Increment(ref mVersion);
         }
         #endregion // ClearInternal()
 

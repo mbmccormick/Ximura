@@ -215,9 +215,7 @@
     <Compile Include="Collections\Collections\LockFreeCollectionBase.cs" />
     <Compile Include="Collections\Collections\LockFreeCollectionBase_Slots.cs" />
     <Compile Include="Collections\Collections\LockFreeCollectionBase_Debug.cs" />
-    <Compile Include="Collections\Collections\LockFreeCollectionBase_Empty.cs" />
     <Compile Include="Collections\Collections\LockFreeCollectionBase_Enumeration.cs" />
-    <Compile Include="Collections\Collections\LockFreeCollectionBase_Debug_Profiling.cs" />
     <Compile Include="Collections\Collections\LockFreeCollectionBase_Buckets.cs" />
     <Compile Include="Collections\Collections\LockFreeDictionary.cs" />
     <Compile Include="Collections\Collections\LockFreeHashSet.cs" />
@@ -267,6 +265,8 @@
     <Compile Include="Component\ElementSite.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Helper\BitHelper.cs" />
+    <Compile Include="Helper\BitMask.cs" />
     <Compile Include="Helper\Linq\Linq_Compare.cs" />
     <Compile Include="Helper\Linq\Linq_Convert.cs" />
     <Compile Include="Helper\Linq\Linq_Currying.cs" />

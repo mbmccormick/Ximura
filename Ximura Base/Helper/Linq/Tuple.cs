@@ -42,7 +42,6 @@ namespace Ximura.Helper
         private T1 mItem1;
         private T2 mItem2;
         #endregion // Declarations
-
         #region Constructor
         /// <summary>
         /// This is the default constructor.
@@ -56,16 +55,24 @@ namespace Ximura.Helper
         }
         #endregion // Constructor
 
-        #region ToString()
+        #region Item1
         /// <summary>
-        /// This override provides an easy way to view the contents of the Tuple.
+        /// The first item.
         /// </summary>
-        /// <returns>Returns a string representation of the Tuple.</returns>
-        public override string ToString()
+        public T1 Item1
         {
-            return string.Format("Tuple:[{0}]-[{1}]",mItem1.ToString(),mItem2.ToString());
+            get { return mItem1; }
         }
-        #endregion // ToString()
+        #endregion // Item1
+        #region Item2
+        /// <summary>
+        /// The second item.
+        /// </summary>
+        public T2 Item2
+        {
+            get { return mItem2; }
+        }
+        #endregion // Item2
 
         #region Equals(object obj)
         /// <summary>
@@ -89,7 +96,6 @@ namespace Ximura.Helper
             return this==other;
         }
         #endregion // Equals(Tuple<T1, T2> other)
-
         #region Operator !=
         /// <summary>
         /// This is the inequality operator for the Tuples.
@@ -131,25 +137,16 @@ namespace Ximura.Helper
             return result;
         }
         #endregion // GetHashCode()
-
-        #region Item1
+        #region ToString()
         /// <summary>
-        /// The first item.
+        /// This override provides an easy way to view the contents of the Tuple.
         /// </summary>
-        public T1 Item1
+        /// <returns>Returns a string representation of the Tuple.</returns>
+        public override string ToString()
         {
-            get { return mItem1; }
+            return string.Format("Tuple:[{0}]-[{1}]",mItem1.ToString(),mItem2.ToString());
         }
-        #endregion // Item1
-        #region Item2
-        /// <summary>
-        /// The second item.
-        /// </summary>
-        public T2 Item2
-        {
-            get { return mItem2; }
-        }
-        #endregion // Item2
+        #endregion // ToString()
     }
 }
 
