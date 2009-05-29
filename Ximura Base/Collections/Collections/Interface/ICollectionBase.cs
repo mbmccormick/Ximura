@@ -27,12 +27,24 @@ using Ximura.Helper;
 #endregion // using
 namespace Ximura.Collections
 {
-    public interface ILockable
+    /// <summary>
+    /// This interface is shared by both the IQueue and IStack interfaces and contains shared functionality.
+    /// </summary>
+    /// <typeparam name="T">The collection item type.</typeparam>
+    public interface ICollectionBase<T> : IEnumerable<T>, ICollection
     {
-        bool IsLocked();
-        void Lock();
-        void LockWait();
-        bool TryLock();
-        void Unlock();
+        /// <summary>
+        /// The collection item count.
+        /// </summary>
+        int Count { get; }
+
+        void Clear();
+        bool Contains(T item);
+        void CopyTo(T[] array, int arrayIndex);
+
+        T[] ToArray();
+        void TrimExcess();
+
+        T Peek();
     }
 }

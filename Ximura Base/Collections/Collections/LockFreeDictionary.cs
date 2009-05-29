@@ -26,17 +26,50 @@ using Ximura.Helper;
 #endregion // using
 namespace Ximura.Collections
 {
-    public class LockFreeDictionary<TKey, TValue> : LockFreeCollectionBase<KeyValuePair<TKey, TValue>>, IDictionary<TKey, TValue>
+    public partial class LockFreeDictionary<TKey, TValue> : LockFreeCollectionBase<KeyValuePair<TKey, TValue>>, IDictionary<TKey, TValue>
     {
+        #region Constructor
         public LockFreeDictionary()
-            : base(null, 0, null)
+            : base(null, 0, null, false)
         {
 
         }
+        #endregion // Constructor
 
-        #region IDictionary<TKey,TValue> Members
 
+        #region Add
         public void Add(TKey key, TValue value)
+        {
+            Add(new KeyValuePair<TKey, TValue>(key, value));
+        }
+
+        public void Add(KeyValuePair<TKey, TValue> item)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion // Add
+
+
+        public bool TryGetValue(TKey key, out TValue value)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public TValue this[TKey key]
+        {
+            get
+            {
+                throw new KeyNotFoundException();
+            }
+            set
+            {
+                Add(key, value);
+            }
+        }
+
+        #region Contains
+        public bool Contains(KeyValuePair<TKey, TValue> item)
         {
             throw new NotImplementedException();
         }
@@ -45,96 +78,57 @@ namespace Ximura.Collections
         {
             throw new NotImplementedException();
         }
+        #endregion // Contains
 
-        public ICollection<TKey> Keys
+
+        #region Remove
+        public bool Remove(KeyValuePair<TKey, TValue> item)
         {
-            get { throw new NotImplementedException(); }
+            if (item.Key == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            return false;
         }
 
         public bool Remove(TKey key)
         {
-            throw new NotImplementedException();
-        }
-
-        public bool TryGetValue(TKey key, out TValue value)
-        {
-            throw new NotImplementedException();
-        }
-
-        public ICollection<TValue> Values
-        {
-            get { throw new NotImplementedException(); }
-        }
-
-        public TValue this[TKey key]
-        {
-            get
+            if (key == null)
             {
-                throw new NotImplementedException();
+                throw new ArgumentNullException();
             }
-            set
-            {
-                throw new NotImplementedException();
-            }
+
+
+            return false;
         }
+        #endregion // Remove
 
-        #endregion
 
-        #region ICollection<KeyValuePair<TKey,TValue>> Members
-
-        public void Add(KeyValuePair<TKey, TValue> item)
-        {
-            throw new NotImplementedException();
-        }
-
+        #region Clear()
         public void Clear()
         {
-            throw new NotImplementedException();
+            DisposedCheck();
+            ClearInternal();
         }
+        #endregion // Clear()
 
-        public bool Contains(KeyValuePair<TKey, TValue> item)
-        {
-            throw new NotImplementedException();
-        }
 
-        public void CopyTo(KeyValuePair<TKey, TValue>[] array, int arrayIndex)
-        {
-            throw new NotImplementedException();
-        }
-
+        #region Count
         public int Count
         {
-            get { throw new NotImplementedException(); }
+            get { return CountInternal; }
         }
+        #endregion // Count
 
+
+        #region IsReadOnly
         public bool IsReadOnly
         {
-            get { throw new NotImplementedException(); }
+            get { return false; }
         }
+        #endregion // IsReadOnly
 
-        public bool Remove(KeyValuePair<TKey, TValue> item)
-        {
-            throw new NotImplementedException();
-        }
 
-        #endregion
-
-        #region IEnumerable<KeyValuePair<TKey,TValue>> Members
-
-        public IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator()
-        {
-            throw new NotImplementedException();
-        }
-
-        #endregion
-
-        #region IEnumerable Members
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            throw new NotImplementedException();
-        }
-
-        #endregion
     }
 }

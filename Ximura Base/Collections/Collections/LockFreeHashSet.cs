@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.Serialization;
+using System.Security.Permissions;
 using System.Threading;
 
 using Ximura;
@@ -26,6 +27,11 @@ using Ximura.Helper;
 #endregion // using
 namespace Ximura.Collections
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="T">The collection item type.</typeparam>
+    [DebuggerDisplay("Count = {Count}"), HostProtection(SecurityAction.LinkDemand, MayLeakOnAbort = true)]
     public class LockFreeHashSet<T> : LockFreeCollection<T>
     {
         #region Constructors

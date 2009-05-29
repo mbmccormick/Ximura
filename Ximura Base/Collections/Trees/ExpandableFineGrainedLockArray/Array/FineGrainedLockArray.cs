@@ -30,7 +30,7 @@ namespace Ximura.Collections
     /// This fine grained lock array is an array with the added ability to mark individual items as locked.
     /// </summary>
     /// <typeparam name="T">The array type.</typeparam>
-    public class FineGrainedLockArray<T>
+    public class FineGrainedLockArray<T> : IFineGrainedLockArray<T>
     {
         #region Declarations
         private T[] mArray;
@@ -39,7 +39,6 @@ namespace Ximura.Collections
         private int mCapacity;
         private int mOffset;
         #endregion // Declarations
-
         #region Constructor
         /// <summary>
         /// This constructor sets the array capacity and the array offset integer.
@@ -63,10 +62,10 @@ namespace Ximura.Collections
 
         #region this[int index]
         /// <summary>
-        /// 
+        /// This is the indexer for the array.
         /// </summary>
-        /// <param name="index"></param>
-        /// <returns></returns>
+        /// <param name="index">The index position.</param>
+        /// <returns>Returns the object corresponding to the index position.</returns>
         public T this[int index]
         {
             get

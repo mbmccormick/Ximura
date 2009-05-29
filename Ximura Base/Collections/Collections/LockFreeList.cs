@@ -27,6 +27,10 @@ using Ximura.Helper;
 #endregion // using
 namespace Ximura.Collections
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="T">The collection item type.</typeparam>
     [DebuggerDisplay("Count = {Count}"), HostProtection(SecurityAction.LinkDemand, MayLeakOnAbort = true)]
     public class LockFreeList<T> : LockFreeCollection<T>, ICollection<T>
     {
@@ -73,7 +77,7 @@ namespace Ximura.Collections
         /// <summary>
         /// The list allows multiple entries.
         /// </summary>
-        protected override bool AllowMultipleEntries
+        protected override bool CollectionAllowMultipleEntries
         {
             get
             {

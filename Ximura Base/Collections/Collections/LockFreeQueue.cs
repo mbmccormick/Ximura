@@ -29,7 +29,7 @@ namespace Ximura.Collections
     public class LockFreeQueue<T> : LockFreeCollectionBase<T>, IQueue<T>
     {
         public LockFreeQueue()
-            : base(null, 0, null)
+            : base(null, 0, null, false)
         {
 
         }

@@ -257,9 +257,8 @@ namespace Ximura.Collections
             }
             #endregion // ToString()
 
-
-            #region SlotsInsertItem(ExpandableFineGrainedLockArray<Vertex<T>> slots, int newSlot, int hashID, T value)
-            public void SlotsInsertItem(ExpandableFineGrainedLockArray<Vertex<T>> slots, int newSlot, int hashID, T value)
+            #region SlotsInsertItem
+            public void SlotsInsertItem(IFineGrainedLockArray<Vertex<T>> slots, int newSlot, int hashID, T value)
             {
                 slots.ItemLock(newSlot);
 
@@ -273,9 +272,9 @@ namespace Ximura.Collections
                 slots[newSlot] = Next;
                 slots[CurrSlotIDPlus1 - 1] = Curr;
             }
-            #endregion // InsertItem(ExpandableFineGrainedLockArray<Vertex<T>> slots, int newSlot, int hashID, T value)
-            #region SlotsInsertSentinel(ExpandableFineGrainedLockArray<Vertex<T>> slots, int newSlot, int hashID)
-            public void SlotsInsertSentinel(ExpandableFineGrainedLockArray<Vertex<T>> slots, int newSlot, int hashID)
+            #endregion
+            #region SlotsInsertSentinel
+            public void SlotsInsertSentinel(IFineGrainedLockArray<Vertex<T>> slots, int newSlot, int hashID)
             {
                 slots.ItemLock(newSlot);
 
@@ -290,25 +289,25 @@ namespace Ximura.Collections
                 slots[CurrSlotIDPlus1 - 1] = Curr;
             }
             #endregion // InsertSentinel(ExpandableFineGrainedLockArray<Vertex<T>> slots, int newSlot, int hashID)
-            #region SlotsUnlock(ExpandableFineGrainedLockArray<Vertex<T>> slots)
+            #region SlotsUnlock
             /// <summary>
             /// This method provides common functionality to unlock a VertexWindow.
             /// </summary>
             /// <param name="mSlots">The slot data.</param>
-            public void SlotsUnlock(ExpandableFineGrainedLockArray<Vertex<T>> slots)
+            public void SlotsUnlock(IFineGrainedLockArray<Vertex<T>> slots)
             {
                 if (Curr.NextSlotIDPlus1 > 0) slots.ItemUnlock(Curr.NextSlotIDPlus1 - 1);
                 if (CurrSlotIDPlus1 > 0) slots.ItemUnlock(CurrSlotIDPlus1 - 1);
             }
-            #endregion // Unlock(ExpandableFineGrainedLockArray<Vertex<T>> mSlots)
-            #region SlotsScanAndLock(int hashID, ExpandableFineGrainedLockArray<Vertex<T>> slots)
+            #endregion
+            #region SlotsScanAndLock
             /// <summary>
             /// This method scans through the slot data until is reaches the end of the data, or the position 
             /// where the hashID meets a slot with a hashID that is greater than itself.
             /// </summary>
             /// <param name="slots">The slot collection</param>
             /// <param name="hashID">The hashID to search for and lock.</param>
-            public int SlotsScanAndLock(ExpandableFineGrainedLockArray<Vertex<T>> slots, int hashID)
+            public int SlotsScanAndLock(IFineGrainedLockArray<Vertex<T>> slots, int hashID)
             {
                 //If the current is the last item in the linked list then exit.
                 if (Curr.IsTerminator)
@@ -342,13 +341,13 @@ namespace Ximura.Collections
                 return hopCount;
             }
             #endregion
-            #region SlotsSetCurrentAndLock(ExpandableFineGrainedLockArray<Vertex<T>> slots, int slotID)
+            #region SlotsSetCurrentAndLock
             /// <summary>
             /// This method sets the current slot and locks the position.
             /// </summary>
             /// <param name="slots">The slot collection.</param>
             /// <param name="slotID">The slot ID.</param>
-            public void SlotsSetCurrentAndLock(ExpandableFineGrainedLockArray<Vertex<T>> slots, int slotID)
+            public void SlotsSetCurrentAndLock(IFineGrainedLockArray<Vertex<T>> slots, int slotID)
             {
                 slots.ItemLock(slotID);
                 CurrSlotIDPlus1 = slotID + 1;
@@ -363,11 +362,11 @@ namespace Ximura.Collections
                     Next = new Vertex<T>();
             }
             #endregion
-            #region SlotsMoveUp(ExpandableFineGrainedLockArray<Vertex<T>> slots)
+            #region SlotsMoveUp
             /// <summary>
             /// This method moves up the Next vertex to the current position.
             /// </summary>
-            public bool SlotsMoveUp(ExpandableFineGrainedLockArray<Vertex<T>> slots)
+            public bool SlotsMoveUp(IFineGrainedLockArray<Vertex<T>> slots)
             {
                 if (Curr.IsTerminator)
                     return false;
@@ -388,7 +387,8 @@ namespace Ximura.Collections
             }
             #endregion // MoveUp()
 
-            public int SlotsRemoveItem(ExpandableFineGrainedLockArray<Vertex<T>> slots)
+            #region SlotsRemoveItem
+            public int SlotsRemoveItem(IFineGrainedLockArray<Vertex<T>> slots)
             {
                 int removedItem = Curr.NextSlotIDPlus1 - 1;
 
@@ -399,6 +399,30 @@ namespace Ximura.Collections
 
                 return removedItem;
             }
+            #endregion // SlotsRemoveItem
+
+            #region SlotsSnip
+            public int SlotsSnip(IFineGrainedLockArray<Vertex<T>> slots)
+            {
+                int removedItem = Curr.NextSlotIDPlus1 - 1;
+
+                Curr.NextSlotIDPlus1 = Next.NextSlotIDPlus1;
+
+                slots[CurrSlotIDPlus1 - 1] = Curr;
+                slots.ItemUnlock(removedItem);
+
+                if (!Curr.IsTerminator)
+                {
+                    slots.ItemLock(Curr.NextSlotIDPlus1 - 1);
+                    Next = slots[Curr.NextSlotIDPlus1 - 1];
+                }
+                else
+                    Next = new Vertex<T>();
+
+                return removedItem;
+            }
+            #endregion // SlotsRemoveItem
+
         }
         #endregion // Struct -> Vertex<T>
 
@@ -406,7 +430,7 @@ namespace Ximura.Collections
         /// <summary>
         /// This collection holds the data.
         /// </summary>
-        private ExpandableFineGrainedLockArray<Vertex<T>> mSlots;
+        private IFineGrainedLockArray<Vertex<T>> mSlots;
 
         /// <summary>
         /// This is the free data queue tail position.
@@ -423,11 +447,11 @@ namespace Ximura.Collections
 
         #endregion 
 
-        #region InitializeData(int capacity)
+        #region InitializeData(int capacity, bool isFixedSize)
         /// <summary>
         /// This method initializes the data allocation.
         /// </summary>
-        protected virtual void InitializeData(int capacity)
+        protected virtual void InitializeData(int capacity, bool isFixedSize)
         {
             mSlots = new ExpandableFineGrainedLockArray<Vertex<T>>(capacity);
 

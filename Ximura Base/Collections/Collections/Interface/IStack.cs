@@ -28,20 +28,20 @@ using Ximura.Helper;
 namespace Ximura.Collections
 {
     /// <summary>
-    /// This interface is implemented by a queue.
+    /// This interface is implemented by a stack.
     /// </summary>
     /// <typeparam name="T">The collection item type.</typeparam>
-    public interface IQueue<T> : ICollectionBase<T>
+    public interface IStack<T> : ICollectionBase<T>
     {
         /// <summary>
-        /// Removes an item from the head of the queue.
+        /// This method pushes an item on to the stack.
         /// </summary>
-        /// <returns>Returns the item at the head of the queue.</returns>
-        T Dequeue();
+        /// <param name="item">The item to add to the stack.</param>
+        void Push(T item);
         /// <summary>
-        /// This method adds an item to the tail of the queue.
+        /// This method removes the top item from the stack.
         /// </summary>
-        /// <param name="item">The item to add to the queue.</param>
-        void Enqueue(T item);
+        /// <returns>Returns the top item on the stack.</returns>
+        T Pop();
     }
 }

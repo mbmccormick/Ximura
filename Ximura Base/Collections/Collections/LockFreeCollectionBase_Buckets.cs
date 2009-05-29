@@ -38,62 +38,6 @@ namespace Ximura.Collections
 
         private const double elog2 = 0.693147181;
         #endregion // Declarations
-        #region Declarations
-        /// <summary>
-        /// This array holds the lookup hashtable.
-        /// </summary>
-        private ExpandableFineGrainedLockArray<int> mBuckets;
-        /// <summary>
-        /// This value holds the current number of bits being supported by the collection.
-        /// </summary>
-        private int mCurrentBits;
-        /// <summary>
-        /// This is the recalculate threshold, where the system recalculates the system bucket capacity.
-        /// </summary>
-        private int mRecalculateThreshold;
-        #endregion 
-        #region InitializeBuckets(int capacity)
-        /// <summary>
-        /// This method initializes the data allocation.
-        /// </summary>
-        protected virtual void InitializeBuckets(int capacity)
-        {
-            mCurrentBits = (int)(Math.Log(capacity) / elog2);
-            mRecalculateThreshold = 2 << mCurrentBits;
-            mBuckets = new ExpandableFineGrainedLockArray<int>(mRecalculateThreshold);
-
-            //Initialize the first bucket to the root sentinel vertex.
-            mBuckets[0] = cnIndexData + 1;
-        }
-        #endregion // InitializeAllocation(int capacity)
-
-        #region BitSizeCalculate()
-        /// <summary>
-        /// This method calculates the current number of bits needed to support the current data.
-        /// </summary>
-        protected virtual void BitSizeCalculate()
-        {
-#if (PROFILING)
-            int start = Environment.TickCount;
-#endif
-            int total = mCount;
-            int currentBits = mCurrentBits;
-            int recalculateThreshold = mRecalculateThreshold;
-
-            int newBits = (int)(Math.Log(total) / elog2);
-            int newThreshold = 2 << newBits;
-
-            if (newBits>currentBits)
-                Interlocked.CompareExchange(ref mCurrentBits, newBits, currentBits);
-
-            if (newThreshold>recalculateThreshold)
-                Interlocked.CompareExchange(ref mRecalculateThreshold, newThreshold, recalculateThreshold);
-
-#if (PROFILING)
-            Profile(ProfileAction.Time_BitSizeCalculate, Environment.TickCount - start);
-#endif
-        }
-        #endregion
 
         #region Struct -> Sentinel
         /// <summary>
@@ -112,11 +56,11 @@ namespace Ximura.Collections
             /// </summary>
             /// <param name="hashCode">The item hashcode.</param>
             /// <param name="bits">The current number of bits for the collection.</param>
-            public Sentinel(int hashCode, int bits, ExpandableFineGrainedLockArray<int> buckets)
+            public Sentinel(int hashCode, int bits, IFineGrainedLockArray<int> buckets)
             {
                 HashCode = hashCode & cnLowerBitMask;
                 BitsStart = bits;
-                BitsCurrent = bits + 1;
+                BitsCurrent = bits;// +1;
                 BucketIDParent = -1;
 
                 //BucketID = HashCode % (1 << (BitsCurrent));
@@ -124,31 +68,24 @@ namespace Ximura.Collections
 
                 SlotID = 0;
 
-                int tBitsCurrent = BitsCurrent;
-                int tBitsStart = BitsStart;
-                int tBucketID = -1;
-
-                while (tBitsCurrent >= 0)
+                while (BitsCurrent >= 0)
                 {
-                    //int newBucketID = HashCode % (1 << (tBitsCurrent));
-                    int newBucketID = HashCode & (int.MaxValue >> (31-tBitsCurrent));
-
-                    if (newBucketID != tBucketID)
+                    if (BucketID != BucketIDParent)
                     {
-                        tBucketID = newBucketID;
+                        BucketIDParent = BucketID;
 
-                        int position = buckets[tBucketID];
+                        int position = buckets[BucketID];
                         if (position > 0)
                         {
                             //Ok, we have reached the limit of the sentinels we need to create.
-                            BitsCurrent = tBitsCurrent;
-                            BucketIDParent = tBucketID;
                             SlotID = position - 1;
                             break;
                         }
                     }
 
-                    tBitsCurrent--;
+                    BitsCurrent--;
+
+                    BucketID = HashCode & (int.MaxValue >> (31 - BitsCurrent));
                 }
             }
             #endregion // Constructor
@@ -229,7 +166,6 @@ namespace Ximura.Collections
                 return result;
             }
             #endregion // BitReverse(int data, int wordSize)
-
 #if (DEBUG)
             #region DebugBuckets
             /// <summary>
@@ -264,5 +200,62 @@ namespace Ximura.Collections
 #endif
         }
         #endregion // Sentinel
+
+        #region Declarations
+        /// <summary>
+        /// This array holds the lookup hashtable.
+        /// </summary>
+        //private ExpandableFineGrainedLockArray<int> mBuckets;
+        private IFineGrainedLockArray<int> mBuckets;
+        /// <summary>
+        /// This value holds the current number of bits being supported by the collection.
+        /// </summary>
+        private int mCurrentBits;
+        /// <summary>
+        /// This is the recalculate threshold, where the system recalculates the system bucket capacity.
+        /// </summary>
+        private int mRecalculateThreshold;
+        #endregion 
+        #region InitializeBuckets(int capacity, bool isFixedSize)
+        /// <summary>
+        /// This method initializes the data allocation.
+        /// </summary>
+        protected virtual void InitializeBuckets(int capacity, bool isFixedSize)
+        {
+            mCurrentBits = (int)(Math.Log(capacity) / elog2);
+            mRecalculateThreshold = 2 << mCurrentBits;
+            mBuckets = new ExpandableFineGrainedLockArray<int>(mRecalculateThreshold);
+
+            //Initialize the first bucket to the root sentinel vertex.
+            mBuckets[0] = cnIndexData + 1;
+        }
+        #endregion // InitializeAllocation(int capacity)
+        #region BitSizeCalculate()
+        /// <summary>
+        /// This method calculates the current number of bits needed to support the current data.
+        /// </summary>
+        protected virtual void BitSizeCalculate()
+        {
+#if (PROFILING)
+            int start = Environment.TickCount;
+#endif
+            int total = mCount;
+            int currentBits = mCurrentBits;
+            int recalculateThreshold = mRecalculateThreshold;
+
+            int newBits = (int)(Math.Log(total) / elog2);
+            int newThreshold = 2 << newBits;
+
+            if (newBits>currentBits)
+                Interlocked.CompareExchange(ref mCurrentBits, newBits, currentBits);
+
+            if (newThreshold>recalculateThreshold)
+                Interlocked.CompareExchange(ref mRecalculateThreshold, newThreshold, recalculateThreshold);
+
+#if (PROFILING)
+            Profile(ProfileAction.Time_BitSizeCalculate, Environment.TickCount - start);
+#endif
+        }
+        #endregion
     }
 }

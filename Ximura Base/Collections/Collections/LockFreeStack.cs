@@ -28,7 +28,7 @@ namespace Ximura.Collections
 {
     public class LockFreeStack<T> : LockFreeCollectionBase<T>, IStack<T>
     {
-        public LockFreeStack():base(null, 0, null)
+        public LockFreeStack():base(null, 0, null, false)
         {
 
         }

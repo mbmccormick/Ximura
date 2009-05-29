@@ -50,8 +50,10 @@ namespace Ximura.Collections
             while (!item.Value.IsTerminator)
             {
                 item = new KeyValuePair<int, Vertex<T>>(item.Value.NextSlotIDPlus1 - 1, mSlots[item.Value.NextSlotIDPlus1 - 1]);
+
                 if (changeException && currentVersion != mVersion)
                     throw new InvalidOperationException("The version has changed");
+
                 yield return item;
             }
         }
@@ -92,7 +94,7 @@ namespace Ximura.Collections
         /// <param name="arrayIndex">The array index where the class should start copying to.</param>
         protected virtual void CopyToInternal(T[] array, int arrayIndex)
         {
-            throw new NotImplementedException();
+            this.ForIndex((i, d) => array[i + arrayIndex] = d);
         }
         #endregion // CopyTo(T[] array, int arrayIndex)
     }

@@ -32,14 +32,14 @@ namespace Ximura.Collections
         /// <summary>
         /// This is the default constructor. The collection will be constructed with a base capacity of 1000.
         /// </summary>
-        public LockFreeCollection() : base(null, 1000, null) { }
+        public LockFreeCollection() : base(null, 1000, null, false) { }
         /// <summary>
         /// Initializes a new instance of the LockFreeCollection<(Of <(T>)>) class
         /// </summary>
         /// <param name="collection">The values in this enumeration will be loaded in to the collection.</param>
         /// <param name="comparer">This is the comparer used to detect equality between items in the collection. 
         /// If this is set to null the default comparer for the type will be used instead./</param>
-        public LockFreeCollection(IEnumerable<T> collection, EqualityComparer<T> comparer) : base(comparer, 1000, collection) { }
+        public LockFreeCollection(IEnumerable<T> collection, EqualityComparer<T> comparer) : base(comparer, 1000, collection, false) { }
         /// <summary>
         /// Initializes a new instance of the LockFreeCollection<(Of <(T>)>) class
         /// </summary>
@@ -47,24 +47,24 @@ namespace Ximura.Collections
         /// <param name="capacity">The collection initial capacity.</param>
         /// <param name="comparer">This is the comparer used to detect equality between items in the collection. 
         /// If this is set to null the default comparer for the type will be used instead./</param>
-        public LockFreeCollection(IEnumerable<T> collection, int capacity, EqualityComparer<T> comparer) : base(comparer, capacity, collection) { }
+        public LockFreeCollection(IEnumerable<T> collection, int capacity, EqualityComparer<T> comparer) : base(comparer, capacity, collection, false) { }
         /// <summary>
         /// Initializes a new instance of the LockFreeCollection<(Of <(T>)>) class
         /// </summary>
         /// <param name="collection">The values in this enumeration will be loaded in to the collection.</param>
-        public LockFreeCollection(IEnumerable<T> collection) : base(null, 1000, collection) { }
+        public LockFreeCollection(IEnumerable<T> collection) : base(null, 1000, collection, false) { }
         /// <summary>
         /// Initializes a new instance of the LockFreeCollection<(Of <(T>)>) class
         /// </summary>
         /// <param name="capacity">The collection initial capacity.</param>
-        public LockFreeCollection(int capacity) : base(null, capacity, null) { }
+        public LockFreeCollection(int capacity) : base(null, capacity, null, false) { }
         /// <summary>
         /// Initializes a new instance of the LockFreeCollection<(Of <(T>)>) class
         /// </summary>
         /// <param name="capacity">The collection initial capacity.</param>
         /// <param name="comparer">This is the comparer used to detect equality between items in the collection. 
         /// If this is set to null the default comparer for the type will be used instead./</param>
-        public LockFreeCollection(int capacity, EqualityComparer<T> comparer) : base(comparer, capacity, null) { }
+        public LockFreeCollection(int capacity, EqualityComparer<T> comparer) : base(comparer, capacity, null, false) { }
         #endregion // Constructor
 
         #region Add(T item)
@@ -74,6 +74,7 @@ namespace Ximura.Collections
         /// <param name="item">The item to add.</param>
         public void Add(T item)
         {
+            DisposedCheck();
             AddInternal(item);
         }
         #endregion // Add(T item)
@@ -86,19 +87,10 @@ namespace Ximura.Collections
         /// <returns>Returns true if the item is successfully removed.</returns>
         public bool Remove(T item)
         {
+            DisposedCheck();
             return RemoveInternal(item);
         }
         #endregion // Remove(T item)
-
-        #region Clear()
-        /// <summary>
-        /// This method clears the collection.
-        /// </summary>
-        public void Clear()
-        {
-            ClearInternal();
-        }
-        #endregion // Clear()
 
         #region Contains(T item)
         /// <summary>
@@ -108,9 +100,21 @@ namespace Ximura.Collections
         /// <returns>Returns true if the item exists in the collection.</returns>
         public bool Contains(T item)
         {
+            DisposedCheck();
             return ContainsInternal(item);
         }
         #endregion // Contains(T item)
+
+        #region Clear()
+        /// <summary>
+        /// This method clears the collection.
+        /// </summary>
+        public void Clear()
+        {
+            DisposedCheck();
+            ClearInternal();
+        }
+        #endregion // Clear()
 
         #region CopyTo(T[] array, int arrayIndex)
         /// <summary>
@@ -120,6 +124,7 @@ namespace Ximura.Collections
         /// <param name="arrayIndex">The array index where the class should start copying to.</param>
         public void CopyTo(T[] array, int arrayIndex)
         {
+            DisposedCheck();
             CopyToInternal(array, arrayIndex);
         }
         #endregion // CopyTo(T[] array, int arrayIndex)

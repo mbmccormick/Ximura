@@ -32,7 +32,7 @@ namespace Ximura.Collections
     /// </summary>
     /// <typeparam name="T">The array type.</typeparam>
     public class ExpandableFineGrainedLockArray<T> :
-        LockFreeRedBlackTreeBase<int, FineGrainedLockArray<T>, LockFreeRedBlackVertex<int, FineGrainedLockArray<T>>>
+        LockFreeRedBlackTreeBase<int, FineGrainedLockArray<T>, LockFreeRedBlackVertex<int, FineGrainedLockArray<T>>>, IFineGrainedLockArray<T>
     {
         #region Declarations
         private LockFreeRedBlackVertex<int, FineGrainedLockArray<T>> initial;
