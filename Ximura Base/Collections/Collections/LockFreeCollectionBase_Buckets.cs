@@ -224,7 +224,11 @@ namespace Ximura.Collections
         {
             mCurrentBits = (int)(Math.Log(capacity) / elog2);
             mRecalculateThreshold = 2 << mCurrentBits;
-            mBuckets = new ExpandableFineGrainedLockArray<int>(mRecalculateThreshold);
+
+            if (isFixedSize)
+                mBuckets = new FineGrainedLockArray<int>(mRecalculateThreshold, 0);
+            else
+                mBuckets = new ExpandableFineGrainedLockArray<int>(mRecalculateThreshold);
 
             //Initialize the first bucket to the root sentinel vertex.
             mBuckets[0] = cnIndexData + 1;

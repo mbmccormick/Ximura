@@ -34,44 +34,87 @@ namespace Ximura.Collections
     [DebuggerDisplay("Count = {Count}"), HostProtection(SecurityAction.LinkDemand, MayLeakOnAbort = true)]
     public class LockFreeList<T> : LockFreeCollection<T>, ICollection<T>
     {
-        #region Constructors
+        #region Constructor
         /// <summary>
         /// This is the default constructor. The collection will be constructed with a base capacity of 1000.
         /// </summary>
-        public LockFreeList() : base(null, 1000, null) { }
+        public LockFreeList() 
+            : base(null, 1000, null, false) { }
+
         /// <summary>
-        /// Initializes a new instance of the LockFreeList<(Of <(T>)>) class
+        /// Initializes a new instance of the LockFreeCollection<(Of <(T>)>) class
+        /// </summary>
+        /// <param name="collection">The values in this enumeration will be loaded in to the collection.</param>
+        public LockFreeList(IEnumerable<T> collection) : base(null, 1000, collection, false) { }
+
+        /// <summary>
+        /// Initializes a new instance of the LockFreeCollection<(Of <(T>)>) class
+        /// </summary>
+        /// <param name="collection">The values in this enumeration will be loaded in to the collection.</param>
+        /// <param name="isFixedSize">The collection is fixed to the size passed in the capacity parameter.</param>
+        public LockFreeList(IEnumerable<T> collection, bool isFixedSize) : base(null, isFixedSize ? -1 : 1000, collection, isFixedSize) { }
+
+        /// <summary>
+        /// Initializes a new instance of the LockFreeCollection<(Of <(T>)>) class
         /// </summary>
         /// <param name="collection">The values in this enumeration will be loaded in to the collection.</param>
         /// <param name="comparer">This is the comparer used to detect equality between items in the collection. 
         /// If this is set to null the default comparer for the type will be used instead./</param>
-        public LockFreeList(IEnumerable<T> collection, EqualityComparer<T> comparer) : base(collection, 1000, comparer) { }
+        public LockFreeList(IEqualityComparer<T> comparer, IEnumerable<T> collection) 
+            : base(comparer, 1000, collection, false) { }
+
         /// <summary>
-        /// Initializes a new instance of the LockFreeList<(Of <(T>)>) class
+        /// Initializes a new instance of the LockFreeCollection<(Of <(T>)>) class
         /// </summary>
-        /// <param name="collection">The values in this enumeration will be loaded in to the collection.</param>
         /// <param name="capacity">The collection initial capacity.</param>
+        public LockFreeList(int capacity)
+            : base(null, capacity, null, false) { }
+        /// <summary>
+        /// Initializes a new instance of the LockFreeCollection<(Of <(T>)>) class
+        /// </summary>
+        /// <param name="capacity">The collection initial capacity.</param>
+        /// <param name="isFixedSize">The collection is fixed to the size passed in the capacity parameter.</param>
+        public LockFreeList(int capacity, bool isFixedSize)
+            : base(null, capacity, null, isFixedSize) { }
+
+        /// <summary>
+        /// Initializes a new instance of the LockFreeCollection<(Of <(T>)>) class
+        /// </summary>
         /// <param name="comparer">This is the comparer used to detect equality between items in the collection. 
         /// If this is set to null the default comparer for the type will be used instead./</param>
-        public LockFreeList(IEnumerable<T> collection, int capacity, EqualityComparer<T> comparer) : base(collection, capacity, comparer) { }
-        /// <summary>
-        /// Initializes a new instance of the LockFreeList<(Of <(T>)>) class
-        /// </summary>
-        /// <param name="collection">The values in this enumeration will be loaded in to the collection.</param>
-        public LockFreeList(IEnumerable<T> collection) : base(collection, 1000, null) { }
-        /// <summary>
-        /// Initializes a new instance of the LockFreeList<(Of <(T>)>) class
-        /// </summary>
         /// <param name="capacity">The collection initial capacity.</param>
-        public LockFreeList(int capacity) : base(null, capacity, null) { }
+        public LockFreeList(IEqualityComparer<T> comparer, int capacity)
+            : base(comparer, capacity, null, false) { }
         /// <summary>
-        /// Initializes a new instance of the LockFreeList<(Of <(T>)>) class
+        /// Initializes a new instance of the LockFreeCollection<(Of <(T>)>) class
         /// </summary>
-        /// <param name="capacity">The collection initial capacity.</param>
         /// <param name="comparer">This is the comparer used to detect equality between items in the collection. 
         /// If this is set to null the default comparer for the type will be used instead./</param>
-        public LockFreeList(int capacity, EqualityComparer<T> comparer) : base(null, capacity, comparer) { }
-        #endregion // Constructors
+        /// <param name="capacity">The collection initial capacity.</param>
+        /// <param name="isFixedSize">The collection is fixed to the size passed in the capacity parameter.</param>
+        public LockFreeList(IEqualityComparer<T> comparer, int capacity, bool isFixedSize)
+            : base(comparer, capacity, null, isFixedSize) { }
+
+        /// <summary>
+        /// Initializes a new instance of the LockFreeCollection<(Of <(T>)>) class
+        /// </summary>
+        /// <param name="comparer">This is the comparer used to detect equality between items in the collection. 
+        /// If this is set to null the default comparer for the type will be used instead./</param>
+        /// <param name="capacity">The collection initial capacity.</param>
+        /// <param name="collection">The values in this enumeration will be loaded in to the collection.</param>
+        public LockFreeList(IEqualityComparer<T> comparer, int capacity, IEnumerable<T> collection)
+            : base(comparer, capacity, collection, false) { }
+        /// <summary>
+        /// Initializes a new instance of the LockFreeCollection<(Of <(T>)>) class
+        /// </summary>
+        /// <param name="comparer">This is the comparer used to detect equality between items in the collection. 
+        /// If this is set to null the default comparer for the type will be used instead./</param>
+        /// <param name="capacity">The collection initial capacity.</param>
+        /// <param name="collection">The values in this enumeration will be loaded in to the collection.</param>
+        /// <param name="isFixedSize">The collection is fixed to the size passed in the capacity parameter.</param>
+        public LockFreeList(IEqualityComparer<T> comparer, int capacity, IEnumerable<T> collection, bool isFixedSize)
+            : base(comparer, capacity, collection, isFixedSize) { }
+        #endregion // Constructor
 
         #region AllowMultipleEntries
         /// <summary>

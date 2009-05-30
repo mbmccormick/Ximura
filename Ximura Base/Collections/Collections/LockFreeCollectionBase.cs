@@ -51,16 +51,20 @@ namespace Ximura.Collections
         /// <summary>
         /// This is the equality comparer for the collection.
         /// </summary>
-        protected EqualityComparer<T> mEqualityComparer;
+        protected IEqualityComparer<T> mEqualityComparer;
 
         /// <summary>
-        /// The version value is set for integer for 32bit systems.
+        /// The version value.
         /// </summary>
         protected int mVersion;
         /// <summary>
         /// This is the current item count.
         /// </summary>
         protected int mCount;
+        /// <summary>
+        /// This is the current default(T) item capacity. 
+        /// </summary>
+        private int mDefaultTCount;
 
         /// <summary>
         /// This property determines whether the collection is a fixed size. Fixed size collections will reject new records
@@ -75,10 +79,7 @@ namespace Ximura.Collections
         /// This property specifies whether the collection accepts multiple entries of the same object.
         /// </summary>
         private bool mAllowMultipleEntries;
-        /// <summary>
-        /// This is the current default(T) item capacity. 
-        /// </summary>
-        private int mDefaultTCount;
+
         #endregion
         #region Constructor
         /// <summary>
@@ -90,15 +91,14 @@ namespace Ximura.Collections
         /// <param name="isFixedSize">This property determines whether the collection is a fixed size.
         /// Fixed size collections will reject new records when the capacity has been reached, 
         /// although they may deliver performance improvements as they do not need to use a growable data structure.</param>
-        protected LockFreeCollectionBase(EqualityComparer<T> comparer, int capacity, IEnumerable<T> collection, bool isFixedSize)
+        protected LockFreeCollectionBase(IEqualityComparer<T> comparer, int capacity, IEnumerable<T> collection, bool isFixedSize)
         {
-            mIsFixedSize = isFixedSize;
 #if (PROFILING)
             ProfilingSetup();
 #endif
             mEqualityComparer = (comparer == null) ? EqualityComparer<T>.Default : comparer;
 
-            Initialize(capacity, collection);
+            Initialize(capacity, collection, isFixedSize);
         }
         #endregion // Constructor
 
@@ -155,14 +155,18 @@ namespace Ximura.Collections
         /// </summary>
         /// <param name="capacity">The initial capacity.</param>
         /// <param name="collection">The initial data to load in to the array.</param>
-        protected virtual void Initialize(int capacity, IEnumerable<T> collection)
+        /// <param name="isFixedSize">This property determines whether the collection is a fixed size.</param>
+        protected virtual void Initialize(int capacity, IEnumerable<T> collection, bool isFixedSize)
         {
             if (capacity < 0)
                 throw new ArgumentOutOfRangeException("The capacity cannot be less than 0.");
 
+
             mDisposed = false;
             mCount = 0;
             mVersion = int.MinValue;
+
+            mIsFixedSize = isFixedSize;
 
             mAllowNullValues = typeof(T).IsValueType || CollectionAllowNullValues;
             mAllowMultipleEntries = CollectionAllowMultipleEntries;
@@ -363,7 +367,6 @@ namespace Ximura.Collections
 #endif
         }
         #endregion // AddInternal(T item)
-
         #region ContainsInternal(T item)
         /// <summary>
         /// This method checks whether the item exists in the collection.
@@ -467,7 +470,6 @@ namespace Ximura.Collections
 #endif
         }
         #endregion // ContainsInternal(T item)
-
         #region RemoveInternal(T item)
         /// <summary>
         /// The method removes an item from the collection.

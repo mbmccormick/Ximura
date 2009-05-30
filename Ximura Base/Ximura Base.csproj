@@ -448,7 +448,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Collections\Collections\Exceptions\" />
-    <Folder Include="_Documentation\" />
+    <Folder Include="Collections\Collections\LockWrappers\_Documentation\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -453,7 +453,10 @@ namespace Ximura.Collections
         /// </summary>
         protected virtual void InitializeData(int capacity, bool isFixedSize)
         {
-            mSlots = new ExpandableFineGrainedLockArray<Vertex<T>>(capacity);
+            if (isFixedSize)
+                mSlots = new FineGrainedLockArray<Vertex<T>>(capacity, 0);
+            else
+                mSlots = new ExpandableFineGrainedLockArray<Vertex<T>>(capacity);
 
             mSlots[cnIndexData] = Vertex<T>.Sentinel(0, 0);
             mSlots[cnIndexEmptyQueue] = Vertex<T>.Sentinel(0, 0);
