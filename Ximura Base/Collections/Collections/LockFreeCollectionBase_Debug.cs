@@ -156,7 +156,7 @@ namespace Ximura.Collections
         }
 
 #if (PROFILING)
-        private enum ProfileAction : int
+        protected enum ProfileAction : int
         {
             Time_FindAndLock = 0,
             Time_AddInternal = 1,
@@ -186,7 +186,7 @@ namespace Ximura.Collections
             Count_HopSentinel = 24
         }
 
-        private enum ProfileArrayType : int
+        protected enum ProfileArrayType : int
         {
             BucketsWait = 0,
             Slots = 1,
@@ -200,7 +200,7 @@ namespace Ximura.Collections
         int[] pflCount;
         long[] pflTotal;
 
-        private void ProfilingSetup()
+        protected void ProfilingSetup()
         {
             int count = Enum.GetNames(typeof(ProfileAction)).Length;
             pflCount = new int[count];
@@ -210,14 +210,14 @@ namespace Ximura.Collections
             bws = new BinaryWriter(new MemoryStream());
         }
 
-        private void Profile(ProfileAction action, long timespan)
+        protected void Profile(ProfileAction action, long timespan)
         {
             int pos = (int)action;
             Interlocked.Increment(ref pflCount[pos]);
             Interlocked.Add(ref pflTotal[pos], timespan);
         }
 
-        private void ProfileHotspot(ProfileArrayType type, int index)
+        protected void ProfileHotspot(ProfileArrayType type, int index)
         {
             lock (this)
             {

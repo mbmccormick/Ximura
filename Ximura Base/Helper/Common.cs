@@ -991,11 +991,29 @@ namespace Ximura.Helper
 
         //    return strDate.ToString();
         //}
-
-        public static string ConvertToRFC1123DateString(DateTime time)
+        #region ConvertToRFC1123DateString
+        /// <summary>
+        /// This method converts a datetime parameter to an RFC1123 string formar.
+        /// </summary>
+        /// <param name="dt">The date time.</param>
+        /// <returns>The string representation.</returns>
+        public static string ConvertToRFC1123DateString(DateTime dt)
         {
-            return time.ToUniversalTime().ToString("ddd, dd MMM yyyy HH:mm:ss") + " GMT";
+            return dt.ToUniversalTime().ToString("ddd, dd MMM yyyy HH:mm:ss") + " GMT";
         }
+        #endregion // ConvertToRFC1123DateString
+        #region ToRFC1123String(this DateTime dt)
+        /// <summary>
+        /// This method converts a datetime parameter to an RFC1123 string formar.
+        /// </summary>
+        /// <param name="dt">The date time.</param>
+        /// <returns>The string representation.</returns>
+        public static string ToRFC1123String(this DateTime dt)
+        {
+            return dt.ToUniversalTime().ToString("ddd, dd MMM yyyy HH:mm:ss") + " GMT";
+        }
+        #endregion // ToRFC1123String(this DateTime dt)
+
 
         /// <summary>
         /// Function to convert string to ISO8601 datetime string yyyy-MM-ddTHH:mm:ss
@@ -1129,6 +1147,7 @@ namespace Ximura.Helper
             DateTime birthday = new DateTime(DateTime.Today.Year - age, 1, 1);
             return birthday;
         }
+
         public static Decimal StringDateToAge(string dateValue)
         {
             int year = 0;

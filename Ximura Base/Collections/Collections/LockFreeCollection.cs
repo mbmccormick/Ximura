@@ -118,7 +118,7 @@ namespace Ximura.Collections
         public void Add(T item)
         {
             DisposedCheck();
-            AddInternal(item);
+            Insert(item, true);
         }
         #endregion // Add(T item)
 

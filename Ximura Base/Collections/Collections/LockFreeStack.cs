@@ -110,8 +110,6 @@ namespace Ximura.Collections
             : base(comparer, capacity, collection, isFixedSize) { }
         #endregion // Constructor
 
-        #region IStack<T> Members
-
         public void Push(T item)
         {
             throw new NotImplementedException();
@@ -119,85 +117,128 @@ namespace Ximura.Collections
 
         public T Pop()
         {
-            throw new NotImplementedException();
-        }
+            if (mCount == 0)
+            {
+                throw new InvalidOperationException("The count is zero.");
+            }
 
-        #endregion
-
-        #region ICollectionBase<T> Members
-
-        public int Count
-        {
-            get { throw new NotImplementedException(); }
-        }
-
-        public void Clear()
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool Contains(T item)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void CopyTo(T[] array, int arrayIndex)
-        {
-            throw new NotImplementedException();
-        }
-
-        public T[] ToArray()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void TrimExcess()
-        {
             throw new NotImplementedException();
         }
 
         public T Peek()
         {
+            if (mCount == 0)
+            {
+                throw new InvalidOperationException("The count is zero.");
+            }
+
             throw new NotImplementedException();
         }
 
-        #endregion
-
-        #region IEnumerable<T> Members
-
-        public IEnumerator<T> GetEnumerator()
+        #region Contains(T item)
+        /// <summary>
+        /// This method checks whether an item exists in the collection.
+        /// </summary>
+        /// <param name="item">The item to check.</param>
+        /// <returns>Returns true if the item exists in the collection.</returns>
+        public bool Contains(T item)
         {
-            throw new NotImplementedException();
+            DisposedCheck();
+            return ContainsInternal(item);
         }
+        #endregion // Contains(T item)
 
-        #endregion
-
-        #region IEnumerable Members
-
-        IEnumerator IEnumerable.GetEnumerator()
+        #region Clear()
+        /// <summary>
+        /// This method clears the collection.
+        /// </summary>
+        public void Clear()
         {
-            throw new NotImplementedException();
+            DisposedCheck();
+            ClearInternal();
         }
-
-        #endregion
-
-        #region ICollection Members
-
-        public void CopyTo(Array array, int index)
+        #endregion // Clear()
+        #region Count
+        /// <summary>
+        /// The collection count.
+        /// </summary>
+        public int Count
         {
-            throw new NotImplementedException();
+            get { return CountInternal; }
         }
+        #endregion // Count
 
+        #region CopyTo(T[] array, int arrayIndex)
+        /// <summary>
+        /// This method copies the collection to the array specified.
+        /// </summary>
+        /// <param name="array">The array to copy to.</param>
+        /// <param name="arrayIndex">The array index where the class should start copying to.</param>
+        public void CopyTo(T[] array, int arrayIndex)
+        {
+            DisposedCheck();
+            CopyToInternal(array, arrayIndex);
+        }
+        #endregion // CopyTo(T[] array, int arrayIndex)
+        #region CopyTo(Array array, int arrayIndex)
+        /// <summary>
+        /// This method copies the collection to the array specified.
+        /// </summary>
+        /// <param name="array">The array to copy to.</param>
+        /// <param name="arrayIndex">The array index where the class should start copying to.</param>
+        public void CopyTo(Array array, int arrayIndex)
+        {
+            DisposedCheck();
+            CopyToInternal(array, arrayIndex);
+        }
+        #endregion // CopyTo(Array array, int arrayIndex)
+        #region ToArray()
+        /// <summary>
+        /// Returns the data in the collection as an array.
+        /// </summary>
+        /// <returns>Returns an array of data.</returns>
+        public T[] ToArray()
+        {
+            DisposedCheck();
+            return ToArrayInternal();
+        }
+        #endregion // ToArray()
+
+        #region ICollection not-supported Members
+        /// <summary>
+        /// This method is not supported.
+        /// </summary>
+        public void TrimExcess()
+        {
+            throw new NotSupportedException();
+        }
+        /// <summary>
+        /// This property is not supported.
+        /// </summary>
         public bool IsSynchronized
         {
-            get { throw new NotImplementedException(); }
+            get { throw new NotSupportedException(); }
         }
-
+        /// <summary>
+        /// This property is not supported.
+        /// </summary>
         public object SyncRoot
         {
-            get { throw new NotImplementedException(); }
+            get { throw new NotSupportedException(); }
         }
-
         #endregion
+
+
+        #region AddIncomingData(IEnumerable<T> collection)
+        /// <summary>
+        /// This override pushes the data passed in the constructor to the stack.
+        /// </summary>
+        /// <param name="collection">The incoming data.</param>
+        protected override void AddIncomingData(IEnumerable<T> collection)
+        {
+            collection.ForEach(i => Push(i));
+        }
+        #endregion // AddIncomingData(IEnumerable<T> collection)
+
     }
 }

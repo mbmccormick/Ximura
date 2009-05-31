@@ -37,7 +37,7 @@ namespace Ximura.Collections
         /// <returns>Returns a enumeration of the collection.</returns>
         /// <exception cref="System.InvalidOperationException">This exception will be thrown when the collection 
         /// changes during the scan and the changeException parameter is set to true.</exception>
-        protected virtual IEnumerable<KeyValuePair<int, Vertex<T>>> InternalScan(bool changeException)
+        protected internal virtual IEnumerable<KeyValuePair<int, Vertex<T>>> InternalScan(bool changeException)
         {
             if (mCount == 0)
                 yield break;
@@ -86,7 +86,7 @@ namespace Ximura.Collections
 
         #endregion
 
-        #region CopyTo(T[] array, int arrayIndex)
+        #region CopyToInternal(T[] array, int arrayIndex)
         /// <summary>
         /// This method copies the collection to the array specified.
         /// </summary>
@@ -96,6 +96,30 @@ namespace Ximura.Collections
         {
             this.ForIndex((i, d) => array[i + arrayIndex] = d);
         }
+        /// <summary>
+        /// This method copies the collection to the array specified.
+        /// </summary>
+        /// <param name="array">The array to copy to.</param>
+        /// <param name="arrayIndex">The array index where the class should start copying to.</param>
+        protected virtual void CopyToInternal(Array array, int arrayIndex)
+        {  
+            this.ForIndex((i, d) => array.SetValue(d,i));
+        }
+
         #endregion // CopyTo(T[] array, int arrayIndex)
+
+        #region ToArrayInternal()
+        /// <summary>
+        /// This method copies the internal data to an array.
+        /// </summary>
+        /// <returns>Returns an array containing the internal data.</returns>
+        protected virtual T[] ToArrayInternal()
+        {
+            T[] array = new T[CountInternal];
+            CopyToInternal(array, 0);
+            return array;
+        }
+        #endregion // ToArrayInternal()
+
     }
 }

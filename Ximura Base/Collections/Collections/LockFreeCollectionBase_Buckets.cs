@@ -205,16 +205,15 @@ namespace Ximura.Collections
         /// <summary>
         /// This array holds the lookup hashtable.
         /// </summary>
-        //private ExpandableFineGrainedLockArray<int> mBuckets;
-        private IFineGrainedLockArray<int> mBuckets;
+        protected IFineGrainedLockArray<int> mBuckets;
         /// <summary>
         /// This value holds the current number of bits being supported by the collection.
         /// </summary>
-        private int mCurrentBits;
+        protected int mCurrentBits;
         /// <summary>
         /// This is the recalculate threshold, where the system recalculates the system bucket capacity.
         /// </summary>
-        private int mRecalculateThreshold;
+        protected int mRecalculateThreshold;
         #endregion 
         #region InitializeBuckets(int capacity, bool isFixedSize)
         /// <summary>

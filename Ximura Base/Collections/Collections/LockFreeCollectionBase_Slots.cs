@@ -33,11 +33,11 @@ namespace Ximura.Collections
         /// <summary>
         /// This is the reserved vertex position for the initial sentinel.
         /// </summary>
-        private const int cnIndexData = 0;
+        protected const int cnIndexData = 0;
         /// <summary>
         /// This is the reserved vertex position for the empty vertex queue.
         /// </summary>
-        private const int cnIndexEmptyQueue = 1;
+        protected const int cnIndexEmptyQueue = 1;
         #endregion // Declarations
 
         #region Struct -> Vertex<T>
@@ -430,20 +430,20 @@ namespace Ximura.Collections
         /// <summary>
         /// This collection holds the data.
         /// </summary>
-        private IFineGrainedLockArray<Vertex<T>> mSlots;
+        protected IFineGrainedLockArray<Vertex<T>> mSlots;
 
         /// <summary>
         /// This is the free data queue tail position.
         /// </summary>
-        private int mFreeListTail;
+        protected int mFreeListTail;
         /// <summary>
         /// This is the free data queue item count.
         /// </summary>
-        private int mFreeListCount;
+        protected int mFreeListCount;
         /// <summary>
         /// This is the current next free position in the data collection.
         /// </summary>
-        private int mLastIndex;
+        protected int mLastIndex;
 
         #endregion 
 

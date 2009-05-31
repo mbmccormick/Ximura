@@ -38,12 +38,12 @@ namespace Ximura.Collections
         /// <summary>
         /// This property specifies whether the contains operation should attempt to scan without locking.
         /// </summary>
-        private bool mContainScanUnlocked;
+        protected bool mContainScanUnlocked;
 
         /// <summary>
         /// This variable contains the number of scan misses.
         /// </summary>
-        private int mContainScanUnlockedMiss = 0;
+        protected int mContainScanUnlockedMiss = 0;
         /// <summary>
         /// This variables determines whether the collection has been disposed.
         /// </summary>
@@ -64,7 +64,7 @@ namespace Ximura.Collections
         /// <summary>
         /// This is the current default(T) item capacity. 
         /// </summary>
-        private int mDefaultTCount;
+        protected int mDefaultTCount;
 
         /// <summary>
         /// This property determines whether the collection is a fixed size. Fixed size collections will reject new records
@@ -117,7 +117,7 @@ namespace Ximura.Collections
         /// This method identifies when the collection has been disposed and throws an ObjectDisposedException.
         /// </summary>
         /// <exception cref="System.ObjectDisposedException">This exception is thrown when the collection has been disposed.</exception>
-        protected void DisposedCheck()
+        protected internal void DisposedCheck()
         {
             if (mDisposed)
                 throw new ObjectDisposedException(GetType().ToString(), "Collection has been disposed.");
@@ -161,7 +161,6 @@ namespace Ximura.Collections
             if (capacity < 0)
                 throw new ArgumentOutOfRangeException("The capacity cannot be less than 0.");
 
-
             mDisposed = false;
             mCount = 0;
             mVersion = int.MinValue;
@@ -174,13 +173,24 @@ namespace Ximura.Collections
             mDefaultTCount = 0;
             mContainScanUnlocked = true;
 
-            InitializeBuckets(capacity, CollectionIsFixedSize);
-            InitializeData(capacity, CollectionIsFixedSize);
+            InitializeBuckets(capacity, IsFixedSize);
+            InitializeData(capacity, IsFixedSize);
 
             if (collection != null)
-                collection.ForEach(i => AddInternal(i));
+                AddIncomingData(collection);
         }
         #endregion // Initialize(int capacity)
+        #region AddIncomingData(IEnumerable<T> collection)
+        /// <summary>
+        /// This method adds items to the collection that were passed in the constructor.
+        /// You should override this method to implement any specific logic for your collection.
+        /// </summary>
+        /// <param name="collection">The data to add to the collection.</param>
+        protected virtual void AddIncomingData(IEnumerable<T> collection)
+        {
+            collection.ForEach(i => Insert(i, true));
+        }
+        #endregion // InitializeCollection(IEnumerable<T> collection)
 
         #region CollectionAllowMultipleEntries
         /// <summary>
@@ -196,21 +206,27 @@ namespace Ximura.Collections
         /// <remarks>This property is ignored if the collection is for a value type such as int.</remarks>
         protected virtual bool CollectionAllowNullValues { get { return true; } }
         #endregion
-        #region CollectionIsFixedSize
+
+        #region IsFixedSize
         /// <summary>
-        /// This property determines whether the collection will dynamically expand when new values are added.
+        /// This property determines whether the collection will dynamically expand when new values are added. 
+        /// This property can only be set from the constructor, although this property can be overriden in derived classes to ensure
+        /// a particular value.
         /// </summary>
-        protected virtual bool CollectionIsFixedSize { get { return mIsFixedSize; } }
+        public virtual bool IsFixedSize { get { return mIsFixedSize; } }
         #endregion
 
-        #region AddInternal(T item)
+        #region Insert(T item)
         /// <summary>
         /// This method adds an item to the collection.
         /// </summary>
         /// <param name="item">The item to add.</param>
+        /// <param name="add">The property specifies whether the item is overwritten or a new item is added. 
+        /// If multiple entries are not allowed an exception is thrown.</param>
         /// <returns>Returns true if the addition is successful.</returns>
-        protected virtual bool AddInternal(T item)
+        protected virtual bool Insert(T item, bool add)
         {
+#region Profiling
 #if (PROFILING)
             int hopsData = 0;
             int start = Environment.TickCount;
@@ -219,14 +235,14 @@ namespace Ximura.Collections
             int hopsBucketSkip = 0;
             try
             {
-#endif
+#endif 
+#endregion
                 try
                 {
-                    //Get the hash code and sentinel ID for the item.
+                    #region Null/default(T) check
                     //Is this a null or default value?
                     if (mEqualityComparer.Equals(item, default(T)))
                     {
-                        #region Null Checking
                         if (!mAllowNullValues)
                             throw new ArgumentNullException("Null values are not accepted in this collection.");
 
@@ -244,9 +260,10 @@ namespace Ximura.Collections
                         Interlocked.Increment(ref mCount);
                         Interlocked.Increment(ref mVersion);
                         return true;
-                        #endregion
-                    }
+                    } 
+                    #endregion
 
+                    //Get the hash code for the item.
                     int hashCode = mEqualityComparer.GetHashCode(item);
 
                     //Add any required sentinels and retrieve the nearest sentinel slot ID.
@@ -258,7 +275,7 @@ namespace Ximura.Collections
                     int tBitsCurrent = sent.BitsCurrent;
                     int tBitsStart = sent.BitsStart;
                     int tBucketID = sent.BucketID;
-
+                    //OK, loop and create any required sentinels.
                     while (tBitsCurrent < tBitsStart)
                     {
                         tBitsCurrent++;
@@ -301,18 +318,18 @@ namespace Ximura.Collections
 
                         vWin.SlotsUnlock(mSlots);
                         mBuckets.ItemUnlock(bucketID);
-                    }
-
-#if (PROFILING)
+                    } 
+#region Profiling
+	#if (PROFILING)
                     has = Environment.TickCount;
-#endif
+    #endif 
+#endregion
                     //Ok, let's add the data from the sentinel position.
                     //Lock the start index and initialize the window.
                     vWin.SlotsSetCurrentAndLock(mSlots, sent.SlotID);
-
 #if (PROFILING)
                     hopsData = vWin.SlotsScanAndLock(mSlots, hashID);
-#else
+#else 
                     vWin.SlotsScanAndLock(mSlots, hashID);
 #endif
                     //Ok, we need to scan for hash collisions and multiple entries.
@@ -320,6 +337,16 @@ namespace Ximura.Collections
                     {
                         if (!vWin.Next.IsSentinel && mEqualityComparer.Equals(item, vWin.Next.Value))
                         {
+                            //Ok, we have a match.
+                            if (!add)
+                            {
+                                //This code is to accomodate dictionary type collections where the item is a keyvalue pair.
+                                vWin.Next.Value = item;
+                                mSlots[vWin.Curr.NextSlotIDPlus1 - 1] = vWin.Next;
+                                vWin.SlotsUnlock(mSlots);
+                                return true;
+                            }
+
                             if (mAllowMultipleEntries)
                                 break;
                             else
@@ -339,10 +366,11 @@ namespace Ximura.Collections
                     vWin.SlotsInsertItem(mSlots, EmptyGet(), hashID, item);
                     vWin.SlotsUnlock(mSlots);
 
-                    //Have we added successfully?
+                    //Increment the necessary counters.
                     Interlocked.Increment(ref mVersion);
                     Interlocked.Increment(ref mCount);
 
+                    //Check whether we need to recalculate the bit size.
                     if (mCount > mRecalculateThreshold)
                         BitSizeCalculate();
 
@@ -352,6 +380,7 @@ namespace Ximura.Collections
                 {
                     throw ex;
                 }
+#region Profiling
 #if (PROFILING)
             }
             finally
@@ -364,7 +393,8 @@ namespace Ximura.Collections
                 if (has > 0)
                     Profile(ProfileAction.Time_AddInternalHAS, has - start);
             }
-#endif
+#endif 
+#endregion
         }
         #endregion // AddInternal(T item)
         #region ContainsInternal(T item)
@@ -375,6 +405,7 @@ namespace Ximura.Collections
         /// <returns>Returns true if the item is in the collection.</returns>
         protected virtual bool ContainsInternal(T item)
         {
+#region Profiling
 #if (PROFILING)
             int hopCount = 0;
             int start = Environment.TickCount;
@@ -383,7 +414,8 @@ namespace Ximura.Collections
             int slotLocks2 = 0;
             try
             {
-#endif
+#endif 
+#endregion
                 //Is this a null or default value?
                 if (mEqualityComparer.Equals(item, default(T)))
                     return mAllowNullValues ? mDefaultTCount > 0 : false;
@@ -456,7 +488,7 @@ namespace Ximura.Collections
 
                 vWin.SlotsUnlock(mSlots);
                 return false;
-
+#region Profiling
 #if (PROFILING)
             }
             finally
@@ -468,6 +500,7 @@ namespace Ximura.Collections
                 Profile(ProfileAction.Time_ContainsHAL, endhal);
             }
 #endif
+#endregion
         }
         #endregion // ContainsInternal(T item)
         #region RemoveInternal(T item)
@@ -595,7 +628,7 @@ namespace Ximura.Collections
         /// <summary>
         /// This is the count of the number of items currently in the collection.
         /// </summary>
-        protected virtual int CountInternal
+        protected internal virtual int CountInternal
         {
             get { return mCount; }
         }

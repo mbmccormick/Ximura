@@ -42,20 +42,20 @@ namespace Ximura.Collections
             : base(null, 1000, null, false) { }
 
         /// <summary>
-        /// Initializes a new instance of the LockFreeCollection<(Of <(T>)>) class
+        /// Initializes a new instance of the LockFreeHashSet<(Of <(T>)>) class
         /// </summary>
         /// <param name="collection">The values in this enumeration will be loaded in to the collection.</param>
         public LockFreeHashSet(IEnumerable<T> collection) : base(null, 1000, collection, false) { }
 
         /// <summary>
-        /// Initializes a new instance of the LockFreeCollection<(Of <(T>)>) class
+        /// Initializes a new instance of the LockFreeHashSet<(Of <(T>)>) class
         /// </summary>
         /// <param name="collection">The values in this enumeration will be loaded in to the collection.</param>
         /// <param name="isFixedSize">The collection is fixed to the size passed in the capacity parameter.</param>
         public LockFreeHashSet(IEnumerable<T> collection, bool isFixedSize) : base(null, isFixedSize ? -1 : 1000, collection, isFixedSize) { }
 
         /// <summary>
-        /// Initializes a new instance of the LockFreeCollection<(Of <(T>)>) class
+        /// Initializes a new instance of the LockFreeHashSet<(Of <(T>)>) class
         /// </summary>
         /// <param name="collection">The values in this enumeration will be loaded in to the collection.</param>
         /// <param name="comparer">This is the comparer used to detect equality between items in the collection. 
@@ -64,13 +64,13 @@ namespace Ximura.Collections
             : base(comparer, 1000, collection, false) { }
 
         /// <summary>
-        /// Initializes a new instance of the LockFreeCollection<(Of <(T>)>) class
+        /// Initializes a new instance of the LockFreeHashSet<(Of <(T>)>) class
         /// </summary>
         /// <param name="capacity">The collection initial capacity.</param>
         public LockFreeHashSet(int capacity)
             : base(null, capacity, null, false) { }
         /// <summary>
-        /// Initializes a new instance of the LockFreeCollection<(Of <(T>)>) class
+        /// Initializes a new instance of the LockFreeHashSet<(Of <(T>)>) class
         /// </summary>
         /// <param name="capacity">The collection initial capacity.</param>
         /// <param name="isFixedSize">The collection is fixed to the size passed in the capacity parameter.</param>
@@ -78,7 +78,7 @@ namespace Ximura.Collections
             : base(null, capacity, null, isFixedSize) { }
 
         /// <summary>
-        /// Initializes a new instance of the LockFreeCollection<(Of <(T>)>) class
+        /// Initializes a new instance of the LockFreeHashSet<(Of <(T>)>) class
         /// </summary>
         /// <param name="comparer">This is the comparer used to detect equality between items in the collection. 
         /// If this is set to null the default comparer for the type will be used instead./</param>
@@ -86,7 +86,7 @@ namespace Ximura.Collections
         public LockFreeHashSet(IEqualityComparer<T> comparer, int capacity)
             : base(comparer, capacity, null, false) { }
         /// <summary>
-        /// Initializes a new instance of the LockFreeCollection<(Of <(T>)>) class
+        /// Initializes a new instance of the LockFreeHashSet<(Of <(T>)>) class
         /// </summary>
         /// <param name="comparer">This is the comparer used to detect equality between items in the collection. 
         /// If this is set to null the default comparer for the type will be used instead./</param>
@@ -96,7 +96,7 @@ namespace Ximura.Collections
             : base(comparer, capacity, null, isFixedSize) { }
 
         /// <summary>
-        /// Initializes a new instance of the LockFreeCollection<(Of <(T>)>) class
+        /// Initializes a new instance of the LockFreeHashSet<(Of <(T>)>) class
         /// </summary>
         /// <param name="comparer">This is the comparer used to detect equality between items in the collection. 
         /// If this is set to null the default comparer for the type will be used instead./</param>
@@ -105,7 +105,7 @@ namespace Ximura.Collections
         public LockFreeHashSet(IEqualityComparer<T> comparer, int capacity, IEnumerable<T> collection)
             : base(comparer, capacity, collection, false) { }
         /// <summary>
-        /// Initializes a new instance of the LockFreeCollection<(Of <(T>)>) class
+        /// Initializes a new instance of the LockFreeHashSet<(Of <(T>)>) class
         /// </summary>
         /// <param name="comparer">This is the comparer used to detect equality between items in the collection. 
         /// If this is set to null the default comparer for the type will be used instead./</param>

@@ -218,7 +218,6 @@
     <Compile Include="Collections\Collections\LockFreeCollectionBase_Enumeration.cs" />
     <Compile Include="Collections\Collections\LockFreeCollectionBase_Buckets.cs" />
     <Compile Include="Collections\Collections\LockFreeDictionary.cs" />
-    <Compile Include="Collections\Collections\LockFreeDictionary_Enumeration.cs" />
     <Compile Include="Collections\Collections\LockFreeHashSet.cs" />
     <Compile Include="Collections\Collections\LockFreeCollection.cs" />
     <Compile Include="Collections\Collections\LockFreeList.cs" />
