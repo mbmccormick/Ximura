@@ -30,30 +30,28 @@ using Ximura.Helper;
 namespace Ximura.Collections
 {
     /// <summary>
-    /// This interface is shared by both the IQueue and IStack interfaces and contains shared functionality.
+    /// This interface is implemented by a queue.
     /// </summary>
     /// <typeparam name="T">The collection item type.</typeparam>
-    public interface ICollectionBase<T> : IEnumerable<T>, ICollection
+    public interface IPriorityQueue<T> : ICollectionBase<T>
     {
         /// <summary>
-        /// The collection item count.
+        /// Removes an item from the head of the queue.
         /// </summary>
-        int Count { get; }
-
-        void Clear();
-        bool Contains(T item);
-        void CopyTo(T[] array, int arrayIndex);
-
-        T[] ToArray();
-        void TrimExcess();
-
-        T Peek();
-
+        /// <returns>Returns the item at the head of the queue.</returns>
+        T Dequeue();
         /// <summary>
-        /// This method tries to peek the next item to leave the collection.
+        /// This item tries to empty an item in the queue.
         /// </summary>
-        /// <param name="item">The item at the top or default.</param>
-        /// <returns>Returns true if an item is available.</returns>
-        bool TryPeek(out T item);
+        /// <param name="item">The top item in the queue.</param>
+        /// <returns>Returns true if there is an item in the queue.</returns>
+        bool TryDequeue(out T item);
+        /// <summary>
+        /// This method adds an item to the tail of the queue.
+        /// </summary>
+        /// <param name="item">The item to add to the queue.</param>
+        void Enqueue(T item);
+
+        void Enqueue(T item, float priority);
     }
 }

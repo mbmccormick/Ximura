@@ -209,7 +209,8 @@
     </Compile>
     <Compile Include="Collections\Collections\Interface\ICollectionBase.cs" />
     <Compile Include="Collections\Collections\Interface\IFineGrainedLockArray.cs" />
-    <Compile Include="Collections\Collections\Interface\IQueue.cs" />
+    <Compile Include="Collections\Collections\Interface\IPool.cs" />
+    <Compile Include="Collections\Collections\Interface\IPriorityQueue.cs" />
     <Compile Include="Collections\Collections\Interface\IStack.cs" />
     <Compile Include="Collections\Collections\LockFree2DMatrix.cs" />
     <Compile Include="Collections\Collections\LockFreeCollectionBase.cs" />
@@ -222,7 +223,7 @@
     <Compile Include="Collections\Collections\LockFreeCollection.cs" />
     <Compile Include="Collections\Collections\LockFreeList.cs" />
     <Compile Include="Collections\Collections\LockFreePool.cs" />
-    <Compile Include="Collections\Collections\LockFreeQueue.cs" />
+    <Compile Include="Collections\Collections\LockFreePriorityQueue.cs" />
     <Compile Include="Collections\Collections\LockFreeStack.cs" />
     <Compile Include="Collections\Collections\LockWrappers\CourseGrainedICollectionWrapper.cs" />
     <Compile Include="Collections\Collections\LockWrappers\ICollectionWrapper.cs" />
@@ -230,7 +231,6 @@
     <Compile Include="Collections\Collections\LockWrappers\ReadWriteICollectionWrapper.cs" />
     <Compile Include="Collections\Collections\LockWrappers\WrapperBase.cs" />
     <Compile Include="Collections\Collections\Test\TestFunctions.cs" />
-    <Compile Include="Collections\Data\BalancedBinaryVertex.cs" />
     <Compile Include="Collections\Data\Edge.cs" />
     <Compile Include="Collections\Data\EdgeAttribute.cs" />
     <Compile Include="Collections\Data\EdgeReference.cs" />
@@ -448,6 +448,7 @@
   <ItemGroup>
     <Folder Include="Collections\Collections\Exceptions\" />
     <Folder Include="Collections\Collections\LockWrappers\_Documentation\" />
+    <Folder Include="_Documentation\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

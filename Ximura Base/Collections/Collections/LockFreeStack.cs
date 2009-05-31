@@ -6,6 +6,8 @@
 // which accompanies this distribution, and is available at
 // http://www.eclipse.org/legal/epl-v10.html
 //
+// For more details see http://ximura.org
+//
 // Contributors:
 //     Paul Stancer - initial implementation
 // *******************************************************************************
@@ -115,24 +117,33 @@ namespace Ximura.Collections
             throw new NotImplementedException();
         }
 
+        public bool TryPop(out T item)
+        {
+            throw new NotImplementedException();
+        }
+
         public T Pop()
         {
-            if (mCount == 0)
-            {
+            T item;
+            if (!TryPop(out item))
                 throw new InvalidOperationException("The count is zero.");
-            }
 
+            return item;
+        }
+
+
+        public bool TryPeek(out T item)
+        {
             throw new NotImplementedException();
         }
 
         public T Peek()
         {
-            if (mCount == 0)
-            {
+            T item;
+            if (!TryPeek(out item))
                 throw new InvalidOperationException("The count is zero.");
-            }
 
-            throw new NotImplementedException();
+            return item;
         }
 
         #region Contains(T item)
@@ -228,7 +239,6 @@ namespace Ximura.Collections
         }
         #endregion
 
-
         #region AddIncomingData(IEnumerable<T> collection)
         /// <summary>
         /// This override pushes the data passed in the constructor to the stack.
@@ -239,6 +249,7 @@ namespace Ximura.Collections
             collection.ForEach(i => Push(i));
         }
         #endregion // AddIncomingData(IEnumerable<T> collection)
+
 
     }
 }

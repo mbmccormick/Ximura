@@ -6,6 +6,8 @@
 // which accompanies this distribution, and is available at
 // http://www.eclipse.org/legal/epl-v10.html
 //
+// For more details see http://ximura.org
+//
 // Contributors:
 //     Paul Stancer - initial implementation
 // *******************************************************************************
@@ -144,6 +146,10 @@ namespace Ximura.Collections
             if (disposing)
             {
                 mDisposed = true;
+                //Clear the collection. This removes all references to any contained objects.
+                ClearInternal();
+                mSlots = null;
+                mBuckets = null;
             }
         }
         #endregion // Dispose(bool disposing)

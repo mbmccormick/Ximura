@@ -6,6 +6,8 @@
 // which accompanies this distribution, and is available at
 // http://www.eclipse.org/legal/epl-v10.html
 //
+// For more details see http://ximura.org
+//
 // Contributors:
 //     Paul Stancer - initial implementation
 // *******************************************************************************
@@ -26,7 +28,7 @@ using Ximura.Helper;
 #endregion // using
 namespace Ximura.Collections
 {
-    public class LockFreePool<T>
+    public class LockFreePool<T> : IPool<T>
         where T: class
     {
 

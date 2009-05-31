@@ -6,6 +6,8 @@
 // which accompanies this distribution, and is available at
 // http://www.eclipse.org/legal/epl-v10.html
 //
+// For more details see http://ximura.org
+//
 // Contributors:
 //     Paul Stancer - initial implementation
 // *******************************************************************************
@@ -26,30 +28,30 @@ using Ximura.Helper;
 #endregion // using
 namespace Ximura.Collections
 {
-    public class LockFree2DSparseMatrix<T>
-    {
-        public LockFree2DSparseMatrix()
-        {
+    //public class LockFree2DSparseMatrix<T>
+    //{
+    //    public LockFree2DSparseMatrix()
+    //    {
 
-        }
+    //    }
 
-        #region this[int index]
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="index"></param>
-        /// <returns></returns>
-        public T this[int i, int j]
-        {
-            get
-            {
-                return default(T);
-            }
-            set
-            {
+    //    #region this[int index]
+    //    /// <summary>
+    //    /// 
+    //    /// </summary>
+    //    /// <param name="index"></param>
+    //    /// <returns></returns>
+    //    public T this[int i, int j]
+    //    {
+    //        get
+    //        {
+    //            return default(T);
+    //        }
+    //        set
+    //        {
                 
-            }
-        }
-        #endregion // this[int index]
-    }
+    //        }
+    //    }
+    //    #endregion // this[int index]
+    //}
 }

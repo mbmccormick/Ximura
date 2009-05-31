@@ -6,6 +6,8 @@
 // which accompanies this distribution, and is available at
 // http://www.eclipse.org/legal/epl-v10.html
 //
+// For more details see http://ximura.org
+//
 // Contributors:
 //     Paul Stancer - initial implementation
 // *******************************************************************************
@@ -27,21 +29,7 @@ using Ximura.Helper;
 #endregion // using
 namespace Ximura.Collections
 {
-    /// <summary>
-    /// This interface is implemented by a queue.
-    /// </summary>
-    /// <typeparam name="T">The collection item type.</typeparam>
-    public interface IQueue<T> : ICollectionBase<T>
+    public interface IPool<T>
     {
-        /// <summary>
-        /// Removes an item from the head of the queue.
-        /// </summary>
-        /// <returns>Returns the item at the head of the queue.</returns>
-        T Dequeue();
-        /// <summary>
-        /// This method adds an item to the tail of the queue.
-        /// </summary>
-        /// <param name="item">The item to add to the queue.</param>
-        void Enqueue(T item);
     }
 }

@@ -6,6 +6,8 @@
 // which accompanies this distribution, and is available at
 // http://www.eclipse.org/legal/epl-v10.html
 //
+// For more details see http://ximura.org
+//
 // Contributors:
 //     Paul Stancer - initial implementation
 // *******************************************************************************
@@ -43,5 +45,12 @@ namespace Ximura.Collections
         /// </summary>
         /// <returns>Returns the top item on the stack.</returns>
         T Pop();
+        /// <summary>
+        /// This method tries to return the top item from the stack.
+        /// </summary>
+        /// <param name="item">The item at the top of the stack.</param>
+        /// <returns>Returns true if an item is removed from the stack.</returns>
+        bool TryPop(out T item);
+
     }
 }

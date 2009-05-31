@@ -6,6 +6,8 @@
 // which accompanies this distribution, and is available at
 // http://www.eclipse.org/legal/epl-v10.html
 //
+// For more details see http://ximura.org
+//
 // Contributors:
 //     Paul Stancer - initial implementation
 // *******************************************************************************
@@ -26,27 +28,27 @@ using Ximura.Helper;
 #endregion // using
 namespace Ximura.Collections
 {
-    public class LockFreeQueue<T> : LockFreeCollectionBase<T>, IQueue<T>
+    public class LockFreePriorityQueue<T> : LockFreeCollectionBase<T>, IPriorityQueue<T>
     {
         #region Constructor
         /// <summary>
         /// This is the default constructor. The collection will be constructed with a base capacity of 1000.
         /// </summary>
-        public LockFreeQueue() 
+        public LockFreePriorityQueue() 
             : base(null, 1000, null, false) { }
 
         /// <summary>
         /// Initializes a new instance of the LockFreeCollection<(Of <(T>)>) class
         /// </summary>
         /// <param name="collection">The values in this enumeration will be loaded in to the collection.</param>
-        public LockFreeQueue(IEnumerable<T> collection) : base(null, 1000, collection, false) { }
+        public LockFreePriorityQueue(IEnumerable<T> collection) : base(null, 1000, collection, false) { }
 
         /// <summary>
         /// Initializes a new instance of the LockFreeCollection<(Of <(T>)>) class
         /// </summary>
         /// <param name="collection">The values in this enumeration will be loaded in to the collection.</param>
         /// <param name="isFixedSize">The collection is fixed to the size passed in the capacity parameter.</param>
-        public LockFreeQueue(IEnumerable<T> collection, bool isFixedSize) : base(null, isFixedSize ? -1 : 1000, collection, isFixedSize) { }
+        public LockFreePriorityQueue(IEnumerable<T> collection, bool isFixedSize) : base(null, isFixedSize ? -1 : 1000, collection, isFixedSize) { }
 
         /// <summary>
         /// Initializes a new instance of the LockFreeCollection<(Of <(T>)>) class
@@ -54,21 +56,21 @@ namespace Ximura.Collections
         /// <param name="collection">The values in this enumeration will be loaded in to the collection.</param>
         /// <param name="comparer">This is the comparer used to detect equality between items in the collection. 
         /// If this is set to null the default comparer for the type will be used instead./</param>
-        public LockFreeQueue(IEqualityComparer<T> comparer, IEnumerable<T> collection) 
+        public LockFreePriorityQueue(IEqualityComparer<T> comparer, IEnumerable<T> collection) 
             : base(comparer, 1000, collection, false) { }
 
         /// <summary>
         /// Initializes a new instance of the LockFreeCollection<(Of <(T>)>) class
         /// </summary>
         /// <param name="capacity">The collection initial capacity.</param>
-        public LockFreeQueue(int capacity)
+        public LockFreePriorityQueue(int capacity)
             : base(null, capacity, null, false) { }
         /// <summary>
         /// Initializes a new instance of the LockFreeCollection<(Of <(T>)>) class
         /// </summary>
         /// <param name="capacity">The collection initial capacity.</param>
         /// <param name="isFixedSize">The collection is fixed to the size passed in the capacity parameter.</param>
-        public LockFreeQueue(int capacity, bool isFixedSize)
+        public LockFreePriorityQueue(int capacity, bool isFixedSize)
             : base(null, capacity, null, isFixedSize) { }
 
         /// <summary>
@@ -77,7 +79,7 @@ namespace Ximura.Collections
         /// <param name="comparer">This is the comparer used to detect equality between items in the collection. 
         /// If this is set to null the default comparer for the type will be used instead./</param>
         /// <param name="capacity">The collection initial capacity.</param>
-        public LockFreeQueue(IEqualityComparer<T> comparer, int capacity)
+        public LockFreePriorityQueue(IEqualityComparer<T> comparer, int capacity)
             : base(comparer, capacity, null, false) { }
         /// <summary>
         /// Initializes a new instance of the LockFreeCollection<(Of <(T>)>) class
@@ -86,7 +88,7 @@ namespace Ximura.Collections
         /// If this is set to null the default comparer for the type will be used instead./</param>
         /// <param name="capacity">The collection initial capacity.</param>
         /// <param name="isFixedSize">The collection is fixed to the size passed in the capacity parameter.</param>
-        public LockFreeQueue(IEqualityComparer<T> comparer, int capacity, bool isFixedSize)
+        public LockFreePriorityQueue(IEqualityComparer<T> comparer, int capacity, bool isFixedSize)
             : base(comparer, capacity, null, isFixedSize) { }
 
         /// <summary>
@@ -96,7 +98,7 @@ namespace Ximura.Collections
         /// If this is set to null the default comparer for the type will be used instead./</param>
         /// <param name="capacity">The collection initial capacity.</param>
         /// <param name="collection">The values in this enumeration will be loaded in to the collection.</param>
-        public LockFreeQueue(IEqualityComparer<T> comparer, int capacity, IEnumerable<T> collection)
+        public LockFreePriorityQueue(IEqualityComparer<T> comparer, int capacity, IEnumerable<T> collection)
             : base(comparer, capacity, collection, false) { }
         /// <summary>
         /// Initializes a new instance of the LockFreeCollection<(Of <(T>)>) class
@@ -106,33 +108,48 @@ namespace Ximura.Collections
         /// <param name="capacity">The collection initial capacity.</param>
         /// <param name="collection">The values in this enumeration will be loaded in to the collection.</param>
         /// <param name="isFixedSize">The collection is fixed to the size passed in the capacity parameter.</param>
-        public LockFreeQueue(IEqualityComparer<T> comparer, int capacity, IEnumerable<T> collection, bool isFixedSize)
+        public LockFreePriorityQueue(IEqualityComparer<T> comparer, int capacity, IEnumerable<T> collection, bool isFixedSize)
             : base(comparer, capacity, collection, isFixedSize) { }
         #endregion // Constructor
 
         public void Enqueue(T item)
         {
+            Enqueue(item, 1F);
+        }
+
+
+        public void Enqueue(T item, float priority)
+        {
             throw new NotImplementedException();
         }
 
+
         public T Dequeue()
         {
-            if (mCount == 0)
-            {
+            T item;
+            if (!TryDequeue(out item))
                 throw new InvalidOperationException("The count is zero.");
-            }
 
+            return item;
+        }
+
+        public bool TryDequeue(out T item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool TryPeek(out T item)
+        {
             throw new NotImplementedException();
         }
 
         public T Peek()
         {
-            if (mCount == 0)
-            {
+            T item;
+            if (!TryPeek(out item))
                 throw new InvalidOperationException("The count is zero.");
-            }
 
-            throw new NotImplementedException();
+            return item;
         }
 
         #region Contains(T item)
@@ -238,5 +255,8 @@ namespace Ximura.Collections
             collection.ForEach(i => Enqueue(i));
         }
         #endregion // AddIncomingData(IEnumerable<T> collection)
+
+
+
     }
 }
