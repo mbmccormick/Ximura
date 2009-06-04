@@ -82,6 +82,10 @@ namespace Ximura.Collections
         /// </summary>
         private bool mAllowMultipleEntries;
 
+        /// <summary>
+        /// This array holds both the slot and vertex data.
+        /// </summary>
+        protected CombinedVertexArray<T> mData;
         #endregion
         #region Constructor
         /// <summary>
@@ -103,7 +107,6 @@ namespace Ximura.Collections
             Initialize(capacity, collection, isFixedSize);
         }
         #endregion // Constructor
-
         #region IDisposable
         #region Finalizer
         /// <summary>
@@ -148,12 +151,34 @@ namespace Ximura.Collections
                 mDisposed = true;
                 //Clear the collection. This removes all references to any contained objects.
                 ClearInternal();
-                mSlots = null;
-                mBuckets = null;
+                mData=null;
             }
         }
         #endregion // Dispose(bool disposing)
         #endregion // IDisposable
+
+        #region CollectionAllowMultipleEntries
+        /// <summary>
+        /// This setting determines whether the collection allows multiple entries of the same object in the collection.
+        /// The default setting is true.
+        /// </summary>
+        protected virtual bool CollectionAllowMultipleEntries{get{return false;}}
+        #endregion
+        #region CollectionAllowNullValues
+        /// <summary>
+        /// This property determines whether the collection will accept null values. The default setting is true.
+        /// </summary>
+        /// <remarks>This property is ignored if the collection is for a value type such as int.</remarks>
+        protected virtual bool CollectionAllowNullValues { get { return true; } }
+        #endregion
+        #region IsFixedSize
+        /// <summary>
+        /// This property determines whether the collection will dynamically expand when new values are added. 
+        /// This property can only be set from the constructor, although this property can be overriden in derived classes to ensure
+        /// a particular value.
+        /// </summary>
+        public virtual bool IsFixedSize { get { return mIsFixedSize; } }
+        #endregion
 
         #region Initialize(int capacity, IEnumerable<T> collection)
         /// <summary>
@@ -179,8 +204,7 @@ namespace Ximura.Collections
             mDefaultTCount = 0;
             mContainScanUnlocked = true;
 
-            InitializeBuckets(capacity, IsFixedSize);
-            InitializeData(capacity, IsFixedSize);
+            mData = new CombinedVertexArray<T>(isFixedSize, capacity);
 
             if (collection != null)
                 AddIncomingData(collection);
@@ -197,30 +221,6 @@ namespace Ximura.Collections
             collection.ForEach(i => Insert(i, true));
         }
         #endregion // InitializeCollection(IEnumerable<T> collection)
-
-        #region CollectionAllowMultipleEntries
-        /// <summary>
-        /// This setting determines whether the collection allows multiple entries of the same object in the collection.
-        /// The default setting is true.
-        /// </summary>
-        protected virtual bool CollectionAllowMultipleEntries{get{return false;}}
-        #endregion
-        #region CollectionAllowNullValues
-        /// <summary>
-        /// This property determines whether the collection will accept null values. The default setting is true.
-        /// </summary>
-        /// <remarks>This property is ignored if the collection is for a value type such as int.</remarks>
-        protected virtual bool CollectionAllowNullValues { get { return true; } }
-        #endregion
-
-        #region IsFixedSize
-        /// <summary>
-        /// This property determines whether the collection will dynamically expand when new values are added. 
-        /// This property can only be set from the constructor, although this property can be overriden in derived classes to ensure
-        /// a particular value.
-        /// </summary>
-        public virtual bool IsFixedSize { get { return mIsFixedSize; } }
-        #endregion
 
         #region Insert(T item)
         /// <summary>
@@ -263,8 +263,8 @@ namespace Ximura.Collections
                         else
                             Interlocked.Increment(ref mDefaultTCount);
 
-                        Interlocked.Increment(ref mCount);
                         Interlocked.Increment(ref mVersion);
+                        Interlocked.Increment(ref mCount);
                         return true;
                     } 
                     #endregion
@@ -273,58 +273,10 @@ namespace Ximura.Collections
                     int hashCode = mEqualityComparer.GetHashCode(item);
 
                     //Add any required sentinels and retrieve the nearest sentinel slot ID.
-                    Sentinel sent = new Sentinel(hashCode, mCurrentBits, mBuckets);
-                    int hashID = sent.HashIDCalculate();
-
-                    VertexWindow<T> vWin = new VertexWindow<T>();
-
-                    int tBitsCurrent = sent.BitsCurrent;
-                    int tBitsStart = sent.BitsStart;
-                    int tBucketID = sent.BucketID;
-                    //OK, loop and create any required sentinels.
-                    while (tBitsCurrent < tBitsStart)
-                    {
-                        tBitsCurrent++;
-
-                        //int newBucketID = HashCode % (1 << (tBitsCurrent));
-                        int bucketID = sent.HashCode & (int.MaxValue >> (31 - tBitsCurrent));
-
-                        if (bucketID == tBucketID)
-                            continue;
-
-                        tBucketID = bucketID;
-
-                        mBuckets.ItemLock(bucketID);
-                        //Check whether the bucket has been created, shouldn't happen but best to be safe.
-                        if (mBuckets[bucketID] > 0)
-                        {
-                            mBuckets.ItemUnlock(bucketID);
-                            continue;
-                        }
-
-                        int bucketHashID = Sentinel.BitReverse(bucketID);
-
-                        //Ok, insert the sentinel.
-                        vWin.SlotsSetCurrentAndLock(mSlots, sent.SlotID);
-
-                        //Scan for the correct position to insert the sentinel.
-                        vWin.SlotsScanAndLock(mSlots, bucketHashID);
-
-                        //Get a new slot for the sentinel.
-                        int newPosition = EmptyGet();
-
-                        //Insert the new sentinel.
-                        vWin.SlotsInsertSentinel(mSlots, newPosition, bucketHashID);
-
-                        //Ok, unlock the bucket.
-                        mBuckets[bucketID] = newPosition + 1;
-
-                        sent.SlotID = newPosition;
-                        sent.BucketIDParent = bucketID;
-
-                        vWin.SlotsUnlock(mSlots);
-                        mBuckets.ItemUnlock(bucketID);
-                    } 
+                    //CombinedVertexArray<T>.Sentinel sent = new Sentinel(hashCode, mCurrentBits, mBuckets);
+                    int sentIndexID, hashID;
+                    mData.GetSentinelID(hashCode, true, out sentIndexID, out hashID);
+                    CombinedVertexArray<T>.VertexWindow<T> vWin = mData.VertexWindowGet(sentIndexID);
 #region Profiling
 	#if (PROFILING)
                     has = Environment.TickCount;
@@ -332,11 +284,10 @@ namespace Ximura.Collections
 #endregion
                     //Ok, let's add the data from the sentinel position.
                     //Lock the start index and initialize the window.
-                    vWin.SlotsSetCurrentAndLock(mSlots, sent.SlotID);
 #if (PROFILING)
-                    hopsData = vWin.SlotsScanAndLock(mSlots, hashID);
+                    hopsData = vWin.ScanAndLock(hashID);
 #else 
-                    vWin.SlotsScanAndLock(mSlots, hashID);
+                    vWin.ScanAndLock(hashID);
 #endif
                     //Ok, we need to scan for hash collisions and multiple entries.
                     while (!vWin.Curr.IsTerminator && vWin.Next.HashID == hashID)
@@ -348,8 +299,8 @@ namespace Ximura.Collections
                             {
                                 //This code is to accomodate dictionary type collections where the item is a keyvalue pair.
                                 vWin.Next.Value = item;
-                                mSlots[vWin.Curr.NextSlotIDPlus1 - 1] = vWin.Next;
-                                vWin.SlotsUnlock(mSlots);
+                                mData[vWin.Curr.NextSlotIDPlus1 - 1] = vWin.Next;
+                                vWin.Unlock();
                                 return true;
                             }
 
@@ -357,28 +308,33 @@ namespace Ximura.Collections
                                 break;
                             else
                             {
-                                vWin.SlotsUnlock(mSlots);
+                                vWin.Unlock();
                                 return false;
                             }
                         }
-
-                        vWin.SlotsMoveUp(mSlots);
+                        vWin.MoveUp();
 #if (PROFILING)
                         hopsData++;
 #endif
                     }
 
                     //Ok, add the data in the collection.
-                    vWin.SlotsInsertItem(mSlots, EmptyGet(), hashID, item);
-                    vWin.SlotsUnlock(mSlots);
+                    try
+                    {
+                        vWin.InsertItem(mData.EmptyGet(), hashID, item);
+                    }
+                    catch (Exception exx)
+                    {
+                        throw exx;
+                    }
+                    vWin.Unlock();
 
                     //Increment the necessary counters.
                     Interlocked.Increment(ref mVersion);
                     Interlocked.Increment(ref mCount);
 
                     //Check whether we need to recalculate the bit size.
-                    if (mCount > mRecalculateThreshold)
-                        BitSizeCalculate();
+                    mData.BitSizeCalculate(mCount);
 
                     return true;
                 }
@@ -427,8 +383,11 @@ namespace Ximura.Collections
                     return mAllowNullValues ? mDefaultTCount > 0 : false;
 
                 //Ok, we are going to search for the item
-                Sentinel sent = new Sentinel(mEqualityComparer.GetHashCode(item), mCurrentBits, mBuckets);
-                int hashID = sent.HashIDCalculate();
+                int hashCode = mEqualityComparer.GetHashCode(item);
+
+                int sentIndexID, hashID;
+                mData.GetSentinelID(hashCode, false, out sentIndexID, out hashID);
+
 #if (PROFILING)
                 endhal = Environment.TickCount - start;
 #endif
@@ -438,8 +397,8 @@ namespace Ximura.Collections
                     int currVersion = mVersion;
 
                     //Get the initial sentinel vertex. No need to check locks as sentinels rarely change.
-                    int scanPosition = sent.SlotID;
-                    Vertex<T> scanVertex = mSlots[scanPosition];
+                    int scanPosition = sentIndexID;
+                    Vertex<T> scanVertex = mData[scanPosition];
 
                     //First we will attempt to search without locking. However, should the version ID change 
                     //during the search we will need to complete a locked search to ensure consistency.
@@ -459,40 +418,39 @@ namespace Ximura.Collections
 #endif
                         scanPosition = scanVertex.NextSlotIDPlus1 - 1;
                         //slotLocks1 += mSlots.ItemLockWait(scanPosition);
-                        scanVertex = mSlots[scanPosition];
+                        scanVertex = mData[scanPosition];
                     }
                 }
 
-                //Ok, we have a scan miss.
+                //Ok, we have a scan miss due to an addition or deletion during the unlocked scan.
                 Interlocked.Increment(ref mContainScanUnlockedMiss);
 
-                VertexWindow<T> vWin = new VertexWindow<T>();
                 //Ok, let's add the data from the sentinel position.
                 //Lock the start index and initialize the window.
-                vWin.SlotsSetCurrentAndLock(mSlots, sent.SlotID);
+                CombinedVertexArray<T>.VertexWindow<T> vWin = mData.VertexWindowGet(sentIndexID);
 
                 //Ok, find the first instance of the hashID.
 #if (PROFILING)
-                hopCount = vWin.SlotsScanAndLock(mSlots, hashID);
+                hopCount = vWin.ScanAndLock(hashID);
 #else
-                vWin.SlotsScanAndLock(mSlots, hashID);
+                vWin.ScanAndLock(hashID);
 #endif
                 //Ok, we need to scan for hash collisions and multiple entries.
                 while (!vWin.Curr.IsTerminator && vWin.Next.HashID == hashID)
                 {
                     if (!vWin.Next.IsSentinel && mEqualityComparer.Equals(item, vWin.Next.Value))
                     {
-                        vWin.SlotsUnlock(mSlots);
+                        vWin.Unlock();
                         return true;
                     }
 
-                    vWin.SlotsMoveUp(mSlots);
+                    vWin.MoveUp();
 #if (PROFILING)
                     hopCount++;
 #endif
                 }
 
-                vWin.SlotsUnlock(mSlots);
+                vWin.Unlock();
                 return false;
 #region Profiling
 #if (PROFILING)
@@ -543,13 +501,15 @@ namespace Ximura.Collections
                 #endregion
             }
 
-            Sentinel sent = new Sentinel(mEqualityComparer.GetHashCode(item), mCurrentBits, mBuckets);
-            int hashID = sent.HashIDCalculate();
+            int hashCode = mEqualityComparer.GetHashCode(item);
 
-            VertexWindow<T> vWin = new VertexWindow<T>();
+            int sentIndexID, hashID;
+            mData.GetSentinelID(hashCode, false, out sentIndexID, out hashID);
 
             //Lock the start index and initialize the window.
-            vWin.SlotsSetCurrentAndLock(mSlots, sent.SlotID);
+            CombinedVertexArray<T>.VertexWindow<T> vWin = mData.VertexWindowGet(sentIndexID);
+
+            vWin.ScanAndLock(hashID);
 
             //Ok, we need to scan for hash collisions and multiple entries.
             while (!vWin.Curr.IsTerminator && vWin.Next.HashID == hashID)
@@ -557,29 +517,22 @@ namespace Ximura.Collections
                 if (!vWin.Next.IsSentinel && mEqualityComparer.Equals(item, vWin.Next.Value))
                 {
                     //Remove the item from the linked list.
-                    int emptyPos = vWin.SlotsRemoveItem(mSlots);
-
-                    //Add the empty item for re-allocation.
-                    EmptyAdd(emptyPos);
-
+                    vWin.RemoveItemAndUnlock();
+                    
                     //Update the version and reduce the item count.
-                    Interlocked.Decrement(ref mCount);
                     Interlocked.Increment(ref mVersion);
-
-                    mSlots.ItemUnlock(vWin.CurrSlotIDPlus1 - 1);
+                    Interlocked.Decrement(ref mCount);
                     return true;
                 }
 
-                vWin.SlotsMoveUp(mSlots);
+                vWin.MoveUp();
             }
 
-            vWin.SlotsUnlock(mSlots);
+            vWin.Unlock();
             //Ok, the item cannot be found.
             return false;
-
         }
         #endregion // RemoveInternal(T item)
-
         #region ClearInternal()
         /// <summary>
         /// This method clears the collection.
@@ -603,22 +556,21 @@ namespace Ximura.Collections
                 }
             }
 
-            VertexWindow<T> vWin = new VertexWindow<T>();
-            //Lock the start index and initialize the window.
-            vWin.SlotsSetCurrentAndLock(mSlots, cnIndexData);
+            //Get the window from the root sentinel.
+            CombinedVertexArray<T>.VertexWindow<T> vWin = mData.VertexWindowGet();
 
             //Ok, we need to scan for hash collisions and multiple entries.
             while (!vWin.Curr.IsTerminator)
             {
                 if (vWin.Next.IsSentinel)
-                    vWin.SlotsMoveUp(mSlots);
+                    vWin.MoveUp();
                 else
                 {
                     //Remove the item from the linked list and lock and move up the next item.
-                    int emptyPos = vWin.SlotsSnip(mSlots);
+                    int emptyPos = vWin.Snip();
 
                     //Add the empty item for re-allocation.
-                    EmptyAdd(emptyPos);
+                    mData.EmptyAdd(emptyPos);
 
                     //Update the version and reduce the item count.
                     Interlocked.Decrement(ref mCount);
@@ -626,7 +578,7 @@ namespace Ximura.Collections
                 }
             }
 
-            vWin.SlotsUnlock(mSlots);
+            vWin.Unlock();
         }
         #endregion // ClearInternal()
 
@@ -639,7 +591,6 @@ namespace Ximura.Collections
             get { return mCount; }
         }
         #endregion
-
         #region Version
         /// <summary>
         /// This is the current collection version.
@@ -653,5 +604,90 @@ namespace Ximura.Collections
             }
         }
         #endregion // Version
+
+        #region InternalScan(bool changeException)
+        /// <summary>
+        /// This method enumerates through the collection.
+        /// </summary>
+        /// <param name="changeException">Set this to true if you want the method to throw an exception if the collection changes.</param>
+        /// <returns>Returns a enumeration of the collection.</returns>
+        /// <exception cref="System.InvalidOperationException">This exception will be thrown when the collection 
+        /// changes during the scan and the changeException parameter is set to true.</exception>
+        protected internal virtual IEnumerable<KeyValuePair<int, Vertex<T>>> InternalScan(bool changeException)
+        {
+            if (mCount == 0)
+                yield break;
+
+            int currentVersion = mVersion;
+
+            foreach (var item in mData)
+            {
+                if (changeException && currentVersion != mVersion)
+                    throw new InvalidOperationException("The version has changed");
+
+                yield return item;
+            }
+        }
+        #endregion // InternalScan(bool changeException)
+        #region GetEnumerator()
+        /// <summary>
+        /// This method returns an enumeration of the collection values.
+        /// </summary>
+        /// <returns>Returns a enumeration of the collection.</returns>
+        /// <exception cref="System.InvalidOperationException">This exception will be thrown when if collection 
+        /// changes during the enumeration.</exception>
+        public IEnumerator<T> GetEnumerator()
+        {
+            //Enumerate the default(T) values.
+            for (int i = mDefaultTCount; i > 0; i--)
+                yield return default(T);
+            //Enumerate the data.
+            foreach (var item in InternalScan(true))
+                if (!item.Value.IsSentinel)
+                    yield return item.Value.Value;
+        }
+        #endregion // GetEnumerator()
+        #region IEnumerable Members
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return (IEnumerator)GetEnumerator();
+        }
+
+        #endregion
+
+        #region CopyToInternal(T[] array, int arrayIndex)
+        /// <summary>
+        /// This method copies the collection to the array specified.
+        /// </summary>
+        /// <param name="array">The array to copy to.</param>
+        /// <param name="arrayIndex">The array index where the class should start copying to.</param>
+        protected virtual void CopyToInternal(T[] array, int arrayIndex)
+        {
+            this.ForIndex((i, d) => array[i + arrayIndex] = d);
+        }
+        /// <summary>
+        /// This method copies the collection to the array specified.
+        /// </summary>
+        /// <param name="array">The array to copy to.</param>
+        /// <param name="arrayIndex">The array index where the class should start copying to.</param>
+        protected virtual void CopyToInternal(Array array, int arrayIndex)
+        {
+            this.ForIndex((i, d) => array.SetValue(d, i));
+        }
+
+        #endregion // CopyTo(T[] array, int arrayIndex)
+        #region ToArrayInternal()
+        /// <summary>
+        /// This method copies the internal data to an array.
+        /// </summary>
+        /// <returns>Returns an array containing the internal data.</returns>
+        protected virtual T[] ToArrayInternal()
+        {
+            T[] array = new T[CountInternal];
+            CopyToInternal(array, 0);
+            return array;
+        }
+        #endregion // ToArrayInternal()
     }
 }

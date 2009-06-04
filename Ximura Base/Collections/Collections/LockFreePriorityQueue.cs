@@ -112,18 +112,37 @@ namespace Ximura.Collections
             : base(comparer, capacity, collection, isFixedSize) { }
         #endregion // Constructor
 
+        #region Enqueue(T item)
+        /// <summary>
+        /// This method enqueues an item in to the collection with the highest priority.
+        /// </summary>
+        /// <param name="item">The item to enqueue.</param>
         public void Enqueue(T item)
         {
-            Enqueue(item, 1F);
+            Enqueue(item, 0F);
         }
-
-
+        #endregion // Enqueue(T item)
+        #region Enqueue(T item, float priority)
+        /// <summary>
+        /// This method enqueues an item in to the collection with the priority specified.
+        /// </summary>
+        /// <param name="item">The item to enqueue.</param>
+        /// <param name="priority">The priority of the item to enqueue.</param>
         public void Enqueue(T item, float priority)
         {
+            if (priority < 0)
+                throw new ArgumentOutOfRangeException("The priority cannot be less than zero.");
+
             throw new NotImplementedException();
         }
+        #endregion // Enqueue(T item, float priority)
 
-
+        #region Dequeue()
+        /// <summary>
+        /// This method dequeues the item from the queue with the highest priority.
+        /// </summary>
+        /// <returns>Returns an item from the queue.</returns>
+        /// <exception cref="System.InvalidOperationException">This exception is thrown if the queue is empty.</exception>
         public T Dequeue()
         {
             T item;
@@ -132,17 +151,24 @@ namespace Ximura.Collections
 
             return item;
         }
-
+        #endregion // TryDequeue(out T item)
+        #region TryDequeue(out T item)
+        /// <summary>
+        /// This method attempt to remove an item from the queue with the highest priority.
+        /// </summary>
+        /// <param name="item">The item returned from the queue.</param>
+        /// <returns>Returns true if an item is returned.</returns>
         public bool TryDequeue(out T item)
         {
             throw new NotImplementedException();
         }
+        #endregion // TryDequeue(out T item)
 
-        public bool TryPeek(out T item)
-        {
-            throw new NotImplementedException();
-        }
-
+        #region Peek()
+        /// <summary>
+        /// This method returns an item from the head of the queue without removing the item.
+        /// </summary>
+        /// <returns>Returns an item from the queue.</returns>
         public T Peek()
         {
             T item;
@@ -151,6 +177,18 @@ namespace Ximura.Collections
 
             return item;
         }
+        #endregion
+        #region TryPeek(out T item)
+        /// <summary>
+        /// This method attempts to return an item from the head of the queue without removing the item.
+        /// </summary>
+        /// <param name="item">The item returned from the queue.</param>
+        /// <returns>Returns true if an item is returned.</returns>
+        public bool TryPeek(out T item)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion // TryPeek(out T item)
 
         #region Contains(T item)
         /// <summary>
@@ -255,8 +293,5 @@ namespace Ximura.Collections
             collection.ForEach(i => Enqueue(i));
         }
         #endregion // AddIncomingData(IEnumerable<T> collection)
-
-
-
     }
 }

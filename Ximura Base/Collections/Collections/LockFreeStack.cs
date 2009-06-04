@@ -137,6 +137,10 @@ namespace Ximura.Collections
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public T Peek()
         {
             T item;
@@ -249,7 +253,5 @@ namespace Ximura.Collections
             collection.ForEach(i => Push(i));
         }
         #endregion // AddIncomingData(IEnumerable<T> collection)
-
-
     }
 }

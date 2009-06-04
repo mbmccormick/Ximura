@@ -56,7 +56,7 @@ namespace Ximura.Collections
         /// <summary>
         /// This method attempts to lock the item specified.
         /// </summary>
-        /// <param name="index">The index of the item you wish to lock..</param>
+        /// <param name="index">The index of the item you wish to lock.</param>
         /// <returns>Returns true if the item was successfully locked.</returns>
         bool ItemTryLock(int index);
         /// <summary>

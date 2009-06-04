@@ -51,7 +51,7 @@ namespace Ximura.Collections
                 .ForEach(i =>
                 {
                     int hashID = i.Value.HashID;
-                    
+
                     slots++;
                     sentHops++;
 
@@ -78,7 +78,7 @@ namespace Ximura.Collections
                 .Where(i => i.IsSentinel)
                 .GroupBy(i => i.HashID)
                 .OrderByDescending(g => g.Count())
-                .Where(g => g.Count()>1)
+                .Where(g => g.Count() > 1)
                 .ToArray();
 
         }
@@ -103,13 +103,13 @@ namespace Ximura.Collections
             int slotData = 0;
 
             DebugData.ForEach(k =>
-                {
-                    slots++;
-                    if (k.Value.IsSentinel)
-                        slotSentinel++;
-                    else
-                        slotData++;
-                });
+            {
+                slots++;
+                if (k.Value.IsSentinel)
+                    slotSentinel++;
+                else
+                    slotData++;
+            });
 
             return string.Format("Slots={0} |S {1} |D {2}", slots, slotSentinel, slotData);
         }
@@ -118,20 +118,11 @@ namespace Ximura.Collections
         /// <summary>
         /// This debug method enumerates through the collection.
         /// </summary>
-        public IEnumerable<KeyValuePair<int, Vertex<T>>> DebugEmpty
+        public string DebugEmpty
         {
             get
             {
-                int currentVersion = mVersion;
-
-                KeyValuePair<int, Vertex<T>> item = new KeyValuePair<int, Vertex<T>>(0, mSlots[cnIndexEmptyQueue]);
-                yield return item;
-
-                while (!item.Value.IsTerminator)
-                {
-                    item = new KeyValuePair<int, Vertex<T>>(item.Value.NextSlotIDPlus1 - 1, mSlots[item.Value.NextSlotIDPlus1 - 1]);
-                    yield return item;
-                }
+                return mData.DebugEmpty;
             }
         }
         #endregion // DebugEmpty

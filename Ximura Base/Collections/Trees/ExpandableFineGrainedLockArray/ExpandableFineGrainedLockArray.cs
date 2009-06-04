@@ -39,7 +39,7 @@ namespace Ximura.Collections
         #region Declarations
         private LockFreeRedBlackVertex<int, FineGrainedLockArray<T>> initial;
         private int mCapacity;
-        private Func<int, int> fnCalculateAutogrow;
+        private Func<int, int, int> fnCalculateAutogrow;
         #endregion // Declarations
         #region Constructor
         /// <summary>
@@ -50,13 +50,13 @@ namespace Ximura.Collections
         /// This is the default constructor that sets the initial capacity of the array.
         /// </summary>
         /// <param name="capacity">The initial capacity of the array.</param>
-        public ExpandableFineGrainedLockArray(int capacity) : this(capacity, (c) => Prime.Get(c * 2)) { }
+        public ExpandableFineGrainedLockArray(int capacity) : this(capacity, (c, d) => Prime.Get(c * 2)) { }
         /// <summary>
         /// This constructor sets the initial capacity and also provides a calculation function to calculate the growth of the array.
         /// </summary>
         /// <param name="capacity">The initial capacity of the array.</param>
         /// <param name="fnCalculateAutogrow">The growth function, if this is not set, the array will be of a fixed size.</param>
-        public ExpandableFineGrainedLockArray(int capacity, Func<int, int> fnCalculateAutogrow)
+        public ExpandableFineGrainedLockArray(int capacity, Func<int, int, int> fnCalculateAutogrow)
         {
             IncreaseCapacity(capacity);
             //We set this after the IncreaseCapacity call to ensure that the capacity is set specifically to the value passed.
@@ -184,15 +184,6 @@ namespace Ximura.Collections
         }
         #endregion // ResolveArray(int index) 
 
-        #region IncreaseCapacity()
-        /// <summary>
-        /// This method increases the capacity by the default amount.
-        /// </summary>
-        public void IncreaseCapacity()
-        {
-            IncreaseCapacity(mCapacity + fnCalculateAutogrow(mCapacity));
-        }
-        #endregion // IncreaseCapacity()
         #region IncreaseCapacity(int newCapacity)
         /// <summary>
         /// This method increases the capacity to the amount specified.
@@ -202,9 +193,12 @@ namespace Ximura.Collections
         {
             //Ok, check whether we have an autogrow calculator, and if so, adjust the growth amount.
             if (fnCalculateAutogrow != null)
-                newCapacity = fnCalculateAutogrow(newCapacity);
+                newCapacity = fnCalculateAutogrow(newCapacity, mCapacity);
 
             int additional = newCapacity - mCapacity;
+
+            if (additional <= 0)
+                throw new ArgumentOutOfRangeException("Array cannot be grown.");
 
             LockFreeRedBlackVertex<int, FineGrainedLockArray<T>> vertex = new LockFreeRedBlackVertex<int, FineGrainedLockArray<T>>();
 

@@ -500,10 +500,11 @@ namespace Ximura.Collections
             {
 #endif
             #endregion
+                //Get the hash code for the item.
+                int hashCode = KeyOnlyEqualityComparer.KeyComparer.GetHashCode(key);
 
-                //Ok, we are going to search for the item
-                Sentinel sent = new Sentinel(KeyOnlyEqualityComparer.KeyComparer.GetHashCode(key), mCurrentBits, mBuckets);
-                int hashID = sent.HashIDCalculate();
+                int sentIndexID, hashID;
+                mData.GetSentinelID(hashCode, true, out sentIndexID, out hashID);
 #if (PROFILING)
                 endhal = Environment.TickCount - start;
 #endif
@@ -513,8 +514,8 @@ namespace Ximura.Collections
                     int currVersion = mVersion;
 
                     //Get the initial sentinel vertex. No need to check locks as sentinels rarely change.
-                    int scanPosition = sent.SlotID;
-                    Vertex<KeyValuePair<TKey, TValue>> scanVertex = mSlots[scanPosition];
+                    int scanPosition = sentIndexID;
+                    Vertex<KeyValuePair<TKey, TValue>> scanVertex = mData[scanPosition];
 
                     //First we will attempt to search without locking. However, should the version ID change 
                     //during the search we will need to complete a locked search to ensure consistency.
@@ -540,41 +541,41 @@ namespace Ximura.Collections
 #endif
                         scanPosition = scanVertex.NextSlotIDPlus1 - 1;
                         //slotLocks1 += mSlots.ItemLockWait(scanPosition);
-                        scanVertex = mSlots[scanPosition];
+                        scanVertex = mData[scanPosition];
                     }
                 }
 
                 //Ok, we have a scan miss.
                 Interlocked.Increment(ref mContainScanUnlockedMiss);
 
-                VertexWindow<KeyValuePair<TKey, TValue>> vWin = new VertexWindow<KeyValuePair<TKey, TValue>>();
                 //Ok, let's add the data from the sentinel position.
                 //Lock the start index and initialize the window.
-                vWin.SlotsSetCurrentAndLock(mSlots, sent.SlotID);
+                CombinedVertexArray<KeyValuePair<TKey, TValue>>.VertexWindow<KeyValuePair<TKey, TValue>> vWin
+                    = mData.VertexWindowGet(sentIndexID);
 
                 //Ok, find the first instance of the hashID.
 #if (PROFILING)
-                hopCount = vWin.SlotsScanAndLock(mSlots, hashID);
+                hopCount = vWin.ScanAndLock(hashID);
 #else
-                vWin.SlotsScanAndLock(mSlots, hashID);
+                vWin.ScanAndLock(hashID);
 #endif
                 //Ok, we need to scan for hash collisions and multiple entries.
                 while (!vWin.Curr.IsTerminator && vWin.Next.HashID == hashID)
                 {
                     if (!vWin.Next.IsSentinel && KeyOnlyEqualityComparer.KeyComparer.Equals(key, vWin.Next.Value.Key))
                     {
-                        vWin.SlotsUnlock(mSlots);
+                        vWin.Unlock();
                         value = vWin.Next.Value.Value;
                         return true;
                     }
 
-                    vWin.SlotsMoveUp(mSlots);
+                    vWin.MoveUp();
 #if (PROFILING)
                     hopCount++;
 #endif
                 }
 
-                vWin.SlotsUnlock(mSlots);
+                vWin.Unlock();
                 value = default(TValue);
                 return false;
                 #region Profiling
