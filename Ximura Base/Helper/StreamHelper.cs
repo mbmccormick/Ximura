@@ -24,6 +24,7 @@ using CH = Ximura.Helper.Common;
 #endregion // using
 namespace Ximura.Helper
 {
+    [CLSCompliant(false)]
     public static class StreamHelper
     {
         #region bool

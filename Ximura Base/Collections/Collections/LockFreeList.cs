@@ -34,7 +34,7 @@ namespace Ximura.Collections
     /// </summary>
     /// <typeparam name="T">The collection item type.</typeparam>
     [DebuggerDisplay("Count = {Count}"), HostProtection(SecurityAction.LinkDemand, MayLeakOnAbort = true)]
-    public class LockFreeList<T> : LockFreeCollection<T>, ICollection<T>
+    public sealed class LockFreeList<T> : LockFreeCollection<T>, ICollection<T>
     {
         #region Constructor
         /// <summary>

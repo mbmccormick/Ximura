@@ -21,7 +21,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.Serialization;
-using System.Runtime.InteropServices;
+using System.Security.Permissions;
 using System.Threading;
 
 using Ximura;
@@ -29,29 +29,44 @@ using Ximura.Helper;
 #endregion // using
 namespace Ximura.Collections
 {
+    #region SkipListNode<T>
     /// <summary>
-    /// This interface is implemented by a queue.
+    /// 
     /// </summary>
-    /// <typeparam name="T">The collection item type.</typeparam>
-    public interface IPriorityQueue<T> : ICollectionBase<T>
+    /// <typeparam name="T"></typeparam>
+    internal class SkipListNode<T>
     {
         /// <summary>
-        /// Removes an item from the head of the queue.
+        /// 
         /// </summary>
-        /// <returns>Returns the item at the head of the queue.</returns>
-        T Dequeue();
+        public SkipListNode() : this(default(T)) { }
         /// <summary>
-        /// This item tries to empty an item in the queue.
+        /// 
         /// </summary>
-        /// <param name="item">The top item in the queue.</param>
-        /// <returns>Returns true if there is an item in the queue.</returns>
-        bool TryDequeue(out T item);
+        /// <param name="value"></param>
+        public SkipListNode(T value)
+        {
+            Value = value;
+            Right = null;
+            Up = null;
+            Down = null;
+        }
         /// <summary>
-        /// This method adds an item to the tail of the queue.
+        /// 
         /// </summary>
-        /// <param name="item">The item to add to the queue.</param>
-        void Enqueue(T item);
-
-        void Enqueue(T item, float priority);
+        public T Value;
+        /// <summary>
+        /// 
+        /// </summary>
+        public SkipListNode<T> Right;
+        /// <summary>
+        /// 
+        /// </summary>
+        public SkipListNode<T> Up;
+        /// <summary>
+        /// 
+        /// </summary>
+        public SkipListNode<T> Down;
     }
+    #endregion // SkipListNode<T>
 }

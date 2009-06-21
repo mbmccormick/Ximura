@@ -57,7 +57,7 @@ namespace Ximura.Collections
             /// <summary>
             /// The vertexes.
             /// </summary>
-            public LockFreeRedBlackVertex<TKey, TVal> Grandparent, Parent, Current;
+            public LockableRedBlackTreeVertex<TKey, TVal> Grandparent, Parent, Current;
             #endregion // Public properties
 
             #region MoveDown(LockFreeRedBlackVertex<TKey, TVal> newCurrent)
@@ -66,7 +66,7 @@ namespace Ximura.Collections
             /// if it is defined.
             /// </summary>
             /// <param name="newCurrent">The new vertex to add.</param>
-            public void MoveDown(LockFreeRedBlackVertex<TKey, TVal> newCurrent)
+            public void MoveDown(LockableRedBlackTreeVertex<TKey, TVal> newCurrent)
             {
                 if (lockItems)
                 {
@@ -86,7 +86,7 @@ namespace Ximura.Collections
             /// </summary>
             public void MoveUp()
             {
-                LockFreeRedBlackVertex<TKey, TVal> newGP = Grandparent.Parent;
+                LockableRedBlackTreeVertex<TKey, TVal> newGP = Grandparent.Parent;
 
                 if (lockItems)
                 {
@@ -117,7 +117,7 @@ namespace Ximura.Collections
             /// This method releases a particular vertex.
             /// </summary>
             /// <param name="vertex">The vertex to release.</param>
-            private void Release(LockFreeRedBlackVertex<TKey, TVal> vertex)
+            private void Release(LockableRedBlackTreeVertex<TKey, TVal> vertex)
             {
                 if (vertex != null)
                     vertex.Unlock();
@@ -154,7 +154,7 @@ namespace Ximura.Collections
 
         protected void InsertFixup(TreeTraversalWindow<TKey, TVal> window)
         {
-            LockFreeRedBlackVertex<TKey, TVal> vZ = window.Current;
+            LockableRedBlackTreeVertex<TKey, TVal> vZ = window.Current;
 
             //while (vZ.IsRed)
             //{
@@ -163,9 +163,9 @@ namespace Ximura.Collections
             //}
         }
 
-        protected bool RotateLeft(LockFreeRedBlackVertex<TKey, TVal> vX)
+        protected bool RotateLeft(LockableRedBlackTreeVertex<TKey, TVal> vX)
         {
-            LockFreeRedBlackVertex<TKey, TVal> vY = vX.Right;
+            LockableRedBlackTreeVertex<TKey, TVal> vY = vX.Right;
 
             vX.Right = vY.Left;
             vY.Left = vX;
@@ -182,9 +182,9 @@ namespace Ximura.Collections
             return false;
         }
 
-        protected bool RotateRight(LockFreeRedBlackVertex<TKey, TVal> vX)
+        protected bool RotateRight(LockableRedBlackTreeVertex<TKey, TVal> vX)
         {
-            LockFreeRedBlackVertex<TKey, TVal> vY = vX.Parent;
+            LockableRedBlackTreeVertex<TKey, TVal> vY = vX.Parent;
 
             vY.Left = vX.Right;
             vX.Right = vY;

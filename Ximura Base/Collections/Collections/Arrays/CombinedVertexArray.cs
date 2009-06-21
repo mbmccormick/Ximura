@@ -34,7 +34,7 @@ namespace Ximura.Collections
     /// This class contains the combined buckets and slots in a single class.
     /// </summary>
     /// <typeparam name="T">The collection type.</typeparam>
-    public class CombinedVertexArray<T> : IFineGrainedLockArray<Vertex<T>>, IEnumerable<KeyValuePair<int, Vertex<T>>>
+    public class CombinedVertexArray<T> : VertexArray<T>
     {
         #region Constants
         private const double elog2 = 0.693147181;
@@ -43,179 +43,56 @@ namespace Ximura.Collections
         /// </summary>
         private const int Root = unchecked((int)0x80000000);
 
-        private const int cnHiMask = 0x08000000;
-        private const int cnLowerBitMask = 0x07FFFFFF;
         #endregion // Declarations
         #region Declarations
         /// <summary>
         /// This collection holds the data.
         /// </summary>
-        private IFineGrainedLockArray<Vertex<T>> mSlots;
-        /// <summary>
-        /// This collection holds the data.
-        /// </summary>
-        private IFineGrainedLockArray<Vertex<T>> mBuckets;
-        /// <summary>
-        /// This is the initial data capacity of the collection.
-        /// </summary>
-        private int mCapacity;
-        /// <summary>
-        /// This is the free data queue tail position.
-        /// </summary>
-        private LockableWrapper<int> mFreeListTail;
-        /// <summary>
-        /// This is the free data queue item count.
-        /// </summary>
-        private int mFreeListCount;
-        /// <summary>
-        /// This is the current next free position in the data collection.
-        /// </summary>
-        private int mLastIndex;
-        /// <summary>
-        /// This is the vertex that holds the previously used vertexes.
-        /// </summary>
-        private LockableWrapper<Vertex<T>> mEmptyVertex;
+        private IFineGrainedLockArray<CollectionVertex<T>> mBuckets;
         /// <summary>
         /// The current number of bits being used by the collection.
         /// </summary>
-        private int mCurrentBits;
-
-        private int mRecalculateThreshold;
+        private volatile int mCurrentBits;
         /// <summary>
-        /// This property specifies whether the collection is a fixed size.
+        /// This is the slot recalculate threshold.
         /// </summary>
-        private bool mIsFixedSize;
+        private volatile int mRecalculateThreshold;
         #endregion // Declarations
         #region Constructor
         /// <summary>
-        /// 
+        /// This is the default constructor for the array.
         /// </summary>
-        /// <param name="isFixedSize"></param>
+        /// <param name="isFixedSize">A boolean value indicating whether the data collection is fixed size.</param>
+        /// <param name="capacity">The array capacity.</param>
         public CombinedVertexArray(bool isFixedSize, int capacity)
         {
-            mIsFixedSize = isFixedSize;
+            Initialize(isFixedSize, capacity);
+        }
+        #endregion // Constructor
+
+        #region Initialize(bool isFixedSize, int capacity)
+        /// <summary>
+        /// This method initializes the class.
+        /// </summary>
+        /// <param name="isFixedSize">A boolean value indicating whether the data collection is fixed size.</param>
+        /// <param name="capacity">The capacity of the data array.</param>
+        protected override void Initialize(bool isFixedSize, int capacity)
+        {
+            base.Initialize(isFixedSize, capacity);
 
             int maxBits = (int)(Math.Log(capacity) / elog2);
             int bucketSize = 1 << maxBits;
 
             mCurrentBits = maxBits;
-            mCapacity = capacity;
 
             if (isFixedSize)
-            {
-                mSlots = new FineGrainedLockArray<Vertex<T>>(capacity, 0);
-                mBuckets = new FineGrainedLockArray<Vertex<T>>(bucketSize, 0);
-            }
+                mBuckets = new FineGrainedLockArray<CollectionVertex<T>>(bucketSize, 0);
             else
-            {
-                mSlots = new ExpandableFineGrainedLockArray<Vertex<T>>(capacity, SlotExpander);
-                mBuckets = new ExpandableFineGrainedLockArray<Vertex<T>>(bucketSize, BucketExpander);
-            }
+                mBuckets = new ExpandableFineGrainedLockArray<CollectionVertex<T>>(bucketSize, BucketExpander);
 
-            mFreeListTail.Value = -1;
-            mFreeListCount = 0;
-            mLastIndex = 0;
-
-            mBuckets[0] = Vertex<T>.Sentinel(0, 0);
-            mEmptyVertex = new LockableWrapper<Vertex<T>>(Vertex<T>.Sentinel(0, 0));
+            mBuckets[0] = CollectionVertex<T>.Sentinel(0, 0);
         }
-        #endregion // Constructor
-
-        #region EmptyGet()
-        /// <summary>
-        /// This method returns the next free item, either from empty space, or from a free item in the collection.
-        /// </summary>
-        /// <returns>Returns the index for the next free item.</returns>
-        public int EmptyGet()
-        {
-            //If there are free items, try and lock the empty sentinel, 
-            //but if already locked, just take a new item from the end of the collection.
-            while (mFreeListCount > 0)
-            {
-                mEmptyVertex.Lock();
-                try
-                {
-                    if (mEmptyVertex.Value.IsTerminator)
-                        continue;
-
-                    int pos = mEmptyVertex.Value.NextSlotIDPlus1 - 1;
-                    mSlots.ItemLock(pos);
-
-                    //OK get the item.
-                    Vertex<T> item = mSlots[pos];
-
-                    //OK, remove the free item from the list and set the sentinel to the next item.
-                    mEmptyVertex.Value = new Vertex<T>(0, default(T), item.NextSlotIDPlus1);
-
-                    if (mEmptyVertex.Value.IsTerminator)
-                    {
-                        mFreeListTail.Value = -1;
-                        mFreeListCount = 0;
-                    }
-                    else
-                    {
-                        Interlocked.Decrement(ref mFreeListCount);
-                    }
-
-                    //Unlock the free item.
-                    mSlots.ItemUnlock(pos);
-
-                    //Returns the index of the free item.
-                    return pos;
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
-                finally
-                {
-                    mEmptyVertex.Unlock();
-                }
-            }
-
-            int nextItem = Interlocked.Increment(ref mLastIndex);
-
-            if (nextItem == 0 || (mIsFixedSize && nextItem >= mCapacity))
-                throw new ArgumentOutOfRangeException("The list has exceeeded the capacity of the maximum integer value.");
-
-            return nextItem - 1;
-        }
-        #endregion // EmptyGet()
-        #region EmptyAdd(int index)
-        /// <summary>
-        /// This method adds an empty item to the free list.
-        /// </summary>
-        /// <param name="index">The index of the item to add to the sentinel.</param>
-        public void EmptyAdd(int index)
-        {
-            //Check whether they are attempting to return a sentinel.
-            int noMaskIndex = index & 0x7FFFFFFF;
-            if (noMaskIndex != index)
-                throw new ArgumentOutOfRangeException("Sentinel vertexes cannot be returned.");
-
-            mFreeListTail.Lock();
-            if (mFreeListTail.Value == -1)
-            {
-                mEmptyVertex.Lock();
-
-                int next = mEmptyVertex.Value.NextSlotIDPlus1;
-                mSlots[index] = new Vertex<T>(0, default(T), next);
-                mEmptyVertex.Value = new Vertex<T>(0, default(T), index + 1);
-
-                mFreeListTail.Value = index;
-
-                mEmptyVertex.Unlock();
-            }
-            else
-            {
-                mSlots[index] = Vertex<T>.Empty;
-                mSlots[mFreeListTail.Value] = new Vertex<T>(0, default(T), index + 1);
-                mFreeListTail.Value = index;
-            }
-            Interlocked.Increment(ref mFreeListCount);
-            mFreeListTail.Unlock();
-        }
-        #endregion // EmptyAdd(int index)
+        #endregion // Initialize(bool isFixedSize, int capacity)
 
         #region BucketExpander(int requiredSize, int currentSize)
         /// <summary>
@@ -229,25 +106,21 @@ namespace Ximura.Collections
             return requiredSize;
         }
         #endregion // BucketExpander(int requiredSize, int currentSize)
-        #region SlotExpander(int requiredSize, int currentSize)
+        #region EmptyAdd(int index)
         /// <summary>
-        /// This expander grows the buckets by the specified amount.
+        /// This method adds an empty item to the free list.
         /// </summary>
-        /// <param name="requiredSize">The index specifying the new capacity.</param>
-        /// <param name="currentSize">The current capacity.</param>
-        /// <returns>Returns the new capacity.</returns>
-        protected virtual int SlotExpander(int requiredSize, int currentSize)
+        /// <param name="index">The index of the item to add to the sentinel.</param>
+        public override void EmptyAdd(int index)
         {
-            return Prime.Get(requiredSize * 2);
-        }
-        #endregion // SlotExpander(int requiredSize, int currentSize)
+            //Check whether they are attempting to return a sentinel.
+            int noMaskIndex = index & 0x7FFFFFFF;
+            if (noMaskIndex != index)
+                throw new ArgumentOutOfRangeException("Sentinel vertexes cannot be returned.");
 
-        #region IsFixedSize
-        /// <summary>
-        /// This property specifies whether the collection is a fixed size.
-        /// </summary>
-        public bool IsFixedSize { get { return mIsFixedSize; } }
-        #endregion // IsFixedSize
+            base.EmptyAdd(index);
+        }
+        #endregion // EmptyAdd(int index)
 
         #region ItemIsLocked(int index)
         /// <summary>
@@ -255,7 +128,7 @@ namespace Ximura.Collections
         /// </summary>
         /// <param name="index">The index of the item to check.</param>
         /// <returns>Returns true if the item is locked.</returns>
-        public bool ItemIsLocked(int index)
+        public override bool ItemIsLocked(int index)
         {
             int noMaskIndex = index & 0x7FFFFFFF;
             if (noMaskIndex == index)
@@ -270,7 +143,7 @@ namespace Ximura.Collections
         /// </summary>
         /// <param name="index">The item index.</param>
         /// <returns>Returns the number of lock cycles the thread entered.</returns>
-        public int ItemLock(int index)
+        public override int ItemLock(int index)
         {
             int noMaskIndex = index & 0x7FFFFFFF;
             if (noMaskIndex == index)
@@ -285,7 +158,7 @@ namespace Ximura.Collections
         /// </summary>
         /// <param name="index">The index of the item to wait for.</param>
         /// <returns>Returns the number of lock cycles during the wait.</returns>
-        public int ItemLockWait(int index)
+        public override int ItemLockWait(int index)
         {
             int noMaskIndex = index & 0x7FFFFFFF;
             if (noMaskIndex == index)
@@ -300,7 +173,7 @@ namespace Ximura.Collections
         /// </summary>
         /// <param name="index">The index of the item you wish to lock..</param>
         /// <returns>Returns true if the item was successfully locked.</returns>
-        public bool ItemTryLock(int index)
+        public override bool ItemTryLock(int index)
         {
             int noMaskIndex = index & 0x7FFFFFFF;
             if (noMaskIndex == index)
@@ -314,7 +187,7 @@ namespace Ximura.Collections
         /// The method unlocks the item.
         /// </summary>
         /// <param name="index">The index of the item you wish to unlock.</param>
-        public void ItemUnlock(int index)
+        public override void ItemUnlock(int index)
         {
             int noMaskIndex = index & 0x7FFFFFFF;
             if (noMaskIndex == index)
@@ -324,41 +197,13 @@ namespace Ximura.Collections
         }
         #endregion // ItemUnlock(int index)
 
-        #region Length
-        /// <summary>
-        /// The data capacity.
-        /// </summary>
-        public int Length
-        {
-            get { return mSlots.Length; }
-        }
-        #endregion // Length
-        #region LengthSlots
-        /// <summary>
-        /// The data capacity.
-        /// </summary>
-        public int LengthSlots
-        {
-            get { return mBuckets.Length; }
-        }
-        #endregion // LengthSlots
-        #region LengthBuckets
-        /// <summary>
-        /// The bucket capacity.
-        /// </summary>
-        public int LengthBuckets
-        {
-            get { return mBuckets.Length; }
-        }
-        #endregion // LengthBuckets
-
         #region this[int index]
         /// <summary>
         /// This is the indexer for the array.
         /// </summary>
         /// <param name="index">The index position.</param>
         /// <returns>Returns the vertex corresponding to the index position.</returns>
-        public Vertex<T> this[int index]
+        public override CollectionVertex<T> this[int index]
         {
             get
             {
@@ -384,62 +229,37 @@ namespace Ximura.Collections
         /// This method returns an enumeration through the sentinels and data in the collection.
         /// </summary>
         /// <returns>Returns an enumeration containing the collection data.</returns>
-        public IEnumerator<KeyValuePair<int, Vertex<T>>> GetEnumerator()
+        public override IEnumerator<KeyValuePair<int, ICollectionVertex<T>>> GetEnumerator()
         {
-            KeyValuePair<int, Vertex<T>> item = new KeyValuePair<int, Vertex<T>>(unchecked((int)0x80000000), mBuckets[0]);
+            KeyValuePair<int, ICollectionVertex<T>> item = new KeyValuePair<int, ICollectionVertex<T>>(unchecked((int)0x80000000), mBuckets[0]);
             yield return item;
 
             while (!item.Value.IsTerminator)
             {
-                int id = item.Value.NextSlotIDPlus1 - 1;
+                int id = item.Value.DataNextSlotID - 1;
                 ItemLockWait(id);
-                item = new KeyValuePair<int, Vertex<T>>(id, this[id]);
+                item = new KeyValuePair<int, ICollectionVertex<T>>(id, this[id]);
 
                 yield return item;
             }
         }
-
-        #endregion
-        #region IEnumerable Members
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return (IEnumerator)GetEnumerator();
-        }
-
         #endregion
 
-        #region BitReverse(int data)
+        #region LengthBuckets
         /// <summary>
-        /// This method reverses the hashcode so that it is ordered in reverse based on bit value, i.e.
-        /// xxx1011 => 1101xxxx => Bucket 1 1xxxxx => Bucket 3 11xxxxx => Bucket 6 110xxx etc.
+        /// The bucket capacity.
         /// </summary>
-        /// <param name="data"The data to reverse></param>
-        /// <returns>Returns the reversed data</returns>
-        public static int BitReverse(int data)
+        public int LengthBuckets
         {
-            int result = 0;
-            int hiMask = cnHiMask;
-
-            for (; data > 0; data >>= 1)
-            {
-                if ((data & 1) > 0)
-                    result |= hiMask;
-                hiMask >>= 1;
-
-                if (hiMask == 0)
-                    break;
-            }
-
-            return result;
+            get { return mBuckets.Length; }
         }
-        #endregion // BitReverse(int data, int wordSize)
+        #endregion // LengthBuckets
 
-        #region BitSizeCalculate(int total)
+        #region SizeRecalculate(int total)
         /// <summary>
         /// This method calculates the current number of bits needed to support the current data.
         /// </summary>
-        public virtual void BitSizeCalculate(int total)
+        public override void SizeRecalculate(int total)
         {
             int currentBits = mCurrentBits;
             int recalculateThreshold = mRecalculateThreshold;
@@ -457,7 +277,6 @@ namespace Ximura.Collections
                 Interlocked.CompareExchange(ref mRecalculateThreshold, newThreshold, recalculateThreshold);
         }
         #endregion
-
         #region ConvertBucketIDToIndexID(int bucketID)
         /// <summary>
         /// This method converts a bucketID to an index ID by setting the MSB.
@@ -478,7 +297,7 @@ namespace Ximura.Collections
         /// <param name="create">This property determine whether any missing sentinels will be created.</param>
         /// <param name="sentIndexID">The largest sentinel index ID.</param>
         /// <param name="hashID">The hashID for the hashCode that passed.</param>
-        public void GetSentinelID(int hashCode, bool create, out int sentIndexID, out int hashID)
+        public override void GetSentinelID(int hashCode, bool create, out int sentIndexID, out int hashID)
         {
             hashCode &= cnLowerBitMask;
             hashID = BitReverse(hashCode);
@@ -551,314 +370,14 @@ namespace Ximura.Collections
         }
         #endregion // GetSentinel(int hashCode, bool create, out int sentSlotID, out int hashID)
 
-        #region Struct -> VertexWindow<T>
-        /// <summary>
-        /// The vertex window structure holds the search results from a scan.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        [StructLayout(LayoutKind.Sequential)]
-        public struct VertexWindow<T>
-        {
-            #region Declarations
-            CombinedVertexArray<T> mData;
-            #endregion // Declarations
-            #region Constructor
-            /// <summary>
-            /// This is the default constructor for the window.
-            /// </summary>
-            /// <param name="data">The data collection.</param>
-            /// <param name="indexID">The index of the position to set the window.</param>
-            public VertexWindow(CombinedVertexArray<T> data, int indexID)
-            {
-                mData = data;
-
-                mData.ItemLock(indexID);
-                CurrSlotIDPlus1 = indexID + 1;
-                Curr = mData[indexID];
-
-                if (!Curr.IsTerminator)
-                {
-                    mData.ItemLock(Curr.NextSlotIDPlus1 - 1);
-                    Next = mData[Curr.NextSlotIDPlus1 - 1];
-                }
-                else
-                    Next = new Vertex<T>();
-            }
-            #endregion // Constructor
-
-            #region Public properties
-            /// <summary>
-            /// The current slot ID plus 1.
-            /// </summary>
-            public int CurrSlotIDPlus1;
-            /// <summary>
-            /// THe current vertex.
-            /// </summary>
-            public Vertex<T> Curr;
-            /// <summary>
-            /// The next vertex.
-            /// </summary>
-            public Vertex<T> Next;
-            #endregion // Public properties
-
-            #region ToString()
-            /// <summary>
-            /// This override provides a debug friendly representation of the structure.
-            /// </summary>
-            /// <returns>Returns the structure value.</returns>
-            public override string ToString()
-            {
-                return string.Format("{0}[{1}] -> {2}[{3}]", CurrSlotIDPlus1 - 1, Curr, Curr.NextSlotIDPlus1 - 1, Next);
-            }
-            #endregion // ToString()
-
-            #region SetCurrentAndLock
-            /// <summary>
-            /// This method sets the current slot and locks the position.
-            /// </summary>
-            /// <param name="slotID">The slot ID.</param>
-            public void SetCurrentAndLock(int slotID)
-            {
-                mData.ItemLock(slotID);
-                CurrSlotIDPlus1 = slotID + 1;
-                Curr = mData[slotID];
-
-                if (!Curr.IsTerminator)
-                {
-                    mData.ItemLock(Curr.NextSlotIDPlus1 - 1);
-                    Next = mData[Curr.NextSlotIDPlus1 - 1];
-                }
-                else
-                    Next = new Vertex<T>();
-            }
-            #endregion
-
-            #region InsertSentinel(int bucketID, int hashID)
-            /// <summary>
-            /// This method inserts a sentinel in to the data collection.
-            /// </summary>
-            /// <param name="indexID">The new sentinel index id.</param>
-            /// <param name="hashID">The sentinel hash id.</param>
-            public void InsertSentinel(int indexID, int hashID)
-            {
-                if (!Curr.IsTerminator)
-                    mData.ItemUnlock(Curr.NextSlotIDPlus1 - 1);
-
-                Next = Vertex<T>.Sentinel(hashID, Curr.NextSlotIDPlus1);
-
-                Curr.NextSlotIDPlus1 = indexID + 1;
-
-                mData[indexID] = Next;
-                mData[CurrSlotIDPlus1 - 1] = Curr;
-            }
-            #endregion // InsertSentinel(ExpandableFineGrainedLockArray<Vertex<T>> slots, int newSlot, int hashID)
-
-            #region InsertItem(int newSlot, int hashID, T value)
-            /// <summary>
-            /// 
-            /// </summary>
-            /// <param name="newSlot"></param>
-            /// <param name="hashID"></param>
-            /// <param name="value"></param>
-            public void InsertItem(int newSlot, int hashID, T value)
-            {
-                mData.ItemLock(newSlot);
-
-                if (!Curr.IsTerminator)
-                    mData.ItemUnlock(Curr.NextSlotIDPlus1 - 1);
-
-                Next = new Vertex<T>(hashID, value, Curr.NextSlotIDPlus1);
-
-                Curr.NextSlotIDPlus1 = newSlot + 1;
-
-                mData[newSlot] = Next;
-                mData[CurrSlotIDPlus1 - 1] = Curr;
-            }
-            #endregion
-            #region Unlock()
-            /// <summary>
-            /// This method provides common functionality to unlock a VertexWindow.
-            /// </summary>
-            public void Unlock()
-            {
-                if (Curr.NextSlotIDPlus1 != 0) mData.ItemUnlock(Curr.NextSlotIDPlus1 - 1);
-                if (CurrSlotIDPlus1 != 0) mData.ItemUnlock(CurrSlotIDPlus1 - 1);
-            }
-            #endregion
-            #region ScanAndLock(int hashID)
-            /// <summary>
-            /// This method scans through the slot data until is reaches the end of the data, or the position 
-            /// where the hashID meets a slot with a hashID that is greater than itself.
-            /// </summary>
-            /// <param name="hashID">The hashID to search for and lock.</param>
-            public int ScanAndLock(int hashID)
-            {
-                //If the current is the last item in the linked list then exit.
-                if (Curr.IsTerminator)
-                    return 0;
-
-                int hopCount = 0;
-
-                while (Next.HashID < hashID)
-                {
-                    hopCount++;
-
-                    //Unlock the old current item.
-                    mData.ItemUnlock(CurrSlotIDPlus1 - 1);
-
-                    CurrSlotIDPlus1 = Curr.NextSlotIDPlus1;
-
-                    //If this is the last item in the list then move up and exit.
-                    if (Next.IsTerminator)
-                    {
-                        Curr = Next;
-                        Next = new Vertex<T>();
-                        break;
-                    }
-
-                    //OK, lock the next item and move up.
-                    mData.ItemLock(Next.NextSlotIDPlus1 - 1);
-                    Curr = Next;
-                    Next = mData[Curr.NextSlotIDPlus1 - 1];
-                }
-
-                return hopCount;
-            }
-            #endregion
-            #region MoveUp()
-            /// <summary>
-            /// This method moves up the Next vertex to the current position.
-            /// </summary>
-            public bool MoveUp()
-            {
-                if (Curr.IsTerminator)
-                    return false;
-
-                mData.ItemUnlock(CurrSlotIDPlus1 - 1);
-                CurrSlotIDPlus1 = Curr.NextSlotIDPlus1;
-                Curr = Next;
-
-                if (!Curr.IsTerminator)
-                {
-                    mData.ItemLock(Curr.NextSlotIDPlus1 - 1);
-                    Next = mData[Curr.NextSlotIDPlus1 - 1];
-                }
-                else
-                    Next = new Vertex<T>();
-
-                return true;
-            }
-            #endregion // MoveUp()
-
-            #region RemoveItemAndUnlock()
-            /// <summary>
-            /// 
-            /// </summary>
-            /// <returns></returns>
-            public int RemoveItemAndUnlock()
-            {
-                int removedItem = Curr.NextSlotIDPlus1 - 1;
-
-                Curr.NextSlotIDPlus1 = Next.NextSlotIDPlus1;
-
-                mData[CurrSlotIDPlus1 - 1] = Curr;
-                mData.ItemUnlock(removedItem);
-                mData.ItemUnlock(CurrSlotIDPlus1 - 1);
-
-                //Add the empty item for re-allocation.
-                mData.EmptyAdd(removedItem);
-                return removedItem;
-            }
-            #endregion // SlotsRemoveItem
-
-            #region Snip()
-            /// <summary>
-            /// 
-            /// </summary>
-            /// <returns></returns>
-            public int Snip()
-            {
-                int removedItem = Curr.NextSlotIDPlus1 - 1;
-
-                Curr.NextSlotIDPlus1 = Next.NextSlotIDPlus1;
-
-                mData[CurrSlotIDPlus1 - 1] = Curr;
-                mData.ItemUnlock(removedItem);
-
-                if (!Curr.IsTerminator)
-                {
-                    mData.ItemLock(Curr.NextSlotIDPlus1 - 1);
-                    Next = mData[Curr.NextSlotIDPlus1 - 1];
-                }
-                else
-                    Next = new Vertex<T>();
-
-                return removedItem;
-            }
-            #endregion // SlotsRemoveItem
-        }
-        #endregion // Struct -> Vertex<T>
         #region VertexWindowGet(int index)
         /// <summary>
         /// This method returns a vertex window for the index specified.
         /// </summary>
-        /// <param name="index">The index position.</param>
-        public VertexWindow<T> VertexWindowGet()
+        public override VertexWindow<T> VertexWindowGet()
         {
             return new VertexWindow<T>(this, Root);
         }
-        /// <summary>
-        /// This method returns a vertex window for the index specified.
-        /// </summary>
-        /// <param name="index">The index position.</param>
-        /// <returns>Returns the vertex window.</returns>
-        public VertexWindow<T> VertexWindowGet(int index)
-        {
-            return new VertexWindow<T>(this, index);
-        }
         #endregion // VertexWindowGet(int index)
-
-#if (DEBUG)
-        #region DebugEmpty
-        /// <summary>
-        /// This is the debug data.
-        /// </summary>
-        public string DebugEmpty
-        {
-            get
-            {
-                StringBuilder sb = new StringBuilder();
-
-                int count = 0;
-
-                if (!mEmptyVertex.Value.IsTerminator)
-                {
-                    count++;
-                    int index = mEmptyVertex.Value.NextSlotIDPlus1 - 1;
-                    Vertex<T> item = mSlots[index];
-
-                    while (!item.IsTerminator)
-                    {
-                        index = item.NextSlotIDPlus1 - 1;
-
-                        if ((index & 0x80000000) > 0)
-                        {
-                            sb.AppendFormat("Error: {0:X}", index);
-                            break;
-                        }
-
-                        item = mSlots[index];
-                        count++;
-                    }
-                }
-
-                sb.AppendFormat("{0} empty slots", count);
-                sb.AppendLine();
-                return sb.ToString();
-            }
-        }
-        #endregion // DebugEmpty 
-#endif
-
     }
 }

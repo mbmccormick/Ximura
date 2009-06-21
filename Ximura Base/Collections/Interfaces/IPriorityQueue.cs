@@ -14,14 +14,15 @@
 #endregion
 #region using
 using System;
+using System.Linq;
 using System.ComponentModel;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.Serialization;
+using System.Runtime.InteropServices;
 using System.Threading;
-using System.Text;
 
 using Ximura;
 using Ximura.Helper;
@@ -29,25 +30,33 @@ using Ximura.Helper;
 namespace Ximura.Collections
 {
     /// <summary>
-    /// This class is a base class for Red-Black Tree implementations.
+    /// This interface is implemented by a queue.
     /// </summary>
-    /// <typeparam name="TKey">The key type.</typeparam>
-    /// <typeparam name="TVal">The value type.</typeparam>
-    public class LockFreeRedBlackTreeBase<TKey, TVal> : LockFreeRedBlackTreeBase<TKey, TVal, LockableRedBlackTreeVertex<TKey, TVal>>
+    /// <typeparam name="T">The collection item type.</typeparam>
+    public interface IPriorityQueue<T> : ICollectionBase<T>
     {
-        #region Constructors
         /// <summary>
-        /// This is the default constructor.
+        /// Removes an item from the head of the queue.
         /// </summary>
-        public LockFreeRedBlackTreeBase()
-            : this(Comparer<TKey>.Default, EqualityComparer<TVal>.Default) { }
+        /// <returns>Returns the item at the head of the queue.</returns>
+        T Dequeue();
         /// <summary>
-        /// This constructor requires custom comparers for both the key data and an equality comparer for the value data.
+        /// This item tries to empty an item in the queue.
         /// </summary>
-        /// <param name="vertexComparer">The key comparer.</param>
-        /// <param name="valueEqComparer">The value equality comparer. </param>
-        public LockFreeRedBlackTreeBase(Comparer<TKey> keyComparer, EqualityComparer<TVal> valueEqComparer)
-            : base(keyComparer, valueEqComparer) { }
-        #endregion // Constructors
+        /// <param name="item">The top item in the queue.</param>
+        /// <returns>Returns true if there is an item in the queue.</returns>
+        bool TryDequeue(out T item);
+        /// <summary>
+        /// This method adds an item to the tail of the queue.
+        /// </summary>
+        /// <param name="item">The item to add to the queue.</param>
+        void Enqueue(T item);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="item"></param>
+        /// <param name="priority"></param>
+        void Enqueue(T item, int priority);
+
     }
 }

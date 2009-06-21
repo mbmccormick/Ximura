@@ -207,47 +207,56 @@
     <Compile Include="Attributes\XimuraAppModuleConfigAttribute.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Collections\Arrays\FineGrainedLockArray.cs" />
+    <Compile Include="Collections\Arrays\VertexArray.cs" />
+    <Compile Include="Collections\CollectionHelperBase.cs" />
+    <Compile Include="Collections\CollectionHelperStructBase.cs" />
+    <Compile Include="Collections\CollectionHelperStructBase_Debug.cs" />
     <Compile Include="Collections\Collections\Arrays\CombinedVertexArray.cs" />
-    <Compile Include="Collections\Collections\Arrays\FineGrainedLockArray.cs" />
-    <Compile Include="Collections\Collections\Data\Vertex.cs" />
-    <Compile Include="Collections\Collections\Interface\ICollectionBase.cs" />
+    <Compile Include="Collections\Collections\Data\CollectionVertex.cs" />
+    <Compile Include="Collections\Collections\Data\ICollectionVertex.cs" />
     <Compile Include="Collections\Collections\Interface\IFineGrainedLockArray.cs" />
-    <Compile Include="Collections\Collections\Interface\IPool.cs" />
-    <Compile Include="Collections\Collections\Interface\IPriorityQueue.cs" />
-    <Compile Include="Collections\Collections\Interface\IStack.cs" />
-    <Compile Include="Collections\Collections\LockFree2DMatrix.cs" />
     <Compile Include="Collections\Collections\LockFreeCollectionBase.cs" />
-    <Compile Include="Collections\Collections\LockFreeCollectionBase_Debug.cs" />
     <Compile Include="Collections\Collections\LockFreeDictionary.cs" />
     <Compile Include="Collections\Collections\LockFreeHashSet.cs" />
     <Compile Include="Collections\Collections\LockFreeCollection.cs" />
     <Compile Include="Collections\Collections\LockFreeList.cs" />
-    <Compile Include="Collections\Collections\LockFreePool.cs" />
-    <Compile Include="Collections\Collections\LockFreePriorityQueue.cs" />
-    <Compile Include="Collections\Collections\LockFreeStack.cs" />
-    <Compile Include="Collections\Collections\LockWrappers\CourseGrainedICollectionWrapper.cs" />
-    <Compile Include="Collections\Collections\LockWrappers\ICollectionWrapper.cs" />
-    <Compile Include="Collections\Collections\LockWrappers\InterlockedICollectionWrapper.cs" />
-    <Compile Include="Collections\Collections\LockWrappers\LockableWrapper.cs" />
-    <Compile Include="Collections\Collections\LockWrappers\ReadWriteICollectionWrapper.cs" />
-    <Compile Include="Collections\Collections\LockWrappers\WrapperBase.cs" />
-    <Compile Include="Collections\Data\Edge.cs" />
-    <Compile Include="Collections\Data\EdgeAttribute.cs" />
-    <Compile Include="Collections\Data\EdgeReference.cs" />
-    <Compile Include="Collections\Data\Vertex.cs" />
-    <Compile Include="Collections\Data\VertexReference.cs" />
+    <Compile Include="Collections\Graphs\Data\Edge.cs" />
+    <Compile Include="Collections\Graphs\Data\EdgeAttribute.cs" />
+    <Compile Include="Collections\Graphs\Data\EdgeReference.cs" />
+    <Compile Include="Collections\Graphs\Data\Vertex.cs" />
+    <Compile Include="Collections\Graphs\Data\VertexReference.cs" />
     <Compile Include="Collections\Graphs\DirectedAcyclicalGraph.cs" />
     <Compile Include="Collections\Graphs\Graph.cs" />
+    <Compile Include="Collections\Interfaces\ICollectionBase.cs" />
+    <Compile Include="Collections\Interfaces\ICollectionWrapper.cs" />
     <Compile Include="Collections\Interfaces\IGraph.cs" />
+    <Compile Include="Collections\Interfaces\IPool.cs" />
+    <Compile Include="Collections\Interfaces\IPoolInitialization.cs" />
+    <Compile Include="Collections\Interfaces\IPriorityQueue.cs" />
+    <Compile Include="Collections\Interfaces\IStack.cs" />
     <Compile Include="Collections\Interfaces\IXimuraBinarySerializable.cs" />
+    <Compile Include="Collections\Matrices\LockFree2DMatrix.cs" />
+    <Compile Include="Collections\Pool\LockFreePool.cs" />
+    <Compile Include="Collections\Queue\LockFreePriorityQueue.cs" />
+    <Compile Include="Collections\SkipList\Arrays\SkipListVertexArray.cs" />
+    <Compile Include="Collections\SkipList\Data\SkipListNode.cs" />
+    <Compile Include="Collections\SkipList\LockFreeSkipList.cs" />
+    <Compile Include="Collections\SkipList\LockFreeSkipListBase.cs" />
+    <Compile Include="Collections\Stack\LockFreeStack.cs" />
     <Compile Include="Collections\Trees\ExpandableFineGrainedLockArray\ExpandableFineGrainedLockArray.cs" />
-    <Compile Include="Collections\Trees\LockFreeVertexBase.cs" />
+    <Compile Include="Collections\Trees\LockableTreeVertexBase.cs" />
+    <Compile Include="Collections\Trees\LockFreeTreeBase.cs" />
+    <Compile Include="Collections\Trees\RedBlackTree\Data\LockableRedBlackTreeVertex.cs" />
     <Compile Include="Collections\Trees\RedBlackTree\LockFreeRedBlackTree.cs" />
     <Compile Include="Collections\Trees\RedBlackTree\LockFreeRedBlackTreeBase.cs" />
-    <Compile Include="Collections\Trees\RedBlackTree\LockFreeRedBlackTreeBase_Profiling.cs" />
+    <Compile Include="Collections\Trees\RedBlackTree\LockFreeRedBlackTreeBase_Main.cs" />
     <Compile Include="Collections\Trees\RedBlackTree\LockFreeRedBlackTreeBase_Rebalancing.cs" />
     <Compile Include="Collections\Trees\RedBlackTree\LockFreeRedBlackTreeBase_Sync.cs" />
-    <Compile Include="Collections\Trees\RedBlackTree\LockFreeRedBlackVertex.cs" />
+    <Compile Include="Collections\Wrappers\CourseGrainedICollectionWrapper.cs" />
+    <Compile Include="Collections\Wrappers\InterlockedICollectionWrapper.cs" />
+    <Compile Include="Collections\Wrappers\ReadWriteICollectionWrapper.cs" />
+    <Compile Include="Collections\Wrappers\WrapperBase.cs" />
     <Compile Include="Command\CommandCallbacks.cs" />
     <Compile Include="Command\Data\EnvelopeAddress.cs" />
     <Compile Include="Command\Interfaces\IXimuraEnvelopeHelper.cs" />
@@ -261,6 +270,7 @@
     <Compile Include="Component\AppContainerEventArgs.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Component\DisposableBase.cs" />
     <Compile Include="Component\ElementSite.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -275,6 +285,7 @@
     <Compile Include="Helper\Linq\Linq_Range.cs" />
     <Compile Include="Helper\Linq\Linq_Stream.cs" />
     <Compile Include="Helper\Linq\Linq_Unfolding.cs" />
+    <Compile Include="Helper\LockableWrapper.cs" />
     <Compile Include="Helper\Prime.cs" />
     <Compile Include="Helper\StreamHelper.cs" />
     <Compile Include="Helper\Threading.cs" />
@@ -445,8 +456,7 @@
     <None Include="ximura.snk" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Collections\Collections\Exceptions\" />
-    <Folder Include="Collections\Collections\LockWrappers\_Documentation\" />
+    <Folder Include="Collections\Exceptions\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

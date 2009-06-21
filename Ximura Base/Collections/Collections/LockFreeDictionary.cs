@@ -112,7 +112,7 @@ namespace Ximura.Collections
             {
                 mColl.DisposedCheck();
 
-                mColl.InternalScan(true).ForIndex((i, item) => array[i + arrayIndex] = mfnOutput(item.Value.Value));
+                mColl.InternalScan(true).ForIndex((i, item) => array[i + arrayIndex] = mfnOutput(item.Value.DataValue));
             }
             #endregion // CopyTo(T[] array, int arrayIndex)
             #region Count
@@ -150,7 +150,7 @@ namespace Ximura.Collections
                 //Enumerate the data.
                 foreach (var item in mColl.InternalScan(true))
                     if (!item.Value.IsSentinel)
-                        yield return mfnOutput(item.Value.Value);
+                        yield return mfnOutput(item.Value.DataValue);
             }
             #endregion
 
@@ -380,7 +380,6 @@ namespace Ximura.Collections
         /// <returns>Returns true if the item exists in the collection.</returns>
         public bool Contains(KeyValuePair<TKey, TValue> item)
         {
-            DisposedCheck();
             TValue value;
             if (!TryGetValue(item.Key, out value))
                 return false;
@@ -396,7 +395,6 @@ namespace Ximura.Collections
         /// <returns>Returns true if the key is present in the collection.</returns>
         public bool ContainsKey(TKey key)
         {
-            DisposedCheck();
             TValue value;
             return TryGetValue(key, out value);
         }
@@ -423,7 +421,6 @@ namespace Ximura.Collections
         /// <returns>Returns true if the item is successfully removed.</returns>
         public bool Remove(KeyValuePair<TKey, TValue> item)
         {
-            DisposedCheck();
             TValue value;
             if (!TryGetValue(item.Key, out value))
                 return false;
@@ -479,120 +476,6 @@ namespace Ximura.Collections
         }
         #endregion // IsReadOnly
 
-        #region TryGetValue(TKey key, out TValue value)
-        /// <summary>
-        /// This method attempts to retrieve an item from the collection.
-        /// </summary>
-        /// <param name="key">The key.</param>
-        /// <param name="value">The value parameter.</param>
-        /// <returns>Returns true if the item can be found in the collection.</returns>
-        public bool TryGetValue(TKey key, out TValue value)
-        {
-            DisposedCheck();
-            #region Profiling
-#if (PROFILING)
-            int hopCount = 0;
-            int start = Environment.TickCount;
-            int endhal = 0;
-            int slotLocks1 = 0;
-            int slotLocks2 = 0;
-            try
-            {
-#endif
-            #endregion
-                //Get the hash code for the item.
-                int hashCode = KeyOnlyEqualityComparer.KeyComparer.GetHashCode(key);
-
-                int sentIndexID, hashID;
-                mData.GetSentinelID(hashCode, true, out sentIndexID, out hashID);
-#if (PROFILING)
-                endhal = Environment.TickCount - start;
-#endif
-                //Can we scan without locking?
-                if (mContainScanUnlocked)
-                {
-                    int currVersion = mVersion;
-
-                    //Get the initial sentinel vertex. No need to check locks as sentinels rarely change.
-                    int scanPosition = sentIndexID;
-                    Vertex<KeyValuePair<TKey, TValue>> scanVertex = mData[scanPosition];
-
-                    //First we will attempt to search without locking. However, should the version ID change 
-                    //during the search we will need to complete a locked search to ensure consistency.
-                    while (mVersion == currVersion)
-                    {
-                        //Do we have a match?
-                        if (!scanVertex.IsSentinel &&
-                            scanVertex.HashID == hashID &&
-                            KeyOnlyEqualityComparer.KeyComparer.Equals(key, scanVertex.Value.Key))
-                        {
-                            value = scanVertex.Value.Value;
-                            return true;
-                        }
-
-                        //Is this the end of the line
-                        if (scanVertex.IsTerminator || scanVertex.HashID > hashID)
-                        {
-                            value = default(TValue);
-                            return false;
-                        }
-#if (PROFILING)
-                        hopCount++;
-#endif
-                        scanPosition = scanVertex.NextSlotIDPlus1 - 1;
-                        //slotLocks1 += mSlots.ItemLockWait(scanPosition);
-                        scanVertex = mData[scanPosition];
-                    }
-                }
-
-                //Ok, we have a scan miss.
-                Interlocked.Increment(ref mContainScanUnlockedMiss);
-
-                //Ok, let's add the data from the sentinel position.
-                //Lock the start index and initialize the window.
-                CombinedVertexArray<KeyValuePair<TKey, TValue>>.VertexWindow<KeyValuePair<TKey, TValue>> vWin
-                    = mData.VertexWindowGet(sentIndexID);
-
-                //Ok, find the first instance of the hashID.
-#if (PROFILING)
-                hopCount = vWin.ScanAndLock(hashID);
-#else
-                vWin.ScanAndLock(hashID);
-#endif
-                //Ok, we need to scan for hash collisions and multiple entries.
-                while (!vWin.Curr.IsTerminator && vWin.Next.HashID == hashID)
-                {
-                    if (!vWin.Next.IsSentinel && KeyOnlyEqualityComparer.KeyComparer.Equals(key, vWin.Next.Value.Key))
-                    {
-                        vWin.Unlock();
-                        value = vWin.Next.Value.Value;
-                        return true;
-                    }
-
-                    vWin.MoveUp();
-#if (PROFILING)
-                    hopCount++;
-#endif
-                }
-
-                vWin.Unlock();
-                value = default(TValue);
-                return false;
-                #region Profiling
-#if (PROFILING)
-            }
-            finally
-            {
-                //Profile(ProfileAction.Time_FindAndLock, Environment.TickCount - start);
-                Profile(ProfileAction.Count_FindAndLockHopCount, hopCount);
-                Profile(ProfileAction.Count_FindAndLockSlotLocks, slotLocks1 + slotLocks2);
-                Profile(ProfileAction.Time_ContainsTot, Environment.TickCount - start);
-                Profile(ProfileAction.Time_ContainsHAL, endhal);
-            }
-#endif
-                #endregion
-        }
-        #endregion // TryGetValue(TKey key, out TValue value)
         #region this[TKey key]
         /// <summary>
         /// This indexer is used to access the items in the collection by use of the key value.
@@ -603,7 +486,6 @@ namespace Ximura.Collections
         {
             get
             {
-                DisposedCheck();
                 TValue value;
                 if (!TryGetValue(key, out value))
                     throw new KeyNotFoundException();
@@ -617,6 +499,33 @@ namespace Ximura.Collections
             }
         }
         #endregion // this[TKey key]
+
+        #region TryGetValue(TKey key, out TValue value)
+        /// <summary>
+        /// This method attempts to retrieve an item from the collection.
+        /// </summary>
+        /// <param name="key">The key.</param>
+        /// <param name="value">The value parameter.</param>
+        /// <returns>Returns true if the item can be found in the collection.</returns>
+        public bool TryGetValue(TKey key, out TValue value)
+        {
+            DisposedCheck();
+
+            KeyValuePair<TKey, TValue> kpValue;
+            bool success = TryGetValueInternal(mEqualityComparer
+                , new KeyValuePair<TKey, TValue>(key, default(TValue))
+                , out kpValue);
+
+            if (success)
+            {
+                value = kpValue.Value;
+                return true;
+            }
+
+            value = default(TValue);
+            return false;
+        }
+        #endregion // TryGetValue(TKey key, out TValue value)
 
         #region Keys
         /// <summary>

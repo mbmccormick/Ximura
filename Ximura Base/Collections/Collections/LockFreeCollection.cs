@@ -177,32 +177,5 @@ namespace Ximura.Collections
             CopyToInternal(array, arrayIndex);
         }
         #endregion // CopyTo(T[] array, int arrayIndex)
-
-        #region Count
-        /// <summary>
-        /// This property returns the number of elements in the collection.
-        /// </summary>
-        public int Count
-        {
-            get
-            {
-                return CountInternal;
-            }
-        }
-        #endregion // Count
-
-        #region IsReadOnly
-        /// <summary>
-        /// This property always returns false.
-        /// </summary>
-        public bool IsReadOnly
-        {
-            get
-            {
-                DisposedCheck();
-                return false;
-            }
-        }
-        #endregion // IsReadOnly
     }
 }

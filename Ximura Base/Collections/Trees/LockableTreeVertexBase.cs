@@ -32,7 +32,7 @@ namespace Ximura.Collections
     /// </summary>
     /// <typeparam name="TKey">The key type.</typeparam>
     /// <typeparam name="TVal">The value type.</typeparam>
-    public class LockFreeVertexBase<TKey, TVal>
+    public class LockableTreeVertexBase<TKey, TVal>
     {
         #region Declarations
         /// <summary>
@@ -50,7 +50,7 @@ namespace Ximura.Collections
         /// <summary>
         /// This is the default constructor.
         /// </summary>
-        public LockFreeVertexBase()
+        public LockableTreeVertexBase()
         {
             Key = default(TKey);
             Value = default(TVal);

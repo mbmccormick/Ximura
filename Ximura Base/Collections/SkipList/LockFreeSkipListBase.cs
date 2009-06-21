@@ -20,9 +20,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Reflection;
-using System.Threading;
 using System.Runtime.Serialization;
-using System.Runtime.InteropServices;
+using System.Security.Permissions;
+using System.Threading;
 
 using Ximura;
 using Ximura.Helper;
@@ -30,11 +30,11 @@ using Ximura.Helper;
 namespace Ximura.Collections
 {
     /// <summary>
-    /// The LockFreeCollectionBase class provides generic multi-threaded collection based functionality. The class is designed
+    /// The LockFreeSkipListBase class provides generic multi-threaded collection based functionality. The class is designed
     /// to maximize the throughput of the collection in high speed multi-threaded scenarios.
     /// </summary>
     /// <typeparam name="T">The collection class or structure type.</typeparam>
-    public abstract partial class LockFreeCollectionBase<T> : CollectionHelperStructBase<T>
+    public abstract partial class LockFreeSkipListBase<T> : CollectionHelperStructBase<T>
     {
         #region Constructor
         /// <summary>
@@ -46,38 +46,12 @@ namespace Ximura.Collections
         /// <param name="isFixedSize">This property determines whether the collection is a fixed size.
         /// Fixed size collections will reject new records when the capacity has been reached, 
         /// although they may deliver performance improvements as they do not need to use a growable data structure.</param>
-        protected LockFreeCollectionBase(IEqualityComparer<T> comparer, int capacity, IEnumerable<T> collection, bool isFixedSize)
+        protected LockFreeSkipListBase(IEqualityComparer<T> comparer, int capacity, IEnumerable<T> collection, bool isFixedSize)
         {
-#if (PROFILING)
-            ProfilingSetup();
-#endif
             Initialize(comparer, capacity, collection, isFixedSize);
         }
         #endregion // Constructor
-        #region Dispose(bool disposing)
-        /// <summary>
-        /// This method disposes of the data in the collection. You should override this method if you need to add
-        /// custom dispose logic to your collection.
-        /// </summary>
-        /// <param name="disposing">The class is disposing, i.e. this is called by Dispose and not the finalizer.</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                //Clear the collection. This removes all references to any contained objects.
-                ClearInternal();
-                mData = null;
-            }
-        }
-        #endregion // Dispose(bool disposing)
 
-        #region CollectionAllowMultipleEntries
-        /// <summary>
-        /// This setting determines whether the collection allows multiple entries of the same object in the collection.
-        /// The default setting is true.
-        /// </summary>
-        protected override bool CollectionAllowMultipleEntries{get{return false;}}
-        #endregion
         #region CollectionAllowNullValues
         /// <summary>
         /// This property determines whether the collection will accept null values. The default setting is true.
@@ -92,7 +66,7 @@ namespace Ximura.Collections
         /// </summary>
         protected override void InitializeData()
         {
-            mData = new CombinedVertexArray<T>(mState.IsFixedSize, mState.InitialCapacity);
+            mData = new SkipListVertexArray<T>(mState.IsFixedSize, mState.InitialCapacity, 0.5D, 16);
         }
         #endregion // InitializeData()
     }

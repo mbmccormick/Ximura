@@ -34,13 +34,13 @@ namespace Ximura.Collections
     /// </summary>
     /// <typeparam name="T">The container object.</typeparam>
     [Serializable, StructLayout(LayoutKind.Sequential)]
-    public struct Vertex<T>
+    public struct CollectionVertex<T> : ICollectionVertex<T>
     {
         #region Constants
         /// <summary>
         /// This is the empty vertex.
         /// </summary>
-        public static readonly Vertex<T> Empty;
+        public static readonly CollectionVertex<T> Empty;
         private const int cnSentinelMaskSet = 0x40000000;
         private const int cnSentinelMaskRemove = 0x3FFFFFFF;
         #endregion // Constants
@@ -48,9 +48,9 @@ namespace Ximura.Collections
         /// <summary>
         /// This is the static constructor.
         /// </summary>
-        static Vertex()
+        static CollectionVertex()
         {
-            Empty = new Vertex<T>();
+            Empty = new CollectionVertex<T>();
         }
         /// <summary>
         /// This static method creates a sentinel vertex. Sentinel vertexes are vertexes that do not include data,
@@ -59,9 +59,9 @@ namespace Ximura.Collections
         /// <param name="hashID">The hashID.</param>
         /// <param name="nextSlotIDPlus1">The ID of the next vertex in the chain (plus 1).</param>
         /// <returns>Returns a new sentinel for the specific hash ID.</returns>
-        public static Vertex<T> Sentinel(int hashID, int nextSlotIDPlus1)
+        public static CollectionVertex<T> Sentinel(int hashID, int nextSlotIDPlus1)
         {
-            return new Vertex<T>(hashID, nextSlotIDPlus1);
+            return new CollectionVertex<T>(hashID, nextSlotIDPlus1);
         }
         #endregion // Static methods
 
@@ -88,13 +88,16 @@ namespace Ximura.Collections
         public T Value;
         #endregion // Value
 
+        public T DataValue { get { return Value; } }
+        public int DataNextSlotID { get { return NextSlotIDPlus1; } }
+
         #region Constructor
         /// <summary>
         /// This constructor creates a slot as a sentinel, with only the next parameter set.
         /// </summary>
         /// <param name="hashID">The item hashcode.</param>
         /// <param name="nextSlotIDPlus1">The next item in the list.</param>
-        public Vertex(int hashID, int nextSlotIDPlus1)
+        public CollectionVertex(int hashID, int nextSlotIDPlus1)
         {
             mHashID = hashID | cnSentinelMaskSet;
             Value = default(T);
@@ -106,7 +109,7 @@ namespace Ximura.Collections
         /// <param name="hashID">The item hashcode.</param>
         /// <param name="value">The slot value.</param>
         /// <param name="nextSlotIDPlus1">The next item in the list.</param>
-        public Vertex(int hashID, T value, int nextSlotIDPlus1)
+        public CollectionVertex(int hashID, T value, int nextSlotIDPlus1)
         {
             mHashID = hashID;
             Value = value;

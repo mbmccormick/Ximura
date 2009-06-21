@@ -56,6 +56,7 @@ namespace Ximura.Collections
         }
         #endregion // Add
         #region Remove
+
         public bool Remove(TKey key)
         {
             TreeTraversalWindow<TKey, TVal> window;

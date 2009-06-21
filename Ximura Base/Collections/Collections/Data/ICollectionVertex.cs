@@ -20,17 +20,22 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Reflection;
-using System.Runtime.Serialization;
 using System.Threading;
+using System.Runtime.Serialization;
+using System.Runtime.InteropServices;
 
 using Ximura;
 using Ximura.Helper;
 #endregion // using
 namespace Ximura.Collections
 {
-    public class LockFreePool<T> : IPool<T>
-        where T: class
+    public interface ICollectionVertex<T>
     {
+        int HashID { get; }
+        bool IsSentinel { get; }
+        bool IsTerminator { get; }
 
+        T DataValue { get; }
+        int DataNextSlotID { get; }
     }
 }

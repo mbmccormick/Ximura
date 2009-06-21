@@ -34,10 +34,10 @@ namespace Ximura.Collections
     /// </summary>
     /// <typeparam name="T">The array type.</typeparam>
     public class ExpandableFineGrainedLockArray<T> :
-        LockFreeRedBlackTreeBase<int, FineGrainedLockArray<T>, LockFreeRedBlackVertex<int, FineGrainedLockArray<T>>>, IFineGrainedLockArray<T>
+        LockFreeRedBlackTreeBase<int, FineGrainedLockArray<T>, LockableRedBlackTreeVertex<int, FineGrainedLockArray<T>>>, IFineGrainedLockArray<T>
     {
         #region Declarations
-        private LockFreeRedBlackVertex<int, FineGrainedLockArray<T>> initial;
+        private LockableRedBlackTreeVertex<int, FineGrainedLockArray<T>> initial;
         private int mCapacity;
         private Func<int, int, int> fnCalculateAutogrow;
         #endregion // Declarations
@@ -162,22 +162,22 @@ namespace Ximura.Collections
 
             //OK, we a shorcut test on the last item added to the collection. Usually this is the largest item so we will check
             //it first. 
-            LockFreeRedBlackVertex<int, FineGrainedLockArray<T>> vertex = initial;
+            LockableRedBlackTreeVertex<int, FineGrainedLockArray<T>> vertex = initial;
             if (vertex != null && Compare(index, vertex) == 0)
                 return vertex.Value;
 
             TreeTraversalWindow<int, FineGrainedLockArray<T>> window;
 
             //Let's get the current version ID, we will need to check whis later.
-            int currentVersionID = mVersionID;
+            int currentVersionID = mVersion;
 
             //Ok, we are going to loop until we have capacity.
             while (!FindInternal(index, false, out window))
             {
-                if (currentVersionID == mVersionID)
+                if (currentVersionID == mVersion)
                     IncreaseCapacity(index + 1);
                 else
-                    currentVersionID = mVersionID;
+                    currentVersionID = mVersion;
             }
 
             return window.Current.Value;
@@ -200,9 +200,9 @@ namespace Ximura.Collections
             if (additional <= 0)
                 throw new ArgumentOutOfRangeException("Array cannot be grown.");
 
-            LockFreeRedBlackVertex<int, FineGrainedLockArray<T>> vertex = new LockFreeRedBlackVertex<int, FineGrainedLockArray<T>>();
+            LockableRedBlackTreeVertex<int, FineGrainedLockArray<T>> vertex = new LockableRedBlackTreeVertex<int, FineGrainedLockArray<T>>();
 
-            vertex = new LockFreeRedBlackVertex<int, FineGrainedLockArray<T>>();
+            vertex = new LockableRedBlackTreeVertex<int, FineGrainedLockArray<T>>();
             vertex.Key = mCapacity;
             vertex.Value = new FineGrainedLockArray<T>(additional, mCapacity);
 
@@ -210,7 +210,7 @@ namespace Ximura.Collections
             if (AddInternal(vertex))
             {
                 Interlocked.Add(ref mCapacity, additional);
-                Interlocked.Exchange<LockFreeRedBlackVertex<int, FineGrainedLockArray<T>>>(ref initial, vertex);
+                Interlocked.Exchange<LockableRedBlackTreeVertex<int, FineGrainedLockArray<T>>>(ref initial, vertex);
             }
         }
         #endregion // IncreaseCapacity(int newCapacity)
@@ -225,7 +225,7 @@ namespace Ximura.Collections
         /// Returns 0 if the key is equal to the vertex. 
         /// Returns -1 if the key is less than the vertex, and returns 1 if the key is greater than the vertex.
         /// </returns>
-        protected override int Compare(int key, LockFreeRedBlackVertex<int, FineGrainedLockArray<T>> vertex)
+        protected override int Compare(int key, LockableRedBlackTreeVertex<int, FineGrainedLockArray<T>> vertex)
         {
             //Ok check if the key is lower than this key.
             if (key < vertex.Key)

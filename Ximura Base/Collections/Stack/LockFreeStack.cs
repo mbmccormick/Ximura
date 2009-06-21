@@ -21,6 +21,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.Serialization;
+using System.Security.Permissions;
 using System.Threading;
 
 using Ximura;
@@ -28,27 +29,52 @@ using Ximura.Helper;
 #endregion // using
 namespace Ximura.Collections
 {
-    public class LockFreeStack<T> : LockFreeCollectionBase<T>, IStack<T>
+    /// <summary>
+    /// This class is an implementation of a concurrent scalable stack.
+    /// </summary>
+    /// <typeparam name="T">The item type for the stack.</typeparam>
+    [DebuggerDisplay("Count = {Count}"), HostProtection(SecurityAction.LinkDemand, MayLeakOnAbort = true)]
+    public class LockFreeStack<T> : LockFreeTreeBase, IStack<T>
     {
+        #region Declarations
+        /// <summary>
+        /// The version value.
+        /// </summary>
+        private volatile int mVersion;
+        /// <summary>
+        /// This is the current item count.
+        /// </summary>
+        private volatile int mCount;
+        /// <summary>
+        /// This property determines whether the collection is a fixed size. Fixed size collections will reject new records
+        /// when the capacity has been reached.
+        /// </summary>
+        private bool mIsFixedSize;
+
+        /// <summary>
+        /// This is the equality comparer for the collection.
+        /// </summary>
+        private IEqualityComparer<T> mEqualityComparer;
+        #endregion // Declarations
         #region Constructor
         /// <summary>
         /// This is the default constructor. The collection will be constructed with a base capacity of 1000.
         /// </summary>
-        public LockFreeStack() 
-            : base(null, 1000, null, false) { }
+        public LockFreeStack()
+            : this(null, 1000, null, false) { }
 
         /// <summary>
         /// Initializes a new instance of the LockFreeCollection<(Of <(T>)>) class
         /// </summary>
         /// <param name="collection">The values in this enumeration will be loaded in to the collection.</param>
-        public LockFreeStack(IEnumerable<T> collection) : base(null, 1000, collection, false) { }
+        public LockFreeStack(IEnumerable<T> collection) : this(null, 1000, collection, false) { }
 
         /// <summary>
         /// Initializes a new instance of the LockFreeCollection<(Of <(T>)>) class
         /// </summary>
         /// <param name="collection">The values in this enumeration will be loaded in to the collection.</param>
         /// <param name="isFixedSize">The collection is fixed to the size passed in the capacity parameter.</param>
-        public LockFreeStack(IEnumerable<T> collection, bool isFixedSize) : base(null, isFixedSize ? -1 : 1000, collection, isFixedSize) { }
+        public LockFreeStack(IEnumerable<T> collection, bool isFixedSize) : this(null, isFixedSize ? -1 : 1000, collection, isFixedSize) { }
 
         /// <summary>
         /// Initializes a new instance of the LockFreeCollection<(Of <(T>)>) class
@@ -56,22 +82,22 @@ namespace Ximura.Collections
         /// <param name="collection">The values in this enumeration will be loaded in to the collection.</param>
         /// <param name="comparer">This is the comparer used to detect equality between items in the collection. 
         /// If this is set to null the default comparer for the type will be used instead./</param>
-        public LockFreeStack(IEqualityComparer<T> comparer, IEnumerable<T> collection) 
-            : base(comparer, 1000, collection, false) { }
+        public LockFreeStack(IEqualityComparer<T> comparer, IEnumerable<T> collection)
+            : this(comparer, 1000, collection, false) { }
 
         /// <summary>
         /// Initializes a new instance of the LockFreeCollection<(Of <(T>)>) class
         /// </summary>
         /// <param name="capacity">The collection initial capacity.</param>
         public LockFreeStack(int capacity)
-            : base(null, capacity, null, false) { }
+            : this(null, capacity, null, false) { }
         /// <summary>
         /// Initializes a new instance of the LockFreeCollection<(Of <(T>)>) class
         /// </summary>
         /// <param name="capacity">The collection initial capacity.</param>
         /// <param name="isFixedSize">The collection is fixed to the size passed in the capacity parameter.</param>
         public LockFreeStack(int capacity, bool isFixedSize)
-            : base(null, capacity, null, isFixedSize) { }
+            : this(null, capacity, null, isFixedSize) { }
 
         /// <summary>
         /// Initializes a new instance of the LockFreeCollection<(Of <(T>)>) class
@@ -80,7 +106,7 @@ namespace Ximura.Collections
         /// If this is set to null the default comparer for the type will be used instead./</param>
         /// <param name="capacity">The collection initial capacity.</param>
         public LockFreeStack(IEqualityComparer<T> comparer, int capacity)
-            : base(comparer, capacity, null, false) { }
+            : this(comparer, capacity, null, false) { }
         /// <summary>
         /// Initializes a new instance of the LockFreeCollection<(Of <(T>)>) class
         /// </summary>
@@ -89,7 +115,7 @@ namespace Ximura.Collections
         /// <param name="capacity">The collection initial capacity.</param>
         /// <param name="isFixedSize">The collection is fixed to the size passed in the capacity parameter.</param>
         public LockFreeStack(IEqualityComparer<T> comparer, int capacity, bool isFixedSize)
-            : base(comparer, capacity, null, isFixedSize) { }
+            : this(comparer, capacity, null, isFixedSize) { }
 
         /// <summary>
         /// Initializes a new instance of the LockFreeCollection<(Of <(T>)>) class
@@ -99,7 +125,7 @@ namespace Ximura.Collections
         /// <param name="capacity">The collection initial capacity.</param>
         /// <param name="collection">The values in this enumeration will be loaded in to the collection.</param>
         public LockFreeStack(IEqualityComparer<T> comparer, int capacity, IEnumerable<T> collection)
-            : base(comparer, capacity, collection, false) { }
+            : this(comparer, capacity, collection, false) { }
         /// <summary>
         /// Initializes a new instance of the LockFreeCollection<(Of <(T>)>) class
         /// </summary>
@@ -109,19 +135,71 @@ namespace Ximura.Collections
         /// <param name="collection">The values in this enumeration will be loaded in to the collection.</param>
         /// <param name="isFixedSize">The collection is fixed to the size passed in the capacity parameter.</param>
         public LockFreeStack(IEqualityComparer<T> comparer, int capacity, IEnumerable<T> collection, bool isFixedSize)
-            : base(comparer, capacity, collection, isFixedSize) { }
+        {
+//#if (PROFILING)
+//            ProfilingSetup();
+//#endif
+            mCount = 0;
+            mVersion = int.MinValue;
+
+            mEqualityComparer = (comparer == null) ? EqualityComparer<T>.Default : comparer;
+
+            if (collection != null)
+                AddIncomingData(collection);
+        }
         #endregion // Constructor
 
+        #region AddIncomingData(IEnumerable<T> collection)
+        /// <summary>
+        /// This override pushes the data passed in the constructor to the stack.
+        /// </summary>
+        /// <param name="collection">The incoming data.</param>
+        protected virtual void AddIncomingData(IEnumerable<T> collection)
+        {
+            collection.ForEach(i => Push(i));
+        }
+        #endregion // AddIncomingData(IEnumerable<T> collection)
+
+        protected override void Dispose(bool disposing)
+        {
+
+        }
+
+        #region Push(T item)
+        /// <summary>
+        /// This method pushes an item to the top of the stack.
+        /// </summary>
+        /// <param name="item">The item to add to the stack.</param>
         public void Push(T item)
         {
+            DisposedCheck();
             throw new NotImplementedException();
         }
+        #endregion // Push(T item)
 
+        #region TryPop(out T item)
+        /// <summary>
+        /// This method removes an item from the top of the stack.
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
         public bool TryPop(out T item)
         {
+            DisposedCheck();
+            if (mCount == 0)
+            {
+                item = default(T);
+                return false;
+            }
+
             throw new NotImplementedException();
         }
-
+        #endregion // TryPop(out T item)
+        #region Pop()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public T Pop()
         {
             T item;
@@ -130,13 +208,27 @@ namespace Ximura.Collections
 
             return item;
         }
+        #endregion // Pop()
 
-
+        #region TryPeek(out T item)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
         public bool TryPeek(out T item)
         {
+            DisposedCheck();
+            if (mCount == 0)
+            {
+                item = default(T);
+                return false;
+            }
+
             throw new NotImplementedException();
         }
-
+        #endregion // TryPeek(out T item)
+        #region Peek()
         /// <summary>
         /// 
         /// </summary>
@@ -149,6 +241,7 @@ namespace Ximura.Collections
 
             return item;
         }
+        #endregion // Peek()
 
         #region Contains(T item)
         /// <summary>
@@ -159,7 +252,7 @@ namespace Ximura.Collections
         public bool Contains(T item)
         {
             DisposedCheck();
-            return ContainsInternal(item);
+            throw new NotImplementedException();
         }
         #endregion // Contains(T item)
 
@@ -170,7 +263,7 @@ namespace Ximura.Collections
         public void Clear()
         {
             DisposedCheck();
-            ClearInternal();
+            throw new NotImplementedException();
         }
         #endregion // Clear()
         #region Count
@@ -179,7 +272,7 @@ namespace Ximura.Collections
         /// </summary>
         public int Count
         {
-            get { return CountInternal; }
+            get { return mCount; }
         }
         #endregion // Count
 
@@ -192,7 +285,7 @@ namespace Ximura.Collections
         public void CopyTo(T[] array, int arrayIndex)
         {
             DisposedCheck();
-            CopyToInternal(array, arrayIndex);
+            throw new NotImplementedException();
         }
         #endregion // CopyTo(T[] array, int arrayIndex)
         #region CopyTo(Array array, int arrayIndex)
@@ -204,7 +297,7 @@ namespace Ximura.Collections
         public void CopyTo(Array array, int arrayIndex)
         {
             DisposedCheck();
-            CopyToInternal(array, arrayIndex);
+            throw new NotImplementedException();
         }
         #endregion // CopyTo(Array array, int arrayIndex)
         #region ToArray()
@@ -215,7 +308,7 @@ namespace Ximura.Collections
         public T[] ToArray()
         {
             DisposedCheck();
-            return ToArrayInternal();
+            throw new NotImplementedException();
         }
         #endregion // ToArray()
 
@@ -243,15 +336,21 @@ namespace Ximura.Collections
         }
         #endregion
 
-        #region AddIncomingData(IEnumerable<T> collection)
-        /// <summary>
-        /// This override pushes the data passed in the constructor to the stack.
-        /// </summary>
-        /// <param name="collection">The incoming data.</param>
-        protected override void AddIncomingData(IEnumerable<T> collection)
+        #region IEnumerable<T> Members
+
+        public IEnumerator<T> GetEnumerator()
         {
-            collection.ForEach(i => Push(i));
+            throw new NotImplementedException();
         }
-        #endregion // AddIncomingData(IEnumerable<T> collection)
+
+        #endregion
+        #region IEnumerable Members
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return (IEnumerator)GetEnumerator();
+        }
+
+        #endregion
     }
 }

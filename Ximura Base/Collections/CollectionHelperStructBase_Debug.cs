@@ -32,7 +32,7 @@ using Ximura.Helper;
 #endregion // using
 namespace Ximura.Collections
 {
-    public abstract partial class LockFreeCollectionBase<T>
+    public abstract partial class CollectionHelperStructBase<T>
     {
         #region DebugData/DebugEmpty
 #if (DEBUG)
@@ -87,7 +87,7 @@ namespace Ximura.Collections
         /// <summary>
         /// This debug method enumerates through the collection.
         /// </summary>
-        public IEnumerable<KeyValuePair<int, Vertex<T>>> DebugData
+        public IEnumerable<KeyValuePair<int, ICollectionVertex<T>>> DebugData
         {
             get
             {

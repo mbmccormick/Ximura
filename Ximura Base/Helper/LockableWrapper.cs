@@ -27,7 +27,7 @@ using System.Runtime.InteropServices;
 using Ximura;
 using Ximura.Helper;
 #endregion // using
-namespace Ximura.Collections
+namespace Ximura.Helper
 {
     /// <summary>
     /// The lockable base class is for objects that require fine-grained locking.

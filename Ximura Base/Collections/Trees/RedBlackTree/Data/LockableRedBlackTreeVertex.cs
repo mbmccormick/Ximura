@@ -32,13 +32,13 @@ namespace Ximura.Collections
     /// </summary>
     /// <typeparam name="TKey">The vertex key type.</typeparam>
     /// <typeparam name="TVal">The vertex value type.</typeparam>
-    public class LockFreeRedBlackVertex<TKey, TVal> : LockFreeVertexBase<TKey, TVal>
+    public class LockableRedBlackTreeVertex<TKey, TVal> : LockableTreeVertexBase<TKey, TVal>
     {
         #region Constructor
         /// <summary>
         /// This is the default constructor.
         /// </summary>
-        public LockFreeRedBlackVertex():base()
+        public LockableRedBlackTreeVertex():base()
         {
             Parent = null;
             Left = null;
@@ -52,19 +52,19 @@ namespace Ximura.Collections
         /// <summary>
         /// This is the parent vertex.
         /// </summary>
-        public LockFreeRedBlackVertex<TKey, TVal> Parent { get; set; }
+        public LockableRedBlackTreeVertex<TKey, TVal> Parent { get; set; }
         #endregion // Parent
         #region Left
         /// <summary>
         /// This is the left vertex.
         /// </summary>
-        public LockFreeRedBlackVertex<TKey, TVal> Left { get; set; }
+        public LockableRedBlackTreeVertex<TKey, TVal> Left { get; set; }
         #endregion // Left
         #region Right
         /// <summary>
         /// This is the right vertex.
         /// </summary>
-        public LockFreeRedBlackVertex<TKey, TVal> Right { get; set; }
+        public LockableRedBlackTreeVertex<TKey, TVal> Right { get; set; }
         #endregion // Right
 
         #region IsRed

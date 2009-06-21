@@ -74,7 +74,6 @@ namespace Ximura.Collections
         }
         #endregion // ThreadEnter(TreeAction act)
 
-
         #region ThreadExit()
         /// <summary>
         /// This method unregisters the thread from the collection.

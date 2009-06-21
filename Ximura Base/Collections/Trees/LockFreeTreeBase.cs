@@ -28,7 +28,14 @@ using Ximura.Helper;
 #endregion // using
 namespace Ximura.Collections
 {
-    public partial class LockFreeRedBlackTreeBase<TKey, TVal, TVert>
+    public abstract class LockFreeTreeBase : DisposableBase
     {
+        #region IsReadOnly
+        /// <summary>
+        /// This value specifies whether items can be added or removed from the tree. The default is false.
+        /// </summary>
+        public virtual bool IsReadOnly { get { return false; } }
+        #endregion // IsReadOnly
+
     }
 }
