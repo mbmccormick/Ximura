@@ -43,7 +43,7 @@ namespace Ximura.Collections
 
 
 
-        protected override VertexClassBase<T> GetSentinelID(int hashCode, bool createSentinel, out int hashID)
+        protected override VertexClass<T> GetSentinelID(int hashCode, bool createSentinel, out int hashID)
         {
             hashID = BitReverse(hashCode & cnLowerBitMask);
 

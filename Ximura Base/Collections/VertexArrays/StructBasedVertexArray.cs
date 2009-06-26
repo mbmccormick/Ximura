@@ -40,11 +40,11 @@ namespace Ximura.Collections
         /// <summary>
         /// This collection holds the data.
         /// </summary>
-        protected IFineGrainedLockArray<CollectionVertex<T>> mSlots;
+        protected IFineGrainedLockArray<VertexStruct<T>> mSlots;
         /// <summary>
         /// This is the vertex that holds the previously used vertexes.
         /// </summary>
-        protected LockableWrapper<CollectionVertex<T>> mEmptyVertex;
+        protected LockableWrapper<VertexStruct<T>> mEmptyVertex;
         /// <summary>
         /// This is the free data queue item count.
         /// </summary>
@@ -82,11 +82,11 @@ namespace Ximura.Collections
             mLastIndex = 0;
 
             if (isFixedSize)
-                mSlots = new FineGrainedLockArray<CollectionVertex<T>>(capacity, 0);
+                mSlots = new FineGrainedLockArray<VertexStruct<T>>(capacity, 0);
             else
-                mSlots = new ExpandableFineGrainedLockArray<CollectionVertex<T>>(capacity, SlotExpander);
+                mSlots = new ExpandableFineGrainedLockArray<VertexStruct<T>>(capacity, SlotExpander);
 
-            mEmptyVertex = new LockableWrapper<CollectionVertex<T>>(CollectionVertex<T>.Sentinel(0, 0));
+            mEmptyVertex = new LockableWrapper<VertexStruct<T>>(VertexStruct<T>.Sentinel(0, 0));
         }
         #endregion
 
@@ -111,10 +111,10 @@ namespace Ximura.Collections
                     mSlots.ItemLock(pos);
 
                     //OK get the item.
-                    CollectionVertex<T> item = mSlots[pos];
+                    VertexStruct<T> item = mSlots[pos];
 
                     //OK, remove the free item from the list and set the sentinel to the next item.
-                    mEmptyVertex.Value = new CollectionVertex<T>(0, default(T), item.NextSlotIDPlus1);
+                    mEmptyVertex.Value = new VertexStruct<T>(0, default(T), item.NextSlotIDPlus1);
 
                     if (mEmptyVertex.Value.IsTerminator)
                     {
@@ -163,8 +163,8 @@ namespace Ximura.Collections
                 mEmptyVertex.Lock();
 
                 int next = mEmptyVertex.Value.NextSlotIDPlus1;
-                mSlots[index] = new CollectionVertex<T>(0, default(T), next);
-                mEmptyVertex.Value = new CollectionVertex<T>(0, default(T), index + 1);
+                mSlots[index] = new VertexStruct<T>(0, default(T), next);
+                mEmptyVertex.Value = new VertexStruct<T>(0, default(T), index + 1);
 
                 mFreeListTail.Value = index;
 
@@ -172,8 +172,8 @@ namespace Ximura.Collections
             }
             else
             {
-                mSlots[index] = CollectionVertex<T>.Empty;
-                mSlots[mFreeListTail.Value] = new CollectionVertex<T>(0, default(T), index + 1);
+                mSlots[index] = VertexStruct<T>.Empty;
+                mSlots[mFreeListTail.Value] = new VertexStruct<T>(0, default(T), index + 1);
                 mFreeListTail.Value = index;
             }
             Interlocked.Increment(ref mFreeListCount);
@@ -242,7 +242,7 @@ namespace Ximura.Collections
         /// </summary>
         /// <param name="index">The index position.</param>
         /// <returns>Returns the vertex corresponding to the index position.</returns>
-        public virtual CollectionVertex<T> this[int index]
+        public virtual VertexStruct<T> this[int index]
         {
             get
             {
@@ -262,7 +262,7 @@ namespace Ximura.Collections
         /// <returns>Returns an enumeration containing the collection data.</returns>
         public override IEnumerator<KeyValuePair<int, ICollectionVertex<T>>> GetEnumerator()
         {
-            CollectionVertex<T> item = mSlots[0];
+            VertexStruct<T> item = mSlots[0];
 
             yield return new KeyValuePair<int, ICollectionVertex<T>>(0, item);
 

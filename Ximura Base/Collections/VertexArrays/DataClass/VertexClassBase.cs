@@ -31,13 +31,13 @@ namespace Ximura.Collections
     /// This is the base tree vertex class.
     /// </summary>
     /// <typeparam name="T">The value data type.</typeparam>
-    public abstract class CollectionVertexClassBase<T> : LockableBase
+    public abstract class VertexClassBase<T> : LockableBase
     {
         #region Constructor
         /// <summary>
         /// This is the default constructor.
         /// </summary>
-        public CollectionVertexClassBase()
+        public VertexClassBase()
         {
             Value = default(T);
         }

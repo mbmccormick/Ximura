@@ -50,11 +50,11 @@ namespace Ximura.Collections
         /// <summary>
         /// THe current vertex.
         /// </summary>
-        private CollectionVertex<T> Curr;
+        private VertexStruct<T> Curr;
         /// <summary>
         /// The next vertex.
         /// </summary>
-        private CollectionVertex<T> Next;
+        private VertexStruct<T> Next;
         #endregion // Declarations
         #region Constructor
         /// <summary>
@@ -79,7 +79,7 @@ namespace Ximura.Collections
                 Next = mData[Curr.NextSlotIDPlus1 - 1];
             }
             else
-                Next = new CollectionVertex<T>();
+                Next = new VertexStruct<T>();
         }
         #endregion // Constructor
 
@@ -128,7 +128,7 @@ namespace Ximura.Collections
             if (!Curr.IsTerminator)
                 mData.ItemUnlock(Curr.NextSlotIDPlus1 - 1);
 
-            Next = new CollectionVertex<T>(mHashID, mItem, Curr.NextSlotIDPlus1);
+            Next = new VertexStruct<T>(mHashID, mItem, Curr.NextSlotIDPlus1);
 
             Curr.NextSlotIDPlus1 = newSlot + 1;
 
@@ -152,7 +152,7 @@ namespace Ximura.Collections
             if (!Curr.IsTerminator)
                 mData.ItemUnlock(Curr.NextSlotIDPlus1 - 1);
 
-            Next = CollectionVertex<T>.Sentinel(mHashID, Curr.NextSlotIDPlus1);
+            Next = VertexStruct<T>.Sentinel(mHashID, Curr.NextSlotIDPlus1);
 
             Curr.NextSlotIDPlus1 = indexID + 1;
 
@@ -198,7 +198,7 @@ namespace Ximura.Collections
                 if (Next.IsTerminator)
                 {
                     Curr = Next;
-                    Next = new CollectionVertex<T>();
+                    Next = new VertexStruct<T>();
                     break;
                 }
 
@@ -230,7 +230,7 @@ namespace Ximura.Collections
                 Next = mData[Curr.NextSlotIDPlus1 - 1];
             }
             else
-                Next = new CollectionVertex<T>();
+                Next = new VertexStruct<T>();
 
             return true;
         }
@@ -278,7 +278,7 @@ namespace Ximura.Collections
                 Next = mData[Curr.NextSlotIDPlus1 - 1];
             }
             else
-                Next = new CollectionVertex<T>();
+                Next = new VertexStruct<T>();
 
             //Add the empty item for re-allocation.
             mData.EmptyAdd(removedItem);

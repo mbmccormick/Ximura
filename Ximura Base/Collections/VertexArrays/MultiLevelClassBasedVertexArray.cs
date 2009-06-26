@@ -40,7 +40,7 @@ namespace Ximura.Collections
         /// <summary>
         /// This is the collection of data and sentinels.
         /// </summary>
-        protected VertexClassBase<T>[] mData;
+        protected VertexClass<T>[] mData;
         /// <summary>
         /// This is the maximum permitted buckets.
         /// </summary>
@@ -125,7 +125,7 @@ namespace Ximura.Collections
         /// </summary>
         protected virtual void InitializeDataArray()
         {
-            mData = new VertexClassBase<T>[LevelMax];
+            mData = new VertexClass<T>[LevelMax];
 
             mData[LevelData] = new VertexClassDataSentinel<T>(HashIDMin);
 
@@ -169,7 +169,7 @@ namespace Ximura.Collections
         /// <summary>
         /// This method returns the root data vertex which is the last item in the data array.
         /// </summary>
-        protected override VertexClassBase<T> Root
+        protected override VertexClass<T> Root
         {
             get { return mData[LevelData]; }
         }

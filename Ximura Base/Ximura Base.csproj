@@ -253,9 +253,12 @@
     <Compile Include="Collections\Trees\RedBlackTree\LockFreeRedBlackTreeBase_Rebalancing.cs" />
     <Compile Include="Collections\Trees\RedBlackTree\LockFreeRedBlackTreeBase_Sync.cs" />
     <Compile Include="Collections\VertexArrays\ClassBasedVertexArray.cs" />
-    <Compile Include="Collections\VertexArrays\DataClass\CollectionVertexClassBase.cs" />
-    <Compile Include="Collections\VertexArrays\DataStruct\CollectionVertex.cs" />
-    <Compile Include="Collections\VertexArrays\DataClass\ListVertexClass.cs" />
+    <Compile Include="Collections\VertexArrays\DataClass\VertexClassSentinel.cs" />
+    <Compile Include="Collections\VertexArrays\DataClass\VertexClassDataSentinel.cs" />
+    <Compile Include="Collections\VertexArrays\DataClass\VertexClassData.cs" />
+    <Compile Include="Collections\VertexArrays\DataClass\VertexClassBase.cs" />
+    <Compile Include="Collections\VertexArrays\DataStruct\VertexStruct.cs" />
+    <Compile Include="Collections\VertexArrays\DataClass\VertexClass.cs" />
     <Compile Include="Collections\VertexArrays\HashTable\HashTableClassBasedVertexArray.cs" />
     <Compile Include="Collections\VertexArrays\HashTable\HashTableStructBasedVertexArray.cs" />
     <Compile Include="Collections\VertexArrays\MultiLevelClassBasedVertexArray.cs" />

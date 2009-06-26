@@ -32,7 +32,7 @@ namespace Ximura.Collections
     /// </summary>
     /// <typeparam name="TKey">The vertex key type.</typeparam>
     /// <typeparam name="TVal">The vertex value type.</typeparam>
-    public abstract class TreeLockableVertex<TVal> : CollectionVertexClassBase<TVal>
+    public abstract class TreeLockableVertex<TVal> : VertexClassBase<TVal>
     {
         #region Constructor
         /// <summary>

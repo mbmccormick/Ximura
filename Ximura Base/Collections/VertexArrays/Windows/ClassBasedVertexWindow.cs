@@ -45,11 +45,11 @@ namespace Ximura.Collections
         /// <summary>
         /// The current vertex.
         /// </summary>
-        private VertexClassBase<T> Curr;
+        private VertexClass<T> Curr;
         /// <summary>
         /// The next vertex.
         /// </summary>
-        private VertexClassBase<T> Next;
+        private VertexClass<T> Next;
         #endregion // Declarations
         #region Constructor
         /// <summary>
@@ -60,7 +60,7 @@ namespace Ximura.Collections
         /// <param name="eqComparer">The equality comparer for the collection.</param>
         /// <param name="hashID">The hashID of the item.</param>
         /// <param name="item">The data item.</param>
-        public ClassBasedVertexWindow(ClassBasedVertexArray<T> coll, VertexClassBase<T> vertex, IEqualityComparer<T> eqComparer, int hashID, T item)
+        public ClassBasedVertexWindow(ClassBasedVertexArray<T> coll, VertexClass<T> vertex, IEqualityComparer<T> eqComparer, int hashID, T item)
         {
             mData = coll;
             Curr = vertex;
@@ -160,7 +160,7 @@ namespace Ximura.Collections
         /// <summary>
         /// This method inserts a data sentinel in to the data collection.
         /// </summary>
-        public VertexClassSentinel<T> InsertSentinel(VertexClassBase<T> down)
+        public VertexClassSentinel<T> InsertSentinel(VertexClass<T> down)
         {
             VertexClassSentinel<T> newItem = new VertexClassSentinel<T>(mHashID, down);
             newItem.Lock();
@@ -273,7 +273,7 @@ namespace Ximura.Collections
         /// </summary>
         public void Snip()
         {
-            VertexClassBase<T> temp = Next;
+            VertexClass<T> temp = Next;
 
             if (Next.IsTerminator)
             {

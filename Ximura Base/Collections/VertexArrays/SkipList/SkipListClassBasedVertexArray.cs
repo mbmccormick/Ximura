@@ -115,21 +115,21 @@ namespace Ximura.Collections
         /// <param name="createSentinel"></param>
         /// <param name="hashID"></param>
         /// <returns></returns>
-        protected override VertexClassBase<T> GetSentinelID(int hashCode, bool createSentinel, out int hashID)
+        protected override VertexClass<T> GetSentinelID(int hashCode, bool createSentinel, out int hashID)
         {
             try
             {
                 hashCode &= cnLowerBitMask;
                 hashID = BitReverse(hashCode);
 
-                VertexClassBase<T>[] path = null;
+                VertexClass<T>[] path = null;
 
                 //OK, create a path to the root sentinel.
                 if (createSentinel)
-                    path = new VertexClassBase<T>[LevelCurrent + 1];
+                    path = new VertexClass<T>[LevelCurrent + 1];
 
                 int index = 0;
-                VertexClassBase<T> currSentinel = mData[LevelCurrent - 1];
+                VertexClass<T> currSentinel = mData[LevelCurrent - 1];
                 if (createSentinel)
                     path[0] = currSentinel;
 
@@ -222,7 +222,7 @@ namespace Ximura.Collections
 
             //Get the initial sentinel vertex. No need to check locks as sentinels rarely change.
             int hashID;
-            VertexClassBase<T> scanVertex = GetSentinelID(mEqComparer.GetHashCode(item), false, out hashID);
+            VertexClass<T> scanVertex = GetSentinelID(mEqComparer.GetHashCode(item), false, out hashID);
 
             //First we will attempt to search without locking. However, should the version ID change 
             //during the search we will need to complete a locked search to ensure consistency.

@@ -40,7 +40,7 @@ namespace Ximura.Collections
         /// <summary>
         /// This collection holds the data.
         /// </summary>
-        private IFineGrainedLockArray<CollectionVertex<T>> mBuckets;
+        private IFineGrainedLockArray<VertexStruct<T>> mBuckets;
         /// <summary>
         /// The current number of bits being used by the collection.
         /// </summary>
@@ -82,11 +82,11 @@ namespace Ximura.Collections
             mCurrentBits = maxBits;
 
             if (isFixedSize)
-                mBuckets = new FineGrainedLockArray<CollectionVertex<T>>(bucketSize, 0);
+                mBuckets = new FineGrainedLockArray<VertexStruct<T>>(bucketSize, 0);
             else
-                mBuckets = new ExpandableFineGrainedLockArray<CollectionVertex<T>>(bucketSize, BucketExpander);
+                mBuckets = new ExpandableFineGrainedLockArray<VertexStruct<T>>(bucketSize, BucketExpander);
 
-            mBuckets[0] = CollectionVertex<T>.Sentinel(0, 0);
+            mBuckets[0] = VertexStruct<T>.Sentinel(0, 0);
         }
         #endregion // Initialize(bool isFixedSize, int capacity)
 
@@ -199,7 +199,7 @@ namespace Ximura.Collections
         /// </summary>
         /// <param name="index">The index position.</param>
         /// <returns>Returns the vertex corresponding to the index position.</returns>
-        public override CollectionVertex<T> this[int index]
+        public override VertexStruct<T> this[int index]
         {
             get
             {
@@ -227,7 +227,7 @@ namespace Ximura.Collections
         /// <returns>Returns an enumeration containing the collection data.</returns>
         public override IEnumerator<KeyValuePair<int, ICollectionVertex<T>>> GetEnumerator()
         {
-            CollectionVertex<T> item = mBuckets[0];
+            VertexStruct<T> item = mBuckets[0];
             yield return new KeyValuePair<int, ICollectionVertex<T>>(unchecked((int)0x80000000), item); ;
 
             while (!item.IsTerminator)
@@ -379,7 +379,7 @@ namespace Ximura.Collections
 
             //Get the initial sentinel vertex. No need to check locks as sentinels rarely change.
             int scanPosition = sentIndexID;
-            CollectionVertex<T> scanVertex = this[scanPosition];
+            VertexStruct<T> scanVertex = this[scanPosition];
 
             //First we will attempt to search without locking. However, should the version ID change 
             //during the search we will need to complete a locked search to ensure consistency.
@@ -415,7 +415,7 @@ namespace Ximura.Collections
 
                 //Get the initial sentinel vertex. No need to check locks as sentinels rarely change.
                 int scanPosition = sentIndexID;
-                CollectionVertex<T> scanVertex = this[scanPosition];
+                VertexStruct<T> scanVertex = this[scanPosition];
 
                 //First we will attempt to search without locking. However, should the version ID change 
                 //during the search we will need to complete a locked search to ensure consistency.
