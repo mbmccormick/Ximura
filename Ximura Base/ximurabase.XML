@@ -1062,6 +1062,65 @@
             <param name="bit">The bit to check.</param>
             <returns>Returns true if the bit is set.</returns>
         </member>
+        <member name="T:Ximura.Collections.LockableTreeVertexBase`2">
+            <summary>
+            This is the base tree vertex class.
+            </summary>
+            <typeparam name="TKey">The key type.</typeparam>
+            <typeparam name="TVal">The value type.</typeparam>
+        </member>
+        <member name="F:Ximura.Collections.LockableTreeVertexBase`2.mLocked">
+            <summary>
+            The private value that indicates whether the class is locked.
+            </summary>
+        </member>
+        <member name="F:Ximura.Collections.LockableTreeVertexBase`2.mLockingThread">
+            <summary>
+            The managed ID of the locking thread.
+            </summary>
+        </member>
+        <member name="M:Ximura.Collections.LockableTreeVertexBase`2.#ctor">
+            <summary>
+            This is the default constructor.
+            </summary>
+        </member>
+        <member name="M:Ximura.Collections.LockableTreeVertexBase`2.IsLocked">
+            <summary>
+            Returns true if the item is locked.
+            </summary>
+            <returns>Returns true if the item is locked.</returns>
+        </member>
+        <member name="M:Ximura.Collections.LockableTreeVertexBase`2.Lock">
+            <summary>
+            This method locks the particular item.
+            </summary>
+        </member>
+        <member name="M:Ximura.Collections.LockableTreeVertexBase`2.LockWait">
+            <summary>
+            This method halts any threads if the item is locked.
+            </summary>
+        </member>
+        <member name="M:Ximura.Collections.LockableTreeVertexBase`2.TryLock">
+            <summary>
+            This method attempts to lock the item.
+            </summary>
+            <returns>Returns true if the item is successfully locked.</returns>
+        </member>
+        <member name="M:Ximura.Collections.LockableTreeVertexBase`2.Unlock">
+            <summary>
+            This method unlocks the item.
+            </summary>
+        </member>
+        <member name="P:Ximura.Collections.LockableTreeVertexBase`2.Key">
+            <summary>
+            This is the vertex key used for partitioning.
+            </summary>
+        </member>
+        <member name="P:Ximura.Collections.LockableTreeVertexBase`2.Value">
+            <summary>
+            This is the value encapsulated by the vertex.
+            </summary>
+        </member>
         <member name="T:Ximura.Collections.LockFreeDictionary`2">
             <summary>
             This class is a concurrent lock-free implementation of the IDictionary interface.
@@ -1109,55 +1168,292 @@
             </summary>
             <param name="disposing">The class is disposing, i.e. this is called by Dispose and not the finalizer.</param>
         </member>
-        <member name="F:Ximura.Collections.LockFreeCollectionBase`1.mContainScanUnlocked">
-            <summary>
-            This property specifies whether the contains operation should attempt to scan without locking.
-            </summary>
-        </member>
-        <member name="F:Ximura.Collections.LockFreeCollectionBase`1.mContainScanUnlockedMiss">
-            <summary>
-            This variable contains the number of scan misses.
-            </summary>
-        </member>
-        <member name="F:Ximura.Collections.LockFreeCollectionBase`1.mEqualityComparer">
+        <member name="F:Ximura.Collections.CollectionHelperBase`1.mEqualityComparer">
             <summary>
             This is the equality comparer for the collection.
             </summary>
         </member>
-        <member name="F:Ximura.Collections.LockFreeCollectionBase`1.mIsFixedSize">
+        <member name="F:Ximura.Collections.CollectionHelperBase`1.mState">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Ximura.Collections.CollectionHelperBase`1.Initialize(System.Collections.Generic.IEqualityComparer{`0},System.Int32,System.Collections.Generic.IEnumerable{`0},System.Boolean)">
+            <summary>
+            This method initializes the collection.
+            </summary>
+            <param name="comparer">The comparer for the collection items.</param>
+            <param name="capacity">The initial capacity.</param>
+            <param name="collection">The initial data to load in to the array.</param>
+            <param name="isFixedSize">This property determines whether the collection is a fixed size.</param>
+        </member>
+        <member name="M:Ximura.Collections.CollectionHelperBase`1.InitializeData">
+            <summary>
+            This abstract method initializes the data collection.
+            </summary>
+        </member>
+        <member name="M:Ximura.Collections.CollectionHelperBase`1.AddIncomingData(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            This method adds items to the collection that were passed in the constructor.
+            You should override this method to implement any specific logic for your collection.
+            </summary>
+            <param name="collection">The data to add to the collection.</param>
+        </member>
+        <member name="M:Ximura.Collections.CollectionHelperBase`1.Insert(`0,System.Boolean)">
+            <summary>
+            This method adds an item to the collection.
+            </summary>
+            <param name="item">The item to add.</param>
+            <param name="add">The property specifies whether the item is overwritten or a new item is added. 
+            If multiple entries are not allowed an exception is thrown.</param>
+            <returns>Returns true if the addition is successful.</returns>
+        </member>
+        <member name="M:Ximura.Collections.CollectionHelperBase`1.ContainsInternal(`0)">
+            <summary>
+            This method checks whether the item exists in the collection.
+            </summary>
+            <param name="item">The item to check.</param>
+            <returns>Returns true if the item is in the collection.</returns>
+        </member>
+        <member name="M:Ximura.Collections.CollectionHelperBase`1.TryGetValueInternal(System.Collections.Generic.IEqualityComparer{`0},`0,`0@)">
+            <summary>
+            This method attempts to retrieve an item from the collection.
+            </summary>
+            <param name="comparer">The specific comparer.</param>
+            <param name="key">The key.</param>
+            <param name="value">The value parameter.</param>
+            <returns>Returns true if the item can be found in the collection.</returns>
+        </member>
+        <member name="M:Ximura.Collections.CollectionHelperBase`1.RemoveInternal(`0)">
+            <summary>
+            The method removes an item from the collection.
+            </summary>
+            <param name="item">The item to remove.</param>
+            <returns>Returns true if the removal is successful.</returns>
+        </member>
+        <member name="M:Ximura.Collections.CollectionHelperBase`1.ClearInternal">
+            <summary>
+            This method clears the collection.
+            </summary>
+            <remarks>This method scans and locks all the items in the collection, but leaves the sentinel data intact.</remarks>
+        </member>
+        <member name="M:Ximura.Collections.CollectionHelperBase`1.GetEnumerator">
+            <summary>
+            This method returns an enumeration of the collection values.
+            </summary>
+            <returns>Returns a enumeration of the collection.</returns>
+            <exception cref="T:System.InvalidOperationException">This exception will be thrown when if collection 
+            changes during the enumeration.</exception>
+        </member>
+        <member name="M:Ximura.Collections.CollectionHelperBase`1.CopyToInternal(`0[],System.Int32)">
+            <summary>
+            This method copies the collection to the array specified.
+            </summary>
+            <param name="array">The array to copy to.</param>
+            <param name="arrayIndex">The array index where the class should start copying to.</param>
+        </member>
+        <member name="M:Ximura.Collections.CollectionHelperBase`1.CopyToInternal(System.Array,System.Int32)">
+            <summary>
+            This method copies the collection to the array specified.
+            </summary>
+            <param name="array">The array to copy to.</param>
+            <param name="arrayIndex">The array index where the class should start copying to.</param>
+        </member>
+        <member name="M:Ximura.Collections.CollectionHelperBase`1.ToArrayInternal">
+            <summary>
+            This method copies the internal data to an array.
+            </summary>
+            <returns>Returns an array containing the internal data.</returns>
+        </member>
+        <member name="P:Ximura.Collections.CollectionHelperBase`1.CollectionAllowMultipleEntries">
+            <summary>
+            This setting determines whether the collection allows multiple entries of the same object in the collection.
+            The default setting is true.
+            </summary>
+        </member>
+        <member name="P:Ximura.Collections.CollectionHelperBase`1.CollectionAllowNullValues">
+            <summary>
+            This property determines whether the collection will accept null values. The default setting is true.
+            </summary>
+            <remarks>This property is ignored if the collection is for a value type such as int.</remarks>
+        </member>
+        <member name="P:Ximura.Collections.CollectionHelperBase`1.IsFixedSize">
+            <summary>
+            This property determines whether the collection will dynamically expand when new values are added. 
+            This property can only be set from the constructor, although this property can be overriden in derived classes to ensure
+            a particular value.
+            </summary>
+        </member>
+        <member name="P:Ximura.Collections.CollectionHelperBase`1.CountInternal">
+            <summary>
+            This is the count of the number of items currently in the collection.
+            </summary>
+        </member>
+        <member name="P:Ximura.Collections.CollectionHelperBase`1.VersionInternal">
+            <summary>
+            This is the current collection version.
+            </summary>
+        </member>
+        <member name="P:Ximura.Collections.CollectionHelperBase`1.DefaultTCountInternal">
+            <summary>
+            This is the current default(T) item count. 
+            </summary>
+        </member>
+        <member name="P:Ximura.Collections.CollectionHelperBase`1.Count">
+            <summary>
+            This property returns the number of elements in the collection.
+            </summary>
+        </member>
+        <member name="P:Ximura.Collections.CollectionHelperBase`1.Version">
+            <summary>
+            This is the current collection version.
+            </summary>
+        </member>
+        <member name="P:Ximura.Collections.CollectionHelperBase`1.IsReadOnly">
+            <summary>
+            This property always returns false.
+            </summary>
+        </member>
+        <member name="T:Ximura.Collections.CollectionHelperBase`1.CollectionState">
+            <summary>
+            This structure holds the internal state information for the class.
+            </summary>
+        </member>
+        <member name="M:Ximura.Collections.CollectionHelperBase`1.CollectionState.#ctor(System.Boolean,System.Boolean,System.Boolean,System.Int32)">
+            <summary>
+            This constructor sets the default value.
+            </summary>
+        </member>
+        <member name="F:Ximura.Collections.CollectionHelperBase`1.CollectionState.Version">
+            <summary>
+            The version value.
+            </summary>
+        </member>
+        <member name="F:Ximura.Collections.CollectionHelperBase`1.CollectionState.Count">
+            <summary>
+            This is the current item count.
+            </summary>
+        </member>
+        <member name="F:Ximura.Collections.CollectionHelperBase`1.CollectionState.DefaultTCount">
+            <summary>
+            This is the current default(T) item capacity. 
+            </summary>
+        </member>
+        <member name="F:Ximura.Collections.CollectionHelperBase`1.CollectionState.InitialCapacity">
+            <summary>
+            This is the initial capacity of the collection.
+            </summary>
+        </member>
+        <member name="F:Ximura.Collections.CollectionHelperBase`1.CollectionState.IsFixedSize">
             <summary>
             This property determines whether the collection is a fixed size. Fixed size collections will reject new records
             when the capacity has been reached.
             </summary>
         </member>
-        <member name="F:Ximura.Collections.LockFreeCollectionBase`1.mAllowNullValues">
+        <member name="F:Ximura.Collections.CollectionHelperBase`1.CollectionState.AllowNullValues">
             <summary>
             This property determines whether the collection will allow null or default(T) values.
             </summary>
         </member>
-        <member name="F:Ximura.Collections.LockFreeCollectionBase`1.mAllowMultipleEntries">
+        <member name="F:Ximura.Collections.CollectionHelperBase`1.CollectionState.AllowMultipleEntries">
             <summary>
             This property specifies whether the collection accepts multiple entries of the same object.
             </summary>
         </member>
-        <member name="F:Ximura.Collections.LockFreeCollectionBase`1.mVersion">
+        <member name="F:Ximura.Collections.CollectionHelperBase`1.CollectionState.ContainScanUnlocked">
             <summary>
-            The version value.
+            This property specifies whether the contains operation should attempt to scan without locking.
             </summary>
         </member>
-        <member name="F:Ximura.Collections.LockFreeCollectionBase`1.mCount">
+        <member name="F:Ximura.Collections.CollectionHelperBase`1.CollectionState.ContainScanUnlockedMiss">
             <summary>
-            This is the current item count.
+            This variable contains the number of scan misses.
             </summary>
         </member>
-        <member name="F:Ximura.Collections.LockFreeCollectionBase`1.mDefaultTCount">
-            <summary>
-            This is the current default(T) item capacity. 
-            </summary>
-        </member>
-        <member name="F:Ximura.Collections.LockFreeCollectionBase`1.mData">
+        <member name="F:Ximura.Collections.CollectionHelperStructBase`1.mData">
             <summary>
             This array holds both the slot and vertex data.
+            </summary>
+        </member>
+        <member name="M:Ximura.Collections.CollectionHelperStructBase`1.Dispose(System.Boolean)">
+            <summary>
+            This method disposes of the data in the collection. You should override this method if you need to add
+            custom dispose logic to your collection.
+            </summary>
+            <param name="disposing">The class is disposing, i.e. this is called by Dispose and not the finalizer.</param>
+        </member>
+        <member name="M:Ximura.Collections.CollectionHelperStructBase`1.Initialize(System.Collections.Generic.IEqualityComparer{`0},System.Int32,System.Collections.Generic.IEnumerable{`0},System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="comparer"></param>
+            <param name="capacity"></param>
+            <param name="collection"></param>
+            <param name="isFixedSize"></param>
+        </member>
+        <member name="M:Ximura.Collections.CollectionHelperStructBase`1.Insert(`0,System.Boolean)">
+            <summary>
+            This method adds an item to the collection.
+            </summary>
+            <param name="item">The item to add.</param>
+            <param name="add">The property specifies whether the item is overwritten or a new item is added. 
+            If multiple entries are not allowed an exception is thrown.</param>
+            <returns>Returns true if the addition is successful.</returns>
+        </member>
+        <member name="M:Ximura.Collections.CollectionHelperStructBase`1.ContainsInternal(`0)">
+            <summary>
+            This method checks whether the item exists in the collection.
+            </summary>
+            <param name="item">The item to check.</param>
+            <returns>Returns true if the item is in the collection.</returns>
+        </member>
+        <member name="M:Ximura.Collections.CollectionHelperStructBase`1.TryGetValueInternal(System.Collections.Generic.IEqualityComparer{`0},`0,`0@)">
+            <summary>
+            This method attempts to retrieve an item from the collection.
+            </summary>
+            <param name="comparer">The specific comparer.</param>
+            <param name="key">The key.</param>
+            <param name="value">The value parameter.</param>
+            <returns>Returns true if the item can be found in the collection.</returns>
+        </member>
+        <member name="M:Ximura.Collections.CollectionHelperStructBase`1.RemoveInternal(`0)">
+            <summary>
+            The method removes an item from the collection.
+            </summary>
+            <param name="item">The item to remove.</param>
+            <returns>Returns true if the removal is successful.</returns>
+        </member>
+        <member name="M:Ximura.Collections.CollectionHelperStructBase`1.ClearInternal">
+            <summary>
+            This method clears the collection.
+            </summary>
+            <remarks>This method scans and locks all the items in the collection, but leaves the sentinel data intact.</remarks>
+        </member>
+        <member name="M:Ximura.Collections.CollectionHelperStructBase`1.InternalScan(System.Boolean)">
+            <summary>
+            This method enumerates through the collection.
+            </summary>
+            <param name="changeException">Set this to true if you want the method to throw an exception if the collection changes.</param>
+            <returns>Returns a enumeration of the collection.</returns>
+            <exception cref="T:System.InvalidOperationException">This exception will be thrown when the collection 
+            changes during the scan and the changeException parameter is set to true.</exception>
+        </member>
+        <member name="M:Ximura.Collections.CollectionHelperStructBase`1.GetEnumerator">
+            <summary>
+            This method returns an enumeration of the collection values.
+            </summary>
+            <returns>Returns a enumeration of the collection.</returns>
+            <exception cref="T:System.InvalidOperationException">This exception will be thrown when if collection 
+            changes during the enumeration.</exception>
+        </member>
+        <member name="P:Ximura.Collections.CollectionHelperStructBase`1.DebugData">
+            <summary>
+            This debug method enumerates through the collection.
+            </summary>
+        </member>
+        <member name="P:Ximura.Collections.CollectionHelperStructBase`1.DebugEmpty">
+            <summary>
+            This debug method enumerates through the collection.
             </summary>
         </member>
         <member name="M:Ximura.Collections.LockFreeCollectionBase`1.#ctor(System.Collections.Generic.IEqualityComparer{`0},System.Int32,System.Collections.Generic.IEnumerable{`0},System.Boolean)">
@@ -1178,95 +1474,10 @@
             </summary>
             <param name="disposing">The class is disposing, i.e. this is called by Dispose and not the finalizer.</param>
         </member>
-        <member name="M:Ximura.Collections.LockFreeCollectionBase`1.Initialize(System.Int32,System.Collections.Generic.IEnumerable{`0},System.Boolean)">
+        <member name="M:Ximura.Collections.LockFreeCollectionBase`1.InitializeData">
             <summary>
-            This method initializes the collection.
+            This method initializes the data collection.
             </summary>
-            <param name="capacity">The initial capacity.</param>
-            <param name="collection">The initial data to load in to the array.</param>
-            <param name="isFixedSize">This property determines whether the collection is a fixed size.</param>
-        </member>
-        <member name="M:Ximura.Collections.LockFreeCollectionBase`1.AddIncomingData(System.Collections.Generic.IEnumerable{`0})">
-            <summary>
-            This method adds items to the collection that were passed in the constructor.
-            You should override this method to implement any specific logic for your collection.
-            </summary>
-            <param name="collection">The data to add to the collection.</param>
-        </member>
-        <member name="M:Ximura.Collections.LockFreeCollectionBase`1.Insert(`0,System.Boolean)">
-            <summary>
-            This method adds an item to the collection.
-            </summary>
-            <param name="item">The item to add.</param>
-            <param name="add">The property specifies whether the item is overwritten or a new item is added. 
-            If multiple entries are not allowed an exception is thrown.</param>
-            <returns>Returns true if the addition is successful.</returns>
-        </member>
-        <member name="M:Ximura.Collections.LockFreeCollectionBase`1.ContainsInternal(`0)">
-            <summary>
-            This method checks whether the item exists in the collection.
-            </summary>
-            <param name="item">The item to check.</param>
-            <returns>Returns true if the item is in the collection.</returns>
-        </member>
-        <member name="M:Ximura.Collections.LockFreeCollectionBase`1.TryGetValueInternal(System.Collections.Generic.IEqualityComparer{`0},`0,`0@)">
-            <summary>
-            This method attempts to retrieve an item from the collection.
-            </summary>
-            <param name="comparer">The specific comparer.</param>
-            <param name="key">The key.</param>
-            <param name="value">The value parameter.</param>
-            <returns>Returns true if the item can be found in the collection.</returns>
-        </member>
-        <member name="M:Ximura.Collections.LockFreeCollectionBase`1.RemoveInternal(`0)">
-            <summary>
-            The method removes an item from the collection.
-            </summary>
-            <param name="item">The item to remove.</param>
-            <returns>Returns true if the removal is successful.</returns>
-        </member>
-        <member name="M:Ximura.Collections.LockFreeCollectionBase`1.ClearInternal">
-            <summary>
-            This method clears the collection.
-            </summary>
-            <remarks>This method scans and locks all the items in the collection, but leaves the sentinel data intact.</remarks>
-        </member>
-        <member name="M:Ximura.Collections.LockFreeCollectionBase`1.InternalScan(System.Boolean)">
-            <summary>
-            This method enumerates through the collection.
-            </summary>
-            <param name="changeException">Set this to true if you want the method to throw an exception if the collection changes.</param>
-            <returns>Returns a enumeration of the collection.</returns>
-            <exception cref="T:System.InvalidOperationException">This exception will be thrown when the collection 
-            changes during the scan and the changeException parameter is set to true.</exception>
-        </member>
-        <member name="M:Ximura.Collections.LockFreeCollectionBase`1.GetEnumerator">
-            <summary>
-            This method returns an enumeration of the collection values.
-            </summary>
-            <returns>Returns a enumeration of the collection.</returns>
-            <exception cref="T:System.InvalidOperationException">This exception will be thrown when if collection 
-            changes during the enumeration.</exception>
-        </member>
-        <member name="M:Ximura.Collections.LockFreeCollectionBase`1.CopyToInternal(`0[],System.Int32)">
-            <summary>
-            This method copies the collection to the array specified.
-            </summary>
-            <param name="array">The array to copy to.</param>
-            <param name="arrayIndex">The array index where the class should start copying to.</param>
-        </member>
-        <member name="M:Ximura.Collections.LockFreeCollectionBase`1.CopyToInternal(System.Array,System.Int32)">
-            <summary>
-            This method copies the collection to the array specified.
-            </summary>
-            <param name="array">The array to copy to.</param>
-            <param name="arrayIndex">The array index where the class should start copying to.</param>
-        </member>
-        <member name="M:Ximura.Collections.LockFreeCollectionBase`1.ToArrayInternal">
-            <summary>
-            This method copies the internal data to an array.
-            </summary>
-            <returns>Returns an array containing the internal data.</returns>
         </member>
         <member name="P:Ximura.Collections.LockFreeCollectionBase`1.CollectionAllowMultipleEntries">
             <summary>
@@ -1279,33 +1490,6 @@
             This property determines whether the collection will accept null values. The default setting is true.
             </summary>
             <remarks>This property is ignored if the collection is for a value type such as int.</remarks>
-        </member>
-        <member name="P:Ximura.Collections.LockFreeCollectionBase`1.IsFixedSize">
-            <summary>
-            This property determines whether the collection will dynamically expand when new values are added. 
-            This property can only be set from the constructor, although this property can be overriden in derived classes to ensure
-            a particular value.
-            </summary>
-        </member>
-        <member name="P:Ximura.Collections.LockFreeCollectionBase`1.CountInternal">
-            <summary>
-            This is the count of the number of items currently in the collection.
-            </summary>
-        </member>
-        <member name="P:Ximura.Collections.LockFreeCollectionBase`1.Version">
-            <summary>
-            This is the current collection version.
-            </summary>
-        </member>
-        <member name="P:Ximura.Collections.LockFreeCollectionBase`1.DebugData">
-            <summary>
-            This debug method enumerates through the collection.
-            </summary>
-        </member>
-        <member name="P:Ximura.Collections.LockFreeCollectionBase`1.DebugEmpty">
-            <summary>
-            This debug method enumerates through the collection.
-            </summary>
         </member>
         <member name="M:Ximura.Collections.LockFreeDictionary`2.#ctor">
             <summary>
@@ -1536,87 +1720,6 @@
         <member name="P:Ximura.Collections.LockFreeDictionary`2.KeyValueOnlyKeyEqualityComparer`2.ValueComparer">
             <summary>
             This is the key comparer.
-            </summary>
-        </member>
-        <member name="T:Ximura.Collections.IPriorityQueue`1">
-            <summary>
-            This interface is implemented by a queue.
-            </summary>
-            <typeparam name="T">The collection item type.</typeparam>
-        </member>
-        <member name="T:Ximura.Collections.ICollectionBase`1">
-            <summary>
-            This interface is shared by both the IQueue and IStack interfaces and contains shared functionality.
-            </summary>
-            <typeparam name="T">The collection item type.</typeparam>
-        </member>
-        <member name="M:Ximura.Collections.ICollectionBase`1.TryPeek(`0@)">
-            <summary>
-            This method tries to peek the next item to leave the collection.
-            </summary>
-            <param name="item">The item at the top or default.</param>
-            <returns>Returns true if an item is available.</returns>
-        </member>
-        <member name="P:Ximura.Collections.ICollectionBase`1.Count">
-            <summary>
-            The collection item count.
-            </summary>
-        </member>
-        <member name="M:Ximura.Collections.IPriorityQueue`1.Dequeue">
-            <summary>
-            Removes an item from the head of the queue.
-            </summary>
-            <returns>Returns the item at the head of the queue.</returns>
-        </member>
-        <member name="M:Ximura.Collections.IPriorityQueue`1.TryDequeue(`0@)">
-            <summary>
-            This item tries to empty an item in the queue.
-            </summary>
-            <param name="item">The top item in the queue.</param>
-            <returns>Returns true if there is an item in the queue.</returns>
-        </member>
-        <member name="M:Ximura.Collections.IPriorityQueue`1.Enqueue(`0)">
-            <summary>
-            This method adds an item to the tail of the queue.
-            </summary>
-            <param name="item">The item to add to the queue.</param>
-        </member>
-        <member name="F:Ximura.Collections.CollectionBase.mVersion">
-            <summary>
-            The version value.
-            </summary>
-        </member>
-        <member name="F:Ximura.Collections.CollectionBase.mCount">
-            <summary>
-            This is the current item count.
-            </summary>
-        </member>
-        <member name="F:Ximura.Collections.CollectionBase.mIsFixedSize">
-            <summary>
-            This property determines whether the collection is a fixed size. Fixed size collections will reject new records
-            when the capacity has been reached.
-            </summary>
-        </member>
-        <member name="P:Ximura.Collections.CollectionBase.IsFixedSize">
-            <summary>
-            This property determines whether the collection will dynamically expand when new values are added. 
-            This property can only be set from the constructor, although this property can be overriden in derived classes to ensure
-            a particular value.
-            </summary>
-        </member>
-        <member name="P:Ximura.Collections.CollectionBase.CountInternal">
-            <summary>
-            This is the count of the number of items currently in the collection.
-            </summary>
-        </member>
-        <member name="P:Ximura.Collections.CollectionBase.VersionInternal">
-            <summary>
-            This is the current collection version.
-            </summary>
-        </member>
-        <member name="P:Ximura.Collections.CollectionBase.Version">
-            <summary>
-            This is the current collection version.
             </summary>
         </member>
         <member name="T:Ximura.Server.IXimuraStorageManagerService">
@@ -1931,64 +2034,48 @@
             The service container.
             </summary>
         </member>
-        <member name="T:Ximura.Collections.LockFreeVertexBase`2">
+        <member name="T:Ximura.Collections.IStack`1">
             <summary>
-            This is the base tree vertex class.
+            This interface is implemented by a stack.
             </summary>
-            <typeparam name="TKey">The key type.</typeparam>
-            <typeparam name="TVal">The value type.</typeparam>
+            <typeparam name="T">The collection item type.</typeparam>
         </member>
-        <member name="F:Ximura.Collections.LockFreeVertexBase`2.mLocked">
+        <member name="T:Ximura.Collections.ICollectionBase`1">
             <summary>
-            The private value that indicates whether the class is locked.
+            This interface is shared by both the IQueue and IStack interfaces and contains shared functionality.
             </summary>
+            <typeparam name="T">The collection item type.</typeparam>
         </member>
-        <member name="F:Ximura.Collections.LockFreeVertexBase`2.mLockingThread">
+        <member name="M:Ximura.Collections.ICollectionBase`1.TryPeek(`0@)">
             <summary>
-            The managed ID of the locking thread.
+            This method tries to peek the next item to leave the collection.
             </summary>
+            <param name="item">The item at the top or default.</param>
+            <returns>Returns true if an item is available.</returns>
         </member>
-        <member name="M:Ximura.Collections.LockFreeVertexBase`2.#ctor">
+        <member name="P:Ximura.Collections.ICollectionBase`1.Count">
             <summary>
-            This is the default constructor.
-            </summary>
-        </member>
-        <member name="M:Ximura.Collections.LockFreeVertexBase`2.IsLocked">
-            <summary>
-            Returns true if the item is locked.
-            </summary>
-            <returns>Returns true if the item is locked.</returns>
-        </member>
-        <member name="M:Ximura.Collections.LockFreeVertexBase`2.Lock">
-            <summary>
-            This method locks the particular item.
+            The collection item count.
             </summary>
         </member>
-        <member name="M:Ximura.Collections.LockFreeVertexBase`2.LockWait">
+        <member name="M:Ximura.Collections.IStack`1.Push(`0)">
             <summary>
-            This method halts any threads if the item is locked.
+            This method pushes an item on to the stack.
             </summary>
+            <param name="item">The item to add to the stack.</param>
         </member>
-        <member name="M:Ximura.Collections.LockFreeVertexBase`2.TryLock">
+        <member name="M:Ximura.Collections.IStack`1.Pop">
             <summary>
-            This method attempts to lock the item.
+            This method removes the top item from the stack.
             </summary>
-            <returns>Returns true if the item is successfully locked.</returns>
+            <returns>Returns the top item on the stack.</returns>
         </member>
-        <member name="M:Ximura.Collections.LockFreeVertexBase`2.Unlock">
+        <member name="M:Ximura.Collections.IStack`1.TryPop(`0@)">
             <summary>
-            This method unlocks the item.
+            This method tries to return the top item from the stack.
             </summary>
-        </member>
-        <member name="P:Ximura.Collections.LockFreeVertexBase`2.Key">
-            <summary>
-            This is the vertex key used for partitioning.
-            </summary>
-        </member>
-        <member name="P:Ximura.Collections.LockFreeVertexBase`2.Value">
-            <summary>
-            This is the value encapsulated by the vertex.
-            </summary>
+            <param name="item">The item at the top of the stack.</param>
+            <returns>Returns true if an item is removed from the stack.</returns>
         </member>
         <member name="T:Ximura.Server.CompletionJobStatus">
             <summary>
@@ -2464,93 +2551,6 @@
             <param name="info">Serialization information.</param>
             <param name="context">Streaming context.</param>
         </member>
-        <member name="T:Ximura.Collections.LockableWrapper`1">
-            <summary>
-            The lockable base class is for objects that require fine-grained locking.
-            </summary>
-        </member>
-        <member name="F:Ximura.Collections.LockableWrapper`1.mLocked">
-            <summary>
-            The private value that indicates whether the class is locked.
-            </summary>
-        </member>
-        <member name="F:Ximura.Collections.LockableWrapper`1.mHasValue">
-            <summary>
-            The boolean value which specifies whether the structure contains a valid value.
-            </summary>
-        </member>
-        <member name="F:Ximura.Collections.LockableWrapper`1.mValue">
-            <summary>
-            The value.
-            </summary>
-        </member>
-        <member name="F:Ximura.Collections.LockableWrapper`1.mLockingThread">
-            <summary>
-            The managed ID of the locking thread.
-            </summary>
-        </member>
-        <member name="M:Ximura.Collections.LockableWrapper`1.#ctor(`0)">
-            <summary>
-            This is the default constructor.
-            </summary>
-            <param name="value"></param>
-        </member>
-        <member name="M:Ximura.Collections.LockableWrapper`1.Lock">
-            <summary>
-            This method locks the particular item.
-            </summary>
-        </member>
-        <member name="M:Ximura.Collections.LockableWrapper`1.LockWait">
-            <summary>
-            This method halts any threads if the item is locked.
-            </summary>
-        </member>
-        <member name="M:Ximura.Collections.LockableWrapper`1.TryLock">
-            <summary>
-            This method attempts to lock the item.
-            </summary>
-            <returns>Returns true if the item is successfully locked.</returns>
-        </member>
-        <member name="M:Ximura.Collections.LockableWrapper`1.Unlock">
-            <summary>
-            This method unlocks the item.
-            </summary>
-        </member>
-        <member name="M:Ximura.Collections.LockableWrapper`1.ToString">
-            <summary>
-            This method provides a string value of the enclosed data.
-            </summary>
-            <returns>Returns the internal data as a string.</returns>
-        </member>
-        <member name="M:Ximura.Collections.LockableWrapper`1.GetHashCode">
-            <summary>
-            This method returns the hashcode of the enclosed data.
-            </summary>
-            <returns>The internal hashcode.</returns>
-        </member>
-        <member name="M:Ximura.Collections.LockableWrapper`1.Equals(System.Object)">
-            <summary>
-            This method compares the other value to the enclosed data.
-            </summary>
-            <param name="other">The data to compare.</param>
-            <returns>Returns true if the data is the same.</returns>
-        </member>
-        <member name="P:Ximura.Collections.LockableWrapper`1.IsLocked">
-            <summary>
-            Returns true if the item is locked.
-            </summary>
-            <returns>Returns true if the item is locked.</returns>
-        </member>
-        <member name="P:Ximura.Collections.LockableWrapper`1.Value">
-            <summary>
-            This is the value locked by the collection.
-            </summary>
-        </member>
-        <member name="P:Ximura.Collections.LockableWrapper`1.HasValue">
-            <summary>
-            Specifies whether the wrapper contains a value.
-            </summary>
-        </member>
         <member name="T:Ximura.Server.JobSignature">
             <summary>
             This structure is used hold the job signature.
@@ -2801,6 +2801,531 @@
             The second item.
             </summary>
         </member>
+        <member name="T:Ximura.Collections.SkipListNode`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Ximura.Collections.SkipListNode`1.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Ximura.Collections.SkipListNode`1.#ctor(`0)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="F:Ximura.Collections.SkipListNode`1.Value">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Ximura.Collections.SkipListNode`1.Right">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Ximura.Collections.SkipListNode`1.Up">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Ximura.Collections.SkipListNode`1.Down">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Ximura.Collections.CombinedVertexArray`1">
+            <summary>
+            This class contains the combined buckets and slots in a single class.
+            </summary>
+            <typeparam name="T">The collection type.</typeparam>
+        </member>
+        <member name="T:Ximura.Collections.VertexArray`1">
+            <summary>
+            The vertex array class provides basic linked list expandable array support.
+            </summary>
+            <typeparam name="T">The collection type.</typeparam>
+        </member>
+        <member name="T:Ximura.Collections.IFineGrainedLockArray`1">
+            <summary>
+            This interface is implemented by lockable arrays.
+            </summary>
+            <typeparam name="T">The array item type.</typeparam>
+        </member>
+        <member name="M:Ximura.Collections.IFineGrainedLockArray`1.ItemIsLocked(System.Int32)">
+            <summary>
+            This method checks whether an item in the collection is locked.
+            </summary>
+            <param name="index">The index of the item to check.</param>
+            <returns>Returns true if the item is locked.</returns>
+        </member>
+        <member name="M:Ximura.Collections.IFineGrainedLockArray`1.ItemLock(System.Int32)">
+            <summary>
+            This method locks the specific item.
+            </summary>
+            <param name="index">The item index.</param>
+            <returns>Returns the number of lock cycles the thread entered.</returns>
+        </member>
+        <member name="M:Ximura.Collections.IFineGrainedLockArray`1.ItemLockWait(System.Int32)">
+            <summary>
+            This method waits for a locked item to become available.
+            </summary>
+            <param name="index">The index of the item to wait for.</param>
+            <returns>Returns the number of lock cycles during the wait.</returns>
+        </member>
+        <member name="M:Ximura.Collections.IFineGrainedLockArray`1.ItemTryLock(System.Int32)">
+            <summary>
+            This method attempts to lock the item specified.
+            </summary>
+            <param name="index">The index of the item you wish to lock.</param>
+            <returns>Returns true if the item was successfully locked.</returns>
+        </member>
+        <member name="M:Ximura.Collections.IFineGrainedLockArray`1.ItemUnlock(System.Int32)">
+            <summary>
+            The method unlocks the item.
+            </summary>
+            <param name="index">The index of the item you wish to unlock.</param>
+        </member>
+        <member name="P:Ximura.Collections.IFineGrainedLockArray`1.Length">
+            <summary>
+            This is the capacity of the array.
+            </summary>
+        </member>
+        <member name="P:Ximura.Collections.IFineGrainedLockArray`1.Item(System.Int32)">
+            <summary>
+            This is the indexer for the array.
+            </summary>
+            <param name="index">The index position.</param>
+            <returns>Returns the object corresponding to the index position.</returns>
+        </member>
+        <member name="M:Ximura.Collections.VertexArray`1.BitReverse(System.Int32)">
+            <summary>
+            This method reverses the hashcode so that it is ordered in reverse based on bit value, i.e.
+            xxx1011 => 1101xxxx => Bucket 1 1xxxxx => Bucket 3 11xxxxx => Bucket 6 110xxx etc.
+            </summary>
+            <param name="data">The data to reverse></param>
+            <returns>Returns the reversed data</returns>
+        </member>
+        <member name="F:Ximura.Collections.VertexArray`1.mIsFixedSize">
+            <summary>
+            This property specifies whether the collection is a fixed size.
+            </summary>
+        </member>
+        <member name="F:Ximura.Collections.VertexArray`1.mSlots">
+            <summary>
+            This collection holds the data.
+            </summary>
+        </member>
+        <member name="F:Ximura.Collections.VertexArray`1.mEmptyVertex">
+            <summary>
+            This is the vertex that holds the previously used vertexes.
+            </summary>
+        </member>
+        <member name="F:Ximura.Collections.VertexArray`1.mFreeListCount">
+            <summary>
+            This is the free data queue item count.
+            </summary>
+        </member>
+        <member name="F:Ximura.Collections.VertexArray`1.mFreeListTail">
+            <summary>
+            This is the free data queue tail position.
+            </summary>
+        </member>
+        <member name="F:Ximura.Collections.VertexArray`1.mLastIndex">
+            <summary>
+            This is the current next free position in the data collection.
+            </summary>
+        </member>
+        <member name="F:Ximura.Collections.VertexArray`1.mCapacity">
+            <summary>
+            This is the initial data capacity of the collection.
+            </summary>
+        </member>
+        <member name="M:Ximura.Collections.VertexArray`1.SlotExpander(System.Int32,System.Int32)">
+            <summary>
+            This expander grows the buckets by the specified amount.
+            </summary>
+            <param name="requiredSize">The index specifying the new capacity.</param>
+            <param name="currentSize">The current capacity.</param>
+            <returns>Returns the new capacity.</returns>
+        </member>
+        <member name="M:Ximura.Collections.VertexArray`1.Initialize(System.Boolean,System.Int32)">
+            <summary>
+            This method initializes the class.
+            </summary>
+            <param name="isFixedSize">A boolean value indicating whether the data collection is fixed size.</param>
+            <param name="capacity">The capacity of the data array.</param>
+        </member>
+        <member name="M:Ximura.Collections.VertexArray`1.GetSentinelID(System.Int32,System.Boolean,System.Int32@,System.Int32@)">
+            <summary>
+            This method returns the sentinel ID and the hashID for the hashcode passed.
+            </summary>
+            <param name="hashCode">The hashcode to search for the sentinel position.</param>
+            <param name="create">This property determine whether any missing sentinels will be created.</param>
+            <param name="sentIndexID">The largest sentinel index ID.</param>
+            <param name="hashID">The hashID for the hashCode that passed.</param>
+        </member>
+        <member name="M:Ximura.Collections.VertexArray`1.EmptyGet">
+            <summary>
+            This method returns the next free item, either from empty space, or from a free item in the collection.
+            </summary>
+            <returns>Returns the index for the next free item.</returns>
+        </member>
+        <member name="M:Ximura.Collections.VertexArray`1.EmptyAdd(System.Int32)">
+            <summary>
+            This method adds an empty item to the free list.
+            </summary>
+            <param name="index">The index of the item to add to the sentinel.</param>
+        </member>
+        <member name="M:Ximura.Collections.VertexArray`1.ItemIsLocked(System.Int32)">
+            <summary>
+            This method checks whether an item in the collection is locked.
+            </summary>
+            <param name="index">The index of the item to check.</param>
+            <returns>Returns true if the item is locked.</returns>
+        </member>
+        <member name="M:Ximura.Collections.VertexArray`1.ItemLock(System.Int32)">
+            <summary>
+            This method locks the specific item.
+            </summary>
+            <param name="index">The item index.</param>
+            <returns>Returns the number of lock cycles the thread entered.</returns>
+        </member>
+        <member name="M:Ximura.Collections.VertexArray`1.ItemLockWait(System.Int32)">
+            <summary>
+            This method waits for a locked item to become available.
+            </summary>
+            <param name="index">The index of the item to wait for.</param>
+            <returns>Returns the number of lock cycles during the wait.</returns>
+        </member>
+        <member name="M:Ximura.Collections.VertexArray`1.ItemTryLock(System.Int32)">
+            <summary>
+            This method attempts to lock the item specified.
+            </summary>
+            <param name="index">The index of the item you wish to lock..</param>
+            <returns>Returns true if the item was successfully locked.</returns>
+        </member>
+        <member name="M:Ximura.Collections.VertexArray`1.ItemUnlock(System.Int32)">
+            <summary>
+            The method unlocks the item.
+            </summary>
+            <param name="index">The index of the item you wish to unlock.</param>
+        </member>
+        <member name="M:Ximura.Collections.VertexArray`1.GetEnumerator">
+            <summary>
+            This method returns an enumeration through the sentinels and data in the collection.
+            </summary>
+            <returns>Returns an enumeration containing the collection data.</returns>
+        </member>
+        <member name="M:Ximura.Collections.VertexArray`1.VertexWindowGet">
+            <summary>
+            This method returns a vertex window for the index specified.
+            </summary>
+        </member>
+        <member name="M:Ximura.Collections.VertexArray`1.VertexWindowGet(System.Int32)">
+            <summary>
+            This method returns a vertex window for the index specified.
+            </summary>
+            <param name="index">The index position.</param>
+            <returns>Returns the vertex window.</returns>
+        </member>
+        <member name="M:Ximura.Collections.VertexArray`1.SizeRecalculate(System.Int32)">
+            <summary>
+            This method calculates the current number of bits needed to support the current data.
+            </summary>
+        </member>
+        <member name="M:Ximura.Collections.VertexArray`1.NotifyAdd(System.Int32,`0)">
+            <summary>
+            This method is used to notify a collection of an addition.
+            </summary>
+            <param name="hashID"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Ximura.Collections.VertexArray`1.NotifyDelete(System.Int32,`0)">
+            <summary>
+            This method is used to notify a collection of an deletion.
+            </summary>
+            <param name="hashID"></param>
+            <param name="value"></param>
+        </member>
+        <member name="P:Ximura.Collections.VertexArray`1.IsFixedSize">
+            <summary>
+            This property specifies whether the collection is a fixed size.
+            </summary>
+        </member>
+        <member name="P:Ximura.Collections.VertexArray`1.Length">
+            <summary>
+            The data capacity.
+            </summary>
+        </member>
+        <member name="P:Ximura.Collections.VertexArray`1.LengthSlots">
+            <summary>
+            The data capacity.
+            </summary>
+        </member>
+        <member name="P:Ximura.Collections.VertexArray`1.Item(System.Int32)">
+            <summary>
+            This is the indexer for the array.
+            </summary>
+            <param name="index">The index position.</param>
+            <returns>Returns the vertex corresponding to the index position.</returns>
+        </member>
+        <member name="P:Ximura.Collections.VertexArray`1.DebugEmpty">
+            <summary>
+            This is the debug data.
+            </summary>
+        </member>
+        <member name="T:Ximura.Collections.VertexArray`1.VertexWindow`1">
+            <summary>
+            The vertex window structure holds the search results from a scan.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Ximura.Collections.VertexArray`1.VertexWindow`1.#ctor(Ximura.Collections.VertexArray{`1},System.Int32)">
+            <summary>
+            This is the default constructor for the window.
+            </summary>
+            <param name="data">The data collection.</param>
+            <param name="indexID">The index of the position to set the window.</param>
+        </member>
+        <member name="F:Ximura.Collections.VertexArray`1.VertexWindow`1.CurrSlotIDPlus1">
+            <summary>
+            The current slot ID plus 1.
+            </summary>
+        </member>
+        <member name="F:Ximura.Collections.VertexArray`1.VertexWindow`1.Curr">
+            <summary>
+            THe current vertex.
+            </summary>
+        </member>
+        <member name="F:Ximura.Collections.VertexArray`1.VertexWindow`1.Next">
+            <summary>
+            The next vertex.
+            </summary>
+        </member>
+        <member name="M:Ximura.Collections.VertexArray`1.VertexWindow`1.ToString">
+            <summary>
+            This override provides a debug friendly representation of the structure.
+            </summary>
+            <returns>Returns the structure value.</returns>
+        </member>
+        <member name="M:Ximura.Collections.VertexArray`1.VertexWindow`1.SetCurrentAndLock(System.Int32)">
+            <summary>
+            This method sets the current slot and locks the position.
+            </summary>
+            <param name="slotID">The slot ID.</param>
+        </member>
+        <member name="M:Ximura.Collections.VertexArray`1.VertexWindow`1.InsertSentinel(System.Int32,System.Int32)">
+            <summary>
+            This method inserts a sentinel in to the data collection.
+            </summary>
+            <param name="indexID">The new sentinel index id.</param>
+            <param name="hashID">The sentinel hash id.</param>
+        </member>
+        <member name="M:Ximura.Collections.VertexArray`1.VertexWindow`1.InsertItem(System.Int32,System.Int32,`1)">
+            <summary>
+            
+            </summary>
+            <param name="newSlot"></param>
+            <param name="hashID">The hashID to search for and lock.</param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Ximura.Collections.VertexArray`1.VertexWindow`1.Unlock">
+            <summary>
+            This method provides common functionality to unlock a VertexWindow.
+            </summary>
+        </member>
+        <member name="M:Ximura.Collections.VertexArray`1.VertexWindow`1.ScanAndLock(System.Int32)">
+            <summary>
+            This method scans through the slot data until is reaches the end of the data, or the position 
+            where the hashID meets a slot with a hashID that is greater than itself.
+            </summary>
+            <param name="hashID">The hashID to search for and lock.</param>
+        </member>
+        <member name="M:Ximura.Collections.VertexArray`1.VertexWindow`1.MoveUp">
+            <summary>
+            This method moves up the Next vertex to the current position.
+            </summary>
+        </member>
+        <member name="M:Ximura.Collections.VertexArray`1.VertexWindow`1.RemoveItemAndUnlock">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ximura.Collections.VertexArray`1.VertexWindow`1.Snip">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="F:Ximura.Collections.CombinedVertexArray`1.Root">
+            <summary>
+            This is the root sentinel vertex.
+            </summary>
+        </member>
+        <member name="F:Ximura.Collections.CombinedVertexArray`1.mBuckets">
+            <summary>
+            This collection holds the data.
+            </summary>
+        </member>
+        <member name="F:Ximura.Collections.CombinedVertexArray`1.mCurrentBits">
+            <summary>
+            The current number of bits being used by the collection.
+            </summary>
+        </member>
+        <member name="F:Ximura.Collections.CombinedVertexArray`1.mRecalculateThreshold">
+            <summary>
+            This is the slot recalculate threshold.
+            </summary>
+        </member>
+        <member name="M:Ximura.Collections.CombinedVertexArray`1.#ctor(System.Boolean,System.Int32)">
+            <summary>
+            This is the default constructor for the array.
+            </summary>
+            <param name="isFixedSize">A boolean value indicating whether the data collection is fixed size.</param>
+            <param name="capacity">The array capacity.</param>
+        </member>
+        <member name="M:Ximura.Collections.CombinedVertexArray`1.Initialize(System.Boolean,System.Int32)">
+            <summary>
+            This method initializes the class.
+            </summary>
+            <param name="isFixedSize">A boolean value indicating whether the data collection is fixed size.</param>
+            <param name="capacity">The capacity of the data array.</param>
+        </member>
+        <member name="M:Ximura.Collections.CombinedVertexArray`1.BucketExpander(System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="requiredSize">The index specifying the new capacity.</param>
+            <param name="currentSize">The current capacity.</param>
+            <returns>Returns the new capacity.</returns>
+        </member>
+        <member name="M:Ximura.Collections.CombinedVertexArray`1.EmptyAdd(System.Int32)">
+            <summary>
+            This method adds an empty item to the free list.
+            </summary>
+            <param name="index">The index of the item to add to the sentinel.</param>
+        </member>
+        <member name="M:Ximura.Collections.CombinedVertexArray`1.ItemIsLocked(System.Int32)">
+            <summary>
+            This method checks whether an item in the collection is locked.
+            </summary>
+            <param name="index">The index of the item to check.</param>
+            <returns>Returns true if the item is locked.</returns>
+        </member>
+        <member name="M:Ximura.Collections.CombinedVertexArray`1.ItemLock(System.Int32)">
+            <summary>
+            This method locks the specific item.
+            </summary>
+            <param name="index">The item index.</param>
+            <returns>Returns the number of lock cycles the thread entered.</returns>
+        </member>
+        <member name="M:Ximura.Collections.CombinedVertexArray`1.ItemLockWait(System.Int32)">
+            <summary>
+            This method waits for a locked item to become available.
+            </summary>
+            <param name="index">The index of the item to wait for.</param>
+            <returns>Returns the number of lock cycles during the wait.</returns>
+        </member>
+        <member name="M:Ximura.Collections.CombinedVertexArray`1.ItemTryLock(System.Int32)">
+            <summary>
+            This method attempts to lock the item specified.
+            </summary>
+            <param name="index">The index of the item you wish to lock..</param>
+            <returns>Returns true if the item was successfully locked.</returns>
+        </member>
+        <member name="M:Ximura.Collections.CombinedVertexArray`1.ItemUnlock(System.Int32)">
+            <summary>
+            The method unlocks the item.
+            </summary>
+            <param name="index">The index of the item you wish to unlock.</param>
+        </member>
+        <member name="M:Ximura.Collections.CombinedVertexArray`1.GetEnumerator">
+            <summary>
+            This method returns an enumeration through the sentinels and data in the collection.
+            </summary>
+            <returns>Returns an enumeration containing the collection data.</returns>
+        </member>
+        <member name="M:Ximura.Collections.CombinedVertexArray`1.SizeRecalculate(System.Int32)">
+            <summary>
+            This method calculates the current number of bits needed to support the current data.
+            </summary>
+        </member>
+        <member name="M:Ximura.Collections.CombinedVertexArray`1.ConvertBucketIDToIndexID(System.Int32)">
+            <summary>
+            This method converts a bucketID to an index ID by setting the MSB.
+            </summary>
+            <param name="bucketID">The bucket ID to convert.</param>
+            <returns>The index ID.</returns>
+        </member>
+        <member name="M:Ximura.Collections.CombinedVertexArray`1.GetSentinelID(System.Int32,System.Boolean,System.Int32@,System.Int32@)">
+            <summary>
+            This method returns the sentinel ID and the hashID for the hashcode passed.
+            </summary>
+            <param name="hashCode">The hashcode to search for the sentinel position.</param>
+            <param name="create">This property determine whether any missing sentinels will be created.</param>
+            <param name="sentIndexID">The largest sentinel index ID.</param>
+            <param name="hashID">The hashID for the hashCode that passed.</param>
+        </member>
+        <member name="M:Ximura.Collections.CombinedVertexArray`1.VertexWindowGet">
+            <summary>
+            This method returns a vertex window for the index specified.
+            </summary>
+        </member>
+        <member name="P:Ximura.Collections.CombinedVertexArray`1.Item(System.Int32)">
+            <summary>
+            This is the indexer for the array.
+            </summary>
+            <param name="index">The index position.</param>
+            <returns>Returns the vertex corresponding to the index position.</returns>
+        </member>
+        <member name="P:Ximura.Collections.CombinedVertexArray`1.LengthBuckets">
+            <summary>
+            The bucket capacity.
+            </summary>
+        </member>
+        <member name="T:Ximura.Server.IXimuraGatewayManagerService">
+            <summary>
+            This interface is implemented by the Gateway service.
+            </summary>
+        </member>
+        <member name="T:Ximura.Data.DataContentLinkType">
+            <summary>
+            This is the linkage option for the DataContent
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.DataContentLinkType.NoLinkage">
+            <summary>
+            This object is not linked to any other object.
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.DataContentLinkType.MergeIfPresent">
+            <summary>
+            The data content is copied from another object in the model folder. Changes made to the
+            data in this object will not be passed on to the linked object.
+            </summary>
+        </member>
+        <member name="F:Ximura.Data.DataContentLinkType.Link">
+            <summary>
+            The entity is directly linked to another object in the model folder. Changes made to this
+            object will be directly syncronised with the parent object.
+            </summary>
+        </member>
+        <member name="T:Ximura.Helper.XMLHelper">
+            <summary>
+            The XML Helper library is used to provide a set of reusable methods for manipulation XML Document information.
+            </summary>
+        </member>
+        <member name="P:Ximura.Collections.LockFreeTreeBase.IsReadOnly">
+            <summary>
+            This value specifies whether items can be added or removed from the tree. The default is false.
+            </summary>
+        </member>
         <member name="T:Ximura.Collections.IPoolInitialization`1">
             <summary>
             This interface implements additional initialization method for the objects in the pool.
@@ -2927,377 +3452,6 @@
             <param name="value">An object of the type defined in the pool definition, with the serialization data.</param>
             <returns>Returns true if an item has been returned from the pool.</returns>
         </member>
-        <member name="T:Ximura.Collections.CombinedVertexArray`1">
-            <summary>
-            This class contains the combined buckets and slots in a single class.
-            </summary>
-            <typeparam name="T">The collection type.</typeparam>
-        </member>
-        <member name="T:Ximura.Collections.IFineGrainedLockArray`1">
-            <summary>
-            This interface is implemented by lockable arrays.
-            </summary>
-            <typeparam name="T">The array item type.</typeparam>
-        </member>
-        <member name="M:Ximura.Collections.IFineGrainedLockArray`1.ItemIsLocked(System.Int32)">
-            <summary>
-            This method checks whether an item in the collection is locked.
-            </summary>
-            <param name="index">The index of the item to check.</param>
-            <returns>Returns true if the item is locked.</returns>
-        </member>
-        <member name="M:Ximura.Collections.IFineGrainedLockArray`1.ItemLock(System.Int32)">
-            <summary>
-            This method locks the specific item.
-            </summary>
-            <param name="index">The item index.</param>
-            <returns>Returns the number of lock cycles the thread entered.</returns>
-        </member>
-        <member name="M:Ximura.Collections.IFineGrainedLockArray`1.ItemLockWait(System.Int32)">
-            <summary>
-            This method waits for a locked item to become available.
-            </summary>
-            <param name="index">The index of the item to wait for.</param>
-            <returns>Returns the number of lock cycles during the wait.</returns>
-        </member>
-        <member name="M:Ximura.Collections.IFineGrainedLockArray`1.ItemTryLock(System.Int32)">
-            <summary>
-            This method attempts to lock the item specified.
-            </summary>
-            <param name="index">The index of the item you wish to lock.</param>
-            <returns>Returns true if the item was successfully locked.</returns>
-        </member>
-        <member name="M:Ximura.Collections.IFineGrainedLockArray`1.ItemUnlock(System.Int32)">
-            <summary>
-            The method unlocks the item.
-            </summary>
-            <param name="index">The index of the item you wish to unlock.</param>
-        </member>
-        <member name="P:Ximura.Collections.IFineGrainedLockArray`1.Length">
-            <summary>
-            This is the capacity of the array.
-            </summary>
-        </member>
-        <member name="P:Ximura.Collections.IFineGrainedLockArray`1.Item(System.Int32)">
-            <summary>
-            This is the indexer for the array.
-            </summary>
-            <param name="index">The index position.</param>
-            <returns>Returns the object corresponding to the index position.</returns>
-        </member>
-        <member name="F:Ximura.Collections.CombinedVertexArray`1.Root">
-            <summary>
-            This is the root sentinel vertex.
-            </summary>
-        </member>
-        <member name="F:Ximura.Collections.CombinedVertexArray`1.mSlots">
-            <summary>
-            This collection holds the data.
-            </summary>
-        </member>
-        <member name="F:Ximura.Collections.CombinedVertexArray`1.mBuckets">
-            <summary>
-            This collection holds the data.
-            </summary>
-        </member>
-        <member name="F:Ximura.Collections.CombinedVertexArray`1.mCapacity">
-            <summary>
-            This is the initial data capacity of the collection.
-            </summary>
-        </member>
-        <member name="F:Ximura.Collections.CombinedVertexArray`1.mFreeListTail">
-            <summary>
-            This is the free data queue tail position.
-            </summary>
-        </member>
-        <member name="F:Ximura.Collections.CombinedVertexArray`1.mFreeListCount">
-            <summary>
-            This is the free data queue item count.
-            </summary>
-        </member>
-        <member name="F:Ximura.Collections.CombinedVertexArray`1.mLastIndex">
-            <summary>
-            This is the current next free position in the data collection.
-            </summary>
-        </member>
-        <member name="F:Ximura.Collections.CombinedVertexArray`1.mEmptyVertex">
-            <summary>
-            This is the vertex that holds the previously used vertexes.
-            </summary>
-        </member>
-        <member name="F:Ximura.Collections.CombinedVertexArray`1.mCurrentBits">
-            <summary>
-            The current number of bits being used by the collection.
-            </summary>
-        </member>
-        <member name="F:Ximura.Collections.CombinedVertexArray`1.mRecalculateThreshold">
-            <summary>
-            This is the slot recalculate threshold.
-            </summary>
-        </member>
-        <member name="F:Ximura.Collections.CombinedVertexArray`1.mIsFixedSize">
-            <summary>
-            This property specifies whether the collection is a fixed size.
-            </summary>
-        </member>
-        <member name="M:Ximura.Collections.CombinedVertexArray`1.#ctor(System.Boolean,System.Int32)">
-            <summary>
-            
-            </summary>
-            <param name="isFixedSize"></param>
-            <param name="capacity">The array capacity.</param>
-        </member>
-        <member name="M:Ximura.Collections.CombinedVertexArray`1.EmptyGet">
-            <summary>
-            This method returns the next free item, either from empty space, or from a free item in the collection.
-            </summary>
-            <returns>Returns the index for the next free item.</returns>
-        </member>
-        <member name="M:Ximura.Collections.CombinedVertexArray`1.EmptyAdd(System.Int32)">
-            <summary>
-            This method adds an empty item to the free list.
-            </summary>
-            <param name="index">The index of the item to add to the sentinel.</param>
-        </member>
-        <member name="M:Ximura.Collections.CombinedVertexArray`1.BucketExpander(System.Int32,System.Int32)">
-            <summary>
-            
-            </summary>
-            <param name="requiredSize">The index specifying the new capacity.</param>
-            <param name="currentSize">The current capacity.</param>
-            <returns>Returns the new capacity.</returns>
-        </member>
-        <member name="M:Ximura.Collections.CombinedVertexArray`1.SlotExpander(System.Int32,System.Int32)">
-            <summary>
-            This expander grows the buckets by the specified amount.
-            </summary>
-            <param name="requiredSize">The index specifying the new capacity.</param>
-            <param name="currentSize">The current capacity.</param>
-            <returns>Returns the new capacity.</returns>
-        </member>
-        <member name="M:Ximura.Collections.CombinedVertexArray`1.ItemIsLocked(System.Int32)">
-            <summary>
-            This method checks whether an item in the collection is locked.
-            </summary>
-            <param name="index">The index of the item to check.</param>
-            <returns>Returns true if the item is locked.</returns>
-        </member>
-        <member name="M:Ximura.Collections.CombinedVertexArray`1.ItemLock(System.Int32)">
-            <summary>
-            This method locks the specific item.
-            </summary>
-            <param name="index">The item index.</param>
-            <returns>Returns the number of lock cycles the thread entered.</returns>
-        </member>
-        <member name="M:Ximura.Collections.CombinedVertexArray`1.ItemLockWait(System.Int32)">
-            <summary>
-            This method waits for a locked item to become available.
-            </summary>
-            <param name="index">The index of the item to wait for.</param>
-            <returns>Returns the number of lock cycles during the wait.</returns>
-        </member>
-        <member name="M:Ximura.Collections.CombinedVertexArray`1.ItemTryLock(System.Int32)">
-            <summary>
-            This method attempts to lock the item specified.
-            </summary>
-            <param name="index">The index of the item you wish to lock..</param>
-            <returns>Returns true if the item was successfully locked.</returns>
-        </member>
-        <member name="M:Ximura.Collections.CombinedVertexArray`1.ItemUnlock(System.Int32)">
-            <summary>
-            The method unlocks the item.
-            </summary>
-            <param name="index">The index of the item you wish to unlock.</param>
-        </member>
-        <member name="M:Ximura.Collections.CombinedVertexArray`1.GetEnumerator">
-            <summary>
-            This method returns an enumeration through the sentinels and data in the collection.
-            </summary>
-            <returns>Returns an enumeration containing the collection data.</returns>
-        </member>
-        <!-- Badly formed XML comment ignored for member "M:Ximura.Collections.CombinedVertexArray`1.BitReverse(System.Int32)" -->
-        <member name="M:Ximura.Collections.CombinedVertexArray`1.BitSizeCalculate(System.Int32)">
-            <summary>
-            This method calculates the current number of bits needed to support the current data.
-            </summary>
-        </member>
-        <member name="M:Ximura.Collections.CombinedVertexArray`1.ConvertBucketIDToIndexID(System.Int32)">
-            <summary>
-            This method converts a bucketID to an index ID by setting the MSB.
-            </summary>
-            <param name="bucketID">The bucket ID to convert.</param>
-            <returns>The index ID.</returns>
-        </member>
-        <member name="M:Ximura.Collections.CombinedVertexArray`1.GetSentinelID(System.Int32,System.Boolean,System.Int32@,System.Int32@)">
-            <summary>
-            This method returns the sentinel ID and the hashID for the hashcode passed.
-            </summary>
-            <param name="hashCode">The hashcode to search for the sentinel position.</param>
-            <param name="create">This property determine whether any missing sentinels will be created.</param>
-            <param name="sentIndexID">The largest sentinel index ID.</param>
-            <param name="hashID">The hashID for the hashCode that passed.</param>
-        </member>
-        <member name="M:Ximura.Collections.CombinedVertexArray`1.VertexWindowGet">
-            <summary>
-            This method returns a vertex window for the index specified.
-            </summary>
-            <param name="index">The index position.</param>
-        </member>
-        <member name="M:Ximura.Collections.CombinedVertexArray`1.VertexWindowGet(System.Int32)">
-            <summary>
-            This method returns a vertex window for the index specified.
-            </summary>
-            <param name="index">The index position.</param>
-            <returns>Returns the vertex window.</returns>
-        </member>
-        <member name="P:Ximura.Collections.CombinedVertexArray`1.IsFixedSize">
-            <summary>
-            This property specifies whether the collection is a fixed size.
-            </summary>
-        </member>
-        <member name="P:Ximura.Collections.CombinedVertexArray`1.Length">
-            <summary>
-            The data capacity.
-            </summary>
-        </member>
-        <member name="P:Ximura.Collections.CombinedVertexArray`1.LengthSlots">
-            <summary>
-            The data capacity.
-            </summary>
-        </member>
-        <member name="P:Ximura.Collections.CombinedVertexArray`1.LengthBuckets">
-            <summary>
-            The bucket capacity.
-            </summary>
-        </member>
-        <member name="P:Ximura.Collections.CombinedVertexArray`1.Item(System.Int32)">
-            <summary>
-            This is the indexer for the array.
-            </summary>
-            <param name="index">The index position.</param>
-            <returns>Returns the vertex corresponding to the index position.</returns>
-        </member>
-        <member name="P:Ximura.Collections.CombinedVertexArray`1.DebugEmpty">
-            <summary>
-            This is the debug data.
-            </summary>
-        </member>
-        <member name="T:Ximura.Collections.CombinedVertexArray`1.VertexWindow`1">
-            <summary>
-            The vertex window structure holds the search results from a scan.
-            </summary>
-            <typeparam name="T"></typeparam>
-        </member>
-        <member name="M:Ximura.Collections.CombinedVertexArray`1.VertexWindow`1.#ctor(Ximura.Collections.CombinedVertexArray{`1},System.Int32)">
-            <summary>
-            This is the default constructor for the window.
-            </summary>
-            <param name="data">The data collection.</param>
-            <param name="indexID">The index of the position to set the window.</param>
-        </member>
-        <member name="F:Ximura.Collections.CombinedVertexArray`1.VertexWindow`1.CurrSlotIDPlus1">
-            <summary>
-            The current slot ID plus 1.
-            </summary>
-        </member>
-        <member name="F:Ximura.Collections.CombinedVertexArray`1.VertexWindow`1.Curr">
-            <summary>
-            THe current vertex.
-            </summary>
-        </member>
-        <member name="F:Ximura.Collections.CombinedVertexArray`1.VertexWindow`1.Next">
-            <summary>
-            The next vertex.
-            </summary>
-        </member>
-        <member name="M:Ximura.Collections.CombinedVertexArray`1.VertexWindow`1.ToString">
-            <summary>
-            This override provides a debug friendly representation of the structure.
-            </summary>
-            <returns>Returns the structure value.</returns>
-        </member>
-        <member name="M:Ximura.Collections.CombinedVertexArray`1.VertexWindow`1.SetCurrentAndLock(System.Int32)">
-            <summary>
-            This method sets the current slot and locks the position.
-            </summary>
-            <param name="slotID">The slot ID.</param>
-        </member>
-        <member name="M:Ximura.Collections.CombinedVertexArray`1.VertexWindow`1.InsertSentinel(System.Int32,System.Int32)">
-            <summary>
-            This method inserts a sentinel in to the data collection.
-            </summary>
-            <param name="indexID">The new sentinel index id.</param>
-            <param name="hashID">The sentinel hash id.</param>
-        </member>
-        <member name="M:Ximura.Collections.CombinedVertexArray`1.VertexWindow`1.InsertItem(System.Int32,System.Int32,`1)">
-            <summary>
-            
-            </summary>
-            <param name="newSlot"></param>
-            <param name="hashID"></param>
-            <param name="value"></param>
-        </member>
-        <member name="M:Ximura.Collections.CombinedVertexArray`1.VertexWindow`1.Unlock">
-            <summary>
-            This method provides common functionality to unlock a VertexWindow.
-            </summary>
-        </member>
-        <member name="M:Ximura.Collections.CombinedVertexArray`1.VertexWindow`1.ScanAndLock(System.Int32)">
-            <summary>
-            This method scans through the slot data until is reaches the end of the data, or the position 
-            where the hashID meets a slot with a hashID that is greater than itself.
-            </summary>
-            <param name="hashID">The hashID to search for and lock.</param>
-        </member>
-        <member name="M:Ximura.Collections.CombinedVertexArray`1.VertexWindow`1.MoveUp">
-            <summary>
-            This method moves up the Next vertex to the current position.
-            </summary>
-        </member>
-        <member name="M:Ximura.Collections.CombinedVertexArray`1.VertexWindow`1.RemoveItemAndUnlock">
-            <summary>
-            
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Ximura.Collections.CombinedVertexArray`1.VertexWindow`1.Snip">
-            <summary>
-            
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:Ximura.Server.IXimuraGatewayManagerService">
-            <summary>
-            This interface is implemented by the Gateway service.
-            </summary>
-        </member>
-        <member name="T:Ximura.Data.DataContentLinkType">
-            <summary>
-            This is the linkage option for the DataContent
-            </summary>
-        </member>
-        <member name="F:Ximura.Data.DataContentLinkType.NoLinkage">
-            <summary>
-            This object is not linked to any other object.
-            </summary>
-        </member>
-        <member name="F:Ximura.Data.DataContentLinkType.MergeIfPresent">
-            <summary>
-            The data content is copied from another object in the model folder. Changes made to the
-            data in this object will not be passed on to the linked object.
-            </summary>
-        </member>
-        <member name="F:Ximura.Data.DataContentLinkType.Link">
-            <summary>
-            The entity is directly linked to another object in the model folder. Changes made to this
-            object will be directly syncronised with the parent object.
-            </summary>
-        </member>
-        <member name="T:Ximura.Helper.XMLHelper">
-            <summary>
-            The XML Helper library is used to provide a set of reusable methods for manipulation XML Document information.
-            </summary>
-        </member>
         <member name="T:Ximura.Collections.LockFreeList`1">
             <summary>
             
@@ -3356,16 +3510,6 @@
             <param name="array">The array to copy to.</param>
             <param name="arrayIndex">The array index where the class should start copying to.</param>
         </member>
-        <member name="P:Ximura.Collections.LockFreeCollection`1.Count">
-            <summary>
-            This property returns the number of elements in the collection.
-            </summary>
-        </member>
-        <member name="P:Ximura.Collections.LockFreeCollection`1.IsReadOnly">
-            <summary>
-            This property always returns false.
-            </summary>
-        </member>
         <member name="M:Ximura.Collections.LockFreeList`1.#ctor">
             <summary>
             This is the default constructor. The collection will be constructed with a base capacity of 1000.
@@ -3383,6 +3527,76 @@
         <member name="P:Ximura.Collections.LockFreeList`1.CollectionAllowMultipleEntries">
             <summary>
             The list allows multiple entries.
+            </summary>
+        </member>
+        <member name="T:Ximura.Collections.FineGrainedLockArray`1">
+            <summary>
+            This fine grained lock array is an array with the added ability to mark individual items as locked.
+            </summary>
+            <typeparam name="T">The array type.</typeparam>
+        </member>
+        <member name="M:Ximura.Collections.FineGrainedLockArray`1.#ctor(System.Int32,System.Int32)">
+            <summary>
+            This constructor sets the array capacity and the array offset integer.
+            </summary>
+            <param name="capacity">The array capacity.</param>
+            <param name="offset">The array offset, this is the initial position of the array, the default should be 0.</param>
+        </member>
+        <member name="M:Ximura.Collections.FineGrainedLockArray`1.ItemIsLocked(System.Int32)">
+            <summary>
+            This method checks whether an item in the collection is locked.
+            </summary>
+            <param name="index">The index of the item to check.</param>
+            <returns>Returns true if the item is locked.</returns>
+        </member>
+        <member name="M:Ximura.Collections.FineGrainedLockArray`1.ItemLockWait(System.Int32)">
+            <summary>
+            This method waits for a locked item to become available.
+            </summary>
+            <param name="index">The index of the item to wait for.</param>
+            <returns>Returns the number of lock cycles during the wait.</returns>
+        </member>
+        <member name="M:Ximura.Collections.FineGrainedLockArray`1.ItemLock(System.Int32)">
+            <summary>
+            This method locks the specific item.
+            </summary>
+            <param name="index">The item index.</param>
+            <returns>Returns the number of lock cycles the thread entered.</returns>
+        </member>
+        <member name="M:Ximura.Collections.FineGrainedLockArray`1.ItemTryLock(System.Int32)">
+            <summary>
+            This method attempts to lock the item specified.
+            </summary>
+            <param name="index">The index of the item you wish to lock..</param>
+            <returns>Returns true if the item was successfully locked.</returns>
+        </member>
+        <member name="M:Ximura.Collections.FineGrainedLockArray`1.ItemUnlock(System.Int32)">
+            <summary>
+            The method unlocks the item.
+            </summary>
+            <param name="index">The index of the item you wish to unlock.</param>
+        </member>
+        <member name="M:Ximura.Collections.FineGrainedLockArray`1.ToString">
+            <summary>
+            This is the debug data.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Ximura.Collections.FineGrainedLockArray`1.Item(System.Int32)">
+            <summary>
+            This is the indexer for the array.
+            </summary>
+            <param name="index">The index position.</param>
+            <returns>Returns the object corresponding to the index position.</returns>
+        </member>
+        <member name="P:Ximura.Collections.FineGrainedLockArray`1.Length">
+            <summary>
+            This is the capacity of the array.
+            </summary>
+        </member>
+        <member name="P:Ximura.Collections.FineGrainedLockArray`1.Offset">
+            <summary>
+            This is the offset used in calculation when retrieving items from the array.
             </summary>
         </member>
         <member name="T:Ximura.XimuraAppConfigurationAttribute">
@@ -3876,7 +4090,18 @@
             <typeparam name="TVal">The value type.</typeparam>
             <typeparam name="TVert">The vertex type.</typeparam>
         </member>
-        <member name="F:Ximura.Collections.LockFreeRedBlackTreeBase`3.mVersionID">
+        <member name="M:Ximura.Collections.LockFreeRedBlackTreeBase`3.ThreadEnter(Ximura.Collections.LockFreeRedBlackTreeBase{`0,`1,`2}.TreeAction)">
+            <summary>
+            This method registers a thread when it enters the tree.
+            </summary>
+            <param name="act">The thread action.</param>
+        </member>
+        <member name="M:Ximura.Collections.LockFreeRedBlackTreeBase`3.ThreadExit">
+            <summary>
+            This method unregisters the thread from the collection.
+            </summary>
+        </member>
+        <member name="F:Ximura.Collections.LockFreeRedBlackTreeBase`3.mVersion">
             <summary>
             This is the current versionID of the collection.
             </summary>
@@ -3884,11 +4109,6 @@
         <member name="F:Ximura.Collections.LockFreeRedBlackTreeBase`3.mCount">
             <summary>
             This is the internal count for the collection.
-            </summary>
-        </member>
-        <member name="F:Ximura.Collections.LockFreeRedBlackTreeBase`3.mDisposed">
-            <summary>
-            This internal value indicates whether the collection has been disposed.
             </summary>
         </member>
         <member name="F:Ximura.Collections.LockFreeRedBlackTreeBase`3.mRoot">
@@ -3918,30 +4138,7 @@
             <param name="keyComparer">The key comparer.</param>
             <param name="valueEqComparer">The value equality comparer. </param>
         </member>
-        <member name="M:Ximura.Collections.LockFreeRedBlackTreeBase`3.Finalize">
-            <summary>
-            This is the finalizer for the collection.
-            </summary>
-        </member>
-        <member name="M:Ximura.Collections.LockFreeRedBlackTreeBase`3.DisposedCheck">
-            <summary>
-            This method identifies when the collection has been disposed and throws an ObjectDisposedException.
-            </summary>
-            <exception cref="T:System.ObjectDisposedException">This exception is thrown when the collection has been disposed.</exception>
-        </member>
-        <member name="M:Ximura.Collections.LockFreeRedBlackTreeBase`3.Dispose">
-            <summary>
-            This method disposes of the collection.
-            </summary>
-        </member>
-        <member name="M:Ximura.Collections.LockFreeRedBlackTreeBase`3.Dispose(System.Boolean)">
-            <summary>
-            This method disposes of the data in the collection. You should override this method if you need to add
-            custom dispose logic to your collection.
-            </summary>
-            <param name="disposing">The class is disposing, i.e. this is called by Dispose and not the finalizer.</param>
-        </member>
-        <member name="M:Ximura.Collections.LockFreeRedBlackTreeBase`3.Compare(`0,Ximura.Collections.LockFreeRedBlackVertex{`0,`1})">
+        <member name="M:Ximura.Collections.LockFreeRedBlackTreeBase`3.Compare(`0,Ximura.Collections.LockableRedBlackTreeVertex{`0,`1})">
             <summary>
             This method compares the key with the vertex key and returns an integer which identifies which is the greater value.
             </summary>
@@ -3960,7 +4157,7 @@
             <param name="item">The item.</param>
             <returns>Returns true if the item is successfully added to the list, false if the item is already in the tree.</returns>
         </member>
-        <member name="M:Ximura.Collections.LockFreeRedBlackTreeBase`3.InsertInternal(Ximura.Collections.LockFreeRedBlackVertex{`0,`1},Ximura.Collections.LockFreeRedBlackVertex{`0,`1})">
+        <member name="M:Ximura.Collections.LockFreeRedBlackTreeBase`3.InsertInternal(Ximura.Collections.LockableRedBlackTreeVertex{`0,`1},Ximura.Collections.LockableRedBlackTreeVertex{`0,`1})">
             <summary>
             This method inserts the new vertex in the correct part of the tree.
             </summary>
@@ -3993,18 +4190,7 @@
             </summary>
             <returns>Returns the string format of the tree.</returns>
         </member>
-        <member name="M:Ximura.Collections.LockFreeRedBlackTreeBase`3.ThreadEnter(Ximura.Collections.LockFreeRedBlackTreeBase{`0,`1,`2}.TreeAction)">
-            <summary>
-            This method registers a thread when it enters the tree.
-            </summary>
-            <param name="act">The thread action.</param>
-        </member>
-        <member name="M:Ximura.Collections.LockFreeRedBlackTreeBase`3.ThreadExit">
-            <summary>
-            This method unregisters the thread from the collection.
-            </summary>
-        </member>
-        <member name="P:Ximura.Collections.LockFreeRedBlackTreeBase`3.VersionInternal">
+        <member name="P:Ximura.Collections.LockFreeRedBlackTreeBase`3.Version">
             <summary>
             This is the current collection version.
             </summary>
@@ -4012,11 +4198,6 @@
         <member name="P:Ximura.Collections.LockFreeRedBlackTreeBase`3.CountInternal">
             <summary>
             This property returns the number of items in the tree.
-            </summary>
-        </member>
-        <member name="P:Ximura.Collections.LockFreeRedBlackTreeBase`3.IsReadOnly">
-            <summary>
-            This value specifies whether items can be added or removed from the tree. The default is false.
             </summary>
         </member>
         <member name="T:Ximura.Collections.LockFreeRedBlackTreeBase`3.TreeAction">
@@ -4065,7 +4246,7 @@
             The vertexes.
             </summary>
         </member>
-        <member name="M:Ximura.Collections.LockFreeRedBlackTreeBase`3.TreeTraversalWindow`2.MoveDown(Ximura.Collections.LockFreeRedBlackVertex{`3,`4})">
+        <member name="M:Ximura.Collections.LockFreeRedBlackTreeBase`3.TreeTraversalWindow`2.MoveDown(Ximura.Collections.LockableRedBlackTreeVertex{`3,`4})">
             <summary>
             This method adds a new item and moves up the existing item to the window. The method releases the grandparent 
             if it is defined.
@@ -4083,7 +4264,7 @@
             This method releases the vertex that are currently held, starting with the Grandparent and moving down.
             </summary>
         </member>
-        <member name="M:Ximura.Collections.LockFreeRedBlackTreeBase`3.TreeTraversalWindow`2.Release(Ximura.Collections.LockFreeRedBlackVertex{`3,`4})">
+        <member name="M:Ximura.Collections.LockFreeRedBlackTreeBase`3.TreeTraversalWindow`2.Release(Ximura.Collections.LockableRedBlackTreeVertex{`3,`4})">
             <summary>
             This method releases a particular vertex.
             </summary>
@@ -4137,141 +4318,34 @@
             <param name="key"></param>
             <returns></returns>
         </member>
-        <member name="M:Ximura.Collections.LockFreePool`1.#ctor">
+        <member name="T:Ximura.Collections.LockFreeSkipListBase`1">
             <summary>
-            This is the default constructor. The collection will be constructed with a base capacity of 1000.
+            The LockFreeSkipListBase class provides generic multi-threaded collection based functionality. The class is designed
+            to maximize the throughput of the collection in high speed multi-threaded scenarios.
+            </summary>
+            <typeparam name="T">The collection class or structure type.</typeparam>
+        </member>
+        <member name="M:Ximura.Collections.LockFreeSkipListBase`1.#ctor(System.Collections.Generic.IEqualityComparer{`0},System.Int32,System.Collections.Generic.IEnumerable{`0},System.Boolean)">
+            <summary>
+            This is constructor for the abstract list class.
+            </summary>
+            <param name="comparer">The comparer for the collection items.</param>
+            <param name="capacity">The initial capacity for the collection.</param>
+            <param name="collection">The initial data to load to the collection.</param>
+            <param name="isFixedSize">This property determines whether the collection is a fixed size.
+            Fixed size collections will reject new records when the capacity has been reached, 
+            although they may deliver performance improvements as they do not need to use a growable data structure.</param>
+        </member>
+        <member name="M:Ximura.Collections.LockFreeSkipListBase`1.InitializeData">
+            <summary>
+            This method initializes the data collection.
             </summary>
         </member>
-        <member name="M:Ximura.Collections.LockFreePool`1.Return(`0)">
+        <member name="P:Ximura.Collections.LockFreeSkipListBase`1.CollectionAllowNullValues">
             <summary>
-            This method returns an item to the pool.
+            This property determines whether the collection will accept null values. The default setting is true.
             </summary>
-            <param name="value">The item to return to the pool.</param>
-        </member>
-        <member name="M:Ximura.Collections.LockFreePool`1.TryReturn(`0)">
-            <summary>
-            This method attemtps to return an object to the pool.
-            </summary>
-            <param name="value">The item to return.</param>
-            <returns>Returns true if the item was successfully returned.</returns>
-        </member>
-        <member name="M:Ximura.Collections.LockFreePool`1.CopyTo(`0[],System.Int32)">
-            <summary>
-            This method copies the collection to the array specified.
-            </summary>
-            <param name="array">The array to copy to.</param>
-            <param name="arrayIndex">The array index where the class should start copying to.</param>
-        </member>
-        <member name="M:Ximura.Collections.LockFreePool`1.Get">
-            <summary>
-            This method retrieves an item from the pool.
-            </summary>
-            <returns>Returns an item from the pool.</returns>
-        </member>
-        <member name="M:Ximura.Collections.LockFreePool`1.Get(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <summary>
-            The Get() method takes an object from the pool, if 
-            there are no objects available the pool will create a new object.
-            </summary>
-            <param name="info">The serialization info.</param>
-            <param name="context">The serialization context.</param>
-            <returns>An object of the type defined in the pool definition, with the serialization data.</returns>
-        </member>
-        <member name="M:Ximura.Collections.LockFreePool`1.Get(System.Action{`0})">
-            <summary>
-            The Get() method takes an object from the pool, if 
-            there are no objects available the pool will create a new object.
-            </summary>
-            <param name="initializer">This action will be performed on the object after the data has been deserialized.</param>
-            <returns>An object of the type defined in the pool definition.</returns>
-        </member>
-        <member name="M:Ximura.Collections.LockFreePool`1.Get(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext,System.Action{`0})">
-            <summary>
-            The Get() method takes an object from the pool, if 
-            there are no objects available the pool will create a new object.
-            </summary>
-            <param name="info">The serialization info.</param>
-            <param name="context">The serialization context.</param>
-            <param name="initializer">This action will be performed on the object after the data has been deserialized.</param>
-            <returns>An object of the type defined in the pool definition, with the serialization data.</returns>
-        </member>
-        <member name="M:Ximura.Collections.LockFreePool`1.TryGet(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext,`0@)">
-            <summary>
-            The Get() method takes an object from the pool, if 
-            there are no objects available the pool will create a new object.
-            </summary>
-            <param name="info">The serialization info.</param>
-            <param name="context">The serialization context.</param>
-            <param name="value">An object of the type defined in the pool definition, with the serialization data.</param>
-            <returns>Returns true if an item has been returned from the pool.</returns>
-        </member>
-        <member name="M:Ximura.Collections.LockFreePool`1.TryGet(System.Action{`0},`0@)">
-            <summary>
-            The Get() method takes an object from the pool, if 
-            there are no objects available the pool will create a new object.
-            </summary>
-            <param name="initializer">This action will be performed on the object after the data has been deserialized.</param>
-            <param name="value">An object of the type defined in the pool definition, with the serialization data.</param>
-            <returns>Returns true if an item has been returned from the pool.</returns>
-        </member>
-        <member name="M:Ximura.Collections.LockFreePool`1.TryGet(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext,System.Action{`0},`0@)">
-            <summary>
-            The Get() method takes an object from the pool, if 
-            there are no objects available the pool will create a new object.
-            </summary>
-            <param name="info">The serialization info.</param>
-            <param name="context">The serialization context.</param>
-            <param name="initializer">This action will be performed on the object after the data has been deserialized.</param>
-            <param name="value">An object of the type defined in the pool definition, with the serialization data.</param>
-            <returns>Returns true if an item has been returned from the pool.</returns>
-        </member>
-        <member name="M:Ximura.Collections.LockFreePool`1.TryGet(`0@)">
-            <summary>
-            This method attempts to take an item from the pool.
-            </summary>
-            <param name="value">The item from the pool.</param>
-            <returns>Returns true if an item has been returned from the pool.</returns>
-        </member>
-        <member name="M:Ximura.Collections.LockFreePool`1.ResetPoolObject(`0,System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <summary>
-            This method is used to reset the pool object from the serialization information.
-            You should override this method if you wish to set particular values.
-            </summary>
-            <param name="obj">The object to reset.</param>
-            <param name="info">The serialization info.</param>
-            <param name="context">The context.</param>
-        </member>
-        <member name="P:Ximura.Collections.LockFreePool`1.Max">
-            <summary>
-            This is the maximum pool size, a value of -1 specifies no maximum size.
-            </summary>
-        </member>
-        <member name="P:Ximura.Collections.LockFreePool`1.Min">
-            <summary>
-            This is the minimum pool size.
-            </summary>
-        </member>
-        <member name="P:Ximura.Collections.LockFreePool`1.Prefered">
-            <summary>
-            This is prefered pool size.
-            </summary>
-        </member>
-        <member name="P:Ximura.Collections.LockFreePool`1.IsFixedSize">
-            <summary>
-            This property determines whether the collection will dynamically expand when new values are added. 
-            This property can only be set from the constructor, although this property can be overriden in derived classes to ensure
-            a particular value.
-            </summary>
-        </member>
-        <member name="P:Ximura.Collections.LockFreePool`1.Available">
-            <summary>
-            This method returns true if there are objects available in the pool.
-            </summary>
-        </member>
-        <member name="P:Ximura.Collections.LockFreePool`1.Count">
-            <summary>
-            This property returns the number of active objects.
-            </summary>
+            <remarks>This property is ignored if the collection is for a value type such as int.</remarks>
         </member>
         <member name="T:Ximura.XimuraAppModuleConfigAttribute">
             <summary>
@@ -4570,74 +4644,26 @@
             </summary>
             <param name="w">The writer to persist to.</param>
         </member>
-        <member name="T:Ximura.Collections.FineGrainedLockArray`1">
+        <member name="T:Ximura.Collections.Vertex">
             <summary>
-            This fine grained lock array is an array with the added ability to mark individual items as locked.
+            A vertex is the fundemental unit for building a relational graph. 
+            The Vertex structure is built around an unsigned integer, but has additonal properties.
             </summary>
-            <typeparam name="T">The array type.</typeparam>
         </member>
-        <member name="M:Ximura.Collections.FineGrainedLockArray`1.#ctor(System.Int32,System.Int32)">
+        <member name="M:Ximura.Collections.Vertex.ToString">
             <summary>
-            This constructor sets the array capacity and the array offset integer.
-            </summary>
-            <param name="capacity">The array capacity.</param>
-            <param name="offset">The array offset, this is the initial position of the array, the default should be 0.</param>
-        </member>
-        <member name="M:Ximura.Collections.FineGrainedLockArray`1.ItemIsLocked(System.Int32)">
-            <summary>
-            This method checks whether an item in the collection is locked.
-            </summary>
-            <param name="index">The index of the item to check.</param>
-            <returns>Returns true if the item is locked.</returns>
-        </member>
-        <member name="M:Ximura.Collections.FineGrainedLockArray`1.ItemLockWait(System.Int32)">
-            <summary>
-            This method waits for a locked item to become available.
-            </summary>
-            <param name="index">The index of the item to wait for.</param>
-            <returns>Returns the number of lock cycles during the wait.</returns>
-        </member>
-        <member name="M:Ximura.Collections.FineGrainedLockArray`1.ItemLock(System.Int32)">
-            <summary>
-            This method locks the specific item.
-            </summary>
-            <param name="index">The item index.</param>
-            <returns>Returns the number of lock cycles the thread entered.</returns>
-        </member>
-        <member name="M:Ximura.Collections.FineGrainedLockArray`1.ItemTryLock(System.Int32)">
-            <summary>
-            This method attempts to lock the item specified.
-            </summary>
-            <param name="index">The index of the item you wish to lock..</param>
-            <returns>Returns true if the item was successfully locked.</returns>
-        </member>
-        <member name="M:Ximura.Collections.FineGrainedLockArray`1.ItemUnlock(System.Int32)">
-            <summary>
-            The method unlocks the item.
-            </summary>
-            <param name="index">The index of the item you wish to unlock.</param>
-        </member>
-        <member name="M:Ximura.Collections.FineGrainedLockArray`1.ToString">
-            <summary>
-            This is the debug data.
+            This override converts the vertex to a readable string.
             </summary>
             <returns></returns>
         </member>
-        <member name="P:Ximura.Collections.FineGrainedLockArray`1.Item(System.Int32)">
+        <member name="P:Ximura.Collections.Vertex.IsNull">
             <summary>
-            This is the indexer for the array.
-            </summary>
-            <param name="index">The index position.</param>
-            <returns>Returns the object corresponding to the index position.</returns>
-        </member>
-        <member name="P:Ximura.Collections.FineGrainedLockArray`1.Length">
-            <summary>
-            This is the capacity of the array.
+            The null vertex has a value of 0.
             </summary>
         </member>
-        <member name="P:Ximura.Collections.FineGrainedLockArray`1.Offset">
+        <member name="P:Ximura.Collections.Vertex.Value">
             <summary>
-            This is the offset used in calculation when retrieving items from the array.
+            The unsigned integer value of the vertex.
             </summary>
         </member>
         <member name="T:Ximura.IXimuraPoolDeserializable">
@@ -4993,82 +5019,6 @@
             This is the request ID.
             </summary>
         </member>
-        <member name="T:Ximura.Collections.Vertex`1">
-            <summary>
-            This structure is used to hold the item in the collection.
-            </summary>
-            <typeparam name="T">The container object.</typeparam>
-        </member>
-        <member name="F:Ximura.Collections.Vertex`1.Empty">
-            <summary>
-            This is the empty vertex.
-            </summary>
-        </member>
-        <member name="M:Ximura.Collections.Vertex`1.#cctor">
-            <summary>
-            This is the static constructor.
-            </summary>
-        </member>
-        <member name="M:Ximura.Collections.Vertex`1.Sentinel(System.Int32,System.Int32)">
-            <summary>
-            This static method creates a sentinel vertex. Sentinel vertexes are vertexes that do not include data,
-            but are used by the hash table to mark a shortcut to data sets based on their hashcode.
-            </summary>
-            <param name="hashID">The hashID.</param>
-            <param name="nextSlotIDPlus1">The ID of the next vertex in the chain (plus 1).</param>
-            <returns>Returns a new sentinel for the specific hash ID.</returns>
-        </member>
-        <member name="F:Ximura.Collections.Vertex`1.mHashID">
-            <summary>
-            The internal hashid.
-            </summary>
-        </member>
-        <member name="F:Ximura.Collections.Vertex`1.NextSlotIDPlus1">
-            <summary>
-            The next item in the list.
-            </summary>
-        </member>
-        <member name="F:Ximura.Collections.Vertex`1.Value">
-            <summary>
-            The slot value.
-            </summary>
-        </member>
-        <member name="M:Ximura.Collections.Vertex`1.#ctor(System.Int32,System.Int32)">
-            <summary>
-            This constructor creates a slot as a sentinel, with only the next parameter set.
-            </summary>
-            <param name="hashID">The item hashcode.</param>
-            <param name="nextSlotIDPlus1">The next item in the list.</param>
-        </member>
-        <member name="M:Ximura.Collections.Vertex`1.#ctor(System.Int32,`0,System.Int32)">
-            <summary>
-            This constructor sets the value for the slot.
-            </summary>
-            <param name="hashID">The item hashcode.</param>
-            <param name="value">The slot value.</param>
-            <param name="nextSlotIDPlus1">The next item in the list.</param>
-        </member>
-        <member name="M:Ximura.Collections.Vertex`1.ToString">
-            <summary>
-            This override provides quick and easy debugging support.
-            </summary>
-            <returns>Returns a string representation of the vertex.</returns>
-        </member>
-        <member name="P:Ximura.Collections.Vertex`1.HashID">
-            <summary>
-            The item hashid.
-            </summary>
-        </member>
-        <member name="P:Ximura.Collections.Vertex`1.IsTerminator">
-            <summary>
-            This property identifies whether the vertex is the last item in the data chain.
-            </summary>
-        </member>
-        <member name="P:Ximura.Collections.Vertex`1.IsSentinel">
-            <summary>
-            This property identifies whether the vertex is a sentinel vertex.
-            </summary>
-        </member>
         <member name="T:Ximura.Server.SessionCreateRemote">
             <summary>
             The session create remote delegate.
@@ -5194,6 +5144,91 @@
             <summary>
             This struct sets the appropriate bits.
             </summary>
+        </member>
+        <member name="T:Ximura.Collections.LockableRedBlackTreeVertex`2">
+            <summary>
+            This class is the vertex that contains both the key and value data within the tree.
+            </summary>
+            <typeparam name="TKey">The vertex key type.</typeparam>
+            <typeparam name="TVal">The vertex value type.</typeparam>
+        </member>
+        <member name="M:Ximura.Collections.LockableRedBlackTreeVertex`2.#ctor">
+            <summary>
+            This is the default constructor.
+            </summary>
+        </member>
+        <member name="M:Ximura.Collections.LockableRedBlackTreeVertex`2.ToString">
+            <summary>
+            This override provides useful debug information.
+            </summary>
+            <returns>Returns a string representation of the vertex data.</returns>
+        </member>
+        <member name="P:Ximura.Collections.LockableRedBlackTreeVertex`2.Parent">
+            <summary>
+            This is the parent vertex.
+            </summary>
+        </member>
+        <member name="P:Ximura.Collections.LockableRedBlackTreeVertex`2.Left">
+            <summary>
+            This is the left vertex.
+            </summary>
+        </member>
+        <member name="P:Ximura.Collections.LockableRedBlackTreeVertex`2.Right">
+            <summary>
+            This is the right vertex.
+            </summary>
+        </member>
+        <member name="P:Ximura.Collections.LockableRedBlackTreeVertex`2.IsRed">
+            <summary>
+            This is the state of the vertex, either black or red.
+            </summary>
+        </member>
+        <member name="P:Ximura.Collections.LockableRedBlackTreeVertex`2.IsRoot">
+            <summary>
+            This property determines whether the vertex is the root vertex, i.e. it does not have a parent.
+            </summary>
+        </member>
+        <member name="P:Ximura.Collections.LockableRedBlackTreeVertex`2.IsSentinel">
+            <summary>
+            This property determines whether the vertex is a sentinel, i.e. a vertex without any child vertexes.
+            </summary>
+        </member>
+        <member name="P:Ximura.Collections.LockableRedBlackTreeVertex`2.IsLeaf">
+            <summary>
+            This property determines whether the vertex is a sentinel, i.e. a vertex without any child vertexes.
+            </summary>
+        </member>
+        <member name="T:Ximura.Collections.IPriorityQueue`1">
+            <summary>
+            This interface is implemented by a queue.
+            </summary>
+            <typeparam name="T">The collection item type.</typeparam>
+        </member>
+        <member name="M:Ximura.Collections.IPriorityQueue`1.Dequeue">
+            <summary>
+            Removes an item from the head of the queue.
+            </summary>
+            <returns>Returns the item at the head of the queue.</returns>
+        </member>
+        <member name="M:Ximura.Collections.IPriorityQueue`1.TryDequeue(`0@)">
+            <summary>
+            This item tries to empty an item in the queue.
+            </summary>
+            <param name="item">The top item in the queue.</param>
+            <returns>Returns true if there is an item in the queue.</returns>
+        </member>
+        <member name="M:Ximura.Collections.IPriorityQueue`1.Enqueue(`0)">
+            <summary>
+            This method adds an item to the tail of the queue.
+            </summary>
+            <param name="item">The item to add to the queue.</param>
+        </member>
+        <member name="M:Ximura.Collections.IPriorityQueue`1.Enqueue(`0,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <param name="priority"></param>
         </member>
         <member name="T:Ximura.SCMJobCompletionType">
             <summary>
@@ -5357,6 +5392,26 @@
             </summary>
             <param name="username">The username.</param>
             <param name="password">The password.</param>
+        </member>
+        <member name="T:Ximura.Collections.Edge">
+            <summary>
+            The edge structure records the one-way relationship between the vertexes.
+            </summary>
+        </member>
+        <member name="M:Ximura.Collections.Edge.op_LessThan(Ximura.Collections.Edge,Ximura.Collections.Edge)">
+            <summary>
+            The less than operator returns true if the two edges are joined on the 
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ximura.Collections.Edge.op_LogicalNot(Ximura.Collections.Edge)">
+            <summary>
+            The not operator reverses the direction of the edge.
+            </summary>
+            <param name="a">The edge to reverse.</param>
+            <returns>returns an edge structure.</returns>
         </member>
         <member name="T:Ximura.ConfigurationLocation">
             <summary>
@@ -5883,50 +5938,81 @@
             <param name="b">Op B</param>
             <returns>Returns true if the two addresses are not the same.</returns>
         </member>
-        <member name="T:Ximura.Collections.Edge">
+        <member name="T:Ximura.Collections.CollectionVertex`1">
             <summary>
-            The edge structure records the one-way relationship between the vertexes.
+            This structure is used to hold the item in the collection.
+            </summary>
+            <typeparam name="T">The container object.</typeparam>
+        </member>
+        <member name="F:Ximura.Collections.CollectionVertex`1.Empty">
+            <summary>
+            This is the empty vertex.
             </summary>
         </member>
-        <member name="M:Ximura.Collections.Edge.op_LessThan(Ximura.Collections.Edge,Ximura.Collections.Edge)">
+        <member name="M:Ximura.Collections.CollectionVertex`1.#cctor">
             <summary>
-            The less than operator returns true if the two edges are joined on the 
+            This is the static constructor.
             </summary>
-            <param name="a"></param>
-            <param name="b"></param>
-            <returns></returns>
         </member>
-        <member name="M:Ximura.Collections.Edge.op_LogicalNot(Ximura.Collections.Edge)">
+        <member name="M:Ximura.Collections.CollectionVertex`1.Sentinel(System.Int32,System.Int32)">
             <summary>
-            The not operator reverses the direction of the edge.
+            This static method creates a sentinel vertex. Sentinel vertexes are vertexes that do not include data,
+            but are used by the hash table to mark a shortcut to data sets based on their hashcode.
             </summary>
-            <param name="a">The edge to reverse.</param>
-            <returns>returns an edge structure.</returns>
+            <param name="hashID">The hashID.</param>
+            <param name="nextSlotIDPlus1">The ID of the next vertex in the chain (plus 1).</param>
+            <returns>Returns a new sentinel for the specific hash ID.</returns>
         </member>
-        <member name="T:Ximura.Collections.IStack`1">
+        <member name="F:Ximura.Collections.CollectionVertex`1.mHashID">
             <summary>
-            This interface is implemented by a stack.
+            The internal hashid.
             </summary>
-            <typeparam name="T">The collection item type.</typeparam>
         </member>
-        <member name="M:Ximura.Collections.IStack`1.Push(`0)">
+        <member name="F:Ximura.Collections.CollectionVertex`1.NextSlotIDPlus1">
             <summary>
-            This method pushes an item on to the stack.
+            The next item in the list.
             </summary>
-            <param name="item">The item to add to the stack.</param>
         </member>
-        <member name="M:Ximura.Collections.IStack`1.Pop">
+        <member name="F:Ximura.Collections.CollectionVertex`1.Value">
             <summary>
-            This method removes the top item from the stack.
+            The slot value.
             </summary>
-            <returns>Returns the top item on the stack.</returns>
         </member>
-        <member name="M:Ximura.Collections.IStack`1.TryPop(`0@)">
+        <member name="M:Ximura.Collections.CollectionVertex`1.#ctor(System.Int32,System.Int32)">
             <summary>
-            This method tries to return the top item from the stack.
+            This constructor creates a slot as a sentinel, with only the next parameter set.
             </summary>
-            <param name="item">The item at the top of the stack.</param>
-            <returns>Returns true if an item is removed from the stack.</returns>
+            <param name="hashID">The item hashcode.</param>
+            <param name="nextSlotIDPlus1">The next item in the list.</param>
+        </member>
+        <member name="M:Ximura.Collections.CollectionVertex`1.#ctor(System.Int32,`0,System.Int32)">
+            <summary>
+            This constructor sets the value for the slot.
+            </summary>
+            <param name="hashID">The item hashcode.</param>
+            <param name="value">The slot value.</param>
+            <param name="nextSlotIDPlus1">The next item in the list.</param>
+        </member>
+        <member name="M:Ximura.Collections.CollectionVertex`1.ToString">
+            <summary>
+            This override provides quick and easy debugging support.
+            </summary>
+            <returns>Returns a string representation of the vertex.</returns>
+        </member>
+        <member name="P:Ximura.Collections.CollectionVertex`1.HashID">
+            <summary>
+            The item hashid.
+            </summary>
+        </member>
+        <member name="P:Ximura.Collections.CollectionVertex`1.IsTerminator">
+            <summary>
+            This property identifies whether the vertex is the last item in the data chain.
+            </summary>
+        </member>
+        <member name="P:Ximura.Collections.CollectionVertex`1.IsSentinel">
+            <summary>
+            This property identifies whether the vertex is a sentinel vertex.
+            </summary>
         </member>
         <member name="T:Ximura.Server.IXimuraPerformanceManagerService">
             <summary>
@@ -5958,26 +6044,140 @@
             Message supports both reading and writing.
             </summary>
         </member>
-        <member name="T:Ximura.Collections.Vertex">
+        <member name="M:Ximura.Collections.LockFreePool`1.#ctor">
             <summary>
-            A vertex is the fundemental unit for building a relational graph. 
-            The Vertex structure is built around an unsigned integer, but has additonal properties.
+            This is the default constructor. The collection will be constructed with a base capacity of 1000.
             </summary>
         </member>
-        <member name="M:Ximura.Collections.Vertex.ToString">
+        <member name="M:Ximura.Collections.LockFreePool`1.Return(`0)">
             <summary>
-            This override converts the vertex to a readable string.
+            This method returns an item to the pool.
             </summary>
-            <returns></returns>
+            <param name="value">The item to return to the pool.</param>
         </member>
-        <member name="P:Ximura.Collections.Vertex.IsNull">
+        <member name="M:Ximura.Collections.LockFreePool`1.TryReturn(`0)">
             <summary>
-            The null vertex has a value of 0.
+            This method attemtps to return an object to the pool.
+            </summary>
+            <param name="value">The item to return.</param>
+            <returns>Returns true if the item was successfully returned.</returns>
+        </member>
+        <member name="M:Ximura.Collections.LockFreePool`1.CopyTo(`0[],System.Int32)">
+            <summary>
+            This method copies the collection to the array specified.
+            </summary>
+            <param name="array">The array to copy to.</param>
+            <param name="arrayIndex">The array index where the class should start copying to.</param>
+        </member>
+        <member name="M:Ximura.Collections.LockFreePool`1.Get">
+            <summary>
+            This method retrieves an item from the pool.
+            </summary>
+            <returns>Returns an item from the pool.</returns>
+        </member>
+        <member name="M:Ximura.Collections.LockFreePool`1.Get(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            The Get() method takes an object from the pool, if 
+            there are no objects available the pool will create a new object.
+            </summary>
+            <param name="info">The serialization info.</param>
+            <param name="context">The serialization context.</param>
+            <returns>An object of the type defined in the pool definition, with the serialization data.</returns>
+        </member>
+        <member name="M:Ximura.Collections.LockFreePool`1.Get(System.Action{`0})">
+            <summary>
+            The Get() method takes an object from the pool, if 
+            there are no objects available the pool will create a new object.
+            </summary>
+            <param name="initializer">This action will be performed on the object after the data has been deserialized.</param>
+            <returns>An object of the type defined in the pool definition.</returns>
+        </member>
+        <member name="M:Ximura.Collections.LockFreePool`1.Get(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext,System.Action{`0})">
+            <summary>
+            The Get() method takes an object from the pool, if 
+            there are no objects available the pool will create a new object.
+            </summary>
+            <param name="info">The serialization info.</param>
+            <param name="context">The serialization context.</param>
+            <param name="initializer">This action will be performed on the object after the data has been deserialized.</param>
+            <returns>An object of the type defined in the pool definition, with the serialization data.</returns>
+        </member>
+        <member name="M:Ximura.Collections.LockFreePool`1.TryGet(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext,`0@)">
+            <summary>
+            The Get() method takes an object from the pool, if 
+            there are no objects available the pool will create a new object.
+            </summary>
+            <param name="info">The serialization info.</param>
+            <param name="context">The serialization context.</param>
+            <param name="value">An object of the type defined in the pool definition, with the serialization data.</param>
+            <returns>Returns true if an item has been returned from the pool.</returns>
+        </member>
+        <member name="M:Ximura.Collections.LockFreePool`1.TryGet(System.Action{`0},`0@)">
+            <summary>
+            The Get() method takes an object from the pool, if 
+            there are no objects available the pool will create a new object.
+            </summary>
+            <param name="initializer">This action will be performed on the object after the data has been deserialized.</param>
+            <param name="value">An object of the type defined in the pool definition, with the serialization data.</param>
+            <returns>Returns true if an item has been returned from the pool.</returns>
+        </member>
+        <member name="M:Ximura.Collections.LockFreePool`1.TryGet(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext,System.Action{`0},`0@)">
+            <summary>
+            The Get() method takes an object from the pool, if 
+            there are no objects available the pool will create a new object.
+            </summary>
+            <param name="info">The serialization info.</param>
+            <param name="context">The serialization context.</param>
+            <param name="initializer">This action will be performed on the object after the data has been deserialized.</param>
+            <param name="value">An object of the type defined in the pool definition, with the serialization data.</param>
+            <returns>Returns true if an item has been returned from the pool.</returns>
+        </member>
+        <member name="M:Ximura.Collections.LockFreePool`1.TryGet(`0@)">
+            <summary>
+            This method attempts to take an item from the pool.
+            </summary>
+            <param name="value">The item from the pool.</param>
+            <returns>Returns true if an item has been returned from the pool.</returns>
+        </member>
+        <member name="M:Ximura.Collections.LockFreePool`1.ResetPoolObject(`0,System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            This method is used to reset the pool object from the serialization information.
+            You should override this method if you wish to set particular values.
+            </summary>
+            <param name="obj">The object to reset.</param>
+            <param name="info">The serialization info.</param>
+            <param name="context">The context.</param>
+        </member>
+        <member name="P:Ximura.Collections.LockFreePool`1.Max">
+            <summary>
+            This is the maximum pool size, a value of -1 specifies no maximum size.
             </summary>
         </member>
-        <member name="P:Ximura.Collections.Vertex.Value">
+        <member name="P:Ximura.Collections.LockFreePool`1.Min">
             <summary>
-            The unsigned integer value of the vertex.
+            This is the minimum pool size.
+            </summary>
+        </member>
+        <member name="P:Ximura.Collections.LockFreePool`1.Prefered">
+            <summary>
+            This is prefered pool size.
+            </summary>
+        </member>
+        <member name="P:Ximura.Collections.LockFreePool`1.IsFixedSize">
+            <summary>
+            This property determines whether the collection will dynamically expand when new values are added. 
+            This property can only be set from the constructor, although this property can be overriden in derived classes to ensure
+            a particular value.
+            </summary>
+        </member>
+        <member name="P:Ximura.Collections.LockFreePool`1.Available">
+            <summary>
+            This method returns true if there are objects available in the pool.
+            </summary>
+        </member>
+        <member name="P:Ximura.Collections.LockFreePool`1.Count">
+            <summary>
+            This property returns the number of active objects.
             </summary>
         </member>
         <member name="T:Ximura.Server.IXimuraGatewayAgent">
@@ -7076,7 +7276,7 @@
             </summary>
             <param name="newCapacity">The new capacity.</param>
         </member>
-        <member name="M:Ximura.Collections.ExpandableFineGrainedLockArray`1.Compare(System.Int32,Ximura.Collections.LockFreeRedBlackVertex{System.Int32,Ximura.Collections.FineGrainedLockArray{`0}})">
+        <member name="M:Ximura.Collections.ExpandableFineGrainedLockArray`1.Compare(System.Int32,Ximura.Collections.LockableRedBlackTreeVertex{System.Int32,Ximura.Collections.FineGrainedLockArray{`0}})">
             <summary>
             This is the specific comparer for the Expandable array.
             </summary>
@@ -7241,58 +7441,52 @@
             This is the configuration manager.
             </summary>
         </member>
-        <member name="T:Ximura.Collections.LockFreeRedBlackVertex`2">
+        <member name="T:Ximura.Collections.SkipListVertexArray`1">
             <summary>
-            This class is the vertex that contains both the key and value data within the tree.
+            
             </summary>
-            <typeparam name="TKey">The vertex key type.</typeparam>
-            <typeparam name="TVal">The vertex value type.</typeparam>
+            <typeparam name="T">The collection type.</typeparam>
         </member>
-        <member name="M:Ximura.Collections.LockFreeRedBlackVertex`2.#ctor">
+        <member name="F:Ximura.Collections.SkipListVertexArray`1.mProbability">
             <summary>
-            This is the default constructor.
-            </summary>
-        </member>
-        <member name="M:Ximura.Collections.LockFreeRedBlackVertex`2.ToString">
-            <summary>
-            This override provides useful debug information.
-            </summary>
-            <returns>Returns a string representation of the vertex data.</returns>
-        </member>
-        <member name="P:Ximura.Collections.LockFreeRedBlackVertex`2.Parent">
-            <summary>
-            This is the parent vertex.
+            The probability of an item being propagated to the next level.
             </summary>
         </member>
-        <member name="P:Ximura.Collections.LockFreeRedBlackVertex`2.Left">
+        <member name="F:Ximura.Collections.SkipListVertexArray`1.mMaxLevel">
             <summary>
-            This is the left vertex.
+            The maximum number of levels.
             </summary>
         </member>
-        <member name="P:Ximura.Collections.LockFreeRedBlackVertex`2.Right">
+        <member name="M:Ximura.Collections.SkipListVertexArray`1.#ctor(System.Boolean,System.Int32,System.Double,System.Int32)">
             <summary>
-            This is the right vertex.
+            This is the default constructor for the array.
             </summary>
+            <param name="isFixedSize">A boolean value indicating whether the data collection is fixed size.</param>
+            <param name="capacity">The array capacity.</param>
+            <param name="probability">The probability of an item being propagated to the next level, which should be between 0 and 1.</param>
+            <param name="maxLevel">The maximum number of levels.</param>
         </member>
-        <member name="P:Ximura.Collections.LockFreeRedBlackVertex`2.IsRed">
+        <member name="M:Ximura.Collections.SkipListVertexArray`1.Initialize(System.Boolean,System.Int32)">
             <summary>
-            This is the state of the vertex, either black or red.
+            This method initializes the data collection.
             </summary>
+            <param name="isFixedSize">Specifies whether the collection is a fixed size.</param>
+            <param name="capacity">The initial capacity.</param>
         </member>
-        <member name="P:Ximura.Collections.LockFreeRedBlackVertex`2.IsRoot">
+        <member name="M:Ximura.Collections.SkipListVertexArray`1.GetSentinelID(System.Int32,System.Boolean,System.Int32@,System.Int32@)">
             <summary>
-            This property determines whether the vertex is the root vertex, i.e. it does not have a parent.
+            This method returns the sentinel ID and the hashID for the hashcode passed.
             </summary>
+            <param name="hashCode">The hashcode to search for the sentinel position.</param>
+            <param name="create">This property determine whether any missing sentinels will be created.</param>
+            <param name="sentIndexID">The largest sentinel index ID.</param>
+            <param name="hashID">The hashID for the hashCode that passed.</param>
         </member>
-        <member name="P:Ximura.Collections.LockFreeRedBlackVertex`2.IsSentinel">
+        <member name="M:Ximura.Collections.SkipListVertexArray`1.SizeRecalculate(System.Int32)">
             <summary>
-            This property determines whether the vertex is a sentinel, i.e. a vertex without any child vertexes.
+            
             </summary>
-        </member>
-        <member name="P:Ximura.Collections.LockFreeRedBlackVertex`2.IsLeaf">
-            <summary>
-            This property determines whether the vertex is a sentinel, i.e. a vertex without any child vertexes.
-            </summary>
+            <param name="total"></param>
         </member>
         <member name="T:Ximura.Collections.LockFreeHashSet`1">
             <summary>
@@ -7513,6 +7707,139 @@
             This is the component name. This is only used when a component
             is added to the collection. If the name is not set this value 
             is null.
+            </summary>
+        </member>
+        <member name="T:Ximura.Collections.LockFreePriorityQueue`1">
+            <summary>
+            This class is an implementation of a concurrent scalable queue.
+            </summary>
+            <typeparam name="T">The item type for the stack.</typeparam>
+        </member>
+        <member name="F:Ximura.Collections.LockFreePriorityQueue`1.mVersion">
+            <summary>
+            The version value.
+            </summary>
+        </member>
+        <member name="F:Ximura.Collections.LockFreePriorityQueue`1.mCount">
+            <summary>
+            This is the current item count.
+            </summary>
+        </member>
+        <member name="F:Ximura.Collections.LockFreePriorityQueue`1.mEqualityComparer">
+            <summary>
+            This is the equality comparer for the collection.
+            </summary>
+        </member>
+        <member name="M:Ximura.Collections.LockFreePriorityQueue`1.#ctor">
+            <summary>
+            This is the default constructor. The collection will be constructed with a base capacity of 1000.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Ximura.Collections.LockFreePriorityQueue`1.#ctor(System.Collections.Generic.IEnumerable{`0})" -->
+        <!-- Badly formed XML comment ignored for member "M:Ximura.Collections.LockFreePriorityQueue`1.#ctor(System.Collections.Generic.IEnumerable{`0},System.Boolean)" -->
+        <!-- Badly formed XML comment ignored for member "M:Ximura.Collections.LockFreePriorityQueue`1.#ctor(System.Collections.Generic.IEqualityComparer{`0},System.Collections.Generic.IEnumerable{`0})" -->
+        <!-- Badly formed XML comment ignored for member "M:Ximura.Collections.LockFreePriorityQueue`1.#ctor(System.Int32)" -->
+        <!-- Badly formed XML comment ignored for member "M:Ximura.Collections.LockFreePriorityQueue`1.#ctor(System.Int32,System.Boolean)" -->
+        <!-- Badly formed XML comment ignored for member "M:Ximura.Collections.LockFreePriorityQueue`1.#ctor(System.Collections.Generic.IEqualityComparer{`0},System.Int32)" -->
+        <!-- Badly formed XML comment ignored for member "M:Ximura.Collections.LockFreePriorityQueue`1.#ctor(System.Collections.Generic.IEqualityComparer{`0},System.Int32,System.Boolean)" -->
+        <!-- Badly formed XML comment ignored for member "M:Ximura.Collections.LockFreePriorityQueue`1.#ctor(System.Collections.Generic.IEqualityComparer{`0},System.Int32,System.Collections.Generic.IEnumerable{`0})" -->
+        <!-- Badly formed XML comment ignored for member "M:Ximura.Collections.LockFreePriorityQueue`1.#ctor(System.Collections.Generic.IEqualityComparer{`0},System.Int32,System.Collections.Generic.IEnumerable{`0},System.Boolean)" -->
+        <member name="M:Ximura.Collections.LockFreePriorityQueue`1.Enqueue(`0)">
+            <summary>
+            This method enqueues an item in to the collection with the highest priority.
+            </summary>
+            <param name="item">The item to enqueue.</param>
+        </member>
+        <member name="M:Ximura.Collections.LockFreePriorityQueue`1.Enqueue(`0,System.Int32)">
+            <summary>
+            This method enqueues an item in to the collection with the priority specified.
+            </summary>
+            <param name="item">The item to enqueue.</param>
+            <param name="priority">The priority of the item to enqueue.</param>
+        </member>
+        <member name="M:Ximura.Collections.LockFreePriorityQueue`1.Dequeue">
+            <summary>
+            This method dequeues the item from the queue with the highest priority.
+            </summary>
+            <returns>Returns an item from the queue.</returns>
+            <exception cref="T:System.InvalidOperationException">This exception is thrown if the queue is empty.</exception>
+        </member>
+        <member name="M:Ximura.Collections.LockFreePriorityQueue`1.TryDequeue(`0@)">
+            <summary>
+            This method attempt to remove an item from the queue with the highest priority.
+            </summary>
+            <param name="item">The item returned from the queue.</param>
+            <returns>Returns true if an item is returned.</returns>
+        </member>
+        <member name="M:Ximura.Collections.LockFreePriorityQueue`1.Peek">
+            <summary>
+            This method returns an item from the head of the queue without removing the item.
+            </summary>
+            <returns>Returns an item from the queue.</returns>
+        </member>
+        <member name="M:Ximura.Collections.LockFreePriorityQueue`1.TryPeek(`0@)">
+            <summary>
+            This method attempts to return an item from the head of the queue without removing the item.
+            </summary>
+            <param name="item">The item returned from the queue.</param>
+            <returns>Returns true if an item is returned.</returns>
+        </member>
+        <member name="M:Ximura.Collections.LockFreePriorityQueue`1.Contains(`0)">
+            <summary>
+            This method checks whether an item exists in the collection.
+            </summary>
+            <param name="item">The item to check.</param>
+            <returns>Returns true if the item exists in the collection.</returns>
+        </member>
+        <member name="M:Ximura.Collections.LockFreePriorityQueue`1.Clear">
+            <summary>
+            This method clears the collection.
+            </summary>
+        </member>
+        <member name="M:Ximura.Collections.LockFreePriorityQueue`1.CopyTo(`0[],System.Int32)">
+            <summary>
+            This method copies the collection to the array specified.
+            </summary>
+            <param name="array">The array to copy to.</param>
+            <param name="arrayIndex">The array index where the class should start copying to.</param>
+        </member>
+        <member name="M:Ximura.Collections.LockFreePriorityQueue`1.CopyTo(System.Array,System.Int32)">
+            <summary>
+            This method copies the collection to the array specified.
+            </summary>
+            <param name="array">The array to copy to.</param>
+            <param name="arrayIndex">The array index where the class should start copying to.</param>
+        </member>
+        <member name="M:Ximura.Collections.LockFreePriorityQueue`1.ToArray">
+            <summary>
+            Returns the data in the collection as an array.
+            </summary>
+            <returns>Returns an array of data.</returns>
+        </member>
+        <member name="M:Ximura.Collections.LockFreePriorityQueue`1.TrimExcess">
+            <summary>
+            This method is not supported.
+            </summary>
+        </member>
+        <member name="M:Ximura.Collections.LockFreePriorityQueue`1.AddIncomingData(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            This method enqueues the incoming data to the collection that was passed in the constructor.
+            </summary>
+            <param name="collection">The data to enqueue.</param>
+        </member>
+        <member name="P:Ximura.Collections.LockFreePriorityQueue`1.Count">
+            <summary>
+            The collection count.
+            </summary>
+        </member>
+        <member name="P:Ximura.Collections.LockFreePriorityQueue`1.IsSynchronized">
+            <summary>
+            This property is not supported.
+            </summary>
+        </member>
+        <member name="P:Ximura.Collections.LockFreePriorityQueue`1.SyncRoot">
+            <summary>
+            This property is not supported.
             </summary>
         </member>
         <member name="T:Ximura.JobPriority">
@@ -7785,6 +8112,282 @@
             <param name="intervalStart"></param>
             <param name="internalEnd"></param>
             <returns></returns>
+        </member>
+        <member name="T:Ximura.Helper.LockableWrapper`1">
+            <summary>
+            The lockable base class is for objects that require fine-grained locking.
+            </summary>
+        </member>
+        <member name="F:Ximura.Helper.LockableWrapper`1.mLocked">
+            <summary>
+            The private value that indicates whether the class is locked.
+            </summary>
+        </member>
+        <member name="F:Ximura.Helper.LockableWrapper`1.mHasValue">
+            <summary>
+            The boolean value which specifies whether the structure contains a valid value.
+            </summary>
+        </member>
+        <member name="F:Ximura.Helper.LockableWrapper`1.mValue">
+            <summary>
+            The value.
+            </summary>
+        </member>
+        <member name="F:Ximura.Helper.LockableWrapper`1.mLockingThread">
+            <summary>
+            The managed ID of the locking thread.
+            </summary>
+        </member>
+        <member name="M:Ximura.Helper.LockableWrapper`1.#ctor(`0)">
+            <summary>
+            This is the default constructor.
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:Ximura.Helper.LockableWrapper`1.Lock">
+            <summary>
+            This method locks the particular item.
+            </summary>
+        </member>
+        <member name="M:Ximura.Helper.LockableWrapper`1.LockWait">
+            <summary>
+            This method halts any threads if the item is locked.
+            </summary>
+        </member>
+        <member name="M:Ximura.Helper.LockableWrapper`1.TryLock">
+            <summary>
+            This method attempts to lock the item.
+            </summary>
+            <returns>Returns true if the item is successfully locked.</returns>
+        </member>
+        <member name="M:Ximura.Helper.LockableWrapper`1.Unlock">
+            <summary>
+            This method unlocks the item.
+            </summary>
+        </member>
+        <member name="M:Ximura.Helper.LockableWrapper`1.ToString">
+            <summary>
+            This method provides a string value of the enclosed data.
+            </summary>
+            <returns>Returns the internal data as a string.</returns>
+        </member>
+        <member name="M:Ximura.Helper.LockableWrapper`1.GetHashCode">
+            <summary>
+            This method returns the hashcode of the enclosed data.
+            </summary>
+            <returns>The internal hashcode.</returns>
+        </member>
+        <member name="M:Ximura.Helper.LockableWrapper`1.Equals(System.Object)">
+            <summary>
+            This method compares the other value to the enclosed data.
+            </summary>
+            <param name="other">The data to compare.</param>
+            <returns>Returns true if the data is the same.</returns>
+        </member>
+        <member name="P:Ximura.Helper.LockableWrapper`1.IsLocked">
+            <summary>
+            Returns true if the item is locked.
+            </summary>
+            <returns>Returns true if the item is locked.</returns>
+        </member>
+        <member name="P:Ximura.Helper.LockableWrapper`1.Value">
+            <summary>
+            This is the value locked by the collection.
+            </summary>
+        </member>
+        <member name="P:Ximura.Helper.LockableWrapper`1.HasValue">
+            <summary>
+            Specifies whether the wrapper contains a value.
+            </summary>
+        </member>
+        <member name="T:Ximura.Collections.LockFreeStack`1">
+            <summary>
+            This class is an implementation of a concurrent scalable stack.
+            </summary>
+            <typeparam name="T">The item type for the stack.</typeparam>
+        </member>
+        <member name="F:Ximura.Collections.LockFreeStack`1.mVersion">
+            <summary>
+            The version value.
+            </summary>
+        </member>
+        <member name="F:Ximura.Collections.LockFreeStack`1.mCount">
+            <summary>
+            This is the current item count.
+            </summary>
+        </member>
+        <member name="F:Ximura.Collections.LockFreeStack`1.mIsFixedSize">
+            <summary>
+            This property determines whether the collection is a fixed size. Fixed size collections will reject new records
+            when the capacity has been reached.
+            </summary>
+        </member>
+        <member name="F:Ximura.Collections.LockFreeStack`1.mEqualityComparer">
+            <summary>
+            This is the equality comparer for the collection.
+            </summary>
+        </member>
+        <member name="M:Ximura.Collections.LockFreeStack`1.#ctor">
+            <summary>
+            This is the default constructor. The collection will be constructed with a base capacity of 1000.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Ximura.Collections.LockFreeStack`1.#ctor(System.Collections.Generic.IEnumerable{`0})" -->
+        <!-- Badly formed XML comment ignored for member "M:Ximura.Collections.LockFreeStack`1.#ctor(System.Collections.Generic.IEnumerable{`0},System.Boolean)" -->
+        <!-- Badly formed XML comment ignored for member "M:Ximura.Collections.LockFreeStack`1.#ctor(System.Collections.Generic.IEqualityComparer{`0},System.Collections.Generic.IEnumerable{`0})" -->
+        <!-- Badly formed XML comment ignored for member "M:Ximura.Collections.LockFreeStack`1.#ctor(System.Int32)" -->
+        <!-- Badly formed XML comment ignored for member "M:Ximura.Collections.LockFreeStack`1.#ctor(System.Int32,System.Boolean)" -->
+        <!-- Badly formed XML comment ignored for member "M:Ximura.Collections.LockFreeStack`1.#ctor(System.Collections.Generic.IEqualityComparer{`0},System.Int32)" -->
+        <!-- Badly formed XML comment ignored for member "M:Ximura.Collections.LockFreeStack`1.#ctor(System.Collections.Generic.IEqualityComparer{`0},System.Int32,System.Boolean)" -->
+        <!-- Badly formed XML comment ignored for member "M:Ximura.Collections.LockFreeStack`1.#ctor(System.Collections.Generic.IEqualityComparer{`0},System.Int32,System.Collections.Generic.IEnumerable{`0})" -->
+        <!-- Badly formed XML comment ignored for member "M:Ximura.Collections.LockFreeStack`1.#ctor(System.Collections.Generic.IEqualityComparer{`0},System.Int32,System.Collections.Generic.IEnumerable{`0},System.Boolean)" -->
+        <member name="M:Ximura.Collections.LockFreeStack`1.AddIncomingData(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            This override pushes the data passed in the constructor to the stack.
+            </summary>
+            <param name="collection">The incoming data.</param>
+        </member>
+        <member name="M:Ximura.Collections.LockFreeStack`1.Push(`0)">
+            <summary>
+            This method pushes an item to the top of the stack.
+            </summary>
+            <param name="item">The item to add to the stack.</param>
+        </member>
+        <member name="M:Ximura.Collections.LockFreeStack`1.TryPop(`0@)">
+            <summary>
+            This method removes an item from the top of the stack.
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ximura.Collections.LockFreeStack`1.Pop">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ximura.Collections.LockFreeStack`1.TryPeek(`0@)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ximura.Collections.LockFreeStack`1.Peek">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ximura.Collections.LockFreeStack`1.Contains(`0)">
+            <summary>
+            This method checks whether an item exists in the collection.
+            </summary>
+            <param name="item">The item to check.</param>
+            <returns>Returns true if the item exists in the collection.</returns>
+        </member>
+        <member name="M:Ximura.Collections.LockFreeStack`1.Clear">
+            <summary>
+            This method clears the collection.
+            </summary>
+        </member>
+        <member name="M:Ximura.Collections.LockFreeStack`1.CopyTo(`0[],System.Int32)">
+            <summary>
+            This method copies the collection to the array specified.
+            </summary>
+            <param name="array">The array to copy to.</param>
+            <param name="arrayIndex">The array index where the class should start copying to.</param>
+        </member>
+        <member name="M:Ximura.Collections.LockFreeStack`1.CopyTo(System.Array,System.Int32)">
+            <summary>
+            This method copies the collection to the array specified.
+            </summary>
+            <param name="array">The array to copy to.</param>
+            <param name="arrayIndex">The array index where the class should start copying to.</param>
+        </member>
+        <member name="M:Ximura.Collections.LockFreeStack`1.ToArray">
+            <summary>
+            Returns the data in the collection as an array.
+            </summary>
+            <returns>Returns an array of data.</returns>
+        </member>
+        <member name="M:Ximura.Collections.LockFreeStack`1.TrimExcess">
+            <summary>
+            This method is not supported.
+            </summary>
+        </member>
+        <member name="P:Ximura.Collections.LockFreeStack`1.Count">
+            <summary>
+            The collection count.
+            </summary>
+        </member>
+        <member name="P:Ximura.Collections.LockFreeStack`1.IsSynchronized">
+            <summary>
+            This property is not supported.
+            </summary>
+        </member>
+        <member name="P:Ximura.Collections.LockFreeStack`1.SyncRoot">
+            <summary>
+            This property is not supported.
+            </summary>
+        </member>
+        <member name="T:Ximura.Collections.LockFreeSkipList`1">
+            <summary>
+            This is the concurrent skiplist class.
+            </summary>
+            <typeparam name="T">The collection object type.</typeparam>
+        </member>
+        <member name="M:Ximura.Collections.LockFreeSkipList`1.#ctor">
+            <summary>
+            This is the default constructor. The collection will be constructed with a base capacity of 1000.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Ximura.Collections.LockFreeSkipList`1.#ctor(System.Collections.Generic.IEnumerable{`0})" -->
+        <!-- Badly formed XML comment ignored for member "M:Ximura.Collections.LockFreeSkipList`1.#ctor(System.Collections.Generic.IEnumerable{`0},System.Boolean)" -->
+        <!-- Badly formed XML comment ignored for member "M:Ximura.Collections.LockFreeSkipList`1.#ctor(System.Collections.Generic.IEqualityComparer{`0},System.Collections.Generic.IEnumerable{`0})" -->
+        <!-- Badly formed XML comment ignored for member "M:Ximura.Collections.LockFreeSkipList`1.#ctor(System.Int32)" -->
+        <!-- Badly formed XML comment ignored for member "M:Ximura.Collections.LockFreeSkipList`1.#ctor(System.Int32,System.Boolean)" -->
+        <!-- Badly formed XML comment ignored for member "M:Ximura.Collections.LockFreeSkipList`1.#ctor(System.Collections.Generic.IEqualityComparer{`0},System.Int32)" -->
+        <!-- Badly formed XML comment ignored for member "M:Ximura.Collections.LockFreeSkipList`1.#ctor(System.Collections.Generic.IEqualityComparer{`0},System.Int32,System.Boolean)" -->
+        <!-- Badly formed XML comment ignored for member "M:Ximura.Collections.LockFreeSkipList`1.#ctor(System.Collections.Generic.IEqualityComparer{`0},System.Int32,System.Collections.Generic.IEnumerable{`0})" -->
+        <!-- Badly formed XML comment ignored for member "M:Ximura.Collections.LockFreeSkipList`1.#ctor(System.Collections.Generic.IEqualityComparer{`0},System.Int32,System.Collections.Generic.IEnumerable{`0},System.Boolean)" -->
+        <member name="M:Ximura.Collections.LockFreeSkipList`1.Add(`0)">
+            <summary>
+            Adds and item to the collection.
+            </summary>
+            <param name="item">The item to add.</param>
+        </member>
+        <member name="M:Ximura.Collections.LockFreeSkipList`1.Remove(`0)">
+            <summary>
+            Removes an item from the collection.
+            </summary>
+            <param name="item">The item to remove.</param>
+            <returns>Returns true if the item is successfully removed.</returns>
+        </member>
+        <member name="M:Ximura.Collections.LockFreeSkipList`1.Contains(`0)">
+            <summary>
+            This method checks whether an item exists in the collection.
+            </summary>
+            <param name="item">The item to check.</param>
+            <returns>Returns true if the item exists in the collection.</returns>
+        </member>
+        <member name="M:Ximura.Collections.LockFreeSkipList`1.Clear">
+            <summary>
+            This method clears the collection.
+            </summary>
+        </member>
+        <member name="M:Ximura.Collections.LockFreeSkipList`1.CopyTo(`0[],System.Int32)">
+            <summary>
+            This method copies the collection to the array specified.
+            </summary>
+            <param name="array">The array to copy to.</param>
+            <param name="arrayIndex">The array index where the class should start copying to.</param>
+        </member>
+        <member name="P:Ximura.Collections.LockFreeSkipList`1.CollectionAllowMultipleEntries">
+            <summary>
+            This setting determines whether the collection allows multiple entries of the same object in the collection.
+            The default setting is true.
+            </summary>
         </member>
         <member name="T:Ximura.XimuraAppConfigurationExternalAttribute">
             <summary>

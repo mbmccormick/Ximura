@@ -102,5 +102,26 @@ namespace Ximura.Helper
             }
         }
         #endregion // ForIndex<T>(this IEnumerable<T> items, Action<long, T> action)
+
+        #region ForReverseIndex<T>(this IList<T> items, Action<int, T> action)
+        /// <summary>
+        /// The ForIndex extension method iterates through a list in reverse, and executes the action for each item and provides 
+        /// a 32-bit integer index parameter that identifies the position of the item in the list.
+        /// </summary>
+        /// <typeparam name="T">The item type to process.</typeparam>
+        /// <param name="items">The list of items to process.</param>
+        /// <param name="action">The action to be executed against each item in the collection.</param>
+        public static void ForReverseIndex<T>(this IList<T> items, Action<int, T> action)
+        {
+            if (items == null) throw new ArgumentNullException("items", "items enumeration is null");
+            if (action == null) throw new ArgumentNullException("action", "the action delegate is null");
+
+            int length = items.Count;
+            for (int index = length - 1; index >= 0;index-- )
+            {
+                action(index, items[index]);
+            }
+        }
+        #endregion // ForReverseIndex<T>(this IList<T> items, Action<int, T> action)
     }
 }

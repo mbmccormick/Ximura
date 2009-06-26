@@ -20,41 +20,38 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Reflection;
-using System.Runtime.Serialization;
 using System.Threading;
+using System.Runtime.Serialization;
+using System.Runtime.InteropServices;
+using System.Text;
 
 using Ximura;
 using Ximura.Helper;
 #endregion // using
 namespace Ximura.Collections
 {
-    public abstract class WrapperBase<T> : WrapperBase<T, ICollection<T>>, ICollectionWrapper<T>
+    public interface IVertexWindow<T>
     {
-        public WrapperBase()
-        {
-        }
+        void ItemInsert();
+        void ItemSetNext();
 
-        public WrapperBase(ICollection<T> Collection)
-        {
-            this.Collection = Collection;
-        }
+        T Value { get; }
 
+        bool MoveUp();
+        void ItemRemoveAndUnlock();
+
+        int ScanAndLock();
+        bool ScanProcess();
+        bool ScanItemMatch{get;}
+
+        void Snip();
+        void Unlock();
+
+        int HashID { get; }
+
+        bool NextIsSentinel { get; }
+        bool CurrIsTerminator { get; }
+
+        T NextData { get; }
     }
-
-    public abstract class WrapperBase<T,C>
-        where C : class, ICollection<T>
-    {
-        public C Collection { get; set; }
-
-        public WrapperBase()
-        {
-        }
-
-        public WrapperBase(C Collection)
-        {
-            this.Collection = Collection;
-        }
-
-    }
-
 }

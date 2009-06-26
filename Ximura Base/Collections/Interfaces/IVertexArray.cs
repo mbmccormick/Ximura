@@ -20,41 +20,34 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Reflection;
-using System.Runtime.Serialization;
 using System.Threading;
+using System.Runtime.Serialization;
+using System.Runtime.InteropServices;
+using System.Text;
 
 using Ximura;
 using Ximura.Helper;
 #endregion // using
 namespace Ximura.Collections
 {
-    public abstract class WrapperBase<T> : WrapperBase<T, ICollection<T>>, ICollectionWrapper<T>
+    public interface IVertexArray<T> : ICollectionState, IEnumerable<KeyValuePair<int, ICollectionVertex<T>>>
     {
-        public WrapperBase()
-        {
-        }
+        void Initialize(IEqualityComparer<T> eqComparer, bool isFixedSize, int capacity, bool allowNullValues, bool allowMultipleEntries);
 
-        public WrapperBase(ICollection<T> Collection)
-        {
-            this.Collection = Collection;
-        }
+        IVertexWindow<T> VertexWindowGet();
+        IVertexWindow<T> VertexWindowGet(T item, bool createSentinel);
 
+        bool SupportsFastContain { get; }
+        bool? FastContains(T item);
+        bool? FastContains(IEqualityComparer<T> eqComparer, T key, out T value);
+
+        bool SupportsFastAdd { get; }
+        bool FastAdd(T item, bool add);
+
+        bool SupportsFastRemove { get; }
+        bool FastRemove(T item);
+
+        bool SupportsFastClear { get; }
+        void FastClear();
     }
-
-    public abstract class WrapperBase<T,C>
-        where C : class, ICollection<T>
-    {
-        public C Collection { get; set; }
-
-        public WrapperBase()
-        {
-        }
-
-        public WrapperBase(C Collection)
-        {
-            this.Collection = Collection;
-        }
-
-    }
-
 }

@@ -273,6 +273,5 @@ namespace Ximura.Helper
             return num;
         }
         #endregion // string
-
     }
 }

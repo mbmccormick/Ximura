@@ -28,33 +28,30 @@ using Ximura.Helper;
 #endregion // using
 namespace Ximura.Collections
 {
-    public abstract class WrapperBase<T> : WrapperBase<T, ICollection<T>>, ICollectionWrapper<T>
-    {
-        public WrapperBase()
-        {
-        }
+    //public class LockFree2DSparseMatrix<T>
+    //{
+    //    public LockFree2DSparseMatrix()
+    //    {
 
-        public WrapperBase(ICollection<T> Collection)
-        {
-            this.Collection = Collection;
-        }
+    //    }
 
-    }
-
-    public abstract class WrapperBase<T,C>
-        where C : class, ICollection<T>
-    {
-        public C Collection { get; set; }
-
-        public WrapperBase()
-        {
-        }
-
-        public WrapperBase(C Collection)
-        {
-            this.Collection = Collection;
-        }
-
-    }
-
+    //    #region this[int index]
+    //    /// <summary>
+    //    /// 
+    //    /// </summary>
+    //    /// <param name="index"></param>
+    //    /// <returns></returns>
+    //    public T this[int i, int j]
+    //    {
+    //        get
+    //        {
+    //            return default(T);
+    //        }
+    //        set
+    //        {
+                
+    //        }
+    //    }
+    //    #endregion // this[int index]
+    //}
 }

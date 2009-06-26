@@ -21,7 +21,6 @@ using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.Serialization;
 using System.Threading;
-using System.Text;
 
 using Ximura;
 using Ximura.Helper;
@@ -29,25 +28,39 @@ using Ximura.Helper;
 namespace Ximura.Collections
 {
     /// <summary>
-    /// This class is a base class for Red-Black Tree implementations.
+    /// This is the base tree vertex class.
     /// </summary>
-    /// <typeparam name="TKey">The key type.</typeparam>
-    /// <typeparam name="TVal">The value type.</typeparam>
-    public class LockFreeRedBlackTreeBase<TKey, TVal> : LockFreeRedBlackTreeBase<TKey, TVal, RedBlackTreeLockableVertex<TKey, TVal>>
+    /// <typeparam name="T">The value data type.</typeparam>
+    public abstract class CollectionVertexClassBase<T> : LockableBase
     {
-        #region Constructors
+        #region Constructor
         /// <summary>
         /// This is the default constructor.
         /// </summary>
-        public LockFreeRedBlackTreeBase()
-            : this(Comparer<TKey>.Default, EqualityComparer<TVal>.Default) { }
+        public CollectionVertexClassBase()
+        {
+            Value = default(T);
+        }
+        #endregion // BalancedBinaryVertex
+
+        #region Value
         /// <summary>
-        /// This constructor requires custom comparers for both the key data and an equality comparer for the value data.
+        /// This is the data stored in the vertex.
         /// </summary>
-        /// <param name="vertexComparer">The key comparer.</param>
-        /// <param name="valueEqComparer">The value equality comparer. </param>
-        public LockFreeRedBlackTreeBase(Comparer<TKey> keyComparer, EqualityComparer<TVal> valueEqComparer)
-            : base(keyComparer, valueEqComparer) { }
-        #endregion // Constructors
+        public abstract T Value { get; set; }
+        #endregion // Value
+
+        #region IsSentinel
+        /// <summary>
+        /// This property specifies whether the vertex is a sentinel.
+        /// </summary>
+        public virtual bool IsSentinel { get { return false; } }
+        #endregion // IsSentinel
+        #region IsTerminator
+        /// <summary>
+        /// This property specifies whether the vertex is a terminator.
+        /// </summary>
+        public abstract bool IsTerminator{get;}
+        #endregion // IsTerminator
     }
 }

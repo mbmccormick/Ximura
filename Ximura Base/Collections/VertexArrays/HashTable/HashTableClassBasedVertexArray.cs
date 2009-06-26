@@ -20,41 +20,34 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Reflection;
-using System.Runtime.Serialization;
 using System.Threading;
+using System.Runtime.Serialization;
+using System.Runtime.InteropServices;
+using System.Text;
 
 using Ximura;
 using Ximura.Helper;
 #endregion // using
 namespace Ximura.Collections
 {
-    public abstract class WrapperBase<T> : WrapperBase<T, ICollection<T>>, ICollectionWrapper<T>
+    /// <summary>
+    /// This class contains the combined buckets and slots in a single class.
+    /// </summary>
+    /// <typeparam name="T">The collection type.</typeparam>
+    public class HashTableClassBasedVertexArray<T> : MultiLevelClassBasedVertexArray<T>
     {
-        public WrapperBase()
-        {
-        }
+        #region Constants
+        private const double elog2 = 0.693147181;
+        #endregion // Declarations
 
-        public WrapperBase(ICollection<T> Collection)
-        {
-            this.Collection = Collection;
-        }
 
+
+
+        protected override VertexClassBase<T> GetSentinelID(int hashCode, bool createSentinel, out int hashID)
+        {
+            hashID = BitReverse(hashCode & cnLowerBitMask);
+
+            return Root;
+        }
     }
-
-    public abstract class WrapperBase<T,C>
-        where C : class, ICollection<T>
-    {
-        public C Collection { get; set; }
-
-        public WrapperBase()
-        {
-        }
-
-        public WrapperBase(C Collection)
-        {
-            this.Collection = Collection;
-        }
-
-    }
-
 }

@@ -28,33 +28,17 @@ using Ximura.Helper;
 #endregion // using
 namespace Ximura.Collections
 {
-    public abstract class WrapperBase<T> : WrapperBase<T, ICollection<T>>, ICollectionWrapper<T>
+    public class SkipListStructBasedVertexArray<T> : StructBasedVertexArray<T>
     {
-        public WrapperBase()
+
+        protected override void GetSentinelID(int hashCode, bool createSentinel, out int sentIndexID, out int hashID)
         {
+            throw new NotImplementedException();
         }
 
-        public WrapperBase(ICollection<T> Collection)
+        public override void SizeRecalculate(int total)
         {
-            this.Collection = Collection;
+            throw new NotImplementedException();
         }
-
     }
-
-    public abstract class WrapperBase<T,C>
-        where C : class, ICollection<T>
-    {
-        public C Collection { get; set; }
-
-        public WrapperBase()
-        {
-        }
-
-        public WrapperBase(C Collection)
-        {
-            this.Collection = Collection;
-        }
-
-    }
-
 }

@@ -34,8 +34,8 @@ namespace Ximura.Collections
     /// <typeparam name="TKey">The key type.</typeparam>
     /// <typeparam name="TVal">The value type.</typeparam>
     /// <typeparam name="TVert">The vertex type.</typeparam>
-    public partial class LockFreeRedBlackTreeBase<TKey, TVal, TVert> : LockFreeTreeBase
-        where TVert : LockableRedBlackTreeVertex<TKey, TVal>, new()
+    public partial class LockFreeRedBlackTreeBase<TKey, TVal, TVert> : ConcurrentTreeBase
+        where TVert : RedBlackTreeLockableVertex<TKey, TVal>, new()
     {
         #region Declarations
         /// <summary>
@@ -51,7 +51,7 @@ namespace Ximura.Collections
         /// <summary>
         /// This is the root vertex.
         /// </summary>
-        protected LockableRedBlackTreeVertex<TKey, TVal> mRoot;
+        protected RedBlackTreeLockableVertex<TKey, TVal> mRoot;
 
         /// <summary>
         /// This is the equality comparer for the values.
@@ -104,7 +104,7 @@ namespace Ximura.Collections
         /// Returns 0 if the key is equal to the vertex. 
         /// Returns -1 if the key is less than the vertex, and returns 1 if the key is greater than the vertex.
         /// </returns>
-        protected virtual int Compare(TKey key, LockableRedBlackTreeVertex<TKey, TVal> vertex)
+        protected virtual int Compare(TKey key, RedBlackTreeLockableVertex<TKey, TVal> vertex)
         {
             return mTKeyComparer.Compare(key, vertex.Key);
         }
@@ -120,13 +120,13 @@ namespace Ximura.Collections
         protected virtual bool AddInternal(TKey key, TVal item)
         {
             //Create a new vertex and set the values in the vertex.
-            LockableRedBlackTreeVertex<TKey, TVal> insert = new TVert();
+            RedBlackTreeLockableVertex<TKey, TVal> insert = new TVert();
             insert.Key = key;
             insert.Value = item;
             return AddInternal(insert);
         }
 
-        protected virtual bool AddInternal(LockableRedBlackTreeVertex<TKey, TVal> insert)
+        protected virtual bool AddInternal(RedBlackTreeLockableVertex<TKey, TVal> insert)
         {
             bool success = false;
             //We lock the insert node in case it becomes the root node, as we need to set the colour before we can allow other 
@@ -135,13 +135,13 @@ namespace Ximura.Collections
 
             try
             {
-                LockableRedBlackTreeVertex<TKey, TVal> rootVertex = null;
+                RedBlackTreeLockableVertex<TKey, TVal> rootVertex = null;
 
                 //Ok, we need to get the root node, or set the root node.
                 while (rootVertex == null)
                 {
                     //Ok, check whether we are adding the root node.
-                    if (Interlocked.CompareExchange<LockableRedBlackTreeVertex<TKey, TVal>>(ref mRoot, insert, null) == null)
+                    if (Interlocked.CompareExchange<RedBlackTreeLockableVertex<TKey, TVal>>(ref mRoot, insert, null) == null)
                     {
                         //OK, as this is now the root node, we need to set it to black.
                         insert.IsBlack = true;
@@ -180,7 +180,7 @@ namespace Ximura.Collections
         /// <param name="parent">The parent vertex where the search should begin.</param>
         /// <param name="newVertex">The new vertex to insert.</param>
         /// <returns>Returns true if the vertex is inserted successfully.</returns>
-        protected virtual bool InsertInternal(LockableRedBlackTreeVertex<TKey, TVal> parent, LockableRedBlackTreeVertex<TKey, TVal> newVertex)
+        protected virtual bool InsertInternal(RedBlackTreeLockableVertex<TKey, TVal> parent, RedBlackTreeLockableVertex<TKey, TVal> newVertex)
         {
             TreeTraversalWindow<TKey, TVal> window = new TreeTraversalWindow<TKey, TVal>(true);
             try
@@ -325,9 +325,9 @@ namespace Ximura.Collections
         /// </summary>
         protected virtual void ClearInternal()
         {
-            LockableRedBlackTreeVertex<TKey, TVal> oldRoot = mRoot;
+            RedBlackTreeLockableVertex<TKey, TVal> oldRoot = mRoot;
 
-            while (Interlocked.CompareExchange<LockableRedBlackTreeVertex<TKey, TVal>>(ref mRoot, oldRoot, null) != oldRoot)
+            while (Interlocked.CompareExchange<RedBlackTreeLockableVertex<TKey, TVal>>(ref mRoot, oldRoot, null) != oldRoot)
             {
                 oldRoot = mRoot;
             }
@@ -362,7 +362,7 @@ namespace Ximura.Collections
         {
             StringBuilder sb = new StringBuilder();
 
-            LockableRedBlackTreeVertex<TKey, TVal> vertex = mRoot;
+            RedBlackTreeLockableVertex<TKey, TVal> vertex = mRoot;
 
             do
             {

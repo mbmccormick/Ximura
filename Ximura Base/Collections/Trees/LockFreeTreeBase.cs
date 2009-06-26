@@ -28,7 +28,7 @@ using Ximura.Helper;
 #endregion // using
 namespace Ximura.Collections
 {
-    public abstract class LockFreeTreeBase : DisposableBase
+    public abstract class ConcurrentTreeBase : DisposableBase
     {
         #region IsReadOnly
         /// <summary>
