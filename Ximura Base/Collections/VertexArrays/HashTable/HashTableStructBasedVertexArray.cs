@@ -241,16 +241,6 @@ namespace Ximura.Collections
         }
         #endregion
 
-        #region LengthBuckets
-        /// <summary>
-        /// The bucket capacity.
-        /// </summary>
-        public virtual int LengthBuckets
-        {
-            get { return mBuckets.Length; }
-        }
-        #endregion // LengthBuckets
-
         #region SizeRecalculate(int total)
         /// <summary>
         /// This method calculates the current number of bits needed to support the current data.
@@ -291,9 +281,9 @@ namespace Ximura.Collections
         /// </summary>
         /// <param name="hashCode">The hashcode to search for the sentinel position.</param>
         /// <param name="createSentinel">This property determine whether any missing sentinels will be created.</param>
-        /// <param name="sentIndexID">The largest sentinel index ID.</param>
         /// <param name="hashID">The hashID for the hashCode that passed.</param>
-        protected override void GetSentinelID(int hashCode, bool createSentinel, out int sentIndexID, out int hashID)
+        /// <returns>The largest sentinel index ID.</returns>
+        protected override int GetSentinelID(int hashCode, bool createSentinel, out int hashID)
         {
             hashCode &= cnLowerBitMask;
             hashID = BitReverse(hashCode);
@@ -363,7 +353,7 @@ namespace Ximura.Collections
             }
 
             //Ok, set the MSB to indicate the value is a sentinel.
-            sentIndexID = ConvertBucketIDToIndexID(bucketID);
+            return ConvertBucketIDToIndexID(bucketID);
         }
         #endregion // GetSentinel(int hashCode, bool create, out int sentSlotID, out int hashID)
 
@@ -384,8 +374,8 @@ namespace Ximura.Collections
                 return DefaultTContains();
 
             int currVersion = mVersion;
-            int sentIndexID, hashID;
-            GetSentinelID(mEqComparer.GetHashCode(item), false, out sentIndexID, out hashID);
+            int hashID;
+            int sentIndexID =GetSentinelID(mEqComparer.GetHashCode(item), false, out hashID);
 
             //Get the initial sentinel vertex. No need to check locks as sentinels rarely change.
             int scanPosition = sentIndexID;
@@ -420,8 +410,8 @@ namespace Ximura.Collections
             if (!eqComparer.Equals(item, default(T)))
             {
                 int currVersion = Version;
-                int sentIndexID, hashID;
-                GetSentinelID(eqComparer.GetHashCode(item), false, out sentIndexID, out hashID);
+                int hashID;
+                int sentIndexID = GetSentinelID(eqComparer.GetHashCode(item), false, out hashID);
 
                 //Get the initial sentinel vertex. No need to check locks as sentinels rarely change.
                 int scanPosition = sentIndexID;

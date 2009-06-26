@@ -29,6 +29,98 @@ using Ximura.Helper;
 #endregion // using
 namespace Ximura.Collections
 {
+    #region ConcurrentHashSet
+    /// <summary>
+    /// This is the lock-free implementation of the HashSet class using a hash-table based array.
+    /// </summary>
+    /// <typeparam name="T">The collection item type.</typeparam>
+    [DebuggerDisplay("Count = {Count}"), HostProtection(SecurityAction.LinkDemand, MayLeakOnAbort = true)]
+    public class ConcurrentHashSet<T> : ConcurrentHashSet<T, HashTableStructBasedVertexArray<T>>
+    {
+        #region Constructor
+        /// <summary>
+        /// This is the default constructor. The collection will be constructed with a base capacity of 1000.
+        /// </summary>
+        public ConcurrentHashSet()
+            : base(null, 1000, null, false) { }
+
+        /// <summary>
+        /// Initializes a new instance of the class.
+        /// </summary>
+        /// <param name="collection">The values in this enumeration will be loaded in to the collection.</param>
+        public ConcurrentHashSet(IEnumerable<T> collection) : base(null, 1000, collection, false) { }
+
+        /// <summary>
+        /// Initializes a new instance of the class.
+        /// </summary>
+        /// <param name="collection">The values in this enumeration will be loaded in to the collection.</param>
+        /// <param name="isFixedSize">The collection is fixed to the size passed in the capacity parameter.</param>
+        public ConcurrentHashSet(IEnumerable<T> collection, bool isFixedSize) : base(null, isFixedSize ? -1 : 1000, collection, isFixedSize) { }
+
+        /// <summary>
+        /// Initializes a new instance of the class.
+        /// </summary>
+        /// <param name="collection">The values in this enumeration will be loaded in to the collection.</param>
+        /// <param name="comparer">This is the comparer used to detect equality between items in the collection. 
+        /// If this is set to null the default comparer for the type will be used instead./</param>
+        public ConcurrentHashSet(IEqualityComparer<T> comparer, IEnumerable<T> collection)
+            : base(comparer, 1000, collection, false) { }
+
+        /// <summary>
+        /// Initializes a new instance of the class.
+        /// </summary>
+        /// <param name="capacity">The collection initial capacity.</param>
+        public ConcurrentHashSet(int capacity)
+            : base(null, capacity, null, false) { }
+        /// <summary>
+        /// Initializes a new instance of the class.
+        /// </summary>
+        /// <param name="capacity">The collection initial capacity.</param>
+        /// <param name="isFixedSize">The collection is fixed to the size passed in the capacity parameter.</param>
+        public ConcurrentHashSet(int capacity, bool isFixedSize)
+            : base(null, capacity, null, isFixedSize) { }
+
+        /// <summary>
+        /// Initializes a new instance of the class.
+        /// </summary>
+        /// <param name="comparer">This is the comparer used to detect equality between items in the collection. 
+        /// If this is set to null the default comparer for the type will be used instead./</param>
+        /// <param name="capacity">The collection initial capacity.</param>
+        public ConcurrentHashSet(IEqualityComparer<T> comparer, int capacity)
+            : base(comparer, capacity, null, false) { }
+        /// <summary>
+        /// Initializes a new instance of the class.
+        /// </summary>
+        /// <param name="comparer">This is the comparer used to detect equality between items in the collection. 
+        /// If this is set to null the default comparer for the type will be used instead./</param>
+        /// <param name="capacity">The collection initial capacity.</param>
+        /// <param name="isFixedSize">The collection is fixed to the size passed in the capacity parameter.</param>
+        public ConcurrentHashSet(IEqualityComparer<T> comparer, int capacity, bool isFixedSize)
+            : base(comparer, capacity, null, isFixedSize) { }
+
+        /// <summary>
+        /// Initializes a new instance of the class.
+        /// </summary>
+        /// <param name="comparer">This is the comparer used to detect equality between items in the collection. 
+        /// If this is set to null the default comparer for the type will be used instead./</param>
+        /// <param name="capacity">The collection initial capacity.</param>
+        /// <param name="collection">The values in this enumeration will be loaded in to the collection.</param>
+        public ConcurrentHashSet(IEqualityComparer<T> comparer, int capacity, IEnumerable<T> collection)
+            : base(comparer, capacity, collection, false) { }
+        /// <summary>
+        /// Initializes a new instance of the class.
+        /// </summary>
+        /// <param name="comparer">This is the comparer used to detect equality between items in the collection. 
+        /// If this is set to null the default comparer for the type will be used instead./</param>
+        /// <param name="capacity">The collection initial capacity.</param>
+        /// <param name="collection">The values in this enumeration will be loaded in to the collection.</param>
+        /// <param name="isFixedSize">The collection is fixed to the size passed in the capacity parameter.</param>
+        public ConcurrentHashSet(IEqualityComparer<T> comparer, int capacity, IEnumerable<T> collection, bool isFixedSize)
+            : base(comparer, capacity, collection, isFixedSize) { }
+        #endregion // Constructor
+    }
+    #endregion
+
     #region ConcurrentHashSetHTC
     /// <summary>
     /// This is the lock-free implementation of the HashSet class using a hash-table based array.
@@ -213,95 +305,95 @@ namespace Ximura.Collections
     }
     #endregion // ConcurrentHashSetSLC
 
-    #region ConcurrentHashSetHTS
+    #region ConcurrentHashSetSLS
     /// <summary>
     /// This is the lock-free implementation of the HashSet class using a hash-table based array.
     /// </summary>
     /// <typeparam name="T">The collection item type.</typeparam>
     [DebuggerDisplay("Count = {Count}"), HostProtection(SecurityAction.LinkDemand, MayLeakOnAbort = true)]
-    public class ConcurrentHashSetHTS<T> : ConcurrentHashSet<T, HashTableStructBasedVertexArray<T>>
+    public class ConcurrentHashSetSLS<T> : ConcurrentHashSet<T, SkipListStructBasedVertexArray<T>>
     {
         #region Constructor
         /// <summary>
         /// This is the default constructor. The collection will be constructed with a base capacity of 1000.
         /// </summary>
-        public ConcurrentHashSetHTS()
+        public ConcurrentHashSetSLS()
             : base(null, 1000, null, false) { }
 
         /// <summary>
-        /// Initializes a new instance of the LockFreeList<(Of <(T>)>) class
+        /// Initializes a new instance of the class.
         /// </summary>
         /// <param name="collection">The values in this enumeration will be loaded in to the collection.</param>
-        public ConcurrentHashSetHTS(IEnumerable<T> collection) : base(null, 1000, collection, false) { }
+        public ConcurrentHashSetSLS(IEnumerable<T> collection) : base(null, 1000, collection, false) { }
 
         /// <summary>
-        /// Initializes a new instance of the LockFreeList<(Of <(T>)>) class
+        /// Initializes a new instance of the class.
         /// </summary>
         /// <param name="collection">The values in this enumeration will be loaded in to the collection.</param>
         /// <param name="isFixedSize">The collection is fixed to the size passed in the capacity parameter.</param>
-        public ConcurrentHashSetHTS(IEnumerable<T> collection, bool isFixedSize) : base(null, isFixedSize ? -1 : 1000, collection, isFixedSize) { }
+        public ConcurrentHashSetSLS(IEnumerable<T> collection, bool isFixedSize) : base(null, isFixedSize ? -1 : 1000, collection, isFixedSize) { }
 
         /// <summary>
-        /// Initializes a new instance of the LockFreeList<(Of <(T>)>) class
+        /// Initializes a new instance of the class.
         /// </summary>
         /// <param name="collection">The values in this enumeration will be loaded in to the collection.</param>
         /// <param name="comparer">This is the comparer used to detect equality between items in the collection. 
         /// If this is set to null the default comparer for the type will be used instead./</param>
-        public ConcurrentHashSetHTS(IEqualityComparer<T> comparer, IEnumerable<T> collection)
+        public ConcurrentHashSetSLS(IEqualityComparer<T> comparer, IEnumerable<T> collection)
             : base(comparer, 1000, collection, false) { }
 
         /// <summary>
-        /// Initializes a new instance of the LockFreeList<(Of <(T>)>) class
+        /// Initializes a new instance of the class
         /// </summary>
         /// <param name="capacity">The collection initial capacity.</param>
-        public ConcurrentHashSetHTS(int capacity)
+        public ConcurrentHashSetSLS(int capacity)
             : base(null, capacity, null, false) { }
         /// <summary>
-        /// Initializes a new instance of the LockFreeList<(Of <(T>)>) class
+        /// Initializes a new instance of the class.
         /// </summary>
         /// <param name="capacity">The collection initial capacity.</param>
         /// <param name="isFixedSize">The collection is fixed to the size passed in the capacity parameter.</param>
-        public ConcurrentHashSetHTS(int capacity, bool isFixedSize)
+        public ConcurrentHashSetSLS(int capacity, bool isFixedSize)
             : base(null, capacity, null, isFixedSize) { }
 
         /// <summary>
-        /// Initializes a new instance of the LockFreeList<(Of <(T>)>) class
+        /// Initializes a new instance of the class.
         /// </summary>
         /// <param name="comparer">This is the comparer used to detect equality between items in the collection. 
         /// If this is set to null the default comparer for the type will be used instead./</param>
         /// <param name="capacity">The collection initial capacity.</param>
-        public ConcurrentHashSetHTS(IEqualityComparer<T> comparer, int capacity)
+        public ConcurrentHashSetSLS(IEqualityComparer<T> comparer, int capacity)
             : base(comparer, capacity, null, false) { }
         /// <summary>
-        /// Initializes a new instance of the LockFreeList<(Of <(T>)>) class
+        /// Initializes a new instance of the class.
         /// </summary>
         /// <param name="comparer">This is the comparer used to detect equality between items in the collection. 
         /// If this is set to null the default comparer for the type will be used instead./</param>
         /// <param name="capacity">The collection initial capacity.</param>
         /// <param name="isFixedSize">The collection is fixed to the size passed in the capacity parameter.</param>
-        public ConcurrentHashSetHTS(IEqualityComparer<T> comparer, int capacity, bool isFixedSize)
+        public ConcurrentHashSetSLS(IEqualityComparer<T> comparer, int capacity, bool isFixedSize)
             : base(comparer, capacity, null, isFixedSize) { }
 
         /// <summary>
-        /// Initializes a new instance of the LockFreeList<(Of <(T>)>) class
+        /// Initializes a new instance of the class.
         /// </summary>
         /// <param name="comparer">This is the comparer used to detect equality between items in the collection. 
         /// If this is set to null the default comparer for the type will be used instead./</param>
         /// <param name="capacity">The collection initial capacity.</param>
         /// <param name="collection">The values in this enumeration will be loaded in to the collection.</param>
-        public ConcurrentHashSetHTS(IEqualityComparer<T> comparer, int capacity, IEnumerable<T> collection)
+        public ConcurrentHashSetSLS(IEqualityComparer<T> comparer, int capacity, IEnumerable<T> collection)
             : base(comparer, capacity, collection, false) { }
         /// <summary>
-        /// Initializes a new instance of the LockFreeList<(Of <(T>)>) class
+        /// Initializes a new instance of the class.
         /// </summary>
         /// <param name="comparer">This is the comparer used to detect equality between items in the collection. 
         /// If this is set to null the default comparer for the type will be used instead./</param>
         /// <param name="capacity">The collection initial capacity.</param>
         /// <param name="collection">The values in this enumeration will be loaded in to the collection.</param>
         /// <param name="isFixedSize">The collection is fixed to the size passed in the capacity parameter.</param>
-        public ConcurrentHashSetHTS(IEqualityComparer<T> comparer, int capacity, IEnumerable<T> collection, bool isFixedSize)
+        public ConcurrentHashSetSLS(IEqualityComparer<T> comparer, int capacity, IEnumerable<T> collection, bool isFixedSize)
             : base(comparer, capacity, collection, isFixedSize) { }
         #endregion // Constructor
     }
-    #endregion // ConcurrentHashSetHTS
+    #endregion
 }

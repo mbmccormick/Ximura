@@ -31,7 +31,8 @@ namespace Ximura.Collections
     public class SkipListStructBasedVertexArray<T> : StructBasedVertexArray<T>
     {
 
-        protected override void GetSentinelID(int hashCode, bool createSentinel, out int sentIndexID, out int hashID)
+
+        protected override int GetSentinelID(int hashCode, bool createSentinel, out int hashID)
         {
             throw new NotImplementedException();
         }

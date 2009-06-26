@@ -202,11 +202,16 @@ namespace Ximura.Collections
         }
         #endregion // GetSentinelID(int hashCode, bool createSentinel, out int hashID)
 
+        #region FastContains
         /// <summary>
         /// This class supports a fast search algorithm
         /// </summary>
         public override bool SupportsFastContain{get{return true;}}
-
+        /// <summary>
+        /// This method implements a fast search algoritm.
+        /// </summary>
+        /// <param name="item">The item to search for.</param>
+        /// <returns>Returns true if found, false if not found, and null if the search encountered modified data.</returns>
         public override bool? FastContains(T item)
         {
             //Is this a null or default value?
@@ -239,5 +244,7 @@ namespace Ximura.Collections
             ContainScanUnlockedMiss();
             return null;
         }
+        #endregion // FastContains
+
     }
 }

@@ -29,111 +29,111 @@ using Ximura.Helper;
 #endregion // using
 namespace Ximura.Collections
 {
-    #region ConcurrentDictionaryHTS
+    #region ConcurrentDictionary
     /// <summary>
     /// This class is a concurrent lock-free implementation of the IDictionary interface using a hash-table based array.
     /// </summary>
     /// <typeparam name="TKey">The dictionary key type.</typeparam>
     /// <typeparam name="TValue">The dictionary value type.</typeparam>
     [DebuggerDisplay("Count = {Count}"), HostProtection(SecurityAction.LinkDemand, MayLeakOnAbort = true)]
-    public class ConcurrentDictionaryHTS<TKey, TValue> : ConcurrentDictionary<TKey, TValue, HashTableStructBasedVertexArray<KeyValuePair<TKey, TValue>>>
+    public class ConcurrentDictionary<TKey, TValue> : ConcurrentDictionary<TKey, TValue, HashTableStructBasedVertexArray<KeyValuePair<TKey, TValue>>>
     {
         #region Constructor
         /// <summary>
         /// This is the default constructor. The collection will be constructed with a base capacity of 1000.
         /// </summary>
-        public ConcurrentDictionaryHTS()
+        public ConcurrentDictionary()
             : base(new KeyValueOnlyKeyEqualityComparer<TKey, TValue>(), 1000, null, false) { }
 
         /// <summary>
-        /// Initializes a new instance of the ConcurrentDictionaryHTS<(Of <(T>)>) class
+        /// Initializes a new instance of the class
         /// </summary>
         /// <param name="collection">The values in this enumeration will be loaded in to the collection.</param>
-        public ConcurrentDictionaryHTS(IEnumerable<KeyValuePair<TKey,TValue>> collection)
+        public ConcurrentDictionary(IEnumerable<KeyValuePair<TKey,TValue>> collection)
             : base(new KeyValueOnlyKeyEqualityComparer<TKey, TValue>(), 1000, collection, false) { }
 
         /// <summary>
-        /// Initializes a new instance of the ConcurrentDictionaryHTS<(Of <(T>)>) class
+        /// Initializes a new instance of the class
         /// </summary>
         /// <param name="collection">The values in this enumeration will be loaded in to the collection. Set this to null if not required.</param>
         /// <param name="isFixedSize">The collection is fixed to the size passed in the capacity parameter.</param>
-        public ConcurrentDictionaryHTS(IEnumerable<KeyValuePair<TKey, TValue>> collection, bool isFixedSize)
+        public ConcurrentDictionary(IEnumerable<KeyValuePair<TKey, TValue>> collection, bool isFixedSize)
             : base(new KeyValueOnlyKeyEqualityComparer<TKey, TValue>(), isFixedSize ? -1 : 1000, collection, isFixedSize) { }
 
         /// <summary>
-        /// Initializes a new instance of the ConcurrentDictionaryHTS<(Of <(T>)>) class
+        /// Initializes a new instance of the class
         /// </summary>
         /// <param name="collection">The values in this enumeration will be loaded in to the collection. Set this to null if not required.</param>
         /// <param name="comparer">This is the comparer used to detect equality between items in the collection. 
         /// If this is set to null the default comparer for the type will be used instead./</param>
-        public ConcurrentDictionaryHTS(IEqualityComparer<TKey> comparer, IEnumerable<KeyValuePair<TKey, TValue>> collection)
+        public ConcurrentDictionary(IEqualityComparer<TKey> comparer, IEnumerable<KeyValuePair<TKey, TValue>> collection)
             : base(new KeyValueOnlyKeyEqualityComparer<TKey, TValue>(comparer), 1000, collection, false) { }
 
         /// <summary>
-        /// Initializes a new instance of the ConcurrentDictionaryHTS<(Of <(T>)>) class
+        /// Initializes a new instance of the class
         /// </summary>
         /// <param name="capacity">The collection initial capacity.</param>
-        public ConcurrentDictionaryHTS(int capacity)
+        public ConcurrentDictionary(int capacity)
             : base(new KeyValueOnlyKeyEqualityComparer<TKey, TValue>(), capacity, null, false) { }
         /// <summary>
-        /// Initializes a new instance of the ConcurrentDictionaryHTS<(Of <(T>)>) class
+        /// Initializes a new instance of the class
         /// </summary>
         /// <param name="capacity">The collection initial capacity.</param>
         /// <param name="isFixedSize">The collection is fixed to the size passed in the capacity parameter.</param>
-        public ConcurrentDictionaryHTS(int capacity, bool isFixedSize)
+        public ConcurrentDictionary(int capacity, bool isFixedSize)
             : base(new KeyValueOnlyKeyEqualityComparer<TKey, TValue>(), capacity, null, isFixedSize) { }
 
         /// <summary>
-        /// Initializes a new instance of the ConcurrentDictionaryHTS<(Of <(T>)>) class
+        /// Initializes a new instance of the class
         /// </summary>
         /// <param name="comparer">This is the comparer used to detect equality between items in the collection. 
         /// If this is set to null the default comparer for the type will be used instead./</param>
         /// <param name="capacity">The collection initial capacity.</param>
-        public ConcurrentDictionaryHTS(IEqualityComparer<TKey> comparer, int capacity)
+        public ConcurrentDictionary(IEqualityComparer<TKey> comparer, int capacity)
             : base(new KeyValueOnlyKeyEqualityComparer<TKey, TValue>(comparer), capacity, null, false) { }
         /// <summary>
-        /// Initializes a new instance of the ConcurrentDictionaryHTS<(Of <(T>)>) class
+        /// Initializes a new instance of the class
         /// </summary>
         /// <param name="comparer">This is the comparer used to detect equality between items in the collection. 
         /// If this is set to null the default comparer for the type will be used instead./</param>
         /// <param name="capacity">The collection initial capacity.</param>
         /// <param name="isFixedSize">The collection is fixed to the size passed in the capacity parameter.</param>
-        public ConcurrentDictionaryHTS(IEqualityComparer<TKey> comparer, int capacity, bool isFixedSize)
+        public ConcurrentDictionary(IEqualityComparer<TKey> comparer, int capacity, bool isFixedSize)
             : base(new KeyValueOnlyKeyEqualityComparer<TKey, TValue>(comparer), capacity, null, isFixedSize) { }
 
         /// <summary>
-        /// Initializes a new instance of the ConcurrentDictionaryHTS<(Of <(T>)>) class
+        /// Initializes a new instance of the class
         /// </summary>
         /// <param name="comparer">This is the comparer used to detect equality between items in the collection. 
         /// If this is set to null the default comparer for the type will be used instead./</param>
         /// <param name="capacity">The collection initial capacity.</param>
         /// <param name="collection">The values in this enumeration will be loaded in to the collection. Set this to null if not required.</param>
-        public ConcurrentDictionaryHTS(IEqualityComparer<TKey> comparer, int capacity, IEnumerable<KeyValuePair<TKey, TValue>> collection)
+        public ConcurrentDictionary(IEqualityComparer<TKey> comparer, int capacity, IEnumerable<KeyValuePair<TKey, TValue>> collection)
             : base(new KeyValueOnlyKeyEqualityComparer<TKey, TValue>(comparer), capacity, collection, false) { }
         /// <summary>
-        /// Initializes a new instance of the ConcurrentDictionaryHTS<(Of <(T>)>) class
+        /// Initializes a new instance of the class
         /// </summary>
         /// <param name="comparer">This is the comparer used to detect equality between items in the collection. 
         /// If this is set to null the default comparer for the type will be used instead./</param>
         /// <param name="capacity">The collection initial capacity.</param>
         /// <param name="collection">The values in this enumeration will be loaded in to the collection. Set this to null if not required.</param>
         /// <param name="isFixedSize">The collection is fixed to the size passed in the capacity parameter.</param>
-        public ConcurrentDictionaryHTS(IEqualityComparer<TKey> comparer, int capacity, IEnumerable<KeyValuePair<TKey, TValue>> collection, bool isFixedSize)
+        public ConcurrentDictionary(IEqualityComparer<TKey> comparer, int capacity, IEnumerable<KeyValuePair<TKey, TValue>> collection, bool isFixedSize)
             : base(new KeyValueOnlyKeyEqualityComparer<TKey, TValue>(comparer), capacity, collection, isFixedSize) { }
 
         /// <summary>
-        /// Initializes a new instance of the ConcurrentDictionaryHTS<(Of <(T>)>) class
+        /// Initializes a new instance of the class
         /// </summary>
         /// <param name="comparer">This is the comparer that allows a custom value comparer to be set in addition to a custom key comparer.</param>
         /// <param name="capacity">The collection initial capacity.</param>
         /// <param name="collection">The values in this enumeration will be loaded in to the collection. Set this to null if not required.</param>
         /// <param name="isFixedSize">The collection is fixed to the size passed in the capacity parameter.</param>
-        public ConcurrentDictionaryHTS(KeyValueOnlyKeyEqualityComparer<TKey, TValue> comparer, int capacity, IEnumerable<KeyValuePair<TKey, TValue>> collection, bool isFixedSize)
+        public ConcurrentDictionary(KeyValueOnlyKeyEqualityComparer<TKey, TValue> comparer, int capacity, IEnumerable<KeyValuePair<TKey, TValue>> collection, bool isFixedSize)
             : base(comparer, capacity, collection, isFixedSize) { }
 
         #endregion // Constructor
     }
-    #endregion // ConcurrentDictionaryHTS
+    #endregion // ConcurrentDictionary
 
     #region ConcurrentDictionarySLC
     /// <summary>

@@ -181,16 +181,6 @@ namespace Ximura.Collections
         }
         #endregion // EmptyAdd(int index)
 
-        #region Length
-        /// <summary>
-        /// The data capacity.
-        /// </summary>
-        public virtual int Length
-        {
-            get { return mSlots.Length; }
-        }
-        #endregion // Length
-
         #region ItemIsLocked(int index)
         /// <summary>
         /// This method checks whether an item in the collection is locked.
@@ -313,11 +303,10 @@ namespace Ximura.Collections
         /// </summary>
         /// <param name="hashCode">The hashcode to search for the sentinel position.</param>
         /// <param name="createSentinel">This property determine whether any missing sentinels will be created.</param>
-        /// <param name="sentIndexID">The largest sentinel index ID.</param>
         /// <param name="hashID">The hashID for the hashCode that passed.</param>
-        protected abstract void GetSentinelID(int hashCode, bool createSentinel, out int sentIndexID, out int hashID);
+        /// <returns>The largest sentinel index ID.</returns>
+        protected abstract int GetSentinelID(int hashCode, bool createSentinel, out int hashID);
         #endregion
-
 
         #region VertexWindowGet(int index)
         /// <summary>
@@ -339,8 +328,8 @@ namespace Ximura.Collections
         public override IVertexWindow<T> VertexWindowGet(T item, bool createSentinel)
         {
             int hashCode = mEqComparer.GetHashCode(item);
-            int sentIndexID, hashID;
-            GetSentinelID(mEqComparer.GetHashCode(item), createSentinel, out sentIndexID, out hashID);
+            int hashID;
+            int sentIndexID = GetSentinelID(mEqComparer.GetHashCode(item), createSentinel, out hashID);
 
             //Ok, set the MSB to indicate the value is a sentinel.
             return new StructBasedVertexWindow<T>(this, mEqComparer, sentIndexID, hashID, item);

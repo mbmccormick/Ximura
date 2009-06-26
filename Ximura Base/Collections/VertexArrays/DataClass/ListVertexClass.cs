@@ -162,6 +162,7 @@ namespace Ximura.Collections
 #endif
     }
     #endregion // VertexClassBase<T>
+
     #region VertexClassData<T>
     /// <summary>
     /// This vertex class holds the collection data.
