@@ -28,19 +28,19 @@ using System.Text;
 using Ximura;
 using Ximura.Helper;
 #endregion // using
-namespace Ximura.Collections
+namespace Ximura.Collections.Data
 {
     /// <summary>
     /// 
     /// </summary>
     /// <typeparam name="T">The data type.</typeparam>
-    public class VertexClassSentinel<T> : VertexClass<T>
+    public class CollectionVertexClassSentinel<T> : CollectionVertexClass<T>
     {
         #region Constructor
         /// <summary>
         /// This is the default constructor.
         /// </summary>
-        public VertexClassSentinel():base()
+        public CollectionVertexClassSentinel():base()
         {
             Up = null;
             Down = null;
@@ -49,7 +49,7 @@ namespace Ximura.Collections
         /// <summary>
         /// This is the default constructor.
         /// </summary>
-        public VertexClassSentinel(int hashID, VertexClass<T> down)
+        public CollectionVertexClassSentinel(int hashID, CollectionVertexClass<T> down)
             : base()
         {
             Up = null;
@@ -79,13 +79,13 @@ namespace Ximura.Collections
         /// <summary>
         /// The Up sentinel.
         /// </summary>
-        public override VertexClass<T> Up { get; set; }
+        public override CollectionVertexClass<T> Up { get; set; }
         #endregion // Up
         #region Down
         /// <summary>
         /// The down item.
         /// </summary>
-        public override VertexClass<T> Down { get; set; }
+        public override CollectionVertexClass<T> Down { get; set; }
         #endregion // Down
 
         #region IDisposable Members

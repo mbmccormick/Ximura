@@ -27,7 +27,7 @@ using System.Runtime.InteropServices;
 using Ximura;
 using Ximura.Helper;
 #endregion // using
-namespace Ximura.Collections
+namespace Ximura.Collections.Data
 {
     public interface ICollectionVertex
     {

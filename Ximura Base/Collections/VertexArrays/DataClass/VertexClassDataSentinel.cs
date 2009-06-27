@@ -28,19 +28,19 @@ using System.Text;
 using Ximura;
 using Ximura.Helper;
 #endregion // using
-namespace Ximura.Collections
+namespace Ximura.Collections.Data
 {
     /// <summary>
     /// This class is a base sentinel for the linked list.
     /// </summary>
     /// <typeparam name="T">The data type.</typeparam>
-    public class VertexClassDataSentinel<T> : VertexClass<T>
+    public class CollectionVertexClassDataSentinel<T> : CollectionVertexClass<T>
     {
         #region Constructor
         /// <summary>
         /// This is the default constructor.
         /// </summary>
-        public VertexClassDataSentinel()
+        public CollectionVertexClassDataSentinel()
             : base()
         {
         }
@@ -49,7 +49,7 @@ namespace Ximura.Collections
         /// <summary>
         /// This is the default constructor.
         /// </summary>
-        public VertexClassDataSentinel(int hashID)
+        public CollectionVertexClassDataSentinel(int hashID)
             : base()
         {
             HashID = hashID;

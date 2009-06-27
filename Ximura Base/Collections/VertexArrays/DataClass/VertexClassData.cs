@@ -28,19 +28,19 @@ using System.Text;
 using Ximura;
 using Ximura.Helper;
 #endregion // using
-namespace Ximura.Collections
+namespace Ximura.Collections.Data
 {
     /// <summary>
     /// This vertex class holds the collection data.
     /// </summary>
     /// <typeparam name="T">The data type.</typeparam>
-    public class VertexClassData<T> : VertexClass<T>
+    public class CollectionVertexClassData<T> : CollectionVertexClass<T>
     {
         #region Constructor
         /// <summary>
         /// This is the default constructor.
         /// </summary>
-        public VertexClassData():base()
+        public CollectionVertexClassData():base()
         {
             Value = default(T);
         }
@@ -48,7 +48,7 @@ namespace Ximura.Collections
         /// <summary>
         /// This is the default constructor.
         /// </summary>
-        public VertexClassData(T item, int hashID):base()
+        public CollectionVertexClassData(T item, int hashID):base()
         {
             Value = item;
             HashID = hashID;

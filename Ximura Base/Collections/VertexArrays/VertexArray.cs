@@ -27,6 +27,7 @@ using System.Text;
 
 using Ximura;
 using Ximura.Helper;
+using Ximura.Collections.Data;
 #endregion // using
 namespace Ximura.Collections
 {

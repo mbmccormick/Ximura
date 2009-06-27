@@ -28,7 +28,7 @@ using System.Text;
 using Ximura;
 using Ximura.Helper;
 #endregion // using
-namespace Ximura.Collections
+namespace Ximura.Collections.Data
 {
     public interface IVertexWindow<T>
     {

@@ -39,6 +39,80 @@ namespace Ximura.Collections
     public class ConcurrentDictionary<TKey, TValue, A> : CollectionHelperBase<KeyValuePair<TKey, TValue>, A>, IDictionary<TKey, TValue>
         where A : class, IVertexArray<KeyValuePair<TKey, TValue>>, new()
     {
+        #region Class -> KeyValueOnlyKeyEqualityComparer
+        /// <summary>
+        /// This comparer is used to only report the key for the hashcode and equality comparer.
+        /// </summary>
+        /// <typeparam name="TKey">The key type.</typeparam>
+        /// <typeparam name="TValue">The value type.</typeparam>
+        protected class KeyValueOnlyKeyEqualityComparer<TKey, TValue> : IEqualityComparer<KeyValuePair<TKey, TValue>>
+        {
+            #region Constructors
+            /// <summary>
+            /// This is the default constructor.
+            /// </summary>
+            public KeyValueOnlyKeyEqualityComparer() : this(null, null) { }
+            /// <summary>
+            /// This constructor allows a custom key and value equality comparer to be passed to the class.
+            /// </summary>
+            /// <param name="keyComparer">The key comparer. If this is null, the default comparer is used.</param>
+            public KeyValueOnlyKeyEqualityComparer(IEqualityComparer<TKey> keyComparer) : this(keyComparer, null) { }
+            /// <summary>
+            /// This constructor allows a custom key and value equality comparers to be passed to the class.
+            /// </summary>
+            /// <param name="keyComparer">The key comparer. If this is null, the default comparer is used.</param>
+            /// <param name="valueComparer">The value comparer. If this is null, the default comparer is used.</param>
+            public KeyValueOnlyKeyEqualityComparer(IEqualityComparer<TKey> keyComparer, IEqualityComparer<TValue> valueComparer)
+            {
+                if (keyComparer == null)
+                    KeyComparer = EqualityComparer<TKey>.Default;
+                else
+                    KeyComparer = keyComparer;
+
+                if (valueComparer == null)
+                    ValueComparer = EqualityComparer<TValue>.Default;
+                else
+                    ValueComparer = valueComparer;
+            }
+            #endregion // Constructors
+            #region KeyComparer
+            /// <summary>
+            /// This is the key comparer.
+            /// </summary>
+            public IEqualityComparer<TKey> KeyComparer { get; private set; }
+            #endregion // Declarations
+            #region ValueComparer
+            /// <summary>
+            /// This is the key comparer.
+            /// </summary>
+            public IEqualityComparer<TValue> ValueComparer { get; private set; }
+            #endregion // Declarations
+
+            #region Equals(KeyValuePair<TKey, TValue> x, KeyValuePair<TKey, TValue> y)
+            /// <summary>
+            /// This method only compares the key of the keyvalue pair for equality.
+            /// </summary>
+            /// <param name="x">The first keyvalue pair.</param>
+            /// <param name="y">The second keyvalue pair.</param>
+            /// <returns>Returns true if the keys are equal.</returns>
+            public bool Equals(KeyValuePair<TKey, TValue> x, KeyValuePair<TKey, TValue> y)
+            {
+                return KeyComparer.Equals(x.Key, y.Key);
+            }
+            #endregion // Equals(KeyValuePair<TKey, TValue> x, KeyValuePair<TKey, TValue> y)
+            #region GetHashCode(KeyValuePair<TKey, TValue> obj)
+            /// <summary>
+            /// The method returns the hashcode for the key of the keyvalue pair.
+            /// </summary>
+            /// <param name="obj">The object to get the hashcode.</param>
+            /// <returns>Returns the key hashcode.</returns>
+            public int GetHashCode(KeyValuePair<TKey, TValue> obj)
+            {
+                return KeyComparer.GetHashCode(obj.Key);
+            }
+            #endregion // GetHashCode(KeyValuePair<TKey, TValue> obj)
+        }
+        #endregion // KeyValueOnlyKeyEqualityComparer
         #region Constructor
         /// <summary>
         /// This is the default constructor. The collection will be constructed with a base capacity of 1000.
@@ -129,7 +203,7 @@ namespace Ximura.Collections
         /// <param name="capacity">The collection initial capacity.</param>
         /// <param name="collection">The values in this enumeration will be loaded in to the collection. Set this to null if not required.</param>
         /// <param name="isFixedSize">The collection is fixed to the size passed in the capacity parameter.</param>
-        public ConcurrentDictionary(KeyValueOnlyKeyEqualityComparer<TKey, TValue> comparer, int capacity, IEnumerable<KeyValuePair<TKey, TValue>> collection, bool isFixedSize)
+        protected ConcurrentDictionary(KeyValueOnlyKeyEqualityComparer<TKey, TValue> comparer, int capacity, IEnumerable<KeyValuePair<TKey, TValue>> collection, bool isFixedSize)
             : base(comparer, capacity, collection, isFixedSize) { }
 
         #endregion // Constructor

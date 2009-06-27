@@ -25,6 +25,8 @@ using System.Threading;
 
 using Ximura;
 using Ximura.Helper;
+using Ximura.Collections;
+using Ximura.Collections.Data;
 #endregion // using
 namespace Ximura.Collections
 {
@@ -115,21 +117,21 @@ namespace Ximura.Collections
         /// <param name="createSentinel"></param>
         /// <param name="hashID"></param>
         /// <returns></returns>
-        protected override VertexClass<T> GetSentinelID(int hashCode, bool createSentinel, out int hashID)
+        protected override CollectionVertexClass<T> GetSentinelID(int hashCode, bool createSentinel, out int hashID)
         {
             try
             {
                 hashCode &= cnLowerBitMask;
                 hashID = BitReverse(hashCode);
 
-                VertexClass<T>[] path = null;
+                CollectionVertexClass<T>[] path = null;
 
                 //OK, create a path to the root sentinel.
                 if (createSentinel)
-                    path = new VertexClass<T>[LevelCurrent + 1];
+                    path = new CollectionVertexClass<T>[LevelCurrent + 1];
 
                 int index = 0;
-                VertexClass<T> currSentinel = mData[LevelCurrent - 1];
+                CollectionVertexClass<T> currSentinel = mData[LevelCurrent - 1];
                 if (createSentinel)
                     path[0] = currSentinel;
 
@@ -222,7 +224,7 @@ namespace Ximura.Collections
 
             //Get the initial sentinel vertex. No need to check locks as sentinels rarely change.
             int hashID;
-            VertexClass<T> scanVertex = GetSentinelID(mEqComparer.GetHashCode(item), false, out hashID);
+            CollectionVertexClass<T> scanVertex = GetSentinelID(mEqComparer.GetHashCode(item), false, out hashID);
 
             //First we will attempt to search without locking. However, should the version ID change 
             //during the search we will need to complete a locked search to ensure consistency.

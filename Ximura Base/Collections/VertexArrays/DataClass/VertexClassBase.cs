@@ -25,19 +25,19 @@ using System.Threading;
 using Ximura;
 using Ximura.Helper;
 #endregion // using
-namespace Ximura.Collections
+namespace Ximura.Collections.Data
 {
     /// <summary>
     /// This is the base tree vertex class.
     /// </summary>
     /// <typeparam name="T">The value data type.</typeparam>
-    public abstract class VertexClassBase<T> : LockableBase
+    public abstract class CollectionVertexClassBase<T> : LockableBase
     {
         #region Constructor
         /// <summary>
         /// This is the default constructor.
         /// </summary>
-        public VertexClassBase()
+        public CollectionVertexClassBase()
         {
             Value = default(T);
         }

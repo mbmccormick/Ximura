@@ -27,6 +27,8 @@ using System.Text;
 
 using Ximura;
 using Ximura.Helper;
+using Ximura.Collections;
+using Ximura.Collections.Data;
 #endregion // using
 namespace Ximura.Collections
 {
@@ -34,7 +36,7 @@ namespace Ximura.Collections
     /// The vertex window structure holds the search results from a scan.
     /// </summary>
     /// <typeparam name="T">The collection type.</typeparam>
-    //[StructLayout(LayoutKind.Sequential)]
+    [StructLayout(LayoutKind.Sequential)]
     public struct StructBasedVertexWindow<T> : IVertexWindow<T>
     {
         #region Declarations
@@ -50,11 +52,11 @@ namespace Ximura.Collections
         /// <summary>
         /// THe current vertex.
         /// </summary>
-        private VertexStruct<T> Curr;
+        private CollectionVertexStruct<T> Curr;
         /// <summary>
         /// The next vertex.
         /// </summary>
-        private VertexStruct<T> Next;
+        private CollectionVertexStruct<T> Next;
         #endregion // Declarations
         #region Constructor
         /// <summary>
@@ -79,7 +81,7 @@ namespace Ximura.Collections
                 Next = mData[Curr.NextSlotIDPlus1 - 1];
             }
             else
-                Next = new VertexStruct<T>();
+                Next = new CollectionVertexStruct<T>();
         }
         #endregion // Constructor
 
@@ -128,7 +130,7 @@ namespace Ximura.Collections
             if (!Curr.IsTerminator)
                 mData.ItemUnlock(Curr.NextSlotIDPlus1 - 1);
 
-            Next = new VertexStruct<T>(mHashID, mItem, Curr.NextSlotIDPlus1);
+            Next = new CollectionVertexStruct<T>(mHashID, mItem, Curr.NextSlotIDPlus1);
 
             Curr.NextSlotIDPlus1 = newSlot + 1;
 
@@ -152,7 +154,7 @@ namespace Ximura.Collections
             if (!Curr.IsTerminator)
                 mData.ItemUnlock(Curr.NextSlotIDPlus1 - 1);
 
-            Next = VertexStruct<T>.Sentinel(mHashID, Curr.NextSlotIDPlus1);
+            Next = CollectionVertexStruct<T>.Sentinel(mHashID, Curr.NextSlotIDPlus1);
 
             Curr.NextSlotIDPlus1 = indexID + 1;
 
@@ -198,7 +200,7 @@ namespace Ximura.Collections
                 if (Next.IsTerminator)
                 {
                     Curr = Next;
-                    Next = new VertexStruct<T>();
+                    Next = new CollectionVertexStruct<T>();
                     break;
                 }
 
@@ -230,7 +232,7 @@ namespace Ximura.Collections
                 Next = mData[Curr.NextSlotIDPlus1 - 1];
             }
             else
-                Next = new VertexStruct<T>();
+                Next = new CollectionVertexStruct<T>();
 
             return true;
         }
@@ -278,7 +280,7 @@ namespace Ximura.Collections
                 Next = mData[Curr.NextSlotIDPlus1 - 1];
             }
             else
-                Next = new VertexStruct<T>();
+                Next = new CollectionVertexStruct<T>();
 
             //Add the empty item for re-allocation.
             mData.EmptyAdd(removedItem);

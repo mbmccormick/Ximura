@@ -152,29 +152,6 @@ namespace Ximura.Helper
             }
         }
         #endregion // HasValue
-        
-        //#region implicit operator T
-        ///// <summary>
-        ///// This method converts the lockable wrapper to the core type.
-        ///// </summary>
-        ///// <param name="value">The core value.</param>
-        ///// <returns>Returns the enclosed value.</returns>
-        //public static implicit operator T(LockableWrapper<T> value)
-        //{
-        //    return value.Value;
-        //}
-        //#endregion // implicit operator T
-        //#region implicit operator LockableWrapper<T>
-        ///// <summary>
-        ///// This method converts the value in to a lockable wrapper.
-        ///// </summary>
-        ///// <param name="value">The core value.</param>
-        ///// <returns>Returns a new LockableWrapper</returns>
-        //public static implicit operator LockableWrapper<T>(T value)
-        //{
-        //    return new LockableWrapper<T>(value);
-        //}
-        //#endregion // implicit operator LockableWrapper<T>
 
         #region ToString()
         /// <summary>

@@ -207,7 +207,6 @@
     <Compile Include="Attributes\XimuraAppModuleConfigAttribute.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Collections\Arrays\FineGrainedLockArray.cs" />
     <Compile Include="Collections\Collections\CollectionHelperBase.cs" />
     <Compile Include="Collections\Collections\CollectionHelperBase_Debug.cs" />
     <Compile Include="Collections\Collections\ConcurrentDictionary.cs" />
@@ -217,8 +216,6 @@
     <Compile Include="Collections\Collections\ConcurrentPool.cs" />
     <Compile Include="Collections\Collections\ConcurrentPriorityQueue.cs" />
     <Compile Include="Collections\Collections\ConcurrentStack.cs" />
-    <Compile Include="Collections\Collections\Concurrent2DMatrix.cs" />
-    <Compile Include="Collections\Comparers\KeyValueOnlyKeyEqualityComparer.cs" />
     <Compile Include="Collections\ConcurrentDictionary.cs" />
     <Compile Include="Collections\ConcurrentList.cs" />
     <Compile Include="Collections\ConcurrentHashSet.cs" />
@@ -230,7 +227,6 @@
     <Compile Include="Collections\Graphs\DirectedAcyclicalGraph.cs" />
     <Compile Include="Collections\Graphs\Graph.cs" />
     <Compile Include="Collections\Interfaces\ICollectionBase.cs" />
-    <Compile Include="Collections\Interfaces\ICollectionHelperBase.cs" />
     <Compile Include="Collections\Interfaces\ICollectionState.cs" />
     <Compile Include="Collections\Interfaces\ICollectionVertex.cs" />
     <Compile Include="Collections\Interfaces\ICollectionWrapper.cs" />
@@ -252,11 +248,14 @@
     <Compile Include="Collections\Trees\RedBlackTree\LockFreeRedBlackTreeBase_Main.cs" />
     <Compile Include="Collections\Trees\RedBlackTree\LockFreeRedBlackTreeBase_Rebalancing.cs" />
     <Compile Include="Collections\Trees\RedBlackTree\LockFreeRedBlackTreeBase_Sync.cs" />
+    <Compile Include="Collections\VertexArrays\Arrays\FineGrainedLockArray.cs" />
     <Compile Include="Collections\VertexArrays\ClassBasedVertexArray.cs" />
+    <Compile Include="Collections\VertexArrays\DataClass\ClassBasedVertexWindow.cs" />
     <Compile Include="Collections\VertexArrays\DataClass\VertexClassSentinel.cs" />
     <Compile Include="Collections\VertexArrays\DataClass\VertexClassDataSentinel.cs" />
     <Compile Include="Collections\VertexArrays\DataClass\VertexClassData.cs" />
     <Compile Include="Collections\VertexArrays\DataClass\VertexClassBase.cs" />
+    <Compile Include="Collections\VertexArrays\DataStruct\StructBasedVertexWindow.cs" />
     <Compile Include="Collections\VertexArrays\DataStruct\VertexStruct.cs" />
     <Compile Include="Collections\VertexArrays\DataClass\VertexClass.cs" />
     <Compile Include="Collections\VertexArrays\HashTable\HashTableClassBasedVertexArray.cs" />
@@ -266,12 +265,10 @@
     <Compile Include="Collections\VertexArrays\SkipList\SkipListStructBasedVertexArray.cs" />
     <Compile Include="Collections\VertexArrays\StructBasedVertexArray.cs" />
     <Compile Include="Collections\VertexArrays\VertexArray.cs" />
-    <Compile Include="Collections\VertexArrays\Windows\ClassBasedVertexWindow.cs" />
-    <Compile Include="Collections\VertexArrays\Windows\StructBasedVertexWindow.cs" />
-    <Compile Include="Collections\Wrappers\CourseGrainedICollectionWrapper.cs" />
-    <Compile Include="Collections\Wrappers\InterlockedICollectionWrapper.cs" />
-    <Compile Include="Collections\Wrappers\ReadWriteICollectionWrapper.cs" />
-    <Compile Include="Collections\Wrappers\WrapperBase.cs" />
+    <Compile Include="Collections\CollectionWrappers\CollectionWrapperCourseGrained.cs" />
+    <Compile Include="Collections\CollectionWrappers\CollectionWrapperInterlocked.cs" />
+    <Compile Include="Collections\CollectionWrappers\CollectionWrapperReadWrite.cs" />
+    <Compile Include="Collections\CollectionWrappers\CollectionWrapperBase.cs" />
     <Compile Include="Command\CommandCallbacks.cs" />
     <Compile Include="Command\Data\EnvelopeAddress.cs" />
     <Compile Include="Command\Interfaces\IXimuraEnvelopeHelper.cs" />
@@ -471,9 +468,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ximura.snk" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Collections\Exceptions\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

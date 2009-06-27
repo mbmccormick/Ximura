@@ -27,20 +27,20 @@ using System.Runtime.InteropServices;
 using Ximura;
 using Ximura.Helper;
 #endregion // using
-namespace Ximura.Collections
+namespace Ximura.Collections.Data
 {
     /// <summary>
     /// This structure is used to hold the item in the collection.
     /// </summary>
     /// <typeparam name="T">The container object.</typeparam>
     [Serializable, StructLayout(LayoutKind.Sequential)]
-    public struct VertexStruct<T> : ICollectionVertex<T>
+    public struct CollectionVertexStruct<T> : ICollectionVertex<T>
     {
         #region Constants
         /// <summary>
         /// This is the empty vertex.
         /// </summary>
-        public static readonly VertexStruct<T> Empty;
+        public static readonly CollectionVertexStruct<T> Empty;
         private const int cnSentinelMaskSet = 0x40000000;
         private const int cnSentinelMaskRemove = 0x3FFFFFFF;
         #endregion // Constants
@@ -48,9 +48,9 @@ namespace Ximura.Collections
         /// <summary>
         /// This is the static constructor.
         /// </summary>
-        static VertexStruct()
+        static CollectionVertexStruct()
         {
-            Empty = new VertexStruct<T>();
+            Empty = new CollectionVertexStruct<T>();
         }
         /// <summary>
         /// This static method creates a sentinel vertex. Sentinel vertexes are vertexes that do not include data,
@@ -59,9 +59,9 @@ namespace Ximura.Collections
         /// <param name="hashID">The hashID.</param>
         /// <param name="nextSlotIDPlus1">The ID of the next vertex in the chain (plus 1).</param>
         /// <returns>Returns a new sentinel for the specific hash ID.</returns>
-        public static VertexStruct<T> Sentinel(int hashID, int nextSlotIDPlus1)
+        public static CollectionVertexStruct<T> Sentinel(int hashID, int nextSlotIDPlus1)
         {
-            return new VertexStruct<T>(hashID, nextSlotIDPlus1);
+            return new CollectionVertexStruct<T>(hashID, nextSlotIDPlus1);
         }
         #endregion // Static methods
 
@@ -95,7 +95,7 @@ namespace Ximura.Collections
         /// </summary>
         /// <param name="hashID">The item hashcode.</param>
         /// <param name="nextSlotIDPlus1">The next item in the list.</param>
-        public VertexStruct(int hashID, int nextSlotIDPlus1)
+        public CollectionVertexStruct(int hashID, int nextSlotIDPlus1)
         {
             mHashID = hashID | cnSentinelMaskSet;
             Value = default(T);
@@ -107,7 +107,7 @@ namespace Ximura.Collections
         /// <param name="hashID">The item hashcode.</param>
         /// <param name="value">The slot value.</param>
         /// <param name="nextSlotIDPlus1">The next item in the list.</param>
-        public VertexStruct(int hashID, T value, int nextSlotIDPlus1)
+        public CollectionVertexStruct(int hashID, T value, int nextSlotIDPlus1)
         {
             mHashID = hashID;
             Value = value;

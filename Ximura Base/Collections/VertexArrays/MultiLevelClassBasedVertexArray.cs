@@ -27,6 +27,8 @@ using System.Text;
 
 using Ximura;
 using Ximura.Helper;
+using Ximura.Collections;
+using Ximura.Collections.Data;
 #endregion // using
 namespace Ximura.Collections
 {
@@ -40,7 +42,7 @@ namespace Ximura.Collections
         /// <summary>
         /// This is the collection of data and sentinels.
         /// </summary>
-        protected VertexClass<T>[] mData;
+        protected CollectionVertexClass<T>[] mData;
         /// <summary>
         /// This is the maximum permitted buckets.
         /// </summary>
@@ -125,13 +127,13 @@ namespace Ximura.Collections
         /// </summary>
         protected virtual void InitializeDataArray()
         {
-            mData = new VertexClass<T>[LevelMax];
+            mData = new CollectionVertexClass<T>[LevelMax];
 
-            mData[LevelData] = new VertexClassDataSentinel<T>(HashIDMin);
+            mData[LevelData] = new CollectionVertexClassDataSentinel<T>(HashIDMin);
 
             for (int index = 1; index < LevelMax; index++)
             {
-                mData[index] = new VertexClassSentinel<T>(HashIDMin, mData[index -1]);
+                mData[index] = new CollectionVertexClassSentinel<T>(HashIDMin, mData[index -1]);
             }
         }
         #endregion // InitializeDataArray()
@@ -169,7 +171,7 @@ namespace Ximura.Collections
         /// <summary>
         /// This method returns the root data vertex which is the last item in the data array.
         /// </summary>
-        protected override VertexClass<T> Root
+        protected override CollectionVertexClass<T> Root
         {
             get { return mData[LevelData]; }
         }

@@ -28,7 +28,7 @@ using System.Text;
 using Ximura;
 using Ximura.Helper;
 #endregion // using
-namespace Ximura.Collections
+namespace Ximura.Collections.Data
 {
     /// <summary>
     /// This is the abstract class for class based data networks.
@@ -37,13 +37,13 @@ namespace Ximura.Collections
 #if (DEBUG)
     [DebuggerDisplay("Data = {DebugString}")]
 #endif
-    public abstract class VertexClass<T> : VertexClassBase<T>, ICollectionVertex<T>, IDisposable
+    public abstract class CollectionVertexClass<T> : CollectionVertexClassBase<T>, ICollectionVertex<T>, IDisposable
     {
         #region Constructor
         /// <summary>
         /// This is the default constructor.
         /// </summary>
-        public VertexClass()
+        public CollectionVertexClass()
         {
             Next = null;
         }
@@ -53,7 +53,7 @@ namespace Ximura.Collections
         /// <summary>
         /// This is the next node in the list.
         /// </summary>
-        public VertexClass<T> Next { get; set; }
+        public CollectionVertexClass<T> Next { get; set; }
         #endregion // Next
 
         #region IsTerminator
@@ -74,13 +74,13 @@ namespace Ximura.Collections
         /// <summary>
         /// The Up sentinel
         /// </summary>
-        public virtual VertexClass<T> Up { get { return null; } set { } }
+        public virtual CollectionVertexClass<T> Up { get { return null; } set { } }
         #endregion // Up
         #region Down
         /// <summary>
         /// The down sentinel.
         /// </summary>
-        public virtual VertexClass<T> Down { get { return null; } set { } }
+        public virtual CollectionVertexClass<T> Down { get { return null; } set { } }
         #endregion // Down
 
         #region IDisposable Members

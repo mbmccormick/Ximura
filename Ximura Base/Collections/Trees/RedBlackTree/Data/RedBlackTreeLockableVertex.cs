@@ -24,6 +24,8 @@ using System.Threading;
 
 using Ximura;
 using Ximura.Helper;
+using Ximura.Collections;
+using Ximura.Collections.Data;
 #endregion // using
 namespace Ximura.Collections
 {
@@ -32,7 +34,7 @@ namespace Ximura.Collections
     /// </summary>
     /// <typeparam name="TKey">The vertex key type.</typeparam>
     /// <typeparam name="TVal">The vertex value type.</typeparam>
-    public class RedBlackTreeLockableVertex<TKey, TVal> : VertexClassBase<TVal>
+    public class RedBlackTreeLockableVertex<TKey, TVal> : CollectionVertexClassBase<TVal>
     {
         #region Constructor
         /// <summary>

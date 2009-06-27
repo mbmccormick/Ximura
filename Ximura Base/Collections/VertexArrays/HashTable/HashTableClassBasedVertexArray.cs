@@ -27,6 +27,8 @@ using System.Text;
 
 using Ximura;
 using Ximura.Helper;
+using Ximura.Collections;
+using Ximura.Collections.Data;
 #endregion // using
 namespace Ximura.Collections
 {
@@ -43,7 +45,7 @@ namespace Ximura.Collections
 
 
 
-        protected override VertexClass<T> GetSentinelID(int hashCode, bool createSentinel, out int hashID)
+        protected override CollectionVertexClass<T> GetSentinelID(int hashCode, bool createSentinel, out int hashID)
         {
             hashID = BitReverse(hashCode & cnLowerBitMask);
 

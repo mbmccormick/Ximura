@@ -128,7 +128,7 @@ namespace Ximura.Collections
         /// <param name="capacity">The collection initial capacity.</param>
         /// <param name="collection">The values in this enumeration will be loaded in to the collection. Set this to null if not required.</param>
         /// <param name="isFixedSize">The collection is fixed to the size passed in the capacity parameter.</param>
-        public ConcurrentDictionary(KeyValueOnlyKeyEqualityComparer<TKey, TValue> comparer, int capacity, IEnumerable<KeyValuePair<TKey, TValue>> collection, bool isFixedSize)
+        protected ConcurrentDictionary(KeyValueOnlyKeyEqualityComparer<TKey, TValue> comparer, int capacity, IEnumerable<KeyValuePair<TKey, TValue>> collection, bool isFixedSize)
             : base(comparer, capacity, collection, isFixedSize) { }
 
         #endregion // Constructor
@@ -234,11 +234,10 @@ namespace Ximura.Collections
         /// <param name="capacity">The collection initial capacity.</param>
         /// <param name="collection">The values in this enumeration will be loaded in to the collection. Set this to null if not required.</param>
         /// <param name="isFixedSize">The collection is fixed to the size passed in the capacity parameter.</param>
-        public ConcurrentDictionarySLC(KeyValueOnlyKeyEqualityComparer<TKey, TValue> comparer, int capacity, IEnumerable<KeyValuePair<TKey, TValue>> collection, bool isFixedSize)
+        protected ConcurrentDictionarySLC(KeyValueOnlyKeyEqualityComparer<TKey, TValue> comparer, int capacity, IEnumerable<KeyValuePair<TKey, TValue>> collection, bool isFixedSize)
             : base(comparer, capacity, collection, isFixedSize) { }
 
         #endregion // Constructor
     }
     #endregion // ConcurrentDictionarySLC
-
 }

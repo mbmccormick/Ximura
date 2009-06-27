@@ -27,6 +27,8 @@ using System.Text;
 
 using Ximura;
 using Ximura.Helper;
+using Ximura.Collections;
+using Ximura.Collections.Data;
 #endregion // using
 namespace Ximura.Collections
 {
@@ -68,7 +70,7 @@ namespace Ximura.Collections
         /// <summary>
         /// This is the root vertex for the data collection.
         /// </summary>
-        protected abstract VertexClass<T> Root { get; }
+        protected abstract CollectionVertexClass<T> Root { get; }
         #endregion
 
         #region GetSentinelID(int hashCode, bool createSentinel, out int hashID)
@@ -79,7 +81,7 @@ namespace Ximura.Collections
         /// <param name="createSentinel"></param>
         /// <param name="hashID"></param>
         /// <returns></returns>
-        protected abstract VertexClass<T> GetSentinelID(int hashCode, bool createSentinel, out int hashID);
+        protected abstract CollectionVertexClass<T> GetSentinelID(int hashCode, bool createSentinel, out int hashID);
         #endregion // GetSentinelID(int hashCode, bool createSentinel, out int hashID)
 
         #region VertexWindowGet()
@@ -103,7 +105,7 @@ namespace Ximura.Collections
         {
             int hashCode = mEqComparer.GetHashCode(item);
             int hashID;
-            VertexClass<T> vertex = GetSentinelID(mEqComparer.GetHashCode(item), createSentinel, out hashID);
+            CollectionVertexClass<T> vertex = GetSentinelID(mEqComparer.GetHashCode(item), createSentinel, out hashID);
 
             //Ok, set the MSB to indicate the value is a sentinel.
             return new ClassBasedVertexWindow<T>(this, vertex, mEqComparer, hashID, item);
@@ -117,7 +119,7 @@ namespace Ximura.Collections
         /// <returns>Returns an enumeration containing the collection data.</returns>
         public override IEnumerator<KeyValuePair<int, ICollectionVertex<T>>> GetEnumerator()
         {
-            VertexClass<T> item = Root;
+            CollectionVertexClass<T> item = Root;
             item.LockWait();
             int index = 0;
 

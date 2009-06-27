@@ -28,13 +28,13 @@ using System.Text;
 using Ximura;
 using Ximura.Helper;
 #endregion // using
-namespace Ximura.Collections
+namespace Ximura.Collections.Data
 {
     /// <summary>
     /// The vertex window structure holds the search results from a scan.
     /// </summary>
     /// <typeparam name="T">The collection type.</typeparam>
-    //[StructLayout(LayoutKind.Sequential)]
+    [StructLayout(LayoutKind.Sequential)]
     public struct ClassBasedVertexWindow<T> : IVertexWindow<T>
     {
         #region Declarations
@@ -45,11 +45,11 @@ namespace Ximura.Collections
         /// <summary>
         /// The current vertex.
         /// </summary>
-        private VertexClass<T> Curr;
+        private CollectionVertexClass<T> Curr;
         /// <summary>
         /// The next vertex.
         /// </summary>
-        private VertexClass<T> Next;
+        private CollectionVertexClass<T> Next;
         #endregion // Declarations
         #region Constructor
         /// <summary>
@@ -60,7 +60,7 @@ namespace Ximura.Collections
         /// <param name="eqComparer">The equality comparer for the collection.</param>
         /// <param name="hashID">The hashID of the item.</param>
         /// <param name="item">The data item.</param>
-        public ClassBasedVertexWindow(ClassBasedVertexArray<T> coll, VertexClass<T> vertex, IEqualityComparer<T> eqComparer, int hashID, T item)
+        public ClassBasedVertexWindow(ClassBasedVertexArray<T> coll, CollectionVertexClass<T> vertex, IEqualityComparer<T> eqComparer, int hashID, T item)
         {
             mData = coll;
             Curr = vertex;
@@ -117,7 +117,7 @@ namespace Ximura.Collections
         /// <param name="hashID">The hashID to search for and lock.</param>
         public void ItemInsert()
         {
-            VertexClassData<T> newItem = new VertexClassData<T>(mItem, mHashID);
+            CollectionVertexClassData<T> newItem = new CollectionVertexClassData<T>(mItem, mHashID);
             newItem.Lock();
 
             if (!Curr.IsTerminator)
@@ -139,9 +139,9 @@ namespace Ximura.Collections
         /// <summary>
         /// This method inserts a data sentinel in to the data collection.
         /// </summary>
-        public VertexClassDataSentinel<T> InsertDataSentinel()
+        public CollectionVertexClassDataSentinel<T> InsertDataSentinel()
         {
-            VertexClassDataSentinel<T> newItem = new VertexClassDataSentinel<T>(mHashID);
+            CollectionVertexClassDataSentinel<T> newItem = new CollectionVertexClassDataSentinel<T>(mHashID);
             newItem.Lock();
 
             if (!Curr.IsTerminator)
@@ -160,9 +160,9 @@ namespace Ximura.Collections
         /// <summary>
         /// This method inserts a data sentinel in to the data collection.
         /// </summary>
-        public VertexClassSentinel<T> InsertSentinel(VertexClass<T> down)
+        public CollectionVertexClassSentinel<T> InsertSentinel(CollectionVertexClass<T> down)
         {
-            VertexClassSentinel<T> newItem = new VertexClassSentinel<T>(mHashID, down);
+            CollectionVertexClassSentinel<T> newItem = new CollectionVertexClassSentinel<T>(mHashID, down);
             newItem.Lock();
 
             if (!Curr.IsTerminator)
@@ -273,7 +273,7 @@ namespace Ximura.Collections
         /// </summary>
         public void Snip()
         {
-            VertexClass<T> temp = Next;
+            CollectionVertexClass<T> temp = Next;
 
             if (Next.IsTerminator)
             {
