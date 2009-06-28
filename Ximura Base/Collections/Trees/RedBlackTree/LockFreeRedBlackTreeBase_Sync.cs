@@ -69,7 +69,7 @@ namespace Ximura.Collections
 
             //Wait if there are too many threads executing.
             while (mThreadsCurrent > mThreadsMax)
-                Threading.ThreadWait();
+                ThreadingHelper.ThreadWait();
 
         }
         #endregion // ThreadEnter(TreeAction act)

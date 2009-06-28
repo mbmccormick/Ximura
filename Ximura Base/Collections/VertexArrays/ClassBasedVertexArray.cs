@@ -42,30 +42,6 @@ namespace Ximura.Collections
 
         #endregion // Struct -> Vertex<T>
 
-        #region Initialize(IEqualityComparer<T> eqComparer, bool isFixedSize, int capacity, bool allowNullValues, bool allowMultipleEntries)
-        /// <summary>
-        /// This override initializes the collection.
-        /// </summary>
-        /// <param name="eqComparer">The equality comparer for the collection.</param>
-        /// <param name="isFixedSize">Specifies whether the collection is a fixed size.</param>
-        /// <param name="capacity">The initial capacity.</param>
-        /// <param name="allowNullValues">This boolean values specifies whether null values are allowed in the collection.</param>
-        /// <param name="allowMultipleEntries">This boolean value specicifies whether the collection allows items to exist 
-        /// more than once in the collection.</param>
-        public override void Initialize(IEqualityComparer<T> eqComparer, bool isFixedSize, int capacity, bool allowNullValues, bool allowMultipleEntries)
-        {
-            base.Initialize(eqComparer, isFixedSize, capacity, allowNullValues, allowMultipleEntries);
-
-            InitializeData();
-        }
-        #endregion // Initialize(IEqualityComparer<T> eqComparer, bool isFixedSize, int capacity, bool allowNullValues, bool allowMultipleEntries)
-        #region InitializeData()
-        /// <summary>
-        /// This method initializes the data collection.
-        /// </summary>
-        protected abstract void InitializeData();
-        #endregion // InitializeData()
-
         #region Root
         /// <summary>
         /// This is the root vertex for the data collection.

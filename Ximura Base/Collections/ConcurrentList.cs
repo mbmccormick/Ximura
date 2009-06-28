@@ -35,7 +35,7 @@ namespace Ximura.Collections
     /// </summary>
     /// <typeparam name="T">The collection item type.</typeparam>
     [DebuggerDisplay("Count = {Count}"), HostProtection(SecurityAction.LinkDemand, MayLeakOnAbort = true)]
-    public class ConcurrentList<T> : ConcurrentList<T, HashTableStructBasedVertexArray<T>>
+    public class ConcurrentList<T> : ConcurrentList<T, HashTableStructBasedVertexArrayV2<T>>
     {
         #region Constructor
         /// <summary>

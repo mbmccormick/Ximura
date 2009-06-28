@@ -33,7 +33,10 @@ using Ximura.Server;
 #endregion // using
 namespace Ximura.Helper
 {
-    public static class Threading
+    /// <summary>
+    /// This static class provides threading help.
+    /// </summary>
+    public static class ThreadingHelper
     {
         #region ThreadWait()
         /// <summary>

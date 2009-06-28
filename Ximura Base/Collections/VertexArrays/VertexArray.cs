@@ -101,8 +101,17 @@ namespace Ximura.Collections
             mInitialCapacity = capacity;
             mAllowNullValues = allowNullValues;
             mAllowMultipleEntries = allowMultipleEntries;
+
+            InitializeData();
         }
         #endregion
+        #region InitializeData()
+        /// <summary>
+        /// This method initializes the data collection.
+        /// </summary>
+        protected abstract void InitializeData();
+        #endregion // InitializeData()
+
         
         #region IEnumerable<KeyValuePair<int,Vertex<T>>> Members
         /// <summary>
@@ -125,13 +134,14 @@ namespace Ximura.Collections
         /// <summary>
         /// This method returns a vertex window for the first item in the array.
         /// </summary>
+        /// <returns>A vertex window.</returns>
         public abstract IVertexWindow<T> VertexWindowGet();
         /// <summary>
-        /// 
+        /// This method returns a vertex window for the item specified.
         /// </summary>
-        /// <param name="hashCode"></param>
-        /// <param name="createSentinel"></param>
-        /// <returns></returns>
+        /// <param name="item">The item that requires a search window.</param>
+        /// <param name="createSentinel">The value specifies whether any missing sentinels should be created.</param>
+        /// <returns>A vertex window.</returns>
         public abstract IVertexWindow<T> VertexWindowGet(T item, bool createSentinel);
         #endregion
 

@@ -140,7 +140,7 @@ namespace Ximura.Collections.Data
             get
             {
                 StringBuilder sb = new StringBuilder();
-                VertexClassBase<T> item = this;
+                CollectionVertexClass<T> item = this;
 
                 for (int loop = 0; loop < 5; loop++)
                 {

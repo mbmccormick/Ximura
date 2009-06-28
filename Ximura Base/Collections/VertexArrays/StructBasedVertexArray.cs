@@ -65,28 +65,20 @@ namespace Ximura.Collections
         private volatile int mCapacity;
         #endregion // Declarations
 
-        #region Initialize(bool isFixedSize, int capacity, bool allowNullValues, bool allowMultipleEntries)
+        #region InitializeData()
         /// <summary>
         /// This method initializes the data collection.
         /// </summary>
-        /// <param name="isFixedSize">Specifies whether the collection is a fixed size.</param>
-        /// <param name="capacity">The initial capacity.</param>
-        /// <param name="allowNullValues">This boolean values specifies whether null values are allowed in the collection.</param>
-        /// <param name="allowMultipleEntries">This boolean value specicifies whether the collection allows items to exist 
-        /// more than once in the collection.</param>
-        public override void Initialize(IEqualityComparer<T> eqComparer,
-            bool isFixedSize, int capacity, bool allowNullValues, bool allowMultipleEntries)
+        protected override void InitializeData()
         {
-            base.Initialize(eqComparer, isFixedSize, capacity, allowNullValues, allowMultipleEntries);
-
             mFreeListTail.Value = -1;
             mFreeListCount = 0;
             mLastIndex = 0;
 
-            if (isFixedSize)
-                mSlots = new FineGrainedLockArray<CollectionVertexStruct<T>>(capacity, 0);
+            if (IsFixedSize)
+                mSlots = new FineGrainedLockArray<CollectionVertexStruct<T>>(InitialCapacity, 0);
             else
-                mSlots = new ExpandableFineGrainedLockArray<CollectionVertexStruct<T>>(capacity, SlotExpander);
+                mSlots = new ExpandableFineGrainedLockArray<CollectionVertexStruct<T>>(InitialCapacity, SlotExpander);
 
             mEmptyVertex = new LockableWrapper<CollectionVertexStruct<T>>(CollectionVertexStruct<T>.Sentinel(0, 0));
         }
@@ -246,14 +238,8 @@ namespace Ximura.Collections
         /// <returns>Returns the vertex corresponding to the index position.</returns>
         public virtual CollectionVertexStruct<T> this[int index]
         {
-            get
-            {
-                return mSlots[index];
-            }
-            set
-            {
-                mSlots[index] = value;
-            }
+            get { return mSlots[index]; }
+            set { mSlots[index] = value; }
         }
         #endregion // this[int index]
 
@@ -337,6 +323,5 @@ namespace Ximura.Collections
             return new StructBasedVertexWindow<T>(this, mEqComparer, sentIndexID, hashID, item);
         }
         #endregion // VertexWindowGet(int hashCode, bool createSentinel)
-
     }
 }

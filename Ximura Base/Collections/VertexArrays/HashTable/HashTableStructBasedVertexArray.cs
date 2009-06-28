@@ -359,16 +359,16 @@ namespace Ximura.Collections
         }
         #endregion // GetSentinel(int hashCode, bool create, out int sentSlotID, out int hashID)
 
-        #region FastContain
+        #region FastContains
         /// <summary>
         /// This class supports a fast search algorithm
         /// </summary>
-        public override bool SupportsFastContain{get{return true;}}
+        public override bool SupportsFastContain { get { return true; } }
         /// <summary>
-        /// 
+        /// This method implements a fast search algoritm.
         /// </summary>
-        /// <param name="item"></param>
-        /// <returns></returns>
+        /// <param name="item">The item to search for.</param>
+        /// <returns>Returns true if found, false if not found, and null if the search encountered modified data.</returns>
         public override bool? FastContains(T item)
         {
             //Is this a null or default value?
@@ -476,7 +476,7 @@ namespace Ximura.Collections
                 {
                     count++;
                     int index = mEmptyVertex.Value.NextSlotIDPlus1 - 1;
-                    CollectionVertex<T> item = mSlots[index];
+                    CollectionVertexStruct<T> item = mSlots[index];
 
                     while (!item.IsTerminator)
                     {

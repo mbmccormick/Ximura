@@ -30,7 +30,7 @@ using Ximura.Helper;
 namespace Ximura.Collections
 {
     /// <summary>
-    /// 
+    /// This is the lock-free implementation of the HashSet class.
     /// </summary>
     /// <typeparam name="T">The collection item type.</typeparam>
     /// <typeparam name="A">The vertex array type.</typeparam>

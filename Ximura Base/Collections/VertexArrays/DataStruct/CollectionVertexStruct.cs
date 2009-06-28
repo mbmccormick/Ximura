@@ -65,30 +65,12 @@ namespace Ximura.Collections.Data
         }
         #endregion // Static methods
 
-        #region HashID
+        #region Declarations
         /// <summary>
         /// The internal hashid.
         /// </summary>
-        public int mHashID;
-        /// <summary>
-        /// The item hashid.
-        /// </summary>
-        public int HashID { get { return mHashID & cnSentinelMaskRemove; } }
-        #endregion
-        #region NextSlotIDPlus1
-        /// <summary>
-        /// The next item in the list.
-        /// </summary>
-        public int NextSlotIDPlus1;
-        #endregion
-
-        #region Value
-        /// <summary>
-        /// The slot value.
-        /// </summary>
-        public T Value;
-        #endregion // Value
-
+        private int mHashID;
+        #endregion // Declarations
         #region Constructor
         /// <summary>
         /// This constructor creates a slot as a sentinel, with only the next parameter set.
@@ -115,13 +97,31 @@ namespace Ximura.Collections.Data
         }
         #endregion // Constructor
 
+        #region HashID
+        /// <summary>
+        /// The item hashid.
+        /// </summary>
+        public int HashID { get { return mHashID & cnSentinelMaskRemove; } }
+        #endregion
+        #region NextSlotIDPlus1
+        /// <summary>
+        /// The next item in the list.
+        /// </summary>
+        public int NextSlotIDPlus1;
+        #endregion
+
+        #region Value
+        /// <summary>
+        /// The slot value.
+        /// </summary>
+        public T Value;
+        #endregion // Value
         #region IsTerminator
         /// <summary>
         /// This property identifies whether the vertex is the last item in the data chain.
         /// </summary>
         public bool IsTerminator { get { return NextSlotIDPlus1 == 0; } }
         #endregion // IsTerminator
-
         #region IsSentinel
         /// <summary>
         /// This property identifies whether the vertex is a sentinel vertex.

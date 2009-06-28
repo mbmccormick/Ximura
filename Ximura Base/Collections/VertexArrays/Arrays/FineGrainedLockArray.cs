@@ -94,7 +94,7 @@ namespace Ximura.Collections
         /// <summary>
         /// This is the offset used in calculation when retrieving items from the array.
         /// </summary>
-        public int Offset
+        public virtual int Offset
         {
             get { return mOffset; }
         }
@@ -108,7 +108,11 @@ namespace Ximura.Collections
         /// <returns>Returns true if the item is locked.</returns>
         public bool ItemIsLocked(int index)
         {
+#if (DEBUG)
+            return mArrayLocks[index - mOffset] > 0;
+#else
             return mArrayLocks[index - mOffset] == 1;
+#endif
         }
         #endregion // ItemIsLocked(int index)
         #region ItemLockWait(int index)
@@ -123,7 +127,7 @@ namespace Ximura.Collections
             while (ItemIsLocked(index))
             {
                 lockLoops++;
-                Threading.ThreadWait();
+                ThreadingHelper.ThreadWait();
             }
 
             return lockLoops;
@@ -142,7 +146,7 @@ namespace Ximura.Collections
             while (!ItemTryLock(index))
             {
                 lockLoops++;
-                Threading.ThreadWait();
+                ThreadingHelper.ThreadWait();
             }
 
             return lockLoops;
@@ -157,7 +161,11 @@ namespace Ximura.Collections
         public bool ItemTryLock(int index)
         {
             int id = index - mOffset;
+#if (DEBUG)
             return Interlocked.CompareExchange(ref mArrayLocks[id], Thread.CurrentThread.ManagedThreadId + 1, 0) == 0;
+#else
+            return Interlocked.CompareExchange(ref mArrayLocks[id], 1, 0) == 0;
+#endif
         }
         #endregion // ItemTryLock
         #region ItemUnlock(int index)

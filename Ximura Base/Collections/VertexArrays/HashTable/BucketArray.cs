@@ -20,10 +20,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Reflection;
-using System.Threading;
 using System.Runtime.Serialization;
-using System.Runtime.InteropServices;
-using System.Text;
+using System.Threading;
 
 using Ximura;
 using Ximura.Helper;
@@ -33,16 +31,23 @@ using Ximura.Collections.Data;
 namespace Ximura.Collections
 {
     /// <summary>
-    /// This class contains the combined buckets and slots in a single class.
+    /// The bucket array holds optimized data for the bucket array.
     /// </summary>
-    /// <typeparam name="T">The collection type.</typeparam>
-    public class HashTableClassBasedVertexArray<T> : MultiLevelClassBasedVertexArray<T>
+    public class BucketArray<T> : FineGrainedLockArray<CollectionVertexStruct<T>>
     {
-        protected override CollectionVertexClass<T> GetSentinelID(int hashCode, bool createSentinel, out int hashID)
+        #region Constructor
+        /// <summary>
+        /// This constructor sets the array capacity and the array offset integer.
+        /// </summary>
+        /// <param name="capacity">The array capacity.</param>
+        /// <param name="offset">The array offset, this is the initial position of the array, the default should be 0.</param>
+        public BucketArray(int capacity):base(capacity,0)
         {
-            hashID = BitReverse(hashCode & cnLowerBitMask);
-
-            return Root;
         }
+        #endregion // Constructor
+        /// <summary>
+        /// The offset for the bucket array is always 0, as this is handled elsewhere.
+        /// </summary>
+        public override int Offset{get{return 0;}}
     }
 }

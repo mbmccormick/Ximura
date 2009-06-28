@@ -65,7 +65,7 @@ namespace Ximura.Helper
         public void Lock()
         {
             while (!TryLock())
-                Threading.ThreadWait();
+                ThreadingHelper.ThreadWait();
         }
         /// <summary>
         /// This method halts any threads if the item is locked.
@@ -73,7 +73,7 @@ namespace Ximura.Helper
         public void LockWait()
         {
             while (IsLocked)
-                Threading.ThreadWait();
+                ThreadingHelper.ThreadWait();
         }
         /// <summary>
         /// This method attempts to lock the item.

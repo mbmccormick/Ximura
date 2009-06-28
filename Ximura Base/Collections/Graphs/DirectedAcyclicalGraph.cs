@@ -22,17 +22,11 @@ using System.Runtime.Serialization;
 using Ximura;
 using Ximura.Helper;
 #endregion // using
-namespace Ximura.Collections
+namespace Ximura.Collections.Data
 {
     public enum DAGdirection
     {
         Forwards,
         Backwards
     }
-
-    //public class DirectedAcyclicalGraph<VType> : Graph<VType>
-    //{
-        
-        
-    //}
 }
