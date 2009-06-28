@@ -36,7 +36,7 @@ namespace Ximura.Collections
     /// <typeparam name="TKey">The dictionary key type.</typeparam>
     /// <typeparam name="TValue">The dictionary value type.</typeparam>
     [DebuggerDisplay("Count = {Count}"), HostProtection(SecurityAction.LinkDemand, MayLeakOnAbort = true)]
-    public class ConcurrentDictionary<TKey, TValue> : ConcurrentDictionary<TKey, TValue, HashTableStructBasedVertexArray<KeyValuePair<TKey, TValue>>>
+    public sealed class ConcurrentDictionary<TKey, TValue> : ConcurrentDictionary<TKey, TValue, HashTableStructBasedVertexArrayV2<KeyValuePair<TKey, TValue>>>
     {
         #region Constructor
         /// <summary>
@@ -142,7 +142,7 @@ namespace Ximura.Collections
     /// <typeparam name="TKey">The dictionary key type.</typeparam>
     /// <typeparam name="TValue">The dictionary value type.</typeparam>
     [DebuggerDisplay("Count = {Count}"), HostProtection(SecurityAction.LinkDemand, MayLeakOnAbort = true)]
-    public class ConcurrentDictionarySLC<TKey, TValue> : ConcurrentDictionary<TKey, TValue, SkipListClassBasedVertexArray<KeyValuePair<TKey, TValue>>>
+    public sealed class ConcurrentDictionarySLC<TKey, TValue> : ConcurrentDictionary<TKey, TValue, SkipListClassBasedVertexArray<KeyValuePair<TKey, TValue>>>
     {
         #region Constructor
         /// <summary>

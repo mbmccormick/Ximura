@@ -262,6 +262,7 @@
     <Compile Include="Collections\VertexArrays\HashTable\HashTableClassBasedVertexArray.cs" />
     <Compile Include="Collections\VertexArrays\HashTable\HashTableStructBasedVertexArray.cs" />
     <Compile Include="Collections\VertexArrays\HashTable\HashTableStructBasedVertexArrayV2.cs" />
+    <Compile Include="Collections\VertexArrays\HashTable\HashTableStructBasedVertexArrayV3.cs" />
     <Compile Include="Collections\VertexArrays\MultiLevelClassBasedVertexArray.cs" />
     <Compile Include="Collections\VertexArrays\MultiLevelStructBasedVertexArray.cs" />
     <Compile Include="Collections\VertexArrays\SkipList\SkipListClassBasedVertexArray.cs" />
@@ -301,6 +302,7 @@
     <Compile Include="Helper\Linq\Linq_Stream.cs" />
     <Compile Include="Helper\Linq\Linq_Unfolding.cs" />
     <Compile Include="Helper\LockableBase.cs" />
+    <Compile Include="Helper\LockableNullableWrapper.cs" />
     <Compile Include="Helper\LockableWrapper.cs" />
     <Compile Include="Helper\Prime.cs" />
     <Compile Include="Helper\StreamHelper.cs" />

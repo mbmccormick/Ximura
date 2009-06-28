@@ -37,7 +37,7 @@ namespace Ximura.Collections
     /// </summary>
     /// <typeparam name="T">The collection item type.</typeparam>
     [DebuggerDisplay("Count = {Count}"), HostProtection(SecurityAction.LinkDemand, MayLeakOnAbort = true)]
-    public class ConcurrentHashSet<T> : ConcurrentHashSet<T, HashTableStructBasedVertexArrayV2<T>>
+    public sealed class ConcurrentHashSet<T> : ConcurrentHashSet<T, HashTableStructBasedVertexArrayV2<T>>
     {
         #region Constructor
         /// <summary>
@@ -129,7 +129,7 @@ namespace Ximura.Collections
     /// </summary>
     /// <typeparam name="T">The collection item type.</typeparam>
     [DebuggerDisplay("Count = {Count}"), HostProtection(SecurityAction.LinkDemand, MayLeakOnAbort = true)]
-    public class ConcurrentHashSetHTC<T> : ConcurrentHashSet<T, HashTableClassBasedVertexArray<T>>
+    public sealed class ConcurrentHashSetHTC<T> : ConcurrentHashSet<T, HashTableClassBasedVertexArray<T>>
     {
         #region Constructor
         /// <summary>
@@ -221,7 +221,7 @@ namespace Ximura.Collections
     /// </summary>
     /// <typeparam name="T">The collection item type.</typeparam>
     [DebuggerDisplay("Count = {Count}"), HostProtection(SecurityAction.LinkDemand, MayLeakOnAbort = true)]
-    public class ConcurrentHashSetSLC<T> : ConcurrentHashSet<T, SkipListClassBasedVertexArray<T>>
+    public sealed class ConcurrentHashSetSLC<T> : ConcurrentHashSet<T, SkipListClassBasedVertexArray<T>>
     {
         #region Constructor
         /// <summary>
@@ -313,7 +313,7 @@ namespace Ximura.Collections
     /// </summary>
     /// <typeparam name="T">The collection item type.</typeparam>
     [DebuggerDisplay("Count = {Count}"), HostProtection(SecurityAction.LinkDemand, MayLeakOnAbort = true)]
-    public class ConcurrentHashSetSLS<T> : ConcurrentHashSet<T, SkipListStructBasedVertexArray<T>>
+    public sealed class ConcurrentHashSetSLS<T> : ConcurrentHashSet<T, SkipListStructBasedVertexArray<T>>
     {
         #region Constructor
         /// <summary>

@@ -33,7 +33,7 @@ namespace Ximura.Collections
     /// This interface is implemented by lockable arrays.
     /// </summary>
     /// <typeparam name="T">The array item type.</typeparam>
-    public interface IFineGrainedLockArray<T>
+    public interface ILockableMarkableArray<T>
     {
         /// <summary>
         /// This method checks whether an item in the collection is locked.
@@ -45,14 +45,12 @@ namespace Ximura.Collections
         /// This method locks the specific item.
         /// </summary>
         /// <param name="index">The item index.</param>
-        /// <returns>Returns the number of lock cycles the thread entered.</returns>
-        int ItemLock(int index);
+        void ItemLock(int index);
         /// <summary>
         /// This method waits for a locked item to become available.
         /// </summary>
         /// <param name="index">The index of the item to wait for.</param>
-        /// <returns>Returns the number of lock cycles during the wait.</returns>
-        int ItemLockWait(int index);
+        void ItemLockWait(int index);
         /// <summary>
         /// This method attempts to lock the item specified.
         /// </summary>
@@ -67,12 +65,14 @@ namespace Ximura.Collections
         /// <summary>
         /// This is the capacity of the array.
         /// </summary>
-        int Length { get; }
+        int Count { get; }
         /// <summary>
         /// This is the indexer for the array.
         /// </summary>
         /// <param name="index">The index position.</param>
         /// <returns>Returns the object corresponding to the index position.</returns>
         T this[int index] { get; set; }
+
+        LockableWrapper<T> LockableData(int index);
     }
 }

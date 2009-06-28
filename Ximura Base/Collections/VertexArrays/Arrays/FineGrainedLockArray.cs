@@ -21,6 +21,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.Serialization;
+using System.Runtime.InteropServices;
 using System.Threading;
 
 using Ximura;
@@ -32,33 +33,22 @@ namespace Ximura.Collections
     /// This fine grained lock array is an array with the added ability to mark individual items as locked.
     /// </summary>
     /// <typeparam name="T">The array type.</typeparam>
-    public class FineGrainedLockArray<T> : IFineGrainedLockArray<T>
+    public class FineGrainedLockArray<T> : ILockableMarkableArray<T>
     {
         #region Declarations
-        private T[] mArray;
-        private int[] mArrayLocks;
-
-        private int mCapacity;
-        private int mOffset;
+        private LockableWrapper<T>[] mArray;
         #endregion // Declarations
         #region Constructor
         /// <summary>
         /// This constructor sets the array capacity and the array offset integer.
         /// </summary>
         /// <param name="capacity">The array capacity.</param>
-        /// <param name="offset">The array offset, this is the initial position of the array, the default should be 0.</param>
-        public FineGrainedLockArray(int capacity, int offset)
+        public FineGrainedLockArray(int capacity)
         {
-            if (offset < 0)
-                throw new ArgumentOutOfRangeException("offset", "Offset cannot be less than zero.");
-
             if (capacity < 0)
                 throw new ArgumentOutOfRangeException("capacity", "Capacity cannot be less than zero.");
 
-            mOffset = offset;
-            mCapacity = capacity;
-            mArray = new T[capacity];
-            mArrayLocks = new int[capacity];
+            mArray = new LockableWrapper<T>[capacity];
         }
         #endregion // Constructor
 
@@ -72,33 +62,24 @@ namespace Ximura.Collections
         {
             get
             {
-                return mArray[index - mOffset];
+                return mArray[index].Value;
             }
             set
             {
-                mArray[index - mOffset] = value;
+                mArray[index].Value = value;
             }
         }
         #endregion // this[int index]
 
-        #region Length
+        #region Count
         /// <summary>
         /// This is the capacity of the array.
         /// </summary>
-        public int Length
+        public int Count
         {
-            get { return mCapacity; }
+            get { return mArray.Length; }
         }
         #endregion // Length
-        #region Offset
-        /// <summary>
-        /// This is the offset used in calculation when retrieving items from the array.
-        /// </summary>
-        public virtual int Offset
-        {
-            get { return mOffset; }
-        }
-        #endregion // Offset
 
         #region ItemIsLocked(int index)
         /// <summary>
@@ -108,11 +89,7 @@ namespace Ximura.Collections
         /// <returns>Returns true if the item is locked.</returns>
         public bool ItemIsLocked(int index)
         {
-#if (DEBUG)
-            return mArrayLocks[index - mOffset] > 0;
-#else
-            return mArrayLocks[index - mOffset] == 1;
-#endif
+            return mArray[index].IsLocked;
         }
         #endregion // ItemIsLocked(int index)
         #region ItemLockWait(int index)
@@ -120,17 +97,9 @@ namespace Ximura.Collections
         /// This method waits for a locked item to become available.
         /// </summary>
         /// <param name="index">The index of the item to wait for.</param>
-        /// <returns>Returns the number of lock cycles during the wait.</returns>
-        public int ItemLockWait(int index)
+        public void ItemLockWait(int index)
         {
-            int lockLoops = 0;
-            while (ItemIsLocked(index))
-            {
-                lockLoops++;
-                ThreadingHelper.ThreadWait();
-            }
-
-            return lockLoops;
+            mArray[index].LockWait();
         }
         #endregion
         #region ItemLock(int index)
@@ -138,18 +107,9 @@ namespace Ximura.Collections
         /// This method locks the specific item.
         /// </summary>
         /// <param name="index">The item index.</param>
-        /// <returns>Returns the number of lock cycles the thread entered.</returns>
-        public int ItemLock(int index)
+        public void ItemLock(int index)
         {
-            int lockLoops = 0;
-
-            while (!ItemTryLock(index))
-            {
-                lockLoops++;
-                ThreadingHelper.ThreadWait();
-            }
-
-            return lockLoops;
+            mArray[index].Lock();
         }
         #endregion // ItemLock(int index)
         #region ItemTryLock
@@ -160,12 +120,7 @@ namespace Ximura.Collections
         /// <returns>Returns true if the item was successfully locked.</returns>
         public bool ItemTryLock(int index)
         {
-            int id = index - mOffset;
-#if (DEBUG)
-            return Interlocked.CompareExchange(ref mArrayLocks[id], Thread.CurrentThread.ManagedThreadId + 1, 0) == 0;
-#else
-            return Interlocked.CompareExchange(ref mArrayLocks[id], 1, 0) == 0;
-#endif
+            return mArray[index].TryLock();
         }
         #endregion // ItemTryLock
         #region ItemUnlock(int index)
@@ -175,8 +130,7 @@ namespace Ximura.Collections
         /// <param name="index">The index of the item you wish to unlock.</param>
         public void ItemUnlock(int index)
         {
-            int id = index - mOffset;
-            mArrayLocks[id] = 0;
+            mArray[index].Unlock();
         }
         #endregion // ItemUnlock(int index)
 
@@ -187,8 +141,41 @@ namespace Ximura.Collections
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Format("FGLA={0}<{1}", mOffset, mOffset + mCapacity);
+            return string.Format("FGLA={0}", mArray.Length);
         }
         #endregion
+
+        #region Resize(int newCapacity)
+        /// <summary>
+        /// This method changes the size of the array.
+        /// </summary>
+        /// <param name="newCapacity">The new capacity.</param>
+        protected virtual void Resize(int newCapacity)
+        {
+            if (newCapacity < 1)
+                throw new ArgumentOutOfRangeException("newCapacity", "The capacity cannot be less than 1.");
+
+            if (newCapacity == mArray.Length)
+                return;
+
+            LockableWrapper<T>[] newArray = new LockableWrapper<T>[newCapacity];
+
+            int copyCapacity = newCapacity < mArray.Length ? newCapacity : mArray.Length;
+
+            Array.Copy(mArray, 0, newArray, 0, copyCapacity);
+
+            mArray = newArray;
+        }
+        #endregion // Resize(int newCapacity)
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        public virtual LockableWrapper<T> LockableData(int index)
+        {
+            return mArray[index];
+        }
     }
 }

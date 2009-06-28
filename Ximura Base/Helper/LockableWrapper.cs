@@ -39,21 +39,7 @@ namespace Ximura.Helper
         /// <summary>
         /// The private value that indicates whether the class is locked.
         /// </summary>
-        private int mLocked;
-        /// <summary>
-        /// The boolean value which specifies whether the structure contains a valid value.
-        /// </summary>
-        private bool mHasValue;
-        /// <summary>
-        /// The value.
-        /// </summary>
-        private T mValue;
-#if (DEBUG)
-        /// <summary>
-        /// The managed ID of the locking thread.
-        /// </summary>
-        private int? mLockingThread;      
-#endif
+        private int mFlags;
         #endregion // Declarations
         #region Constructor
         /// <summary>
@@ -62,17 +48,12 @@ namespace Ximura.Helper
         /// <param name="value"></param>
         public LockableWrapper(T value)
         {
-            mLocked = 0;
-            mValue = value;
-
-            mHasValue = !EqualityComparer<T>.Default.Equals(value, default(T));
-#if (DEBUG)
-		    mLockingThread = null;
-#endif
+            mFlags = 0;
+            Value = value;
         }
         #endregion // Constructor
 
-        #region ILockable Members
+        #region IsLocked
         /// <summary>
         /// Returns true if the item is locked.
         /// </summary>
@@ -81,9 +62,11 @@ namespace Ximura.Helper
         {
             get
             {
-                return mLocked == 1;
+                return mFlags == 1;
             }
         }
+        #endregion // IsLocked
+        #region Lock()
         /// <summary>
         /// This method locks the particular item.
         /// </summary>
@@ -92,6 +75,8 @@ namespace Ximura.Helper
             while (!TryLock())
                 ThreadingHelper.ThreadWait();
         }
+        #endregion // Lock()
+        #region LockWait()
         /// <summary>
         /// This method halts any threads if the item is locked.
         /// </summary>
@@ -100,107 +85,32 @@ namespace Ximura.Helper
             while (IsLocked)
                 ThreadingHelper.ThreadWait();
         }
+        #endregion // LockWait()
+        #region TryLock()
         /// <summary>
         /// This method attempts to lock the item.
         /// </summary>
         /// <returns>Returns true if the item is successfully locked.</returns>
         public bool TryLock()
         {
-            bool result = (Interlocked.CompareExchange(ref mLocked, 1, 0) == 0);
-
-#if (DEBUG)
-            if (result)
-                mLockingThread = Thread.CurrentThread.ManagedThreadId;
-#endif
-            return result;
+            return (Interlocked.CompareExchange(ref mFlags, 1, 0) == 0);
         }
+        #endregion // TryLock()
+        #region Unlock()
         /// <summary>
         /// This method unlocks the item.
         /// </summary>
         public void Unlock()
         {
-            mLocked = 0;
-#if (DEBUG)
-            mLockingThread = null;
-#endif
+            mFlags = 0;
         }
-        #endregion
+        #endregion // Unlock()
 
         #region Value
         /// <summary>
         /// This is the value locked by the collection.
         /// </summary>
-        public T Value
-        {
-            get { return mValue; }
-            set 
-            { 
-                mValue = value;
-                mHasValue = !EqualityComparer<T>.Default.Equals(value, default(T));
-            }
-        }
+        public T Value;
         #endregion // Value
-        #region HasValue
-        /// <summary>
-        /// Specifies whether the wrapper contains a value.
-        /// </summary>
-        public bool HasValue
-        {
-            get
-            {
-                return mHasValue;
-            }
-        }
-        #endregion // HasValue
-
-        #region ToString()
-        /// <summary>
-        /// This method provides a string value of the enclosed data.
-        /// </summary>
-        /// <returns>Returns the internal data as a string.</returns>
-        public override string ToString()
-        {
-            if (!this.HasValue)
-            {
-                return "";
-            }
-            return mValue.ToString();
-        }
-        #endregion // ToString()
-        #region GetHashCode()
-        /// <summary>
-        /// This method returns the hashcode of the enclosed data.
-        /// </summary>
-        /// <returns>The internal hashcode.</returns>
-        public override int GetHashCode()
-        {
-            if (!this.HasValue)
-            {
-                return 0;
-            }
-            return mValue.GetHashCode();
-        }
-        #endregion // GetHashCode()
-        #region Equals(object other)
-        /// <summary>
-        /// This method compares the other value to the enclosed data.
-        /// </summary>
-        /// <param name="other">The data to compare.</param>
-        /// <returns>Returns true if the data is the same.</returns>
-        public override bool Equals(object other)
-        {
-            if (!this.HasValue)
-            {
-                return (other == null);
-            }
-
-            if (other == null)
-            {
-                return false;
-            }
-
-            return mValue.Equals(other);
-        }
-        #endregion
     }
 }

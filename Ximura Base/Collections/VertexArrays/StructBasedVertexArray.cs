@@ -38,15 +38,35 @@ namespace Ximura.Collections
     /// <typeparam name="T">The colection data type.</typeparam>
     public abstract class StructBasedVertexArray<T> : VertexArray<T>
     {
+        #region Static declarations
+        /// <summary>
+        /// This value holds an individual incremental ID for each thread.
+        /// </summary>
+        [ThreadStatic]
+        static int sLockIndex;
+        /// <summary>
+        /// This value holds the maximum number of thread registered with the collection.
+        /// </summary>
+        static int sLockCounter = 0;
+        #endregion // Static declarations
+
         #region Declarations
+        /// <summary>
+        /// This array holds the write thread status.
+        /// </summary>
+        private int[] mThreadWrite;
+        /// <summary>
+        /// This property specifies whether threads can modify data in the collection.
+        /// </summary>
+        private volatile int mWriteLock;
         /// <summary>
         /// This collection holds the data.
         /// </summary>
-        protected IFineGrainedLockArray<CollectionVertexStruct<T>> mSlots;
+        private LockableWrapper<CollectionVertexStruct<T>>[] mSlots;
         /// <summary>
         /// This is the vertex that holds the previously used vertexes.
         /// </summary>
-        protected LockableWrapper<CollectionVertexStruct<T>> mEmptyVertex;
+        private LockableNullableWrapper<CollectionVertexStruct<T>> mEmptyVertex;
         /// <summary>
         /// This is the free data queue item count.
         /// </summary>
@@ -54,16 +74,33 @@ namespace Ximura.Collections
         /// <summary>
         /// This is the free data queue tail position.
         /// </summary>
-        private LockableWrapper<int> mFreeListTail;
+        private LockableNullableWrapper<int> mFreeListTail;
         /// <summary>
         /// This is the current next free position in the data collection.
         /// </summary>
         private volatile int mLastIndex;
         /// <summary>
-        /// This is the initial data capacity of the collection.
+        /// This lock grows the collection.
         /// </summary>
-        private volatile int mCapacity;
+        private object syncGrowLock = new object();
         #endregion // Declarations
+        #region Constructor
+        /// <summary>
+        /// This is the default constructor.
+        /// </summary>
+        protected StructBasedVertexArray()
+        {
+            WriteLockInitialize();
+        }
+        #endregion // Constructor
+
+        #region MaxConcurrentThreads
+        /// <summary>
+        /// This protected property returns the maximum supported number of threads. You should override this
+        /// method if you require the collection to support more threads.
+        /// </summary>
+        protected virtual int MaxConcurrentThreads { get { return Environment.ProcessorCount * 50; } }
+        #endregion // MaxConcurrentThreads
 
         #region InitializeData()
         /// <summary>
@@ -75,12 +112,9 @@ namespace Ximura.Collections
             mFreeListCount = 0;
             mLastIndex = 0;
 
-            if (IsFixedSize)
-                mSlots = new FineGrainedLockArray<CollectionVertexStruct<T>>(InitialCapacity, 0);
-            else
-                mSlots = new ExpandableFineGrainedLockArray<CollectionVertexStruct<T>>(InitialCapacity, SlotExpander);
+            mSlots = new LockableWrapper<CollectionVertexStruct<T>>[InitialCapacity];
 
-            mEmptyVertex = new LockableWrapper<CollectionVertexStruct<T>>(CollectionVertexStruct<T>.Sentinel(0, 0));
+            mEmptyVertex = new LockableNullableWrapper<CollectionVertexStruct<T>>(CollectionVertexStruct<T>.Sentinel(0, 0));
         }
         #endregion
 
@@ -89,8 +123,11 @@ namespace Ximura.Collections
         /// This method returns the next free item, either from empty space, or from a free item in the collection.
         /// </summary>
         /// <returns>Returns the index for the next free item.</returns>
-        public virtual int EmptyGet()
+        public int EmptyGet()
         {
+            if (sLockIndex == 0)
+                sLockIndex = Interlocked.Increment(ref sLockCounter);
+
             //If there are free items, try and lock the empty sentinel, 
             //but if already locked, just take a new item from the end of the collection.
             while (mFreeListCount > 0)
@@ -102,10 +139,10 @@ namespace Ximura.Collections
                         continue;
 
                     int pos = mEmptyVertex.Value.NextSlotIDPlus1 - 1;
-                    mSlots.ItemLock(pos);
+                    mSlots[pos].Lock();
 
                     //OK get the item.
-                    CollectionVertexStruct<T> item = mSlots[pos];
+                    CollectionVertexStruct<T> item = mSlots[pos].Value;
 
                     //OK, remove the free item from the list and set the sentinel to the next item.
                     mEmptyVertex.Value = new CollectionVertexStruct<T>(0, default(T), item.NextSlotIDPlus1);
@@ -121,7 +158,7 @@ namespace Ximura.Collections
                     }
 
                     //Unlock the free item.
-                    mSlots.ItemUnlock(pos);
+                    mSlots[pos].Unlock();
 
                     //Returns the index of the free item.
                     return pos;
@@ -136,10 +173,31 @@ namespace Ximura.Collections
                 }
             }
 
+            //Ok, get the next available item.
             int nextItem = Interlocked.Increment(ref mLastIndex);
 
-            if (nextItem == 0 || (IsFixedSize && nextItem >= mCapacity))
-                throw new ArgumentOutOfRangeException("The list has exceeeded the capacity of the maximum integer value.");
+            if (nextItem >= mSlots.Length)
+            {
+                if (mIsFixedSize)
+                    throw new InvalidOperationException("The array is a fixed size and the capacity has been exceeded");
+
+                lock (syncGrowLock)
+                {
+                    if (nextItem < mSlots.Length)
+                        return nextItem - 1;
+
+                    WriteLockAcquire();
+                    try
+                    {
+
+
+                    }
+                    finally
+                    {
+                        WriteLockRelease();
+                    }
+                }
+            }
 
             return nextItem - 1;
         }
@@ -149,7 +207,7 @@ namespace Ximura.Collections
         /// This method adds an empty item to the free list.
         /// </summary>
         /// <param name="index">The index of the item to add to the sentinel.</param>
-        public virtual void EmptyAdd(int index)
+        public void EmptyAdd(int index)
         {
             mFreeListTail.Lock();
             if (mFreeListTail.Value == -1)
@@ -157,7 +215,7 @@ namespace Ximura.Collections
                 mEmptyVertex.Lock();
 
                 int next = mEmptyVertex.Value.NextSlotIDPlus1;
-                mSlots[index] = new CollectionVertexStruct<T>(0, default(T), next);
+                mSlots[index].Value = new CollectionVertexStruct<T>(0, default(T), next);
                 mEmptyVertex.Value = new CollectionVertexStruct<T>(0, default(T), index + 1);
 
                 mFreeListTail.Value = index;
@@ -166,14 +224,60 @@ namespace Ximura.Collections
             }
             else
             {
-                mSlots[index] = CollectionVertexStruct<T>.Empty;
-                mSlots[mFreeListTail.Value] = new CollectionVertexStruct<T>(0, default(T), index + 1);
+                mSlots[index].Value = CollectionVertexStruct<T>.Empty;
+                mSlots[mFreeListTail.Value].Value = new CollectionVertexStruct<T>(0, default(T), index + 1);
                 mFreeListTail.Value = index;
             }
             Interlocked.Increment(ref mFreeListCount);
             mFreeListTail.Unlock();
         }
         #endregion // EmptyAdd(int index)
+
+
+        #region Resize(int newCapacity)
+        /// <summary>
+        /// This method changes the size of the array.
+        /// </summary>
+        protected virtual void Resize()
+        {
+            int newCapacity = SlotExpander(mSlots.Length);
+
+            LockableWrapper<CollectionVertexStruct<T>>[] newArray =
+                new LockableWrapper<CollectionVertexStruct<T>>[newCapacity];
+
+            int copyCapacity = newCapacity < mSlots.Length ? newCapacity : mSlots.Length;
+
+            Array.Copy(mSlots, 0, newArray, 0, copyCapacity);
+
+            Interlocked.Exchange(ref mSlots, newArray);
+        }
+        #endregion
+
+
+        #region SlotExpander(int requiredSize, int currentSize)
+        /// <summary>
+        /// This expander grows the buckets by the specified amount.
+        /// </summary>
+        /// <param name="currentSize">The current capacity.</param>
+        /// <returns>Returns the new capacity.</returns>
+        protected virtual int SlotExpander(int currentSize)
+        {
+            return Prime.Get(currentSize * 2);
+        }
+        #endregion // SlotExpander(int requiredSize, int currentSize)
+
+
+        #region LockableData(int index)
+        /// <summary>
+        /// This method returns the full lockable data from the slot array.
+        /// </summary>
+        /// <param name="index">The slot index.</param>
+        /// <returns>Returns a lockable wrapper containing the vertex data.</returns>
+        protected virtual LockableWrapper<CollectionVertexStruct<T>> LockableData(int index)
+        {
+            return mSlots[index];
+        }
+        #endregion // LockableData(int index)
 
         #region ItemIsLocked(int index)
         /// <summary>
@@ -183,31 +287,34 @@ namespace Ximura.Collections
         /// <returns>Returns true if the item is locked.</returns>
         public virtual bool ItemIsLocked(int index)
         {
-            return mSlots.ItemIsLocked(index);
+            return mSlots[index].IsLocked;
         }
         #endregion // ItemIsLocked(int index)
-        #region ItemLock(int index)
-        /// <summary>
-        /// This method locks the specific item.
-        /// </summary>
-        /// <param name="index">The item index.</param>
-        /// <returns>Returns the number of lock cycles the thread entered.</returns>
-        public virtual int ItemLock(int index)
-        {
-            return mSlots.ItemLock(index);
-        }
-        #endregion // ItemLock(int index)
         #region ItemLockWait(int index)
         /// <summary>
         /// This method waits for a locked item to become available.
         /// </summary>
         /// <param name="index">The index of the item to wait for.</param>
         /// <returns>Returns the number of lock cycles during the wait.</returns>
-        public virtual int ItemLockWait(int index)
+        public virtual void ItemLockWait(int index)
         {
-            return mSlots.ItemLockWait(index);
+            while (mSlots[index].IsLocked)
+                ThreadingHelper.ThreadWait();
         }
         #endregion // ItemLockWait(int index)
+        #region ItemLock(int index)
+        /// <summary>
+        /// This method locks the specific item.
+        /// </summary>
+        /// <param name="index">The item index.</param>
+        /// <returns>Returns the number of lock cycles the thread entered.</returns>
+        public virtual void ItemLock(int index)
+        {
+            while (!ItemTryLock(index))
+                ThreadingHelper.ThreadWait();
+        }
+        #endregion // ItemLock(int index)
+
         #region ItemTryLock(int index)
         /// <summary>
         /// This method attempts to lock the item specified.
@@ -216,7 +323,18 @@ namespace Ximura.Collections
         /// <returns>Returns true if the item was successfully locked.</returns>
         public virtual bool ItemTryLock(int index)
         {
-            return mSlots.ItemTryLock(index);
+            if (mIsFixedSize)
+                return mSlots[index].TryLock();
+
+            WriteEnter();
+            try
+            {
+                return mSlots[index].TryLock();
+            }
+            finally
+            {
+                WriteExit();
+            }
         }
         #endregion // ItemTryLock(int index)
         #region ItemUnlock(int index)
@@ -226,10 +344,23 @@ namespace Ximura.Collections
         /// <param name="index">The index of the item you wish to unlock.</param>
         public virtual void ItemUnlock(int index)
         {
-            mSlots.ItemUnlock(index);
+            if (mIsFixedSize)
+            {
+                mSlots[index].Unlock();
+                return;
+            }
+
+            WriteEnter();
+            try
+            {
+                mSlots[index].Unlock();
+            }
+            finally
+            {
+                WriteExit();
+            }
         }
         #endregion // ItemUnlock(int index)
-
         #region this[int index]
         /// <summary>
         /// This is the indexer for the array.
@@ -238,10 +369,95 @@ namespace Ximura.Collections
         /// <returns>Returns the vertex corresponding to the index position.</returns>
         public virtual CollectionVertexStruct<T> this[int index]
         {
-            get { return mSlots[index]; }
-            set { mSlots[index] = value; }
+            get
+            {
+                return mSlots[index].Value;
+            }
+            set
+            {
+                if (mIsFixedSize)
+                {
+                    mSlots[index].Value = value;
+                    return;
+                }
+
+                WriteEnter();
+                try
+                {
+                    mSlots[index].Value = value;
+                }
+                finally
+                {
+                    WriteExit();
+                }
+            }
         }
         #endregion // this[int index]
+
+        #region WriteLockInitialize()
+        /// <summary>
+        /// This method initializes the write lock logic.
+        /// </summary>
+        private void WriteLockInitialize()
+        {
+            mThreadWrite = new int[MaxConcurrentThreads];
+            mWriteLock = 0;
+        }
+        #endregion // WriteLockInitialize()
+        #region WriteEnter()
+        /// <summary>
+        /// This method is called when a thread enters a critical section that can modify the slot data.
+        /// </summary>
+        private void WriteEnter()
+        {
+            //Wait for lock release before entering the critical section.
+            while (mWriteLock == 1)
+                ThreadingHelper.ThreadWait();
+
+            if (sLockIndex == 0)
+                sLockIndex = Interlocked.Increment(ref sLockCounter);
+
+            mThreadWrite[sLockIndex] = 1;
+        }
+        #endregion // WriteEnter()
+        #region WriteExit()
+        /// <summary>
+        /// This method is called when a thread leaves a critical section that can modify the slot data.
+        /// </summary>
+        private void WriteExit()
+        {
+            mThreadWrite[sLockIndex] = 0;
+        }
+        #endregion // WriteExit()
+
+
+        private void WriteLockAcquire()
+        {
+            //Set the lock to stop new threads from entering.
+            mWriteLock = 1;
+
+            //Wait for all threads to leave the critical section.
+            int id = sLockCounter;
+            for (; --id >= 0;)
+            {
+                if (mThreadWrite[id] == 1)
+                {
+                    ThreadingHelper.ThreadWait();
+                    id = sLockCounter;
+                    continue;
+                }
+            }
+        }
+
+        private void WriteLockRelease()
+        {
+            //Unset the lock. Threads can now enter write sections.
+            mWriteLock = 0;
+
+        }
+
+
+
 
         #region GetEnumerator()
         /// <summary>
@@ -250,7 +466,7 @@ namespace Ximura.Collections
         /// <returns>Returns an enumeration containing the collection data.</returns>
         public override IEnumerator<KeyValuePair<int, ICollectionVertex<T>>> GetEnumerator()
         {
-            CollectionVertexStruct<T> item = mSlots[0];
+            CollectionVertexStruct<T> item = mSlots[0].Value;
 
             yield return new KeyValuePair<int, ICollectionVertex<T>>(0, item);
 
@@ -265,18 +481,6 @@ namespace Ximura.Collections
         }
         #endregion
 
-        #region SlotExpander(int requiredSize, int currentSize)
-        /// <summary>
-        /// This expander grows the buckets by the specified amount.
-        /// </summary>
-        /// <param name="requiredSize">The index specifying the new capacity.</param>
-        /// <param name="currentSize">The current capacity.</param>
-        /// <returns>Returns the new capacity.</returns>
-        protected virtual int SlotExpander(int requiredSize, int currentSize)
-        {
-            return Prime.Get(requiredSize * 2);
-        }
-        #endregion // SlotExpander(int requiredSize, int currentSize)
 
         #region RootIndexID
         /// <summary>

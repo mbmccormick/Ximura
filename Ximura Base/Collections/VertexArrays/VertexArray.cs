@@ -111,7 +111,6 @@ namespace Ximura.Collections
         /// </summary>
         protected abstract void InitializeData();
         #endregion // InitializeData()
-
         
         #region IEnumerable<KeyValuePair<int,Vertex<T>>> Members
         /// <summary>
@@ -200,7 +199,7 @@ namespace Ximura.Collections
         /// <summary>
         /// This property specifies whether the collection is a fixed size.
         /// </summary>
-        private bool mIsFixedSize;
+        protected bool mIsFixedSize;
         /// <summary>
         /// This property determines whether the collection is a fixed size. Fixed size collections will reject new records
         /// when the capacity has been reached.

@@ -41,8 +41,11 @@ namespace Ximura.Collections.Data
         /// This is the empty vertex.
         /// </summary>
         public static readonly CollectionVertexStruct<T> Empty;
+
         private const int cnSentinelMaskSet = 0x40000000;
         private const int cnSentinelMaskRemove = 0x3FFFFFFF;
+        private const int cnMarkedMaskSet = unchecked((int)0x80000000);
+        private const int cnMarkedMaskRemove = 0x7FFFFFFF;
         #endregion // Constants
         #region Static methods
         /// <summary>
@@ -128,6 +131,13 @@ namespace Ximura.Collections.Data
         /// </summary>
         public bool IsSentinel { get { return (mHashID & cnSentinelMaskSet) > 0; } }
         #endregion // IsSentinel
+
+        public bool IsMarked { get { return (mHashID & cnMarkedMaskSet) > 0; } }
+
+        public bool TryMark()
+        {
+            return Interlocked.CompareExchange(ref mHashID, unchecked(cnMarkedMaskSet | mHashID), mHashID) == mHashID;
+        }
 
         #region ToString()
         /// <summary>

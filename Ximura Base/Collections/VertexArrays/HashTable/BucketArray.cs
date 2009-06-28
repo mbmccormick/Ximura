@@ -41,13 +41,41 @@ namespace Ximura.Collections
         /// </summary>
         /// <param name="capacity">The array capacity.</param>
         /// <param name="offset">The array offset, this is the initial position of the array, the default should be 0.</param>
-        public BucketArray(int capacity):base(capacity,0)
+        public BucketArray(int capacity):base(capacity)
         {
         }
         #endregion // Constructor
-        /// <summary>
-        /// The offset for the bucket array is always 0, as this is handled elsewhere.
-        /// </summary>
-        public override int Offset{get{return 0;}}
+
+        //#region Offset
+        ///// <summary>
+        ///// The offset for the bucket array is always 0, as this is handled elsewhere.
+        ///// </summary>
+        //public override int Offset{get{return 0;}}
+        //#endregion // Offset
     }
+
+    ///// <summary>
+    ///// The bucket array holds optimized data for the bucket array.
+    ///// </summary>
+    //public class BucketArray2 : FineGrainedLockArray<int>
+    //{
+    //    #region Constructor
+    //    /// <summary>
+    //    /// This constructor sets the array capacity and the array offset integer.
+    //    /// </summary>
+    //    /// <param name="capacity">The array capacity.</param>
+    //    /// <param name="offset">The array offset, this is the initial position of the array, the default should be 0.</param>
+    //    public BucketArray2(int capacity)
+    //        : base(capacity, 0)
+    //    {
+    //    }
+    //    #endregion // Constructor
+
+    //    #region Offset
+    //    /// <summary>
+    //    /// The offset for the bucket array is always 0, as this is handled elsewhere.
+    //    /// </summary>
+    //    public override int Offset { get { return 0; } }
+    //    #endregion // Offset
+    //}
 }
