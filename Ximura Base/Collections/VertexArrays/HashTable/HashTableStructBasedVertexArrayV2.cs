@@ -36,8 +36,8 @@ namespace Ximura.Collections
     /// This class contains the combined buckets and slots in a single class.
     /// </summary>
     /// <typeparam name="T">The collection type.</typeparam>
-    public class HashTableStructBasedVertexArrayV2<T> 
-        : MultiLevelStructBasedVertexArray<T, LockableWrapper<CollectionVertexStruct<T>>[]>
+    public class HashTableStructBasedVertexArrayV2<T> : 
+        MultiLevelBucketStructBasedVertexArray<T, CollectionVertexStruct<T>>
     {
         #region StructBasedVertexWindowV2
         /// <summary>
@@ -75,10 +75,15 @@ namespace Ximura.Collections
             public StructBasedVertexWindowV2(HashTableStructBasedVertexArrayV2<T> data, 
                 IEqualityComparer<T> eqComparer, int indexID, int hashID, T item)
             {
+#if (LOCKDEBUG)
+                Console.WriteLine("Window created for {0:x} {1:x} on {2}"
+                    , indexID, hashID, Thread.CurrentThread.ManagedThreadId);
+#endif
                 mData = data;
                 mHashID = hashID;
                 mItem = item;
                 mEqualityComparer = eqComparer;
+
 
                 mData.ItemLock(indexID);
                 CurrSlotIDPlus1 = indexID + 1;
@@ -106,7 +111,10 @@ namespace Ximura.Collections
                 mHashID = hashID;
                 mItem = default(T);
                 mEqualityComparer = eqComparer;
-
+#if (LOCKDEBUG)
+                Console.WriteLine("S Window created for {0:x} {1:x} on {2}"
+                    , indexID, mHashID, Thread.CurrentThread.ManagedThreadId);
+#endif
                 mData.ItemLock(indexID);
                 CurrSlotIDPlus1 = indexID + 1;
                 Curr = mData[indexID];
@@ -175,27 +183,7 @@ namespace Ximura.Collections
 
                 //Increment the necessary counters, and
                 //check whether we need to recalculate the bit size.
-                mData.SizeRecalculate(mData.CountIncrement());
-            }
-            #endregion
-
-            #region InsertSentinel(int indexID)
-            /// <summary>
-            /// This method inserts a sentinel in to the data collection.
-            /// </summary>
-            /// <param name="indexID">The new sentinel index id.</param>
-            /// <param name="hashID">The sentinel hash id.</param>
-            public void InsertSentinel(int indexID)
-            {
-                if (!Curr.IsTerminator)
-                    mData.ItemUnlock(Curr.NextSlotIDPlus1 - 1);
-
-                Next = CollectionVertexStruct<T>.Sentinel(mHashID, Curr.NextSlotIDPlus1);
-
-                Curr.NextSlotIDPlus1 = indexID + 1;
-
-                mData[indexID] = Next;
-                mData[CurrSlotIDPlus1 - 1] = Curr;
+                mData.BucketSizeRecalculate(mData.CountIncrement(), false);
             }
             #endregion
 
@@ -221,6 +209,11 @@ namespace Ximura.Collections
                 Curr.NextSlotIDPlus1 = indexID + 1;
                 mData[CurrSlotIDPlus1 - 1] = Curr;
                 mData.ItemUnlock(CurrSlotIDPlus1 - 1);
+
+#if (LOCKDEBUG)
+                Console.WriteLine("Window sentinel unlocked for {0:x} {1:x} on {2}"
+                    , CurrSlotIDPlus1 - 1, mHashID, Thread.CurrentThread.ManagedThreadId);
+#endif
             }
             #endregion
 
@@ -232,6 +225,11 @@ namespace Ximura.Collections
             {
                 if (Curr.NextSlotIDPlus1 != 0) mData.ItemUnlock(Curr.NextSlotIDPlus1 - 1);
                 if (CurrSlotIDPlus1 != 0) mData.ItemUnlock(CurrSlotIDPlus1 - 1);
+
+#if (LOCKDEBUG)
+                Console.WriteLine("Window unlocked for {0:x} {1:x} on {2}"
+                    , CurrSlotIDPlus1-1, mHashID, Thread.CurrentThread.ManagedThreadId);
+#endif
             }
             #endregion
             #region ScanAndLock()
@@ -319,6 +317,10 @@ namespace Ximura.Collections
 
                 //Update the version and reduce the item count.
                 mData.CountDecrement();
+#if (LOCKDEBUG)
+                Console.WriteLine("Window remove and unlock for {0:x} {1:x} on {2}"
+                    , CurrSlotIDPlus1 - 1, mHashID, Thread.CurrentThread.ManagedThreadId);
+#endif
             }
             #endregion // SlotsRemoveItem
 
@@ -539,7 +541,7 @@ namespace Ximura.Collections
 
                 //Increment the necessary counters, and
                 //check whether we need to recalculate the bit size.
-                mData.SizeRecalculate(mData.CountIncrement());
+                mData.BucketSizeRecalculate(mData.CountIncrement(), false);
             }
             #endregion
 
@@ -748,7 +750,6 @@ namespace Ximura.Collections
         #endregion 
 
         #region Declarations
-        private object syncBucketExpand = new object();
         #endregion // Declarations
         #region Constructor
         /// <summary>
@@ -761,21 +762,24 @@ namespace Ximura.Collections
         }
         #endregion // Constructor
 
-        #region InitializeBucketArray()
-        /// <summary>
-        /// This method initializes the bucket array.
-        /// </summary>
-        protected override void InitializeBucketArray()
-        {
-            mBuckets = new LockableWrapper<CollectionVertexStruct<T>>[LevelMax][];
-        }
-        #endregion // InitializeDataArray()
         #region RootIndexID
         /// <summary>
         /// This is the index ID of the the first item.
         /// </summary>
         protected override int RootIndexID { get { return unchecked((int)0x80000000); } }
         #endregion // RootIndexID
+
+        #region InitializeBucketArray(int initialCapacity)
+        /// <summary>
+        /// This method initializes the data array.
+        /// </summary>
+        protected override void InitializeBucketArray(int initialCapacity)
+        {
+            base.InitializeBucketArray(initialCapacity);
+            //Set the initial sentinel.
+            this[RootIndexID] = CollectionVertexStruct<T>.Sentinel(RootIndexID, 0);
+        }
+        #endregion // InitializeDataArray()
 
         #region ItemIsLocked(int index)
         /// <summary>
@@ -863,7 +867,6 @@ namespace Ximura.Collections
             BucketUnlock(noMaskIndex);
         }
         #endregion
-
         #region this[int index]
         /// <summary>
         /// This is the indexer for the array.
@@ -891,64 +894,30 @@ namespace Ximura.Collections
 
                 int level, levelPosition;
                 BucketCalculatePosition(noMaskIndex, out level, out levelPosition);
-
                 mBuckets[level][levelPosition].Value = value;
             }
         }
         #endregion // this[int index]
-
-        protected override LockableWrapper<CollectionVertexStruct<T>> LockableData(int index)
+        #region LockableData(int index, out bool isLocked)
+        /// <summary>
+        /// This method reads the vertex from the base collection, as well as the vertex's lock status,
+        /// </summary>
+        /// <param name="index">The item index.</param>
+        /// <param name="isLocked">A boolean value indicating whether the vertex is locked.</param>
+        /// <returns>Returns the vertex.</returns>
+        protected override CollectionVertexStruct<T> LockableData(int index, out bool isLocked)
         {
             int noMaskIndex = index & 0x7FFFFFFF;
             if (noMaskIndex == index)
-                return base.LockableData(index);
+                return base.LockableData(index, out isLocked);
 
             int level, levelPosition;
             BucketCalculatePosition(noMaskIndex, out level, out levelPosition);
-
-            return mBuckets[level][levelPosition];
+            LockableWrapper<CollectionVertexStruct<T>> data = mBuckets[level][levelPosition];
+            isLocked = data.IsLocked;
+            return data.Value;
         }
-
-
-        #region Bucket(int index)
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="index"></param>
-        /// <returns>Returns the bucket.</returns>
-        internal CollectionVertexStruct<T> Bucket(int index)
-        {
-            int level, levelPosition;
-            BucketCalculatePosition(index, out level, out levelPosition);
-            return mBuckets[level][levelPosition].Value;
-        }
-        #endregion // Bucket(int index)
-        #region BucketLock(int index)
-        /// <summary>
-        /// This method locks a bucket.
-        /// </summary>
-        /// <param name="index">The index of the bucket to lock.</param>
-        /// <returns>Returns the number of lock loops before the call was able to lock and get access.</returns>
-        internal void BucketLock(int index)
-        {
-            int level, levelPosition;
-            BucketCalculatePosition(index, out level, out levelPosition);
-            mBuckets[level][levelPosition].Lock();
-        }
-        #endregion // BucketLock(int index)
-
-        #region BucketUnlock(int index)
-        /// <summary>
-        /// This method unlocks the bucket.
-        /// </summary>
-        /// <param name="index">The index of the bucket to unlock.</param>
-        internal void BucketUnlock(int index)
-        {
-            int level, levelPosition;
-            BucketCalculatePosition(index, out level, out levelPosition);
-            mBuckets[level][levelPosition].Unlock();
-        }
-        #endregion // BucketUnlock(int index)
+        #endregion // LockableData(int index, out bool isLocked)
 
         #region VertexWindowGet(int index)
         /// <summary>
@@ -964,7 +933,7 @@ namespace Ximura.Collections
         /// <summary>
         /// This method returns a vertex window for the hashCode specified.
         /// </summary>
-        /// <param name="hashCode">The hashcode.</param>
+        /// <param name="item">The item to get the window for.</param>
         /// <param name="createSentinel">A boolean value that specifies whether the sentinels should be created.</param>
         /// <returns>Returns a vertex window.</returns>
         public override IVertexWindow<T> VertexWindowGet(T item, bool createSentinel)
@@ -985,7 +954,7 @@ namespace Ximura.Collections
         /// <param name="indexID">The bucket index.</param>
         /// <param name="level">The bucket level.</param>
         /// <param name="levelPosition">The bucket position.</param>
-        private void BucketCalculatePosition(int indexID, out int level, out int levelPosition)
+        protected override void BucketCalculatePosition(int indexID, out int level, out int levelPosition)
         {
             if (indexID <= 0)
             {
@@ -994,7 +963,7 @@ namespace Ximura.Collections
                 return;
             }
 
-            int levelCurrent = LevelCurrent;
+            int levelCurrent = BucketsLevelCurrent;
             int mask = (int.MaxValue >> (31 - levelCurrent));
 
             mask = (mask + 1) >> 1;
@@ -1012,36 +981,13 @@ namespace Ximura.Collections
                 levelPosition = indexID & (mask - 1);
         }
         #endregion
-
-        #region BucketLevelExpand(int currentLevel, int newLevel)
-        /// <summary>
-        /// This method expands the bucket arrays.
-        /// </summary>
-        /// <param name="currentLevel">The current level.</param>
-        /// <param name="newLevel">The new level required.</param>
-        protected override void BucketLevelExpand(int currentLevel, int newLevel)
-        {
-            lock (syncBucketExpand)
-            {
-                if (currentLevel != LevelCurrent)
-                    return;
-
-                for (int level = currentLevel; level <= newLevel; level++)
-                {
-                    mBuckets[level] = new LockableWrapper<CollectionVertexStruct<T>>[BucketLevelCapacityCalculate(level)];
-                }
-
-                base.BucketLevelExpand(currentLevel, newLevel);
-            }
-        }
-        #endregion // BucketLevelExpand(int currentLevel, int newLevel)
         #region BucketLevelCapacityCalculate(int level)
         /// <summary>
         /// This method calculates the size of the bucket array.
         /// </summary>
         /// <param name="level">The level.</param>
         /// <returns>Returns 2n+1 as the size of the array where n is the level.</returns>
-        private int BucketLevelCapacityCalculate(int level)
+        protected override int BucketLevelCapacityCalculate(int level)
         {
             if (level == 0)
                 return 1;
@@ -1049,27 +995,6 @@ namespace Ximura.Collections
             return (1 << level-1);
         }
         #endregion // BucketLevelSize(int level)
-
-        #region GetEnumerator()
-        /// <summary>
-        /// This method returns an enumeration through the sentinels and data in the collection.
-        /// </summary>
-        /// <returns>Returns an enumeration containing the collection data.</returns>
-        public override IEnumerator<KeyValuePair<int, ICollectionVertex<T>>> GetEnumerator()
-        {
-            CollectionVertexStruct<T> item = this[RootIndexID];
-            yield return new KeyValuePair<int, ICollectionVertex<T>>(unchecked((int)0x80000000), item); ;
-
-            while (!item.IsTerminator)
-            {
-                int id = item.NextSlotIDPlus1 - 1;
-                ItemLockWait(id);
-                item = this[id];
-
-                yield return new KeyValuePair<int, ICollectionVertex<T>>(id, item); ;
-            }
-        }
-        #endregion
 
         #region ConvertBucketIDToIndexID(int bucketID)
         /// <summary>
@@ -1096,7 +1021,7 @@ namespace Ximura.Collections
             hashCode &= cnLowerBitMask;
             hashID = BitReverse(hashCode);
 
-            int bitsStart = LevelCurrent;
+            int bitsStart = BucketsLevelCurrent;
             int bitsCurrent = bitsStart;
             int bucketIDParent = -1;
 
@@ -1180,25 +1105,26 @@ namespace Ximura.Collections
 
             //Get the initial sentinel vertex. No need to check locks as sentinels rarely change.
             int scanPosition = sentIndexID;
-            LockableWrapper<CollectionVertexStruct<T>> scanVertex = LockableData(scanPosition);
+            bool vertexLock;
+            CollectionVertexStruct<T> scanVertex = LockableData(scanPosition, out vertexLock);
 
             //First we will attempt to search without locking. However, should the version ID change 
             //during the search we will need to complete a locked search to ensure consistency.
-            while (!scanVertex.IsLocked)
+            while (!vertexLock)
             {
                 //Do we have a match?
-                if (!scanVertex.Value.IsSentinel &&
-                    scanVertex.Value.HashID == hashID &&
-                    mEqComparer.Equals(item, scanVertex.Value.Value))
+                if (!scanVertex.IsSentinel &&
+                    scanVertex.HashID == hashID &&
+                    mEqComparer.Equals(item, scanVertex.Value))
                     return true;
 
                 //Is this the end of the line
-                if (scanVertex.Value.IsTerminator || scanVertex.Value.HashID > hashID)
+                if (scanVertex.IsTerminator || scanVertex.HashID > hashID)
                     return false;
 
-                scanPosition = scanVertex.Value.NextSlotIDPlus1 - 1;
+                scanPosition = scanVertex.NextSlotIDPlus1 - 1;
 
-                scanVertex = LockableData(scanPosition);
+                scanVertex = LockableData(scanPosition, out vertexLock);
             }
 
             ContainScanUnlockedMiss();
@@ -1250,7 +1176,6 @@ namespace Ximura.Collections
         }
 
         #endregion // FastContain
-
 
 #if (DEBUG)
         #region DebugEmpty

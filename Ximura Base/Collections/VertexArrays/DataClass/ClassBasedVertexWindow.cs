@@ -131,7 +131,7 @@ namespace Ximura.Collections.Data
 
             //Increment the necessary counters, and
             //check whether we need to recalculate the bit size.
-            mData.SizeRecalculate(mData.CountIncrement());
+            mData.CountIncrement();
         }
         #endregion
 

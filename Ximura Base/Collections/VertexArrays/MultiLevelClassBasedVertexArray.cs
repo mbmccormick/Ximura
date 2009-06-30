@@ -100,7 +100,7 @@ namespace Ximura.Collections
         /// <summary>
         /// This method initializes the data collection.
         /// </summary>
-        protected override void InitializeData()
+        protected override void InitializeData(int initialCapacity)
         {
             mLevelCurrent = 0;
             mRecalculateThreshold = 0;
@@ -117,7 +117,7 @@ namespace Ximura.Collections
         /// </summary>
         protected virtual void InitializeDataSize()
         {
-            SizeRecalculate(1000);
+            BucketSizeRecalculate(1000);
         }
         #endregion // InitializeDataSize()
 
@@ -133,7 +133,7 @@ namespace Ximura.Collections
 
             for (int index = 1; index < LevelMax; index++)
             {
-                mData[index] = new CollectionVertexClassSentinel<T>(HashIDMin, mData[index -1]);
+                mData[index] = new CollectionVertexClassSentinel<T>(HashIDMin, mData[index - 1]);
             }
         }
         #endregion // InitializeDataArray()
@@ -142,7 +142,7 @@ namespace Ximura.Collections
         /// <summary>
         /// This method calculates the current number of bits needed to support the current data.
         /// </summary>
-        public override void SizeRecalculate(int total)
+        public virtual void BucketSizeRecalculate(int total)
         {
             int currentLevel = mLevelCurrent;
             int recalculateThreshold = mRecalculateThreshold;
@@ -176,5 +176,20 @@ namespace Ximura.Collections
             get { return mData[LevelData]; }
         }
         #endregion // Root
+
+        protected override CollectionVertexClass<T> GetSentinelID(int hashCode, bool createSentinel, out int hashID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override int InitialCapacity
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        public override int Capacity
+        {
+            get { throw new NotImplementedException(); }
+        }
     }
 }

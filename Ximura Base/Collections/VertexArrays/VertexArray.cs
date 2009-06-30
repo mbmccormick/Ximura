@@ -72,6 +72,32 @@ namespace Ximura.Collections
         /// This is the collection comparer.
         /// </summary>
         protected IEqualityComparer<T> mEqComparer;
+        /// <summary>
+        /// This property specifies whether the collection is a fixed size.
+        /// </summary>
+        protected bool mIsFixedSize;
+        private bool mAllowNullValues;
+        private bool mAllowMultipleEntries;
+        /// <summary>
+        /// The version value.
+        /// </summary>
+        protected volatile int mVersion;
+        /// <summary>
+        /// This is the current item count.
+        /// </summary>
+        private volatile int mCount;
+        /// <summary>
+        /// This is the current default(T) item capacity. 
+        /// </summary>
+        private volatile int mDefaultTCount;
+        /// <summary>
+        /// This variable contains the number of scan misses.
+        /// </summary>
+        private volatile int mContainScanUnlockedMiss;
+        /// <summary>
+        /// This is the threshold where locked scans should be processed.
+        /// </summary>
+        private int mContainScanMissThreshold;
         #endregion // Declarations
 
         #region Initialize(bool isFixedSize, int capacity, bool allowNullValues, bool allowMultipleEntries)
@@ -85,8 +111,13 @@ namespace Ximura.Collections
         /// <param name="allowMultipleEntries">This boolean value specicifies whether the collection allows items to exist 
         /// more than once in the collection.</param>
         public virtual void Initialize(IEqualityComparer<T> eqComparer, 
-            bool isFixedSize, int capacity, bool allowNullValues, bool allowMultipleEntries)
+            bool isFixedSize, int initialCapacity, bool allowNullValues, bool allowMultipleEntries)
         {
+            if (initialCapacity < 0)
+                throw new ArgumentOutOfRangeException("initialCapacity", "The initial capacity cannot be less than zero.");
+            if (eqComparer == null)
+                throw new ArgumentNullException("eqComparer", "The equality comparer cannot be null.");
+
             mEqComparer = eqComparer;
 
             mVersion = int.MinValue;
@@ -98,19 +129,19 @@ namespace Ximura.Collections
 
             mIsFixedSize = isFixedSize;
 
-            mInitialCapacity = capacity;
             mAllowNullValues = allowNullValues;
             mAllowMultipleEntries = allowMultipleEntries;
 
-            InitializeData();
+            InitializeData(initialCapacity);
         }
         #endregion
-        #region InitializeData()
+        #region InitializeData(int initialCapacity)
         /// <summary>
         /// This method initializes the data collection.
         /// </summary>
-        protected abstract void InitializeData();
+        protected abstract void InitializeData(int initialCapacity);
         #endregion // InitializeData()
+
         
         #region IEnumerable<KeyValuePair<int,Vertex<T>>> Members
         /// <summary>
@@ -142,13 +173,6 @@ namespace Ximura.Collections
         /// <param name="createSentinel">The value specifies whether any missing sentinels should be created.</param>
         /// <returns>A vertex window.</returns>
         public abstract IVertexWindow<T> VertexWindowGet(T item, bool createSentinel);
-        #endregion
-
-        #region SizeRecalculate(int total)
-        /// <summary>
-        /// This method calculates the current number of bits needed to support the current data.
-        /// </summary>
-        public abstract void SizeRecalculate(int total);
         #endregion
 
         #region Fast Access
@@ -187,19 +211,13 @@ namespace Ximura.Collections
 
         #endregion // Fast Access
 
-        #region State
         #region InitialCapacity
-        private int mInitialCapacity;
         /// <summary>
         /// This is the initial capacity of the collection.
         /// </summary>
-        public int InitialCapacity { get { return mInitialCapacity; } }
+        public abstract int InitialCapacity { get; }
         #endregion // InitialCapacity
         #region IsFixedSize
-        /// <summary>
-        /// This property specifies whether the collection is a fixed size.
-        /// </summary>
-        protected bool mIsFixedSize;
         /// <summary>
         /// This property determines whether the collection is a fixed size. Fixed size collections will reject new records
         /// when the capacity has been reached.
@@ -207,25 +225,25 @@ namespace Ximura.Collections
         public bool IsFixedSize { get { return mIsFixedSize; } }
         #endregion // IsFixedSize
         #region AllowNullValues
-        private bool mAllowNullValues;
         /// <summary>
         /// This property determines whether the collection will allow null or default(T) values.
         /// </summary>
         public bool AllowNullValues { get { return mAllowNullValues; } }
         #endregion // AllowNullValues
         #region AllowMultipleEntries
-        private bool mAllowMultipleEntries;
         /// <summary>
         /// This property specifies whether the collection accepts multiple entries of the same object.
         /// </summary>
         public bool AllowMultipleEntries { get { return mAllowMultipleEntries; } }
         #endregion // AllowMultipleEntries
 
-        #region Version
+        #region Capacity
         /// <summary>
-        /// The version value.
+        /// This is the current capacity of the collection.
         /// </summary>
-        protected volatile int mVersion;
+        public abstract int Capacity { get; }
+        #endregion // Capacity
+        #region Version
         /// <summary>
         /// This is the public version value.
         /// </summary>
@@ -237,10 +255,6 @@ namespace Ximura.Collections
         }
         #endregion
         #region Count
-        /// <summary>
-        /// This is the current item count.
-        /// </summary>
-        private volatile int mCount;
         /// <summary>
         /// This is the public count value.
         /// </summary>
@@ -279,10 +293,6 @@ namespace Ximura.Collections
         #endregion // CountDecrement()
 
         #region DefaultTCount
-        /// <summary>
-        /// This is the current default(T) item capacity. 
-        /// </summary>
-        private volatile int mDefaultTCount;
         /// <summary>
         /// This is the public DefaultTCount value.
         /// </summary>
@@ -371,10 +381,6 @@ namespace Ximura.Collections
 
         #region ContainScanUnlockedMiss()
         /// <summary>
-        /// This variable contains the number of scan misses.
-        /// </summary>
-        private volatile int mContainScanUnlockedMiss;
-        /// <summary>
         /// This method increments the unlocked scan miss count.
         /// </summary>
         public void ContainScanUnlockedMiss()
@@ -388,10 +394,6 @@ namespace Ximura.Collections
         /// </summary>
         public bool ContainScanUnlocked { get { return mContainScanMissThreshold == -1 ? true : mContainScanUnlockedMiss < mContainScanMissThreshold; } }
         /// <summary>
-        /// This is the threshold where locked scans should be processed.
-        /// </summary>
-        private int mContainScanMissThreshold;
-        /// <summary>
         /// This is the threshhold where missed scans will default to a locked scan automatically.
         /// </summary>
         public int ContainScanMissThreshold
@@ -400,6 +402,5 @@ namespace Ximura.Collections
             set { mContainScanMissThreshold = value; }
         }
         #endregion // ContainScanUnlocked
-        #endregion // State
     }
 }

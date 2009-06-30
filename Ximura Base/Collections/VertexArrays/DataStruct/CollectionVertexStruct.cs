@@ -34,7 +34,7 @@ namespace Ximura.Collections.Data
     /// </summary>
     /// <typeparam name="T">The container object.</typeparam>
     [Serializable, StructLayout(LayoutKind.Sequential)]
-    public struct CollectionVertexStruct<T> : ICollectionVertex<T>
+    public struct CollectionVertexStruct<T> : ICollectionVertex<T>, IEquatable<CollectionVertexStruct<T>>
     {
         #region Constants
         /// <summary>
@@ -161,6 +161,17 @@ namespace Ximura.Collections.Data
         {
             get { return Value; }
         }
+        #endregion
+
+        #region IEquatable<CollectionVertexStruct<T>> Members
+
+        public bool Equals(CollectionVertexStruct<T> other)
+        {
+            return mHashID == other.mHashID
+                && NextSlotIDPlus1 == other.NextSlotIDPlus1
+                && Value.Equals(other.Value);
+        }
+
         #endregion
     }
 }

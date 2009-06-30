@@ -101,10 +101,10 @@ namespace Ximura.Collections
         /// <summary>
         /// This override sets the probability to 50%.
         /// </summary>
-        protected override void InitializeData()
+        protected override void InitializeData(int initialCapacity)
         {
             mProbability = 0.5;
-            base.InitializeData();
+            base.InitializeData(initialCapacity);
         }
         #endregion // InitializeData()
 
@@ -246,5 +246,7 @@ namespace Ximura.Collections
             return null;
         }
         #endregion // FastContains
+
+
     }
 }

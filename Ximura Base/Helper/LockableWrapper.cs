@@ -40,6 +40,9 @@ namespace Ximura.Helper
         /// The private value that indicates whether the class is locked.
         /// </summary>
         private int mFlags;
+#if (DEBUG)
+        int mDebugThreadID;
+#endif
         #endregion // Declarations
         #region Constructor
         /// <summary>
@@ -50,6 +53,9 @@ namespace Ximura.Helper
         {
             mFlags = 0;
             Value = value;
+#if (DEBUG)
+            mDebugThreadID=0;
+#endif
         }
         #endregion // Constructor
 
@@ -93,7 +99,12 @@ namespace Ximura.Helper
         /// <returns>Returns true if the item is successfully locked.</returns>
         public bool TryLock()
         {
-            return (Interlocked.CompareExchange(ref mFlags, 1, 0) == 0);
+            bool success = (Interlocked.CompareExchange(ref mFlags, 1, 0) == 0);
+#if (DEBUG)
+            if (success)
+                mDebugThreadID = Thread.CurrentThread.ManagedThreadId;
+#endif
+            return success;
         }
         #endregion // TryLock()
         #region Unlock()
@@ -103,6 +114,9 @@ namespace Ximura.Helper
         public void Unlock()
         {
             mFlags = 0;
+#if (DEBUG)
+            mDebugThreadID = 0;
+#endif
         }
         #endregion // Unlock()
 
