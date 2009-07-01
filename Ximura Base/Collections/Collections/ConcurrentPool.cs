@@ -30,7 +30,7 @@ namespace Ximura.Collections
 {
     public class ConcurrentPool<T, A> : CollectionHelperBase<T, A>, IPoolInitialization<T>
         where T: class
-        where A : class, IVertexArray<T>, new()
+        where A : VertexArray<T>, new()
     {
         #region Declarations
         private int mMax = -1;

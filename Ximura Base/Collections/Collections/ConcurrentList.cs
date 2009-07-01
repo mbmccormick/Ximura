@@ -36,7 +36,7 @@ namespace Ximura.Collections
     /// <typeparam name="A">The vertex array type.</typeparam>
     [DebuggerDisplay("Count = {Count}"), HostProtection(SecurityAction.LinkDemand, MayLeakOnAbort = true)]
     public class ConcurrentList<T, A> : ConcurrentCollectionBase<T, A>, ICollection<T>
-        where A : class, IVertexArray<T>, new()
+        where A : VertexArray<T>,new()
     {
         #region Constructor
         /// <summary>

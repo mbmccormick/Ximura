@@ -749,8 +749,6 @@ namespace Ximura.Collections
         }
         #endregion 
 
-        #region Declarations
-        #endregion // Declarations
         #region Constructor
         /// <summary>
         /// This is the default constructor for the array.

@@ -34,7 +34,7 @@ namespace Ximura.Collections
     /// <typeparam name="T">The collection item type.</typeparam>
     /// <typeparam name="A">The vertex array type.</typeparam>
     public abstract class ConcurrentCollectionBase<T, A> : CollectionHelperBase<T, A>, ICollection<T>
-        where A : class, IVertexArray<T>, new()
+        where A : VertexArray<T>, new()
     {
         #region Constructor
         /// <summary>

@@ -132,12 +132,29 @@ namespace Ximura.Collections.Data
         public bool IsSentinel { get { return (mHashID & cnSentinelMaskSet) > 0; } }
         #endregion // IsSentinel
 
+        #region IsMarked
+        /// <summary>
+        /// This property determines whether the vertex has been marked for deletion.
+        /// </summary>
         public bool IsMarked { get { return (mHashID & cnMarkedMaskSet) > 0; } }
-
+        #endregion
+        #region TryMark()
+        /// <summary>
+        /// This method attempts to mark the vertex.
+        /// </summary>
+        /// <returns>This method returns true if the vertex was successfully marked.
+        /// This method will return false if another vertex has already marked this vertex.
+        /// </returns>
         public bool TryMark()
         {
-            return Interlocked.CompareExchange(ref mHashID, unchecked(cnMarkedMaskSet | mHashID), mHashID) == mHashID;
+            int hashID = mHashID;
+
+            if ((hashID & cnMarkedMaskSet) > 0)
+                return false;
+
+            return Interlocked.CompareExchange(ref mHashID, unchecked(cnMarkedMaskSet | hashID), hashID) == hashID;
         }
+        #endregion
 
         #region ToString()
         /// <summary>

@@ -35,7 +35,7 @@ namespace Ximura.Collections
     /// </summary>
     /// <typeparam name="T">The collection object type.</typeparam>
     public abstract partial class CollectionHelperBase<T, A> : DisposableBase, IEnumerable<T>
-        where A : class, IVertexArray<T>, new()
+        where A : VertexArray<T>, new()
     {
         #region Declarations
         /// <summary>

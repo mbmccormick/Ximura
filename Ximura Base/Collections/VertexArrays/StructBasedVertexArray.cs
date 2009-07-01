@@ -54,10 +54,23 @@ namespace Ximura.Collections
         /// This collection holds the data.
         /// </summary>
         private LockableWrapper<CollectionVertexStruct<T>>[][] mSlots;
+        private LockableWrapper<CollectionVertexStruct<T>>[] mSlots0;
+        /// <summary>
+        /// The slots cumulative capacity.
+        /// </summary>
         private int[] mSlotCapacityFastLookup;
-        private volatile int mSlotsLevelCurrent;
-        private volatile int mSlotsCapacityCurrent;
+        /// <summary>
+        /// The slot 0 capacity.
+        /// </summary>
         private int mSlot0Capacity;
+        /// <summary>
+        /// The current maximum level.
+        /// </summary>
+        private volatile int mSlotsLevelCurrent;
+        /// <summary>
+        /// The current collection capacity.
+        /// </summary>
+        private volatile int mSlotsCapacityCurrent;
 
         /// <summary>
         /// This is the vertex that holds the previously used vertexes.
@@ -76,9 +89,7 @@ namespace Ximura.Collections
         /// This is the current next free position in the data collection.
         /// </summary>
         private int mLastIndex;
-
-
-        #endregion // Declarations
+        #endregion
 
         #region InitializeData(int initialCapacity)
         /// <summary>
@@ -123,16 +134,6 @@ namespace Ximura.Collections
         }
         #endregion // Capacity
 
-        #region SlotsLevelCurrent
-        /// <summary>
-        /// The maximum number of levels.
-        /// </summary>
-        protected virtual int SlotsLevelCurrent
-        {
-            get { return mSlotsLevelCurrent; }
-        }
-        #endregion
-
         #region SlotsInitialize()
         /// <summary>
         /// This method initializes the slot array.
@@ -160,23 +161,35 @@ namespace Ximura.Collections
             mSlotCapacityFastLookup[31 - slotsLevelOffset] = int.MaxValue;
 
             mSlots = new LockableWrapper<CollectionVertexStruct<T>>[32 - slotsLevelOffset][];
-            mSlots[0] = new LockableWrapper<CollectionVertexStruct<T>>[mSlot0Capacity];
+            mSlots[0] = mSlots0 = new LockableWrapper<CollectionVertexStruct<T>>[mSlot0Capacity];
             mSlotsCapacityCurrent = mSlot0Capacity;
             mSlotsLevelCurrent = 0;
         }
         #endregion
-        #region SlotsCalculateLevelPosition(int indexID, out int level, out int levelPosition)
+        #region SlotsCalculateLevel(int index)
         /// <summary>
         /// This method calculates the specific bucket level and the position within that bucket.
         /// </summary>
         /// <param name="index">The slot index.</param>
-        /// <param name="level">The slot level.</param>
-        /// <param name="levelPosition">The slot level position.</param>
-        protected virtual void SlotsCalculateLevelPosition(int index, out int level, out int levelPosition)
+        /// <returns>Returns the level associated with the index.</returns>
+        private int SlotsCalculateLevel(int index)
         {
-            for (level = 0; index >= mSlotCapacityFastLookup[level]; level++) { };
+            int level = 0;
+            for (; index >= mSlotCapacityFastLookup[level]; level++) { };
 
-            levelPosition = (level == 0) ? index : index - mSlotCapacityFastLookup[level - 1];
+            return level;
+        }
+        /// <summary>
+        /// This method calculates the specific bucket level and the position within that bucket.
+        /// </summary>
+        /// <param name="index">The slot index.</param>
+        /// <returns>Returns the level associated with the index.</returns>
+        private int SlotsCalculateLevelSkip0(int index)
+        {
+            int level = 1;
+            for (; index >= mSlotCapacityFastLookup[level]; level++) { };
+
+            return level;
         }
         #endregion
         #region SlotsLevelExpand
@@ -184,17 +197,16 @@ namespace Ximura.Collections
         /// This method expands the data slots for the array.
         /// </summary>
         /// <param name="index">The new index.</param>
-        protected virtual void SlotsLevelExpand(int index)
+        private void SlotsLevelExpand(int index)
         {
-            int level, levelPosition;
-            SlotsCalculateLevelPosition(index, out level, out levelPosition);
+            int level = SlotsCalculateLevel(index);
 
             if (level <= mSlotsLevelCurrent)
                 return;
 
             int additionalCapacity = mSlotCapacityFastLookup[level] - mSlotCapacityFastLookup[level - 1];
             mSlots[level] = new LockableWrapper<CollectionVertexStruct<T>>[additionalCapacity];
-            mSlotsLevelCurrent++;
+            mSlotsLevelCurrent = level;
             //This addition has to be atomic as other threads may bypass the lock.
             Interlocked.Add(ref mSlotsCapacityCurrent, additionalCapacity);
 
@@ -265,7 +277,7 @@ namespace Ximura.Collections
         /// This method returns the next free item, either from empty space, or from a free item in the collection.
         /// </summary>
         /// <returns>Returns the index for the next free item.</returns>
-        public int EmptyGet()
+        protected internal int EmptyGet()
         {
             if (mFreeListCount > 0)
             {
@@ -300,7 +312,7 @@ namespace Ximura.Collections
         /// This method adds an empty item to the free list.
         /// </summary>
         /// <param name="index">The index of the item to add to the sentinel.</param>
-        public void EmptyAdd(int index)
+        protected internal void EmptyAdd(int index)
         {
             mFreeListTail.Lock();
             if (mFreeListTail.Value == -1)
@@ -342,10 +354,9 @@ namespace Ximura.Collections
         public virtual bool ItemIsLocked(int index)
         {
             if (mIsFixedSize || index < mSlot0Capacity)
-                return mSlots[0][index].IsLocked;
-            int level, levelPosition;
-            SlotsCalculateLevelPosition(index, out level, out levelPosition);
-            return mSlots[level][levelPosition].IsLocked;
+                return mSlots0[index].IsLocked;
+            int level = SlotsCalculateLevelSkip0(index);
+            return mSlots[level][index - mSlotCapacityFastLookup[level-1]].IsLocked;
         }
         #endregion // ItemIsLocked(int index)
         #region ItemLockWait(int index)
@@ -357,13 +368,13 @@ namespace Ximura.Collections
         public virtual void ItemLockWait(int index)
         {
             if (mIsFixedSize || index < mSlot0Capacity)
-                mSlots[0][index].LockWait();
-            else
             {
-                int level, levelPosition;
-                SlotsCalculateLevelPosition(index, out level, out levelPosition);
-                mSlots[level][levelPosition].LockWait();
+                mSlots0[index].LockWait();
+                return;
             }
+
+            int level = SlotsCalculateLevelSkip0(index);
+            mSlots[level][index - mSlotCapacityFastLookup[level - 1]].LockWait();
         }
         #endregion // ItemLockWait(int index)
         #region ItemLock(int index)
@@ -375,13 +386,13 @@ namespace Ximura.Collections
         public virtual void ItemLock(int index)
         {
             if (mIsFixedSize || index < mSlot0Capacity)
-                mSlots[0][index].Lock();
-            else
             {
-                int level, levelPosition;
-                SlotsCalculateLevelPosition(index, out level, out levelPosition);
-                mSlots[level][levelPosition].Lock();
+                mSlots0[index].Lock();
+                return;
             }
+
+            int level = SlotsCalculateLevelSkip0(index);
+            mSlots[level][index - mSlotCapacityFastLookup[level - 1]].Lock();
         }
         #endregion // ItemLock(int index)
         #region ItemTryLock(int index)
@@ -393,10 +404,10 @@ namespace Ximura.Collections
         public virtual bool ItemTryLock(int index)
         {
             if (mIsFixedSize || index < mSlot0Capacity)
-                return mSlots[0][index].TryLock();
-            int level, levelPosition;
-            SlotsCalculateLevelPosition(index, out level, out levelPosition);
-            return mSlots[level][levelPosition].TryLock();
+                return mSlots0[index].TryLock();
+
+            int level = SlotsCalculateLevelSkip0(index);
+            return mSlots[level][index - mSlotCapacityFastLookup[level - 1]].TryLock();
         }
         #endregion // ItemTryLock(int index)
         #region ItemUnlock(int index)
@@ -407,13 +418,13 @@ namespace Ximura.Collections
         public virtual void ItemUnlock(int index)
         {
             if (mIsFixedSize || index < mSlot0Capacity)
-                mSlots[0][index].Unlock();
-            else
             {
-                int level, levelPosition;
-                SlotsCalculateLevelPosition(index, out level, out levelPosition);
-                mSlots[level][levelPosition].Unlock();
+                mSlots0[index].Unlock();
+                return;
             }
+
+            int level = SlotsCalculateLevelSkip0(index);
+            mSlots[level][index - mSlotCapacityFastLookup[level - 1]].Unlock();
         }
         #endregion // ItemUnlock(int index)
         #region this[int index]
@@ -427,21 +438,21 @@ namespace Ximura.Collections
             get
             {
                 if (mIsFixedSize || index < mSlot0Capacity)
-                    return mSlots[0][index].Value;
-                int level, levelPosition;
-                SlotsCalculateLevelPosition(index, out level, out levelPosition);
-                return mSlots[level][levelPosition].Value;
+                    return mSlots0[index].Value;
+
+                int level = SlotsCalculateLevelSkip0(index);
+                return mSlots[level][index - mSlotCapacityFastLookup[level - 1]].Value;
             }
             set
             {
                 if (mIsFixedSize || index < mSlot0Capacity)
-                    mSlots[0][index].Value = value;
-                else
                 {
-                    int level, levelPosition;
-                    SlotsCalculateLevelPosition(index, out level, out levelPosition);
-                    mSlots[level][levelPosition].Value = value;
+                    mSlots0[index].Value = value;
+                    return;
                 }
+
+                int level = SlotsCalculateLevelSkip0(index);
+                mSlots[level][index - mSlotCapacityFastLookup[level - 1]].Value = value;
             }
         }
         #endregion // this[int index]
@@ -456,12 +467,11 @@ namespace Ximura.Collections
         {
             LockableWrapper<CollectionVertexStruct<T>> item;
             if (mIsFixedSize || index < mSlot0Capacity)
-                item = mSlots[0][index];
+                item = mSlots0[index];
             else
             {
-                int level, levelPosition;
-                SlotsCalculateLevelPosition(index, out level, out levelPosition);
-                item = mSlots[level][levelPosition];
+                int level = SlotsCalculateLevelSkip0(index);
+                item = mSlots[level][index - mSlotCapacityFastLookup[level - 1]];
             }
             isLocked = item.IsLocked;
             return item.Value;
@@ -499,5 +509,25 @@ namespace Ximura.Collections
             }
         }
         #endregion
+
+#if (DEBUG)
+        #region DebugLockedItem
+        private string DebugLockedItem
+        {
+            get
+            {
+                return LockedItems(mSlots);
+            }
+        }
+
+        private string LockedItems(LockableWrapper<CollectionVertexStruct<T>>[][] data)
+        {
+            StringBuilder sb = new StringBuilder();
+            //data.Where(s => s!=null)
+            //    .ForIndex((i, s) => { if (s.v) sb.AppendLine(i.ToString()); });
+            return sb.ToString();
+        }
+        #endregion // DebugLockedItem
+#endif
     }
 }

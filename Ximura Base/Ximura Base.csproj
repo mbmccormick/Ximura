@@ -236,7 +236,6 @@
     <Compile Include="Collections\Interfaces\IPoolInitialization.cs" />
     <Compile Include="Collections\Interfaces\IPriorityQueue.cs" />
     <Compile Include="Collections\Interfaces\IStack.cs" />
-    <Compile Include="Collections\Interfaces\IVertexArray.cs" />
     <Compile Include="Collections\Interfaces\IVertexWindow.cs" />
     <Compile Include="Collections\Interfaces\IXimuraBinarySerializable.cs" />
     <Compile Include="Collections\Trees\ExpandableFineGrainedLockArray\ExpandableFineGrainedLockArray.cs" />
@@ -259,16 +258,12 @@
     <Compile Include="Collections\VertexArrays\DataClass\CollectionVertexClass.cs" />
     <Compile Include="Collections\VertexArrays\HashTable\BucketArray.cs" />
     <Compile Include="Collections\VertexArrays\HashTable\HashTableClassBasedVertexArray.cs" />
-    <Compile Include="Collections\VertexArrays\HashTable\HashTableStructBasedVertexArray.cs" />
     <Compile Include="Collections\VertexArrays\HashTable\HashTableStructBasedVertexArrayV2.cs" />
-    <Compile Include="Collections\VertexArrays\HashTable\HashTableStructBasedVertexArrayV3.cs" />
     <Compile Include="Collections\VertexArrays\MultiLevelClassBasedVertexArray.cs" />
     <Compile Include="Collections\VertexArrays\MultiLevelBucketStructBasedVertexArray.cs" />
     <Compile Include="Collections\VertexArrays\SkipList\SkipListClassBasedVertexArray.cs" />
     <Compile Include="Collections\VertexArrays\SkipList\SkipListStructBasedVertexArray.cs" />
     <Compile Include="Collections\VertexArrays\StructBasedVertexArray.cs" />
-    <Compile Include="Collections\VertexArrays\StructBasedVertexArray_Debug.cs" />
-    <Compile Include="Collections\VertexArrays\StructBasedVertexArray_WriteLock.cs" />
     <Compile Include="Collections\VertexArrays\VertexArray.cs" />
     <Compile Include="Collections\CollectionWrappers\CollectionWrapperCourseGrained.cs" />
     <Compile Include="Collections\CollectionWrappers\CollectionWrapperInterlocked.cs" />

@@ -37,7 +37,7 @@ namespace Ximura.Collections
     /// <typeparam name="A">The vertex array type.</typeparam>
     [DebuggerDisplay("Count = {Count}"), HostProtection(SecurityAction.LinkDemand, MayLeakOnAbort = true)]
     public class ConcurrentDictionary<TKey, TValue, A> : CollectionHelperBase<KeyValuePair<TKey, TValue>, A>, IDictionary<TKey, TValue>
-        where A : class, IVertexArray<KeyValuePair<TKey, TValue>>, new()
+        where A : VertexArray<KeyValuePair<TKey, TValue>>, new()
     {
         #region Class -> KeyValueOnlyKeyEqualityComparer
         /// <summary>

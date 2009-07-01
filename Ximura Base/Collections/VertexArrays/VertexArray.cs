@@ -35,7 +35,7 @@ namespace Ximura.Collections
     /// The vertex array class provides basic linked list expandable array support.
     /// </summary>
     /// <typeparam name="T">The collection data type.</typeparam>
-    public abstract class VertexArray<T> : IVertexArray<T>
+    public abstract class VertexArray<T> : IEnumerable<KeyValuePair<int, ICollectionVertex<T>>>
     {
         #region Constants
         protected const double elog2 = 0.693147181;
@@ -141,7 +141,6 @@ namespace Ximura.Collections
         /// </summary>
         protected abstract void InitializeData(int initialCapacity);
         #endregion // InitializeData()
-
         
         #region IEnumerable<KeyValuePair<int,Vertex<T>>> Members
         /// <summary>
@@ -402,5 +401,14 @@ namespace Ximura.Collections
             set { mContainScanMissThreshold = value; }
         }
         #endregion // ContainScanUnlocked
+
+        #region CleanUp()
+        /// <summary>
+        /// This method should be used to provide any maintenance or performance improvement tasks on the collection.
+        /// </summary>
+        public virtual void CleanUp()
+        {
+        }
+        #endregion
     }
 }
