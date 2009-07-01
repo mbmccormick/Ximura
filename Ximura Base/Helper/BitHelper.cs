@@ -364,5 +364,64 @@ namespace Ximura.Helper
             return (value & ((ulong)1 << bit)) > 0;
         }
         #endregion
+
+        #region SplitOnMostSignificantBit(int index, int msbStartPosition, out int msbPosition, out int remainder)
+        /// <summary>
+        /// This method splits the index on both parts.
+        /// </summary>
+        /// <param name="index">The index to split.</param>
+        /// <param name="msbStartPosition">The start bit position to begin searching.</param>
+        /// <param name="msbPosition">The highest significant bit position.</param>
+        /// <param name="remainder">The remainder minus the 2 to the power of the bit position./</param>
+        public static void SplitOnMostSignificantBit(int index, int msbStartPosition, 
+            out int msbPosition, out int remainder)
+        {
+            int mask = (1 << msbStartPosition);
+            for (msbPosition = msbStartPosition; msbPosition > 0 && ((index & mask) == 0); msbPosition--)
+                mask >>= 1;
+
+            mask--;
+            remainder = index & mask;
+        }
+        #endregion
+        #region FindMostSignificantBit(int index, int msbStartPosition)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="msbStartPosition"></param>
+        /// <returns></returns>
+        public static int FindMostSignificantBit(int index, int msbStartPosition)
+        {
+            int mask = (1 << msbStartPosition);
+            for (; msbStartPosition > 0 && ((index & mask) == 0); msbStartPosition--)
+            {
+                mask >>= 1;
+            }
+
+            return msbStartPosition;
+        }
+        #endregion
+        #region FindMostSignificantBit(int index, int msbStartPosition, out int mask)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="msbStartPosition"></param>
+        /// <param name="mask"></param>
+        /// <returns></returns>
+        public static int FindMostSignificantBit(int index, int msbStartPosition, out int mask)
+        {
+            mask = (1 << msbStartPosition);
+            for (; msbStartPosition > 0 && ((index & mask) == 0); msbStartPosition--)
+            {
+                mask >>= 1;
+            }
+
+            mask--;
+            return msbStartPosition;
+        }
+        #endregion
+
     }
 }
