@@ -33,6 +33,7 @@ namespace Ximura.Collections.Data
     {
         int HashID { get; }
         bool IsSentinel { get; }
+        bool IsMarked { get; }
         bool IsTerminator { get; }
     }
 

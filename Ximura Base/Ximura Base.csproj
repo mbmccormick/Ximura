@@ -238,7 +238,6 @@
     <Compile Include="Collections\Interfaces\IStack.cs" />
     <Compile Include="Collections\Interfaces\IVertexWindow.cs" />
     <Compile Include="Collections\Interfaces\IXimuraBinarySerializable.cs" />
-    <Compile Include="Collections\Trees\ExpandableFineGrainedLockArray\ExpandableFineGrainedLockArray.cs" />
     <Compile Include="Collections\Trees\LockFreeTreeBase.cs" />
     <Compile Include="Collections\Trees\RedBlackTree\Data\TreeLockableVertex.cs" />
     <Compile Include="Collections\Trees\RedBlackTree\Data\RedBlackTreeLockableVertex.cs" />
@@ -247,7 +246,6 @@
     <Compile Include="Collections\Trees\RedBlackTree\LockFreeRedBlackTreeBase_Main.cs" />
     <Compile Include="Collections\Trees\RedBlackTree\LockFreeRedBlackTreeBase_Rebalancing.cs" />
     <Compile Include="Collections\Trees\RedBlackTree\LockFreeRedBlackTreeBase_Sync.cs" />
-    <Compile Include="Collections\VertexArrays\Arrays\FineGrainedLockArray.cs" />
     <Compile Include="Collections\VertexArrays\ClassBasedVertexArray.cs" />
     <Compile Include="Collections\VertexArrays\DataClass\ClassBasedVertexWindow.cs" />
     <Compile Include="Collections\VertexArrays\DataClass\CollectionVertexClassSentinel.cs" />
@@ -256,9 +254,11 @@
     <Compile Include="Collections\VertexArrays\DataClass\CollectionVertexClassBase.cs" />
     <Compile Include="Collections\VertexArrays\DataStruct\CollectionVertexStruct.cs" />
     <Compile Include="Collections\VertexArrays\DataClass\CollectionVertexClass.cs" />
-    <Compile Include="Collections\VertexArrays\HashTable\BucketArray.cs" />
+    <Compile Include="Collections\VertexArrays\DataStruct\RedBlackTreeVertexStruct.cs" />
+    <Compile Include="Collections\VertexArrays\DataStruct\SkipListSentinelVertexStruct.cs" />
     <Compile Include="Collections\VertexArrays\HashTable\HashTableClassBasedVertexArray.cs" />
     <Compile Include="Collections\VertexArrays\HashTable\HashTableStructBasedVertexArrayV2.cs" />
+    <Compile Include="Collections\VertexArrays\HashTable\HashTableStructBasedVertexArrayV3.cs" />
     <Compile Include="Collections\VertexArrays\MultiLevelClassBasedVertexArray.cs" />
     <Compile Include="Collections\VertexArrays\MultiLevelBucketStructBasedVertexArray.cs" />
     <Compile Include="Collections\VertexArrays\SkipList\SkipListClassBasedVertexArray.cs" />

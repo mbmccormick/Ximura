@@ -175,6 +175,10 @@ namespace Ximura.Collections
         #endregion
 
         #region Fast Access
+        #region FastContains
+        /// <summary>
+        /// Identifies whether this array supports a fast search algorithm
+        /// </summary>
         public virtual bool SupportsFastContain { get { return false; } }
 
         public virtual bool? FastContains(T item)
@@ -186,28 +190,40 @@ namespace Ximura.Collections
         {
             throw new NotSupportedException();
         }
-
+        #endregion // FastContains
+        #region FastAdd
+        /// <summary>
+        /// Identifies whether this array supports a fast add algorithm.
+        /// </summary>
         public virtual bool SupportsFastAdd { get { return false; } }
 
         public virtual bool FastAdd(T item, bool add)
         {
             throw new NotSupportedException();
-        }        
-        
+        }
+        #endregion // FastAdd
+        #region FastRemove
+        /// <summary>
+        /// Identifies whether this array supports a fast remove algorithm.
+        /// </summary>
         public virtual bool SupportsFastRemove { get { return false; } }
 
         public virtual bool FastRemove(T item)
         {
             throw new NotSupportedException();
-        }        
-        
+        }
+        #endregion // FastRemove
+        #region FastClear
+        /// <summary>
+        /// Identifies whether this array supports a fast clear algorithm
+        /// </summary>
         public virtual bool SupportsFastClear { get { return false; } }
 
         public virtual void FastClear()
         {
             throw new NotSupportedException();
         }
-
+        #endregion // FastClear
         #endregion // Fast Access
 
         #region InitialCapacity

@@ -53,12 +53,11 @@ namespace Ximura.Collections
         /// <summary>
         /// This collection holds the data.
         /// </summary>
-        private LockableWrapper<CollectionVertexStruct<T>>[][] mSlots;
-        private LockableWrapper<CollectionVertexStruct<T>>[] mSlots0;
+        private RedBlackTreeVertexStruct<int, LockableWrapper<CollectionVertexStruct<T>>[]>[] mSlots;
         /// <summary>
-        /// The slots cumulative capacity.
+        /// This value holds a reference to the first data slot.
         /// </summary>
-        private int[] mSlotCapacityFastLookup;
+        private LockableWrapper<CollectionVertexStruct<T>>[] mSlots0;
         /// <summary>
         /// The slot 0 capacity.
         /// </summary>
@@ -113,7 +112,7 @@ namespace Ximura.Collections
         /// </summary>
         public override int InitialCapacity
         {
-            get { return mSlotCapacityFastLookup[0]; }
+            get { return mSlots[0].Key; }
         }
         #endregion // InitialCapacity
         #region InitialCapacityDefault
@@ -146,27 +145,53 @@ namespace Ximura.Collections
             //Ok, find the next bit up from the value, i.e. if the initial capacity is 1000, the next whole 
             //2^n number would be 1024, so n will be 10.
             int slotsLevelOffset = BitHelper.FindMostSignificantBit(mSlot0Capacity, 31) + 1;
+            mSlots = new RedBlackTreeVertexStruct<int, LockableWrapper<CollectionVertexStruct<T>>[]>[32 - slotsLevelOffset];
+            mSlots0 = new LockableWrapper<CollectionVertexStruct<T>>[mSlot0Capacity];
 
-            mSlotCapacityFastLookup = new int[32 - slotsLevelOffset];
-
-            mSlotCapacityFastLookup[0] = mSlot0Capacity;
-            mSlotCapacityFastLookup[1] = (1 << slotsLevelOffset) + mSlot0Capacity;
+            SlotDataNodeAdd(0, mSlot0Capacity, mSlots0);
+            SlotDataNodeAdd(1, (1 << slotsLevelOffset) + mSlot0Capacity, null);
 
             int i = 2;
             for (; i < (31 - slotsLevelOffset); i++)
-            {
-                mSlotCapacityFastLookup[i] = mSlotCapacityFastLookup[i - 1] + (1 << (i + slotsLevelOffset - 1));
-            }
+                SlotDataNodeAdd(i, mSlots[i - 1].Key + (1 << (i + slotsLevelOffset - 1)), null);
 
-            mSlotCapacityFastLookup[31 - slotsLevelOffset] = int.MaxValue;
+            SlotDataNodeAdd(31 - slotsLevelOffset, int.MaxValue, null);
 
-            mSlots = new LockableWrapper<CollectionVertexStruct<T>>[32 - slotsLevelOffset][];
-            mSlots[0] = mSlots0 = new LockableWrapper<CollectionVertexStruct<T>>[mSlot0Capacity];
             mSlotsCapacityCurrent = mSlot0Capacity;
             mSlotsLevelCurrent = 0;
         }
         #endregion
+        #region SlotNodeAdd(int index, int capacity, LockableWrapper<CollectionVertexStruct<T>>[] slots)
+        /// <summary>
+        /// This method adds the node to the collection. We will rebalance it to ensure the minimum number of hops.
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="capacity"></param>
+        /// <param name="slots"></param>
+        private void SlotDataNodeAdd(int index, int capacity, LockableWrapper<CollectionVertexStruct<T>>[] slots)
+        {
+            mSlots[index].Key = capacity;
+            //Set the node to it's next neighbour.
+            mSlots[index].Left = index+2;
+            if (slots!=null)
+                SlotDataNodeRebalance(index, slots);
+        }
+        #endregion // SlotNodeAdd(int index, int capacity, LockableWrapper<CollectionVertexStruct<T>>[] slots)
+
+        #region SlotDataNodeRebalance(int index, LockableWrapper<CollectionVertexStruct<T>>[] slots)
+        /// <summary>
+        /// This method rebalances the tree when a new node is introduced.
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="slots"></param>
+        private void SlotDataNodeRebalance(int index, LockableWrapper<CollectionVertexStruct<T>>[] slots)
+        {
+            mSlots[index].Value = slots;
+        }
+        #endregion // SlotDataNodeRebalance(int index, LockableWrapper<CollectionVertexStruct<T>>[] slots)
+
         #region SlotsCalculateLevel(int index)
+        private int mSlotsRoot = 0;
         /// <summary>
         /// This method calculates the specific bucket level and the position within that bucket.
         /// </summary>
@@ -174,20 +199,8 @@ namespace Ximura.Collections
         /// <returns>Returns the level associated with the index.</returns>
         private int SlotsCalculateLevel(int index)
         {
-            int level = 0;
-            for (; index >= mSlotCapacityFastLookup[level]; level++) { };
-
-            return level;
-        }
-        /// <summary>
-        /// This method calculates the specific bucket level and the position within that bucket.
-        /// </summary>
-        /// <param name="index">The slot index.</param>
-        /// <returns>Returns the level associated with the index.</returns>
-        private int SlotsCalculateLevelSkip0(int index)
-        {
-            int level = 1;
-            for (; index >= mSlotCapacityFastLookup[level]; level++) { };
+            int level = mSlotsRoot;
+            for (; index >= mSlots[level].Key; level++) { };
 
             return level;
         }
@@ -204,13 +217,13 @@ namespace Ximura.Collections
             if (level <= mSlotsLevelCurrent)
                 return;
 
-            int additionalCapacity = mSlotCapacityFastLookup[level] - mSlotCapacityFastLookup[level - 1];
-            mSlots[level] = new LockableWrapper<CollectionVertexStruct<T>>[additionalCapacity];
+            int additionalCapacity = mSlots[level].Key - mSlots[level - 1].Key;
+            mSlots[level].Value = new LockableWrapper<CollectionVertexStruct<T>>[additionalCapacity];
             mSlotsLevelCurrent = level;
             //This addition has to be atomic as other threads may bypass the lock.
             Interlocked.Add(ref mSlotsCapacityCurrent, additionalCapacity);
 
-#if (LOCKDEBUG)
+#if (DEBUG)
             Console.WriteLine("{0} Bucket Expand: {1} -> {2} on {3}", Interlocked.Increment(ref mDebugCounter), mSlotsCapacityCurrent - additionalCapacity, mSlotsCapacityCurrent, Thread.CurrentThread.ManagedThreadId);
 #endif
 
@@ -355,8 +368,9 @@ namespace Ximura.Collections
         {
             if (mIsFixedSize || index < mSlot0Capacity)
                 return mSlots0[index].IsLocked;
-            int level = SlotsCalculateLevelSkip0(index);
-            return mSlots[level][index - mSlotCapacityFastLookup[level-1]].IsLocked;
+
+            int level = SlotsCalculateLevel(index);
+            return mSlots[level].Value[index - mSlots[level - 1].Key].IsLocked;
         }
         #endregion // ItemIsLocked(int index)
         #region ItemLockWait(int index)
@@ -373,8 +387,8 @@ namespace Ximura.Collections
                 return;
             }
 
-            int level = SlotsCalculateLevelSkip0(index);
-            mSlots[level][index - mSlotCapacityFastLookup[level - 1]].LockWait();
+            int level = SlotsCalculateLevel(index);
+            mSlots[level].Value[index - mSlots[level - 1].Key].LockWait();
         }
         #endregion // ItemLockWait(int index)
         #region ItemLock(int index)
@@ -391,8 +405,8 @@ namespace Ximura.Collections
                 return;
             }
 
-            int level = SlotsCalculateLevelSkip0(index);
-            mSlots[level][index - mSlotCapacityFastLookup[level - 1]].Lock();
+            int level = SlotsCalculateLevel(index);
+            mSlots[level].Value[index - mSlots[level - 1].Key].Lock();
         }
         #endregion // ItemLock(int index)
         #region ItemTryLock(int index)
@@ -406,8 +420,8 @@ namespace Ximura.Collections
             if (mIsFixedSize || index < mSlot0Capacity)
                 return mSlots0[index].TryLock();
 
-            int level = SlotsCalculateLevelSkip0(index);
-            return mSlots[level][index - mSlotCapacityFastLookup[level - 1]].TryLock();
+            int level = SlotsCalculateLevel(index);
+            return mSlots[level].Value[index - mSlots[level - 1].Key].TryLock();
         }
         #endregion // ItemTryLock(int index)
         #region ItemUnlock(int index)
@@ -423,8 +437,8 @@ namespace Ximura.Collections
                 return;
             }
 
-            int level = SlotsCalculateLevelSkip0(index);
-            mSlots[level][index - mSlotCapacityFastLookup[level - 1]].Unlock();
+            int level = SlotsCalculateLevel(index);
+            mSlots[level].Value[index - mSlots[level - 1].Key].Unlock();
         }
         #endregion // ItemUnlock(int index)
         #region this[int index]
@@ -440,8 +454,8 @@ namespace Ximura.Collections
                 if (mIsFixedSize || index < mSlot0Capacity)
                     return mSlots0[index].Value;
 
-                int level = SlotsCalculateLevelSkip0(index);
-                return mSlots[level][index - mSlotCapacityFastLookup[level - 1]].Value;
+                int level = SlotsCalculateLevel(index);
+                return mSlots[level].Value[index - mSlots[level - 1].Key].Value;
             }
             set
             {
@@ -451,8 +465,8 @@ namespace Ximura.Collections
                     return;
                 }
 
-                int level = SlotsCalculateLevelSkip0(index);
-                mSlots[level][index - mSlotCapacityFastLookup[level - 1]].Value = value;
+                int level = SlotsCalculateLevel(index);
+                mSlots[level].Value[index - mSlots[level - 1].Key].Value = value;
             }
         }
         #endregion // this[int index]
@@ -470,13 +484,48 @@ namespace Ximura.Collections
                 item = mSlots0[index];
             else
             {
-                int level = SlotsCalculateLevelSkip0(index);
-                item = mSlots[level][index - mSlotCapacityFastLookup[level - 1]];
+                int level = SlotsCalculateLevel(index);
+                item = mSlots[level].Value[index - mSlots[level - 1].Key];
             }
             isLocked = item.IsLocked;
             return item.Value;
         }
         #endregion // LockableData(int index)
+
+        #region ItemIsMarked(int index)
+        /// <summary>
+        /// This method checks whether an item in the collection is marked.
+        /// </summary>
+        /// <param name="index">The index of the item to check.</param>
+        /// <returns>Returns true if the item is locked.</returns>
+        public virtual bool ItemIsMarked(int index)
+        {
+            if (mIsFixedSize || index < mSlot0Capacity)
+            {
+                return mSlots0[index].Value.IsMarked;
+            }
+
+            int level = SlotsCalculateLevel(index);
+            return mSlots[level].Value[index - mSlots[level - 1].Key].Value.IsMarked;
+        }
+        #endregion // ItemIsLocked(int index)
+        #region ItemTryMark(int index)
+        /// <summary>
+        /// This method attempts to lock the item specified.
+        /// </summary>
+        /// <param name="index">The index of the item you wish to lock..</param>
+        /// <returns>Returns true if the item was successfully locked.</returns>
+        public virtual bool ItemTryMark(int index)
+        {
+            if (mIsFixedSize || index < mSlot0Capacity)
+            {
+                return mSlots0[index].Value.TryMark();
+            }
+
+            int level = SlotsCalculateLevel(index);
+            return mSlots[level].Value[index - mSlots[level - 1].Key].Value.TryMark();
+        }
+        #endregion // ItemTryLock(int index)
 
         #region GetSentinelID(int hashCode, bool createSentinel, out int sentIndexID, out int hashID)
         /// <summary>
@@ -509,25 +558,5 @@ namespace Ximura.Collections
             }
         }
         #endregion
-
-#if (DEBUG)
-        #region DebugLockedItem
-        private string DebugLockedItem
-        {
-            get
-            {
-                return LockedItems(mSlots);
-            }
-        }
-
-        private string LockedItems(LockableWrapper<CollectionVertexStruct<T>>[][] data)
-        {
-            StringBuilder sb = new StringBuilder();
-            //data.Where(s => s!=null)
-            //    .ForIndex((i, s) => { if (s.v) sb.AppendLine(i.ToString()); });
-            return sb.ToString();
-        }
-        #endregion // DebugLockedItem
-#endif
     }
 }

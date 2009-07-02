@@ -159,5 +159,15 @@ namespace Ximura.Collections.Data
             }
         }
 #endif
+
+        #region ICollectionVertex Members
+
+
+        public bool IsMarked
+        {
+            get { return false; }
+        }
+
+        #endregion
     }
 }

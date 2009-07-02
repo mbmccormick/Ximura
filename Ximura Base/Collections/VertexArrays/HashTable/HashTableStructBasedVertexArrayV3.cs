@@ -36,23 +36,22 @@ namespace Ximura.Collections
     /// This class contains the combined buckets and slots in a single class.
     /// </summary>
     /// <typeparam name="T">The collection type.</typeparam>
-    public class HashTableStructBasedVertexArrayV2<T> : 
+    public class HashTableStructBasedVertexArrayV3<T> :
         MultiLevelBucketStructBasedVertexArray<T, CollectionVertexStruct<T>>
     {
-        #region StructBasedVertexWindowV2
+        #region StructBasedVertexWindowV3
         /// <summary>
         /// The vertex window structure holds the search results from a scan.
         /// </summary>
         /// <typeparam name="T">The collection type.</typeparam>
         [Serializable, StructLayout(LayoutKind.Sequential)]
-        internal struct StructBasedVertexWindowV2<T> : IVertexWindow<T>
+        private struct StructBasedVertexWindowV3<T> : IVertexWindow<T>
         {
             #region Declarations
-            HashTableStructBasedVertexArrayV2<T> mData;
+            HashTableStructBasedVertexArrayV3<T> mData;
             int mHashID;
             T mItem;
             IEqualityComparer<T> mEqualityComparer;
-
             /// <summary>
             /// The current slot ID plus 1.
             /// </summary>
@@ -72,7 +71,7 @@ namespace Ximura.Collections
             /// </summary>
             /// <param name="data">The data collection.</param>
             /// <param name="indexID">The index of the position to set the window.</param>
-            public StructBasedVertexWindowV2(HashTableStructBasedVertexArrayV2<T> data, 
+            public StructBasedVertexWindowV3(HashTableStructBasedVertexArrayV3<T> data,
                 IEqualityComparer<T> eqComparer, int indexID, int hashID, T item)
             {
 #if (LOCKDEBUG)
@@ -104,7 +103,7 @@ namespace Ximura.Collections
             /// </summary>
             /// <param name="data">The data collection.</param>
             /// <param name="indexID">The index of the position to set the window.</param>
-            public StructBasedVertexWindowV2(HashTableStructBasedVertexArrayV2<T> data, 
+            public StructBasedVertexWindowV3(HashTableStructBasedVertexArrayV3<T> data,
                 IEqualityComparer<T> eqComparer, int indexID, int hashID)
             {
                 mData = data;
@@ -403,359 +402,14 @@ namespace Ximura.Collections
             }
             #endregion // ToString()
         }
-        #endregion 
-        #region StructBasedVertexWindowV2b
-        /// <summary>
-        /// The vertex window structure holds the search results from a scan.
-        /// </summary>
-        /// <typeparam name="T">The collection type.</typeparam>
-        [Serializable, StructLayout(LayoutKind.Sequential)]
-        internal struct StructBasedVertexWindowV2b<T> : IVertexWindow<T>
-        {
-            #region Declarations
-            HashTableStructBasedVertexArrayV2<T> mData;
-            int mHashID;
-            T mItem;
-            IEqualityComparer<T> mEqualityComparer;
-
-            /// <summary>
-            /// The current slot ID plus 1.
-            /// </summary>
-            private int CurrSlotIDPlus1;
-            /// <summary>
-            /// THe current vertex.
-            /// </summary>
-            private CollectionVertexStruct<T> Curr;
-            /// <summary>
-            /// The next vertex.
-            /// </summary>
-            private CollectionVertexStruct<T>? Next;
-            #endregion // Declarations
-            #region Constructor
-            /// <summary>
-            /// This is the default constructor for the window.
-            /// </summary>
-            /// <param name="data">The data collection.</param>
-            /// <param name="indexID">The index of the position to set the window.</param>
-            public StructBasedVertexWindowV2b(HashTableStructBasedVertexArrayV2<T> data,
-                IEqualityComparer<T> eqComparer, int indexID, int hashID, T item)
-            {
-                mData = data;
-                mHashID = hashID;
-                mItem = item;
-                mEqualityComparer = eqComparer;
-
-                mData.ItemLock(indexID);
-                CurrSlotIDPlus1 = indexID + 1;
-                Curr = mData[indexID];
-
-                if (!Curr.IsTerminator)
-                {
-                    mData.ItemLock(Curr.NextSlotIDPlus1 - 1);
-                    Next = mData[Curr.NextSlotIDPlus1 - 1];
-                }
-                else
-                    Next = null;
-            }
-            #endregion // Constructor
-            #region Constructor
-            /// <summary>
-            /// This is the default constructor for the window.
-            /// </summary>
-            /// <param name="data">The data collection.</param>
-            /// <param name="indexID">The index of the position to set the window.</param>
-            public StructBasedVertexWindowV2b(HashTableStructBasedVertexArrayV2<T> data,
-                IEqualityComparer<T> eqComparer, int indexID, int hashID)
-            {
-                mData = data;
-                mHashID = hashID;
-                mItem = default(T);
-                mEqualityComparer = eqComparer;
-
-                mData.ItemLock(indexID);
-                CurrSlotIDPlus1 = indexID + 1;
-                Curr = mData[indexID];
-
-                if (!Curr.IsTerminator)
-                {
-                    mData.ItemLock(Curr.NextSlotIDPlus1 - 1);
-                    Next = mData[Curr.NextSlotIDPlus1 - 1];
-                }
-                else
-                    Next = null;
-            }
-            #endregion // Constructor
-
-            #region HashID
-            /// <summary>
-            /// This is the hash ID of the item currently being searched.
-            /// </summary>
-            public int HashID
-            {
-                get { return mHashID; }
-            }
-            #endregion
-            #region Value
-            /// <summary>
-            /// This is the current value being handled by the window.
-            /// </summary>
-            public T Value
-            {
-                get { return mItem; }
-            }
-            #endregion
-
-            #region ItemSetNext()
-            /// <summary>
-            /// This method changes the value of the next item.
-            /// </summary>
-            /// <param name="value">The new value.</param>
-            public void ItemSetNext()
-            {
-                //This code is to accomodate dictionary type collections where the item is a keyvalue pair.
-                CollectionVertexStruct<T> next = Next.Value;
-                next.Value = mItem;
-                mData[Curr.NextSlotIDPlus1 - 1] = next;
-            }
-            #endregion // SetNextItem(T value)
-            #region ItemInsert(T value)
-            /// <summary>
-            /// 
-            /// </summary>
-            /// <param name="hashID">The hashID to search for and lock.</param>
-            public void ItemInsert()
-            {
-                int newSlot = mData.EmptyGet();
-
-                mData.ItemLock(newSlot);
-
-                if (!Curr.IsTerminator)
-                    mData.ItemUnlock(Curr.NextSlotIDPlus1 - 1);
-
-                Next = new CollectionVertexStruct<T>(mHashID, mItem, Curr.NextSlotIDPlus1);
-
-                Curr.NextSlotIDPlus1 = newSlot + 1;
-
-                mData[newSlot] = Next.Value;
-                mData[CurrSlotIDPlus1 - 1] = Curr;
-
-                //Increment the necessary counters, and
-                //check whether we need to recalculate the bit size.
-                mData.BucketSizeRecalculate(mData.CountIncrement(), false);
-            }
-            #endregion
-
-            #region InsertSentinelAndUnlock(int indexID)
-            /// <summary>
-            /// This method inserts a sentinel in to the data collection.
-            /// </summary>
-            /// <param name="indexID">The new sentinel index id.</param>
-            /// <param name="hashID">The sentinel hash id.</param>
-            public void InsertSentinelAndUnlock(int indexID)
-            {
-                ScanAndLock();
-
-                //If the current item is part of a list unlock the next item.
-                if (!Curr.IsTerminator)
-                    mData.ItemUnlock(Curr.NextSlotIDPlus1 - 1);
-
-                //Set the new sentinel and unlock.
-                mData[indexID] = CollectionVertexStruct<T>.Sentinel(mHashID, Curr.NextSlotIDPlus1);
-                mData.ItemUnlock(indexID);
-
-                //Set the current item and unlock.
-                Curr.NextSlotIDPlus1 = indexID + 1;
-                mData[CurrSlotIDPlus1 - 1] = Curr;
-                mData.ItemUnlock(CurrSlotIDPlus1 - 1);
-            }
-            #endregion
-
-            #region Unlock()
-            /// <summary>
-            /// This method provides common functionality to unlock a VertexWindow.
-            /// </summary>
-            public void Unlock()
-            {
-                if (Curr.NextSlotIDPlus1 != 0) mData.ItemUnlock(Curr.NextSlotIDPlus1 - 1);
-                if (CurrSlotIDPlus1 != 0) mData.ItemUnlock(CurrSlotIDPlus1 - 1);
-            }
-            #endregion
-            #region ScanAndLock()
-            /// <summary>
-            /// This method scans through the slot data until is reaches the end of the data, or the position 
-            /// where the hashID meets a slot with a hashID that is greater than itself.
-            /// </summary>
-            /// <param name="hashID">The hashID to search for and lock.</param>
-            public int ScanAndLock()
-            {
-                //If the current is the last item in the linked list then exit.
-                if (Curr.IsTerminator)
-                    return 0;
-
-                int hopCount = 0;
-
-                while (Next.Value.HashID < mHashID)
-                {
-                    hopCount++;
-
-                    //Unlock the old current item.
-                    mData.ItemUnlock(CurrSlotIDPlus1 - 1);
-
-                    CurrSlotIDPlus1 = Curr.NextSlotIDPlus1;
-
-                    //If this is the last item in the list then move up and exit.
-                    if (Next.Value.IsTerminator)
-                    {
-                        Curr = Next.Value;
-                        Next = new CollectionVertexStruct<T>();
-                        break;
-                    }
-
-                    //OK, lock the next item and move up.
-                    mData.ItemLock(Next.Value.NextSlotIDPlus1 - 1);
-                    Curr = Next.Value;
-                    Next = mData[Curr.NextSlotIDPlus1 - 1];
-                }
-
-                return hopCount;
-            }
-            #endregion
-            #region MoveUp()
-            /// <summary>
-            /// This method moves up the Next vertex to the current position.
-            /// </summary>
-            public bool MoveUp()
-            {
-                if (Curr.IsTerminator)
-                    return false;
-
-                mData.ItemUnlock(CurrSlotIDPlus1 - 1);
-                CurrSlotIDPlus1 = Curr.NextSlotIDPlus1;
-                Curr = Next.Value;
-
-                if (!Curr.IsTerminator)
-                {
-                    mData.ItemLock(Curr.NextSlotIDPlus1 - 1);
-                    Next = mData[Curr.NextSlotIDPlus1 - 1];
-                }
-                else
-                    Next = null;
-
-                return true;
-            }
-            #endregion
-
-            #region RemoveItemAndUnlock()
-            /// <summary>
-            /// 
-            /// </summary>
-            /// <returns></returns>
-            public void ItemRemoveAndUnlock()
-            {
-                int removedItem = Curr.NextSlotIDPlus1 - 1;
-
-                Curr.NextSlotIDPlus1 = Next.Value.NextSlotIDPlus1;
-
-                mData[CurrSlotIDPlus1 - 1] = Curr;
-                mData.ItemUnlock(removedItem);
-                mData.ItemUnlock(CurrSlotIDPlus1 - 1);
-
-                //Add the empty item for re-allocation.
-                mData.EmptyAdd(removedItem);
-
-                //Update the version and reduce the item count.
-                mData.CountDecrement();
-            }
-            #endregion // SlotsRemoveItem
-
-            #region Snip()
-            /// <summary>
-            /// 
-            /// </summary>
-            public void Snip()
-            {
-                int removedItem = Curr.NextSlotIDPlus1 - 1;
-
-                Curr.NextSlotIDPlus1 = Next.Value.NextSlotIDPlus1;
-
-                mData[CurrSlotIDPlus1 - 1] = Curr;
-                mData.ItemUnlock(removedItem);
-
-                if (!Curr.IsTerminator)
-                {
-                    mData.ItemLock(Curr.NextSlotIDPlus1 - 1);
-                    Next = mData[Curr.NextSlotIDPlus1 - 1];
-                }
-                else
-                    Next = null;
-
-                //Add the empty item for re-allocation.
-                mData.EmptyAdd(removedItem);
-
-                mData.CountDecrement();
-            }
-            #endregion // SlotsRemoveItem
-
-            #region ScanProcess()
-            public bool ScanProcess()
-            {
-                return !Curr.IsTerminator && Next.Value.HashID == mHashID;
-            }
-            #endregion
-            #region ScanItemMatch
-            /// <summary>
-            /// This property specifies whether the next item is a match for the data.
-            /// </summary>
-            public bool ScanItemMatch
-            {
-                get
-                {
-                    return !Next.Value.IsSentinel && mEqualityComparer.Equals(mItem, Next.Value.Data);
-                }
-            }
-            #endregion // ScanItemMatch
-
-            #region NextIsSentinel
-            public bool NextIsSentinel
-            {
-                get { return Next.Value.IsSentinel; }
-            }
-            #endregion // NextIsSentinel
-            #region CurrIsTerminator
-            public bool CurrIsTerminator
-            {
-                get { return Curr.IsTerminator; }
-            }
-            #endregion // CurrIsTerminator
-            #region NextData
-
-            public T NextData
-            {
-                get { return Next.Value.Data; }
-            }
-
-            #endregion
-
-            #region ToString()
-            /// <summary>
-            /// This override provides a debug friendly representation of the structure.
-            /// </summary>
-            /// <returns>Returns the structure value.</returns>
-            public override string ToString()
-            {
-                return string.Format("{0}[{1}] -> {2}[{3}]", CurrSlotIDPlus1 - 1, Curr, Curr.NextSlotIDPlus1 - 1, Next);
-            }
-            #endregion // ToString()
-        }
-        #endregion 
-
+        #endregion
         #region Constructor
         /// <summary>
         /// This is the default constructor for the array.
         /// </summary>
         /// <param name="isFixedSize">A boolean value indicating whether the data collection is fixed size.</param>
         /// <param name="capacity">The array capacity.</param>
-        public HashTableStructBasedVertexArrayV2()
+        public HashTableStructBasedVertexArrayV3()
         {
         }
         #endregion // Constructor
@@ -924,7 +578,7 @@ namespace Ximura.Collections
         /// <returns>Returns a vertex window.</returns>
         public override IVertexWindow<T> VertexWindowGet()
         {
-            return new StructBasedVertexWindowV2<T>(this, mEqComparer, RootIndexID, 0, default(T));
+            return new StructBasedVertexWindowV3<T>(this, mEqComparer, RootIndexID, 0, default(T));
         }
         #endregion // VertexWindowGet(int index)
         #region VertexWindowGet(int hashCode, bool createSentinel)
@@ -941,7 +595,7 @@ namespace Ximura.Collections
             int sentIndexID = GetSentinelID(mEqComparer.GetHashCode(item), createSentinel, out hashID);
 
             //Ok, set the MSB to indicate the value is a sentinel.
-            return new StructBasedVertexWindowV2<T>(this, mEqComparer, sentIndexID, hashID, item);
+            return new StructBasedVertexWindowV3<T>(this, mEqComparer, sentIndexID, hashID, item);
         }
         #endregion // VertexWindowGet(int hashCode, bool createSentinel)
 
@@ -990,7 +644,7 @@ namespace Ximura.Collections
             if (level == 0)
                 return 1;
 
-            return (1 << level-1);
+            return (1 << level - 1);
         }
         #endregion // BucketLevelSize(int level)
 
@@ -1066,7 +720,7 @@ namespace Ximura.Collections
                     int bucketHashID = BitReverse(bucketID);
 
                     //Ok, insert the sentinel.
-                    StructBasedVertexWindowV2<T> vWin = new StructBasedVertexWindowV2<T>(
+                    StructBasedVertexWindowV3<T> vWin = new StructBasedVertexWindowV3<T>(
                         this, mEqComparer, ConvertBucketIDToIndexID(bucketIDParent), bucketHashID);
 
                     //Insert the new sentinel and unlock.
@@ -1084,7 +738,7 @@ namespace Ximura.Collections
 
         #region FastContains
         /// <summary>
-        /// This class supports a fast search algorithm
+        /// Identifies whether this array supports a fast search algorithm
         /// </summary>
         public override bool SupportsFastContain { get { return true; } }
         /// <summary>
@@ -1098,20 +752,18 @@ namespace Ximura.Collections
             if (mEqComparer.Equals(item, default(T)))
                 return DefaultTContains();
 
+            //Get the initial sentinel vertex. 
             int hashID;
             int sentIndexID = GetSentinelID(mEqComparer.GetHashCode(item), false, out hashID);
-
-            //Get the initial sentinel vertex. No need to check locks as sentinels rarely change.
-            int scanPosition = sentIndexID;
-            bool vertexLock;
-            CollectionVertexStruct<T> scanVertex = LockableData(scanPosition, out vertexLock);
+            CollectionVertexStruct<T> scanVertex = this[sentIndexID];
 
             //First we will attempt to search without locking. However, should the version ID change 
             //during the search we will need to complete a locked search to ensure consistency.
-            while (!vertexLock)
+            while (true)
             {
                 //Do we have a match?
-                if (!scanVertex.IsSentinel &&
+                if (!scanVertex.IsSentinel && 
+                    !scanVertex.IsMarked &&
                     scanVertex.HashID == hashID &&
                     mEqComparer.Equals(item, scanVertex.Value))
                     return true;
@@ -1120,57 +772,59 @@ namespace Ximura.Collections
                 if (scanVertex.IsTerminator || scanVertex.HashID > hashID)
                     return false;
 
-                scanPosition = scanVertex.NextSlotIDPlus1 - 1;
-
-                scanVertex = LockableData(scanPosition, out vertexLock);
+                sentIndexID = scanVertex.NextSlotIDPlus1 - 1;
+                //Ok, wait if the current vertex is locked.
+                ItemLockWait(sentIndexID);
+                scanVertex = this[sentIndexID];
             }
-
-            ContainScanUnlockedMiss();
-            return null;
         }
-
+        /// <summary>
+        /// This method implements a fast search algoritm.
+        /// </summary>
+        /// <param name="eqComparer">The equality comparer to use for the comparison.</param>
+        /// <param name="item">The item to search for.</param>
+        /// <param name="value">The output value. This is used for KeyValue pair arrangement for Dictionary type collection.</param>
+        /// <returns>Returns a trinary boolean value, true for success, false for fail, and null to continue using a lockable search.</returns>
         public override bool? FastContains(IEqualityComparer<T> eqComparer, T item, out T value)
         {
-            //Is this a null or default value?
-            if (!eqComparer.Equals(item, default(T)))
+            //Is this a null or default value, as that is not supported by key/value pair based arrays.?
+            if (eqComparer.Equals(item, default(T)))
             {
-                int currVersion = Version;
-                int hashID;
-                int sentIndexID = GetSentinelID(eqComparer.GetHashCode(item), false, out hashID);
-
-                //Get the initial sentinel vertex. No need to check locks as sentinels rarely change.
-                int scanPosition = sentIndexID;
-                CollectionVertexStruct<T> scanVertex = this[scanPosition];
-
-                //First we will attempt to search without locking. However, should the version ID change 
-                //during the search we will need to complete a locked search to ensure consistency.
-                while (VersionCompare(currVersion))
-                {
-                    //Do we have a match?
-                    if (!scanVertex.IsSentinel &&
-                        scanVertex.HashID == hashID &&
-                        eqComparer.Equals(item, scanVertex.Value))
-                    {
-                        value = scanVertex.Value;
-                        return true;
-                    }
-
-                    //Is this the end of the line
-                    if (scanVertex.IsTerminator || scanVertex.HashID > hashID)
-                    {
-                        value = default(T);
-                        return false;
-                    }
-
-                    scanPosition = scanVertex.NextSlotIDPlus1 - 1;
-
-                    scanVertex = this[scanPosition];
-                }
+                value = default(T);
+                return false;
             }
 
-            ContainScanUnlockedMiss();
-            value = default(T);
-            return null;
+            //Get the initial sentinel vertex. 
+            int hashID;
+            int sentIndexID = GetSentinelID(mEqComparer.GetHashCode(item), false, out hashID);
+            CollectionVertexStruct<T> scanVertex = this[sentIndexID];
+
+            //First we will attempt to search without locking. However, should the version ID change 
+            //during the search we will need to complete a locked search to ensure consistency.
+            while (true)
+            {
+                //Do we have a match?
+                if (!scanVertex.IsSentinel &&
+                    !scanVertex.IsMarked &&
+                    scanVertex.HashID == hashID &&
+                    mEqComparer.Equals(item, scanVertex.Value))
+                {
+                    value = scanVertex.Value;
+                    return true;
+                }
+
+                //Is this the end of the line
+                if (scanVertex.IsTerminator || scanVertex.HashID > hashID)
+                {
+                    value = default(T);
+                    return false;
+                }
+
+                sentIndexID = scanVertex.NextSlotIDPlus1 - 1;
+                //Ok, wait if the current vertex is locked.
+                ItemLockWait(sentIndexID);
+                scanVertex = this[sentIndexID];
+            }
         }
 
         #endregion // FastContain
@@ -1196,7 +850,7 @@ namespace Ximura.Collections
 
                 int hashID;
                 int sentIndexID = GetSentinelID(mEqComparer.GetHashCode(item), true, out hashID);
-                StructBasedVertexWindowV2<T> vWin = new StructBasedVertexWindowV2<T>(this, mEqComparer, sentIndexID, hashID, item);
+                StructBasedVertexWindowV3<T> vWin = new StructBasedVertexWindowV3<T>(this, mEqComparer, sentIndexID, hashID, item);
 
                 //Ok, let's add the data from the sentinel position.
                 //Lock the start index and initialize the window.
@@ -1265,7 +919,7 @@ namespace Ximura.Collections
 
             int hashID;
             int sentIndexID = GetSentinelID(mEqComparer.GetHashCode(item), false, out hashID);
-            StructBasedVertexWindowV2<T> vWin = new StructBasedVertexWindowV2<T>(this, mEqComparer, sentIndexID, hashID, item);
+            StructBasedVertexWindowV3<T> vWin = new StructBasedVertexWindowV3<T>(this, mEqComparer, sentIndexID, hashID, item);
             vWin.ScanAndLock();
 
             //Ok, we need to scan for hash collisions and multiple entries.
@@ -1286,46 +940,24 @@ namespace Ximura.Collections
             return false;
         }
         #endregion // FastRemove
-#if (DEBUG)
-        #region DebugEmpty
+        #region FastClear
         /// <summary>
-        /// This is the debug data.
+        /// This property specifies that the array supports a fast clear algorithm.
         /// </summary>
-        public virtual string DebugEmpty
+        public override bool SupportsFastClear { get { return false; } }
+        /// <summary>
+        /// This method clears the array of data.
+        /// </summary>
+        public override void FastClear()
         {
-            get
-            {
-                StringBuilder sb = new StringBuilder();
-
-                //int count = 0;
-
-                //if (!mEmptyVertex.Value.IsTerminator)
-                //{
-                //    count++;
-                //    int index = mEmptyVertex.Value.NextSlotIDPlus1 - 1;
-                //    CollectionVertexStruct<T> item = mSlots[index].Value;
-
-                //    while (!item.IsTerminator)
-                //    {
-                //        index = item.NextSlotIDPlus1 - 1;
-
-                //        if ((index & 0x80000000) > 0)
-                //        {
-                //            sb.AppendFormat("Error: {0:X}", index);
-                //            break;
-                //        }
-
-                //        item = mSlots[index].Value;
-                //        count++;
-                //    }
-                //}
-
-                //sb.AppendFormat("{0} empty slots", count);
-                //sb.AppendLine();
-                return sb.ToString();
-            }
+            this.Where(s => !s.Value.IsSentinel && !s.Value.IsMarked)
+                .ForEach(v =>
+                {
+                    while (!ItemIsMarked(v.Key) && !ItemTryMark(v.Key))
+                        ThreadingHelper.ThreadWait();
+                });
         }
-        #endregion // DebugEmpty
-#endif
+        #endregion // FastClear
+
     }
 }
