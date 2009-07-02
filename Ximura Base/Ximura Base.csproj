@@ -458,6 +458,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Collections\_Documentation\CodeProject Articles\_ReadMe.txt" />
     <Content Include="Properties\epl-v10.html" />
     <Content Include="Properties\Release Notes.txt" />
   </ItemGroup>
@@ -468,6 +469,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Collections\_Documentation\CodeProject Articles\Drawing2.vsd" />
+    <None Include="Collections\_Documentation\CodeProject Articles\Lock Free Collection.docx" />
+    <None Include="Collections\_Documentation\Reference\Stack.docx" />
     <None Include="ximura.snk" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
