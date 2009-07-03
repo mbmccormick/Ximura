@@ -86,6 +86,10 @@
       <Project>{7C2684DD-A055-4A7A-88D6-EC5BAE28AEB2}</Project>
       <Name>Ximura Base</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Ximura UnitTest Base\Ximura UnitTest Base.csproj">
+      <Project>{9A889F76-433A-4E2F-ACC9-8FDC24C9A499}</Project>
+      <Name>Ximura UnitTest Base</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

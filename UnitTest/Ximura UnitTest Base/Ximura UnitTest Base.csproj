@@ -82,11 +82,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TestFunctions.cs" />
+    <Compile Include="Test_Collections_Dictionary.cs" />
+    <Compile Include="Test_Collections_SkipList.cs" />
+    <Compile Include="Test_Collection_Base.cs" />
+    <Compile Include="Test_Collection_Base_Static.cs" />
+    <Compile Include="Test_Helper_BitHelper.cs" />
     <Compile Include="Test_Helper_Linq_Currying.cs" />
     <Compile Include="Test_Helper_Linq_Folding.cs" />
     <Compile Include="Test_Collections.cs" />
     <Compile Include="Test_Helper_Linq.cs" />
     <Compile Include="Test_Helper_Linq_Unfolding.cs" />
+    <Compile Include="Test_Misc.cs" />
     <Compile Include="Test_Pooling.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Test_Helper_Threading.cs" />

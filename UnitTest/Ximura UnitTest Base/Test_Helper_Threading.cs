@@ -40,48 +40,97 @@ namespace Ximura.UnitTest
             set;
         }
         #endregion // Initialization
-        #region Additional test attributes
-        //
-        // You can use the following additional attributes as you write your tests:
-        //
-        // Use ClassInitialize to run code before running the first test in the class
-        // [ClassInitialize()]
-        // public static void MyClassInitialize(TestContext testContext) { }
-        //
-        // Use ClassCleanup to run code after all tests in a class have run
-        // [ClassCleanup()]
-        // public static void MyClassCleanup() { }
-        //
-        // Use TestInitialize to run code before running each test 
-        // [TestInitialize()]
-        // public void MyTestInitialize() { }
-        //
-        // Use TestCleanup to run code after each test has run
-        // [TestCleanup()]
-        // public void MyTestCleanup() { }
-        //
-        #endregion
-
+        
+        #region TestThreading_AddBad()
+        /// <summary>
+        /// This test shows the problem with the increment function using multiple threads.
+        /// </summary>
         [TestMethod]
-        public void TestMethod1()
+        public void TestThreading_AddBad()
         {
-            string id = "hello";
+            int starttime = Environment.TickCount;
 
-            Thread t1 = new Thread(() => id += "\r\nBugger1 " + Thread.CurrentThread.ManagedThreadId.ToString());
-            Thread t2 = new Thread(() => id += "\t\nBugger2 " + Thread.CurrentThread.ManagedThreadId.ToString());
-            Thread t3 = new Thread(() => id += "\r\nBugger3 " + Thread.CurrentThread.ManagedThreadId.ToString());
-
-            id += "\r\n\r\nHello" + Thread.CurrentThread.ManagedThreadId.ToString();
+            int output = 0;
+            //Create the delegate to add 1 million
+            ThreadStart add1Mill = () =>
+            { 
+                for (int i = 0; i < 1000000; i++) 
+                    output++;
+            };
+            //Create the two threads
+            Thread t1 = new Thread(add1Mill);
+            Thread t2 = new Thread(add1Mill);
+            //Start the threads
             t1.Start();
             t2.Start();
-            t3.Start();
-
             //OK, wait for the threads to complete.
             t1.Join();
             t2.Join();
-            t3.Join();
-
-            TestContext.WriteLine("Hello");
+            //Output the value.
+            int finish = Environment.TickCount - starttime;
+            Console.WriteLine("Final value is {0}", output);
         }
+        #endregion // TestThreading_AddBad()
+        #region TestThreading_AddGoodLock()
+        /// <summary>
+        /// This example shows a safe multi-threading code using lock.
+        /// </summary>
+        [TestMethod]
+        public void TestThreading_AddGoodLock()
+        {
+            int starttime = Environment.TickCount;
+            object tempObject = new object();
+
+            int output = 0;
+            //Create the delegate to add 1 million
+            ThreadStart add1Mill = () =>
+            {
+                for (int i = 0; i < 1000000; i++)
+                    lock (tempObject) { output++; }
+            };
+            //Create the two threads
+            Thread t1 = new Thread(add1Mill);
+            Thread t2 = new Thread(add1Mill);
+            //Start the threads
+            t1.Start();
+            t2.Start();
+            //OK, wait for the threads to complete.
+            t1.Join();
+            t2.Join();
+            //Output the value.
+            int finish = Environment.TickCount - starttime;
+            Console.WriteLine("Final value is {0}", output);
+        }
+        #endregion // TestThreading_AddLock()
+        #region TestThreading_AddGoodInterlocked()
+        /// <summary>
+        /// This example shows safe multi-threaded increment code using Interlocked.
+        /// </summary>
+        [TestMethod]
+        public void TestThreading_AddGoodInterlocked()
+        {
+            int starttime = Environment.TickCount;
+
+            int output = 0;
+            //Create the delegate to add 1 million
+            ThreadStart add1Mill = () =>
+            {
+                for (int i = 0; i < 1000000; i++)
+                    Interlocked.Increment(ref output);
+            };
+            //Create the two threads
+            Thread t1 = new Thread(add1Mill);
+            Thread t2 = new Thread(add1Mill);
+            //Start the threads
+            t1.Start();
+            t2.Start();
+            //OK, wait for the threads to complete.
+            t1.Join();
+            t2.Join();
+            //Output the value.
+            int finish = Environment.TickCount - starttime;
+            Console.WriteLine("Final value is {0}", output);
+        }
+        #endregion
     }
 }

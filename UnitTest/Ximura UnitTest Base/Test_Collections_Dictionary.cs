@@ -1,6 +1,7 @@
 ﻿#region using
 using System;
 using System.Linq;
+using System.IO;
 using System.Text;
 using System.Threading;
 using System.Collections.Generic;
@@ -15,10 +16,10 @@ using Ximura.Collections;
 namespace Ximura.UnitTest
 {
     /// <summary>
-    /// Summary description for TestTree
+    /// Summary description for TestCollections
     /// </summary>
     [TestClass]
-    public class Test_Collections_Trees
+    public class Test_Collections_Dictionary
     {
         #region TestContext
         /// <summary>
@@ -53,31 +54,36 @@ namespace Ximura.UnitTest
         //
         #endregion
 
-
         [TestMethod]
-        public void Test_TreeAdd()
+        public void TestLockFreeDictionary()
         {
-            LockFreeRedBlackTree<int, int> Tree = new LockFreeRedBlackTree<int, int>();
+            IDictionary<int, Guid> dict = new ConcurrentDictionary<int, Guid>();
 
-            int start = 50;
+            KeyValuePair<int, Guid> test = new KeyValuePair<int, Guid>(-64, Guid.NewGuid());
 
-            ////LinqHelper.For(() => 42, (i) => i < 400, i => i + 2);
-            //Threading.ExecuteParallel(new Action[]
-            //{
-            //    () => Enumerable.Range(0,100000).ForEach(i => Tree.Add(i,i)),
-            //    () => Enumerable.Range(100000,100000).ForEach(i => Tree.Add(i,i)),
-            //    () => Enumerable.Range(200000,100000).ForEach(i => Tree.Add(i,i)),
-            //    () => Enumerable.Range(300000,100000).ForEach(i => Tree.Add(i,i)),
-            //});
+            dict.Add(42, Guid.NewGuid());
+            dict.Add(22, Guid.NewGuid());
+            dict.Add(test);
+            dict.Add(55, Guid.NewGuid());
 
-            Tree.Add(10, 100);
-            Tree.Add(2, 100);
-            Tree.Add(3, 100);
-            Tree.Add(11, 100);
-            Tree.Add(1, 100);
+            Assert.IsTrue(dict.ContainsKey(-64));
+            Assert.IsTrue(dict.Contains(test));
+            Assert.IsFalse(dict.Contains(new KeyValuePair<int, Guid>(-64, new Guid())));
 
-            Assert.IsTrue(Tree.ContainsKey(3));
-            Assert.IsFalse(Tree.ContainsKey(19));
+            dict[-64] = Guid.NewGuid();
+            Assert.IsFalse(dict.Contains(test));
+
+            Guid newID = Guid.NewGuid();
+            dict[12] = newID;
+            Guid id = dict[12];
+
+            Assert.IsTrue(newID == id);
+
+            Assert.IsTrue(dict.Count == 5);
+
+            dict.Remove(-64);
+            Assert.IsTrue(dict.Count == 4);
+
         }
     }
 }

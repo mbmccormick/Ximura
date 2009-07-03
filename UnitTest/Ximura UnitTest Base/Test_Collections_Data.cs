@@ -8,6 +8,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using Ximura;
 using Ximura.Collections;
+using Ximura.Collections.Data;
 #endregion // using
 namespace Ximura.UnitTest
 {
@@ -17,17 +18,6 @@ namespace Ximura.UnitTest
     [TestClass]
     public class Test_Collections_Data
     {
-        #region Constructor
-        /// <summary>
-        /// This is the default test constructor.
-        /// </summary>
-        public Test_Collections_Data()
-        {
-            //
-            // TODO: Add constructor logic here
-            //
-        }
-        #endregion // Constructor
         #region TestContext
         /// <summary>
         ///Gets or sets the test context which provides
@@ -39,8 +29,6 @@ namespace Ximura.UnitTest
             set;
         }
         #endregion // TestContext
-
-
         #region Additional test attributes
         //
         // You can use the following additional attributes as you write your tests:
