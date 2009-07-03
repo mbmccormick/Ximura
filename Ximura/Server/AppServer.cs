@@ -242,6 +242,5 @@ namespace Ximura.Server
                 .ForEach(a => Service.AgentAdd(a));
         }
         #endregion // AgentsAdd<A>
-
     }
 }
