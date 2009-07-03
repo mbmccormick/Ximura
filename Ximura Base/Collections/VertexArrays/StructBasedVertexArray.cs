@@ -172,7 +172,7 @@ namespace Ximura.Collections
         {
             mSlots[index].Key = capacity;
             //Set the node to it's next neighbour.
-            mSlots[index].Left = index+2;
+            mSlots[index].LeftIDPlus1 = index+2;
             if (slots!=null)
                 SlotDataNodeRebalance(index, slots);
         }
@@ -342,7 +342,7 @@ namespace Ximura.Collections
             }
             else
             {
-                this[index] = CollectionVertexStruct<T>.Empty;
+                this[index] = new CollectionVertexStruct<T>();
                 this[mFreeListTail.Value] = new CollectionVertexStruct<T>(0, default(T), index + 1);
                 mFreeListTail.Value = index;
             }

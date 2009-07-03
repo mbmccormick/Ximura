@@ -37,24 +37,11 @@ namespace Ximura.Collections.Data
     public struct CollectionVertexStruct<T> : ICollectionVertex<T>, IEquatable<CollectionVertexStruct<T>>
     {
         #region Constants
-        /// <summary>
-        /// This is the empty vertex.
-        /// </summary>
-        public static readonly CollectionVertexStruct<T> Empty;
-
         private const int cnSentinelMaskSet = 0x40000000;
         private const int cnSentinelMaskRemove = 0x3FFFFFFF;
         private const int cnMarkedMaskSet = unchecked((int)0x80000000);
-        private const int cnMarkedMaskRemove = 0x7FFFFFFF;
         #endregion // Constants
         #region Static methods
-        /// <summary>
-        /// This is the static constructor.
-        /// </summary>
-        static CollectionVertexStruct()
-        {
-            Empty = new CollectionVertexStruct<T>();
-        }
         /// <summary>
         /// This static method creates a sentinel vertex. Sentinel vertexes are vertexes that do not include data,
         /// but are used by the hash table to mark a shortcut to data sets based on their hashcode.

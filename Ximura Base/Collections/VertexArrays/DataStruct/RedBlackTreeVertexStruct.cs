@@ -50,9 +50,9 @@ namespace Ximura.Collections
         {
             Key = key;
             Value = value;
-            Parent = 0;
-            Left = 0;
-            Right = 0;
+            ParentIDPlus1 = 0;
+            LeftIDPlus1 = 0;
+            RightIDPlus1 = 0;
             IsBlack = true;
         }
         #endregion // Constructor
@@ -67,17 +67,17 @@ namespace Ximura.Collections
         public V Value;
 
         /// <summary>
-        /// The parent ID. 0 denotes an empty value.
+        /// The parent ID plus 1. 0 denotes an empty value.
         /// </summary>
-        public int Parent;
+        public int ParentIDPlus1;
         /// <summary>
-        /// The left ID. 0 denotes an empty value.
+        /// The left ID plus 1. 0 denotes an empty value.
         /// </summary>
-        public int Left;
+        public int LeftIDPlus1;
         /// <summary>
-        /// The right ID. 0 denotes an empty value.
+        /// The right ID plus 1. 0 denotes an empty value.
         /// </summary>
-        public int Right;
+        public int RightIDPlus1;
         /// <summary>
         /// This boolean value denotes whether the vertex is black.
         /// </summary>
@@ -87,13 +87,13 @@ namespace Ximura.Collections
         /// <summary>
         /// This property determines whether the vertex is the root vertex, i.e. it does not have a parent.
         /// </summary>
-        public bool IsRoot { get { return Parent == 0; } }
+        public bool IsRoot { get { return ParentIDPlus1 == 0; } }
         #endregion
         #region IsSentinel
         /// <summary>
         /// This property determines whether the vertex is a sentinel, i.e. a vertex without any child vertexes.
         /// </summary>
-        public bool IsSentinel { get { return Left == 0 && Right == 0; } }
+        public bool IsSentinel { get { return LeftIDPlus1 == 0 && RightIDPlus1 == 0; } }
         #endregion
     }
 }

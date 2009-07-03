@@ -469,10 +469,20 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Collections\_Documentation\CodeProject Articles\Concurrent Object Pooling.docx" />
+    <None Include="Collections\_Documentation\CodeProject Articles\Concurrent Priority Queue.docx" />
+    <None Include="Collections\_Documentation\CodeProject Articles\Concurrent Stack.docx" />
     <None Include="Collections\_Documentation\CodeProject Articles\Drawing2.vsd" />
-    <None Include="Collections\_Documentation\CodeProject Articles\Lock Free Collection.docx" />
+    <None Include="Collections\_Documentation\CodeProject Articles\HashTable Algorithm.docx" />
+    <None Include="Collections\_Documentation\CodeProject Articles\Introduction.docx" />
+    <None Include="Collections\_Documentation\CodeProject Articles\SkipList Algorithm.docx" />
+    <None Include="Collections\_Documentation\Reference\CLR Inside Out 9 Reusable Parallel Data Structures and Algorithms.mht" />
+    <None Include="Collections\_Documentation\Reference\ScaleNet.pdf" />
     <None Include="Collections\_Documentation\Reference\Stack.docx" />
     <None Include="ximura.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="_Documentation\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
