@@ -207,6 +207,10 @@
     <Compile Include="Attributes\XimuraAppModuleConfigAttribute.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Collections\Collection Wrappers\CollectionWrapperBase.cs" />
+    <Compile Include="Collections\Collection Wrappers\CollectionWrapperCourseGrained.cs" />
+    <Compile Include="Collections\Collection Wrappers\CollectionWrapperInterlocked.cs" />
+    <Compile Include="Collections\Collection Wrappers\CollectionWrapperReadWrite.cs" />
     <Compile Include="Collections\Collections\CollectionHelperBase.cs" />
     <Compile Include="Collections\Collections\CollectionHelperBase_Debug.cs" />
     <Compile Include="Collections\Collections\ConcurrentDictionary.cs" />
@@ -265,10 +269,6 @@
     <Compile Include="Collections\VertexArrays\SkipList\SkipListStructBasedVertexArray.cs" />
     <Compile Include="Collections\VertexArrays\StructBasedVertexArray.cs" />
     <Compile Include="Collections\VertexArrays\VertexArray.cs" />
-    <Compile Include="Collections\CollectionWrappers\CollectionWrapperCourseGrained.cs" />
-    <Compile Include="Collections\CollectionWrappers\CollectionWrapperInterlocked.cs" />
-    <Compile Include="Collections\CollectionWrappers\CollectionWrapperReadWrite.cs" />
-    <Compile Include="Collections\CollectionWrappers\CollectionWrapperBase.cs" />
     <Compile Include="Command\CommandCallbacks.cs" />
     <Compile Include="Command\Data\EnvelopeAddress.cs" />
     <Compile Include="Command\Interfaces\IXimuraEnvelopeHelper.cs" />
