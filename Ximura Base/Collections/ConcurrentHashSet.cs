@@ -37,7 +37,7 @@ namespace Ximura.Collections
     /// </summary>
     /// <typeparam name="T">The collection item type.</typeparam>
     [DebuggerDisplay("Count = {Count}"), HostProtection(SecurityAction.LinkDemand, MayLeakOnAbort = true)]
-    public sealed class ConcurrentHashSet<T> : ConcurrentHashSet<T, HashTableStructBasedVertexArrayV3<T>>
+    public sealed class ConcurrentHashSet<T> : ConcurrentHashSet<T, HashTableStructBasedVertexArrayV2<T>>
     {
         #region Constructor
         /// <summary>
