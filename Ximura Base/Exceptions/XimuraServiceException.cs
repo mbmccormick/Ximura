@@ -46,7 +46,11 @@ namespace Ximura.Helper
 		/// <param name="message"></param>
 		/// <param name="ex"></param>
 		public XimuraServiceException(string message,Exception ex):base(message,ex){}
-
+        /// <summary>
+        /// Initializes a protected instance of the XimuraException class for remoting.
+        /// </summary>
+        /// <param name="info">The serialization info.</param>
+        /// <param name="context">The serialization context.</param>
 		protected XimuraServiceException(SerializationInfo info, StreamingContext context) : base(info, context) {}
 	}
 }
