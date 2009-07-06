@@ -39,7 +39,7 @@ namespace Ximura.Collections.Data
         #region Constants
         private const int cnSentinelMaskSet = 0x40000000;
         private const int cnSentinelMaskRemove = 0x3FFFFFFF;
-        private const int cnMarkedMaskSet = unchecked((int)0x80000000);
+        //private const int cnMarkedMaskSet = unchecked((int)0x80000000);
         #endregion // Constants
         #region Static methods
         /// <summary>
@@ -118,30 +118,6 @@ namespace Ximura.Collections.Data
         /// </summary>
         public bool IsSentinel { get { return (mHashID & cnSentinelMaskSet) > 0; } }
         #endregion // IsSentinel
-
-        #region IsMarked
-        /// <summary>
-        /// This property determines whether the vertex has been marked for deletion.
-        /// </summary>
-        public bool IsMarked { get { return (mHashID & cnMarkedMaskSet) > 0; } }
-        #endregion
-        #region TryMark()
-        /// <summary>
-        /// This method attempts to mark the vertex.
-        /// </summary>
-        /// <returns>This method returns true if the vertex was successfully marked.
-        /// This method will return false if another vertex has already marked this vertex.
-        /// </returns>
-        public bool TryMark()
-        {
-            int hashID = mHashID;
-
-            if ((hashID & cnMarkedMaskSet) > 0)
-                return false;
-
-            return Interlocked.CompareExchange(ref mHashID, unchecked(cnMarkedMaskSet | hashID), hashID) == hashID;
-        }
-        #endregion
 
         #region ToString()
         /// <summary>

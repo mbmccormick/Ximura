@@ -427,7 +427,6 @@ namespace Ximura.Collections
             {
                 //Do we have a match?
                 if (!scanVertex.IsSentinel && 
-                    !scanVertex.IsMarked &&
                     scanVertex.HashID == hashID &&
                     mEqComparer.Equals(item, scanVertex.Value))
                     return true;
@@ -608,7 +607,7 @@ namespace Ximura.Collections
         /// </summary>
         public override void FastClear()
         {
-            this.Where(s => !s.Value.IsSentinel && !s.Value.IsMarked)
+            this.Where(s => !s.Value.IsSentinel)
                 .ForEach(v =>
                 {
                     while (!ItemIsMarked(v.Key) && !ItemTryMark(v.Key))

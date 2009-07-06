@@ -33,7 +33,7 @@ namespace Ximura.Helper
     /// The lockable base class is for objects that require fine-grained locking.
     /// </summary>
     [Serializable, StructLayout(LayoutKind.Sequential)]
-    public struct LockableWrapper<T> : ILockable
+    public struct LockableWrapper<T>
     {
         #region Declarations
         /// <summary>

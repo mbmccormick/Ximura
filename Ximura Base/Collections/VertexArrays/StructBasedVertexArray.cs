@@ -53,11 +53,11 @@ namespace Ximura.Collections
         /// <summary>
         /// This collection holds the data.
         /// </summary>
-        private RedBlackTreeVertexStruct<int, LockableWrapper<CollectionVertexStruct<T>>[]>[] mSlots;
+        private RedBlackTreeVertexStruct<int, LockableMarkableWrapper<CollectionVertexStruct<T>>[]>[] mSlots;
         /// <summary>
         /// This value holds a reference to the first data slot.
         /// </summary>
-        private LockableWrapper<CollectionVertexStruct<T>>[] mSlots0;
+        private LockableMarkableWrapper<CollectionVertexStruct<T>>[] mSlots0;
         /// <summary>
         /// The slot 0 capacity.
         /// </summary>
@@ -145,8 +145,8 @@ namespace Ximura.Collections
             //Ok, find the next bit up from the value, i.e. if the initial capacity is 1000, the next whole 
             //2^n number would be 1024, so n will be 10.
             int slotsLevelOffset = BitHelper.FindMostSignificantBit(mSlot0Capacity, 31) + 1;
-            mSlots = new RedBlackTreeVertexStruct<int, LockableWrapper<CollectionVertexStruct<T>>[]>[32 - slotsLevelOffset];
-            mSlots0 = new LockableWrapper<CollectionVertexStruct<T>>[mSlot0Capacity];
+            mSlots = new RedBlackTreeVertexStruct<int, LockableMarkableWrapper<CollectionVertexStruct<T>>[]>[32 - slotsLevelOffset];
+            mSlots0 = new LockableMarkableWrapper<CollectionVertexStruct<T>>[mSlot0Capacity];
 
             SlotDataNodeAdd(0, mSlot0Capacity, mSlots0);
             SlotDataNodeAdd(1, (1 << slotsLevelOffset) + mSlot0Capacity, null);
@@ -168,7 +168,7 @@ namespace Ximura.Collections
         /// <param name="index"></param>
         /// <param name="capacity"></param>
         /// <param name="slots"></param>
-        private void SlotDataNodeAdd(int index, int capacity, LockableWrapper<CollectionVertexStruct<T>>[] slots)
+        private void SlotDataNodeAdd(int index, int capacity, LockableMarkableWrapper<CollectionVertexStruct<T>>[] slots)
         {
             mSlots[index].Key = capacity;
             //Set the node to it's next neighbour.
@@ -182,9 +182,9 @@ namespace Ximura.Collections
         /// <summary>
         /// This method rebalances the tree when a new node is introduced.
         /// </summary>
-        /// <param name="index"></param>
-        /// <param name="slots"></param>
-        private void SlotDataNodeRebalance(int index, LockableWrapper<CollectionVertexStruct<T>>[] slots)
+        /// <param name="index">The index position.</param>
+        /// <param name="slots">The slot collection.</param>
+        private void SlotDataNodeRebalance(int index, LockableMarkableWrapper<CollectionVertexStruct<T>>[] slots)
         {
             mSlots[index].Value = slots;
         }
@@ -218,7 +218,8 @@ namespace Ximura.Collections
                 return;
 
             int additionalCapacity = mSlots[level].Key - mSlots[level - 1].Key;
-            mSlots[level].Value = new LockableWrapper<CollectionVertexStruct<T>>[additionalCapacity];
+            //Create the slot array
+            mSlots[level].Value = new LockableMarkableWrapper<CollectionVertexStruct<T>>[additionalCapacity];
             mSlotsLevelCurrent = level;
             //This addition has to be atomic as other threads may bypass the lock.
             Interlocked.Add(ref mSlotsCapacityCurrent, additionalCapacity);
@@ -479,7 +480,7 @@ namespace Ximura.Collections
         /// <returns>Returns a lockable wrapper containing the vertex data.</returns>
         protected virtual CollectionVertexStruct<T> LockableData(int index, out bool isLocked)
         {
-            LockableWrapper<CollectionVertexStruct<T>> item;
+            LockableMarkableWrapper<CollectionVertexStruct<T>> item;
             if (mIsFixedSize || index < mSlot0Capacity)
                 item = mSlots0[index];
             else
@@ -502,11 +503,11 @@ namespace Ximura.Collections
         {
             if (mIsFixedSize || index < mSlot0Capacity)
             {
-                return mSlots0[index].Value.IsMarked;
+                return mSlots0[index].IsMarked;
             }
 
             int level = SlotsCalculateLevel(index);
-            return mSlots[level].Value[index - mSlots[level - 1].Key].Value.IsMarked;
+            return mSlots[level].Value[index - mSlots[level - 1].Key].IsMarked;
         }
         #endregion // ItemIsLocked(int index)
         #region ItemTryMark(int index)
@@ -519,11 +520,11 @@ namespace Ximura.Collections
         {
             if (mIsFixedSize || index < mSlot0Capacity)
             {
-                return mSlots0[index].Value.TryMark();
+                return mSlots0[index].TryMark();
             }
 
             int level = SlotsCalculateLevel(index);
-            return mSlots[level].Value[index - mSlots[level - 1].Key].Value.TryMark();
+            return mSlots[level].Value[index - mSlots[level - 1].Key].TryMark();
         }
         #endregion // ItemTryLock(int index)
 
