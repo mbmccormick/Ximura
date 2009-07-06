@@ -67,6 +67,8 @@ namespace Ximura.Collections
             /// The current slot ID plus 1.
             /// </summary>
             private int CurrSlotIDPlus1;
+            private int NextSlotIDPlus1;
+            private int LastSentinelIDPlus1;
             /// <summary>
             /// THe current vertex.
             /// </summary>
@@ -85,6 +87,7 @@ namespace Ximura.Collections
             public StructBasedVertexWindowV3(HashTableStructBasedVertexArrayV3<D> data,
                 IEqualityComparer<D> eqComparer, int indexID, int hashID, D item)
             {
+                LastSentinelIDPlus1 = indexID + 1;
                 mData = data;
                 mHashID = hashID;
                 mItem = item;
@@ -94,8 +97,10 @@ namespace Ximura.Collections
                     , indexID, mHashID, Thread.CurrentThread.ManagedThreadId);
 #endif
                 mData.ItemLock(indexID);
-                CurrSlotIDPlus1 = indexID + 1;
+                CurrSlotIDPlus1 = LastSentinelIDPlus1;
                 Curr = mData[indexID];
+
+                NextSlotIDPlus1 = 0;
 
                 if (!Curr.IsTerminator)
                 {
@@ -119,6 +124,8 @@ namespace Ximura.Collections
                 mHashID = hashID;
                 mItem = default(D);
                 mEqualityComparer = eqComparer;
+                LastSentinelIDPlus1 = indexID + 1;
+                NextSlotIDPlus1 = 0;
 #if (LOCKDEBUG)
                 Console.WriteLine("S Window created for {0:x} {1:x} on {2}"
                     , indexID, mHashID, Thread.CurrentThread.ManagedThreadId);
@@ -308,196 +315,6 @@ namespace Ximura.Collections
 //#endif
             }
             #endregion
-
-            #region ItemInsert(T value)
-            ///// <summary>
-            ///// 
-            ///// </summary>
-            ///// <param name="hashID">The hashID to search for and lock.</param>
-            //public void ItemInsert()
-            //{
-            //    int newSlot = mData.EmptyGet();
-
-            //    mData.ItemLock(newSlot);
-
-            //    if (!Curr.IsTerminator)
-            //        mData.ItemUnlock(Curr.NextSlotIDPlus1 - 1);
-
-            //    Next = new CollectionVertexStruct<T>(mHashID, mItem, Curr.NextSlotIDPlus1);
-
-            //    Curr.NextSlotIDPlus1 = newSlot + 1;
-
-            //    mData[newSlot] = Next;
-            //    mData[CurrSlotIDPlus1 - 1] = Curr;
-
-            //    //Increment the necessary counters, and
-            //    //check whether we need to recalculate the bit size.
-            //    mData.BucketSizeRecalculate(mData.CountIncrement(), false);
-            //}
-            #endregion
-
-            #region InsertSentinelAndUnlock(int indexID)
-//            /// <summary>
-//            /// This method inserts a sentinel in to the data collection.
-//            /// </summary>
-//            /// <param name="indexID">The new sentinel index id.</param>
-//            /// <param name="hashID">The sentinel hash id.</param>
-//            public void InsertSentinelAndUnlock(int indexID)
-//            {
-//                ScanAndLock();
-
-//                //If the current item is part of a list unlock the next item.
-//                if (!Curr.IsTerminator)
-//                    mData.ItemUnlock(Curr.NextSlotIDPlus1 - 1);
-
-//                //Set the new sentinel and unlock.
-//                mData[indexID] = CollectionVertexStruct<D>.Sentinel(mHashID, Curr.NextSlotIDPlus1);
-//                mData.ItemUnlock(indexID);
-
-//                //Set the current item and unlock.
-//                Curr.NextSlotIDPlus1 = indexID + 1;
-//                mData[CurrSlotIDPlus1 - 1] = Curr;
-//                mData.ItemUnlock(CurrSlotIDPlus1 - 1);
-
-//#if (LOCKDEBUG)
-//                Console.WriteLine("Window sentinel unlocked for {0:x} {1:x} on {2}"
-//                    , CurrSlotIDPlus1 - 1, mHashID, Thread.CurrentThread.ManagedThreadId);
-//#endif
-//            }
-            #endregion
-            #region Unlock()
-//            /// <summary>
-//            /// This method provides common functionality to unlock a VertexWindow.
-//            /// </summary>
-//            public void Unlock()
-//            {
-//                if (Curr.NextSlotIDPlus1 != 0) mData.ItemUnlock(Curr.NextSlotIDPlus1 - 1);
-//                if (CurrSlotIDPlus1 != 0) mData.ItemUnlock(CurrSlotIDPlus1 - 1);
-
-//#if (LOCKDEBUG)
-//                Console.WriteLine("Window unlocked for {0:x} {1:x} on {2}"
-//                    , CurrSlotIDPlus1 - 1, mHashID, Thread.CurrentThread.ManagedThreadId);
-//#endif
-//            }
-            #endregion
-            #region MoveUp()
-            ///// <summary>
-            ///// This method moves up the Next vertex to the current position.
-            ///// </summary>
-            //public bool MoveUp()
-            //{
-            //    if (Curr.IsTerminator)
-            //        return false;
-
-            //    mData.ItemUnlock(CurrSlotIDPlus1 - 1);
-            //    CurrSlotIDPlus1 = Curr.NextSlotIDPlus1;
-            //    Curr = Next;
-
-            //    if (!Curr.IsTerminator)
-            //    {
-            //        mData.ItemLock(Curr.NextSlotIDPlus1 - 1);
-            //        Next = mData[Curr.NextSlotIDPlus1 - 1];
-            //    }
-            //    else
-            //        Next = new CollectionVertexStruct<T>();
-
-            //    return true;
-            //}
-            #endregion
-            #region ScanAndLock()
-            ///// <summary>
-            ///// This method scans through the slot data until is reaches the end of the data, or the position 
-            ///// where the hashID meets a slot with a hashID that is greater than itself.
-            ///// </summary>
-            ///// <param name="hashID">The hashID to search for and lock.</param>
-            //public int ScanAndLock()
-            //{
-            //    //If the current is the last item in the linked list then exit.
-            //    if (Curr.IsTerminator)
-            //        return 0;
-
-            //    int hopCount = 0;
-
-            //    while (Next.HashID < mHashID)
-            //    {
-            //        hopCount++;
-
-            //        //Unlock the old current item.
-            //        mData.ItemUnlock(CurrSlotIDPlus1 - 1);
-
-            //        CurrSlotIDPlus1 = Curr.NextSlotIDPlus1;
-
-            //        //If this is the last item in the list then move up and exit.
-            //        if (Next.IsTerminator)
-            //        {
-            //            Curr = Next;
-            //            Next = new CollectionVertexStruct<D>();
-            //            break;
-            //        }
-
-            //        //OK, lock the next item and move up.
-            //        mData.ItemLock(Next.NextSlotIDPlus1 - 1);
-            //        Curr = Next;
-            //        Next = mData[Curr.NextSlotIDPlus1 - 1];
-            //    }
-
-            //    return hopCount;
-            //}
-            #endregion
-            #region RemoveItemAndUnlock()
-//            /// <summary>
-//            /// 
-//            /// </summary>
-//            /// <returns></returns>
-//            public void ItemRemoveAndUnlock()
-//            {
-//                int removedItem = Curr.NextSlotIDPlus1 - 1;
-
-//                Curr.NextSlotIDPlus1 = Next.NextSlotIDPlus1;
-
-//                mData[CurrSlotIDPlus1 - 1] = Curr;
-//                mData.ItemUnlock(removedItem);
-//                mData.ItemUnlock(CurrSlotIDPlus1 - 1);
-
-//                //Add the empty item for re-allocation.
-//                mData.EmptyAdd(removedItem);
-
-//                //Update the version and reduce the item count.
-//                mData.CountDecrement();
-//#if (LOCKDEBUG)
-//                Console.WriteLine("Window remove and unlock for {0:x} {1:x} on {2}"
-//                    , CurrSlotIDPlus1 - 1, mHashID, Thread.CurrentThread.ManagedThreadId);
-//#endif
-//            }
-            #endregion // SlotsRemoveItem
-
-            #region Snip()
-            ///// <summary>
-            ///// 
-            ///// </summary>
-            //public void Snip()
-            //{
-            //    int removedItem = Curr.NextSlotIDPlus1 - 1;
-
-            //    Curr.NextSlotIDPlus1 = Next.NextSlotIDPlus1;
-
-            //    mData[CurrSlotIDPlus1 - 1] = Curr;
-            //    mData.ItemUnlock(removedItem);
-
-            //    if (!Curr.IsTerminator)
-            //    {
-            //        mData.ItemLock(Curr.NextSlotIDPlus1 - 1);
-            //        Next = mData[Curr.NextSlotIDPlus1 - 1];
-            //    }
-            //    else
-            //        Next = new CollectionVertexStruct<T>();
-
-            //    //Add the empty item for re-allocation.
-            //    mData.EmptyAdd(removedItem);
-
-            //    mData.CountDecrement();
-            //}
-            #endregion // SlotsRemoveItem
 
             #region ScanProcess()
             /// <summary>
