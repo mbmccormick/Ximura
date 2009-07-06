@@ -299,6 +299,7 @@
     <Compile Include="Helper\Linq\Linq_Stream.cs" />
     <Compile Include="Helper\Linq\Linq_Unfolding.cs" />
     <Compile Include="Helper\Locking\LockableBase.cs" />
+    <Compile Include="Helper\Locking\LockableMarkableWrapper.cs" />
     <Compile Include="Helper\Locking\LockableNullableWrapper.cs" />
     <Compile Include="Helper\Locking\LockableWrapper.cs" />
     <Compile Include="Helper\Prime.cs" />
