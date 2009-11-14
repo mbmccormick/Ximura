@@ -67,16 +67,14 @@ namespace Ximura.Collections
             /// The current slot ID plus 1.
             /// </summary>
             private int CurrSlotIDPlus1;
+            /// <summary>
+            /// This is the next slot ID plus 1.
+            /// </summary>
             private int NextSlotIDPlus1;
+            /// <summary>
+            /// This is the ID of the last sentinel in the scan plus 1.
+            /// </summary>
             private int LastSentinelIDPlus1;
-            /// <summary>
-            /// THe current vertex.
-            /// </summary>
-            private CollectionVertexStruct<D> Curr;
-            /// <summary>
-            /// The next vertex.
-            /// </summary>
-            private CollectionVertexStruct<D> Next;
             #endregion // Declarations
             #region Constructor
             /// <summary>
@@ -98,17 +96,8 @@ namespace Ximura.Collections
 #endif
                 mData.ItemLock(indexID);
                 CurrSlotIDPlus1 = LastSentinelIDPlus1;
-                Curr = mData[indexID];
-
                 NextSlotIDPlus1 = 0;
 
-                if (!Curr.IsTerminator)
-                {
-                    mData.ItemLock(Curr.NextSlotIDPlus1 - 1);
-                    Next = mData[Curr.NextSlotIDPlus1 - 1];
-                }
-                else
-                    Next = new CollectionVertexStruct<D>();
             }
             #endregion // Constructor
             #region Sentinel Constructor
@@ -132,15 +121,7 @@ namespace Ximura.Collections
 #endif
                 mData.ItemLock(indexID);
                 CurrSlotIDPlus1 = indexID + 1;
-                Curr = mData[indexID];
 
-                if (!Curr.IsTerminator)
-                {
-                    mData.ItemLock(Curr.NextSlotIDPlus1 - 1);
-                    Next = mData[Curr.NextSlotIDPlus1 - 1];
-                }
-                else
-                    Next = new CollectionVertexStruct<D>();
             }
             #endregion // Constructor
 
@@ -170,36 +151,9 @@ namespace Ximura.Collections
             /// </summary>
             public int ScanAndRemoveMarked()
             {
-                //If the current is the last item in the linked list then exit.
-                if (Curr.IsTerminator)
-                    return 0;
 
-                int hopCount = 0;
 
-                while (Next.HashID < mHashID)
-                {
-                    hopCount++;
-
-                    //Unlock the old current item.
-                    mData.ItemUnlock(CurrSlotIDPlus1 - 1);
-
-                    CurrSlotIDPlus1 = Curr.NextSlotIDPlus1;
-
-                    //If this is the last item in the list then move up and exit.
-                    if (Next.IsTerminator)
-                    {
-                        Curr = Next;
-                        Next = new CollectionVertexStruct<D>();
-                        break;
-                    }
-
-                    //OK, lock the next item and move up.
-                    mData.ItemLock(Next.NextSlotIDPlus1 - 1);
-                    Curr = Next;
-                    Next = mData[Curr.NextSlotIDPlus1 - 1];
-                }
-
-                return hopCount;
+                return 0;
             }
             #endregion
             #region ItemLockAndInsert()
@@ -208,23 +162,7 @@ namespace Ximura.Collections
             /// </summary>
             public void ItemLockAndInsert()
             {
-                int newSlot = mData.EmptyGet();
 
-                mData.ItemLock(newSlot);
-
-                if (!Curr.IsTerminator)
-                    mData.ItemUnlock(Curr.NextSlotIDPlus1 - 1);
-
-                Next = new CollectionVertexStruct<D>(mHashID, mItem, Curr.NextSlotIDPlus1);
-
-                Curr.NextSlotIDPlus1 = newSlot + 1;
-
-                mData[newSlot] = Next;
-                mData[CurrSlotIDPlus1 - 1] = Curr;
-
-                //Increment the necessary counters, and
-                //check whether we need to recalculate the bit size.
-                mData.BucketSizeRecalculate(mData.CountIncrement(), false);
             }
             #endregion
             #region ItemLockAndRemove()
@@ -233,23 +171,7 @@ namespace Ximura.Collections
             /// </summary>
             public void ItemLockAndRemove()
             {
-                int removedItem = Curr.NextSlotIDPlus1 - 1;
 
-                Curr.NextSlotIDPlus1 = Next.NextSlotIDPlus1;
-
-                mData[CurrSlotIDPlus1 - 1] = Curr;
-                mData.ItemUnlock(removedItem);
-                mData.ItemUnlock(CurrSlotIDPlus1 - 1);
-
-                //Add the empty item for re-allocation.
-                mData.EmptyAdd(removedItem);
-
-                //Update the version and reduce the item count.
-                mData.CountDecrement();
-#if (LOCKDEBUG)
-                Console.WriteLine("Window remove and unlock for {0:x} {1:x} on {2}"
-                    , CurrSlotIDPlus1 - 1, mHashID, Thread.CurrentThread.ManagedThreadId);
-#endif
             }
             #endregion // ItemLockAndRemove()
             #region ItemLockAndSetNext()
@@ -258,9 +180,6 @@ namespace Ximura.Collections
             /// </summary>
             public void ItemLockAndSetNext()
             {
-                //This code is to accomodate dictionary type collections where the item is a keyvalue pair.
-                Next.Value = mItem;
-                mData[Curr.NextSlotIDPlus1 - 1] = Next;
             }
             #endregion // SetNextItem(T value)
             #region MoveUpAndRemoveMarked()
@@ -269,20 +188,6 @@ namespace Ximura.Collections
             /// </summary>
             public bool MoveUpAndRemoveMarked()
             {
-                if (Curr.IsTerminator)
-                    return false;
-
-                mData.ItemUnlock(CurrSlotIDPlus1 - 1);
-                CurrSlotIDPlus1 = Curr.NextSlotIDPlus1;
-                Curr = Next;
-
-                if (!Curr.IsTerminator)
-                {
-                    mData.ItemLock(Curr.NextSlotIDPlus1 - 1);
-                    Next = mData[Curr.NextSlotIDPlus1 - 1];
-                }
-                else
-                    Next = new CollectionVertexStruct<D>();
 
                 return true;
             }
@@ -323,7 +228,7 @@ namespace Ximura.Collections
             /// <returns></returns>
             public bool ScanProcess()
             {
-                return !Curr.IsTerminator && Next.HashID == mHashID;
+                return false;
             }
             #endregion
             #region ScanItemMatch
@@ -334,7 +239,7 @@ namespace Ximura.Collections
             {
                 get
                 {
-                    return !Next.IsSentinel && mEqualityComparer.Equals(mItem, Next.Data);
+                    return false;
                 }
             }
             #endregion // ScanItemMatch
@@ -345,7 +250,7 @@ namespace Ximura.Collections
             /// </summary>
             public bool NextIsSentinel
             {
-                get { return Next.IsSentinel; }
+                get { return false; }
             }
             #endregion // NextIsSentinel
             #region CurrIsTerminator
@@ -354,7 +259,7 @@ namespace Ximura.Collections
             /// </summary>
             public bool CurrIsTerminator
             {
-                get { return Curr.IsTerminator; }
+                get { return false; }
             }
             #endregion // CurrIsTerminator
 
@@ -365,7 +270,7 @@ namespace Ximura.Collections
             /// <returns>Returns the structure value.</returns>
             public override string ToString()
             {
-                return string.Format("{0}[{1}] -> {2}[{3}]", CurrSlotIDPlus1 - 1, Curr, Curr.NextSlotIDPlus1 - 1, Next);
+                return "";
             }
             #endregion // ToString()
         }

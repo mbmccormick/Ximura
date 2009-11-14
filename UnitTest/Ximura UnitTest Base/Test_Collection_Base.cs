@@ -187,7 +187,11 @@ namespace Ximura.UnitTest
         }
         #endregion // Test_CopyTo(T coll)
 
-        
+        #region Test_List(U[] item)
+        /// <summary>
+        /// This method runs a standard set of tests for the list based collection.
+        /// </summary>
+        /// <param name="item">The set of items to use in the test.</param>
         protected virtual void Test_List(U[] item)
         {
             T list = CreateCollection();
@@ -251,7 +255,12 @@ namespace Ximura.UnitTest
 
             Test_CopyTo(list);
         }
-
+        #endregion // Test_List(U[] item)
+        #region Test_HashSet(U[] item)
+        /// <summary>
+        /// This method runs a standard set of test for the hashset based collection.
+        /// </summary>
+        /// <param name="item">The set of items to use in the test.</param>
         protected virtual void Test_HashSet(U[] item)
         {
             T list = CreateCollection();
@@ -315,11 +324,16 @@ namespace Ximura.UnitTest
 
             Test_CopyTo(list);
         }
-
+        #endregion // Test_HashSet(U[] item)
+        #region Test_Dictionary(U[] item)
+        /// <summary>
+        /// This method runs a standard set of tests for a dictionary.
+        /// </summary>
+        /// <param name="item"></param>
         protected virtual void Test_Dictionary(U[] item)
         {
 
         }
-
+        #endregion // Test_Dictionary(U[] item)
     }
 }

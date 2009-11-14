@@ -160,5 +160,7 @@ namespace Ximura.Helper
             return comparer.CompareTo(intervalStart) >= 0 && comparer.CompareTo(internalEnd) <= 0;
         }
         #endregion
+
+
     }
 }

@@ -261,7 +261,7 @@ namespace Ximura.Collections
         {
             throw new NotSupportedException("VertexWindowGet() is not supported in this array.");
         }
-        #endregion // VertexWindowGet(int hashCode, bool createSentinel)
+        #endregion
 
         #region BucketCalculatePosition(int indexID, out int level, out int levelPosition)
         /// <summary>
@@ -425,6 +425,8 @@ namespace Ximura.Collections
             //during the search we will need to complete a locked search to ensure consistency.
             while (true)
             {
+                if (this.ItemIsMarked(sentIndexID))
+                    
                 //Do we have a match?
                 if (!scanVertex.IsSentinel && 
                     scanVertex.HashID == hashID &&
