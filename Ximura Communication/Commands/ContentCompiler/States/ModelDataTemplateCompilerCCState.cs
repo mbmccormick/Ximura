@@ -82,8 +82,8 @@ namespace Ximura.Communication
             Model contentModel = context.ContextSettings.PoolManager.GetPoolManager<Model>().Get();
             contentModel.Load(blob, 0, blob.Length);
 
-            contentModel.ID = Guid.NewGuid();
-            contentModel.Version = Guid.NewGuid();
+            contentModel.IDContent = Guid.NewGuid();
+            contentModel.IDVersion = Guid.NewGuid();
 
             context.ModelData = contentModel;
         }

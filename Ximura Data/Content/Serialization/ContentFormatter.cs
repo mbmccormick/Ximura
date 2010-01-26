@@ -29,14 +29,19 @@ using RH = Ximura.Helper.Reflection;
 namespace Ximura.Data.Serialization
 {
     /// <summary>
-    /// Summary description for ContentFormatter.
+    /// This class is used to serialize and deserialize the content.
     /// </summary>
     public class ContentFormatter : FormatterBase
     {
         #region Declarations
+        /// <summary>
+        /// The default binary writer.
+        /// </summary>
         protected BinaryWriter mWriter;
+        /// <summary>
+        /// The default binary reader.
+        /// </summary>
         protected BinaryReader mReader;
-
         #endregion
         #region Constructor
         /// <summary>
@@ -255,8 +260,7 @@ namespace Ximura.Data.Serialization
 
             return info;
         }
-
-        #endregion // ContentDeserializeInternal
+        #endregion
 
         #region ByteMarkers methods
         /// <summary>
@@ -266,6 +270,7 @@ namespace Ximura.Data.Serialization
         /// <param name="outStream"></param>
         public static void WriteByteMarkers(Stream outStream)
         {
+            //This is the two magic bytes that are written to the start of the serialization stream
             outStream.WriteByte(0xD8);
             outStream.WriteByte(0xB4);
         }
@@ -284,6 +289,12 @@ namespace Ximura.Data.Serialization
         }
         #endregion // ByteMarkers
 
+        #region GetSerializationInfo(Stream inStream)
+        /// <summary>
+        /// This method converts the incoming stream to a searialization information.
+        /// </summary>
+        /// <param name="inStream">The incoming data stream.</param>
+        /// <returns>Returns the serialization information.</returns>
         public static SerializationInfo GetSerializationInfo(Stream inStream)
         {
             if (!VerifyByteMarkers(inStream))
@@ -300,6 +311,7 @@ namespace Ximura.Data.Serialization
 
             if (contentType == null && header.SupportsBaseType)
                 contentType = RH.CreateTypeFromString(header.ContentBaseType, null, true);
+
             //OK, the content type is still null
             if (contentType == null)
                 throw new ContentFormatterException("The content type cannot be created.");
@@ -308,5 +320,6 @@ namespace Ximura.Data.Serialization
 
             return info;
         }
+        #endregion
     }
 }

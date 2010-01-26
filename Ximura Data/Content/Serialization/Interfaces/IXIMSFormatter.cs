@@ -35,7 +35,5 @@ namespace Ximura.Data
         /// <param name="pMan">The pool manager to retrieve the new object. This can be null.</param>
         /// <returns>Returns an object specified in the stream.</returns>
         object Deserialize(Stream serializationStream, IXimuraPoolManager pMan);
-
-
     }
 }

@@ -11,7 +11,7 @@
     <AssemblyKeyContainerName>
     </AssemblyKeyContainerName>
     <AssemblyName>XimuraBase</AssemblyName>
-    <AssemblyOriginatorKeyFile>ximura.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>Properties\ximura.snk</AssemblyOriginatorKeyFile>
     <DefaultClientScript>JScript</DefaultClientScript>
     <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
     <DefaultTargetSchema>IE50</DefaultTargetSchema>
@@ -481,7 +481,7 @@
     <None Include="Collections\_Documentation\Reference\CLR Inside Out 9 Reusable Parallel Data Structures and Algorithms.mht" />
     <None Include="Collections\_Documentation\Reference\ScaleNet.pdf" />
     <None Include="Collections\_Documentation\Reference\Stack.docx" />
-    <None Include="ximura.snk" />
+    <None Include="Properties\ximura.snk" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="_Documentation\" />

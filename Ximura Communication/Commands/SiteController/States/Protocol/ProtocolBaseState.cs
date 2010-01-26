@@ -50,7 +50,7 @@ namespace Ximura.Communication
             {
                 case CDSResponse.OK:
                     context.ScriptSession = session;
-                    context.ScriptRequest.SessionID = session.ID;
+                    context.ScriptRequest.SessionID = session.IDContent;
 
                     ProcessMemberSecurity(context);
                     return true;

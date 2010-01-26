@@ -48,14 +48,8 @@ namespace Ximura.Data
         /// <summary>
         /// The default constructor
         /// </summary>
-        public XimuraCore() : this((IContainer)null) { }
-        /// <summary>
-        /// This constructor is called by .NET when it added as new to a container.
-        /// </summary>
-        /// <param name="container">The container this component should be added to.</param>
-        public XimuraCore(System.ComponentModel.IContainer container)
-            :
-            base(container) { }
+        public XimuraCore() { }
+
         /// <summary>
         /// This is the deserialization constructor. 
         /// </summary>
@@ -66,11 +60,11 @@ namespace Ximura.Data
             base(info, context) { }
         #endregion
 
-        #region TypeID
+        #region IDType
         /// <summary>
         /// This is the TypeID of the entity.
         /// </summary>
-        public override Guid TypeID
+        public override Guid IDType
         {
             get
             {
@@ -78,7 +72,7 @@ namespace Ximura.Data
                 if (node != null && node.InnerText != null && node.InnerText != "")
                     return new Guid(node.InnerText);
 
-                return base.TypeID;
+                return base.IDType;
             }
             protected set
             {
@@ -86,15 +80,15 @@ namespace Ximura.Data
                 if (node != null)
                     node.InnerText = value.ToString().ToUpperInvariant();
                 else
-                    EntityNodeCreate(value, ID, Version);
+                    EntityNodeCreate(value, IDContent, IDVersion);
             }
         }
         #endregion // TypeID
-        #region ID
+        #region IDContent
         /// <summary>
         /// This is the ID of the entity.
         /// </summary>
-        public override Guid ID
+        public override Guid IDContent
         {
             get
             {
@@ -102,7 +96,7 @@ namespace Ximura.Data
                 if (node != null && node.InnerText != null && node.InnerText != "")
                     return new Guid(node.InnerText);
 
-                return base.ID;
+                return base.IDContent;
             }
             set
             {
@@ -110,15 +104,15 @@ namespace Ximura.Data
                 if (node != null)
                     node.InnerText = value.ToString().ToUpperInvariant();
                 else
-                    EntityNodeCreate(TypeID, value, Version);
+                    EntityNodeCreate(IDType, value, IDVersion);
             }
         }
         #endregion // ID
-        #region Version
+        #region IDVersion
         /// <summary>
         /// This is the version of the entity.
         /// </summary>
-        public override Guid Version
+        public override Guid IDVersion
         {
             get
             {
@@ -126,7 +120,7 @@ namespace Ximura.Data
                 if (node != null && node.InnerText != null && node.InnerText != "")
                     return new Guid(node.InnerText);
 
-                return base.Version;
+                return base.IDVersion;
             }
             set
             {
@@ -134,7 +128,7 @@ namespace Ximura.Data
                 if (node != null)
                     node.InnerText = value.ToString().ToUpperInvariant();
                 else
-                    EntityNodeCreate(TypeID, ID, value);
+                    EntityNodeCreate(IDType, IDContent, value);
             }
         }
         #endregion // Version

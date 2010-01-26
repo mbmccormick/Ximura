@@ -37,64 +37,64 @@ using RH = Ximura.Helper.Reflection;
 #endregion // using
 namespace Ximura.Data
 {
-    public partial class DataContent
-    {
-        #region GetList()
-        /// <summary>
-        /// This method gets the IList object for databinding
-        /// </summary>
-        /// <returns></returns>
-        public virtual IList GetList()
-        {
-            if (this.LinkType == DataContentLinkType.Link && (!mSatelliteEntity ?? true))
-            {
-                LoadFromParentEntityServer();
-            }
-            //DataViewManager hello = new DataViewManager();
-            //DataViewManager is the internal class used to expose the tables to the 
-            //binding architecture.
-            if (!mSatelliteEntity ?? false)
-            {
-                IXimuraDataEntityServer parentDataServer =
-                    GetService(typeof(IXimuraDataEntityServer)) as IXimuraDataEntityServer;
+    //public partial class DataContent: IListSource
+    //{
+    //    #region GetList()
+    //    /// <summary>
+    //    /// This method gets the IList object for databinding
+    //    /// </summary>
+    //    /// <returns></returns>
+    //    public virtual IList GetList()
+    //    {
+    //        if (this.LinkType == DataContentLinkType.Link && (!mSatelliteEntity ?? true))
+    //        {
+    //            LoadFromParentEntityServer();
+    //        }
+    //        //DataViewManager hello = new DataViewManager();
+    //        //DataViewManager is the internal class used to expose the tables to the 
+    //        //binding architecture.
+    //        if (!mSatelliteEntity ?? false)
+    //        {
+    //            IXimuraDataEntityServer parentDataServer =
+    //                GetService(typeof(IXimuraDataEntityServer)) as IXimuraDataEntityServer;
 
-                if (parentDataServer != null)
-                {
-                    LoadFromParentEntityServer(parentDataServer);
-                }
-            }
+    //            if (parentDataServer != null)
+    //            {
+    //                LoadFromParentEntityServer(parentDataServer);
+    //            }
+    //        }
 
-            IListSource source = mDataContentSet as IListSource;
-            if (source == null)
-                return null;
-            else
-            {
-                IList list = source.GetList();
-                DataViewManager newList = list as DataViewManager;
+    //        IListSource source = mDataContentSet as IListSource;
+    //        if (source == null)
+    //            return null;
+    //        else
+    //        {
+    //            IList list = source.GetList();
+    //            DataViewManager newList = list as DataViewManager;
 
-                return newList as IList;
-            }
-        }
-        #endregion // GetList()
+    //            return newList as IList;
+    //        }
+    //    }
+    //    #endregion // GetList()
 
-        #region ContainsListCollection
-        /// <summary>
-        /// This property identifies whether the object supports the IList
-        /// interface for databinding
-        /// </summary>
-        [Browsable(false)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public virtual bool ContainsListCollection
-        {
-            get
-            {
-                //				IListSource source = mDataContentSet as IListSource;
-                //				if (source == null)
-                //					return false;
-                //				else
-                return true;
-            }
-        }
-        #endregion // ContainsListCollection
-    }
+    //    #region ContainsListCollection
+    //    /// <summary>
+    //    /// This property identifies whether the object supports the IList
+    //    /// interface for databinding
+    //    /// </summary>
+    //    [Browsable(false)]
+    //    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+    //    public virtual bool ContainsListCollection
+    //    {
+    //        get
+    //        {
+    //            //				IListSource source = mDataContentSet as IListSource;
+    //            //				if (source == null)
+    //            //					return false;
+    //            //				else
+    //            return true;
+    //        }
+    //    }
+    //    #endregion // ContainsListCollection
+    //}
 }

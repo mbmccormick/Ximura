@@ -104,81 +104,57 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\Atom\AtomBase.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Entities\Atom\AtomEntry.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Entities\Atom\AtomFeed.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Entities\Atom\AtomFeedOpenSearch.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Entities\Atom\AtomPPBase.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Entities\Atom\AtomPPCategoryDocument.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Entities\Atom\AtomPPServiceDocument.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Entities\Atom\Interfaces\AtomLinkRelation.cs" />
     <Compile Include="Entities\Binary\BinaryContent.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Entities\Binary\CSSBinaryContent.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Entities\Binary\ImageBinaryContent.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Entities\Binary\ScriptBinaryContent.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Entities\Controller\ControllerRequest.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Entities\Controller\ControllerScript.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Entities\Controller\ControllerSession.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Entities\Controller\IAuthUser.cs" />
     <Compile Include="Entities\Controller\Mapping.cs" />
     <Compile Include="Entities\Controller\RealmAuthentication.cs" />
     <Compile Include="Entities\DublinCore\DublinCore.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Entities\Messaging\EmailPriority.cs" />
     <Compile Include="Entities\Messaging\EmailTemplate.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Entities\Messaging\MessageTemplateBase.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Entities\Model\ModelData.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Entities\Model\ModelTemplate.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Entities\SEO\SiteIndex.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Entities\SEO\SiteMap.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Entities\Stylesheet\Stylesheet.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Entities\Stylesheet\StylesheetBase.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Entities\XHTML\XHTMLDocument.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Messages\FileBasedStorageMessage\FileBasedStorageMessage.cs" />
     <Compile Include="Messages\FileBasedStorageMessage\Fragments\FileBasedStorageMessageFragment.cs" />

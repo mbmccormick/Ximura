@@ -32,9 +32,7 @@ using AH = Ximura.Helper.AttributeHelper;
 #endregion // using
 namespace Ximura.Data
 {
-    public abstract partial class Content //: MarshalByValueComponent,
-        //IXimuraContent, IEquatable<IXimuraContent>, IXimuraMessageLoadData,
-        //IXimuraMessageLoad, ISupportInitialize, IXimuraContentEntityFragment, IXimuraPoolManagerDirectAccess
+    public abstract partial class Content
     {
         #region Static Declarations
         private static object syncIDCollection = new object();
@@ -227,7 +225,7 @@ namespace Ximura.Data
         {
             return new ContentFormatter();
         }
-        #endregion // ResolveFormatter
+        #endregion
 
         #region GetContentTypeAttributeID(Type itemType)
         /// <summary>
@@ -238,7 +236,7 @@ namespace Ximura.Data
         {
             return GetContentTypeAttributeKeyPair(GetType()).Key;
         }
-        #endregion // GetContentTypeID(Type itemType)
+        #endregion
         #region GetContentAttributeID(Type itemType)
         /// <summary>
         /// This method returns the content ID for the current content
@@ -313,6 +311,12 @@ namespace Ximura.Data
         }
         #endregion // GetContentTypeAttributeKeyPair(Type itemType)
 
+        #region GetContentTypeAttributeKeyPairInternal(Type itemType)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="itemType">The object type.</param>
+        /// <returns>Returns the keyvalue pair.</returns>
         private static KeyValuePair<Guid, Guid?> GetContentTypeAttributeKeyPairInternal(Type itemType)
         {
             if (itemType == null)
@@ -344,5 +348,7 @@ namespace Ximura.Data
                 return newPair;
             }
         }
+        #endregion
+
     }
 }

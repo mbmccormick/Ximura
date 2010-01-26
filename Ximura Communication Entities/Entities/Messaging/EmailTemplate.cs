@@ -35,14 +35,9 @@ namespace Ximura.Communication
         /// <summary>
         /// The default constructor
         /// </summary>
-        public EmailTemplate() : this((IContainer)null) { }
-        /// <summary>
-        /// This constructor is called by .NET when it added as new to a container.
-        /// </summary>
-        /// <param name="container">The container this component should be added to.</param>
-        public EmailTemplate(System.ComponentModel.IContainer container)
-            :
-            base(container) { }
+        public EmailTemplate()
+        { }
+
         /// <summary>
         /// This is the deserialization constructor. 
         /// </summary>
@@ -88,8 +83,8 @@ namespace Ximura.Communication
         public override bool Load()
         {
             bool response = base.Load();
-            ID = Guid.NewGuid();
-            Version = Guid.NewGuid();
+            IDContent = Guid.NewGuid();
+            IDVersion = Guid.NewGuid();
             return response;
         }
         #endregion // Load()

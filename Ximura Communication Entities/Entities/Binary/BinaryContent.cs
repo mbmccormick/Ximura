@@ -40,14 +40,8 @@ namespace Ximura.Communication
         /// <summary>
         /// The default constructor
         /// </summary>
-        public BinaryContent() : this((IContainer)null) { }
-        /// <summary>
-        /// This constructor is called by .NET when it added as new to a container.
-        /// </summary>
-        /// <param name="container">The container this component should be added to.</param>
-        public BinaryContent(System.ComponentModel.IContainer container)
-            :
-            base(container) { }
+        public BinaryContent() { }
+
         /// <summary>
         /// This is the deserialization constructor. 
         /// </summary>
@@ -318,14 +312,8 @@ namespace Ximura.Communication
         /// <summary>
         /// The default constructor
         /// </summary>
-        public BinaryContentRaw() : this((IContainer)null) { }
-        /// <summary>
-        /// This constructor is called by .NET when it added as new to a container.
-        /// </summary>
-        /// <param name="container">The container this component should be added to.</param>
-        public BinaryContentRaw(System.ComponentModel.IContainer container)
-            :
-            base(container) { }
+        public BinaryContentRaw() { }
+
         /// <summary>
         /// This is the deserialization constructor. 
         /// </summary>
@@ -378,8 +366,8 @@ namespace Ximura.Communication
                         //mMimeType = "image/" + fi.Extension.ToLowerInvariant().Substring(1);
                         break;
                 }
-                this.ID = Guid.NewGuid();
-                this.Version = Guid.NewGuid();
+                this.IDContent = Guid.NewGuid();
+                this.IDVersion = Guid.NewGuid();
             }
             return result;
         }
@@ -477,9 +465,9 @@ namespace Ximura.Communication
                         }
                     }
 
-                    this.ID = (Guid)mInfo.GetValue("cid", typeof(Guid));
-                    this.Version = (Guid)mInfo.GetValue("vid", typeof(Guid));
-                    if (this.TypeID != (Guid)mInfo.GetValue("tid", typeof(Guid)))
+                    this.IDContent = (Guid)mInfo.GetValue("cid", typeof(Guid));
+                    this.IDVersion = (Guid)mInfo.GetValue("vid", typeof(Guid));
+                    if (this.IDType != (Guid)mInfo.GetValue("tid", typeof(Guid)))
                         throw new SerializationException("The type ID is the wrong value: " + ((Guid)mInfo.GetValue("tid", typeof(Guid))).ToString());
                     this.Dirty = contentDirty;
                 }

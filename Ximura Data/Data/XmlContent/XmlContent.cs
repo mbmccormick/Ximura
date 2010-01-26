@@ -46,17 +46,10 @@ namespace Ximura.Data
 		/// <summary>
 		/// This is the default constructor for the Content object.
 		/// </summary>
-		public XmlContent():this((IContainer)null)
+		public XmlContent()
         {
         }
-		/// <summary>
-		/// This constructor is called by .NET when it added as new to a container.
-		/// </summary>
-		/// <param name="container">The container this component should be added to.</param>
-        public XmlContent(System.ComponentModel.IContainer container)
-            : base(container)
-		{
-		}
+
         /// <summary>
         /// This is the deserialization constructor. 
         /// </summary>

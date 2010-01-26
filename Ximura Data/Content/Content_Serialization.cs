@@ -31,7 +31,7 @@ using RH = Ximura.Helper.Reflection;
 #endregion // using
 namespace Ximura.Data
 {
-    public abstract partial class Content
+    public abstract partial class Content : ICloneable
     {
         #region Declarations
         /// <summary>
@@ -39,18 +39,18 @@ namespace Ximura.Data
         /// </summary>
         protected SerializationInfo mInfo = null;
         #endregion // Declarations
+
         #region Serialization Constructor
         /// <summary>
         /// This is the deserialization constructor. 
         /// </summary>
         /// <param name="info">The Serialization info object that contains all the relevant data.</param>
         /// <param name="context">The serialization context.</param>
-        public Content(SerializationInfo info, StreamingContext context)
-            : this((IContainer)null)
+        public Content(SerializationInfo info, StreamingContext context): this()
         {
             DeserializeIncoming(info, context);
         }
-        #endregion // Searialization Constructor
+        #endregion
         #region DeserializeIncoming(SerializationInfo info, StreamingContext context)
         /// <summary>
         /// This protected method can be overriden by inherited data classes to handle the deserialization
@@ -62,7 +62,7 @@ namespace Ximura.Data
         {
             mInfo = info;
         }
-        #endregion // DeserializeIncoming(SerializationInfo info, StreamingContext context)
+        #endregion
 
         #region OnDeserialization(object sender) --> Abstract
         /// <summary>
@@ -85,14 +85,14 @@ namespace Ximura.Data
             if (info == null)
                 throw new ArgumentNullException("info", "info cannot be null");
 
-            info.AddValue("cid", this.ID);
-            info.AddValue("vid", this.Version);
-            info.AddValue("tid", this.TypeID);
+            info.AddValue("cid", this.IDContent);
+            info.AddValue("vid", this.IDVersion);
+            info.AddValue("tid", this.IDType);
             info.AddValue("dirty", this.IsDirty());
 
             GetBodyData(info, context);
         }
-        #endregion // GetObjectData(SerializationInfo info, StreamingContext context)
+        #endregion
         #region GetBodyData(SerializationInfo info, StreamingContext context)
         /// <summary>
         /// This is the default constructor. It does not include any content.
@@ -108,7 +108,7 @@ namespace Ximura.Data
                 info.AddValue("body0", body);
             return;
         }
-        #endregion // GetBodyData(SerializationInfo info, StreamingContext context)
+        #endregion
 
         #region ContentBody --> Abstract
         /// <summary>
@@ -121,13 +121,12 @@ namespace Ximura.Data
         /// <summary>
         /// This method returns the content body as a byte array.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Returns the content as a byte array.</returns>
         public virtual byte[] ToArray()
         {
             return ContentBody;
         }
-        #endregion // ToArray()
-
+        #endregion
 
         #region ICloneable Members -> Clone()
         /// <summary>

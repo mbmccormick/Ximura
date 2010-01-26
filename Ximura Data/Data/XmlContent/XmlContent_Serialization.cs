@@ -83,7 +83,7 @@ namespace Ximura.Data
             }
             catch (Exception ex)
             {
-
+                throw ex;
             }
         }
         #endregion

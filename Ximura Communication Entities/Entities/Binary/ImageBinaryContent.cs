@@ -32,14 +32,8 @@ namespace Ximura.Communication
         /// <summary>
         /// The default constructor
         /// </summary>
-        public ImageBinaryContent() : this((IContainer)null) { }
-        /// <summary>
-        /// This constructor is called by .NET when it added as new to a container.
-        /// </summary>
-        /// <param name="container">The container this component should be added to.</param>
-        public ImageBinaryContent(System.ComponentModel.IContainer container)
-            :
-            base(container) { }
+        public ImageBinaryContent() { }
+
         /// <summary>
         /// This is the deserialization constructor. 
         /// </summary>

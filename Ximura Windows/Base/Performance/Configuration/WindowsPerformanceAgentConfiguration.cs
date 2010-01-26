@@ -48,14 +48,8 @@ namespace Ximura.Windows
         /// <summary>
         /// The default constructor
         /// </summary>
-        public WindowsPerformanceAgentConfiguration() : this((IContainer)null) { }
-        /// <summary>
-        /// This constructor is called by .NET when it added as new to a container.
-        /// </summary>
-        /// <param name="container">The container this component should be added to.</param>
-        public WindowsPerformanceAgentConfiguration(System.ComponentModel.IContainer container)
-            :
-            base(container) { }
+        public WindowsPerformanceAgentConfiguration()  { }
+
         /// <summary>
         /// This is the deserialization constructor. 
         /// </summary>

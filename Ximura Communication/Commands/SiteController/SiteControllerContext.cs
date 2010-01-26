@@ -146,8 +146,8 @@ namespace Ximura.Communication
                 throw new SiteControllerTooBusyException();
 
 
-            mControllerRequest.ID = this.SignatureID.Value;
-            mControllerRequest.Version = Guid.NewGuid();
+            mControllerRequest.IDContent = this.SignatureID.Value;
+            mControllerRequest.IDVersion = Guid.NewGuid();
         }
         #endregion // Start()
 

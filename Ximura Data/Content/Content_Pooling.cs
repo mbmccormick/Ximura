@@ -30,7 +30,7 @@ using CH = Ximura.Helper.Common;
 #endregion // using
 namespace Ximura.Data
 {
-    public abstract partial class Content
+    public abstract partial class Content : IXimuraPoolManagerDirectAccess
     {
         #region Declarations
         /// <summary>
@@ -56,8 +56,8 @@ namespace Ximura.Data
             mEntitySubType = "";
             mInfo = null;
 
-            mVer = Guid.Empty;
-            mCID = Guid.Empty;
+            mIDVersion = Guid.Empty;
+            mIDContent = Guid.Empty;
             
             mDirty = false;
 
@@ -65,7 +65,7 @@ namespace Ximura.Data
             mInitialized = false;
             mInitializing = false;
         }
-        #endregion // Reset()
+        #endregion
 
         #region Dispose(bool disposing)
         private bool mDisposed = false;
@@ -73,7 +73,7 @@ namespace Ximura.Data
         /// This is the dispose override.
         /// </summary>
         /// <param name="disposing">True when this is called by the dispose method.</param>
-        protected override void Dispose(bool disposing)
+        protected virtual void Dispose(bool disposing)
         {
             if (!mDisposed)
             {
@@ -86,7 +86,7 @@ namespace Ximura.Data
                     mPoolManager = null;
                     mPool = null;
 
-                    base.Dispose(disposing);
+                    //base.Dispose(disposing);
                 }
                 mDisposed = true;
             }

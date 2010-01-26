@@ -66,12 +66,12 @@ namespace Ximura.Data
         /// </summary>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public override Guid ID
+        public override Guid IDContent
         {
             get
             {
                 if (GetContentAttributeID().HasValue || attrContentMappingContentID == null)
-                    return base.ID;
+                    return base.IDContent;
 
                 return MappingHelperGet(attrContentMappingContentID);
             }
@@ -86,7 +86,7 @@ namespace Ximura.Data
                     MappingHelperSet(attrContentMappingContentID, value);
                 }
 
-                base.ID = value;
+                base.IDContent = value;
             }
         }
         #endregion
@@ -96,12 +96,12 @@ namespace Ximura.Data
         /// </summary>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public override Guid Version
+        public override Guid IDVersion
         {
             get
             {
                 if (attrContentMappingVersionID == null)
-                    return base.Version;
+                    return base.IDVersion;
 
                 return MappingHelperGet(attrContentMappingVersionID);
             }
@@ -131,7 +131,7 @@ namespace Ximura.Data
                     }
                 }
 
-                base.Version = value;
+                base.IDVersion = value;
             }
         }
         #endregion

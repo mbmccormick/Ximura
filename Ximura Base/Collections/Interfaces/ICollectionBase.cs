@@ -39,12 +39,21 @@ namespace Ximura.Collections
         /// The collection item count.
         /// </summary>
         int Count { get; }
-
+        /// <summary>
+        /// This method clears the collection.
+        /// </summary>
         void Clear();
+        /// <summary>
+        /// This method returns true if the item is contained in the collection.
+        /// </summary>
+        /// <param name="item">The item to check.</param>
+        /// <returns>Returns true if the collection contains the item.</returns>
         bool Contains(T item);
+
         void CopyTo(T[] array, int arrayIndex);
 
         T[] ToArray();
+
         void TrimExcess();
 
         T Peek();

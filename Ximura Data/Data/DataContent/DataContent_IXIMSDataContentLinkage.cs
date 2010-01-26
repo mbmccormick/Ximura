@@ -86,24 +86,24 @@ namespace Ximura.Data
         /// <returns></returns>
         public virtual bool LoadFromParentEntityServer()
         {
-            DataContentEventArgs dataArgs = new DataContentEventArgs();
+            //DataContentEventArgs dataArgs = new DataContentEventArgs();
 
-            if (ConnectToParentDataSource != null)
-            {
-                ConnectToParentDataSource(this, dataArgs as ContentEventArgs);
-            }
-            IXimuraDataEntityServer parentDataServer;
+            //if (ConnectToParentDataSource != null)
+            //{
+            //    ConnectToParentDataSource(this, dataArgs as ContentEventArgs);
+            //}
+            //IXimuraDataEntityServer parentDataServer;
 
-            if (dataArgs.ParentDataServer != null)
-                parentDataServer = dataArgs.ParentDataServer;
-            else
-                parentDataServer = GetService(typeof(IXimuraDataEntityServer)) as IXimuraDataEntityServer;
+            //if (dataArgs.ParentDataServer != null)
+            //    parentDataServer = dataArgs.ParentDataServer;
+            //else
+            //    parentDataServer = GetService(typeof(IXimuraDataEntityServer)) as IXimuraDataEntityServer;
 
-            //Are we satellite content, we will check this by trying our parent.
-            if (parentDataServer != null)
-            {
-                return LoadFromParentEntityServer(parentDataServer);
-            }
+            ////Are we satellite content, we will check this by trying our parent.
+            //if (parentDataServer != null)
+            //{
+            //    return LoadFromParentEntityServer(parentDataServer);
+            //}
             return false;
         }
         /// <summary>

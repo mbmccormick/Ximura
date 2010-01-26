@@ -143,10 +143,10 @@ namespace Ximura.Communication
                     {
                         csr = context.GetObjectPool<ControllerSession>().Get();
                         csr.Load();
-                        csr.ID = Guid.NewGuid();
-                        csr.Version = Guid.NewGuid();
+                        csr.IDContent = Guid.NewGuid();
+                        csr.IDVersion = Guid.NewGuid();
 
-                        mSessions.Add(csr.ID, new SessionHolder(csr));
+                        mSessions.Add(csr.IDContent, new SessionHolder(csr));
                     }
                 }
 

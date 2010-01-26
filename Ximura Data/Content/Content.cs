@@ -33,32 +33,31 @@ namespace Ximura.Data
 	/// <summary>
 	/// This is the base abstract Ximura Content object. 
 	/// </summary>
-    //[ToolboxBitmap(typeof(XimuraResourcePlaceholder), "Ximura.Resources.Content.bmp")]
 	[XimuraContentSerialization("Ximura.Data.Serialization.ContentFormatter, XimuraData")]
     [XimuraContentCachePolicy(ContentCacheOptions.VersionCheck)]
-    public abstract partial class Content : MarshalByValueComponent, 
-        IXimuraContent, IEquatable<IXimuraContent>, ICloneable, 
-        IXimuraMessageLoadData, IXimuraMessageLoad, IXimuraPoolManagerDirectAccess, 
-        ISupportInitializeNotification, IXimuraContentEntityFragment
+    public abstract partial class Content : ISupportInitializeNotification, IDisposable 
 	{
 		#region Constructors / Destructors
 		/// <summary>
 		/// This is the default constructor for the Content object.
 		/// </summary>
-        public Content() : this((IContainer)null) { }
-		/// <summary>
-		/// This constructor is called by .NET when it added as new to a container.
-		/// </summary>
-		/// <param name="container">The container this component should be added to.</param>
-		public Content(IContainer container)
-		{
+        public Content() 
+        {
             SetAttributes();
 
-            if (container != null)
-                container.Add(this);
-
-            Reset();
-		}
+            Reset();        
+        }
 		#endregion
+
+        #region IDisposable Members
+        /// <summary>
+        /// This is the dispose method.
+        /// </summary>
+        public virtual void Dispose()
+        {
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+        #endregion
     }
 }

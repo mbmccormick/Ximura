@@ -11,7 +11,7 @@
     <AssemblyKeyContainerName>
     </AssemblyKeyContainerName>
     <AssemblyName>Ximura</AssemblyName>
-    <AssemblyOriginatorKeyFile>ximura.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>Properties\ximura.snk</AssemblyOriginatorKeyFile>
     <DefaultClientScript>JScript</DefaultClientScript>
     <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
     <DefaultTargetSchema>IE50</DefaultTargetSchema>
@@ -214,6 +214,10 @@
       <Project>{7C2684DD-A055-4A7A-88D6-EC5BAE28AEB2}</Project>
       <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
     </ProjectReference>
+    <ProjectReference Include="..\Ximura Data Persistence\Ximura Data Persistence.csproj">
+      <Project>{79C7BB97-6ABB-4E63-829D-5B5F7A76F987}</Project>
+      <Name>Ximura Data Persistence</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Ximura Data\Ximura Data.csproj">
       <Project>{7727E180-73B7-474B-84F6-BF0C6FFB181E}</Project>
       <Name>Ximura Data</Name>
@@ -245,8 +249,8 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Configuration\ConfigurationBase.cs">
-      <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Persistence\CDSHelper\CDSHelperDirect.cs" />
     <Compile Include="Server\AppServerBase.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -310,7 +314,6 @@
     </Compile>
     <Compile Include="Server\Managers\AgentInvalidTypeException.cs" />
     <Compile Include="Server\Managers\Gateway\Configuration\GatewayManagerConfiguration.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Server\Managers\Gateway\GatewayManager.cs">
       <SubType>Component</SubType>
@@ -319,7 +322,6 @@
     <Compile Include="Server\Managers\Gateway\XimuraAppServerGatewayAttribute.cs" />
     <Compile Include="Server\Managers\Logging\XimuraAppTrace.cs" />
     <Compile Include="Server\Managers\Performance\Agents\Configuration\PerformanceAgentConfiguration.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Server\Managers\Performance\Counters\PerformanceBase.cs" />
     <Compile Include="Server\Managers\Performance\Counters\PerformanceCounter.cs" />
@@ -345,10 +347,8 @@
     <Compile Include="Server\Managers\Storage\XimuraAppServerStorageAttribute.cs" />
     <Compile Include="Server\Managers\Session\XimuraSessionManagerAttribute.cs" />
     <Compile Include="Server\Configuration\Command\AppServerCommandConfiguration.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Server\Configuration\System\AppServerSystemConfiguration.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Server\Exceptions\AuthenticationException.cs" />
     <Compile Include="Server\Exceptions\DispatcherException.cs" />
@@ -408,7 +408,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Command\Configuration\CommandConfiguration.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Command\Interfaces\IXimuraCommandProcess.cs">
       <SubType>Code</SubType>
@@ -451,7 +450,6 @@
     <Compile Include="Persistence\CDS\Enumerations\CDSSelfCall.cs" />
     <Compile Include="Persistence\CDS\CDSSettings.cs" />
     <Compile Include="Persistence\CDS\Configuration\CDSConfiguration.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Persistence\CDS\Contract\CDSRequestFolder.cs">
     </Compile>
@@ -460,7 +458,6 @@
     <Compile Include="Persistence\CDS\Contract\CDSRQRSFolderBase.cs" />
     <Compile Include="Persistence\CDS\Helper\ContentDataStoreShortcuts.cs" />
     <Compile Include="Persistence\CDS\Data\ResourceCatalog\ResourceCatalog.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Persistence\CDS\Exceptions\ContentDataStoreException.cs">
       <SubType>Code</SubType>
@@ -473,16 +470,13 @@
     <Compile Include="Persistence\CDS\Interfaces\ICDSManagerConfigSH.cs" />
     <Compile Include="Persistence\CDS\Enumerations\PMCapabilities.cs" />
     <Compile Include="Server\Managers\Storage\Agents\FileSystem\Configuration\FileSystemStorageManagerConfiguration.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Server\Managers\Storage\Agents\FileSystem\IXimuraStorageFileSystem.cs" />
     <Compile Include="Server\Managers\Storage\Agents\SQLServer\Configuration\SQLStorageManagerConfiguration.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Server\Managers\Storage\Agents\SQLServer\IXimuraStorageSQLServerConnectivity.cs" />
     <Compile Include="Server\Managers\Storage\Performance\StorageManagerPerformance.cs" />
     <Compile Include="Server\Managers\Storage\Configuration\StorageManagerConfiguration.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Persistence\CDS\Performance\CDSPerformance.cs" />
     <Compile Include="Persistence\CDS\Configuration\PersistenceManagerConfigSH.cs">
@@ -501,7 +495,6 @@
     </Compile>
     <Compile Include="Persistence\Persistence Managers\Cache Manager\CDSCacheManagerBridge.cs" />
     <Compile Include="Persistence\Persistence Managers\Cache Manager\Configuration\CacheManagerCDSConfiguration.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Persistence\Persistence Managers\Cache Manager\ICDSCacheManager.cs" />
     <Compile Include="Persistence\CDS\States\CDSState.cs">
@@ -537,7 +530,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Server\Managers\Logging\Configuration\LoggingManagerConfiguration.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Server\Managers\Logging\Agents\DBLoggingProvider.cs">
       <SubType>Code</SubType>
@@ -562,7 +554,6 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Server\Managers\Performance\Configuration\PerformanceManagerConfiguration.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Server\Managers\Performance\PerformanceManager.cs">
       <SubType>Component</SubType>
@@ -652,18 +643,15 @@
     </Compile>
     <Compile Include="Server\Security\XimuraPrincipal.cs" />
     <Compile Include="Server\Managers\Session\Configuration\SSMConfiguration.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Server\Managers\Session\Performance\SSMPerformance.cs" />
     <Compile Include="Server\Security\Role.cs" />
     <Compile Include="Server\Managers\Session\Agents\SQLServer\Configuration\SessionAgentSQLServerConfiguration.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Server\Managers\Session\Agents\SQLServer\SessionAgentSQLServer.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Server\Managers\Session\Agents\Standard\Configuration\SessionAgentStandardConfiguration.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Server\Managers\Session\Agents\Standard\SessionAgentStandard.cs">
       <SubType>Component</SubType>
@@ -679,7 +667,6 @@
     </Compile>
     <Compile Include="Server\Managers\Session\Agents\Standard\SessionStandard.cs" />
     <Compile Include="Server\Managers\Session\Agents\System\Configuration\SessionAgentSystemConfiguration.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Server\Managers\Session\Agents\System\Interfaces\IXimuraSessionNegotiateSystem.cs" />
     <Compile Include="Server\Managers\Session\Agents\System\SessionAgentSystem.cs">
@@ -704,7 +691,6 @@
     <Compile Include="Component\Exceptions\ComponentServiceException.cs" />
     <Compile Include="Component\Helper\ComponentServiceHelper.cs" />
     <Compile Include="Command\Configuration\FSMCommandConfiguration.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Command\Performance\FSMCommandPerformance.cs">
     </Compile>
@@ -769,7 +755,6 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Persistence\Persistence Managers\SQLDB Based\Configuration\SQLDBPMCDSConfiguration.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Persistence\Persistence Managers\SQLDB Based\SQLDBPersistenceManager.cs">
       <SubType>Component</SubType>
@@ -827,7 +812,7 @@
     <EmbeddedResource Include="Server\Managers\Session\Agents\Standard\Configuration\SessionAgentStandardConfiguration.xsd" />
     <EmbeddedResource Include="Server\Managers\Session\Agents\SQLServer\Configuration\SessionAgentSQLServerConfiguration.xsd" />
     <EmbeddedResource Include="Server\Managers\Performance\Configuration\PerformanceManagerConfiguration.xsd" />
-    <None Include="ximura.snk" />
+    <None Include="Properties\ximura.snk" />
     <None Include="_Documentation\AppServerStructure.vsd" />
     <None Include="_Documentation\HTTP-1_1 Status Code Definitions.mht" />
     <None Include="_Documentation\Integer Programs and Network Models.mht" />

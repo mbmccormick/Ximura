@@ -149,7 +149,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\ContentCompiler\Configuration\ContentCompilerConfiguration.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Commands\ContentCompiler\ContentCompilerCommand.cs">
       <SubType>Component</SubType>
@@ -197,7 +196,6 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Commands\InternetServer\Configuration\InternetServerConfiguration.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Persistence\InternetServerCDSCommand.cs">
       <SubType>Component</SubType>
@@ -206,7 +204,6 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Commands\ResourceManager\Configuration\ResourceManagerConfiguration.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Commands\ResourceManager\Contract\ResourceManagerRequest.cs" />
     <Compile Include="Commands\ResourceManager\Contract\ResourceManagerResponse.cs" />
@@ -248,7 +245,6 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Commands\SiteControllerLogger\Configuration\SiteControllerLoggerConfiguration.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Commands\SiteControllerLogger\Configuration\SiteControllerRequestInfo.cs" />
     <Compile Include="Commands\SiteControllerLogger\Contracts\SiteControllerLoggerRequest.cs" />
@@ -268,7 +264,6 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Commands\SiteController\Configuration\SiteControllerConfiguration.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Commands\SiteController\Contract\SiteControllerRequest.cs" />
     <Compile Include="Commands\SiteController\Contract\SiteControllerRequestCallback.cs" />
@@ -336,7 +331,6 @@
     <Compile Include="Commands\SiteServer\AuthHandler\AuthHandlerMetadataContainer.cs" />
     <Compile Include="Commands\SiteServer\AuthHandler\IXIMSAuthHandler.cs" />
     <Compile Include="Commands\SiteServer\Configuration\SiteServerConfiguration.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Commands\SiteServer\Contract\SiteServerRQ.cs" />
     <Compile Include="Commands\SiteServer\Contract\SiteServerRS.cs" />
@@ -384,7 +378,6 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Commands\Transport\Configuration\TransportConfiguration.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Commands\Transport\Contract\TransportCommandCBRequest.cs" />
     <Compile Include="Commands\Transport\Contract\TransportCommandCBResponse.cs" />

@@ -45,7 +45,7 @@ namespace Ximura.Data
         /// </summary>
         public virtual string DumpXML()
         {
-            string id = this.ID.ToString() + "_" + this.Version.ToString() + "_" + rndUse.Next(100).ToString();
+            string id = this.IDContent.ToString() + "_" + this.IDVersion.ToString() + "_" + rndUse.Next(100).ToString();
 
             return DumpXML(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), id + ".xml"));
         }

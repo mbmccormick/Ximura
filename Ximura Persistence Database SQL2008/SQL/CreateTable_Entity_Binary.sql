@@ -15,5 +15,3 @@ GO
 
 ALTER TABLE [dbo].[Entity_Binary] CHECK CONSTRAINT [FK_Entity_Binary_Entity]
 GO
-
-

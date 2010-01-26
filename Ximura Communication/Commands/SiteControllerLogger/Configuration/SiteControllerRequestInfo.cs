@@ -110,7 +110,7 @@ namespace Ximura.Communication
             ControllerSession cs = context.ScriptSession;
 
             SessionID = cr.SessionID;
-            PageID = cr.ID;
+            PageID = cr.IDContent;
             MappingID = context.ScriptSettings.MappingID;
 
             BrowserID = cr.RequestUserAgentID;

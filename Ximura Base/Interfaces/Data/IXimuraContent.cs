@@ -32,15 +32,15 @@ namespace Ximura.Data
         /// <summary>
         /// This is the Content Type ID.
         /// </summary>
-        Guid TypeID { get;}
+        Guid IDType { get;}
         /// <summary>
-        /// This is the Content Instance ID.
+        /// This is the Content ID.
         /// </summary>
-        Guid ID { get;set;}
+        Guid IDContent { get;set;}
         /// <summary>
         /// This is the Content Version ID.
         /// </summary>
-        Guid Version { get;set;}
+        Guid IDVersion { get;set;}
 
         /// <summary>
         /// This boolean property indicates whether the object has been changed.

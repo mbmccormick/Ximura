@@ -47,16 +47,11 @@ namespace Ximura.Data.Linq
         /// <summary>
         /// This is the default constructor for the Content object.
         /// </summary>
-        public XContent() : this((IContainer)null) { }
-        /// <summary>
-        /// This constructor is called by .NET when it added as new to a container.
-        /// </summary>
-        /// <param name="container">The container this component should be added to.</param>
-        public XContent(System.ComponentModel.IContainer container)
-            : base(container)
-        {
+        public XContent()
+        { 
             XPScBuild();
         }
+
         /// <summary>
         /// This is the deserialization constructor. 
         /// </summary>

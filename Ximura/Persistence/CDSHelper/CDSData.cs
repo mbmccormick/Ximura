@@ -149,6 +149,31 @@ namespace Ximura.Persistence
             Reset();
         }
         #endregion
+        #region IDisposable Members/Finalize
+        private bool disposed = false;
+        /// <summary>
+        /// The dispose method.
+        /// </summary>
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+        /// <summary>
+        /// The overrided dispose method
+        /// </summary>
+        /// <param name="disposing">True if this is called by dispose, false if this
+        /// is called by the finalizer.</param>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposed && disposing)
+            {
+                mRefValue = null;
+                mRefType = null;
+                disposed = true;
+            }
+        }
+        #endregion
 
         #region Reset()
         /// <summary>
@@ -220,20 +245,35 @@ namespace Ximura.Persistence
         }
         #endregion
 
+        #region Priority
+        /// <summary>
+        /// This is the priority for the request.
+        /// </summary>
         public JobPriority Priority
         {
             get { return mPriority; }
         }
-
+        #endregion 
+        #region RequestID
+        /// <summary>
+        /// This is the unique request ID.
+        /// </summary>
         public Guid RequestID
         {
             get { return mRequestID; }
         }
+        #endregion 
 
+        #region Action
+        /// <summary>
+        /// This is the specific action for the CDS to process.
+        /// </summary>
         public CDSStateAction Action
         {
             get { return mAction.Value; }
         }
+        #endregion 
+
 
         public bool ByReference
         {
@@ -260,41 +300,6 @@ namespace Ximura.Persistence
             get { return mIDVersion; }
         }
 
-        #region IDisposable Members
 
-        #region IDisposable Members/Finalize
-        private bool disposed = false;
-        ///// <summary>
-        ///// The finalizer
-        ///// </summary>
-        //~CDSData()
-        //{
-        //    Dispose(false);
-        //}
-        /// <summary>
-        /// The dispose method.
-        /// </summary>
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-        /// <summary>
-        /// The overrided dispose method
-        /// </summary>
-        /// <param name="disposing">True if this is called by dispose, false if this
-        /// is called by the finalizer.</param>
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!disposed && disposing)
-            {
-                mRefValue = null;
-                mRefType = null;
-                disposed = true;
-            }
-        }
-        #endregion
-
-        #endregion
     }
 }

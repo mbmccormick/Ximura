@@ -30,8 +30,7 @@ using CH = Ximura.Helper.Common;
 #endregion // using
 namespace Ximura.Data
 {
-    public abstract partial class Content : IXimuraMessageLoadData,
-        IXimuraMessageLoad
+    public abstract partial class Content : IXimuraMessageLoadData, IXimuraMessageLoad
     {
         #region Declarations
         private EventHandler mOnInitialized;

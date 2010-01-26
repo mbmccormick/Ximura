@@ -31,7 +31,7 @@ using AH = Ximura.Helper.AttributeHelper;
 #endregion // using
 namespace Ximura.Data
 {
-    public abstract partial class Content
+    public abstract partial class Content : IXimuraContent
     {
         #region Declarations
         /// <summary>
@@ -49,59 +49,59 @@ namespace Ximura.Data
         /// <summary>
         /// This is the protected property that stores the content instance ID
         /// </summary>
-        protected Guid mCID = Guid.Empty;
+        protected Guid mIDContent = Guid.Empty;
         /// <summary>
         /// This is the protected property that stores the version ID of the Entity.
         /// </summary>
-        protected Guid mVer = Guid.Empty;
+        protected Guid mIDVersion = Guid.Empty;
         #endregion // Declarations
 
-        #region ID
+        #region IDContent
         /// <summary>
         /// This is the ID of the Entity.
         /// </summary>
         [Browsable(false)]
-        public virtual Guid ID
+        public virtual Guid IDContent
         {
             get
             {
                 Guid? idAttr = GetContentAttributeID();
                 if (!idAttr.HasValue)
-                    return mCID;
+                    return mIDContent;
 
                 return idAttr.Value;
             }
             set
             {
                 if (!GetContentAttributeID().HasValue)
-                    mCID = value;
+                    mIDContent = value;
             }
         }
         #endregion // ID
-        #region Version
+        #region IDVersion
         /// <summary>
         /// This is the version ID of the entity.
         /// </summary>
         [Browsable(false)]
-        public virtual Guid Version
+        public virtual Guid IDVersion
         {
             get
             {
-                return mVer;
+                return mIDVersion;
             }
             set
             {
-                mVer = value;
+                mIDVersion = value;
             }
         }
         #endregion // Version
-        #region TypeID
+        #region IDType
         /// <summary>
-        /// This is the TypeID of the content. If not specified in the constructor the TypeID 
+        /// This is the type ID of the content. If not specified in the constructor the type ID 
         /// will be taken from the XimuraContentTypeID Attribute.
         /// </summary>
         [Browsable(false)]
-        public virtual Guid TypeID
+        public virtual Guid IDType
         {
             get
             {
@@ -109,7 +109,7 @@ namespace Ximura.Data
             }
             protected set
             {
-                throw new NotImplementedException("TypeID set is not implemented.");
+                throw new NotSupportedException("TypeID set is not supported as this is implemented by use of the XimuraContentTypeID attribute.");
             }
         }
         #endregion // TypeID

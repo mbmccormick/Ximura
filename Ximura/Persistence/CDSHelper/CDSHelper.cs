@@ -154,7 +154,7 @@ namespace Ximura.Persistence
             {
                 string status = Execute<T>(mSession, rq, inData, out outData);
                 if (outData != null)
-                    newVersionID = outData.Version;
+                    newVersionID = outData.IDVersion;
                 return status;
             }
             finally
@@ -326,46 +326,6 @@ namespace Ximura.Persistence
                     return CDSResponse.ResponseCodeUnknown;
             }      
         }
-        #endregion // ResponseTranslate
-
+        #endregion
     }
-
-    /// <summary>
-    /// This class is used to reference the CDS directly within the CDS itself. It allows Persistence Managers to call other Persistence Managers
-    /// from the same request without the need to call the dispatcher.
-    /// </summary>
-    public class CDSHelperDirect : CDSHelper
-    {
-		#region Constructors
-        public CDSHelperDirect(): this(null)
-        {
-        }
-		/// <summary>
-		/// This is the main constructor.
-		/// </summary>
-		/// <param name="session">The session object to wrap.</param>
-        public CDSHelperDirect(IXimuraSessionRQ session)
-            : base(session)
-		{
-		}
-		#endregion // Constructors
-
-        #region ResolveReference/ResolveReference<T>
-        public CDSResponse ResolveReference<T>(string refType, string refValue, out Guid? cid, out Guid? vid) where T : Content
-        {
-            return TranslateResponseCode(Execute<T>(CDSData.Get(CDSStateAction.ResolveReference, refType, refValue), out cid, out vid));
-        }
-
-        public CDSResponse ResolveReference(Type objectType, string refType, string refValue, out Guid? cid, out Guid? vid)
-        {
-            return TranslateResponseCode(Execute(objectType, CDSData.Get(CDSStateAction.ResolveReference, refType, refValue), out cid, out vid));
-        }
-
-        #endregion // VersionCheck
-
-    }
-
-
-
-
 }

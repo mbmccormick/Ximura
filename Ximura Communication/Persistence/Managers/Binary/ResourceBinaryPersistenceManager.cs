@@ -63,8 +63,8 @@ namespace Ximura.Communication
         {
             byte[] hash = Convert.FromBase64String(data.ETag);
 
-            data.ID = new Guid(hash);
-            data.Version = new Guid(hash);
+            data.IDContent = new Guid(hash);
+            data.IDVersion = new Guid(hash);
 
             data.FileName = key.Value;
         }

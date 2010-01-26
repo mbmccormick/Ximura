@@ -86,8 +86,8 @@ namespace Ximura.Communication
                 content.Load();
                 content.Data = holder.blob;
                 //content.Load(holder.blob, 0, holder.blob.Length);
-                content.ID = holder.ID;
-                content.Version = holder.Version;
+                content.IDContent = holder.ID;
+                content.IDVersion = holder.Version;
 
                 string statusBody;
                 context.Response.Body = PrepareBody(context, content, out statusBody);

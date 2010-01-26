@@ -13,7 +13,7 @@
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>ximura.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>Properties\ximura.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -116,40 +116,29 @@
     <Compile Include="Attributes\XimuraDataContentVersionMappingAttribute.cs" />
     <Compile Include="Attributes\XimuraSchemaAttribute.cs" />
     <Compile Include="Content\Content.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Content\Content_Attributes.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Content\Content_Cache.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Content\Content_Fragmentation.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Content\Content_Helper.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Content\Content_IEquatable.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Content\Content_Load.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Content\Content_Pooling.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Content\Content_Properties.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Content\Content_Serialization.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Content\Content_Static.cs">
-      <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Content\Exceptions\ContentException.cs" />
-    <Compile Include="Content\Exceptions\ContentLoadException.cs" />
+    <Compile Include="Exceptions\ContentException.cs" />
+    <Compile Include="Exceptions\ContentLoadException.cs" />
     <Compile Include="Content\Serialization\ContentFormatter.cs" />
     <Compile Include="Content\Serialization\ContentFormatterCapabilities.cs" />
     <Compile Include="Content\Serialization\ContentSerializationReaderWriter.cs" />
@@ -158,100 +147,69 @@
     <Compile Include="Content\Serialization\FormatterBase.cs" />
     <Compile Include="Content\Serialization\Interfaces\IXIMSFormatter.cs" />
     <Compile Include="Data\Atom\AtomBase.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Data\Atom\AtomEntry.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Data\Atom\AtomFeed.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Data\Atom\AtomTextType.cs" />
     <Compile Include="Data\DataContent\DataContent.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Data\DataContent\DataContent_Attributes.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Data\DataContent\DataContent_Events.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Data\DataContent\DataContent_Helper.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Data\DataContent\DataContent_IDataContentSummary.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Data\DataContent\DataContent_IListSource.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Data\DataContent\DataContent_IXIMSDataContentLinkage.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Data\DataContent\DataContent_Load.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Data\DataContent\DataContent_MappingHelper.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Data\DataContent\DataContent_Pooling.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Data\DataContent\DataContent_Properties.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Data\DataContent\DataContent_Serialization.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Data\DataContent\DataContent_Static.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Data\DataContent\Events\DataChangedEventArgs.cs" />
     <Compile Include="Data\DataContent\Interfaces\IXimuraDataEntityServer.cs" />
     <Compile Include="Data\XContent\XContent.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Data\XContent\XContent_Attributes.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Data\XContent\XContent_Helper.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Data\XContent\XContent_Load.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Data\XContent\XContent_Serialization.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Data\XimuraCore\XimuraCore.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Data\XmlContentBase\XmlContentBase.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Data\XmlContentBase\XmlContentBase_Attributes.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Data\XmlContentBase\XmlContentBase_Helper.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Data\XmlContentBase\XmlContentBase_Load.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Data\XmlContentBase\XmlContentBase_Mapping.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Data\XmlContentBase\XmlContentBase_Pooling.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Data\XmlContent\XmlContent.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Data\XmlContent\XmlContent_Load.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Data\XmlContent\XmlContent_Serialization.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Helper\ArrayHelper\Exists.cs" />
     <Compile Include="Helper\ArrayHelper\MatchCollection.cs" />
@@ -274,8 +232,10 @@
     <Compile Include="Messaging\MessageFragment.cs" />
     <Compile Include="Messaging\MessageStreamBase.cs" />
     <Compile Include="Messaging\Termination\FragmentTerminationType.cs" />
+    <Compile Include="Messaging\Termination\MessageGenericTerminatorBase.cs" />
     <Compile Include="Messaging\Termination\MessageTerminatorBase.cs" />
-    <Compile Include="Messaging\Termination\MessageTerminatorCRLF.cs" />
+    <Compile Include="Messaging\Termination\MessageTerminatorCRLFNoFolding.cs" />
+    <Compile Include="Messaging\Termination\MessageTerminatorCRLFFolding.cs" />
     <Compile Include="Messaging\Termination\State\CRLFMatchCollectionState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -286,10 +246,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Content\Content.resx">
-      <DependentUpon>Content.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Data\DataContent\DataContent.resx">
       <DependentUpon>DataContent.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -308,14 +264,13 @@
     <None Include="Resources\Xml.xsx">
       <DependentUpon>Xml.xsd</DependentUpon>
     </None>
-    <None Include="ximura.snk" />
+    <None Include="Properties\ximura.snk" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\epl-v10.html" />
     <Content Include="Properties\Release Notes.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Exceptions\" />
     <Folder Include="_Documentation\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

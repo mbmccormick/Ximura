@@ -128,6 +128,7 @@ namespace Ximura.Server
 
         #endregion
 
+        #region AgentCreate(XimuraServerAgentHolder holder)
         /// <summary>
         /// This override created the session agent.
         /// </summary>
@@ -142,5 +143,6 @@ namespace Ximura.Server
             IXimuraSessionAgent agent = (IXimuraSessionAgent)RH.CreateObjectFromType(holder.AgentType,new object[]{parentContainer});
             return agent;
         }
+        #endregion 
     }
 }

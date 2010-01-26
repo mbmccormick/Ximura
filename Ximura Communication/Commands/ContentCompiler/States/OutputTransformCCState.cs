@@ -87,8 +87,8 @@ namespace Ximura.Communication
 
         private string PreparePageETag(Model data)
         {
-            Guid ID = data.ID;
-            Guid Version = data.Version;
+            Guid ID = data.IDContent;
+            Guid Version = data.IDVersion;
 
             return @"""" + Version.ToString("N").ToUpper() + @"""";
         }

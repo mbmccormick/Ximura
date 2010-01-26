@@ -61,7 +61,7 @@ namespace Ximura.Data.Serialization
         /// <summary>
         /// This is the dispose constructor.
         /// </summary>
-        /// <param name="disposing"></param>
+        /// <param name="disposing">A boolean value specifying that the xlass is being disposed.</param>
         protected virtual void Dispose(bool disposing)
         {
             if (disposing)
@@ -157,7 +157,6 @@ namespace Ximura.Data.Serialization
         /// </summary>
         public virtual void Close()
         {
-
             this.Dispose(true);
         }
         #endregion // Close()
@@ -306,6 +305,7 @@ namespace Ximura.Data.Serialization
         {
             Write(BaseStream, value);
         }
+
         public void Write(Stream outStream, Guid value)
         {
             outStream.Write(value.ToByteArray(), 0, 16);
@@ -315,6 +315,7 @@ namespace Ximura.Data.Serialization
         {
             return ReadGuid(BaseStream);
         }
+
         public Guid ReadGuid(Stream inStream)
         {
             FillBuffer(inStream, 16);
@@ -326,6 +327,7 @@ namespace Ximura.Data.Serialization
         {
             Write(BaseStream, value);
         }
+
         public void Write(Stream outStream, bool value)
         {
             outStream.WriteByte((byte)(value ? 1 : 0));
@@ -335,6 +337,7 @@ namespace Ximura.Data.Serialization
         {
             return ReadBool(BaseStream);
         }
+
         public bool ReadBool(Stream inStream)
         {
             FillBuffer(inStream, 1);

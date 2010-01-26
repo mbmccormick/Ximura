@@ -39,20 +39,6 @@ namespace Ximura.Data
 {
     public partial class DataContent
     {
-        #region Constructors
-        /// <summary>
-        /// This is the deserialization constructor. 
-        /// </summary>
-        /// <param name="info">The Serialization info object that contains all the relevant data.</param>
-        /// <param name="context">The serialization context.</param>
-        public DataContent(SerializationInfo info, StreamingContext context)
-            : base(info, context)
-        {
-            //This method sets the delegates for the DataTable event listeners
-            InitTableListeners();
-        }
-        #endregion // Deserialization Constructor
-
         #region ContentBody
         /// <summary>
         /// This method returns the content body as an byte array blob.

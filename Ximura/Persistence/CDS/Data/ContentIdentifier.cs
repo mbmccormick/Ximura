@@ -144,7 +144,7 @@ namespace Ximura.Persistence
         /// </summary>
         /// <param name="data">The content data.</param>
         public ContentIdentifier(IXimuraContent data)
-            :this(data.TypeID, data.ID, data.Version, data.GetType()){ }
+            :this(data.IDType, data.IDContent, data.IDVersion, data.GetType()){ }
         /// <summary>
         /// This is the specific constructor.
         /// </summary>

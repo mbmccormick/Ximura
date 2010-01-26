@@ -47,7 +47,6 @@ namespace Ximura.Data
 		public FormatterBase(){}
 		#endregion // Construcutor
 
-		#region IFormatter Members
 		#region Serialize
 		/// <summary>
 		/// This method serializes the object to the stream.
@@ -69,7 +68,6 @@ namespace Ximura.Data
 		{
             return (Content)Deserialize(serializationStream, null);
 		}
-
         /// <summary>
         /// This method deserializes the stream and returns the object from the pool if supplied.
         /// </summary>
@@ -82,7 +80,7 @@ namespace Ximura.Data
         }
 		#endregion // Deserialize
 
-		#region Properties
+		#region Binder
 		/// <summary>
 		/// The binder object which is initially set to null.
 		/// </summary>
@@ -97,7 +95,8 @@ namespace Ximura.Data
 				myBinder = value;
 			}
 		}
-
+		#endregion 
+		#region Context
 		/// <summary>
 		/// The streaming context. The initial value is set to persistence.
 		/// </summary>
@@ -112,7 +111,8 @@ namespace Ximura.Data
 				myContext=value;
 			}
 		}
-
+		#endregion 
+		#region SurrogateSelector
 		/// <summary>
 		/// The surrogate selector. This is initially set to null.
 		/// </summary>
@@ -127,8 +127,6 @@ namespace Ximura.Data
 				mySurrogateSelector=value;
 			}
 		}
-		#endregion // Properties
-		#endregion
-
+		#endregion 
     }
 }

@@ -28,14 +28,8 @@ namespace Ximura.Communication
         /// <summary>
         /// The default constructor
         /// </summary>
-        public AtomFeedOpenSearch() : this((IContainer)null) { }
-        /// <summary>
-        /// This constructor is called by .NET when it added as new to a container.
-        /// </summary>
-        /// <param name="container">The container this component should be added to.</param>
-        public AtomFeedOpenSearch(System.ComponentModel.IContainer container)
-            :
-            base(container) { }
+        public AtomFeedOpenSearch() { }
+
         /// <summary>
         /// This is the deserialization constructor. 
         /// </summary>
@@ -215,7 +209,7 @@ namespace Ximura.Communication
         {
             bool response = base.Load();
             if (response)
-                TypeID = GetContentTypeAttributeID();
+                IDType = GetContentTypeAttributeID();
 
             return response;
         }

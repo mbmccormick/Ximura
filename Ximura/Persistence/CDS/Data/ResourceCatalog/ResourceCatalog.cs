@@ -52,14 +52,8 @@ namespace Ximura.Persistence
 		/// <summary>
 		/// This is the default constructor for the Content object.
 		/// </summary>
-		public ResourceCatalog():this((IContainer)null){}
-		/// <summary>
-		/// This constructor is called by .NET when it added as new to a container.
-		/// </summary>
-		/// <param name="container">The container this component should be added to.</param>
-		public ResourceCatalog(System.ComponentModel.IContainer container):base(container)
-		{
-		}
+		public ResourceCatalog(){}
+
 		/// <summary>
 		/// This is the deserialization constructor. 
 		/// </summary>

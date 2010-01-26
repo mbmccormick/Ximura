@@ -60,11 +60,11 @@ namespace Ximura.Data
         public bool Equals(IXimuraContent cObj)
         {
             //Then check the three IDs, we do not care about object type.
-            if (cObj.TypeID != this.TypeID)
+            if (cObj.IDType != this.IDType)
                 return false;
-            if (cObj.ID != this.ID)
+            if (cObj.IDContent != this.IDContent)
                 return false;
-            if (cObj.Version != this.Version)
+            if (cObj.IDVersion != this.IDVersion)
                 return false;
 
             return true;

@@ -33,14 +33,8 @@ namespace Ximura.Communication
         /// <summary>
         /// The default constructor
         /// </summary>
-        public StylesheetBase() : this((IContainer)null) { }
-        /// <summary>
-        /// This constructor is called by .NET when it added as new to a container.
-        /// </summary>
-        /// <param name="container">The container this component should be added to.</param>
-        public StylesheetBase(System.ComponentModel.IContainer container)
-            :
-            base(container) { }
+        public StylesheetBase() { }
+
         /// <summary>
         /// This is the deserialization constructor. 
         /// </summary>
@@ -156,8 +150,8 @@ namespace Ximura.Communication
                 else
                     FileName = fi.Name;
 
-                this.ID = Guid.NewGuid();
-                this.Version = Guid.NewGuid();
+                this.IDContent = Guid.NewGuid();
+                this.IDVersion = Guid.NewGuid();
             }
             return result;
         }
@@ -178,42 +172,42 @@ namespace Ximura.Communication
         }
         #endregion // FileName
 
-        #region ID
+        #region IDContent
         /// <summary>
         /// This is the ID of the Entity.
         /// </summary>
         [Browsable(false)]
-        public override Guid ID
+        public override Guid IDContent
         {
             get
             {
                 Guid? idAttr = GetContentAttributeID();
                 if (!idAttr.HasValue)
-                    return mCID;
+                    return mIDContent;
 
                 return idAttr.Value;
             }
             set
             {
                 if (!GetContentAttributeID().HasValue)
-                    mCID = value;
+                    mIDContent = value;
             }
         }
         #endregion // ID
-        #region Version
+        #region IDVersion
         /// <summary>
         /// This is the version ID of the entity.
         /// </summary>
         [Browsable(false)]
-        public override Guid Version
+        public override Guid IDVersion
         {
             get
             {
-                return mVer;
+                return mIDVersion;
             }
             set
             {
-                mVer = value;
+                mIDVersion = value;
             }
         }
         #endregion // Version

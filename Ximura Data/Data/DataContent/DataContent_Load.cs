@@ -162,7 +162,7 @@ namespace Ximura.Data
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool IsNewRecord
         {
-            get { return this.Version == Guid.Empty; }
+            get { return this.IDVersion == Guid.Empty; }
         }
         #endregion // IsNewRecord
 

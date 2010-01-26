@@ -30,9 +30,9 @@ using CH = Ximura.Helper.Common;
 #endregion // using
 namespace Ximura.Data
 {
-    public abstract partial class Content
+    public abstract partial class Content : IXimuraContentEntityFragment
     {
-        #region Fragmentation Methods
+        #region IsFragment()
         /// <summary>
         /// This property identifies whether the content is a fragment type.
         /// </summary>
@@ -41,6 +41,8 @@ namespace Ximura.Data
         {
             return attrContentFragment != null;
         }
+        #endregion // IsFragment()
+        #region FragmentBaseType()
         /// <summary>
         /// This is the fragment base type. If this property is supported the persistence manager 
         /// will store this property in the serialization blob. Should the original type be unavailable 
@@ -51,6 +53,8 @@ namespace Ximura.Data
         {
             return null;
         }
+        #endregion // FragmentBaseType()
+        #region SupportsFragmentBaseType()
         /// <summary>
         /// This method identifies whether the content supports the base type content.
         /// </summary>
@@ -59,6 +63,9 @@ namespace Ximura.Data
         {
             return false;
         }
+        #endregion // SupportsFragmentBaseType()
+
+        #region CanConvertToPrimaryEntity()
         /// <summary>
         /// This boolean property identifies whether a fragment can convert to a primary entity.
         /// </summary>
@@ -67,6 +74,8 @@ namespace Ximura.Data
         {
             return false;
         }
+        #endregion // CanConvertToPrimaryEntity()
+        #region ConvertFragmentToPrimaryEntity()
         /// <summary>
         /// This method converts the fragment entity to the primary entity.
         /// </summary>
@@ -77,6 +86,9 @@ namespace Ximura.Data
 
             throw new NotImplementedException("ConvertFragmentToPrimaryEntity is not implemented");
         }
+        #endregion // ConvertFragmentToPrimaryEntity()
+
+        #region MergeContent(IXimuraContent baseContent)
         /// <summary>
         /// This method is implemented by the fragment content and will be used to merge any
         /// changes back in to the root content.
@@ -86,6 +98,8 @@ namespace Ximura.Data
         {
             throw new NotImplementedException("MergeContent is not implemented.");
         }
+        #endregion // MergeContent(IXimuraContent baseContent)
+        #region AddBaseContent()
         /// <summary>
         /// This method is implemented by the fragment content and will be used to convert any
         /// changes back in to the root content.
@@ -94,6 +108,9 @@ namespace Ximura.Data
         {
             //throw new NotImplementedException();
         }
+        #endregion // AddBaseContent()
+
+        #region UpdateBaseContent(IXimuraContent baseContent)
         /// <summary>
         /// This method is implemented by the fragment content and will be used to update any
         /// changes back in to the root content.
@@ -103,6 +120,9 @@ namespace Ximura.Data
         {
             //throw new NotImplementedException();
         }
+        #endregion // UpdateBaseContent(IXimuraContent baseContent)
+
+        #region DeleteBaseContent(IXimuraContent baseContent)
         /// <summary>
         /// This method is implemented by the fragment content and will be used to
         /// delete the root content.
@@ -112,6 +132,9 @@ namespace Ximura.Data
         {
             //throw new NotImplementedException();
         }
+        #endregion // DeleteBaseContent(IXimuraContent baseContent)
+
+        #region FragmentIDIsByReference()
         /// <summary>
         /// this method tells whether the fragment id is a by-reference id or not
         /// </summary>
@@ -120,6 +143,9 @@ namespace Ximura.Data
         {
             return false;
         }
+        #endregion // FragmentIDIsByReference()
+
+        #region FragmentReferenceType()
         /// <summary>
         /// this method returns the fragment reference type
         /// </summary>
@@ -128,6 +154,9 @@ namespace Ximura.Data
         {
             throw new NotImplementedException();
         }
+        #endregion // FragmentReferenceType()
+
+        #region SetFragmentReferenceType(string referenceType)
         /// <summary>
         /// this method set the fragment reference type 
         /// </summary>
@@ -136,6 +165,9 @@ namespace Ximura.Data
         {
             throw new NotImplementedException();
         }
+        #endregion // SetFragmentReferenceType(string referenceType)
+
+        #region FragmentReferenceID()
         /// <summary>
         /// this method returns the fragment reference id
         /// </summary>
@@ -144,6 +176,9 @@ namespace Ximura.Data
         {
             throw new NotImplementedException();
         }
+        #endregion // FragmentReferenceID()
+
+        #region SetFragmentReferenceID(string referenceID)
         /// <summary>
         /// this method set the fragment reference id 
         /// </summary>
@@ -152,7 +187,6 @@ namespace Ximura.Data
         {
             throw new NotImplementedException();
         }
-        #endregion // Fragmentation Methods
-
+        #endregion // SetFragmentReferenceID(string referenceID)
     }
 }

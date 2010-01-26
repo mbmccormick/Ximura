@@ -118,13 +118,13 @@ namespace Ximura.Communication
             int? expiryIns = content.CacheExpiry;
             ResourceManagerMessageFragmentBody body = null;
 
-            string eTag = content.Version.ToString("N").ToUpperInvariant();
+            string eTag = content.IDVersion.ToString("N").ToUpperInvariant();
             string eTagValidate = context.Request.Data.RequestIfNoneMatch.Trim(new char[]{'"',' '});
 
             if ((content.CacheOptions & ContentCacheOptions.Cacheable)>0)
                 expiry = DateTime.Now.AddSeconds(expiryIns.Value);
 
-            context.ContextSettings.ETagAdd(content.Version, content.ID, expiry, content.GetType(), expiryIns);
+            context.ContextSettings.ETagAdd(content.IDVersion, content.IDContent, expiry, content.GetType(), expiryIns);
 
             //Next check whether we have an etag in the request, and whether it matches the content.
             if (!allowNotModified || eTagValidate == "" || eTag != eTagValidate)

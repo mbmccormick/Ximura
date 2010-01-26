@@ -261,7 +261,7 @@ namespace Ximura.Persistence
                         out parentContent);
             else
                 status = CDSHelperDirect.Execute(content.FragmentBaseType(),
-                    CDSData.Get(CDSStateAction.Read, content.ID, null),
+                    CDSData.Get(CDSStateAction.Read, content.IDContent, null),
                         out parentContent);
 
             if (status == CH.HTTPCodes.InternalServerError_500)
@@ -276,7 +276,7 @@ namespace Ximura.Persistence
                 //				action = PMCapabilities.Create;
             }
 
-            Request.DataContentID = parentContent.ID;
+            Request.DataContentID = parentContent.IDContent;
             Request.Data = parentContent;
         }
         #endregion // ProcessFragment

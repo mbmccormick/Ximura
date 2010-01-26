@@ -102,13 +102,13 @@ namespace Ximura.Persistence
             {
                 //Create the cloned item and set the new version id
                 newData = (Content)data.Clone();
-                newData.Version = Guid.NewGuid();
-                newVersionID = newData.Version;
+                newData.IDVersion = Guid.NewGuid();
+                newVersionID = newData.IDVersion;
 
                 SqlCommand sqlCmdBinary = new SqlCommand("EntityUpdate", sqlConn, sqlTran);
                 sqlCmdBinary.CommandType = CommandType.StoredProcedure;
 
-                sqlCmdBinary.Parameters.Add("@currentVid", SqlDbType.UniqueIdentifier).Value = data.Version;
+                sqlCmdBinary.Parameters.Add("@currentVid", SqlDbType.UniqueIdentifier).Value = data.IDVersion;
 
                 sqlCmdBinary.Parameters.Add("@Data", SqlDbType.Binary).Value = ParseEntity(newData);
                 sqlCmdBinary.Parameters.Add("@references", SqlDbType.Binary).Value = ParseReferences(newData, conv);

@@ -28,14 +28,8 @@ namespace Ximura.Communication
         /// <summary>
         /// The default constructor
         /// </summary>
-        public InternetServerConfiguration() : this((IContainer)null) { }
-        /// <summary>
-        /// This constructor is called by .NET when it added as new to a container.
-        /// </summary>
-        /// <param name="container">The container this component should be added to.</param>
-        public InternetServerConfiguration(System.ComponentModel.IContainer container)
-            :
-            base(container) { }
+        public InternetServerConfiguration() { }
+
         /// <summary>
         /// This is the deserialization constructor. 
         /// </summary>
