@@ -306,6 +306,7 @@
     <Compile Include="Helper\Stream\StreamCounter.cs" />
     <Compile Include="Helper\Stream\StreamHelper.cs" />
     <Compile Include="Helper\Threading.cs" />
+    <Compile Include="Interfaces\Command\IXimuraFSMStateIdentifier.cs" />
     <Compile Include="Interfaces\Component\IXimuraServiceContainer.cs" />
     <Compile Include="Component\ServiceContainer.cs">
       <SubType>Code</SubType>

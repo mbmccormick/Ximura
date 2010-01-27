@@ -65,10 +65,13 @@
   <ItemGroup>
     <Compile Include="Attributes\CDSStateActionPermitAttribute.cs" />
     <Compile Include="Attributes\CDSStateTypePermitAttribute.cs" />
+    <Compile Include="Enumerations\CDSStateAction.cs" />
+    <Compile Include="Enumerations\CDSStatePriorityGroup.cs" />
     <Compile Include="Exceptions\CDSStateException.cs" />
     <Compile Include="Exceptions\ContentDataStoreException.cs" />
     <Compile Include="Exceptions\InvalidCommandCDSException.cs" />
-    <Compile Include="Interfaces\CDSStateAction.cs" />
+    <Compile Include="Interfaces\IPersistenceContext.cs" />
+    <Compile Include="Interfaces\IPersistenceState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

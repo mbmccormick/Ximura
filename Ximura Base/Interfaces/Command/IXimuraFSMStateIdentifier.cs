@@ -16,22 +16,18 @@ using System.IO;
 using System.Diagnostics;
 using System.ComponentModel;
 using System.ComponentModel.Design;
-using System.Drawing;
 
-using Ximura;
-using Ximura.Helper;
-using Ximura.Server;
 #endregion //
 namespace Ximura
 {
     /// <summary>
-    /// This interface should be implemented by components that can be hosted as a state in a finite 
-    /// state machine.
+    /// This is the default state property
     /// </summary>
-    public interface IXimuraFSMState : IXimuraFSMStateIdentifier, IComponent
+    public interface IXimuraFSMStateIdentifier
     {
-
+        /// <summary>
+        /// This is the state identifier string.
+        /// </summary>
+        string Identifier { get; set; }
     }
-
-
 }

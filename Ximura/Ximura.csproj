@@ -456,7 +456,6 @@
     <Compile Include="Persistence\CDS\Data\ResourceCatalog\ResourceCatalog.cs">
     </Compile>
     <Compile Include="Persistence\CDS\Helper\CacheCollectionHelperUriTID.cs" />
-    <Compile Include="Persistence\CDS\Enumerations\CDSStatePriority.cs" />
     <Compile Include="Persistence\CDS\Interfaces\ICDSCacheManagerBridge.cs" />
     <Compile Include="Persistence\CDS\Interfaces\ICDSConfigSH.cs" />
     <Compile Include="Persistence\CDS\Interfaces\ICDSSettingsService.cs" />
@@ -501,8 +500,6 @@
     </Compile>
     <Compile Include="Persistence\Persistence Managers\File Based\FileSystemBasePMCDSState.cs">
       <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Persistence\Persistence Managers\Gateway\GatewayPMCDSState.cs">
     </Compile>
     <Compile Include="Persistence\CDS\States\PersistenceManagerCDSState.cs">
       <SubType>Component</SubType>
