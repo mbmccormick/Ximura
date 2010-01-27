@@ -63,6 +63,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\CDSStateActionPermitAttribute.cs" />
+    <Compile Include="Attributes\CDSStateTypePermitAttribute.cs" />
+    <Compile Include="Exceptions\CDSStateException.cs" />
+    <Compile Include="Exceptions\ContentDataStoreException.cs" />
+    <Compile Include="Exceptions\InvalidCommandCDSException.cs" />
+    <Compile Include="Interfaces\CDSStateAction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

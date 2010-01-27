@@ -19,7 +19,6 @@ using CH = Ximura.Helper.Common;
 #endregion // using
 namespace Ximura.Data
 {
-    #region XimuraContentReferenceAttribute
     /// <summary>
     /// The XimuraContentReference attribute uniquely identifies a content. This is useful
     /// as it allows the Ximura to identify different content implementations within the system.
@@ -69,6 +68,4 @@ namespace Ximura.Data
         }
         #endregion // ReferenceField
     }
-    #endregion
-
 }

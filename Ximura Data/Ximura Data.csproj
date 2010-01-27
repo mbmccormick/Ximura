@@ -101,6 +101,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\CDSAttributeAttribute.cs" />
+    <Compile Include="Attributes\CDSReferenceAttribute.cs" />
     <Compile Include="Attributes\XimuraContentCachePolicyAttribute.cs" />
     <Compile Include="Attributes\XimuraContentIDAttribute.cs" />
     <Compile Include="Attributes\XimuraContentReferenceAttribute.cs" />

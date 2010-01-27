@@ -556,6 +556,10 @@
       <Project>{039133D4-A947-405C-A441-71DF106C9EE5}</Project>
       <Name>Ximura Communication Entities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Ximura Data Persistence\Ximura Data Persistence.csproj">
+      <Project>{79C7BB97-6ABB-4E63-829D-5B5F7A76F987}</Project>
+      <Name>Ximura Data Persistence</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Ximura Data\Ximura Data.csproj">
       <Project>{7727E180-73B7-474B-84F6-BF0C6FFB181E}</Project>
       <Name>Ximura Data</Name>

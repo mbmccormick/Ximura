@@ -430,11 +430,7 @@
     <Compile Include="Persistence\CDSHelper\CDSHelper_Static.cs" />
     <Compile Include="Persistence\CDSHelper\CDSData.cs" />
     <Compile Include="Persistence\CDSHelper\CDSResponse.cs" />
-    <Compile Include="Persistence\CDS\Attributes\CDSAttributeAttribute.cs" />
-    <Compile Include="Persistence\CDS\Attributes\CDSReferenceAttribute.cs" />
     <Compile Include="Persistence\CDS\Enumerations\ContentDataStoreSubCommand.cs" />
-    <Compile Include="Persistence\CDS\Exceptions\CDSStateException.cs" />
-    <Compile Include="Persistence\CDS\Exceptions\InvalidCommandCDSException.cs" />
     <Compile Include="Persistence\CDS\Helper\CDSShortcuts.cs" />
     <Compile Include="Persistence\CDS\Data\CacheItemContainer.cs" />
     <Compile Include="Persistence\CDS\Data\ContentIdentifier.cs" />
@@ -459,16 +455,12 @@
     <Compile Include="Persistence\CDS\Helper\ContentDataStoreShortcuts.cs" />
     <Compile Include="Persistence\CDS\Data\ResourceCatalog\ResourceCatalog.cs">
     </Compile>
-    <Compile Include="Persistence\CDS\Exceptions\ContentDataStoreException.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Persistence\CDS\Helper\CacheCollectionHelperUriTID.cs" />
     <Compile Include="Persistence\CDS\Enumerations\CDSStatePriority.cs" />
     <Compile Include="Persistence\CDS\Interfaces\ICDSCacheManagerBridge.cs" />
     <Compile Include="Persistence\CDS\Interfaces\ICDSConfigSH.cs" />
     <Compile Include="Persistence\CDS\Interfaces\ICDSSettingsService.cs" />
     <Compile Include="Persistence\CDS\Interfaces\ICDSManagerConfigSH.cs" />
-    <Compile Include="Persistence\CDS\Enumerations\PMCapabilities.cs" />
     <Compile Include="Server\Managers\Storage\Agents\FileSystem\Configuration\FileSystemStorageManagerConfiguration.cs">
     </Compile>
     <Compile Include="Server\Managers\Storage\Agents\FileSystem\IXimuraStorageFileSystem.cs" />
@@ -482,8 +474,6 @@
     <Compile Include="Persistence\CDS\Configuration\PersistenceManagerConfigSH.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Persistence\CDS\Attributes\CDSStateActionPermitAttribute.cs" />
-    <Compile Include="Persistence\CDS\Attributes\CDSStateTypePermitAttribute.cs" />
     <Compile Include="Persistence\CDS\Interfaces\ICDSState.cs" />
     <Compile Include="Persistence\CDS\Performance\CDSPMPerformance.cs" />
     <Compile Include="Persistence\CDS\Performance\CDSStatePerformance.cs" />
