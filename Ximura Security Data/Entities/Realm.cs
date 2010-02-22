@@ -17,7 +17,7 @@ namespace Ximura.Security
     [XimuraContentTypeID("{4BEBB786-1F48-469e-A46A-4D0FEBC3A42E}")]
     [DataContract]
     [Serializable()]
-    public class Realm : Content
+    public class Realm : SecurityContentBase
     {
         #region Constructor
         /// <summary>

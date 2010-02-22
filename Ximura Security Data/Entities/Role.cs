@@ -17,7 +17,7 @@ namespace Ximura.Security
     [XimuraContentTypeID("{C5FC7234-BB81-43d2-9F40-D783E18AAB9C}")]
     [DataContract]
     [Serializable()]
-    public class Role : Content
+    public class Role : SecurityContentBase
     {
         #region Constructor
         /// <summary>

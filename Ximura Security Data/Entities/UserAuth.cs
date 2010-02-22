@@ -17,7 +17,7 @@ namespace Ximura.Security
     [XimuraContentTypeID("{B5FFCC86-83FB-4813-91DF-CFFA0EBEF7E6}")]
     [DataContract]
     [Serializable()]
-    public class UserAuth : Content
+    public class UserAuth : SecurityContentBase
     {
         #region Declaration
         //[DataMember]

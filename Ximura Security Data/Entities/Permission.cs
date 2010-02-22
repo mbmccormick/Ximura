@@ -17,7 +17,7 @@ namespace Ximura.Security
     [XimuraContentTypeID("{6C5D43D2-B6FB-4e2f-B1EB-63A34C7630CE}")]
     [DataContract]
     [Serializable()]
-    public class Permission : Content
+    public class Permission : SecurityContentBase
     {
         #region Constructor
         /// <summary>

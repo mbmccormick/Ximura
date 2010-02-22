@@ -18,7 +18,7 @@ namespace Ximura.Security
     [XimuraContentTypeID("{17A05C32-8565-43e3-8CF0-A8BB996095E2}")]
     [DataContract]
     [Serializable]
-    public class User : Content
+    public class User : SecurityContentBase
     {
         #region Constructor
         /// <summary>
@@ -34,7 +34,7 @@ namespace Ximura.Security
         /// Gets the full name.
         /// </summary>
         /// <value>The full name.</value>
-        public override string Name
+        public virtual string Name
         {
             get { return string.Format("{0}{1} {2}", (NameTitle == null || NameTitle.Trim() == "") ? "" : NameTitle + " ", NameGiven, NameFamily); }
             set { throw new NotImplementedException("Name is not implemented"); }

@@ -11,7 +11,21 @@ using Ximura.Data;
 #endregion // using
 namespace Ximura.Security
 {
-    class SecurityContentBase
+    public abstract class SecurityContentBase: Content
     {
+        public override int Load(byte[] buffer, int offset, int count)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void OnDeserialization(object sender)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override byte[] ContentBody
+        {
+            get { throw new NotImplementedException(); }
+        }
     }
 }
