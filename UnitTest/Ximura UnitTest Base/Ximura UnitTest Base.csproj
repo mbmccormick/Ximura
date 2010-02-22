@@ -83,29 +83,34 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="TestFunctions.cs" />
-    <Compile Include="Test_Collections_Dictionary.cs" />
-    <Compile Include="Test_Collections_SkipList.cs" />
-    <Compile Include="Test_Collection_Base.cs" />
-    <Compile Include="Test_Collection_Base_Static.cs" />
-    <Compile Include="Test_Helper_BitHelper.cs" />
-    <Compile Include="Test_Helper_Linq_Currying.cs" />
-    <Compile Include="Test_Helper_Linq_Folding.cs" />
-    <Compile Include="Test_Collections.cs" />
-    <Compile Include="Test_Helper_Linq.cs" />
-    <Compile Include="Test_Helper_Linq_Unfolding.cs" />
-    <Compile Include="Test_Misc.cs" />
-    <Compile Include="Test_Pooling.cs" />
+    <Compile Include="Helper\Collection\Test_Collections_Dictionary.cs" />
+    <Compile Include="Helper\Collection\Test_Collections_SkipList.cs" />
+    <Compile Include="Helper\Collection\Test_Collection_Base.cs" />
+    <Compile Include="Helper\Collection\Test_Collection_Base_Static.cs" />
+    <Compile Include="Helper\Test_Helper_BitHelper.cs" />
+    <Compile Include="Helper\Linq\Test_Helper_Linq_Currying.cs" />
+    <Compile Include="Helper\Linq\Test_Helper_Linq_Folding.cs" />
+    <Compile Include="Helper\Collection\Test_Collections.cs" />
+    <Compile Include="Helper\Linq\Test_Helper_Linq.cs" />
+    <Compile Include="Helper\Linq\Test_Helper_Linq_Unfolding.cs" />
+    <Compile Include="Collections\Test_Misc.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Test_Helper_Threading.cs" />
-    <Compile Include="Test_Collections_Trees.cs" />
-    <Compile Include="Test_Collections_Data.cs" />
-    <Compile Include="Test_Helper_Linq_Stream.cs" />
+    <Compile Include="Collections\Test_Helper_Threading.cs" />
+    <Compile Include="Helper\Collection\Test_Collections_Trees.cs" />
+    <Compile Include="Helper\Collection\Test_Collections_Data.cs" />
+    <Compile Include="Helper\Linq\Test_Helper_Linq_Stream.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Ximura Base\Ximura Base.csproj">
       <Project>{7C2684DD-A055-4A7A-88D6-EC5BAE28AEB2}</Project>
       <Name>Ximura Base</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Helper\Binary\" />
+    <Folder Include="Helper\Common\" />
+    <Folder Include="Helper\Locking\" />
+    <Folder Include="Helper\Stream\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

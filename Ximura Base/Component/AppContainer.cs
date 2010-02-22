@@ -28,7 +28,7 @@ namespace Ximura
 	/// AppContainer is the base container for the Ximura Application framework. 
 	/// The container is used to share services between the components within an application.
 	/// </summary>
-	public class XimuraAppContainer : System.ComponentModel.Container
+	public class XimuraAppContainer : Container
 	{
 		#region Declarations
 		private IServiceContainer m_ServiceProvider = null;

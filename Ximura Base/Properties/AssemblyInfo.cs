@@ -23,7 +23,7 @@ using System.Resources;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Ximura")]
 [assembly: AssemblyProduct("Ximura Framework")]
-[assembly: AssemblyCopyright("\x00a9 Ximura 2000-2009")]
+[assembly: AssemblyCopyright("\x00a9 Paul Stancer 2000-2010")]
 [assembly: AssemblyTrademark("")]
 
 [assembly: AssemblyVersion("3.0.0.*")]
@@ -34,3 +34,7 @@ using System.Resources;
 //[assembly: AssemblyKeyFile(@"../../../Keys/Ximura.snk")]
 
 [assembly: NeutralResourcesLanguage("en-US")]
+
+#if (WindowsCE)
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2232:MarkWindowsFormsEntryPointsWithStaThread")]
+#endif

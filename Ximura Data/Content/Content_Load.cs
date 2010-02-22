@@ -19,7 +19,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Diagnostics;
-using System.Drawing;
+
 using System.Text;
 
 using Ximura;

@@ -565,17 +565,17 @@
             </summary>
             <returns>A boolean value - true indicates the object has been changed.</returns>
         </member>
-        <member name="P:Ximura.Data.IXimuraContent.TypeID">
+        <member name="P:Ximura.Data.IXimuraContent.IDType">
             <summary>
             This is the Content Type ID.
             </summary>
         </member>
-        <member name="P:Ximura.Data.IXimuraContent.ID">
+        <member name="P:Ximura.Data.IXimuraContent.IDContent">
             <summary>
-            This is the Content Instance ID.
+            This is the Content ID.
             </summary>
         </member>
-        <member name="P:Ximura.Data.IXimuraContent.Version">
+        <member name="P:Ximura.Data.IXimuraContent.IDVersion">
             <summary>
             This is the Content Version ID.
             </summary>
@@ -805,6 +805,36 @@
             <param name="strCardNO">Card Number</param>
             <returns>card hashed number as string</returns>
         </member>
+        <member name="M:Ximura.Helper.Common.IsNumeric(System.String)">
+            <summary>
+            This method tests whether a string is numeric.
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ximura.Helper.Common.IsDateTime(System.String)">
+            <summary>
+            This method tests whether a string is a DateTime.
+            </summary>
+            <param name="dateValue">The date value.</param>
+            <returns>Returns true if the string is a date.</returns>
+        </member>
+        <member name="M:Ximura.Helper.Common.IsDateTime(System.String,System.String)">
+            <summary>
+            This method tests whether a string is a DateTime.
+            </summary>
+            <param name="dateValue">The date value.</param>
+            <param name="timeValue">The time value.</param>
+            <returns>Returns true if the string is a date.</returns>
+        </member>
+        <member name="M:Ximura.Helper.Common.IsDateTime(System.String,System.String,System.Nullable{System.DateTime}@)">
+            <summary>
+            This method tests whether a string is a DateTime.
+            </summary>
+            <param name="dateValue">The date value.</param>
+            <param name="timeValue">The time value.</param>
+            <returns>Returns true if the string is a date.</returns>
+        </member>
         <member name="M:Ximura.Helper.Common.ConvertToRFC1123DateString(System.DateTime)">
             <summary>
             This method converts a datetime parameter to an RFC1123 string formar.
@@ -854,36 +884,6 @@
             <param name="Year">Year</param>
             <returns>Century</returns>
         </member>
-        <member name="M:Ximura.Helper.Common.IsNumeric(System.String)">
-            <summary>
-            This method tests whether a string is numeric.
-            </summary>
-            <param name="value"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Ximura.Helper.Common.IsDateTime(System.String)">
-            <summary>
-            This method tests whether a string is a DateTime.
-            </summary>
-            <param name="dateValue">The date value.</param>
-            <returns>Returns true if the string is a date.</returns>
-        </member>
-        <member name="M:Ximura.Helper.Common.IsDateTime(System.String,System.String)">
-            <summary>
-            This method tests whether a string is a DateTime.
-            </summary>
-            <param name="dateValue">The date value.</param>
-            <param name="timeValue">The time value.</param>
-            <returns>Returns true if the string is a date.</returns>
-        </member>
-        <member name="M:Ximura.Helper.Common.IsDateTime(System.String,System.String,System.Nullable{System.DateTime}@)">
-            <summary>
-            This method tests whether a string is a DateTime.
-            </summary>
-            <param name="dateValue">The date value.</param>
-            <param name="timeValue">The time value.</param>
-            <returns>Returns true if the string is a date.</returns>
-        </member>
         <member name="M:Ximura.Helper.Common.CreatePasswordHash(System.String,System.String)">
             <summary>
             This method creates a password hash from a byte64 encoded text seed and plain text password
@@ -921,11 +921,6 @@
         <member name="T:Ximura.Helper.Common.HashAlgorithmType">
             <summary>
             Enumeration list for hash algorithms
-            </summary>
-        </member>
-        <member name="T:Ximura.Helper.Common.DataGridValueMapper">
-            <summary>
-            This class provide common data grid value mapper.
             </summary>
         </member>
         <member name="T:Ximura.Helper.Common.HTTPCodes">
@@ -3733,6 +3728,16 @@
             The XML Helper library is used to provide a set of reusable methods for manipulation XML Document information.
             </summary>
         </member>
+        <member name="T:Ximura.IXimuraFSMStateIdentifier">
+            <summary>
+            This is the default state property
+            </summary>
+        </member>
+        <member name="P:Ximura.IXimuraFSMStateIdentifier.Identifier">
+            <summary>
+            This is the state identifier string.
+            </summary>
+        </member>
         <member name="T:Ximura.ElementSite">
             <summary>
             ElementSite is used by the Ximura.Data component model to link elements
@@ -5571,6 +5576,18 @@
             This interface is shared by both the IQueue and IStack interfaces and contains shared functionality.
             </summary>
             <typeparam name="T">The collection item type.</typeparam>
+        </member>
+        <member name="M:Ximura.Collections.ICollectionBase`1.Clear">
+            <summary>
+            This method clears the collection.
+            </summary>
+        </member>
+        <member name="M:Ximura.Collections.ICollectionBase`1.Contains(`0)">
+            <summary>
+            This method returns true if the item is contained in the collection.
+            </summary>
+            <param name="item">The item to check.</param>
+            <returns>Returns true if the collection contains the item.</returns>
         </member>
         <member name="M:Ximura.Collections.ICollectionBase`1.TryPeek(`0@)">
             <summary>

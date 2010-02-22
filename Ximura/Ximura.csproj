@@ -428,8 +428,6 @@
     <Compile Include="Persistence\CDSHelper\CDSHelper.cs" />
     <Compile Include="Persistence\CDSHelper\CDSHelper_Linq.cs" />
     <Compile Include="Persistence\CDSHelper\CDSHelper_Static.cs" />
-    <Compile Include="Persistence\CDSHelper\CDSData.cs" />
-    <Compile Include="Persistence\CDSHelper\CDSResponse.cs" />
     <Compile Include="Persistence\CDS\Enumerations\ContentDataStoreSubCommand.cs" />
     <Compile Include="Persistence\CDS\Helper\CDSShortcuts.cs" />
     <Compile Include="Persistence\CDS\Data\CacheItemContainer.cs" />
