@@ -58,11 +58,12 @@ namespace Ximura.Security.UnitTest
 
 
         [TestMethod]
-        public void TestMethod1()
+        public void SecurityPersistence()
         {
             //
             // TODO: Add test logic	here
             //
+            Console.WriteLine("Bugger");
         }
     }
 }
