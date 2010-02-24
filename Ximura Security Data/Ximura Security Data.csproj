@@ -64,7 +64,7 @@
     <Compile Include="Entities\Permission.cs" />
     <Compile Include="Entities\Realm.cs" />
     <Compile Include="Entities\Role.cs" />
-    <Compile Include="SecurityContentBase.cs" />
+    <Compile Include="Entities\SecurityContentBase.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\UserAuth.cs" />
     <Compile Include="Entities\UserRole.cs" />
