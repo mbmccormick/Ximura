@@ -22,6 +22,11 @@ namespace Ximura.Persistence
     public enum CDSStateAction : short
     {
         /// <summary>
+        /// This is the default value when the specific action has not been set.
+        /// </summary>
+        NotSet,
+
+        /// <summary>
         /// Initialize creates a new entity and returns it to the calling party.
         /// </summary>
         Initialize,
@@ -71,7 +76,7 @@ namespace Ximura.Persistence
         /// </summary>
         Publish,
         /// <summary>
-        /// The persistence agent support the readction of a published entity.
+        /// The persistence agent support the readction of a published entity. This is reserved for future use.
         /// </summary>
         Redact,
 

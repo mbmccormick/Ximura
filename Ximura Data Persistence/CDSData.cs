@@ -36,7 +36,7 @@ namespace Ximura.Persistence
     /// <summary>
     /// The CDSData class is used by the CDSHelper to hold the information for a request.
     /// </summary>
-    public partial class CDSData : IXimuraPoolReturnable
+    public partial class CDSData : CDSDataBase, IXimuraPoolReturnable
     {
         #region Static Declarations
         private static readonly Guid sCDSCommandGuid = new Guid("FE21CBF6-2CDC-4549-9F13-49385CAE8DDA");
@@ -49,7 +49,7 @@ namespace Ximura.Persistence
         }
         #endregion // Static Constructor
 
-        #region Get() - Factory method.
+        #region Get() - Factory method
         /// <summary>
         /// This factory method can be used to Get a request object and set its 
         /// parameters
@@ -67,16 +67,16 @@ namespace Ximura.Persistence
         public static CDSData Get(CDSStateAction action, Guid? CID, Guid? VID, JobPriority priority)
         {
             CDSData rq = sCDSRequestPool.Get();
-            rq.mByReference = false;
+            rq.ByReference = false;
 
             if (CID.HasValue)
-                rq.mIDContent = CID.Value;
+                rq.IDContent = CID.Value;
 
             if (VID.HasValue)
-                rq.mIDVersion = VID.Value;
+                rq.IDVersion = VID.Value;
 
-            rq.mAction = action;
-            rq.mPriority = priority;
+            rq.Action = action;
+            rq.Priority = priority;
             return rq;
         }
 
@@ -97,11 +97,11 @@ namespace Ximura.Persistence
         public static CDSData Get(CDSStateAction action, string refType, string refValue, JobPriority priority)
         {
             CDSData rq = sCDSRequestPool.Get();
-            rq.mByReference = true;
-            rq.mRefType = refType;
-            rq.mRefValue = refValue;
-            rq.mAction = action;
-            rq.mPriority = priority;
+            rq.ByReference = true;
+            rq.RefType = refType;
+            rq.RefValue = refValue;
+            rq.Action = action;
+            rq.Priority = priority;
             return rq;
         }
 
@@ -123,23 +123,17 @@ namespace Ximura.Persistence
         public static CDSData Get(CDSStateAction action, JobPriority priority)
         {
             CDSData rq = sCDSRequestPool.Get();
-            rq.mAction = action;
-            rq.mPriority = priority;
+            rq.Action = action;
+            rq.
+                Priority = priority;
             return rq;
         }
         #endregion // Get() - Factory method.
 
         #region Declarations
         private readonly Guid mTrackID = Guid.NewGuid();
-        private Guid mRequestID;
-        private JobPriority mPriority;
-        private CDSStateAction? mAction;
-        private bool mByReference;
-        private string mRefType;
-        private string mRefValue;
-        private Guid? mIDContent;
-        private Guid? mIDVersion;
-        #endregion // Declarations
+        #endregion 
+
         #region Constructor - Private
         private CDSData()
         {
@@ -165,8 +159,8 @@ namespace Ximura.Persistence
         {
             if (!disposed && disposing)
             {
-                mRefValue = null;
-                mRefType = null;
+                RefValue = null;
+                RefType = null;
                 disposed = true;
             }
         }

@@ -18,7 +18,7 @@ using System.Resources;
 
 [assembly: ComVisible(false)]
 
-[assembly: AssemblyTitle("Ximura UnitTest Data")]
+[assembly: AssemblyTitle("Ximura UnitTest Data Persistence")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Ximura")]

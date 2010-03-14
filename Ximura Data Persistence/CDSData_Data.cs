@@ -36,7 +36,7 @@ namespace Ximura.Persistence
     /// <summary>
     /// The CDSData class is used by the CDSHelper to hold the information for a request.
     /// </summary>
-    public partial class CDSData
+    public class CDSDataBase
     {
         #region Reset()
         /// <summary>
@@ -44,14 +44,14 @@ namespace Ximura.Persistence
         /// </summary>
         public void Reset()
         {
-            mByReference = false;
-            mIDVersion = null;
-            mIDContent = null;
-            mRefValue = null;
-            mRefType = null;
-            mAction = null;
-            mRequestID = Guid.NewGuid();
-            mPriority = JobPriority.Normal;
+            ByReference = false;
+            IDVersion = null;
+            IDContent = null;
+            RefValue = null;
+            RefType = null;
+            Action = CDSStateAction.NotSet;
+            RequestID = Guid.NewGuid();
+            Priority = JobPriority.Normal;
         }
         #endregion // Reset()
 
@@ -61,7 +61,8 @@ namespace Ximura.Persistence
         /// </summary>
         public JobPriority Priority
         {
-            get { return mPriority; }
+            get;
+            protected set;
         }
         #endregion
         #region RequestID
@@ -70,7 +71,8 @@ namespace Ximura.Persistence
         /// </summary>
         public Guid RequestID
         {
-            get { return mRequestID; }
+            get;
+            protected set;
         }
         #endregion
 
@@ -80,7 +82,8 @@ namespace Ximura.Persistence
         /// </summary>
         public CDSStateAction Action
         {
-            get { return mAction.Value; }
+            get;
+            protected set;
         }
         #endregion
 
@@ -90,7 +93,8 @@ namespace Ximura.Persistence
         /// </summary>
         public bool ByReference
         {
-            get { return mByReference; }
+            get;
+            protected set;
         }
         #endregion
 
@@ -100,7 +104,8 @@ namespace Ximura.Persistence
         /// </summary>
         public string RefType
         {
-            get { return mRefType; }
+            get;
+            protected set;
         }
         #endregion
         #region RefValue
@@ -109,7 +114,8 @@ namespace Ximura.Persistence
         /// </summary>
         public string RefValue
         {
-            get { return mRefValue; }
+            get;
+            protected set;
         }
         #endregion
 
@@ -119,7 +125,8 @@ namespace Ximura.Persistence
         /// </summary>
         public Guid? IDType
         {
-            get { return mIDContent; }
+            get;
+            protected set;
         }
         #endregion
         #region IDContent
@@ -128,7 +135,8 @@ namespace Ximura.Persistence
         /// </summary>
         public Guid? IDContent
         {
-            get { return mIDContent; }
+            get;
+            protected set;
         }
         #endregion
         #region IDVersion
@@ -138,7 +146,8 @@ namespace Ximura.Persistence
         /// </summary>
         public Guid? IDVersion
         {
-            get { return mIDVersion; }
+            get;
+            protected set;
         }
         #endregion 
     }
