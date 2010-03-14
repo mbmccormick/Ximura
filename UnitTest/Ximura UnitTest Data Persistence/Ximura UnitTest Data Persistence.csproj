@@ -62,6 +62,13 @@
       <Project>{7727E180-73B7-474B-84F6-BF0C6FFB181E}</Project>
       <Name>Ximura Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Ximura UnitTest Data\Ximura UnitTest Data.csproj">
+      <Project>{D42810A1-F0D3-4233-9554-625C51E2FEE7}</Project>
+      <Name>Ximura UnitTest Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Agents\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

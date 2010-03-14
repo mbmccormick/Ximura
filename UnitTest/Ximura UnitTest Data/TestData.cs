@@ -4,20 +4,23 @@ using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+using Ximura;
+using Ximura.Data;
 #endregion 
 namespace Ximura.UnitTest.Data
 {
     /// <summary>
-    /// Summary description for BasicTests
+    /// This class processes a number of tests for a data object.
     /// </summary>
     [TestClass]
-    public class BasicTests
+    public class TestData
     {
         #region Constructor
         /// <summary>
         /// This is the default constructor.
         /// </summary>
-        public BasicTests()
+        public TestData()
         {
             //
             // TODO: Add constructor logic here
