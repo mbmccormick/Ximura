@@ -62,8 +62,8 @@
   <ItemGroup>
     <Compile Include="Attributes\CDSStateActionPermitAttribute.cs" />
     <Compile Include="Attributes\CDSStateTypePermitAttribute.cs" />
-    <Compile Include="CDSData.cs" />
-    <Compile Include="CDSData_Data.cs" />
+    <Compile Include="Context\CDSData.cs" />
+    <Compile Include="Context\CDSData_Data.cs" />
     <Compile Include="Contract\CDSRequestFolder.cs" />
     <Compile Include="Contract\CDSResponseFolder.cs" />
     <Compile Include="Contract\CDSRQRSFolderBase.cs" />
@@ -77,6 +77,7 @@
     <Compile Include="Helper\ContentIdentifier.cs" />
     <Compile Include="Interfaces\IPersistenceContext.cs" />
     <Compile Include="Interfaces\IPersistenceState.cs" />
+    <Compile Include="Persistence.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -39,7 +39,6 @@ namespace Ximura.UnitTest.Data
         }
         #endregion 
 
-
         #region Additional test attributes
         //
         // You can use the following additional attributes as you write your tests:
