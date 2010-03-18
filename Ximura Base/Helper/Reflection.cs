@@ -24,6 +24,7 @@ using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using System.Threading;
+using System.Linq;
 
 using Ximura;
 using Ximura.Server;
@@ -817,5 +818,38 @@ namespace Ximura.Helper
         {
             return input.Trim('/');
         }
+
+        #region ResourceLoadStream(string resourceName)
+        /// <summary>
+        /// This method reads a binary definition from an assembly based on the resource name.
+        /// Note: this method will attempt to load the assembly if it is not loaded.
+        /// </summary>
+        /// <param name="resourceName">The resource name.</param>
+        /// <returns>Returns an unmanaged stream containing the data.</returns>
+        public static Stream ResourceLoadStream(string resourceName)
+        {
+            string[] items = resourceName.Split(new char[] { ',' }).Select(i => i.Trim()).ToArray();
+
+            Assembly ass = Assembly.GetExecutingAssembly();
+
+            if (items.Length > 1)
+            {
+                var asses = AppDomain.CurrentDomain.GetAssemblies();
+                ass = asses.SingleOrDefault(a => a.FullName.ToLowerInvariant() == items[1].ToLowerInvariant());
+
+                if (ass == null)
+                {
+                    ass = AppDomain.CurrentDomain.Load(items[1]);
+
+                    if (ass == null)
+                        throw new ArgumentOutOfRangeException(
+                            string.Format("The assembly cannot be resolved: {0}", items[1]));
+                }
+            }
+
+            return ass.GetManifestResourceStream(items[0]);
+        }
+        #endregion 
+
     }
 }

@@ -17,7 +17,7 @@ namespace Ximura.UnitTest.Data
         /// <summary>
         /// This is the default constructor.
         /// </summary>
-        public BasicTests()
+        public PersistenceTests()
         {
             //
             // TODO: Add constructor logic here

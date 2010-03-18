@@ -7,8 +7,8 @@
     <ProjectGuid>{B46A45F8-4AE2-490A-AE76-08D244DB679E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Ximura_UnitTest</RootNamespace>
-    <AssemblyName>Ximura UnitTest</AssemblyName>
+    <RootNamespace>Ximura.UnitTest</RootNamespace>
+    <AssemblyName>XimuraUnitTest</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -62,7 +62,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UnitTest1.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Ximura Base\Ximura Base.csproj">

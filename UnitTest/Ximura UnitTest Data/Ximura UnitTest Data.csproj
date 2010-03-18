@@ -78,13 +78,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Messages\http_rq.txt" />
-    <EmbeddedResource Include="Messages\http_rs.txt" />
-    <EmbeddedResource Include="Messages\http2_rq.txt" />
-    <EmbeddedResource Include="Messages\HTTPChuckedTest1.txt" />
-    <EmbeddedResource Include="Messages\http2_rs.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="MessageData\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
