@@ -50,14 +50,20 @@ namespace Ximura.UnitTest.Communication
                 MessageLoad<HTTPRequestMessage> testHTTP_RQ1 =
                     new MessageLoad<HTTPRequestMessage>("Ximura.UnitTest.Communication.Examples.http_rq.txt, XimuraUTCommEntities");
 
-                MessageLoad<HTTPRequestMessage> testHTTP_RQ2 =
-                    new MessageLoad<HTTPRequestMessage>("Ximura.UnitTest.Communication.Examples.http2_rq.txt, XimuraUTCommEntities");
-
                 MessageLoad<HTTPResponseMessage> testHTTP_RS1 =
                     new MessageLoad<HTTPResponseMessage>("Ximura.UnitTest.Communication.Examples.http_rs.txt, XimuraUTCommEntities");
 
+                MessageLoad<HTTPRequestMessage> testHTTP_RQ2 =
+                    new MessageLoad<HTTPRequestMessage>("Ximura.UnitTest.Communication.Examples.http2_rq.txt, XimuraUTCommEntities");
+
                 MessageLoad<HTTPResponseMessage> testHTTP_RS2 =
                     new MessageLoad<HTTPResponseMessage>("Ximura.UnitTest.Communication.Examples.http2_rs.txt, XimuraUTCommEntities");
+
+                MessageLoad<HTTPRequestMessage> testHTTP_RQ3 =
+                    new MessageLoad<HTTPRequestMessage>("Ximura.UnitTest.Communication.Examples.http3_rq.txt, XimuraUTCommEntities");
+
+                MessageLoad<HTTPResponseMessage> testHTTP_RS3 =
+                    new MessageLoad<HTTPResponseMessage>("Ximura.UnitTest.Communication.Examples.http3_rs.txt, XimuraUTCommEntities");
 
             }
             catch (Exception ex)
