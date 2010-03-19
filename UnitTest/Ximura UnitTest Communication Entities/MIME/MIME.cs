@@ -46,7 +46,7 @@ namespace Ximura.UnitTest.Communication
             try
             {
                 MessageLoad<MimeMessage> testMIME_1 =
-                    new MessageLoad<MimeMessage>("Ximura.UnitTest.Communication.Examples.MimeExample.mht, XimuraUTCommEntities");
+                    new MessageLoad<MimeMessage>("Ximura.UnitTest.Communication.MIME.Examples.MimeExample.mht, XimuraUTCommEntities");
 
 
             }
