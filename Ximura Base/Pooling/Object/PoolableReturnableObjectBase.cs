@@ -47,6 +47,7 @@ namespace Ximura
         {
         }
         #endregion // Constructor
+
         #region Reset()
         /// <summary>
         /// This is the reset override which removes the reference to the object pool.

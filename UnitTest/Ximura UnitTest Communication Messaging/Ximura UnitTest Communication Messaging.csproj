@@ -4,11 +4,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{CB25D110-8967-4CBE-91B6-C3D4E4C1BCC8}</ProjectGuid>
+    <ProjectGuid>{05909CCF-5124-464D-B2FB-8DDCA43E3AC5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Ximura.UnitTest.Communication</RootNamespace>
-    <AssemblyName>XimuraUTCommEntities</AssemblyName>
+    <AssemblyName>XimuraUTCommMessaging</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -30,25 +30,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x86\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <OutputPath>bin\x86\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-    <Reference Include="msmdvbanet, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -57,12 +40,11 @@
     <Reference Include="System.Data.DataSetExtensions">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="System.XML" />
-    <Reference Include="System.Xml.Linq">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HTTP\HTTP.cs" />
+    <Compile Include="MessageLoad.cs" />
+    <Compile Include="MIME\MIME.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -70,14 +52,40 @@
       <Project>{7C2684DD-A055-4A7A-88D6-EC5BAE28AEB2}</Project>
       <Name>Ximura Base</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Ximura Communication Entities\Ximura Communication Entities.csproj">
-      <Project>{039133D4-A947-405C-A441-71DF106C9EE5}</Project>
-      <Name>Ximura Communication Entities</Name>
+    <ProjectReference Include="..\..\Ximura Communication Messaging\Ximura Communication Messaging.csproj">
+      <Project>{4EB77EFC-5E84-446B-AA1A-C3121DEF7082}</Project>
+      <Name>Ximura Communication Messaging</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Ximura Data\Ximura Data.csproj">
-      <Project>{7727E180-73B7-474B-84F6-BF0C6FFB181E}</Project>
-      <Name>Ximura Data</Name>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="HTTP\Examples\http1_rq.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="HTTP\Examples\httpMime1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="HTTP\Examples\http1_rs.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="HTTP\Examples\http2_rq.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="HTTP\Examples\http2_rs.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="HTTP\Examples\http3_rq.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="HTTP\Examples\http3_rs.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="HTTP\Examples\HTTPChuckedTest1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="MIME\Examples\MimeExample1.mht" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="MIME\Examples\MimeExample2.mht" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

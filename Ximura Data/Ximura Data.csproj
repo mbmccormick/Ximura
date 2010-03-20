@@ -209,34 +209,8 @@
     </Compile>
     <Compile Include="Data\XmlContent\XmlContent_Serialization.cs">
     </Compile>
-    <Compile Include="Helper\ArrayHelper\Exists.cs" />
-    <Compile Include="Helper\ArrayHelper\MatchCollection.cs" />
-    <Compile Include="Helper\ArrayHelper\MatchCollectionState.cs" />
-    <Compile Include="Helper\ArrayHelper\MatchSequence.cs" />
-    <Compile Include="Helper\ArrayHelper\FindPosition.cs" />
-    <Compile Include="Helper\ArrayHelper\MatchState.cs" />
-    <Compile Include="Helper\ArrayHelper\MatchTerminator.cs" />
-    <Compile Include="Helper\ArrayHelper\Range.cs" />
     <Compile Include="Helper\XsdResolver\ContentXsdResolver.cs" />
     <Compile Include="Helper\XsdResolver\ContentXsdResolver_Static.cs" />
-    <Compile Include="Messaging\Exceptions\MaxSizeMessageException.cs" />
-    <Compile Include="Messaging\Exceptions\MessageException.cs" />
-    <Compile Include="Messaging\Exceptions\MessageLoadException.cs" />
-    <Compile Include="Messaging\HeaderFragment.cs" />
-    <Compile Include="Messaging\HeaderBodyMessage.cs" />
-    <Compile Include="Messaging\HeaderFragmentMultiPart.cs" />
-    <Compile Include="Messaging\IXimuraHeaderFragment.cs" />
-    <Compile Include="Messaging\Message.cs" />
-    <Compile Include="Messaging\MessageBase.cs" />
-    <Compile Include="Messaging\MessageCRLFFragment.cs" />
-    <Compile Include="Messaging\MessageFragment.cs" />
-    <Compile Include="Messaging\MessageStreamBase.cs" />
-    <Compile Include="Messaging\Termination\FragmentTerminationType.cs" />
-    <Compile Include="Messaging\Termination\MessageGenericTerminatorBase.cs" />
-    <Compile Include="Messaging\Termination\MessageTerminatorBase.cs" />
-    <Compile Include="Messaging\Termination\MessageTerminatorCRLFNoFolding.cs" />
-    <Compile Include="Messaging\Termination\MessageTerminatorCRLFFolding.cs" />
-    <Compile Include="Messaging\Termination\State\CRLFMatchCollectionState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

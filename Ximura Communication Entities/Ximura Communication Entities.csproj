@@ -8,7 +8,7 @@
     <ProjectGuid>{039133D4-A947-405C-A441-71DF106C9EE5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Ximura.Communication.Entities</RootNamespace>
+    <RootNamespace>Ximura.Communication</RootNamespace>
     <AssemblyName>XimuraCommEntities</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -156,71 +156,10 @@
     </Compile>
     <Compile Include="Entities\XHTML\XHTMLDocument.cs">
     </Compile>
-    <Compile Include="Messages\FileBasedStorageMessage\FileBasedStorageMessage.cs" />
-    <Compile Include="Messages\FileBasedStorageMessage\Fragments\FileBasedStorageMessageFragment.cs" />
-    <Compile Include="Messages\Helper\ContentType.cs" />
-    <Compile Include="Messages\HTTP\Fragments\HTMLBodyFragment.cs" />
-    <Compile Include="Messages\HTTP\Fragments\HTMLErrorBodyFragment.cs" />
-    <Compile Include="Messages\HTTP\Fragments\HTTPRequestHeaderFragment.cs" />
-    <Compile Include="Messages\HTTP\Fragments\HTTPResponseHeaderFragment.cs" />
-    <Compile Include="Messages\HTTP\Fragments\WWWFormUrlEncodedBodyFragment.cs" />
-    <Compile Include="Messages\HTTP\HTTPRequestMessage.cs" />
-    <Compile Include="Messages\HTTP\HTTPResponseMessage.cs" />
-    <Compile Include="Messages\InternetMessage\Fragments\BodyFragment.cs" />
-    <Compile Include="Messages\InternetMessage\Fragments\InstructionFragmentBase.cs" />
-    <Compile Include="Messages\InternetMessage\Fragments\InternetMessageFragmentBody.cs" />
-    <Compile Include="Messages\InternetMessage\Fragments\RequestHeaderFragment.cs" />
-    <Compile Include="Messages\InternetMessage\Fragments\ResponseHeaderFragment.cs" />
-    <Compile Include="Messages\InternetMessage\InternetMessage.cs" />
-    <Compile Include="Messages\InternetMessage\InternetMessageRequest.cs" />
-    <Compile Include="Messages\InternetMessage\InternetMessageResponse.cs" />
-    <Compile Include="Messages\InternetMessage\RequestMessage\RequestMessage.cs" />
-    <Compile Include="Messages\InternetMessage\ResponseMessage\MessageTemplate.cs">
-    </Compile>
-    <Compile Include="Messages\InternetMessage\ResponseMessage\ResponseMessage.cs" />
-    <Compile Include="Messages\MimeMessage\Body\MimeMessageBody.cs" />
-    <Compile Include="Messages\MimeMessage\Body\MultipartAlternativeMimeMessageBody.cs" />
-    <Compile Include="Messages\MimeMessage\Body\MultipartDigestMimeMessageBody.cs" />
-    <Compile Include="Messages\MimeMessage\Body\MultipartEncryptedMimeMessageBody.cs" />
-    <Compile Include="Messages\MimeMessage\Body\MultipartFormDataMessageBody.cs" />
-    <Compile Include="Messages\MimeMessage\Body\MultipartMediaMimeMessageBody.cs" />
-    <Compile Include="Messages\MimeMessage\Body\MultipartMixedMimeMessageBody.cs" />
-    <Compile Include="Messages\MimeMessage\Body\MultipartParallelMimeMessageBody.cs" />
-    <Compile Include="Messages\MimeMessage\Body\MultipartRelatedMimeMessageBody.cs" />
-    <Compile Include="Messages\MimeMessage\Body\MultipartReportMimeMessageBody.cs" />
-    <Compile Include="Messages\MimeMessage\Body\MultipartSignedMimeMessageBody.cs" />
-    <Compile Include="Messages\MimeMessage\Fragments\MimeHeaderFragment.cs" />
-    <Compile Include="Messages\MimeMessage\Fragments\MimeMessageFragment.cs" />
-    <Compile Include="Messages\MimeMessage\Fragments\MimeMessageFragmentBody.cs" />
-    <Compile Include="Messages\MimeMessage\Fragments\PreambleMimeMessageFragment.cs" />
-    <Compile Include="Messages\MimeMessage\Fragments\Termination\MimeMatchCollectionState.cs" />
-    <Compile Include="Messages\MimeMessage\Fragments\Termination\MimeMessageTerminator.cs" />
-    <Compile Include="Messages\MimeMessage\Interface\IXIMSMimeMessageLoad.cs" />
-    <Compile Include="Messages\MimeMessage\MimeHelper.cs" />
-    <Compile Include="Messages\MimeMessage\MimeMessage.cs" />
-    <Compile Include="Messages\POP3\POP3RequestMessage.cs" />
-    <Compile Include="Messages\POP3\POP3ResponseMessage.cs" />
-    <Compile Include="Messages\POP3\POP3StatusCodes.cs" />
-    <Compile Include="Messages\SIP\SIPInternetMessage.cs" />
-    <Compile Include="Messages\SMTP\Fragments\MailBodyBlobFragment.cs" />
-    <Compile Include="Messages\SMTP\SMTPDataMessage.cs" />
-    <Compile Include="Messages\SMTP\SMTPDataRequestMessage.cs" />
-    <Compile Include="Messages\SMTP\SMTPDataResponseMessage.cs" />
-    <Compile Include="Messages\SMTP\SMTPEnvelopeMessage.cs" />
-    <Compile Include="Messages\SMTP\SMTPMailMessage.cs" />
-    <Compile Include="Messages\SMTP\SMTPMailMessageEnvelope.cs" />
-    <Compile Include="Messages\SMTP\SMTPRequestMessage.cs" />
-    <Compile Include="Messages\SMTP\SMTPResponseMessage.cs" />
-    <Compile Include="Messages\SMTP\SMTPStatusCodes.cs" />
-    <Compile Include="Messages\Telnet\TelnetRequestMessage.cs" />
-    <Compile Include="Messages\Telnet\TelnetRequestPasswordMessage.cs" />
-    <Compile Include="Messages\Telnet\TelnetRequestUsernameMessage.cs" />
-    <Compile Include="Messages\Telnet\TelnetResponseMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Entities\Atom\_Documentation\RFC 4287 %28rfc4287%29 - The Atom Syndication Format.mht" />
-    <None Include="Messages\InternetMessage\_Documentation\RFC 2822 - Internet Message Format.mht" />
     <EmbeddedResource Include="Resources\SiteMap.xsd" />
     <EmbeddedResource Include="Resources\OpenSocial.xsd" />
     <EmbeddedResource Include="Resources\Facebook.xsd" />
