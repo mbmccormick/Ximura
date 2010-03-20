@@ -10,7 +10,7 @@
 //     Paul Stancer - initial implementation
 // *******************************************************************************
 #endregion
-﻿#region using
+#region using
 using System;
 using System.Linq;
 using System.Collections;
@@ -19,18 +19,11 @@ using System.Text;
 #endregion
 namespace Ximura
 {
-    public static partial class ArrayHelper
+    public struct MatchTerminatorResult
     {
-        public static bool Contains<T>(this IEnumerable<T> items, Predicate<T> action)
-        {
-            if (items == null) throw new ArgumentNullException("items");
-            if (action == null) throw new ArgumentNullException("action");
-
-            foreach (T item in items)
-                if (action(item))
-                    return true;
-
-            return false;
-        }
+        public int Length;
+        public bool CanContinue;
+        public bool IsTerminator;
+        public MatchTerminatorStatus Status;
     }
 }

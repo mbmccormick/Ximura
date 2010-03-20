@@ -19,33 +19,6 @@ using System.Text;
 #endregion
 namespace Ximura
 {
-    public struct MatchTerminatorResult
-    {
-        public int Length;
-        public bool CanContinue;
-        public bool IsTerminator;
-        public MatchTerminatorStatus Status;
-    }
-
-    [Flags]
-    public enum MatchTerminatorStatus
-    {
-        NotSet = 0,
-
-        Fail = 1,
-        FailNoLength = 9,
-
-        Success = 2,
-        SuccessReset = 34,
-        SuccessNoLength = 10,
-        SuccessNoLengthReset = 42,
-
-        SuccessPartial = 4,
-        NoLength = 8,
-        Exception = 16,
-        Reset = 32
-    }
-
     /// <summary>
     /// This structure is used to hold the matching array.
     /// </summary>
@@ -206,7 +179,6 @@ namespace Ximura
         }
         #endregion // Reset()
 
-
         #region Validate(TSource item)
         protected virtual MatchTerminatorStatus Validate(TSource item, MatchTerminatorResult currentResult)
         {
@@ -221,123 +193,4 @@ namespace Ximura
         }
         #endregion // Validate(TSource item)
     }
-
-    public class MatchSequenceTerminator<TSource, TMatch> : MatchTerminator<TSource, TMatch>
-    {
-        #region Constructor
-        public MatchSequenceTerminator(IEnumerable<TMatch> Terminator, bool CanScan)
-            : base(Terminator, CanScan)
-        {
-
-        }
-
-        public MatchSequenceTerminator(IEnumerable<TMatch> Terminator, bool CanScan,
-            Func<TSource, MatchTerminatorResult, MatchTerminatorStatus> Predicate, Func<MatchTerminatorResult, Queue<TSource>, TSource, long, bool> PredicateTerminator)
-            : base(Terminator, CanScan, Predicate, PredicateTerminator)
-        {
-
-        }
-        #endregion // Constructor
-
-        protected override MatchTerminatorStatus Validate(TSource item, MatchTerminatorResult currentResult)
-        {
-            bool result = item.Equals(CurrentTerminator.Current);
-
-            if (!result)
-                return MatchTerminatorStatus.Fail;
-
-            return CurrentTerminator.MoveNext() ?
-                MatchTerminatorStatus.SuccessPartial:MatchTerminatorStatus.Success;
-        }
-    }
-
-    public class MatchSkipTerminator<TSource, TMatch> : MatchTerminator<TSource, TMatch>
-    {
-        #region Constructor
-        public MatchSkipTerminator(IEnumerable<TMatch> Terminator, bool CanScan)
-            : base(Terminator, CanScan)
-        {
-
-        }
-
-        public MatchSkipTerminator(IEnumerable<TMatch> Terminator, bool CanScan,
-            Func<TSource, MatchTerminatorResult, MatchTerminatorStatus> Predicate, 
-            Func<MatchTerminatorResult, Queue<TSource>, TSource, long, bool> PredicateTerminator)
-            : base(Terminator, CanScan, Predicate, PredicateTerminator)
-        {
-
-        }
-        #endregion // Constructor
-
-        protected override MatchTerminatorStatus Validate(TSource item, MatchTerminatorResult currentResult)
-        {
-            bool result = Terminator.Contains(t => t.Equals(item));
-
-            return result ? MatchTerminatorStatus.SuccessPartial : MatchTerminatorStatus.SuccessNoLength;
-        }
-
-    }
-
-    public class MatchExceptionTerminator<TSource, TMatch> : MatchTerminator<TSource, TMatch>
-    {
-        #region Constructor
-        public MatchExceptionTerminator(IEnumerable<TMatch> Terminator)
-            : base(Terminator, false)
-        {
-
-        }
-
-        public MatchExceptionTerminator(IEnumerable<TMatch> Terminator, bool CanScan,
-            Func<TSource, MatchTerminatorResult, MatchTerminatorStatus> Predicate, 
-            Func<MatchTerminatorResult, Queue<TSource>, TSource, long, bool> PredicateTerminator)
-            : base(Terminator, CanScan, Predicate, PredicateTerminator)
-        {
-
-        }
-        #endregion // Constructor
-
-        protected override MatchTerminatorStatus Validate(TSource item, MatchTerminatorResult currentResult)
-        {
-            bool result = Terminator.Contains(t => t.Equals(item));
-
-            return result ? MatchTerminatorStatus.Fail : MatchTerminatorStatus.SuccessNoLength;
-        }
-
-    }
-
-    public class MatchSequenceSkipOrFailTerminator<TSource, TMatch> : MatchTerminator<TSource, TMatch>
-    {
-        #region Constructor
-        public MatchSequenceSkipOrFailTerminator(IEnumerable<TMatch> Terminator)
-            : base(Terminator, false)
-        {
-
-        }
-
-        public MatchSequenceSkipOrFailTerminator(IEnumerable<TMatch> Terminator, bool CanScan,
-            Func<TSource, MatchTerminatorResult, MatchTerminatorStatus> Predicate, Func<MatchTerminatorResult, Queue<TSource>, TSource, long, bool> PredicateTerminator)
-            : base(Terminator, CanScan, Predicate, PredicateTerminator)
-        {
-
-        }
-        #endregion // Constructor
-
-        protected override MatchTerminatorStatus Validate(TSource item, MatchTerminatorResult currentResult)
-        {
-            bool result = item.Equals(CurrentTerminator.Current);
-
-            if (!result)
-                return currentResult.Length == 0 ? MatchTerminatorStatus.SuccessNoLength : MatchTerminatorStatus.Fail;
-
-            return CurrentTerminator.MoveNext() ?
-                MatchTerminatorStatus.SuccessPartial : MatchTerminatorStatus.Success;
-        }
-
-        protected override bool ValidateTerminator(MatchTerminatorResult result, Queue<TSource> terminator, TSource currentItem, long length)
-        {
-            return result.Length>0;
-        }
-    }
-
-
 }

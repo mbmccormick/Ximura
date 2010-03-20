@@ -278,14 +278,22 @@
     <Compile Include="Component\ElementSite.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Helper\ArrayHelper\Exists.cs" />
-    <Compile Include="Helper\ArrayHelper\FindPosition.cs" />
+    <Compile Include="Helper\ArrayHelper\ArrayHelper.cs" />
+    <Compile Include="Helper\ArrayHelper\ArrayHelper_Exists.cs" />
+    <Compile Include="Helper\ArrayHelper\ArrayHelper_FindPosition.cs" />
+    <Compile Include="Helper\ArrayHelper\ArrayHelper_Match.cs" />
+    <Compile Include="Helper\ArrayHelper\ArrayHelper_Range.cs" />
     <Compile Include="Helper\ArrayHelper\MatchCollection.cs" />
     <Compile Include="Helper\ArrayHelper\MatchCollectionState.cs" />
+    <Compile Include="Helper\ArrayHelper\MatchExceptionTerminator.cs" />
     <Compile Include="Helper\ArrayHelper\MatchSequence.cs" />
+    <Compile Include="Helper\ArrayHelper\MatchSequenceSkipOrFailTerminator.cs" />
+    <Compile Include="Helper\ArrayHelper\MatchSequenceTerminator.cs" />
+    <Compile Include="Helper\ArrayHelper\MatchSkipTerminator.cs" />
     <Compile Include="Helper\ArrayHelper\MatchState.cs" />
     <Compile Include="Helper\ArrayHelper\MatchTerminator.cs" />
-    <Compile Include="Helper\ArrayHelper\Range.cs" />
+    <Compile Include="Helper\ArrayHelper\MatchTerminatorResult.cs" />
+    <Compile Include="Helper\ArrayHelper\MatchTerminatorStatus.cs" />
     <Compile Include="Helper\Bit\BitHelper.cs" />
     <Compile Include="Helper\Bit\BitMask.cs" />
     <Compile Include="Helper\Command.cs" />

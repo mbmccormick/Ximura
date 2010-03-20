@@ -51,13 +51,13 @@ namespace Ximura.UnitTest.Communication
             try
             {
                 MessageLoad<HTTPRequestMessage> testHTTP_RQ1 =
-                    new MessageLoad<HTTPRequestMessage>("Ximura.UnitTest.Communication.HTTP.Examples.http1_rq.txt, XimuraUTCommEntities");
+                    new MessageLoad<HTTPRequestMessage>("Ximura.UnitTest.Communication.HTTP.Examples.http1_rq.txt, XimuraUTCommMessaging");
 
                 MessageLoad<HTTPRequestMessage> testHTTP_RQ2 =
-                    new MessageLoad<HTTPRequestMessage>("Ximura.UnitTest.Communication.HTTP.Examples.http2_rq.txt, XimuraUTCommEntities");
+                    new MessageLoad<HTTPRequestMessage>("Ximura.UnitTest.Communication.HTTP.Examples.http2_rq.txt, XimuraUTCommMessaging");
 
                 MessageLoad<HTTPRequestMessage> testHTTP_RQ3 =
-                    new MessageLoad<HTTPRequestMessage>("Ximura.UnitTest.Communication.HTTP.Examples.http3_rq.txt, XimuraUTCommEntities");
+                    new MessageLoad<HTTPRequestMessage>("Ximura.UnitTest.Communication.HTTP.Examples.http3_rq.txt, XimuraUTCommMessaging");
             }
             catch (Exception ex)
             {
