@@ -26,6 +26,9 @@ namespace Ximura.Communication
     public class MimeMessage : HeaderBodyMessage, IXimuraMimeMessageInitialize
     {
         #region Declarations
+        /// <summary>
+        /// This is the primary boundary for the MIME message.
+        /// </summary>
         protected string mBoundary;
         /// This is the encoding type passed in the load constructor.
         /// </summary>
@@ -51,6 +54,16 @@ namespace Ximura.Communication
             {
                 return FragmentSetNext(FragmentHeaderInitialType);
             }
+
+            //if (FragmentCurrent is HeaderFragmentMultiPart)
+            //{
+            //    HeaderFragmentMultiPart header = FragmentCurrent as HeaderFragmentMultiPart;
+
+            //    if (header.Field.ToLowerInvariant() == "content-type")
+            //    {
+            //        mBoundary = header.FieldData;
+            //    }
+            //}
 
             if (FragmentCurrent.IsTerminator)
             {

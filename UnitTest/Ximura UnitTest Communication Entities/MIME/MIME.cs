@@ -45,9 +45,11 @@ namespace Ximura.UnitTest.Communication
         {
             try
             {
-                MessageLoad<MimeMessage> testMIME_1 =
-                    new MessageLoad<MimeMessage>("Ximura.UnitTest.Communication.MIME.Examples.MimeExample.mht, XimuraUTCommEntities");
+                //MessageLoad<MimeMessage> testMIME_1 =
+                //    new MessageLoad<MimeMessage>("Ximura.UnitTest.Communication.MIME.Examples.MimeExample1.mht, XimuraUTCommEntities");
 
+                MessageLoad<MimeMessage> testMIME_2 =
+                    new MessageLoad<MimeMessage>("Ximura.UnitTest.Communication.MIME.Examples.MimeExample2.mht, XimuraUTCommEntities");
 
             }
             catch (Exception ex)

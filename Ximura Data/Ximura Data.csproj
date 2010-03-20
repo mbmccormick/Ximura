@@ -224,6 +224,8 @@
     <Compile Include="Messaging\Exceptions\MessageLoadException.cs" />
     <Compile Include="Messaging\HeaderFragment.cs" />
     <Compile Include="Messaging\HeaderBodyMessage.cs" />
+    <Compile Include="Messaging\HeaderFragmentMultiPart.cs" />
+    <Compile Include="Messaging\IXimuraHeaderFragment.cs" />
     <Compile Include="Messaging\Message.cs" />
     <Compile Include="Messaging\MessageBase.cs" />
     <Compile Include="Messaging\MessageCRLFFragment.cs" />

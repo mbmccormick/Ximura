@@ -42,34 +42,68 @@ namespace Ximura.UnitTest.Communication
         }
         #endregion 
 
+        /// <summary>
+        /// This test validate the standard HTTP request message parsing.
+        /// </summary>
         [TestMethod]
-        public void HTTPMessages()
+        public void HTTPRequestMessages()
         {
             try
             {
                 MessageLoad<HTTPRequestMessage> testHTTP_RQ1 =
-                    new MessageLoad<HTTPRequestMessage>("Ximura.UnitTest.Communication.HTTP.Examples.http_rq.txt, XimuraUTCommEntities");
-
-                MessageLoad<HTTPResponseMessage> testHTTP_RS1 =
-                    new MessageLoad<HTTPResponseMessage>("Ximura.UnitTest.Communication.HTTP.Examples.http_rs.txt, XimuraUTCommEntities");
+                    new MessageLoad<HTTPRequestMessage>("Ximura.UnitTest.Communication.HTTP.Examples.http1_rq.txt, XimuraUTCommEntities");
 
                 MessageLoad<HTTPRequestMessage> testHTTP_RQ2 =
                     new MessageLoad<HTTPRequestMessage>("Ximura.UnitTest.Communication.HTTP.Examples.http2_rq.txt, XimuraUTCommEntities");
 
-                MessageLoad<HTTPResponseMessage> testHTTP_RS2 =
-                    new MessageLoad<HTTPResponseMessage>("Ximura.UnitTest.Communication.HTTP.Examples.http2_rs.txt, XimuraUTCommEntities");
-
                 MessageLoad<HTTPRequestMessage> testHTTP_RQ3 =
                     new MessageLoad<HTTPRequestMessage>("Ximura.UnitTest.Communication.HTTP.Examples.http3_rq.txt, XimuraUTCommEntities");
-
-                MessageLoad<HTTPResponseMessage> testHTTP_RS3 =
-                    new MessageLoad<HTTPResponseMessage>("Ximura.UnitTest.Communication.HTTP.Examples.http3_rs.txt, XimuraUTCommEntities");
-
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
+
+        /// <summary>
+        /// This test validate the standard HTTP response message parsing.
+        /// </summary>
+        [TestMethod]
+        public void HTTPResponseMessages()
+        {
+            try
+            {
+                MessageLoad<HTTPResponseMessage> testHTTP_RS1 =
+                    new MessageLoad<HTTPResponseMessage>("Ximura.UnitTest.Communication.HTTP.Examples.http1_rs.txt, XimuraUTCommEntities");
+
+                MessageLoad<HTTPResponseMessage> testHTTP_RS2 =
+                    new MessageLoad<HTTPResponseMessage>("Ximura.UnitTest.Communication.HTTP.Examples.http2_rs.txt, XimuraUTCommEntities");
+
+                MessageLoad<HTTPResponseMessage> testHTTP_RS3 =
+                    new MessageLoad<HTTPResponseMessage>("Ximura.UnitTest.Communication.HTTP.Examples.http3_rs.txt, XimuraUTCommEntities");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// This test validates the Multipart/FormData mime parsing capabilities of the HTTPRequestMessage.
+        /// </summary>
+        [TestMethod]
+        public void HTTPMultipartFormDataRequestParse()
+        {
+            try
+            {
+                MessageLoad<HTTPRequestMessage> testHTTP_RQ4 =
+                    new MessageLoad<HTTPRequestMessage>("Ximura.UnitTest.Communication.HTTP.Examples.httpMime1.txt, XimuraUTCommEntities");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
     }
 }

@@ -49,7 +49,7 @@ namespace Ximura.UnitTest.Communication
         {
             M tempMessage = new M();
             tempMessage.PoolManager = new PoolManager();
-            byte[] blob = new byte[1000];
+            byte[] blob = new byte[10000];
 
             tempMessage.Load();
 

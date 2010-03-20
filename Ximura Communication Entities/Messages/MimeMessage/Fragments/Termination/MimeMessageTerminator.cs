@@ -31,7 +31,6 @@ namespace Ximura.Communication
     /// </summary>
     public class MimeMessageTerminator : MessageGenericTerminatorBase<MimeMatchCollectionState>
     {
-
         #region Constructor
         /// <summary>
         /// The default constructor
@@ -42,7 +41,6 @@ namespace Ximura.Communication
         }
         #endregion
 
-
         #region Initialize(string boundary)
         /// <summary>
         /// This method initializes the message terminator with the boundary string.
@@ -51,7 +49,6 @@ namespace Ximura.Communication
         public virtual void Initialize(string boundary)
         {
             base.mState = new MimeMatchCollectionState(boundary);
-
 
             Initialized = true;
         }

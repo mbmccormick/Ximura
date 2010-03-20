@@ -85,13 +85,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="HTTP\Examples\http_rq.txt" />
+    <EmbeddedResource Include="HTTP\Examples\http1_rq.txt" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="HTTP\Examples\http3_rs.txt" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="HTTP\Examples\http_rs.txt" />
+    <EmbeddedResource Include="HTTP\Examples\http1_rs.txt" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="HTTP\Examples\http2_rq.txt" />
@@ -106,7 +106,17 @@
     <EmbeddedResource Include="HTTP\Examples\HTTPChuckedTest1.txt" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="MIME\Examples\MimeExample.mht" />
+    <EmbeddedResource Include="MIME\Examples\MimeExample1.mht" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="MIME\Examples\MimeExample2.mht" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="HTTP\Examples\httpMime1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="SIP\Examples\" />
+    <Folder Include="SMTP\Examples\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
