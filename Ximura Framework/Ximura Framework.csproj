@@ -10,14 +10,14 @@
     </ApplicationIcon>
     <AssemblyKeyContainerName>
     </AssemblyKeyContainerName>
-    <AssemblyName>Ximura</AssemblyName>
+    <AssemblyName>XimuraFramework</AssemblyName>
     <AssemblyOriginatorKeyFile>Properties\ximura.snk</AssemblyOriginatorKeyFile>
     <DefaultClientScript>JScript</DefaultClientScript>
     <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
     <DefaultTargetSchema>IE50</DefaultTargetSchema>
     <DelaySign>false</DelaySign>
     <OutputType>Library</OutputType>
-    <RootNamespace>Ximura</RootNamespace>
+    <RootNamespace>Ximura.Framework</RootNamespace>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
     <StartupObject>
     </StartupObject>
@@ -209,10 +209,9 @@
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <ProjectReference Include="..\Ximura Base\Ximura Base.csproj">
-      <Name>Ximura Base</Name>
-      <Project>{7C2684DD-A055-4A7A-88D6-EC5BAE28AEB2}</Project>
-      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    <ProjectReference Include="..\Ximura Communication Entities\Ximura Communication Entities.csproj">
+      <Project>{039133D4-A947-405C-A441-71DF106C9EE5}</Project>
+      <Name>Ximura Communication Entities</Name>
     </ProjectReference>
     <ProjectReference Include="..\Ximura Data Persistence\Ximura Data Persistence.csproj">
       <Project>{79C7BB97-6ABB-4E63-829D-5B5F7A76F987}</Project>
@@ -221,6 +220,10 @@
     <ProjectReference Include="..\Ximura Data\Ximura Data.csproj">
       <Project>{7727E180-73B7-474B-84F6-BF0C6FFB181E}</Project>
       <Name>Ximura Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ximura\Ximura.csproj">
+      <Project>{7C2684DD-A055-4A7A-88D6-EC5BAE28AEB2}</Project>
+      <Name>Ximura</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

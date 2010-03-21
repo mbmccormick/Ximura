@@ -110,10 +110,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Ximura Base\Ximura.csproj">
-      <Project>{7C2684DD-A055-4A7A-88D6-EC5BAE28AEB2}</Project>
-      <Name>Ximura</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\Ximura Communication Entities\Ximura Communication Entities.csproj">
       <Project>{039133D4-A947-405C-A441-71DF106C9EE5}</Project>
       <Name>Ximura Communication Entities</Name>
@@ -126,6 +122,10 @@
       <Project>{7727E180-73B7-474B-84F6-BF0C6FFB181E}</Project>
       <Name>Ximura Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Ximura Framework\Ximura Framework.csproj">
+      <Project>{218ED92E-5D40-40DF-B6A2-11DEF3133589}</Project>
+      <Name>Ximura Framework</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Ximura Windows\Base\Ximura Windows Base.csproj">
       <Project>{6AB7C1E0-3CCE-47AA-8CB1-583A3368C10F}</Project>
       <Name>Ximura Windows Base</Name>
@@ -133,6 +133,10 @@
     <ProjectReference Include="..\..\..\Ximura Windows\Service\Ximura Windows Service.csproj">
       <Project>{FA9E4C4F-DA88-43F1-8AA0-C31E609450F5}</Project>
       <Name>Ximura Windows Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Ximura\Ximura.csproj">
+      <Project>{7C2684DD-A055-4A7A-88D6-EC5BAE28AEB2}</Project>
+      <Name>Ximura</Name>
     </ProjectReference>
     <ProjectReference Include="..\Common\XS SocialNetworking Common.csproj">
       <Project>{D9A6D00E-00EB-40C2-BDF3-D1D82C818532}</Project>

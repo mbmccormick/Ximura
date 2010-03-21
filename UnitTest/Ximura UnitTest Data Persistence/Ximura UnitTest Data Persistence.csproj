@@ -67,10 +67,6 @@
     <Compile Include="PersistenceTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Ximura Base\Ximura.csproj">
-      <Project>{7C2684DD-A055-4A7A-88D6-EC5BAE28AEB2}</Project>
-      <Name>Ximura</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Ximura Data Persistence\Ximura Data Persistence.csproj">
       <Project>{79C7BB97-6ABB-4E63-829D-5B5F7A76F987}</Project>
       <Name>Ximura Data Persistence</Name>
@@ -78,6 +74,10 @@
     <ProjectReference Include="..\..\Ximura Data\Ximura Data.csproj">
       <Project>{7727E180-73B7-474B-84F6-BF0C6FFB181E}</Project>
       <Name>Ximura Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Ximura\Ximura.csproj">
+      <Project>{7C2684DD-A055-4A7A-88D6-EC5BAE28AEB2}</Project>
+      <Name>Ximura</Name>
     </ProjectReference>
     <ProjectReference Include="..\Ximura UnitTest Data\Ximura UnitTest Data.csproj">
       <Project>{D42810A1-F0D3-4233-9554-625C51E2FEE7}</Project>

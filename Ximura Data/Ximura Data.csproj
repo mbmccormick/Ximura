@@ -214,12 +214,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Ximura Base\Ximura.csproj">
-      <Project>{7C2684DD-A055-4A7A-88D6-EC5BAE28AEB2}</Project>
-      <Name>Ximura</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Data\DataContent\DataContent.resx">
       <DependentUpon>DataContent.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -243,6 +237,12 @@
   <ItemGroup>
     <Content Include="Properties\epl-v10.html" />
     <Content Include="Properties\Release Notes.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ximura\Ximura.csproj">
+      <Project>{7C2684DD-A055-4A7A-88D6-EC5BAE28AEB2}</Project>
+      <Name>Ximura</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="_Documentation\" />

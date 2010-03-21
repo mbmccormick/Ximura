@@ -4,55 +4,6 @@
         <name>XimuraWinServ</name>
     </assembly>
     <members>
-        <member name="T:Ximura.Windows.AppServerInstaller">
-            <summary>
-            The ApplicationServiceInstaller is responsible for providing the config file from the base stream.
-            </summary>
-        </member>
-        <member name="M:Ximura.Windows.AppServerInstaller.#ctor(Ximura.Windows.AppServerAttribute)">
-            <summary>
-            This is the default constructor for the service.
-            </summary>
-        </member>
-        <member name="M:Ximura.Windows.AppServerInstaller.Install(System.Collections.IDictionary)">
-            <summary>
-            This override of the install method copies any config files to the install directory
-            </summary>
-            <param name="stateSaver">The state saver</param>
-        </member>
-        <member name="M:Ximura.Windows.AppServerInstaller.Uninstall(System.Collections.IDictionary)">
-            <summary>
-            This method uninstalls the application.
-            </summary>
-            <param name="savedState"></param>
-        </member>
-        <member name="M:Ximura.Windows.AppServerInstaller.ProcessAssemblies(System.Collections.IDictionary)">
-            <summary>
-            This method processes the installer assemblies
-             the export the config file where specified.
-            </summary>
-            <param name="savedState">The saved state parameter.</param>
-        </member>
-        <member name="M:Ximura.Windows.AppServerInstaller.EventLoggersRemove(System.Collections.IDictionary)">
-            <summary>
-            This method removes any installed loggers.
-            </summary>
-            <param name="savedState">The saved state that contains the log install history.</param>
-        </member>
-        <member name="M:Ximura.Windows.AppServerInstaller.EventLoggerRemove(System.String)">
-            <summary>
-            This method removes the specified logger.
-            </summary>
-            <param name="logName">The log name to remove.</param>
-        </member>
-        <member name="M:Ximura.Windows.AppServerInstaller.GetArrayList(System.Collections.IDictionary,System.String)">
-            <summary>
-            This method retrieves the array list.
-            </summary>
-            <param name="savedState">The persisted state.</param>
-            <param name="key">The collection key.</param>
-            <returns></returns>
-        </member>
         <member name="T:Ximura.Windows.ServiceInstallerAttribute">
             <summary>
             This attribute specifies the service installer properties.
@@ -138,6 +89,55 @@
             <summary>
             Continues this application after it has been paused
             </summary>
+        </member>
+        <member name="T:Ximura.Windows.AppServerInstaller">
+            <summary>
+            The ApplicationServiceInstaller is responsible for providing the config file from the base stream.
+            </summary>
+        </member>
+        <member name="M:Ximura.Windows.AppServerInstaller.#ctor(Ximura.Windows.AppServerAttribute)">
+            <summary>
+            This is the default constructor for the service.
+            </summary>
+        </member>
+        <member name="M:Ximura.Windows.AppServerInstaller.Install(System.Collections.IDictionary)">
+            <summary>
+            This override of the install method copies any config files to the install directory
+            </summary>
+            <param name="stateSaver">The state saver</param>
+        </member>
+        <member name="M:Ximura.Windows.AppServerInstaller.Uninstall(System.Collections.IDictionary)">
+            <summary>
+            This method uninstalls the application.
+            </summary>
+            <param name="savedState"></param>
+        </member>
+        <member name="M:Ximura.Windows.AppServerInstaller.ProcessAssemblies(System.Collections.IDictionary)">
+            <summary>
+            This method processes the installer assemblies
+             the export the config file where specified.
+            </summary>
+            <param name="savedState">The saved state parameter.</param>
+        </member>
+        <member name="M:Ximura.Windows.AppServerInstaller.EventLoggersRemove(System.Collections.IDictionary)">
+            <summary>
+            This method removes any installed loggers.
+            </summary>
+            <param name="savedState">The saved state that contains the log install history.</param>
+        </member>
+        <member name="M:Ximura.Windows.AppServerInstaller.EventLoggerRemove(System.String)">
+            <summary>
+            This method removes the specified logger.
+            </summary>
+            <param name="logName">The log name to remove.</param>
+        </member>
+        <member name="M:Ximura.Windows.AppServerInstaller.GetArrayList(System.Collections.IDictionary,System.String)">
+            <summary>
+            This method retrieves the array list.
+            </summary>
+            <param name="savedState">The persisted state.</param>
+            <param name="key">The collection key.</param>
+            <returns></returns>
         </member>
     </members>
 </doc>

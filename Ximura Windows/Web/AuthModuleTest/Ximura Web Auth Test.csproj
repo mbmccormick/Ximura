@@ -83,6 +83,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Ximura\Ximura.csproj">
+      <Project>{7C2684DD-A055-4A7A-88D6-EC5BAE28AEB2}</Project>
+      <Name>Ximura</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AuthModule\Ximura Web Auth.csproj">
       <Project>{100B22CF-CA0B-4A70-B655-BBAB350F4891}</Project>
       <Name>Ximura Web Auth</Name>
