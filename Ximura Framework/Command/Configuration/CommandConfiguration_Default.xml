@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Configuration 
+  xmlns="http://schema.ximura.org/configuration/command/1.0" 
+  xmlns:ximura="http://schema.ximura.org/core">
+  
+  <ximura:entity>
+    <ximura:tid>DB4784B5-7B8C-4bf5-96BD-174A1ECC90B9</ximura:tid>
+    <ximura:cid></ximura:cid>
+    <ximura:vid></ximura:vid>
+  </ximura:entity>
+  
+  <commandconfig>
+    <name></name>
+    <description></description>
+    <enabled>true</enabled>
+    <priority>normal</priority>
+    <usersessionrealm></usersessionrealm>
+    <processsession required="true" usesystemcredentials="true"/>
+  </commandconfig>
+
+  <timerpoll enabled="false" autostart="false"
+             polltimestartinhhmmss="" polltimeendinhhmmss=""
+             polltimeenabled="true" polltimerepeatvalue="1" polltimerepeattype="s"/>
+
+  <settings/>
+
+  <childconfigurations/>
+
+</Configuration>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ResourceCatalog" targetNamespace="http://schema.ximura.org/persistence/resourcecatalog/1.0" elementFormDefault="qualified" xmlns="http://schema.ximura.org/persistence/resourcecatalog/1.0" xmlns:mstns="http://schema.ximura.org/persistence/resourcecatalog/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="ResourceCatalog">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Resource" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:attribute name="reftype" type="xs:string" use="required" />
+            <xs:attribute name="refvalue" type="xs:string" use="required" />
+            <xs:attribute name="id" type="xs:string" use="required" />
+            <xs:attribute name="tid" type="xs:string" use="required" />
+            <xs:attribute name="cid" type="xs:string" use="required" />
+            <xs:attribute name="vid" type="xs:string" use="required" />
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

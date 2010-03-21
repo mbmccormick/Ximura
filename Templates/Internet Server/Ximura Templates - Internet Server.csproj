@@ -62,14 +62,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="InternetAppServer.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Ximura Base\Ximura Base.csproj">
+    <ProjectReference Include="..\..\Ximura Base\Ximura.csproj">
       <Project>{7C2684DD-A055-4A7A-88D6-EC5BAE28AEB2}</Project>
-      <Name>Ximura Base</Name>
+      <Name>Ximura</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Ximura Communication\Ximura Communication.csproj">
       <Project>{D944608C-F5EA-4F48-9F8A-C9523EFCCA03}</Project>
@@ -82,10 +81,6 @@
     <ProjectReference Include="..\..\Ximura Windows\Base\Ximura Windows Base.csproj">
       <Project>{6AB7C1E0-3CCE-47AA-8CB1-583A3368C10F}</Project>
       <Name>Ximura Windows Base</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Ximura\Ximura.csproj">
-      <Project>{218ED92E-5D40-40DF-B6A2-11DEF3133589}</Project>
-      <Name>Ximura</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

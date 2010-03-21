@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<AppServerCommandConfiguration xmlns="http://schema.ximura.org/server/configuration/command/1.0"
+  xmlns:cmd="http://schema.ximura.org/configuration/command/1.0" xmlns:ximura="http://schema.ximura.org/core">
+
+  <ximura:entity>
+    <ximura:tid>F8080BB7-F2B5-4b81-8724-378A5726E6AB</ximura:tid>
+    <ximura:cid></ximura:cid>
+    <ximura:vid></ximura:vid>
+  </ximura:entity>
+
+  <cmd:childconfigurations>
+    
+  </cmd:childconfigurations>
+  
+</AppServerCommandConfiguration>

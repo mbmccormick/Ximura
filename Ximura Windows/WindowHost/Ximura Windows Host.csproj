@@ -218,17 +218,13 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Ximura Base\Ximura Base.csproj">
+    <ProjectReference Include="..\..\Ximura Base\Ximura.csproj">
       <Project>{7C2684DD-A055-4A7A-88D6-EC5BAE28AEB2}</Project>
-      <Name>Ximura Base</Name>
+      <Name>Ximura</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Ximura Data\Ximura Data.csproj">
       <Project>{7727E180-73B7-474B-84F6-BF0C6FFB181E}</Project>
       <Name>Ximura Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Ximura\Ximura.csproj">
-      <Project>{218ED92E-5D40-40DF-B6A2-11DEF3133589}</Project>
-      <Name>Ximura</Name>
     </ProjectReference>
     <ProjectReference Include="..\Base\Ximura Windows Base.csproj">
       <Project>{6AB7C1E0-3CCE-47AA-8CB1-583A3368C10F}</Project>

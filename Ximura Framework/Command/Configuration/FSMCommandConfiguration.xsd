@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:fsm="http://schema.ximura.org/configuration/fsm/1.0"
+           xmlns:cmd="http://schema.ximura.org/configuration/command/1.0"
+           xmlns:ximura="http://schema.ximura.org/core"
+           attributeFormDefault="unqualified"
+           elementFormDefault="qualified"
+           targetNamespace="http://schema.ximura.org/configuration/fsm/1.0"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  
+  <xs:import namespace="http://schema.ximura.org/core" />
+  <xs:import namespace="http://schema.ximura.org/configuration/command/1.0" />
+
+  <xs:element name="pool">
+    <xs:complexType>
+      <xs:attribute name="min" type="xs:int" use="required" />
+      <xs:attribute name="prefer" type="xs:int" use="required" />
+      <xs:attribute name="max" type="xs:int" use="optional" />
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="FSMConfiguration">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="ximura:entity" />
+        <xs:element ref="cmd:commandconfig" />
+        <xs:element ref="cmd:settings" />
+        <xs:element ref="cmd:timerpoll" />
+        <xs:element ref="fsm:pool" />
+        <xs:element ref="cmd:childconfigurations" minOccurs ="0" maxOccurs ="1"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

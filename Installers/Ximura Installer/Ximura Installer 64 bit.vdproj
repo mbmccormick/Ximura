@@ -13,48 +13,6 @@
 "SccProvider" = "8:"
     "Hierarchy"
     {
-        "Entry"
-        {
-        "MsmKey" = "8:_1B36AF3D83FAF0DDF497791C9FE3C88F"
-        "OwnerKey" = "8:_BE92013D475D4E22B65D5CE6660B26D1"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_5110EF4AD793AB2304BBD046771DD617"
-        "OwnerKey" = "8:_BE92013D475D4E22B65D5CE6660B26D1"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_5110EF4AD793AB2304BBD046771DD617"
-        "OwnerKey" = "8:_1B36AF3D83FAF0DDF497791C9FE3C88F"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_BE92013D475D4E22B65D5CE6660B26D1"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_BE92013D475D4E22B65D5CE6660B26D1"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_1B36AF3D83FAF0DDF497791C9FE3C88F"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_5110EF4AD793AB2304BBD046771DD617"
-        "MsmSig" = "8:_UNDEFINED"
-        }
     }
     "Configurations"
     {
@@ -126,68 +84,6 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_1B36AF3D83FAF0DDF497791C9FE3C88F"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:XimuraData, Version=3.0.0.32764, Culture=neutral, PublicKeyToken=843d7184ea4cb25b, processorArchitecture=x86"
-                "ScatterAssemblies"
-                {
-                    "_1B36AF3D83FAF0DDF497791C9FE3C88F"
-                    {
-                    "Name" = "8:XimuraData.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:XimuraData.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_EFF68D39ED06412FBC2131BE6F4B272F"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_5110EF4AD793AB2304BBD046771DD617"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:XimuraBase, Version=3.0.0.32761, Culture=neutral, PublicKeyToken=843d7184ea4cb25b, processorArchitecture=x86"
-                "ScatterAssemblies"
-                {
-                    "_5110EF4AD793AB2304BBD046771DD617"
-                    {
-                    "Name" = "8:XimuraBase.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:XimuraBase.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_EFF68D39ED06412FBC2131BE6F4B272F"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
         }
         "FileType"
         {
@@ -244,34 +140,6 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_BE92013D475D4E22B65D5CE6660B26D1"
-            {
-            "SourcePath" = "8:..\\..\\Ximura\\obj\\x86\\Debug\\Ximura.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_EFF68D39ED06412FBC2131BE6F4B272F"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:"
-            "OutputGroupCanonicalName" = "8:Built"
-            "OutputProjectGuid" = "8:{218ED92E-5D40-40DF-B6A2-11DEF3133589}"
-            "ShowKeyOutput" = "11:FALSE"
-                "ExcludeFilters"
-                {
-                }
-            }
         }
         "Registry"
         {

@@ -1,0 +1,3877 @@
+From: <Saved by Microsoft Internet Explorer 5>
+Subject: Integer Programs and Network Models
+Date: Tue, 6 Jun 2006 22:31:54 +0800
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	type="text/html";
+	boundary="----=_NextPart_000_0000_01C689B9.037656C0"
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2900.2869
+
+This is a multi-part message in MIME format.
+
+------=_NextPart_000_0000_01C689B9.037656C0
+Content-Type: text/html;
+	charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://home.ubalt.edu/ntsbarsh/opre640A/partIII.htm
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>Integer Programs and Network Models</TITLE>
+<META http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dwindows-1252">
+<META content=3D2/25/1994 name=3DDATE>
+<META content=3D"Dr. Hossein Arsham" name=3DAuthor><!-- MetaTags Created =
+by: WebPromote http://metatag.webpromote.com/ -->
+<META=20
+content=3D"network optimization,  network optimisation, network =
+optimization and sensitivity analysis, LP marketing application , LP =
+advertising applications, the cutting stock problem, LP application to =
+mixing substances,  optimisation de r=E9seau, optimisation de r=E9seau, =
+optimisation de graphique, optimisation combinatoire, mod=E8les de =
+r=E9seau, probl=E8me de transport, probl=E8me d'affectation, probl=E8me =
+de voie d'acc=E8s le plus court, court-voie d'acc=E8s, probl=E8me =
+maximum d'=E9coulement, voie d'acc=E8s critique, probl=E8me minimum =
+d'=E9coulement de co=FBt, optimisation de r=E9seau et analyse de =
+sensibilit=E9, Netzoptimierung, Netzoptimierung, Diagrammoptimierung, =
+kombinatorische Optimierung, Netzmodelle, Transportproblem, Anweisung =
+Problem, k=FCrzestes Pfadproblem, Kurzpfad, maximales Flussproblem, =
+kritischer Pfad, minimales Kostenflussproblem, Netzoptimierung und =
+Empfindlichkeit Analyse,  ottimizzazione della rete, ottimizzazione =
+della rete, ottimizzazione del grafico, ottimizzazione combinatoria, =
+modelli della rete, problema del trasporto, problema di assegnazione, =
+problema del percorso pi=F9 corto, corto-percorso, problema massimo di =
+flusso, percorso critico, problema minimo di flusso di costo, =
+ottimizzazione della rete ed analisi di sensibilit=E0,  optimization da =
+rede, optimisation da rede, optimization do gr=E1fico, optimization  =
+combinatorial, modelos da rede, problema do transporte, problema da =
+atribui=E7=E3o, o problema o mais curto do trajeto, o curto-trajeto, =
+problema m=E1ximo do fluxo, trajeto cr=EDtico, problema m=EDnimo do =
+fluxo do custo, optimization da rede e an=E1lise da sensibilidade,  =
+optimizaci=F3n de la red, optimizaci=F3n de la red, optimizaci=F3n del =
+gr=E1fico, optimizaci=F3n combinatoria, modelos de la red, problema del =
+transporte, problema de la asignaci=F3n, el problema m=E1s corto del =
+camino, corto-camino, problema m=E1ximo del flujo, camino cr=EDtico, =
+problema m=EDnimo del flujo del coste, optimizaci=F3n de la red y =
+an=E1lisis de la sensibilidad, "=20
+name=3Dkeywords>
+<META=20
+content=3D"The web site contains notes on the methodology of network =
+modeling,  formulation of network problems, and their sensitivity =
+analysis"=20
+name=3Ddescription>
+<META content=3D"MSHTML 6.00.2900.2873" name=3DGENERATOR></HEAD>
+<BODY text=3D#000000 vLink=3D#990000 aLink=3D#551a8b link=3D#0063a4 =
+bgColor=3D#ffffff>
+<BLOCKQUOTE>
+  <H1>
+  <CENTER><FONT color=3D#dc143c size=3D5>Integer Optimization and the =
+Network=20
+  Models</FONT></CENTER></H1>
+  <P><BR>
+  <CENTER><A=20
+  =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/opre/PartIII.htm"=20
+  target=3Dnew><FONT color=3D#dc143c><B>Europe Mirror =
+Site</A></FONT></B><BR><A=20
+  =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/opre/PartIII.htm"=20
+  target=3Dnew><FONT color=3D#dc143c><B>Mirror Site for =
+Asia</B></FONT></A><BR><A=20
+  =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/opre/PartIII.htm"=20
+  target=3Dnew><FONT color=3D#dc143c><B>Mirror Site for Middle=20
+  East</B></FONT></A><BR><A=20
+  href=3D"http://home.ubalt.edu/ntsbarsh/opre640A/partIII.htm" =
+target=3Dnew><FONT=20
+  color=3D#dc143c><B>USA Site</B></FONT></A> </CENTER>
+  <P><BR>
+  <P>
+  <CENTER>Para mis visitantes del mundo de habla hispana, <BR>este sitio =
+se=20
+  encuentra disponible en espa=F1ol en:
+  <P><A =
+href=3D"http://home.ubalt.edu/ntsbarsh/Business-stat/opre/SpanishIN.htm" =
+
+  target=3Dnew><FONT color=3D#dc143c><B>Versi=F3n en =
+Espa=F1ol</B></FONT></A><BR><A=20
+  =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/opre/SpanishIN.htm"=20
+  target=3Dnew><FONT color=3D#dc143c><B>Sitio Espejo para=20
+  Espa=F1a</B></FONT></A><BR><A=20
+  href=3D"http://home.ubalt.edu/ntsbarsh/opre640S/SpanishIN.htm" =
+target=3Dnew><FONT=20
+  color=3D#dc143c><B>Sitio Espejo para Am=E9rica Latina</B></FONT></A> =
+</CENTER>
+  <P>
+  <P><BR>
+  <P>
+  <DD>Network models and integer programs are applicable for an enormous =
+known=20
+  variety of decision problems. Some of these decision problems are =
+really=20
+  physical problems, such as transportation or flow of commodities. Many =
+network=20
+  problems are more of an abstract representations of processes or =
+activities,=20
+  such as the critical path activity network in project management. =
+These=20
+  problems are easily illustrated by using a network of arcs, and nodes. =
+
+  <P>Standard linear program assumes that decision variables are =
+continuous.=20
+  However, in many applications, fractional values may be of little use =
+as shown=20
+  in some presented useful applications.=20
+  <P>
+  <DIV align=3Dright><CITE><A=20
+  href=3D"http://home.ubalt.edu/ntsbarsh/Business-stat/home.html"=20
+  target=3Dnew>Professor Hossein Arsham</A>&nbsp; &nbsp;</CITE></DIV>
+  <P>
+  <P><FONT face=3D"Bookman Old Style" size=3D-1><FONT =
+color=3D#dc143c><B>To search the=20
+  site</B></FONT>, try <U>E</U>dit | <U>F</U>ind in page [Ctrl + f]. =
+Enter a=20
+  word or phrase in the dialogue box, e.g. "<SAMP>parameter " </SAMP>or=20
+  "<SAMP>linear " </SAMP>If the first appearance of the word/phrase is =
+not what=20
+  you are looking for, try <U><SAMP>F</SAMP></U><SAMP>ind =
+Next</SAMP>.</FONT>=20
+  <P>
+  <HR>
+  <FONT color=3D#dc143c size=3D4><B>&nbsp; &nbsp;MENU</B></FONT>=20
+  <OL>
+    <LI><A =
+href=3D"http://home.ubalt.edu/ntsbarsh/opre640A/partIII.htm#rintro"=20
+    target=3Dnew>Introduction to Network Models</A>=20
+    <LI><A=20
+    =
+href=3D"http://home.ubalt.edu/ntsbarsh/opre640A/partIII.htm#rtranpr">Tran=
+sportation=20
+    Problems</A>=20
+    <LI><A=20
+    =
+href=3D"http://home.ubalt.edu/ntsbarsh/opre640A/partIII.htm#rassipr">Assi=
+gnment=20
+    Problems</A>=20
+    <LI><A=20
+    =
+href=3D"http://home.ubalt.edu/ntsbarsh/opre640A/partIII.htm#rsppr">Shorte=
+st=20
+    Path Problems</A>=20
+    <LI><A=20
+    =
+href=3D"http://home.ubalt.edu/ntsbarsh/opre640A/partIII.htm#rmaxflpr">Max=
+imum=20
+    Flow Problems</A>=20
+    <LI><A=20
+    =
+href=3D"http://home.ubalt.edu/ntsbarsh/opre640A/partIII.htm#rcripapr">Cri=
+tical=20
+    Path in Project Plan Networks</A>=20
+    <LI><A=20
+    =
+href=3D"http://home.ubalt.edu/ntsbarsh/opre640A/partIII.htm#rmincoflpr">M=
+inimum=20
+    Cost Flow Problems</A>=20
+    <LI><A=20
+    =
+href=3D"http://home.ubalt.edu/ntsbarsh/opre640A/partIII.htm#rNetSensitivi=
+ty">Sensitivity=20
+    Analysis for the Network Models</A>=20
+    <LI><A=20
+    =
+href=3D"http://home.ubalt.edu/ntsbarsh/opre640A/partIII.htm#rreferencesf"=
+>References=20
+    and Further Readings</A> </LI></OL>
+  <P><FONT color=3D#dc143c size=3D4>General Integer Linear =
+Programs</FONT><BR>
+  <OL>
+    <LI><A=20
+    =
+href=3D"http://home.ubalt.edu/ntsbarsh/opre640A/partIII.htm#rgenintlp">In=
+troduction=20
+    &amp; Summary</A>=20
+    <LI><A=20
+    =
+href=3D"http://home.ubalt.edu/ntsbarsh/opre640A/partIII.htm#rmixedinteger=
+">Mixed=20
+    Integer Programs Application: "Either-Or" Constraints</A>=20
+    <LI><A=20
+    =
+href=3D"http://home.ubalt.edu/ntsbarsh/opre640A/partIII.htm#rconditioncon=
+st">Conditional=20
+    Relations Among Constraints</A>=20
+    <LI><A=20
+    =
+href=3D"http://home.ubalt.edu/ntsbarsh/opre640A/partIII.htm#roffoncont">O=
+ff-On=20
+    Constraints</A>=20
+    <LI><A=20
+    =
+href=3D"http://home.ubalt.edu/ntsbarsh/opre640A/partIII.htm#roffonintreva=
+l">Off-On=20
+    Intervals</A>=20
+    <LI><A=20
+    =
+href=3D"http://home.ubalt.edu/ntsbarsh/opre640A/partIII.htm#rfinitvalueva=
+r">A=20
+    Case of Discrete Finite Valued Variable</A>=20
+    <LI><A=20
+    =
+href=3D"http://home.ubalt.edu/ntsbarsh/opre640A/partIII.htm#rzeroonelp">0=
+ - 1=20
+    Integer Linear Programs (binary LP): The Knapsack Problem</A>=20
+    <LI><A=20
+    =
+href=3D"http://home.ubalt.edu/ntsbarsh/opre640A/partIII.htm#rtrasapr">Tra=
+veling=20
+    Salesperson Problem</A>=20
+    <LI><A=20
+    =
+href=3D"http://home.ubalt.edu/ntsbarsh/opre640A/partIII.htm#rcapbudget">C=
+apital=20
+    Budgeting Applications</A>=20
+    <LI><A=20
+    =
+href=3D"http://home.ubalt.edu/ntsbarsh/opre640A/partIII.htm#rScheduling">=
+Scheduling=20
+    Problems</A>=20
+    <LI><A=20
+    =
+href=3D"http://home.ubalt.edu/ntsbarsh/opre640A/partIII.htm#rmarketing">M=
+arketing=20
+    Application</A>=20
+    <LI><A=20
+    =
+href=3D"http://home.ubalt.edu/ntsbarsh/opre640A/partIII.htm#rcuttingstock=
+">The=20
+    Cutting Stock Problem</A>=20
+    <LI><A=20
+    =
+href=3D"http://home.ubalt.edu/ntsbarsh/opre640A/partIII.htm#rengineering"=
+>An=20
+    Engineering Application: Mixing Substances</A> </LI></OL>
+  <P><B>Companion Sites:</B>=20
+  <UL>
+    <LI><A=20
+    =
+href=3D"http://home.ubalt.edu/ntsbarsh/Business-stat/otherapplets/LPTools=
+.htm"=20
+    target=3Dnew>JavaScript E-labs</A></FONT>, <BR>&nbsp; &nbsp; &nbsp; =
+&nbsp;<A=20
+    =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/otherapplets/LPTools.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>Europe Mirror Site</A></FONT>.=20
+    <LI><A =
+href=3D"http://home.ubalt.edu/ntsbarsh/Research/LpSolvers.htm"=20
+    target=3Dnew>Linear Optimization Solvers to Download</A>, <BR>&nbsp; =
+&nbsp;=20
+    &nbsp; &nbsp;<A=20
+    =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/opre/LpSolvers.htm"><FONT=20
+    color=3D#dc143c>Europe Mirror Site</A></FONT>.=20
+    <LI><A =
+href=3D"http://home.ubalt.edu/ntsbarsh/Business-stat/opre/opre640.htm"=20
+    target=3Dnew>Success Science</A>, <BR>&nbsp; &nbsp; &nbsp; &nbsp; <A =
+
+    =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/opre/opre640.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>Europe Mirror =
+Site</A></FONT>,&nbsp; <A=20
+    =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/opre/opre640.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>Mirror Site for =
+Asia</FONT></A>,&nbsp; <A=20
+    =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/opre/opre640.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>Mirror Site for Middle =
+East</FONT></A>,&nbsp;=20
+    <A href=3D"http://home.ubalt.edu/ntsbarsh/opre640/opre640.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>USA Site</FONT></A> <BR>&nbsp; =
+&nbsp; &nbsp;=20
+    &nbsp; <A=20
+    =
+href=3D"http://home.ubalt.edu/ntsbarsh/Business-stat/opre/Spanish.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>Versi=F3n en =
+Espa=F1ol</FONT></A>, &nbsp; <A=20
+    =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/opre/Spanish.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>Sitio Espejo para =
+Espa=F1a</FONT></A>,&nbsp; <A=20
+    href=3D"http://home.ubalt.edu/ntsbarsh/opre640S/Spanish.htm" =
+target=3Dnew><FONT=20
+    color=3D#dc143c>Sitio Espejo para Am=E9rica Latina</FONT></A>.=20
+    <LI><A =
+href=3D"http://home.ubalt.edu/ntsbarsh/Business-stat/opre/partXIII.htm"=20
+    target=3Dnew>Leadership Decision Making</A>, <BR>&nbsp; &nbsp; =
+&nbsp; &nbsp;=20
+    <A=20
+    =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/opre/partXIII.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>Europe Mirror =
+Site</A></FONT>,&nbsp; <A=20
+    =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/opre/partXIII.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>Mirror Site for =
+Asia</FONT></A>,&nbsp; <A=20
+    =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/opre/partXIII.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>Mirror Site for Middle =
+East</FONT></A>,&nbsp;=20
+    <A href=3D"http://home.ubalt.edu/ntsbarsh/opre640/partXIII.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>USA Site</FONT></A> <BR>&nbsp; =
+&nbsp; &nbsp;=20
+    &nbsp; <A=20
+    =
+href=3D"http://home.ubalt.edu/ntsbarsh/Business-stat/opre/Spanish.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>Versi=F3n en =
+Espa=F1ol</FONT></A>, &nbsp; <A=20
+    =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/opre/Spanish.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>Sitio Espejo para =
+Espa=F1a</FONT></A>,&nbsp; <A=20
+    href=3D"http://home.ubalt.edu/ntsbarsh/opre640S/Spanish.htm" =
+target=3Dnew><FONT=20
+    color=3D#dc143c>Sitio Espejo para Am=E9rica Latina</FONT></A>.=20
+    <LI><A =
+href=3D"http://home.ubalt.edu/ntsbarsh/Business-stat/opre/partVIII.htm"=20
+    target=3Dnew>Linear Programming (LP) and Goal-Seeking =
+Strategy</A>,<BR>&nbsp;=20
+    &nbsp; &nbsp; &nbsp; <A=20
+    =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/opre/partVIII.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>Europe Mirror =
+Site</A></FONT>,&nbsp; <A=20
+    =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/opre/partVIII.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>Mirror Site for =
+Asia</FONT></A>,&nbsp; <A=20
+    =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/opre/partVIII.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>Mirror Site for Middle =
+East</FONT></A>,&nbsp;=20
+    <A href=3D"http://home.ubalt.edu/ntsbarsh/opre640a/partVIII.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>USA Site</FONT></A> <BR>&nbsp; =
+&nbsp; &nbsp;=20
+    &nbsp; <A=20
+    =
+href=3D"http://home.ubalt.edu/ntsbarsh/Business-stat/opre/SpanishD.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>Versi=F3n en =
+Espa=F1ol</FONT></A>, &nbsp; <A=20
+    =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/opre/SpanishD.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>Sitio Espejo para =
+Espa=F1a</FONT></A>,&nbsp; <A=20
+    href=3D"http://home.ubalt.edu/ntsbarsh/opre640S/SpanishD.htm" =
+target=3Dnew><FONT=20
+    color=3D#dc143c>Sitio Espejo para Am=E9rica Latina</FONT></A>.=20
+    <LI><A =
+href=3D"http://home.ubalt.edu/ntsbarsh/Business-stat/opre/PartII.htm"=20
+    target=3Dnew>Artificial-variable Free LP Solution Algorithms</A>, =
+<BR>&nbsp;=20
+    &nbsp; &nbsp; &nbsp; <A=20
+    =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/opre/PartII.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>Europe Mirror =
+Site</A></FONT>,&nbsp; <A=20
+    =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/opre/PartII.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>Mirror Site for =
+Asia</FONT></A>,&nbsp; <A=20
+    =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/opre/PartII.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>Mirror Site for Middle =
+East</FONT></A>,&nbsp;=20
+    <A href=3D"http://home.ubalt.edu/ntsbarsh/opre640a/PartII.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>USA Site</FONT></A>.=20
+    <LI><A =
+href=3D"http://home.ubalt.edu/ntsbarsh/Business-stat/opre/partv.htm"=20
+    target=3Dnew>Tools for LP Modeling Validation</A>,<BR>&nbsp; &nbsp; =
+&nbsp;=20
+    &nbsp; <A=20
+    =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/opre/partv.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>Europe Mirror =
+Site</A></FONT>,&nbsp; <A=20
+    =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/opre/partv.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>Mirror Site for =
+Asia</FONT></A>,&nbsp; <A=20
+    =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/opre/partv.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>Mirror Site for Middle =
+East</FONT></A>,&nbsp;=20
+    <A href=3D"http://home.ubalt.edu/ntsbarsh/opre640a/partv.htm" =
+target=3Dnew><FONT=20
+    color=3D#dc143c>USA Site</FONT></A>.=20
+    <LI><A =
+href=3D"http://home.ubalt.edu/ntsbarsh/Business-stat/opre/partIV.htm"=20
+    target=3Dnew>The Classical Simplex Method</A>,<BR>&nbsp; &nbsp; =
+&nbsp; &nbsp;=20
+    <A=20
+    =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/opre/partIV.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>Europe Mirror =
+Site</A></FONT>,&nbsp; <A=20
+    =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/opre/partIV.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>Mirror Site for =
+Asia</FONT></A>,&nbsp; <A=20
+    =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/opre/partIV.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>Mirror Site for Middle =
+East</FONT></A>,&nbsp;=20
+    <A href=3D"http://home.ubalt.edu/ntsbarsh/opre640a/partIV.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>USA Site</FONT></A>.=20
+    <LI><A =
+href=3D"http://home.ubalt.edu/ntsbarsh/Business-stat/opre/partVI.htm"=20
+    target=3Dnew>Zero-Sum Games with Applications</A>,<BR>&nbsp; &nbsp; =
+&nbsp;=20
+    &nbsp; <A=20
+    =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/opre/partVI.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>Europe Mirror =
+Site</A></FONT>,&nbsp; <A=20
+    =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/opre/partVI.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>Mirror Site for =
+Asia</FONT></A>,&nbsp; <A=20
+    =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/opre/partVI.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>Mirror Site for Middle =
+East</FONT></A>,&nbsp;=20
+    <A href=3D"http://home.ubalt.edu/ntsbarsh/opre640a/partVI.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>USA Site</FONT></A><BR>&nbsp; =
+&nbsp; &nbsp;=20
+    &nbsp; <A=20
+    =
+href=3D"http://home.ubalt.edu/ntsbarsh/Business-stat/opre/SpanishG.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>Versi=F3n en =
+Espa=F1ol</FONT></A>, &nbsp; <A=20
+    =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/opre/SpanishG.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>Sitio Espejo para =
+Espa=F1a</FONT></A>,&nbsp; <A=20
+    href=3D"http://home.ubalt.edu/ntsbarsh/opre640S/SpanishG.htm" =
+target=3Dnew><FONT=20
+    color=3D#dc143c>Sitio Espejo para Am=E9rica Latina</FONT></A>.=20
+    <LI><A =
+href=3D"http://home.ubalt.edu/ntsbarsh/Business-stat/opre/partX.htm"=20
+    target=3Dnew>Computer-assisted Learning Concepts and =
+Techniques</A>,<BR>&nbsp;=20
+    &nbsp; &nbsp; &nbsp; <A=20
+    =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/opre/partX.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>Europe Mirror =
+Site</A></FONT>,&nbsp; <A=20
+    =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/opre/partX.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>Mirror Site for =
+Asia</FONT></A>,&nbsp; <A=20
+    =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/opre/partX.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>Mirror Site for Middle =
+East</FONT></A>,&nbsp;=20
+    <A href=3D"http://home.ubalt.edu/ntsbarsh/opre640a/partX.htm" =
+target=3Dnew><FONT=20
+    color=3D#dc143c>USA Site</FONT></A>.=20
+    <LI><A =
+href=3D"http://home.ubalt.edu/ntsbarsh/Business-stat/opre/partXII.htm"=20
+    target=3Dnew>Linear Algebra and LP Connections</A>,<BR>&nbsp; &nbsp; =
+&nbsp;=20
+    &nbsp; <A=20
+    =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/opre/partXII.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>Europe Mirror =
+Site</A></FONT>,&nbsp; <A=20
+    =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/opre/partXII.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>Mirror Site for =
+Asia</FONT></A>,&nbsp; <A=20
+    =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/opre/partXII.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>Mirror Site for Middle =
+East</FONT></A>,&nbsp;=20
+    <A href=3D"http://home.ubalt.edu/ntsbarsh/opre640a/partXII.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>USA Site</FONT></A>.=20
+    <LI><A=20
+    =
+href=3D"http://home.ubalt.edu/ntsbarsh/Business-stat/opre/nonlinear.htm" =
+
+    target=3Dnew>From Linear to Nonlinear Optimization with Business=20
+    Applications</A>,<BR>&nbsp; &nbsp; &nbsp; &nbsp; <A=20
+    =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/opre/nonlinear.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>Europe Mirror =
+Site</A></FONT>,&nbsp; <A=20
+    =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/opre/nonlinear.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>Mirror Site for =
+Asia</FONT></A>,&nbsp; <A=20
+    =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/opre/nonlinear.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>Mirror Site for Middle =
+East</FONT></A>,&nbsp;=20
+    <A href=3D"http://home.ubalt.edu/ntsbarsh/opre640a/nonlinear.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>USA Site</FONT></A>.=20
+    <LI><A =
+href=3D"http://home.ubalt.edu/ntsbarsh/Business-stat/opre/PartVII.htm"=20
+    target=3Dnew>Construction of the Sensitivity Region for LP=20
+    Models</A>,<BR>&nbsp; &nbsp; &nbsp; &nbsp; <A=20
+    =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/opre/PartVII.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>Europe Mirror =
+Site</A></FONT>,&nbsp; <A=20
+    =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/opre/PartVII.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>Mirror Site for =
+Asia</FONT></A>,&nbsp; <A=20
+    =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/opre/PartVII.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>Mirror Site for Middle =
+East</FONT></A>,&nbsp;=20
+    <A href=3D"http://home.ubalt.edu/ntsbarsh/opre640a/PartVII.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>USA Site</FONT></A>.=20
+    <LI><A =
+href=3D"http://home.ubalt.edu/ntsbarsh/Business-stat/opre/ZERO.HTM"=20
+    target=3Dnew>Zero Sagas in Four Dimensions</A>,<BR>&nbsp; &nbsp; =
+&nbsp; &nbsp;=20
+    <A=20
+    =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/opre/ZERO.HTM"=20
+    target=3Dnew><FONT color=3D#dc143c>Europe Mirror =
+Site</A></FONT>,&nbsp; <A=20
+    =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/opre/ZERO.HTM"=20
+    target=3Dnew><FONT color=3D#dc143c>Mirror Site for =
+Asia</FONT></A>,&nbsp; <A=20
+    =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/opre/ZERO.HTM"=20
+    target=3Dnew><FONT color=3D#dc143c>Mirror Site for Middle =
+East</FONT></A>,&nbsp;=20
+    <A href=3D"http://home.ubalt.edu/ntsbarsh/zero/ZERO.HTM" =
+target=3Dnew><FONT=20
+    color=3D#dc143c>USA Site</FONT></A>.=20
+    <LI><A =
+href=3D"http://home.ubalt.edu/ntsbarsh/Business-stat/opre/partIX.htm"=20
+    target=3Dnew>Probabilistic Modeling</A>, <BR>&nbsp; &nbsp; &nbsp; =
+&nbsp; <A=20
+    =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/opre/partIX.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>Europe Mirror =
+Site</A></FONT>,&nbsp; <A=20
+    =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/opre/partIX.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>Mirror Site for =
+Asia</FONT></A>,&nbsp; <A=20
+    =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/opre/partIX.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>Mirror Site for Middle =
+East</FONT></A>,&nbsp;=20
+    <A href=3D"http://home.ubalt.edu/ntsbarsh/opre640a/partIX.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>USA Site</FONT></A> <BR>&nbsp; =
+&nbsp; &nbsp;=20
+    &nbsp; <A=20
+    =
+href=3D"http://home.ubalt.edu/ntsbarsh/Business-stat/opre/SpanishP.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>Versi=F3n en =
+Espa=F1ol</FONT></A>, &nbsp; <A=20
+    =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/opre/SpanishP.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>Sitio Espejo para =
+Espa=F1a</FONT></A>,&nbsp; <A=20
+    href=3D"http://home.ubalt.edu/ntsbarsh/opre640S/SpanishP.htm" =
+target=3Dnew><FONT=20
+    color=3D#dc143c>Sitio Espejo para Am=E9rica Latina</FONT></A>=20
+    <LI><A href=3D"http://home.ubalt.edu/ntsbarsh/simulation/sim.htm"=20
+    target=3Dnew>Systems Simulation</A>, <BR>&nbsp; &nbsp; &nbsp; &nbsp; =
+<A=20
+    =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/simulation/sim.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>Europe Mirror =
+Site</A></FONT>,&nbsp; <A=20
+    =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/simulation/sim.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>Mirror Site for =
+Asia</FONT></A>,&nbsp; <A=20
+    =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/simulation/sim.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>Mirror Site for Middle =
+East</FONT></A>,=20
+    &nbsp;<A =
+href=3D"http://www.cs.sun.ac.za/~lynette/simulation/harsham/sim.html"=20
+    target=3Dnew><FONT color=3D#dc143c>South Africa Mirror =
+Site</FONT></A>,&nbsp; <A=20
+    href=3D"http://home.ubalt.edu/ntsbarsh/simulation/sim.htm" =
+target=3Dnew><FONT=20
+    color=3D#dc143c>USA Site</FONT></A>=20
+    <LI><A=20
+    =
+href=3D"http://home.ubalt.edu/ntsbarsh/Business-stat/stat-data/KeywordsPh=
+ra.htm"=20
+    target=3Dnew>Business Keywords and Phrases</A>,<BR>&nbsp; &nbsp; =
+&nbsp; &nbsp;=20
+    <A=20
+    =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/stat-data/KeywordsPhra.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>Europe Mirror =
+Site</FONT></A>,&nbsp; <A=20
+    =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/stat-data/KeywordsPhra.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>Mirror Site for =
+Asia</FONT></A>,&nbsp; <A=20
+    =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/stat-data/KeywordsPhra.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>Mirror Site for Middle =
+East</FONT></A>,&nbsp;=20
+    <A =
+href=3D"http://home.ubalt.edu/ntsbarsh/stat-data/KeywordsPhra.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>USA Site</FONT></A>=20
+    <LI><A=20
+    =
+href=3D"http://home.ubalt.edu/ntsbarsh/Business-stat/otherapplets/scienti=
+ficCal.htm"=20
+    target=3Dnew>Collection of JavaScript E-labs Learning =
+Objects</A>,<BR>&nbsp;=20
+    &nbsp; &nbsp; &nbsp; <A=20
+    =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/otherapplets/scientificCal.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>Europe Mirror =
+Site</A></FONT>,&nbsp; <A=20
+    =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/otherapplets/scientificCal.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>Mirror Site for =
+Asia</FONT></A>,&nbsp; <A=20
+    =
+href=3D"http://home.ubalt.edu/ntsbarsh/opre640A/www.mirrorservice.org/sit=
+es/home.ubalt.edu/ntsbarsh/Business-stat/otherapplets/scientificCal.htm" =
+
+    target=3Dnew><FONT color=3D#dc143c>Mirror Site for Middle =
+East</FONT></A>,&nbsp;=20
+    <A href=3D"http://home.ubalt.edu/ntsbarsh/zero/scientificCal.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>USA Site</FONT></A>=20
+    <LI><A =
+href=3D"http://home.ubalt.edu/ntsbarsh/Business-stat/opre/partI.htm"=20
+    target=3Dnew>Compendium of Web Site Review </A>, <BR>&nbsp; &nbsp; =
+&nbsp;=20
+    &nbsp; <A=20
+    =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/opre/partI.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>Europe Mirror =
+Site</A></FONT>,&nbsp; <A=20
+    =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/opre/partI.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>Mirror Site for =
+Asia</FONT></A>,&nbsp; <A=20
+    =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/opre/partI.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>Mirror Site for Middle =
+East</FONT></A>,&nbsp;=20
+    <A href=3D"http://home.ubalt.edu/ntsbarsh/opre640a/partI.htm" =
+target=3Dnew><FONT=20
+    color=3D#dc143c>USA Site</FONT></A>=20
+    <LI><A =
+href=3D"http://home.ubalt.edu/ntsbarsh/Business-stat/Refop.htm"=20
+    target=3Dnew>Decision Science Resources</A>, <BR>&nbsp; &nbsp; =
+&nbsp; &nbsp;=20
+    <A=20
+    =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/Refop.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>Europe Mirror =
+Site</A></FONT>,&nbsp; <A=20
+    =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/Refop.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>Mirror Site for =
+Asia</FONT></A>,&nbsp; <A=20
+    =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat/R.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>Mirror Site for Middle =
+East</FONT></A>,&nbsp;=20
+    <A href=3D"http://home.ubalt.edu/ntsbarsh/Business-stat/Refop.htm"=20
+    target=3Dnew><FONT color=3D#dc143c>USA Site</FONT></A> </LI></UL>
+  <P>
+  <P><BR><A target=3Dnew name=3Drintro></A>
+  <HR>
+
+  <H2>
+  <CENTER><FONT color=3D#dc143c size=3D5>Introduction to Network=20
+  Models</FONT></CENTER></H2>Network models are applicable to an =
+enormous=20
+  variety of decision problems that can be modeled as networks =
+optimization=20
+  problems and solved efficiently and effectively. Some of these =
+decision=20
+  problems are really physical problems such as transportation or flow =
+of=20
+  commodities. However, many network problems are more of an abstract=20
+  representation of processes or activities such as the critical path =
+activity=20
+  network in project management.=20
+  <P>The family of network optimization problems includes the following=20
+  prototype models: assignment, critical path, max flow, shortest path,=20
+  transportation, and min cost flow problems. These problems are easily =
+stated=20
+  by using a network of arcs, and nodes.=20
+  <P><B>What is a node? </B>Often called a vertex, or point. It is =
+normally=20
+  represented by a circle. In a transportation Network, these might be =
+locations=20
+  or cities on a map.=20
+  <P><B>What is an arc?</B> Often called an edge, or arrow. It may be =
+either=20
+  directed or undirected. The head is the destination, the tail is the =
+origin.=20
+  The head and tail are Nodes that are at either end. In a =
+transportation=20
+  network, the Arcs might be roads, or navigation channels in rivers, or =
+
+  aircraft flight patterns. They supply connectivity between the Nodes. =
+A=20
+  one-way street might be represented by a directed arc. A two-way =
+street might=20
+  be an undirected arc or by two directed arcs that point in opposite=20
+  directions.=20
+  <P>A network with n nodes could have as many as n! /[(n-2)! 2!] =3D =
+n(n-1)/2=20
+  arcs. If directed, this number might be doubled. This large number of =
+possible=20
+  arcs is one of the reasons why there are special solution algorithms =
+for=20
+  special types of network problems.=20
+  <P><A target=3Dnew name=3Drtranpr></A>
+  <HR>
+
+  <H4><FONT color=3D#dc143c>Transportation =
+Problem</FONT></H4>Transportation=20
+  models play an important role in logistics and supply chain management =
+for=20
+  reducing cost and improving service. Therefore, the goal is to find =
+the most=20
+  cost effective way to transport the goods.=20
+  <P>A shipper having m warehouses with supply a<FONT=20
+  size=3D+0><SUB>i</SUB></FONT> of goods at his i<FONT=20
+  size=3D+0><SUP>th</SUP></FONT> warehouse must ship goods to n =
+geographically=20
+  dispersed retail centers, each with a given customer demand e<FONT=20
+  size=3D+0><SUB>j</SUB></FONT>, which must be met. The objective is to =
+determine=20
+  the minimum possible transportation costs given the unit cost of=20
+  transportation between the i<FONT size=3D+0><SUP>th</SUP></FONT> =
+warehouse and=20
+  the j<FONT size=3D+0><SUP>th</SUP></FONT> retail center is C<FONT=20
+  size=3D+0><SUB>ij</SUB></FONT>.=20
+  <P>In the following problem the goal is to find the most effective way =
+to=20
+  transport the goods. The supply at each source is designated and the =
+demand at=20
+  each destination is also given. For example, source 3 has 800 units =
+available=20
+  and destination 1 needs at least 1100 units. Each route from one =
+source to one=20
+  destination is assigned a unit transportation cost.=20
+  <P>
+  <CENTER><IMG src=3D"http://home.ubalt.edu/ntsbarsh/opre640A/1.gif"> =
+</CENTER>
+  <P>Using any LP package, the solution tells the quantity to be shipped =
+from=20
+  one source to a destination. The results are:=20
+  <P>Send 850 units from source 1 to destination 1 <BR>Send 350 units =
+from=20
+  source 1 to destination 2 <BR>Send 250 units from source 2 to =
+destination 1=20
+  <BR>Send 750 units from source 2 to destination 4 <BR>Send 50 units =
+from=20
+  source 3 to destination 2 <BR>Send 750 units from source 3 to =
+destination 3=20
+  <P>The total shipment cost is $84000.=20
+  <P><B><FONT color=3D#dc143c size=3D3>The Dual of the Transportation=20
+  Problem:</FONT></B>=20
+  <P>The dual problem for the above numerical example is:=20
+  <P>Max 1200U1 + 1000U2 + 800U3 + 1100V1 + 400V2 + 750V3 + 750V4=20
+  <P>subject to:=20
+  <P>U1 + V1 <FONT face=3Dsymbol>=A3</FONT> 35, U1 + V2 <FONT =
+face=3Dsymbol>=A3</FONT>=20
+  30, U1 + V3 <FONT face=3Dsymbol>=A3</FONT> 40, U1 + V4 <FONT =
+face=3Dsymbol>=A3</FONT>=20
+  32<BR>U2 + V1 <FONT face=3Dsymbol>=A3</FONT> 37, U2 + V2 <FONT=20
+  face=3Dsymbol>=A3</FONT> 40, U2 + V3 <FONT face=3Dsymbol>=A3</FONT> =
+42, U2 + V4 <FONT=20
+  face=3Dsymbol>=A3</FONT> 25<BR>U3 + V1 <FONT face=3Dsymbol>=A3</FONT> =
+40, U3 + V2=20
+  <FONT face=3Dsymbol>=A3</FONT> 15, U3 + V3 <FONT =
+face=3Dsymbol>=A3</FONT> 20, U3 + V4=20
+  <FONT face=3Dsymbol>=A3</FONT> 28
+  <P>all Ui and Vj are unrestricted in sign.=20
+  <P>The dual formulation suggests that we try to ship the goods in such =
+a way=20
+  that the difference in unit price Ui at the ith origin and unit price =
+Vj at=20
+  the jth destination does not to exceed the unit transportation cost =
+between=20
+  the i<FONT size=3D+0><SUP>th</SUP></FONT> origin and j<FONT=20
+  size=3D+0><SUP>th</SUP></FONT> destination.=20
+  <P>The interpretation of dual constraints as the aim that =
+origin-destination=20
+  difference in price does not exceed transport price is equivalent to =
+the=20
+  principle of equilibrium with a sound economic meaning. Moreover, one =
+can=20
+  interpret the dual objective as the aim of a shipper to maximize the =
+profit=20
+  when purchasing at origin and selling at destination.=20
+  <P>To solve the dual problem, you may like to try the <A=20
+  href=3D"http://home.ubalt.edu/ntsbarsh/Business-stat/opre/PartII.htm"=20
+  target=3Dnew>Algebraic Method</A>.=20
+  <P><FONT color=3D#dc143c>Discrete Transportation Problem:</B></FONT> =
+In the=20
+  discrete transportation problem the entire supply from a given source =
+must be=20
+  sent to only one of the available destinations, therefore it is an =
+instance of=20
+  the Generalized Assignment Problem (GAP). The GAP model can be =
+formulated as a=20
+  discrete (0-1) generalized network problem with supplies of 1 at the =
+source,=20
+  and multipliers known as the gain- factors on the arcs. Each arc can =
+carry a=20
+  flow of only 0 or 1, but the amount of flow delivered to the =
+destination=20
+  equals the value of the multiplier on the arc.=20
+  <P><A target=3Dnew name=3Drassipr></A>
+  <HR>
+
+  <H4><FONT color=3D#dc143c>Assignment Problem</FONT></H4>Typically, we =
+have a=20
+  group of n "applicants" applying for n "jobs," and the non-negative =
+cost=20
+  C<FONT size=3D+0><SUB>ij</SUB></FONT> of assigning the i<FONT=20
+  size=3D+0><SUP>th</SUP></FONT> applicant to j<FONT =
+size=3D+0><SUP>th</SUP></FONT>=20
+  job is known. The objective is to assign one job to each applicant in =
+such a=20
+  way as to achieve the minimum possible total cost. Define binary =
+variables=20
+  X<FONT size=3D+0><SUB>ij </SUB></FONT>with value of either 0 or 1. =
+When X<FONT=20
+  size=3D+0><SUB>ij</SUB></FONT> =3D 1, it indicates that we should =
+assign applicant=20
+  i to job j. Otherwise (X<FONT size=3D+0><SUB>ij</SUB></FONT> =3D 0), =
+we should not=20
+  assign applicant i to job j.=20
+  <P>A special case of the transportation problem is the assignment =
+problem,=20
+  which occurs when each supply is 1 and each demand is 1. In this case, =
+the=20
+  integrality implies that every supplier will be assigned one =
+destination and=20
+  every destination will have one supplier. The costs give the basis for =
+
+  assigning a supplier and destination to each other.=20
+  <P>Suppose we want to impose the condition that either person i should =
+not=20
+  perform job j OR person k should not perform job m. That is X<FONT=20
+  size=3D+0><SUB>ij</SUB></FONT>.X<FONT size=3D+0><SUB>km</SUB></FONT> =
+=3D 0. This=20
+  nonlinear condition is equivalent to the linear constraint X<FONT=20
+  size=3D+0><SUB>ij</SUB></FONT> + X<FONT size=3D+0><SUB>km</SUB></FONT> =
+<FONT=20
+  face=3Dsymbol>=A3</FONT> 1. This constraint should be added to the set =
+of=20
+  constraints as a side constraint. With this additional constraint, the =
+AP=20
+  becomes a binary ILP, which could be solved by many software packages =
+such as=20
+  LIND or QSB.=20
+  <P>In the following problem the goal is to assign people to particular =
+tasks=20
+  while minimizing total cost. The objective function takes into account =
+the=20
+  cost involved for each person to do a particular task. The constraints =
+say=20
+  that each person must be assigned to a task, and each task must be =
+given to a=20
+  person.=20
+  <CENTER><IMG src=3D"http://home.ubalt.edu/ntsbarsh/opre640A/2.gif"> =
+</CENTER>
+  <P>After running the problem on any LP solver, the results are:=20
+  <P>Person 1 should do job 3 <BR>Person 2 should do job 4 <BR>Person 3 =
+should=20
+  do job 5 <BR>Person 4 should do job 1 <BR>Person 5 should do job 2=20
+  <P>The total cost is $55.=20
+  <P>
+  <P><B><FONT color=3D#dc143c size=3D3>The Dual of the Assignment=20
+  Problem:</FONT></B>=20
+  <P>The dual problem for the above numerical example is:=20
+  <P>Max U1 + U2 + U3 + U4 + U5 + V1 + V2 + V3 + V4 + V5=20
+  <P>subject to:=20
+  <P>U1 + V1 <FONT face=3Dsymbol>=A3</FONT> 10, U1 + V2 <FONT =
+face=3Dsymbol>=A3</FONT>=20
+  4, U1 + V3 <FONT face=3Dsymbol>=A3</FONT> 6, U1 + V4 <FONT =
+face=3Dsymbol>=A3</FONT>=20
+  10, U1 + V5 <FONT face=3Dsymbol>=A3</FONT> 12<BR>U2 + V1 <FONT=20
+  face=3Dsymbol>=A3</FONT> 11, U2 + V2 <FONT face=3Dsymbol>=A3</FONT> 7, =
+U2 + V3 <FONT=20
+  face=3Dsymbol>=A3</FONT> 7, U2 + V4 <FONT face=3Dsymbol>=A3</FONT> 9, =
+U2 + V5 <FONT=20
+  face=3Dsymbol>=A3</FONT> 14<BR>U3 + V1 <FONT face=3Dsymbol>=A3</FONT> =
+13, U3 + V2=20
+  <FONT face=3Dsymbol>=A3</FONT> 8, U3 + V3 <FONT =
+face=3Dsymbol>=A3</FONT> 12, U3 + V4=20
+  <FONT face=3Dsymbol>=A3</FONT> 14, U3 + V5 <FONT =
+face=3Dsymbol>=A3</FONT> 15,<BR>U4 +=20
+  V1 <FONT face=3Dsymbol>=A3</FONT> 14, U4 + V2 <FONT =
+face=3Dsymbol>=A3</FONT> 16, U4 +=20
+  V3 <FONT face=3Dsymbol>=A3</FONT> 13, U4 + V4 <FONT =
+face=3Dsymbol>=A3</FONT> 17, U4 +=20
+  V5 <FONT face=3Dsymbol>=A3</FONT> 17<BR>U5 + V1 <FONT =
+face=3Dsymbol>=A3</FONT> 19, U5=20
+  + V2 <FONT face=3Dsymbol>=A3</FONT> 11, U5 + V3 <FONT =
+face=3Dsymbol>=A3</FONT> 17, U5=20
+  + V4 <FONT face=3Dsymbol>=A3</FONT> 20, U5 + V5 <FONT =
+face=3Dsymbol>=A3</FONT> 19
+  <P>all Ui and Vj are free-variables.=20
+  <P>The dual formulation suggests that we try to assign in such a way =
+that the=20
+  sum of value Ui of the ith person and added value Vj to perform the =
+jth job,=20
+  not to exceed the cost of assigning ith person to the jth job.=20
+  <P>To solve the dual problem, you may like to try the <A=20
+  href=3D"http://home.ubalt.edu/ntsbarsh/Business-stat/opre/PartII.htm"=20
+  target=3Dnew>Algebraic Method</A>.=20
+  <P>Visit also the Web site <A =
+href=3D"http://www.magiclogic.com/assignment.html"=20
+  target=3Dnew>Assignment Problem Software</A>. <A target=3Dnew =
+name=3Drsppr></A>
+  <HR>
+
+  <H4><FONT color=3D#dc143c>Shortest Path Problem</FONT></H4>The problem =
+is to=20
+  determine the best way to traverse a network to get from an origin to =
+a given=20
+  destination as cheaply as possible. Suppose that in a given network =
+there are=20
+  m nodes and n arcs (i.e. edges) and a cost C<FONT =
+size=3D+0><SUB>ij</SUB></FONT>=20
+  associated with each arc (i to j) in the network. Formally, the =
+Shortest Path=20
+  (SP) problem is to find the shortest (least cost) path from the start =
+node 1=20
+  to the finish node m. The cost of the path is the sum of the costs on =
+the arcs=20
+  in the path. Define binary variables X<FONT =
+size=3D+0><SUB>ij</SUB></FONT>,=20
+  where X<FONT size=3D+0><SUB>ij</SUB></FONT> =3D1 if the arc (i to j) =
+is on the SP=20
+  and X<FONT size=3D+0><SUB>ij</SUB></FONT> =3D 0 otherwise. There are =
+two special=20
+  nodes, called the origin and destination. The objective is to find a =
+shortest=20
+  path between the origin and destination.=20
+  <P>In the following network various costs are assigned for the path =
+from one=20
+  node to another. For example, the cost from node 2 to node 4 is 6. The =
+
+  objective function considers the cost to move from each node to =
+another from=20
+  source to destination. The constraints are broken into three groups. =
+The=20
+  constraint for the origin node says that you must leave node 1 and go =
+to node=20
+  2 or 3. The intermediate node constraints say that if you ever come =
+into a=20
+  node you must leave that node. The destination node is similar to =
+origin node=20
+  in that you must reach to this node from one of the neighboring node.=20
+  <P>Consider the following directed network (for an undirected network, =
+make=20
+  each arc directed in both directions, then apply the same formulation. =
+Note=20
+  that in this case you have X<FONT size=3D+0><SUB>ij</SUB></FONT> and =
+X<FONT=20
+  size=3D+0><SUB>ji</SUB></FONT> variables). The aim is to find the =
+shortest path=20
+  from node 1 to node 7.=20
+  <P>
+  <CENTER><IMG src=3D"http://home.ubalt.edu/ntsbarsh/opre640A/3.gif"> =
+</CENTER>
+  <P>After running this problem on any LP solver, the results are:=20
+  <P>Go from 1 to 3 <BR>Go from 3 to 5 <BR>Go from 5 to 6 <BR>Go from 6 =
+to 7=20
+  <P>This is the shortest path with total of 22 length (cost) units.=20
+  <P>Construct the dual problem for the above numerical example and =
+provide an=20
+  interpretation. Solve the dual problem by the <A=20
+  href=3D"http://home.ubalt.edu/ntsbarsh/Business-stat/opre/PartII.htm"=20
+  target=3Dnew>Algebraic Method</A>.=20
+  <P>Notice that, the output of LP software packages with respect to =
+sensitivity=20
+  analysis for the network problems could be misleading. Therefore, for =
+the=20
+  shortest-path sensitivity analysis, read the following =
+article:<BR>Arsham H.,=20
+  Stability analysis for the shortest path problems, <I>Journal of =
+Congressus=20
+  Numerantium</I>, Vol. 133, No. 1, 171-210, 1998. <A target=3Dnew=20
+  name=3Drmaxflpr></A>
+  <HR>
+
+  <H4><FONT color=3D#dc143c>Maximum Flow Problem</FONT></H4>In a network =
+with flow=20
+  capacities on the arcs, the problem is to determine the maximum =
+possible flow=20
+  from the source to the sink while honoring the arc flow capacities. =
+Consider a=20
+  network with m nodes and n arcs with a single commodity flow. Denote =
+the flow=20
+  along arc (i to j) by X<FONT size=3D+0><SUB>ij</SUB></FONT>. We =
+associate with=20
+  each arc a flow capacity, k<FONT size=3D+0><SUB>ij</SUB></FONT>. In =
+such a=20
+  network, we wish to find the maximum total flow in the network, F, =
+from node l=20
+  to node m.=20
+  <P>In the LP formulation, the objective is to maximize F. The amount =
+that=20
+  leaves the origin by various routes. For every intermediate node, what =
+comes=20
+  in must be equal to what goes out. In some routes the flow can go both =
+ways.=20
+  The capacity amount that can be sent in a particular direction is also =
+shown=20
+  on the each route.=20
+  <CENTER><IMG src=3D"http://home.ubalt.edu/ntsbarsh/opre640A/4.gif"> =
+</CENTER>
+  <P>After solving this LP problem using say LINDO, the results are as =
+follow:=20
+  <P>Send 10 units from 1 to 2 <BR>Send 7 units from 1 to 3 <BR>Send 3 =
+units=20
+  from 2 to 6 <BR>Send 7 units from 2 to 4 <BR>Send 4 units from 3 to 6 =
+<BR>Send=20
+  6 units from 3 to 5 <BR>Send 7 units from 4 to 7 <BR>Send 8 units from =
+5 to 7=20
+  <BR>Send 3 units from 6 to 3 <BR>Send 2 units from 6 to 5 <BR>Send 2 =
+units=20
+  from 6 to 7=20
+  <P>The maximum flow is F =3D 17 units.=20
+  <P><B><FONT color=3D#dc143c size=3D3>The Dual of the Maximum Flow=20
+  Problem:</FONT></B>=20
+  <P>The dual problem for the above numerical example is:=20
+  <P>Min 10Y12 + 10Y13 + Y23 + Y32 + 6Y26 + 4Y36 + 4Y63 + 8Y24<BR>3Y64 + =
+3Y46 +=20
+  12Y35 + 2Y65 + 2Y56 + 8Y75 + 7Y47 + 2Y67=20
+  <P>subject to:=20
+  <P>X2 - X1 + Y12 <FONT face=3Dsymbol>=B3</FONT> 0, X3 - X1 + Y13 <FONT =
+
+  face=3Dsymbol>=B3</FONT> 0, X3 - X2 + Y23 <FONT =
+face=3Dsymbol>=B3</FONT> 0,<BR>X3 - X2=20
+  + Y32 <FONT face=3Dsymbol>=B3</FONT> 0, X6 - X2 + Y26 <FONT =
+face=3Dsymbol>=B3</FONT>=20
+  0, X6 - X3 + Y36 <FONT face=3Dsymbol>=B3</FONT> 0,<BR>X3 - X6 + Y63 =
+<FONT=20
+  face=3Dsymbol>=B3</FONT> 0, X4 - X2 + Y24 <FONT =
+face=3Dsymbol>=B3</FONT> 0, X4 - X6 +=20
+  Y64 <FONT face=3Dsymbol>=B3</FONT> 0<BR>X6 - X4 + Y46 <FONT =
+face=3Dsymbol>=B3</FONT>=20
+  0, X5 - X3 + Y35 <FONT face=3Dsymbol>=B3</FONT> 0, X5 - X6 + Y65 <FONT =
+
+  face=3Dsymbol>=B3</FONT> 0,<BR>X6 - X5 + Y56 <FONT =
+face=3Dsymbol>=B3</FONT> 0, X5 - X7=20
+  + Y75 <FONT face=3Dsymbol>=B3</FONT> 0, X7 - X4 + Y47 <FONT =
+face=3Dsymbol>=B3</FONT>=20
+  0,<BR>X7 - X6 + Y67 <FONT face=3Dsymbol>=B3</FONT> 0, X1 - X7 <FONT=20
+  face=3Dsymbol>=B3</FONT>1, and <BR><BR>Yij <FONT =
+face=3Dsymbol>=B3</FONT> 0, and all=20
+  Xi are free-variables.=20
+  <P>The dual formulation suggests that we try to assign flow to arcs in =
+such a=20
+  way that for each arc, the difference in values at the beginning node =
+and the=20
+  end node exceeds the added value.=20
+  <P>To solve the dual problem, you may like to try the <A=20
+  href=3D"http://home.ubalt.edu/ntsbarsh/Business-stat/opre/PartII.htm"=20
+  target=3Dnew>Algebraic Method</A>.=20
+  <P>Visit also the Web site <A=20
+  href=3D"http://www.me.utexas.edu/~jensen/models/network/net0.html"=20
+  target=3Dnew>Maximum Flow Problem</A>.=20
+  <P><A target=3Dnew name=3Drcripapr></A>
+  <HR>
+
+  <H4><FONT color=3D#dc143c>Critical Path in Project Plan =
+Network</FONT></H4>The=20
+  successful management of large projects, be they construction, =
+transportation,=20
+  or financial, relies on careful scheduling and coordinating of various =
+tasks.=20
+  Critical Path Method (CPM) attempts to analyze project scheduling. =
+This allows=20
+  for better control and evaluation of the project. For example, we want =
+to know=20
+  how long will the project take? When will we be able to start a =
+particular=20
+  task? If this task is not completed on time, will the entire project =
+be=20
+  delayed? Which tasks should we speed up (crash) in order to finish the =
+project=20
+  earlier?=20
+  <P>Given a network of activities, the first problem of interest is to=20
+  determine the length of time required to complete the project and the =
+set of=20
+  critical activities that control the project completion time. Suppose =
+that in=20
+  a given project activity network there are m nodes, n arcs (i.e. =
+activities)=20
+  and an estimated duration time, C<FONT size=3D+0><SUB>ij</SUB></FONT>, =
+
+  associated with each arc (i to j) in the network. The beginning node =
+of an arc=20
+  corresponds to the start of the associated activity and the end node =
+to the=20
+  completion of an activity. To find the Critical Path (CP), define the =
+binary=20
+  variables X<FONT size=3D+0><SUB>ij</SUB></FONT>, where X<FONT=20
+  size=3D+0><SUB>ij</SUB></FONT> =3D 1 if the activity i j is on the CP =
+and X<FONT=20
+  size=3D+0><SUB>ij</SUB></FONT> =3D 0 otherwise. The length of the path =
+is the sum=20
+  of the duration of the activities on the path. The length of the =
+longest path=20
+  is the shortest time needed to complete the project. Formally, the CP =
+problem=20
+  is to find the longest path from node 1 to node m.=20
+  <P>Each arc has two roles: it represents an activity and it defines =
+the=20
+  precedence relationships among the activities. Sometimes it is =
+necessary to=20
+  add arcs that only represent precedence relationships. These <I>dummy =
+arcs</I>=20
+  are represented by dashed arrows. In our example, the arc from 2 to 3=20
+  represents a dummy activity.=20
+  <P>The first constraint says that the project must start. For each=20
+  intermediate node, if we ever reach it we have to leave that node. =
+Finally,=20
+  the last constraint enforces the completion of the project.=20
+  <P>
+  <CENTER><IMG src=3D"http://home.ubalt.edu/ntsbarsh/opre640A/7.gif"> =
+</CENTER>
+  <P>Running the LP formulation on any LP solver, the critical path is:=20
+  <P>From node 1 to 2 <BR>From node 2 to 3 <BR>From node 3 to 4 <BR>From =
+node 4=20
+  to 5 <BR>From node 5 to 6=20
+  <P>The duration of the project is, therefore 38 time units.=20
+  <P><B><FONT color=3D#dc143c size=3D3>The Dual of the Critical Path=20
+  Problem:</FONT></B>=20
+  <P>The dual problem for the above numerical example is:=20
+  <P>Min Z=20
+  <P>subject to:=20
+  <P>-T1 + T2 <FONT face=3Dsymbol>=B3</FONT> 9, -T1 + T3 <FONT =
+face=3Dsymbol>=B3</FONT>=20
+  6, -T2 + T3 <FONT face=3Dsymbol>=B3</FONT> 0,<BR>-T3 + T4 <FONT=20
+  face=3Dsymbol>=B3</FONT> 7, -T3 + T5 <FONT face=3Dsymbol>=B3</FONT> 8, =
+-T4 + T5 <FONT=20
+  face=3Dsymbol>=B3</FONT> 10,<BR>-T5 + T6 <FONT =
+face=3Dsymbol>=B3</FONT> 6, -T6 + Z=20
+  <FONT face=3Dsymbol>=B3</FONT> 6, and all variables are <FONT =
+face=3Dsymbol>=B3</FONT>=20
+  0=20
+  <P>The dual formulation suggests that for any activity, the difference =
+between=20
+  finish and starting times exceeds the duration of the activity.=20
+  <P>To solve the dual problem, you may like to try the <A=20
+  href=3D"http://home.ubalt.edu/ntsbarsh/Business-stat/opre/PartII.htm"=20
+  target=3Dnew>Algebraic Method</A>.=20
+  <P><A target=3Dnew name=3Drmincoflpr></A>
+  <HR>
+
+  <H4><FONT color=3D#dc143c>Minimum Cost Flow Problem</FONT></H4>All the =
+above=20
+  network problems are special cases of the minimum cost flow problem. =
+Like the=20
+  maximum flow problem, it considers flows in networks with capacities. =
+Like the=20
+  shortest path problem, it considers a cost for flow through an arc. =
+Like the=20
+  transportation problem, it allows multiple sources and destinations.=20
+  Therefore, all of these problems can be seen as special cases of the =
+minimum=20
+  cost flow problem.=20
+  <P>The problem is to minimize the total cost subject to availability =
+and=20
+  demand at some nodes, and upper bound on flow through each arc.=20
+  <P>
+  <P>
+  <CENTER><IMG =
+src=3D"http://home.ubalt.edu/ntsbarsh/opre640A/slide8.gif">=20
+  </CENTER>
+  <P>The optimal solution is: X12 =3D 12, X13 =3D 8, X23 =3D 8, X24 =3D =
+4, X34 =3D 11, X35=20
+  =3D 5, X45 =3D 10, all other Xij =3D 0. The optimal cost is $150.=20
+  <P><B><FONT color=3D#dc143c size=3D3>The Dual of the Minimum Cost Flow =
+
+  Problem:</FONT></B>=20
+  <P>The dual problem for the above numerical example is:=20
+  <P>Max 15Y12 + 8Y13 + 5Y35 + 4Y24 + 15Y34 + 10Y25 + 4Y53 + 10Y25=20
+  <P>subject to:=20
+  <P>X2 - X1 + Y12 <FONT face=3Dsymbol>=A3</FONT> 4, X3 - X1 + Y13 <FONT =
+
+  face=3Dsymbol>=A3</FONT> 4, <BR>X3 - X2 + Y23 <FONT =
+face=3Dsymbol>=A3</FONT> 2,<BR>X4=20
+  - X2 + Y24 <FONT face=3Dsymbol>=A3</FONT> 2, X5 - X2 + Y25 <FONT=20
+  face=3Dsymbol>=A3</FONT> 6, X4 - X3 + Y34 <FONT =
+face=3Dsymbol>=A3</FONT> 1, <BR>X5 -=20
+  X3 + Y35 <FONT face=3Dsymbol>=A3</FONT> 3, X5 - X4 + Y45 <FONT=20
+  face=3Dsymbol>=A3</FONT> 2, X3 - X5 + Y5 <FONT =
+face=3Dsymbol>=A3</FONT> 1, <BR>Yij=20
+  <FONT face=3Dsymbol>=A3</FONT> 0,<BR>and all Xi are free-variables.=20
+  <P>The dual formulation suggests that we try to assign flow to the =
+arcs in=20
+  such a way that for each arc the difference in values at the beginning =
+node=20
+  and the end node as well as added value not to exceed the cost =
+assigned to=20
+  that arc.=20
+  <P>To solve the dual problem, you may like to try the <A=20
+  href=3D"http://home.ubalt.edu/ntsbarsh/Business-stat/opre/PartII.htm"=20
+  target=3Dnew>Algebraic Method</A>.=20
+  <P>
+  <P><A target=3Dnew name=3DrNetSensitivity></A>
+  <HR>
+
+  <H4><FONT color=3D#dc143c>Sensitivity Analysis for the Network=20
+  Models</FONT></H4>The family of classical network optimization =
+problems=20
+  includes the following prototype models: assignment, critical path, =
+max flow,=20
+  shortest path, and transportation. Although it is long known that =
+these=20
+  problems can be modeled as linear programs, it is generally not done. =
+Due to=20
+  the relative inefficiency and complexity of the simplex methods =
+(primal, dual,=20
+  and other variations) for network models, these problems are usually =
+treated=20
+  by one of over 400 specialized algorithms.=20
+  <P>This leads to several difficulties. The solution algorithms are not =
+unified=20
+  and each algorithm uses a different strategy to exploit the special =
+structure=20
+  of a specific problem. Furthermore, small variations in the problem =
+such as=20
+  the introduction of side constraints, or multi-index, destroy the =
+special=20
+  structure and requires restarting the algorithm. Also, these =
+algorithms obtain=20
+  solution efficiency at the expense of managerial insight, as the final =
+
+  solutions from these algorithms do not have sufficient information to =
+perform=20
+  sensitivity analysis.=20
+  <P>Another approach is to adapt the simplex to network optimization =
+problems=20
+  through network simplex. This provides unification of the various =
+problems but=20
+  maintains all the inefficiencies of simplex as well as most of the =
+network=20
+  inflexibility to handle changes such as side constraints. Even =
+ordinary=20
+  sensitivity analysis (OSA), long available in the tabular simplex, has =
+been=20
+  only recently transferred to network simplex.=20
+  <P><B>Warning:</B> Computer solutions for the network problems are =
+valid,=20
+  however the produced sensitivity results may not be valid. This is due =
+to the=20
+  facts that, among other things, these problems are Integer-LPs, and =
+any one=20
+  constraint in any of these models is a redundant constraint.=20
+  <P>
+  <P>Since the "path" taken by Branch-and-bound and Branch-and-Cut and =
+other=20
+  methods can be very different for small changes in the value of the =
+parameter,=20
+  we have developed, see the references, new solution algorithms, which =
+allow us=20
+  to perform various forms of sensitivity analysis.=20
+  <P><STRONG>Cost Perturbation Analysis</STRONG>: General Perturbation =
+Set,=20
+  Parametric Sensitivity Analysis, Ordinary Sensitivity Analysis, The =
+100% Rule,=20
+  Tolerance Analysis=20
+  <P><STRONG>Arc Capacity Perturbation Analysis</STRONG>: General =
+Perturbation=20
+  Set, Parametric Sensitivity Analysis, Ordinary Sensitivity Analysis, =
+The 100%=20
+  Rule, Tolerance Analysis=20
+  <P><STRONG>Supply and Demand Perturbation Analysis</STRONG>: General=20
+  Perturbation Set, Parametric Sensitivity Analysis, Ordinary =
+Sensitivity=20
+  Analysis, The 100% Rule, Tolerance Analysis=20
+  <P>
+  <P><A target=3Dnew name=3Drreferencesf></A>
+  <HR>
+
+  <H4><FONT color=3D#dc143c>References and Further =
+Readings</FONT></H4><FONT=20
+  face=3D"Bookman Old Style" size=3D-2>For full treatments of various =
+forms of=20
+  sensitivity analysis for the network models, read the following =
+articles:=20
+  <P>Arsham, H., Stability Analysis of the Critical Path in Project =
+Activity=20
+  Networks, <I>Civil Engineering and Environmental Systems</I>, Vol. 15, =
+No. 4,=20
+  305-334, 1999. <BR>Arsham, H., A Warm-start Dual Simplex Solution =
+Algorithm=20
+  for the Minimum Flow Network with Postoptimality Analysis, =
+<I>Mathematical and=20
+  Computer Modelling</I>, Vol. 27, No. 12, 85-115, 1998. <BR>Arsham H.,=20
+  Distribution-routes Stability Analysis of the Transportation Problem,=20
+  <I>Optimization</I>, Vol. 43, No. 1, 47-72, 1998. <BR>Arsham H., =
+Managing Cost=20
+  Uncertainties in Transportation and Assignment Problem, <I>Journal of=20
+  Mathematics &amp; Decision Sciences</I>, Vol. 2, No. 1, 65-102, 1998.=20
+  <BR>Arsham H., A Comprehensive Simplex-Like Algorithm for Network =
+Optimization=20
+  and Perturbation Analysis, <I>Optimization</I>, Vol. 32, No. 3, =
+211-267, 1995.=20
+  <BR>Arsham H., Managing Project Activity-Duration Uncertainties, =
+<I>Omega:=20
+  Journal of Management Science</I>, Vol. 21, No. 2, 111-122, 1993. =
+<BR>Arsham=20
+  H., Postoptimality Analysis for the Transportation Problem, <I>Journal =
+of the=20
+  Operational Research Society</I>, Vol. 43, No. 1, 121-139, 1992. =
+<BR>Kerzner=20
+  H., <I>Project Management: A Systems Approach to Planning, Scheduling, =
+and=20
+  Controlling</I>, Wiley, 2003. <BR>Pallottino S., and M. Scutella, A =
+New=20
+  Algorithm for Reoptimizing Shortest Paths When the Arc Costs Change,=20
+  <I>Operations Research Letters</I>, Vol. 31, No. 2, 149-160, 2003.=20
+  <P>More recent references may be found at <A=20
+  href=3D"http://home.ubalt.edu/ntsbarsh/refop/Refop.htm" =
+target=3Dnew>Bibliography=20
+  for Optimization with Sensitivity Analysis</A>=20
+  <P>Visit also the Web sites:
+  <P><A href=3D"http://www.ie.ncsu.edu/fang/www/nw.dir/indexnw.html"=20
+  target=3Dnew>Network Flows Resources</A><BR><A=20
+  href=3D"http://www.math.princeton.edu/tsp" target=3Dnew>Traveling =
+Salesman=20
+  Problem</A><BR><A =
+href=3D"http://www.seas.smu.edu/~barr/ip/ch0/ch0.html"=20
+  target=3Dnew>Survey of Network Models</A> </FONT>
+  <P><A target=3Dnew name=3Drgenintlp></A>
+  <HR>
+
+  <H4><FONT color=3D#dc143c>General Integer Linear =
+Programs</FONT></H4>Standard LP=20
+  assumes that decision variables are continuous. However, in many =
+applications,=20
+  fractional values may be of little use (e.g., 2.5 employees). On the =
+other=20
+  hand, as you know by now, since integer linear programs are more =
+difficult to=20
+  solve, you might ask why bother. Why not simply use a standard linear =
+program=20
+  and round the answers to the nearest integers? Unfortunately, there =
+are two=20
+  problems with this:=20
+  <P>
+  <UL>
+    <LI>The rounded solution may be infeasible; and=20
+    <LI>Rounding may not give an optimal solution. </LI></UL>Therefore, =
+rounding=20
+  the results from linear programs can give reasonable answers, but to =
+guarantee=20
+  optimal solutions we have to use integer linear programming. By =
+default, LP=20
+  software assumes that all variables are continuous. In using Lindo =
+software,=20
+  you will want to make use of the general integer statement - GIN. GIN =
+followed=20
+  by a variable name restricts the value of the variable to the =
+nonnegative=20
+  integers (0,1,2,=85). The following small example illustrates the use =
+of the GIN=20
+  statement.=20
+  <P><PRE>Max 11X1 + 10X2
+S.T. 2X1 + X2  <FONT face=3Dsymbol>=A3</FONT> 12
+        X1 - 3X2  <FONT face=3Dsymbol>=B3</FONT> 1
+END
+GIN X1
+GIN X2
+</PRE>
+  <P>The output after 7 iterations is:=20
+  <P><PRE>        OBJECTIVE FUNCTION VALUE
+
+        1)      66.00000
+
+  VARIABLE        VALUE          REDUCED COST
+        X1         6.000000        -11.000000
+        X2         0.000000        -10.000000
+
+
+       ROW   SLACK OR SURPLUS=20
+        2)         0.000000         =20
+        3)         5.000000         =20
+</PRE>
+  <P>Had we not specified X1 and X2 to be general integers in this =
+model, LINDO=20
+  would not have found the optimal solution of X1 =3D 6 and X2 =3D 0. =
+Instead, LINDO=20
+  would have treated X1 and X2 as continuous and returned the solution =
+of X1 =3D=20
+  5.29 and X2 =3D 1.43.=20
+  <P>Note also, that simply rounding the continuous solution to the =
+nearest=20
+  integer values does not yield the optimal solution in this example. In =
+
+  general, rounded continuous solutions may be non optimal and, at =
+worst,=20
+  infeasible. Based on this, one can imagine that it can be very time =
+consuming=20
+  to obtain the optimal solution to a model with many integer variables. =
+In=20
+  general this is true, and you are best off utilizing the GIN feature =
+only when=20
+  absolutely necessary.=20
+  <P>As a final note, the GIN command also accepts an integer value =
+argument in=20
+  place of a variable name. The number corresponds to the number of =
+variables=20
+  you want to be general integers. These variables must appear first in =
+the=20
+  formulation. Thus, in this simple example, we could have replaced our =
+two GIN=20
+  statements with the single statement: GIN 2.=20
+  <P>Most commercial solvers use the "branch and bound" or "branch and =
+cut"=20
+  method in solving IP. The first step is usually is to relax the IP to =
+an LP=20
+  problem, However, some software, such as CPLEX will then automatically =
+execute=20
+  heuristic methods to round the LP solution to get a good (and =
+feasible)=20
+  solution to the IP. The difference between your doing this yourself =
+and=20
+  letting an IP solver do it is that the IP solver is likely to consider =
+the=20
+  payback constraint sacrosanct and reject any rounded solution that =
+violates=20
+  it. <A name=3Drmixedinteger></A>
+  <HR>
+
+  <P>
+  <H4><FONT color=3D#dc143c>Mixed Integer Programming Application: =
+"Either-Or"=20
+  Constraints</FONT></H4>Suppose a bakery sells eight varieties of =
+doughnuts.=20
+  The preparation of varieties 1, 2, and 3 involves a rather complicated =
+
+  process, and so the bakery has decided that it would rather not bake =
+these=20
+  varieties unless it can bake and sell at least 10 dozen doughnuts of =
+varieties=20
+  1, 2, and 3 combined. Suppose also that the capacity of the bakery =
+prohibits=20
+  the total number of doughnuts baked from exceeding 30 dozens, and that =
+the per=20
+  unit profit for a variety j doughnut is P<FONT =
+size=3D+0><SUB>j</SUB></FONT>=20
+  dollars. If we let Xj, j =3D 1, 2, =85 ,6 denote the number of dozens =
+of doughnut=20
+  variety j to be baked, then the maximum profit can be found by solving =
+the=20
+  following problem (assuming the bakery can sell everything it bakes):
+  <P>Maximize Z =3D <FONT face=3Dsymbol>S </FONT>P<FONT =
+size=3D+0><SUB>j</SUB></FONT>=20
+  X<FONT size=3D+0><SUB>j</SUB></FONT><BR>Subject to the constraints: =
+<FONT=20
+  face=3Dsymbol>S </FONT>X<FONT size=3D+0><SUB>j</SUB></FONT> <FONT=20
+  face=3Dsymbol>=A3</FONT> 30<BR>X1 + X2 + X3 =3D 0, OR, X1 + X2 + X3 =
+<FONT=20
+  face=3Dsymbol>=B3</FONT> 10
+  <P>Where all variables are nonnegative. The above "either-or" =
+constraint can=20
+  be handled as such: Let y be a 0-1 variable. Then an equivalent =
+problem is:=20
+  <P>Maximize Z =3D <FONT face=3Dsymbol>S </FONT>P<FONT =
+size=3D+0><SUB>j</SUB></FONT>=20
+  X<FONT size=3D+0><SUB>j</SUB></FONT><BR>Subject to: <FONT =
+face=3Dsymbol>S=20
+  </FONT>X<FONT size=3D+0><SUB>j</SUB></FONT> <FONT =
+face=3Dsymbol>=A3</FONT> 30<BR>X1=20
+  + X2 + X3 - 30y <FONT face=3Dsymbol>=A3</FONT> 0,<BR>X1 + X2 + X3 - =
+10y<FONT=20
+  face=3Dsymbol>=B3</FONT> 10<BR>X<FONT size=3D+0><SUB>j</SUB></FONT> =
+<FONT=20
+  face=3Dsymbol>=B3</FONT> 0, y =3D 0, or 1.=20
+  <P><A target=3Dnew name=3Drconditionconst></A>
+  <HR>
+
+  <P>
+  <H4><FONT color=3D#dc143c>Conditional Relations Among Constraints=20
+  </FONT></H4>Suppose that, in order for a certain variable X to be =
+positive, it=20
+  is necessary that another variable Y exceed a certain threshold value. =
+This=20
+  conditional statement can be reformulated as:=20
+  <P>
+  <CENTER>(x =3D 0) OR (y <FONT face=3Dsymbol>=B3</FONT> a).</CENTER>
+  <P>Since a conditional statement can be expressed as and either-or =
+statement=20
+  by negating the hypotheses. The either-or statement can be expressed =
+as:=20
+  <P>
+  <CENTER>X <FONT face=3Dsymbol>=A3</FONT> dM, y <FONT =
+face=3Dsymbol>=B3</FONT> ad, 0=20
+  <FONT face=3Dsymbol>=A3</FONT> d <FONT face=3Dsymbol>=A3</FONT> 1, d =
+integer.</CENTER>
+  <P>Where M is a very large positive number.=20
+  <P><A target=3Dnew name=3Droffoncont></A>
+  <HR>
+
+  <P>
+  <H4><FONT color=3D#dc143c>Off-On Constraints </FONT></H4>Suppose we =
+wish a=20
+  variable to take on the value a or else to be 0. It is easy to =
+accomplish this=20
+  by means of the following conditions: X =3D da; 0 <FONT =
+face=3Dsymbol>=A3</FONT> d=20
+  <FONT face=3Dsymbol>=A3</FONT>1 and d an integer.=20
+  <P>Clearly, that if d satisfies the last two conditions the only =
+possible=20
+  values it can take on are 0 and 1. So if d =3D 0, then x =3D 0, and if =
+d =3D 1, then=20
+  X =3D a, as required.=20
+  <P>
+  <P><A target=3Dnew name=3Droffonintreval></A>
+  <HR>
+
+  <P>
+  <H4><FONT color=3D#dc143c>Off-On Intervals </FONT></H4>Suppose we want =
+x either=20
+  to be 0 or else to be in a fixed interval between a and b. The =
+following=20
+  inequalities accomplish these requirements: da <FONT =
+face=3Dsymbol>=A3</FONT> X=20
+  <FONT face=3Dsymbol>=A3</FONT> db; 0 &lt; d &lt; 1 and d integer.=20
+  <P>Clear that if d =3D 0, then x =3D 0, and if d =3D 1, then x =
+satisfies a <FONT=20
+  face=3Dsymbol>=A3</FONT>X <FONT face=3Dsymbol>=A3</FONT> b. These are =
+the only=20
+  possible values for d.=20
+  <P>
+  <P><A target=3Dnew name=3Drfinitvaluevar></A>
+  <HR>
+
+  <P>
+  <H4><FONT color=3D#dc143c>A Case of Discrete Finite Valued Variable=20
+  </FONT></H4>Suppose a variable X takes only one of a finite number of =
+values=20
+  a<FONT size=3D+0><SUB>1</SUB></FONT>, a<FONT =
+size=3D+0><SUB>2</SUB></FONT>,=85=85, and=20
+  a<FONT size=3D+0><SUB>n</SUB></FONT>. Set:=20
+  <P>X =3D a<FONT size=3D+0><SUB>1</SUB></FONT>d<FONT =
+size=3D+0><SUB>1</SUB></FONT> +=20
+  a<FONT size=3D+0><SUB>2</SUB></FONT>d<FONT =
+size=3D+0><SUB>2</SUB></FONT> + =85 +=20
+  a<FONT size=3D+0><SUB>n</SUB></FONT>d<FONT =
+size=3D+0><SUB>n</SUB></FONT> , <FONT=20
+  face=3Dsymbol>S </FONT>d<FONT size=3D+0><SUB>i</SUB></FONT> =3D 1, 0 =
+<FONT=20
+  face=3Dsymbol>&lt;</FONT> d<FONT size=3D+0><SUB>i</SUB></FONT> <FONT=20
+  face=3Dsymbol>&lt;</FONT> 1 and d<FONT size=3D+0><SUB>i</SUB></FONT> =
+is an=20
+  integer.=20
+  <P>Notice that the conditions on the d<FONT =
+size=3D+0><SUB>i</SUB></FONT>'s=20
+  require that exactly one of them should be 1 and the rest 0. And if =
+d<FONT=20
+  size=3D+0><SUB>i</SUB></FONT> =3D 1, then X =3D a<FONT =
+size=3D+0><SUB>i</SUB></FONT>.=20
+  <P><A target=3Dnew name=3Drzeroonelp></A>
+  <HR>
+
+  <P>
+  <H4><FONT color=3D#dc143c>0 - 1 Integer Linear =
+Programs</FONT></H4>Using the INT=20
+  command in LINDO restricts a variable to being either 0 or 1. These =
+variables=20
+  are often referred to as binary variables. In many applications, =
+binary=20
+  variables can be very useful in modeling all-or-nothing situations. =
+Examples=20
+  might include such things as taking on a fixed cost, building a new =
+plant, or=20
+  buying a minimum level of some resource to receive a quantity =
+discount.=20
+  <P><FONT color=3D#dc143c><B>Example: Consider the following Knapsack=20
+  Problem</B></FONT>=20
+  <P>Maximize 11X1 + 9X2 + 8X3 + 15X4 <BR>Subject to: 4X1 + 3X2 + 2X3 + =
+5X4=20
+  <FONT face=3Dsymbol>=A3</FONT> 8, and any Xi is either 0 or 1.=20
+  <P>Since is this very small size problem there are 4 variables each =
+can have=20
+  either of 2 values, there are 2<FONT size=3D+0><SUP>4</SUP></FONT> =3D =
+16=20
+  possibilities. Trying all 16 possibilities in order to identify an =
+optimal=20
+  solution (if it exists) is tedious. Therefore, one must use any one of =
+ILP=20
+  software packages to solve even this or any larger-scale problem.=20
+  <P>Using LINDO, the problem statement is:=20
+  <P><PRE>Max 11X1 + 9X2 + 8X3 + 15X4
+S.T. 4X1 + 3X2 + 2X3 + 5X4 <FONT face=3Dsymbol>=A3</FONT> 8
+END
+INT X1
+INT X2
+INT X3
+INT X4
+</PRE>
+  <P>Then click on SOLVE. The output shows the optimal solution and the =
+optimal=20
+  value after 8 Branch-and-Bound Iterations.=20
+  <P>Note that instead of repeating INT four times, one can use INT 4. =
+The first=20
+  four variables appeared in the objective function.=20
+  <P><PRE>
+        OBJECTIVE FUNCTION VALUE
+
+        1)      24.00000
+
+  VARIABLE        VALUE          REDUCED COST
+        X1         0.000000        -11.000000
+        X2         1.000000         -9.000000
+        X3         0.000000         -8.000000
+        X4         1.000000        -15.000000
+
+
+       ROW   SLACK OR SURPLUS     DUAL PRICES
+        2)         0.000000          0.000000
+
+ NO. ITERATIONS=3D       8
+</PRE><A target=3Dnew name=3Drtrasapr></A>
+  <HR>
+
+  <H4><FONT color=3D#dc143c>Traveling Salesperson Problem</FONT></H4>A =
+salesperson=20
+  has to visit cities 1, 2,..n, and his/her trip begins at, and must end =
+in,=20
+  Home City. Let C<FONT size=3D+0><SUB>ij</SUB></FONT> be the cost of =
+traveling=20
+  from city i to city j, which is given. The problem is to determine an =
+optimal=20
+  order for traveling the cities so that the total cost is minimized.=20
+  <P>Consider the following Traveling Salesperson Problem:=20
+  <P>
+  <CENTER><IMG =
+src=3D"http://home.ubalt.edu/ntsbarsh/opre640A/slide6.gif">=20
+  </CENTER>The LP formulation is: <PRE>Min 30x01 + 45x02 +65x03+80x04 + =
+25x12 + 50x13+ 50x14
++ 40x23+ 40x24 + 35x34 +30X10 +45X20+25X21 +65X30 + 50X31
++ 40X32 + 80X40+ 50X41+ 40X42 +35X43
+Subject to:
+X01+X02+X03+X04=3D1
+X01+X02+X03+X04=3D1
+x10+x12+x13+x14=3D1
+x20+x21+x23+x24=3D1
+x30+x31+x32+x34=3D1
+x40+x41+x42+x43=3D1
+X10+X20+X30+X40=3D1
+X01+X21+X31+X33=3D1
+x02+X12+X32+X42=3D1
+X03+X13+X23+X43=3D1
+X04+X14+X24+X34=3D1
+All Xij =3D 0, or 1
+</PRE>The solution to this LP problem produces a sub-tours (0, 1, 2). We =
+need=20
+  to introduce a tour breaker that is=20
+  <P>X01 + X10 + X12 + X21+ X02 + X20 <FONT face=3Dsymbol>=A3</FONT> 2=20
+  <P>Adding this new constraint and resolving, we need another tour =
+breaker,=20
+  which is:=20
+  <P>X01 + X10 <FONT face=3Dsymbol>=A3</FONT> 1,=20
+  <P>Adding this, the optimal path is: Home to 1, 1 to 2, 2 to 4, 4 to =
+3, and 3=20
+  to home, with a total length of 195 units. <A name=3Drcapbudget></A>
+  <HR>
+
+  <H4><FONT color=3D#dc143c>Capital Budgeting =
+Applications</FONT></H4>Suppose a=20
+  Research &amp; Development company has a sum of money, D dollars, =
+available=20
+  for investment. The company has determined that there are N projects =
+suitable=20
+  for investment and at least d<FONT size=3D+0><SUB>j</SUB></FONT> =
+dollars must be=20
+  invested in project j if it is decided that project j is worthy of =
+investment.=20
+  The company net profit that can be made by an investment in project j =
+is=20
+  P<FONT size=3D+0><SUB>j</SUB></FONT> dollars. The company's dilemma is =
+that it=20
+  cannot invest in all N projects, because <BR><FONT face=3Dsymbol>S =
+</FONT>d<FONT=20
+  size=3D+0><SUB>j</SUB></FONT> <FONT face=3Dsymbol>&gt;</FONT> D. Thus, =
+the company=20
+  must decide in which of the projects it wishes to invest in order to =
+maximize=20
+  its profit. To solve this problem the counselor formulates the =
+following=20
+  problem: <BR>Let X<FONT size=3D+0><SUB>j</SUB></FONT> =3D 1, if the =
+company=20
+  invests in project j, and<BR>X<FONT size=3D+0><SUB>j</SUB></FONT> =3D =
+0 if the=20
+  company does not invest in project j.<BR>The total amount that will be =
+
+  invested is then <BR><FONT face=3Dsymbol>S </FONT>d<FONT=20
+  size=3D+0><SUB>j</SUB></FONT> X<FONT size=3D+0><SUB>j</SUB></FONT>, =
+and since this=20
+  amount cannot exceed D dollars, we have the constraint:=20
+  <P>
+  <CENTER><FONT face=3Dsymbol>S </FONT>d<FONT =
+size=3D+0><SUB>j</SUB></FONT> X<FONT=20
+  size=3D+0><SUB>j</SUB></FONT> <FONT face=3Dsymbol>=A3</FONT> D =
+</CENTER>
+  <P>The total profit will be <FONT face=3Dsymbol>S </FONT>P<FONT=20
+  size=3D+0><SUB>j</SUB></FONT> X<FONT size=3D+0><SUB>j</SUB></FONT>. =
+Thus the=20
+  company desires the 0-1 problem:
+  <P>Maximize Z=3D <FONT face=3Dsymbol>S </FONT>P<FONT =
+size=3D+0><SUB>j</SUB></FONT>=20
+  X<FONT size=3D+0><SUB>j</SUB></FONT><BR>Subject to: <FONT =
+face=3Dsymbol>S=20
+  </FONT>d<FONT size=3D+0><SUB>j</SUB></FONT> X<FONT =
+size=3D+0><SUB>j</SUB></FONT>=20
+  <FONT face=3Dsymbol>=A3</FONT> D, X<FONT size=3D+0><SUB>j</SUB> =3D 0, =
+OR 1.=20
+  <P><A name=3DrScheduling></A>
+  <HR>
+
+  <H4><FONT color=3D#dc143c>Scheduling Problems</FONT></H4>To utilize =
+labor as=20
+  efficiently as possible, it is important to analyze manpower =
+requirements=20
+  during various times of the day. This is especially true in large =
+service=20
+  organizations in which customer demand is repetitive, but changes=20
+  significantly during different hours. For example, many more telephone =
+
+  operators are required during the period noon to 2:00 p.m. then from =
+midnight=20
+  to 2:00 a.m. Nevertheless, some operators must be on duty during the =
+early=20
+  morning hours. Since nurses usually work an eight-hour shift, it may =
+be=20
+  possible to schedule operators' working hours so that a single shift =
+covers=20
+  two or more "peak periods" of demand. By devising intelligent =
+schedules, the=20
+  productivity of the operators is increased, resulting in a smaller =
+staff and,=20
+  thus, a reduction in payroll costs. Other examples in which employee=20
+  scheduling models have proved useful include bus drivers, air traffic=20
+  controllers, and nurses. We now give an example problem and develop an =
+integer=20
+  programming model for scheduling nurses' working hours.=20
+  <P>Hospitals routinely face the problem of scheduling nurses' working =
+hours. A=20
+  scheduling model is an integer programming problem of minimizing the =
+total=20
+  number of workers subject to the specified number of nurses during =
+each period=20
+  of the day.=20
+  <P>
+  <CENTER>
+  <TABLE width=3D365 border=3D0>
+    <TBODY>
+    <TR>
+      <TD bgColor=3D#f1f1f1>
+        <TABLE cellSpacing=3D1 width=3D362 border=3D0>
+          <TBODY>
+          <TR>
+            <TD width=3D"33%" bgColor=3D#f1f1f1>
+              <DIV align=3Dcenter><FONT color=3D#006600><B><FONT=20
+              face=3D"Arial, Helvetica, sans-serif"=20
+              size=3D2>Period</FONT></B></FONT></DIV></TD>
+            <TD width=3D"33%" bgColor=3D#f1f1f1>
+              <DIV align=3Dcenter><FONT color=3D#006600><B><FONT=20
+              face=3D"Arial, Helvetica, sans-serif" size=3D2>Time of=20
+              Day</FONT></B></FONT></DIV></TD>
+            <TD width=3D"33%" bgColor=3D#f1f1f1>
+              <DIV align=3Dcenter><FONT color=3D#006600><B><FONT=20
+              face=3D"Arial, Helvetica, sans-serif" size=3D2>Required =
+Number of=20
+              Nurses</FONT></B></FONT></DIV></TD></TR>
+          <TR bgColor=3D#ffffff>
+            <TD width=3D"33%">
+              <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, =
+sans-serif"=20
+              size=3D2>1</FONT></DIV></TD>
+            <TD align=3Dmiddle>
+              <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, =
+sans-serif"=20
+              size=3D2>8:00 - 10:00</FONT></DIV></TD>
+            <TD align=3Dmiddle>
+              <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, =
+sans-serif"=20
+              size=3D2>10</FONT></DIV></TD></TR>
+          <TR bgColor=3D#ffffff>
+            <TD width=3D"33%">
+              <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, =
+sans-serif"=20
+              size=3D2>2</FONT></DIV></TD>
+            <TD align=3Dmiddle>
+              <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, =
+sans-serif"=20
+              size=3D2>10:00 - 12:00</FONT></DIV></TD>
+            <TD align=3Dmiddle>
+              <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, =
+sans-serif"=20
+              size=3D2>8</FONT></DIV></TD></TR>
+          <TR bgColor=3D#ffffff>
+            <TD width=3D"33%">
+              <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, =
+sans-serif"=20
+              size=3D2>3</FONT></DIV></TD>
+            <TD align=3Dmiddle>
+              <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, =
+sans-serif"=20
+              size=3D2>12:00 - 02:00</FONT></DIV></TD>
+            <TD align=3Dmiddle>
+              <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, =
+sans-serif"=20
+              size=3D2>9</FONT></DIV></TD></TR>
+          <TR bgColor=3D#ffffff>
+            <TD width=3D"33%">
+              <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, =
+sans-serif"=20
+              size=3D2>4</FONT></DIV></TD>
+            <TD align=3Dmiddle>
+              <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, =
+sans-serif"=20
+              size=3D2>02:00 - 04:00</FONT></DIV></TD>
+            <TD align=3Dmiddle>
+              <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, =
+sans-serif"=20
+              size=3D2>11</FONT></DIV></TD></TR>
+          <TR bgColor=3D#ffffff>
+            <TD width=3D"33%">
+              <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, =
+sans-serif"=20
+              size=3D2>5</FONT></DIV></TD>
+            <TD align=3Dmiddle>
+              <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, =
+sans-serif"=20
+              size=3D2>04:00 - 06:00</FONT></DIV></TD>
+            <TD align=3Dmiddle>
+              <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, =
+sans-serif"=20
+              size=3D2>13</FONT></DIV></TD></TR>
+          <TR bgColor=3D#ffffff>
+            <TD width=3D"33%">
+              <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, =
+sans-serif"=20
+              size=3D2>6</FONT></DIV></TD>
+            <TD align=3Dmiddle>
+              <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, =
+sans-serif"=20
+              size=3D2>06:00 - 08:00</FONT></DIV></TD>
+            <TD align=3Dmiddle>
+              <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, =
+sans-serif"=20
+              size=3D2>8</FONT></DIV></TD></TR>
+          <TR bgColor=3D#ffffff>
+            <TD width=3D"33%">
+              <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, =
+sans-serif"=20
+              size=3D2>7</FONT></DIV></TD>
+            <TD align=3Dmiddle>
+              <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, =
+sans-serif"=20
+              size=3D2>08:00 - 10:00</FONT></DIV></TD>
+            <TD align=3Dmiddle>
+              <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, =
+sans-serif"=20
+              size=3D2>5</FONT></DIV></TD></TR>
+          <TR bgColor=3D#ffffff>
+            <TD width=3D"33%">
+              <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, =
+sans-serif"=20
+              size=3D2>8</FONT></DIV></TD>
+            <TD align=3Dmiddle>
+              <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, =
+sans-serif"=20
+              size=3D2>10:00 - 12:00</FONT></DIV></TD>
+            <TD align=3Dmiddle>
+              <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, =
+sans-serif"=20
+              =
+size=3D2>3</FONT></DIV></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABL=
+E></CENTER>
+  <P>Since each nurse works eight hours, he/she can start working at the =
+
+  beginning of any one of the first five shifts: 8:00, 10:00, 12:00, =
+2:00 or=20
+  4:00. In this application, we do not consider any shift starting at =
+9:00,=20
+  11:00, etc. Also, there is no need to have any nurse begin working =
+after 4:00,=20
+  since his/her shift would then run past midnight when no nurses are =
+needed.=20
+  Each period is two hours long, so each nurse who reports for work in =
+period t=20
+  will also work during periods t + 1, t+ 2, and t + 3 --- eight =
+consecutive=20
+  hours. The question is: "How many nurses should report for work during =
+each=20
+  time period to meet the resource requirements specified in the above =
+Table."=20
+  To model this problem, let X<FONT size=3D+0><SUB>t</SUB></FONT> be a =
+decision=20
+  variable denoting the number of nurses who will begin work in period t =
+. The=20
+  total work force, which we wish to minimize, is <FONT face=3Dsymbol>S=20
+  </FONT>X<FONT size=3D+0><SUB>t</SUB></FONT>. During time period 1, at =
+least 10=20
+  agents must be on duty, so we must have X<FONT =
+size=3D+0><SUB>1</SUB></FONT>=20
+  <FONT face=3Dsymbol>=B3</FONT> 10. Similarly, the requirements in time =
+period 2=20
+  can only be met by X<FONT size=3D+0><SUB>1</SUB></FONT> + X<FONT=20
+  size=3D+0><SUB>2</SUB></FONT> <FONT face=3Dsymbol>=B3</FONT> 8. In =
+this manner, we=20
+  write the requirements for the remaining periods. These are:
+  <P>X<FONT size=3D+0><SUB>1</SUB></FONT> + X<FONT =
+size=3D+0><SUB>2</SUB></FONT> +=20
+  X<FONT size=3D+0><SUB>3</SUB></FONT> <FONT face=3Dsymbol>=B3</FONT> =
+9,<BR>X<FONT=20
+  size=3D+0><SUB>1</SUB></FONT> + X<FONT size=3D+0><SUB>2</SUB></FONT> + =
+X<FONT=20
+  size=3D+0><SUB>3</SUB></FONT> + X<FONT size=3D+0><SUB>4</SUB></FONT> =
+<FONT=20
+  face=3Dsymbol>=B3</FONT> 11, <BR>X<FONT size=3D+0><SUB>2</SUB></FONT> =
++ X<FONT=20
+  size=3D+0><SUB>3</SUB></FONT> + X<FONT size=3D+0><SUB>4</SUB></FONT> + =
+X<FONT=20
+  size=3D+0><SUB>5</SUB></FONT> <FONT face=3Dsymbol>=B3</FONT> 13, =
+<BR>X<FONT=20
+  size=3D+0><SUB>3</SUB></FONT> + X<FONT size=3D+0><SUB>4</SUB></FONT> =
++X<FONT=20
+  size=3D+0><SUB>5</SUB></FONT> <FONT face=3Dsymbol>=B3</FONT> 8, =
+<BR>X<FONT=20
+  size=3D+0><SUB>4</SUB></FONT> + X<FONT size=3D+0><SUB>5</SUB></FONT> =
+<FONT=20
+  face=3Dsymbol>=B3</FONT> 5, <BR>X<FONT size=3D+0><SUB>5</SUB></FONT> =
+<FONT=20
+  face=3Dsymbol>=B3</FONT> 3, <BR>All variable are integer.=20
+  <P>Notice that X<FONT size=3D+0><SUB>1</SUB></FONT> is not included in =
+the=20
+  constraint for time period 5, since workers beginning in period 1 are =
+no=20
+  longer on the job by time period 5. Also, observe that it may be =
+necessary to=20
+  have more than the required number of agents working in some periods. =
+For=20
+  example we see from the first constraint that the number of nurses =
+beginning=20
+  work in period 1 must be at least 10. All of these nurses will still =
+be=20
+  working during time period 2, but only eight agents are required then. =
+Thus=20
+  even if X<FONT size=3D+0><SUB>2</SUB></FONT> =3D 0, there will be two =
+extra nurses=20
+  on duty during period 2.=20
+  <P>
+  <P>
+  <CENTER>
+  <TABLE width=3D489 bgColor=3D#666666 border=3D0>
+    <TBODY>
+    <TR>
+      <TD>
+        <TABLE cellSpacing=3D1 cellPadding=3D3 width=3D500 border=3D0>
+          <TBODY>
+          <TR bgColor=3D#fef3fe>
+            <TD colSpan=3D8>
+              <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, =
+sans-serif"=20
+              size=3D2><B><FONT color=3D#666666>Nurses Required Per=20
+              Shift</FONT></B></FONT></DIV></TD></TR>
+          <TR bgColor=3D#ffffff>
+            <TD colSpan=3D8>&nbsp;</TD></TR>
+          <TR bgColor=3D#ebecfe>
+            <TD width=3D"30%"><FONT face=3D"Arial, Helvetica, =
+sans-serif"=20
+              size=3D2>Shift Time Begins</FONT></TD>
+            <TD width=3D"10%">
+              <DIV align=3Dcenter><FONT color=3D#666666><B><FONT=20
+              face=3D"Arial, Helvetica, sans-serif"=20
+              size=3D2>8-10</FONT></B></FONT></DIV></TD>
+            <TD width=3D"10%">
+              <DIV align=3Dcenter><FONT color=3D#666666><B><FONT=20
+              face=3D"Arial, Helvetica, sans-serif"=20
+              size=3D2>10-12</FONT></B></FONT></DIV></TD>
+            <TD width=3D"10%">
+              <DIV align=3Dcenter><FONT color=3D#666666><B><FONT=20
+              face=3D"Arial, Helvetica, sans-serif" size=3D2>12-=20
+              2</FONT></B></FONT></DIV></TD>
+            <TD width=3D"10%">
+              <DIV align=3Dcenter><FONT color=3D#666666><B><FONT=20
+              face=3D"Arial, Helvetica, sans-serif" size=3D2>2-=20
+              4</FONT></B></FONT></DIV></TD>
+            <TD width=3D"10%">
+              <DIV align=3Dcenter><FONT color=3D#666666><B><FONT=20
+              face=3D"Arial, Helvetica, sans-serif" size=3D2>4-=20
+              6</FONT></B></FONT></DIV></TD>
+            <TD width=3D"10%" bgColor=3D#ebecfe>
+              <DIV align=3Dcenter><FONT color=3D#666666><B><FONT=20
+              face=3D"Arial, Helvetica, sans-serif" size=3D2>6-=20
+              8</FONT></B></FONT></DIV></TD>
+            <TD width=3D"10%">
+              <DIV align=3Dcenter><FONT color=3D#666666><B><FONT=20
+              face=3D"Arial, Helvetica, sans-serif"=20
+              size=3D2>8-10</FONT></B></FONT></DIV></TD></TR>
+          <TR bgColor=3D#e2f3e8>
+            <TD width=3D"30%"><FONT face=3D"Arial, Helvetica, =
+sans-serif"=20
+              size=3D2>Nurses Required</FONT></TD>
+            <TD vAlign=3Dbottom width=3D"8%" height=3D17>
+              <P align=3Dcenter><FONT face=3DArial size=3D2>10</FONT> =
+</P></TD>
+            <TD vAlign=3Dbottom width=3D"10%" height=3D17>
+              <P align=3Dcenter><FONT face=3DArial size=3D2>8</FONT> =
+</P></TD>
+            <TD vAlign=3Dbottom width=3D"8%" height=3D17>
+              <P align=3Dcenter><FONT face=3DArial size=3D2>9</FONT> =
+</P></TD>
+            <TD vAlign=3Dbottom width=3D"6%" height=3D17>
+              <P align=3Dcenter><FONT face=3DArial size=3D2>11</FONT> =
+</P></TD>
+            <TD vAlign=3Dbottom width=3D"6%" height=3D17>
+              <P align=3Dcenter><FONT face=3DArial size=3D2>13</FONT> =
+</P></TD>
+            <TD vAlign=3Dbottom width=3D"6%" height=3D17>
+              <P align=3Dcenter><FONT face=3DArial size=3D2>8</FONT> =
+</P></TD>
+            <TD vAlign=3Dbottom width=3D"8%" height=3D17>
+              <P align=3Dcenter><FONT face=3DArial size=3D2>5</FONT> =
+</P></TD></TR>
+          <TR bgColor=3D#e2f3e8>
+            <TD width=3D"30%"><FONT face=3D"Arial, Helvetica, =
+sans-serif"=20
+              size=3D2>Nurses Assigned</FONT></TD>
+            <TD vAlign=3Dbottom width=3D"8%" height=3D18>
+              <P align=3Dcenter><FONT face=3DArial size=3D2>10</FONT> =
+</P></TD>
+            <TD vAlign=3Dbottom width=3D"10%" height=3D18>
+              <P align=3Dcenter><FONT face=3DArial size=3D2>10</FONT> =
+</P></TD>
+            <TD vAlign=3Dbottom width=3D"8%" height=3D18>
+              <P align=3Dcenter><FONT face=3DArial size=3D2>18</FONT> =
+</P></TD>
+            <TD vAlign=3Dbottom width=3D"6%" height=3D18>
+              <P align=3Dcenter><FONT face=3DArial size=3D2>20</FONT> =
+</P></TD>
+            <TD vAlign=3Dbottom width=3D"6%" height=3D18>
+              <P align=3Dcenter><FONT face=3DArial size=3D2>13</FONT> =
+</P></TD>
+            <TD vAlign=3Dbottom width=3D"6%" height=3D18>
+              <P align=3Dcenter><FONT face=3DArial size=3D2>13</FONT> =
+</P></TD>
+            <TD vAlign=3Dbottom width=3D"8%" height=3D18>
+              <P align=3Dcenter><FONT face=3DArial size=3D2>5</FONT> =
+</P></TD></TR>
+          <TR bgColor=3D#e2f3e8>
+            <TD width=3D"30%"><FONT face=3D"Arial, Helvetica, =
+sans-serif"=20
+              size=3D2>Variable</FONT></TD>
+            <TD vAlign=3Dbottom width=3D"8%">
+              <P align=3Dcenter><FONT face=3DArial size=3D2>X1</FONT> =
+</P></TD>
+            <TD vAlign=3Dbottom width=3D"10%">
+              <P align=3Dcenter><FONT face=3DArial size=3D2>X2</FONT> =
+</P></TD>
+            <TD vAlign=3Dbottom width=3D"8%">
+              <P align=3Dcenter><FONT face=3DArial size=3D2>X3</FONT> =
+</P></TD>
+            <TD vAlign=3Dbottom width=3D"6%">
+              <P align=3Dcenter><FONT face=3DArial size=3D2>X4</FONT> =
+</P></TD>
+            <TD vAlign=3Dbottom width=3D"6%">
+              <P align=3Dcenter><FONT face=3DArial size=3D2>X5</FONT> =
+</P></TD>
+            <TD vAlign=3Dbottom width=3D"6%">
+              <P align=3Dcenter><FONT face=3DArial size=3D2>X6</FONT> =
+</P></TD>
+            <TD vAlign=3Dbottom width=3D"8%">
+              <P align=3Dcenter><FONT face=3DArial size=3D2>X7</FONT> =
+</P></TD></TR>
+          <TR bgColor=3D#fdf3fe>
+            <TD width=3D"30%"><FONT face=3D"Arial, Helvetica, =
+sans-serif"=20
+              size=3D2>Begin Shift</FONT></TD>
+            <TD vAlign=3Dbottom width=3D"8%" height=3D18>
+              <P align=3Dcenter><FONT face=3DArial size=3D2>10</FONT> =
+</P></TD>
+            <TD vAlign=3Dbottom width=3D"10%" height=3D18>
+              <P align=3Dcenter><FONT face=3DArial size=3D2>0</FONT> =
+</P></TD>
+            <TD vAlign=3Dbottom width=3D"8%" height=3D18>
+              <P align=3Dcenter><FONT face=3DArial size=3D2>8</FONT> =
+</P></TD>
+            <TD vAlign=3Dbottom width=3D"6%" height=3D18>
+              <P align=3Dcenter><FONT face=3DArial size=3D2>2</FONT> =
+</P></TD>
+            <TD vAlign=3Dbottom width=3D"6%" height=3D18>
+              <P align=3Dcenter><FONT face=3DArial size=3D2>3</FONT> =
+</P></TD>
+            <TD vAlign=3Dbottom width=3D"6%" height=3D18>
+              <P align=3Dcenter><FONT face=3DArial size=3D2>0</FONT> =
+</P></TD>
+            <TD vAlign=3Dbottom width=3D"8%" height=3D18>
+              <P align=3Dcenter><FONT face=3DArial size=3D2>0</FONT> =
+</P></TD></TR>
+          <TR bgColor=3D#ffffff>
+            <TD width=3D"30%">&nbsp;</TD>
+            <TD width=3D"10%">&nbsp;</TD>
+            <TD width=3D"10%">&nbsp;</TD>
+            <TD width=3D"10%">&nbsp;</TD>
+            <TD width=3D"10%">&nbsp;</TD>
+            <TD width=3D"10%">&nbsp;</TD>
+            <TD width=3D"10%">&nbsp;</TD>
+            <TD width=3D"10%">&nbsp;</TD></TR>
+          <TR bgColor=3D#ebecfe>
+            <TD width=3D"30%"><B><FONT face=3D"Arial, Helvetica, =
+sans-serif"=20
+              color=3D#666666 size=3D2>Total Nurses =
+Required</FONT></B></TD>
+            <TD width=3D"10%">
+              <DIV align=3Dcenter><B><FONT face=3D"Arial, Helvetica, =
+sans-serif"=20
+              color=3D#666666 size=3D2>23</FONT></B></DIV></TD>
+            <TD width=3D"10%">&nbsp;</TD>
+            <TD width=3D"10%">&nbsp;</TD>
+            <TD width=3D"10%">&nbsp;</TD>
+            <TD width=3D"10%">&nbsp;</TD>
+            <TD width=3D"10%">&nbsp;</TD>
+            <TD width=3D"10%">&nbsp;</TD></TR>
+          <TR bgColor=3D#ffffff>
+            <TD width=3D"30%">&nbsp;</TD>
+            <TD width=3D"10%">&nbsp;</TD>
+            <TD width=3D"10%">&nbsp;</TD>
+            <TD width=3D"10%">&nbsp;</TD>
+            <TD width=3D"10%">&nbsp;</TD>
+            <TD width=3D"10%">&nbsp;</TD>
+            <TD width=3D"10%">&nbsp;</TD>
+            <TD=20
+  =
+width=3D"10%">&nbsp;</TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><=
+/CENTER>
+  <P><B>Further Readings:</B><BR><FONT face=3D"Bookman Old Style" =
+size=3D-2>Arsham=20
+  H., Scheduling Travelling Inspectors - A Modular Decision Support =
+Systems=20
+  Helps to Plan Laboratory Accreditation Visits, <I>OR Insight</I>, Vol. =
+10, No.=20
+  1, 20-27, 1997. </FONT>
+  <P><A name=3Drmarketing></A>
+  <HR>
+
+  <H4><FONT color=3D#dc143c>Marketing Application</FONT></H4>Suppose =
+five daily=20
+  newspapers are published in a certain country, each paper covering =
+some of the=20
+  nine regions of the country as shown in the following table:=20
+  <P>
+  <CENTER>
+  <TABLE cellPadding=3D0 width=3D400 border=3D0>
+    <TBODY>
+    <TR vAlign=3Dbottom>
+      <TD>
+        <P align=3Dcenter><FONT face=3D"Times New Roman, Times, serif"=20
+        color=3D#990000><B>Newspaper#</B></FONT></P></TD>
+      <TD>
+        <P align=3Dcenter><FONT face=3D"Times New Roman, Times, serif"=20
+        color=3D#990000><B>Region Covered</B></FONT></P></TD>
+      <TD>
+        <P align=3Dcenter><FONT face=3D"Times New Roman, Times, serif"=20
+        color=3D#990000><B>Cost of Advertisement</B></FONT></P></TD>
+      <TD>
+        <P align=3Dcenter><FONT face=3D"Times New Roman, Times, serif"=20
+        color=3D#990000><B>Benefit of =
+Advertisement</B></FONT></P></TD></TR>
+    <TR>
+      <TD>
+        <P align=3Dcenter><FONT=20
+        face=3D"Times New Roman, Times, =
+serif">1<BR>2<BR>3<BR>4<BR>5</FONT></P></TD>
+      <TD>
+        <P align=3Dcenter><FONT=20
+        face=3D"Times New Roman, Times, =
+serif">1,2,3<BR>2,3,6<BR>4,5,6<BR>5,7,8<BR>6,8,9</FONT></P></TD>
+      <TD>
+        <P align=3Dcenter><FONT=20
+        face=3D"Times New Roman, Times, =
+serif">3<BR>4<BR>3<BR>7<BR>5</FONT></P></TD>
+      <TD>
+        <P align=3Dcenter><FONT=20
+        face=3D"Times New Roman, Times, =
+serif">12<BR>10<BR>14<BR>19<BR>16</FONT></P></TD></TR></TBODY></TABLE></C=
+ENTER>
+  <P>The Marketing Manager problem is to find a minimum total cost such =
+that the=20
+  advertisement covers the whole country. This problem can be formulated =
+as the=20
+  following zero-one LP problem:=20
+  <P>
+  <TABLE cellPadding=3D0 width=3D504 border=3D0>
+    <TBODY>
+    <TR>
+      <TD width=3D358>
+        <P><FONT face=3D"Times New Roman, Times, =
+serif">Minimize&nbsp;&nbsp; C =3D=20
+        3<I>y</I><SUB>1</SUB> +&nbsp; 4<I>y</I><SUB>2</SUB> +=20
+        3<I>y</I><SUB>3</SUB> + 7<I>y</I><SUB>4</SUB> +=20
+        5<I>y</I><SUB>5</SUB></FONT></P></TD></TR>
+    <TR>
+      <TD width=3D358>
+        <P><FONT=20
+        face=3D"Times New Roman, Times, =
+serif">s.t.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;=20
+        <I>y</I><SUB>1</SUB> </FONT></P></TD>
+      <TD width=3D140>
+        <P><FONT face=3D"Times New Roman, Times, serif"><FONT=20
+        =
+face=3Dsymbol>=B3</FONT>&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;=20
+        (Region 1) </FONT></P></TD></TR>
+    <TR style=3D"HEIGHT: 18.75pt">
+      <TD width=3D358>
+        <P><FONT=20
+        face=3D"Times New Roman, Times, =
+serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=20
+        <I>y</I><SUB>1&nbsp;</SUB>&nbsp; +&nbsp;&nbsp; =
+<I>y</I><SUB>2</SUB>=20
+        </FONT></P></TD>
+      <TD width=3D140>
+        <P><FONT face=3D"Times New Roman, Times, serif"><FONT=20
+        =
+face=3Dsymbol>=B3</FONT>&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;=20
+        (Region 2) </FONT></P></TD></TR>
+    <TR style=3D"HEIGHT: 18.75pt">
+      <TD width=3D358>
+        <P><FONT=20
+        face=3D"Times New Roman, Times, =
+serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=20
+        <I>y</I><SUB>1</SUB> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=20
+        +&nbsp;&nbsp;&nbsp; <I>y</I><SUB>2</SUB> </FONT></P></TD>
+      <TD width=3D140>
+        <P><FONT face=3D"Times New Roman, Times, serif"><FONT=20
+        =
+face=3Dsymbol>=B3</FONT>&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;=20
+        (Region 3) </FONT></P></TD></TR>
+    <TR style=3D"HEIGHT: 19.5pt">
+      <TD width=3D358>
+        <P><FONT=20
+        face=3D"Times New Roman, Times, =
+serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=20
+        <I>y</I><SUB>3</SUB>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=20
+        </FONT></P></TD>
+      <TD width=3D140>
+        <P><FONT face=3D"Times New Roman, Times, serif"><FONT=20
+        =
+face=3Dsymbol>=B3</FONT>&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;=20
+        (Region 4) </FONT></P></TD></TR>
+    <TR style=3D"HEIGHT: 0.25in">
+      <TD width=3D358>
+        <P><FONT=20
+        face=3D"Times New Roman, Times, =
+serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;=20
+        <I>y</I><SUB>3</SUB>&nbsp;&nbsp; +&nbsp;&nbsp; =
+<I>y</I><SUB>4</SUB>=20
+        </FONT></P></TD>
+      <TD width=3D140>
+        <P><FONT face=3D"Times New Roman, Times, serif"><FONT=20
+        =
+face=3Dsymbol>=B3</FONT>&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;=20
+        (Region 5) </FONT></P></TD></TR>
+    <TR style=3D"HEIGHT: 15pt">
+      <TD width=3D358>
+        <P><FONT=20
+        face=3D"Times New Roman, Times, =
+serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<I>y</I><SUB>2</SUB>=20
+        + <I>y</I><SUB>3</SUB>&nbsp;&nbsp;=20
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; +=20
+        <I>y</I><SUB>5</SUB> </FONT></P></TD>
+      <TD width=3D140>
+        <P><FONT face=3D"Times New Roman, Times, serif"><FONT=20
+        =
+face=3Dsymbol>=B3</FONT>&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;=20
+        (Region 6) </FONT></P></TD></TR>
+    <TR style=3D"HEIGHT: 21pt">
+      <TD width=3D358>
+        <P><FONT=20
+        face=3D"Times New Roman, Times, =
+serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;=20
+        <I>y</I><SUB>4</SUB>&nbsp;&nbsp; </FONT></P></TD>
+      <TD width=3D140>
+        <P><FONT face=3D"Times New Roman, Times, serif"><FONT=20
+        =
+face=3Dsymbol>=B3</FONT>&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;=20
+        (Region 7) </FONT></P></TD></TR>
+    <TR>
+      <TD width=3D358>
+        <P><FONT=20
+        face=3D"Times New Roman, Times, =
+serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;=20
+        <I>y</I><SUB>4</SUB> + <I>y</I><SUB>5</SUB> </FONT></P></TD>
+      <TD width=3D140>
+        <P><FONT face=3D"Times New Roman, Times, serif"><FONT=20
+        =
+face=3Dsymbol>=B3</FONT>&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;=20
+        (Region 8) </FONT></P></TD></TR>
+    <TR style=3D"HEIGHT: 13.5pt">
+      <TD width=3D358>
+        <P><FONT=20
+        face=3D"Times New Roman, Times, =
+serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=20
+        <I>y</I><SUB>5</SUB> </FONT></P></TD>
+      <TD width=3D140>
+        <P><FONT face=3D"Times New Roman, Times, serif"><FONT=20
+        =
+face=3Dsymbol>=B3</FONT>&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;=20
+        (Region 9) </FONT></P></TD></TR>
+    <TR>
+      <TD width=3D358>
+        <P><FONT=20
+        face=3D"Arial, Helvetica, =
+sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;<I><FONT=20
+        face=3D"Times New Roman, Times, =
+serif">y<SUB>j</SUB></FONT></I><FONT=20
+        face=3D"Times New Roman, Times, serif"> =3D 0 OR 1,&nbsp; for =
+all=20
+        j's</FONT></FONT></P></TD></TR></TBODY></TABLE>
+  <P>
+  <P><BR>The optimal solution is to advertise in Newspapers 1, 3, 4, and =
+5 for a=20
+  total cost of $18.00. This solution is the lowest cost associated with =
+
+  coverage in each of the nine areas. <A name=3Drcuttingstock></A>
+  <HR>
+
+  <H4><FONT color=3D#dc143c>The Cutting Stock Problem</FONT></H4>Suppose =
+that a=20
+  lumberyard has a supply of 10-ft boards, which are cut into 3-ft, =
+4-ft, and=20
+  5-ft boards according to customer demand.&nbsp; The 10-ft boards can =
+be cut in=20
+  six different sensible patterns as shown in the following table:=20
+  <P>
+  <CENTER>
+  <TABLE width=3D518 align=3Dcenter border=3D0>
+    <TBODY>
+    <TR vAlign=3Dtop bgColor=3D#e2efe6>
+      <TD width=3D"18%" height=3D2>
+        <P align=3Dcenter><FONT face=3D"Arial, Helvetica, sans-serif" =
+color=3D#1a3c17=20
+        size=3D2><B>Pattern #</B></FONT></P></TD>
+      <TD width=3D"18%" height=3D2>
+        <P align=3Dcenter><FONT face=3D"Arial, Helvetica, sans-serif" =
+color=3D#1a3c17=20
+        size=3D2><B>3-ft boards</B></FONT></P></TD>
+      <TD width=3D"20%" height=3D2>
+        <P align=3Dcenter><FONT face=3D"Arial, Helvetica, sans-serif" =
+color=3D#1a3c17=20
+        size=3D2><B># of 4-ft boards</B></FONT></P></TD>
+      <TD width=3D"18%" height=3D2>
+        <P align=3Dcenter><FONT face=3D"Arial, Helvetica, sans-serif" =
+color=3D#1a3c17=20
+        size=3D2><B>5-ft boards</B></FONT></P></TD>
+      <TD width=3D"18%" height=3D2>
+        <P align=3Dcenter><FONT face=3D"Arial, Helvetica, sans-serif" =
+color=3D#1a3c17=20
+        size=3D2><B>Waste (ft)</B></FONT></P></TD></TR>
+    <TR>
+      <TD width=3D"18%">
+        <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, sans-serif"=20
+        size=3D2>1</FONT></DIV></TD>
+      <TD width=3D"18%">
+        <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, sans-serif"=20
+        size=3D2>3</FONT></DIV></TD>
+      <TD width=3D"20%">
+        <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, sans-serif"=20
+        size=3D2>0</FONT></DIV></TD>
+      <TD width=3D"18%">
+        <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, sans-serif"=20
+        size=3D2>0</FONT></DIV></TD>
+      <TD width=3D"18%">
+        <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, sans-serif"=20
+        size=3D2>1</FONT></DIV></TD></TR>
+    <TR>
+      <TD width=3D"18%">
+        <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, sans-serif"=20
+        size=3D2>2</FONT></DIV></TD>
+      <TD width=3D"18%">
+        <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, sans-serif"=20
+        size=3D2>2</FONT></DIV></TD>
+      <TD width=3D"20%">
+        <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, sans-serif"=20
+        size=3D2>1</FONT></DIV></TD>
+      <TD width=3D"18%">
+        <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, sans-serif"=20
+        size=3D2>0</FONT></DIV></TD>
+      <TD width=3D"18%">
+        <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, sans-serif"=20
+        size=3D2>0</FONT></DIV></TD></TR>
+    <TR>
+      <TD width=3D"18%">
+        <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, sans-serif"=20
+        size=3D2>3</FONT></DIV></TD>
+      <TD width=3D"18%">
+        <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, sans-serif"=20
+        size=3D2>1</FONT></DIV></TD>
+      <TD width=3D"20%">
+        <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, sans-serif"=20
+        size=3D2>0</FONT></DIV></TD>
+      <TD width=3D"18%">
+        <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, sans-serif"=20
+        size=3D2>1</FONT></DIV></TD>
+      <TD width=3D"18%">
+        <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, sans-serif"=20
+        size=3D2>2</FONT></DIV></TD></TR>
+    <TR>
+      <TD width=3D"18%">
+        <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, sans-serif"=20
+        size=3D2>4</FONT></DIV></TD>
+      <TD width=3D"18%">
+        <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, sans-serif"=20
+        size=3D2>0</FONT></DIV></TD>
+      <TD width=3D"20%">
+        <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, sans-serif"=20
+        size=3D2>1</FONT></DIV></TD>
+      <TD width=3D"18%">
+        <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, sans-serif"=20
+        size=3D2>1</FONT></DIV></TD>
+      <TD width=3D"18%">
+        <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, sans-serif"=20
+        size=3D2>1</FONT></DIV></TD></TR>
+    <TR>
+      <TD width=3D"18%" height=3D20>
+        <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, sans-serif"=20
+        size=3D2>5</FONT></DIV></TD>
+      <TD width=3D"18%" height=3D20>
+        <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, sans-serif"=20
+        size=3D2>0</FONT></DIV></TD>
+      <TD width=3D"20%" height=3D20>
+        <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, sans-serif"=20
+        size=3D2>2</FONT></DIV></TD>
+      <TD width=3D"18%" height=3D20>
+        <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, sans-serif"=20
+        size=3D2>0</FONT></DIV></TD>
+      <TD width=3D"18%" height=3D20>
+        <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, sans-serif"=20
+        size=3D2>2</FONT></DIV></TD></TR>
+    <TR>
+      <TD width=3D"18%">
+        <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, sans-serif"=20
+        size=3D2>6</FONT></DIV></TD>
+      <TD width=3D"18%">
+        <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, sans-serif"=20
+        size=3D2>0</FONT></DIV></TD>
+      <TD width=3D"20%">
+        <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, sans-serif"=20
+        size=3D2>0</FONT></DIV></TD>
+      <TD width=3D"18%">
+        <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, sans-serif"=20
+        size=3D2>2</FONT></DIV></TD>
+      <TD width=3D"18%">
+        <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, sans-serif"=20
+        size=3D2>0</FONT></DIV></TD></TR></TBODY></TABLE></CENTER>
+  <P>There are many other possible but not sensible patterns; for =
+instance, one=20
+  would cut a 10-ft board into a 3-ft and a 4-ft board, leaving 3-ft as =
+waste.=20
+  This would not make sense, since the 3-ft waste could be used as a =
+3-ft board,=20
+  as in pattern #2. If a customer orders 50 3-ft boards, 65 4-ft boards, =
+the=20
+  question is how many 10-ft boards need to be cut and what cut pattern =
+is to be=20
+  used?=20
+  <P>To model this decision problem, let's denote by =
+<I>y</I><SUB>j</SUB> the=20
+  number of 10-ft boards cut according to pattern <I>j, j</I> =3D1, =
+......, 6.=20
+  Whereas the total customer demand is 50(3) + 65(4) + 40(5) =3D 610 ft, =
+the total=20
+  length of boards actually cut is:=20
+  <P>10(<I>y</I><SUB>1</SUB> + <I>y</I><SUB>2</SUB> + =
+<I>y</I><SUB>3</SUB> +=20
+  <I>y</I><SUB>4</SUB> + <I>y</I><SUB>5</SUB> + <I>y</I><SUB>6</SUB>),=20
+  <P>and the total waste is, therefore:=20
+  <P>10(<I>y</I><SUB>1</SUB> + <I>y</I><SUB>2</SUB> + =
+<I>y</I><SUB>3</SUB> +=20
+  <I>y</I><SUB>4</SUB> + <I>y</I><SUB>5</SUB> + <I>y</I><SUB>6</SUB>) - =
+610.=20
+  <P>This implies that when we:
+  <P>minimize <I>y</I><SUB>1</SUB> + <I>y</I><SUB>2</SUB> + =
+<I>y</I><SUB>3</SUB>=20
+  + <I>y</I><SUB>4</SUB> + <I>y</I><SUB>5</SUB> + <I>y</I><SUB>6</SUB>,=20
+  <P>the total number of 10-ft boards that need to be cut, we also =
+minimize the=20
+  total waste, and vice versa. The actual number of 3-ft boards obtained =
+in the=20
+  cutting procedure is:=20
+  <P>3<I>y</I><SUB>1</SUB> + 2<I>y</I><SUB>2</SUB> + =
+<I>y</I><SUB>3</SUB>,=20
+  <P>and therefore:
+  <P>3<I>y</I><SUB>1</SUB> + 2<I>y</I><SUB>2</SUB>+ <I>y</I><SUB>3</SUB> =
+<FONT=20
+  face=3Dsymbol>=B3</FONT> 50=20
+  <P>must hold in order to satisfy customer demand for 3-ft boards. =
+Similarly,=20
+  <P>y<SUB>2</SUB> + <I>y</I><SUB>4</SUB> + 2<I>y</I><SUB>5</SUB> <FONT=20
+  face=3Dsymbol>=B3</FONT> 65=20
+  <P>to satisfy the demand for 4-ft boards and <BR>y<SUB>3</SUB> +=20
+  <I>y</I><SUB>4</SUB> + 2<I>y</I><SUB>6</SUB> <FONT =
+face=3Dsymbol>=B3</FONT>=20
+  40<BR>for 5-ft boards. Since the variables <I>y</I><SUB>j</SUB> must =
+be=20
+  nonnegative integers, <I>j</I> =3D 1, ......, 6, we can summarize this =
+
+  <I>cutting stock</I> formulation as:=20
+  <P>
+  <TABLE cellPadding=3D0 width=3D535 border=3D0>
+    <TBODY>
+    <TR>
+      <TD width=3D353>
+        <P><FONT face=3D"Times New Roman, Times, serif">P: =
+Min&nbsp;&nbsp; z =3D=20
+        <I>y</I><SUB>1</SUB> +&nbsp; <I>y</I><SUB>2</SUB> + =
+<I>y</I><SUB>3</SUB>=20
+        + <I>y</I><SUB>4</SUB> + <I>y</I><SUB>5 +=20
+        </SUB><I>y</I><SUB>6</SUB></FONT></P></TD>
+      <TD width=3D176>
+        <P><FONT=20
+        face=3D"Times New Roman, Times, =
+serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;=20
+        (10-ft boards)</FONT></P></TD></TR>
+    <TR>
+      <TD width=3D353>
+        <P><FONT=20
+        face=3D"Times New Roman, Times, =
+serif">s.t.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;3=20
+        <I>y</I><SUB>1</SUB> + 2<I>y</I><SUB>2</SUB> +=20
+        <I>y</I><SUB>3</SUB></FONT></P></TD>
+      <TD width=3D176>
+        <P><FONT face=3D"Times New Roman, Times, serif"><FONT=20
+        =
+face=3Dsymbol>=B3</FONT>&nbsp;&nbsp;&nbsp;50&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;=20
+        (3-ft boards) </FONT></P></TD></TR>
+    <TR style=3D"HEIGHT: 18.75pt">
+      <TD width=3D353>
+        <P><FONT=20
+        face=3D"Times New Roman, Times, =
+serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<I>&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;=20
+        y</I><SUB>2</SUB>&nbsp;&nbsp;&nbsp;&nbsp; +&nbsp;&nbsp;&nbsp;=20
+        <I>y</I><SUB>4</SUB> + 2<I>y</I><SUB>5</SUB></FONT></P></TD>
+      <TD width=3D176>
+        <P><FONT face=3D"Times New Roman, Times, serif"><FONT=20
+        =
+face=3Dsymbol>=B3</FONT>&nbsp;&nbsp;&nbsp;65&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;(4-ft=20
+        boards) </FONT></P></TD></TR>
+    <TR style=3D"HEIGHT: 18.75pt">
+      <TD width=3D353>
+        <P><FONT=20
+        face=3D"Times New Roman, Times, =
+serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=20
+        <I>y</I><SUB>3</SUB> + =
+<I>y</I><SUB>4</SUB>&nbsp;&nbsp;&nbsp;&nbsp; +=20
+        2<I>y</I><SUB>6</SUB></FONT></P></TD>
+      <TD width=3D176>
+        <P><FONT face=3D"Times New Roman, Times, serif"><FONT=20
+        face=3Dsymbol>=B3</FONT>&nbsp;&nbsp;&nbsp;40 &nbsp;&nbsp;&nbsp; =
+(5-ft=20
+        boards) </FONT></P></TD></TR>
+    <TR>
+      <TD width=3D353>
+        <P class=3DMsoNormal style=3D"mso-line-height-alt: 2.25pt"><FONT =
+
+        face=3D"Times New Roman, Times, =
+serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<I>y<SUB>j</SUB></I>=20
+        <FONT face=3D"Geneva, Arial, Helvetica, san-serif">are =
+non-negative=20
+        integer, <I>j</I> =3D 1, .., 6 =
+</FONT></P></FONT></TD></TR></TBODY></TABLE>The=20
+  optimal solution to this problem, using your software package is to =
+cut a=20
+  total of 65 10-ft boards, using pattern #2 25 times and pattern #5 and =
+#6 20=20
+  times each. The total waste would then be 25 x 0 +20 x 2 + 20 x 0 =3D =
+40 ft.=20
+  <P>The above example illustrates a simple instance of the cutting =
+stock or=20
+  trim loss problem, which is widely applicable whenever trim waste is =
+to be=20
+  minimized. The example above refers to a one-dimensional situation =
+(board=20
+  length).
+  <P>
+  <P><A name=3Drengineering></A>
+  <HR>
+
+  <H4><FONT color=3D#dc143c>An Engineering Application: Mixing=20
+  Substances</FONT></H4>A chemical company is producing two types of =
+substances=20
+  ( A and B ) consisting of three types of raw materials (I, II, and =
+III). The=20
+  requirements on the compositions of the three substances and the =
+profits are=20
+  as follows:=20
+  <CENTER>
+  <P>
+  <TABLE cellSpacing=3D0 cellPadding=3D0 width=3D375 border=3D1>
+    <TBODY>
+    <TR style=3D"HEIGHT: 15pt" vAlign=3Dbottom>
+      <TD>
+        <P align=3Dcenter><FONT face=3D"Arial, Helvetica, sans-serif"=20
+        color=3D#990000><B>Substance</B></FONT></P></TD>
+      <TD>
+        <P align=3Dcenter><FONT face=3D"Arial, Helvetica, sans-serif"=20
+        color=3D#990000><B>Compositions</B></FONT></P></TD>
+      <TD>
+        <P align=3Dcenter><FONT face=3D"Arial, Helvetica, sans-serif"=20
+        color=3D#990000><B>Profits<BR>per kg</B></FONT></P></TD></TR>
+    <TR style=3D"HEIGHT: 0.75pt">
+      <TD>
+        <P align=3Dcenter><FONT=20
+        face=3D"Arial, Helvetica, sans-serif"><B>A</B></FONT></P></TD>
+      <TD>
+        <DIV align=3Dleft>
+        <UL type=3Ddisc>
+          <LI><FONT face=3D"Arial, Helvetica, sans-serif">at most 20% of =
+I</FONT>=20
+          <LI><FONT face=3D"Arial, Helvetica, sans-serif">at most 10% of =
+II</FONT>=20
+
+          <LI><FONT face=3D"Arial, Helvetica, sans-serif">at least 20% =
+of=20
+          III</FONT> </LI></UL></DIV></TD>
+      <TD>
+        <P align=3Dcenter><FONT=20
+      face=3D"Arial, Helvetica, sans-serif">10</FONT></P></TD></TR>
+    <TR style=3D"HEIGHT: 6pt">
+      <TD>
+        <P align=3Dcenter><FONT=20
+        face=3D"Arial, Helvetica, sans-serif"><B>B</B></FONT></P></TD>
+      <TD>
+        <DIV align=3Dleft>
+        <UL type=3Ddisc>
+          <LI><FONT face=3D"Arial, Helvetica, sans-serif">at most 40% of =
+I</FONT>=20
+          <LI><FONT face=3D"Arial, Helvetica, sans-serif">at most 50% of =
+
+          III</FONT> </LI></UL></DIV></TD>
+      <TD>
+        <P align=3Dcenter><FONT=20
+    face=3D"Arial, Helvetica, =
+sans-serif">8</FONT></P></TD></TR></TBODY></TABLE></CENTER>
+  <P>Each material's available amount and treatment costs are as =
+follows:=20
+  <CENTER>
+  <TABLE cellPadding=3D3 width=3D460 align=3Dcenter border=3D0>
+    <TBODY>
+    <TR>
+      <TD width=3D"33%">
+        <DIV align=3Dcenter><FONT color=3D#612080><B><FONT=20
+        face=3D"Arial, Helvetica, sans-serif" size=3D2>Raw Material=20
+        </FONT></B></FONT></DIV></TD>
+      <TD width=3D"33%">
+        <DIV align=3Dcenter><FONT color=3D#612080><B><FONT=20
+        face=3D"Arial, Helvetica, sans-serif" size=3D2>Available Amount=20
+        (KG)</FONT></B></FONT></DIV></TD>
+      <TD width=3D"33%">
+        <DIV align=3Dcenter><FONT color=3D#612080><B><FONT=20
+        face=3D"Arial, Helvetica, sans-serif" size=3D2>Treatment=20
+        Costs/KG</FONT></B></FONT></DIV></TD></TR>
+    <TR>
+      <TD width=3D"33%">
+        <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, sans-serif"=20
+        size=3D2>I</FONT></DIV></TD>
+      <TD width=3D"33%">
+        <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, sans-serif"=20
+        size=3D2>400</FONT></DIV></TD>
+      <TD width=3D"33%">
+        <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, sans-serif"=20
+        size=3D2>4</FONT></DIV></TD></TR>
+    <TR>
+      <TD width=3D"33%">
+        <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, sans-serif"=20
+        size=3D2>II</FONT></DIV></TD>
+      <TD width=3D"33%">
+        <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, sans-serif"=20
+        size=3D2>500</FONT></DIV></TD>
+      <TD width=3D"33%">
+        <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, sans-serif"=20
+        size=3D2>5</FONT></DIV></TD></TR>
+    <TR>
+      <TD width=3D"33%">
+        <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, sans-serif"=20
+        size=3D2>III</FONT></DIV></TD>
+      <TD width=3D"33%">
+        <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, sans-serif"=20
+        size=3D2>300</FONT></DIV></TD>
+      <TD width=3D"33%">
+        <DIV align=3Dcenter><FONT face=3D"Arial, Helvetica, sans-serif"=20
+        size=3D2>6</FONT></DIV></TD></TR></TBODY></TABLE></CENTER>
+  <P>The company's problem is to find out how much of each substance to =
+produce=20
+  at which composition, such that the profit is maximized.=20
+  <P>Because we have two substances and three raw materials, we =
+introduce 6 (=3D2=20
+  x 3 ) decision variables x<SUB>ij</SUB>, i =3D A, B, and <I>j</I> =3D =
+I, II, III.
+  <P>For example, x<SUB>BIII</SUB> is the amount of raw material III in=20
+  substance B. The goal function is thus to maximize the profits minus =
+the=20
+  treatment costs:=20
+  <P>max 10(x<SUB>AI</SUB>+x<SUB>AII</SUB>+x<SUB>AIII</SUB>) +=20
+  8(x<SUB>BI</SUB>+x<SUB>BII</SUB> +x<SUB>BIII</SUB>) - 4(x<SUB>AI=20
+  </SUB>+x<SUB>BI</SUB>) - 5(x<SUB>AII </SUB>+x<SUB>BII</SUB>) -=20
+  6(x<SUB>AIII</SUB>+x<SUB>BIII</SUB>)=20
+  <P>Rewriting this in terms of the 6 decision variables, the equivalent =
+problem=20
+  is:=20
+  <P>max: 6x<SUB>AI</SUB> + 5x<SUB>AII</SUB> + 4x<SUB>AIII</SUB> + =
+4x<SUB>BI=20
+  </SUB>+ 3x<SUB>BII </SUB>+ 2x<SUB>BIII</SUB>=20
+  <P>The material constraints are:=20
+  <P>x<SUB>AI</SUB> + x<SUB>BI</SUB> &nbsp;&nbsp;&nbsp;&nbsp; <FONT=20
+  face=3Dsymbol>=A3</FONT>&nbsp;&nbsp; 400<BR>x<SUB>AII</SUB> + =
+x<SUB>BII=20
+  </SUB>&nbsp;&nbsp;&nbsp;<FONT face=3Dsymbol>=A3</FONT>&nbsp;&nbsp;=20
+  500<BR>x<SUB>AIII </SUB>+ x<SUB>BIII </SUB>&nbsp;&nbsp;<FONT=20
+  face=3Dsymbol>=A3</FONT>&nbsp;&nbsp; 300.=20
+  <P>The composition constraints are:
+  <P>0.2(x<SUB>AI</SUB> + x<SUB>AII</SUB>+ x<SUB>AIII</SUB>)=20
+  &nbsp;&nbsp;&nbsp;&nbsp;<FONT =
+face=3Dsymbol>=B3</FONT>&nbsp;&nbsp;&nbsp;&nbsp;=20
+  x<SUB>AI</SUB>
+  <P>0.1(x<SUB>AI</SUB> + x<SUB>AII</SUB> + x<SUB>AIII</SUB>)=20
+  &nbsp;&nbsp;&nbsp;&nbsp;<FONT =
+face=3Dsymbol>=B3</FONT>&nbsp;&nbsp;&nbsp;&nbsp;=20
+  x<SUB>AII</SUB>
+  <P>0.2(x<SUB>AI</SUB> + x<SUB>AII</SUB> + x<SUB>AIII</SUB>)=20
+  &nbsp;&nbsp;&nbsp;&nbsp;<FONT =
+face=3Dsymbol>=A3</FONT>&nbsp;&nbsp;&nbsp;&nbsp;=20
+  x<SUB>AIII</SUB>
+  <P>0.4(x<SUB>BI</SUB> + x<SUB>BII</SUB> + x<SUB>BIII</SUB>)=20
+  &nbsp;&nbsp;&nbsp;&nbsp;<FONT =
+face=3Dsymbol>=B3</FONT>&nbsp;&nbsp;&nbsp;&nbsp;=20
+  x<SUB>BI</SUB>
+  <P>0.5(x<SUB>BI</SUB> + x<SUB>BII</SUB> + x<SUB>BIII</SUB>)=20
+  &nbsp;&nbsp;&nbsp;&nbsp;<FONT =
+face=3Dsymbol>=B3</FONT>&nbsp;&nbsp;&nbsp;&nbsp;=20
+  x<SUB>BIIII</SUB>=20
+  <P>From the first inequality in the table above, we can derive the =
+following=20
+  constraint:
+  <P>0 <FONT face=3Dsymbol>=A3</FONT> -0.8<I>x</I><SUB>AI</SUB> +=20
+  0.2<I>x</I><SUB>AII</SUB> + 0.2<I>x</I><SUB>AIII</SUB>=20
+  <P>Our problem has therefore five constraints from the table above =
+plus three=20
+  material constraints, and one goal function. In addition, we require =
+that the=20
+  decision variables, x<SUB>ij</SUB>, take on only non-negative integer =
+values.
+  <P>Using your sogtware package, the optimal solution is:
+  <P><I>x</I><SUB>AI</SUB> =3D 85,<I> x</I><SUB>AII</SUB> =3D 42,<I>=20
+  x</I><SUB>AIII</SUB> =3D 299, <I>x</I><SUB>BI</SUB> =3D 306,=20
+  <I>x</I><SUB>BII</SUB> =3D 458, <I>x</I><SUB>BIII</SUB> =3D 1,
+  <P>with a total gain of 4,516.=20
+  <P>This means that the company should produce 426 kg of substance A =
+and 765 kg=20
+  of substance B. Of the 400 kg of material I only 391 kg is used, while =
+all of=20
+  the 500 kg of material II and all of the 300 kg of material III are =
+used.=20
+  <P>
+  <P><B>References &amp; Further Readings:</B>
+  <P><FONT face=3D"Bookman Old Style" size=3D-2>Ahuja R., T. Magnanti, =
+and J. Orlin,=20
+  <I>Network Flows: Theory, Algorithms and Applications</I>, Prentice =
+Hall,=20
+  1993.<BR>Eiselt H., and C. Sandblom, <I>Integer Programming and =
+Network=20
+  Models</I>, Springer, 2000.<BR>Floudas C., <I>Nonlinear and =
+Mixed-Integer=20
+  Optimization: Fundamentals and Applications</I>, Oxford University =
+Press,=20
+  1995.<BR>Phillips N., <I>Network Models in Optimization &amp; Their=20
+  Applications in Practice</I>, Wiley, 1992.<BR>Schrijver, A., <I>Theory =
+of=20
+  Linear and Integer Programming</I>, Wiley, 1998.<BR>Sierksma G., =
+<I>Linear and=20
+  Integer Programming: Theory and Practice</I>, Marcel Dekker, 2002.=20
+  <P>Visit also the Web site: <BR><A=20
+  href=3D"http://mat.gsia.cmu.edu/orclass/integer/node1.html" =
+target=3Dnew>A=20
+  Tutorial on Integer Programming</A><BR></FONT>
+  <P>
+  <HR>
+
+  <P>
+  <CENTER><FONT color=3D#00700f><B><I>A selection =
+of:</I></B></FONT></CENTER>
+  <P>|<A href=3D"http://www.academicinfo.com/" target=3Dnew>Academic =
+Info</A>| <A=20
+  href=3D"http://www.afestlouis.org/" target=3Dnew>Association for =
+Facilities=20
+  Engineering</A>| <A href=3D"http://bubl.ac.uk/" target=3Dnew>BUBL =
+Catalogue</A>|=20
+  <A href=3D"http://businessmajors.about.com/" target=3Dnew>Business =
+Majors</A>| <A=20
+  href=3D"http://www.decisionsciences.org/" target=3Dnew>Decision =
+Sciences=20
+  Institute</A>| <A href=3D"http://www.educationworld.com/" =
+target=3Dnew>Education=20
+  World</A>| <A =
+href=3D"http://www.infography.com/content/140499000502.html"=20
+  target=3Dnew>Infography</A>| <A=20
+  href=3D"http://www.satd.uma.es/matap/svera/links/matnet00.html"=20
+  target=3Dnew>Investigaci=F3n Operativa</A>|=20
+  <P>|<A href=3D"http://www.uni-math.gwdg.de/WorldMath/Subject.html"=20
+  target=3Dnew>Mathematics Resources</A>| <A =
+href=3D"http://mathforum.org/"=20
+  target=3Dnew>MathForum: Engineering</A>| <A =
+href=3D"http://www.needs.org/"=20
+  target=3Dnew>NEEDS</A>| <A href=3D"http://opsmanagement.com/"=20
+  target=3Dnew>Operations Management</A>| <A =
+href=3D"http://mat.gsia.cmu.edu/"=20
+  target=3Dnew>OR Resources</A>| <A=20
+  href=3D"http://www.math.psu.edu/vstein/alg/antheory/numtheory.html"=20
+  target=3Dnew>Penn State U.</A>| <A href=3D"http://www.apdio.pt/"=20
+  target=3Dnew>Portuguesa de Investiga=E7=E3o Operacional</A>|=20
+  <P><FONT color=3D#00700f><B>Search Engines Directory</B></FONT><BR>|<A =
+
+  =
+href=3D"http://www.altavista.com/sites/dir/search?pg=3Ddir&amp;tp=3DLibra=
+ry/Sciences"=20
+  target=3Dnew>AltaVista</A>| <A href=3D"http://search.aol.com/" =
+target=3Dnew>AOL</A>|=20
+  <A href=3D"http://www.excite.com/education" target=3Dnew>Excite</A>| =
+<A=20
+  href=3D"http://dir.hotbot.lycos.com/Science/Math" =
+target=3Dnew>HotBot</A>| <A=20
+  href=3D"http://dir.lycos.com/Science/Math" target=3Dnew>Lycos</A>| <A=20
+  href=3D"http://search.msn.com/default.asp" target=3Dnew>MSN</A>| <A=20
+  href=3D"http://home.netscape.com/" target=3Dnew>Netscape</A>| <A=20
+  href=3D"http://firstsearch.oclc.org/FSIP" target=3Dnew>NetFirst</A>| =
+<A=20
+  href=3D"http://www.yahoo.com.au/Science/Mathematics" =
+target=3Dnew>Yahoo</A>|=20
+  <P>|<A href=3D"http://www.signpost.org/signpost" target=3Dnew>Scout =
+Report for=20
+  Business &amp; Economics</A> |<A href=3D"http://vlib.org/" =
+target=3Dnew>Virtual=20
+  Library</A>|=20
+  <P>
+  <HR>
+
+  <P><FONT color=3D#00700f>The Copyright Statement:</FONT> The fair use, =
+according=20
+  to the 1996 <A =
+href=3D"http://www.adec.edu/admin/papers/fair10-17.html"=20
+  target=3Dnew>Fair Use Guidelines for Educational Multimedia</A>, of =
+materials=20
+  presented on this Web site is permitted for non-commercial and =
+classroom=20
+  purposes only. <BR>This site may be mirrored intact (including these =
+notices),=20
+  on any server with public access, and linked to other Web pages. All =
+files are=20
+  available at <A=20
+  =
+href=3D"http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/Busine=
+ss-stat"=20
+  =
+target=3Dnew>http://www.mirrorservice.org/sites/home.ubalt.edu/ntsbarsh/B=
+usiness-stat</A>=20
+  for mirroring.=20
+  <P>Kindly <A href=3D"mailto:harsham@ubalt.edu">e-mail</A> me your =
+comments,=20
+  suggestions, and concerns. Thank you.=20
+  <DIV align=3Dright><CITE><A=20
+  href=3D"http://home.ubalt.edu/ntsbarsh/Business-stat/home.html"=20
+  target=3Dnew>Professor Hossein Arsham</A>&nbsp; &nbsp;</CITE></DIV>
+  <HR>
+
+  <P>This site was launched on 2/25/1994, and its intellectual materials =
+have=20
+  been thoroughly revised on a yearly basis. The current version is the =
+8<FONT=20
+  size=3D+0><SUP>th</SUP></FONT> Edition. All external links are checked =
+once a=20
+  month.=20
+  <P>
+  <HR>
+
+  <CENTER>Back to:=20
+  <P><A href=3D"http://home.ubalt.edu/ntsbarsh/Business-stat/home.html"=20
+  target=3Dnew>Dr Arsham's Home Page</A>=20
+  <P></CENTER>
+  <HR>
+  EOF: =A9 1994-2006.=20
+  <HR>
+  </DD></BLOCKQUOTE></FONT></BODY></HTML>
+
+------=_NextPart_000_0000_01C689B9.037656C0
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://home.ubalt.edu/ntsbarsh/opre640A/1.gif
+
+R0lGODlhvwErAvcAAAAAAP///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACwAAAAAvwErAkAI/wADCBxI
+sKDBgwgTKlzIsKHDhxAjSpxIsaLFixgzatzIsaPHjyBDihxJsqTJkyhTqlzJsqXLgQBgAogZYKZN
+gTNrxsxJU6dPnD115iy4c+dPn0N50rSZtGjQl1CjSp1KtarVq1izat3KtavXr2DDih1LtqzZs2GH
+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
+OKRdz4KVxqM5r3OB4mLJ8tfFMlowfD36IR7/Vydo1VFAOOweHXl3xQ760ZCHRGQiuZVHg7WLiEN8
+Ihj3lkRFIoeLr3MgGMN4RvzdsZKuuWTsMinFTepuZp785GSa98E3Fu55RYwZBAd2OhWmkjS1tJl6
+cGlLGO4yTIAUHy+FOUxiFjNFjIRfuuQHy1FCpVOoNOZgtIjJSJL/UpZKeqYvo8mWaYqymqUrpRwn
+KMht/qV5f3sek7TGRqEB85q0RGE5CxOqGsbzd/6TZy/5Jj0aamWf+QRoQAU6UMggM5mOdNgsw4my
+C5KToHUJ5T2jCM5mCuxlD5VmE6G4TE1y1HxugiZG1bJKebHzZsKrHzOBB0dtinSkexxTHKEoU5dG
+x6BibKlKa7pTnvbUp13D5ysheUSFLlSCCLPnT8MS0QV6lKIVNSVSlWpHqDLViUb84j4JOVXCOSp6
+HETq0pa1ObGW8qJc5V/idLnVuKHVOyGdlzsptVW31tWud8XrUoN6UJnlFXyyaxRd/Zodq0ZKsIOt
+zk1PdljEdseFFo1l3GMhG9nJVtayl8VsZjW7Wc7WJCAAIf7UVGhpcyBpbWFnZSBmaWxlIHdhcyBj
+cmVhdGVkIHdpdGggYW4gZXZhbHVhdGlvbiBjb3B5IG9mIExWaWV3IFBybywgY29weXJpZ2h0IChD
+KSAxOTkzLTE5OTcgYnkgTGVvbmFyZG8gTG91cmVpcm8sIGFsbCByaWdodHMgcmVzZXJ2ZWQuIEZv
+ciBpbmZvcm1hdGlvbiBhYm91dCBwdXJjaGFzaW5nIExWaWV3IFBybywgcGxlYXNlIHZpc2l0IGh0
+dHA6Ly93d3cubHZpZXcuY29tIAAAIf8LTFZpZXdQcm8yMDAAOwAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
+
+------=_NextPart_000_0000_01C689B9.037656C0
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://home.ubalt.edu/ntsbarsh/opre640A/2.gif
+
+R0lGODdhogEdAvcAAAAAAP///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAACiAR0C
+QAj/AAMIHEiwoMGDCBMqXMiwocOHECNKnEixosWLGDNq3Mixo8ePIEMWBAAAIkmRB0uOVHmyYUuC
+L1HKnEmzps2bOD2S3Kkyp8+fQIMKHUq0qNGjSJMqXcq0qdOnUKNKnUq1qtWrWE2y3Jq1q9evS3tG
+3MqzLMyyPM+i3al2rVi3MeHGhdt2bV20d9MOlPtWbl62e/0GpjvYbmHDAvn+ncsXcACxJr1CXslw
+slHFYDNDJfxYYUyElrE6Xhk68WjQpSeelizYKWbNKT8Phg10rkuzGlt+1puxddXVtIOHBP5YdsfG
+vG86Tq7auPChr1EzN0ic+NXQPZ0nho5bbe+00y+H/38OUjH2wJ4lU0xdMTpr9pu1k08IH/T88qnd
+ftRd3zN/zhfhRR5i9xXInXxjWfecgv51NxWD1BnY3nq/QXiWd7f1R5+FNCHomm+kObgXhV1hxxV9
+En7IX1PjWWWiaenRpt9xlrHHlo2TycfYQi+Fx2FSM/r0Y20EpmjkUyLm1OJ6GmI05JEW9dcklCwm
+KZOHNQlYWZAjOTQliw3ySOWYhaH0pEjj5Yfgl0phiR6ZcFbJJkduwhhngJD1mOOJK1JWnJ2yxeXn
+hSPeOdychiaq6KISLRlbSVqSWVqLiDJqaZtcTmpdpUXVyCCnl4YaladrimrqqajeadubhNrpKqud
+tQlqGm59ylpnqrj/5qrrrrz26uuvQRlXK6yHogjsscgmq+yyQMbaGagzvVVorIhO6ixLqtnXpbOR
+abvdt9SSmJK32DZqLEzbVhvjt2xC+2t2Zk5bHrpZFndrb/R2KO9++/Jb6JQ1Tluuud6OCC+3zCY8
+n7TH2evuQwwrLHHC1o7L7lgWXwtutxlvGy7BHW93cLvnvvoxyBF2OXK2BSN8MsYTp/ywxzNX1u+V
+jup0M366ZQlYzSXnO7CXQW88NMQxJy3pcjhHqvTTUMeb8sUoe6wx1TCHjPDRSLds9MY2x3jwy113
+PDbXUYsnaL0uXwm2vm/zfK+TO49ZaY5p5/2u3nz3DV3cYVtMsrZztFb8peF0+n3s2PgCLm7bJOZM
+dL6KJ4t24DKzLPjj6VZN78xAV54i43Q7rjnkLEvuktWiA3u5mISf3rnsn3v+b+Kt9/p65A2bbq7q
+q9ede667F3277Vhnnbnys+c2PPE/5xb9dz1SD+mZ1I0W+vOj++718czXTjv4ZS/vPPfEew9zzaQH
+6PBGEaO/a/HfJ19+8+GTf7/4pcuPavtREl7qpNez3m3Pf/ehn9b0N7nNjc9+DTSf+/8QeCoATkh9
+3XKXXoCmQAouqoOs4x/HJDhC/O2PgZzzIKPiN0EMNhBavGGfAFWoKBBSzoQRxGEORXhCCKaQhom6
+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
+BY1K+YT2kZLVOBtQGZXoMpV6uIrXqCsHJ4nhmBewRnjTYWtgCY8y+Y4xyToKGZaFZpbh5Wks6ZUr
+x4gHuVgNN5fpVZct2ZQG9knjMpVgB4jO1o8eB5hVSY2ZhpcHaZI4xjclWU9I+X/6aCaHKZmMJlGR
+GXBXiJYQWVLqp5dF/8mBG4VhSSSWbPmZ6VcmnmlpXUc5UJmIppl19uiPryk6nWmVAteYzzg1tmlT
+vpiVv8ePj3mbm+mTCkOa5UiWV1ORWxmPv6eW7qhzw0U6Y3mW0vmBi9marMaXr4KdyomThtlxyVeT
+tJiAwIiP7+NphAcr3PlyH0h9lOmeeHeeQ1mZkCmRIGWPcveWsykpWBNueFUuQAZc+wlQkWWeTLaD
+foKfA7qgoLabvymfScl2DqqdEtpu09lqC4ehGYqJ7KihM+iFgulEftmVyEaRH9eaOniUZyOaM0le
+2Wh0EPgwBAl7CvplE0qhnOmbrGSSERp1FlqamTiKHlqPRAadHPposxJmlTakpEfFpAUJnCPDojxK
+LVL/Gm8faXRelJGqaJ+qWKNPdqOrCaE7KqZjSpI6eoleCKT0KI6tpKb6OU0yhG4jKqIh6kJz+qQl
+ypF1cqd7SpwJ1pg0GnUXmZRcepR+CKZ4eXOImqhWeKZ0+GsXeqQtWaQaSals2KbcJaffuY7raaeb
+eqL81mVlqJjZiZhWCp8BJI22R6Kc5Kc+tqi+NKVlKqjB+aAVym6RGqRAaakbqqsdKqlxCKmfiqep
+uZijep6TGavvI6rRdIjsiaq4Cm2BOlAvio2seqxeSnOOiqPwBKvKqqjb2n8856bXOqlDyqa8SqTn
+uoe8xqfc2l7vil9hKovdiZDJSpjwVq2UNKhKB62Rt/OE0kqG3tqsOVqr/UqmtmqF7paraxp46aqu
+wAqnmaqpSAme7wehsgmlSRavxoqttHiTrvqnRImu1Kps3PWMJjuHA3uPBSurs9qt4Rqs58aw+klT
+6zp3D+uwN4ukSVqnUZWVS+qzArmsGauifWSq+aqlu+p19Ek35qavAhuzBYewQyuhUvutCvujx5mz
+OLuzSxuxGiej6janTfeYvoe1/5meRDuYF3uI3RSyCCaU+3qMpgc6FRlNxM86tlfrsTBrsAnbty7L
+rpBKrvWaJs2JqZXqtTLra2T7s2b7rHaZkFXbbJAbua5pkFaqtHBprauKepfJoLPnt+GYraD7N2V0
+t6XLTboYls7XoqkLeq77urI7u7Rbu7Z7uwz6s8FydKdBup7ou6J0udoEt5sYi+YpSK9Ynl+Hnh+b
+l7uYvOB2bDYbu9NWqnnKbdkpWG8FvUwYvXqElZSxV7Sbkh/Zir1ZY82Gm8HIGNIlctJ2pdH2ubiL
+XtQ7v/Z7v/ibv/q7v/zbv/77vwAcwAL/PMAEXMAGfMBzJYgIvDBntcAD0sCRRryhi68dAsGQdnj7
+1Hrq1KFgSCC35xsgHMKZIsIjXMIm7MGdR8IofMKR8sEsHEy4l3v/in7aZ3CWdIZo+ChUSLKZaTD1
+i0W/1IdpiCRoFXhYmkojS1i7l3n+B4cPaDzAy5UHRnZF7Ksr2IEcGpIVrLmMZB5V3LB3uKUt08On
+R8MUFHP5CFo8KMNoin/SNHTMknraCayoCybB6iiNysXap8WwgcZO7GWawcdS57pRLI5vDMd9jMjI
+IoNh+8Mdqcc9Nnn/17zLl8KQDGfzNrWN56/7xse1l8QsVnTgBH1Cyil+HLqKfF5+JcFLfUvGhufJ
+HEZhIidSPAy4EqOgrIzK9xdIuGi+lzzJrhzHQwLLo7S4R4xHVKuRKie8a2RVQ1yoV7w+p8x/lStL
+iPiXBFQ5GjiGo/KhKIe3ltfAxJnKwOQj3hzGqaizrmjJL9zBLazChuHC7cy+KzzP6vfO7IzP9nzP
+7iwYhmh2/8X8xXXcO3kLVYW8hS1szXS8iDtcs1nFhgGYywgYl1wLd6CpUU85zRObIK8k0egcflZs
+x4/aykspTaobzCXYxvHheqJ3TActzCx9SVwYIhhCfLA8zAupJh6dzaMz07xixo/cTvXncwT6y5IH
+Ia78UD5SXNbKv0HJtqgIbr9IzskcyEZtnRHoycxcxsT8wC/NPX17ZPaE0iS90zOlxAWbrV9d1o6c
+oWbtNyULygiN00CNTW8dFlS9j/vhgFHsk3mdUmns1uxnzIrF12LHymRdy8PneOKa0iNdg91b16iM
+1109igtd0G2SfGBcSwotv6PcchbZGOClIwmnmwCNeAAKOsAOudOJjVC9SC6nvYDgHNKjQnYuXXJ3
+LdM7OdubLdJP3NvLh4GZTNm5zc2k7YJt0dCvHLtbTSSBXHfPTMQqrXk//Nfz2dZNfNmYEtMPOssX
+GJ4+2JYXO6mUba6mWNxS3Nm6TcF3B1w81YjGNYhr0j5X/Z6LiN6fu9ZBiLnf/dtNWD3zTd4LiCVy
+LT2xzMSZB9/qU4hf7LgSrZMF7qJ+aXx6NdW+9ZAVnrI1BHCtfVfUDMjZHdHAS3sR3r+F/HyV3bX/
+qVvfGFgsmk2MpJvYJS6fLL7eOsxGHd7hf3G44c3erMHdFajj9524vau7WTfdRKff0xtx3PzRDYvd
+roPSSm7e91qHUD59n/KTVPziDs3QGa3cR53UcFsqXx7i0SyK0X1LIPjWxnfcF+2I0OxJQq52/l2u
+TIHDEBc6c17HV86zWfrkxgjeOo3RNx5UO6VrI97Y73HVPVdxBH5jQCWb3tTn6ZdUS5fih+7DR/iX
+jY7gdrgbdzXlwCTganW5Q/3b9tflkAezhGSOJsPL1quNro6agpbccW51or44SG6flE7deezA3PTQ
+wI4pQ/SQ+G3Te/5nqw2n1i3bhH2ovTwjiffcQoKriMorx7R95+fciVve5L5N02YO7dJuyOHeLP2t
+3fiGZeee7V4u0Leuiame5pmd4GD+mS/y36W967WIcGz84aB7OP9i+Oz/ruh2XePDiOlCt5B4+ymM
+OOhVPW+9joUK3IGEuJembeoWvMATj+AVz5Lfds1QDcA4KN/qbdEY370HDL8ZXrG5KJ33TOMt79nD
+DtxdLoUzf/M4n/M6v/M83/M+//NAH/QunqDdhtlRbdpCL2OVh8zXG1TiS7nDib7kh54av6LwB758
+hbwFSlq1Qq/iNuxdL3Ffv8pZT/Xcu7ZjH/FJv/Zs3/Zuv2sjf+d0CVsTpV8Aj1l2Tmlzb7E9hWMB
+WUbm9zXjM2AFfd4aszK5PPchD2OynD9ne0T3dVoXVFqN7+/iXc2vFfjVDjeQIqDJGSzqiPlFxTiQ
+nzGVX1aKL/o5QkZope81RX9Fr+/vxPQsnl+00QKOLOSPJxg/nU9ppi/4G7ume39DYLdbAEr8q09c
+rHk8sR38VOON/wNtOdFPvwGn+hPS+5b57hnkNtpPMdMfNtjPdUYvLs2X99ff/X1J+2+//oZE+GKl
+m8D/4cLy9ymP8jtM+uri+geKwLEvswABQCCAAAUDCDSYUOFCgwQZHkzoEGJDiQ8tXsSYUeNGjh09
+fgQZUuRIkiVNmqyYMmJBiSofumTZMCbClxYrrpwYUyfBmyd9/gQaVOhQokWNjuTZ8yRCpUdbHoUa
+VepUqlWtZuQp82fWnFG5dr0aVuxYsmXNnkWbVu1atm3dvoUbV+5cunVBNqWpcyJMjUqfdm16ES9M
+h3w3DmZI03Dflz35BhbcOHFhnB0RK3x8165Tm4kxQ67p+WZej/+B8UYE3Tn0ypSpVy/0+1mkadiA
+XXt+nVR2yNubZ6uuTfHj6dG9MQOvzNJ48uNabfNGnpx0aeR/lUPP7fzgcua+gdLGvXhvc/KUtc/U
+e565ecPWyQcPvlg3bvqV5YN9n1/rY/fdtf/lb7z6vJMrL+6wGg0qxQ5EKisGeRNvqK8eHA4wAi9s
+jsLIINLQMvU4ww/EEIvqD8SvMEQxRRVXZLFFF1+EMcYG7UvPuMv0Mi+9w2TkscceY0OtwtfOm46j
+Dn1EMkm0ThOOuiHxK3JHJaek0i4mAyQyOgv/K4zJKr8Ek0WuogzKwRHDRDNNFCMs80M134QzTjnn
+pLNOO+/EM88drQirUUjY+NzSw8l269NPQnPK8Uz4aES0UEH/ZJT/TT3TArJJQ99zj0ystHTsQfDy
+0/TJDLnErr5Mj5zUq0Wv02zIgVordVUoPeUU0kfpOzVWUAcKMtW4HJOu1xE//S9YN4l1dMtE/dMx
+UGef3Q/HZFvyUtbMnEPV17BOVLTNboUqkbNQv+NWQTe1LVA/EpsV91tv3UWJXaPCRbdee+/FN199
+6RwXI2D3BTjgP+djajtSKUqqtS6zFbhhKkl7CkCEl/2XXocvrpM95QyUVkDKVOIYY5EdZnhkkwPu
+92SVV2a5ZZdfhjlmuCQVFdpNTW110eWqRTVlmd/0WVZhnZRM10ONFMzGVyv9Gc+g1bWU6EGNHhpp
+m5R+dcCm52zvldjsWGOXZ0xrvtZgoZ+1uOat9Uzb0Gy73Aq9paBeW+C2nSz3t3Pd9inBuv8GPHDB
+ByecUmY31PnSYhVPljGcUSq58AufPtxsxqOW2tbMj/Z3aa0l/5LyvUWXl9Wcp9686s6zPhv0JAFd
+1mtsWWXaWAGH/Zq92hf3OHXX4YydpLs9JD2yvPUu/fdJx+ybQ3g3HZ6x6KGv/1x566/HPnvt7a7+
+c5v9/dp3ms8e/7DIt3+reMjUTxp51G/VvC/PW0ffRfavphpz+Dl3vGjzWadb/VZ0H9w9rle7a1yj
+vNc1yzGLgDsTIJhCBrnumc90JVHM8zoXwAjGKXhIcV7zkucnhpWvgydEYQpVuEK2mNCBFYSaC1+4
+twXCEEEsbNH9/Oe7C/KwgVbbIYIAaEMcFohB6zti+/LXQykFcXW8ol8R6YKlAiZOOMETW9SqZTsD
+IdBZE2yiFO2nQAx+jzpwi9fH0shBMb6OhnjTIPjeCMQ4Im6EbcRjHvW4xyLKUF5+rGIdAwlBAwrv
+fHxUUBLxd7r4+ZB0SLTM/HvYiMi16PB9+1MdHRsZxk0mbYhzpORZyhZI2/WOfKUkJe9gdUrexfGQ
+obTKB5FXwh+W8XixeiUs2yJL6NwyZ7S8461yqUtiFtOYx8wYEf+ozEEyspWcfOZdholMDCrSidDM
+JDb1p00mNuaTwaTmtqx5SU3yj5u1PKfPlub/xXCOhYGpdJTGaqgeWWbRcshqpQun2c7vgNJqb5se
++AIqpX3yM5b+pJ4gNwRMhS7UoA+FaEQlOiVA2rOcCezf2MTHzE5OtCqW7OjNrpnOcYb0M99sqEf7
+VlJzipScF91mRk2KGpQWVKWFDKEXYYfF8DVpi6pk3jwLxUuO3lREKYVPzwApmqICx6ZG9ZYviRfC
+uUlVUFY9I1KhulWudtWrwrxcRXsKU7HiVJpflQpIWyrHkcp0rXac6cSi9FSvqjWbLo2rlu7K1pdO
+pqZoParfwha+HOm0O/SyJ8TIhsrb0BWwGSrZfCiITs2gMW7FeyxVlspUcDbxbU1djWMzO1rSaJaW
+hWW1IibNCNdo4rW1pRHtVu0aU9fula959V43/QrFSZp2OCy1rV5pW9vhsja4G+MtaH2b2p38NJ4z
+cS60JMtKHFmWuoEKWmwza6Y9afWK3nUeVmEL3uXGrbMJjex5RRo5opbXve+Fi68YUatR1S7Votrc
+7HHju0Fn6pd+mIVkf4srV3bu14IC1i1xE6xgyjJYnZJULnwZiM/nUvW6wFofYXlp0QzC1MDCizCj
+qhniE/VstR+eV4ipytDPItSl2kVxjGU845vq06k03tojcYXjplHuUzDmcZjyK+Ig1028Rf7dkZGc
+5CU32clPhnKUpcyygAAAOwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
+
+------=_NextPart_000_0000_01C689B9.037656C0
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://home.ubalt.edu/ntsbarsh/opre640A/3.gif
+
+R0lGODlhGQL/AfcAAAAAAP///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACwAAAAAGQL/AUAI/wADCBxI
+sKDBgwgTKlzIsKHDhxAjSpxIsaLFixgzatzIsaPHjyBDihxJsiOAkwFOoiw5UKXKhi8PulzJMGZL
+mixz6tzJs6fPn0B/AkiJ8mXMozaRDiW60ibTpTeVGsXpkmBVgUmJRh2qVKvToGDDih1LtqzZs2jT
+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
+Df9p0NfUC7XZa0sUrq+W2DSu1Xjcl3Fv8d3I/PWo+UlvZB67o4GmKZ91vNHVhbB5eCb1vI26O3j+
+O6sgnezAy4dIhb86M5PWcr/5zebRBafOzWbiuheuYWv3ut4Of9zbOJ5KZqP5zqP//CaZSY5qbtK3
+o8gLY8ZZbqIwQ5vdNCehu6nj6Zz7/OdAp7bCZqploAOpgGwWb8hbK1KjE0hBSV0hzuFd9Jju2+lM
+Uvqeeb5zrAdml+zsNti9Dqoa9o+OCCe72tfO9nmp2+MPB7e9zUdMkGFWgBtmrVZvxleWu7PaUx+v
+knPE0sIb3seJ/ZXeuz7ciPOGzj1PDeMT3fazTL7yjOklG5UWLUKrlNiax7zouRtT9d40cJcffcEj
+D/g9y0eK5D7XV3OF1K8imqpDBVaZ7l5dbqc+3Tyv+sR9aUcOHbtis8ds6CU29MKOLbPMx/1f5/t2
+k48vU8NXvXh+r/1IURTRhc9o/0pxN93Pd//86E8/JPkUJyE59LXgGaeZcu8rAxstqC8s6okJ3XpO
+v5bwxkRezDdQekVaEoU667Uw0pdi4UJPK8N96heBjVN7e3dRcJdQCrhPRIcxVyeBauEx0qIx/cdY
+o/VMzkJVHpiCAqZ1NgSBKrhDruVX+OKCL/h111aDoESDOLiDPNiDPihyI1hyuiZwH4drF8gnIyeA
+sneDraR80BR+GvUxFtZ5qXKARcd5Ihh9ureBRfVQAEQpMigy0pSFeIN8q8Z1RxN7JKaDV/JdP1h2
+bxiHcjiHdFiHdshAR8OGktNeTNd0gbRZQYhDgMiEbJOA2aZGgxhKv1Z9S2eIh//IQn14cgUYiYsl
+eIRINoq1fDCoX7DFh4SVZ07zZ0s4WEToh26TYBuHO000ZqXoh9RCPGhGLDJYN//CiJtzhLZDidbh
+htqihrnoi58DjMEojLg2OdN3h5ezisqGjLBBFWmiebRyiuTHjE9HjdZ4frYIXsRIStcIRJ04hNUz
+HHrYjUjWPIBGjuhIP9kYUuuoXwB4iTOYjhgYeGdVj5B3ZOO4du0ob/CIX04UiPIYkJ+yj/+XhMYI
+kALJLcYzPeWThgiZkLf4Rc44OpUIkRaZTboIRrC3jVKSjzxoj3toOzHXjxcJILwIKKZVTxVZkixZ
+ixlZiQSpXP9Iki0Jjo/YikD/1pBeWJNkE5NV9ZLlRpM8OZRwyJEFOZMeyZIgKZL4SJSW9JAW5ZRS
+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
+
+------=_NextPart_000_0000_01C689B9.037656C0
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://home.ubalt.edu/ntsbarsh/opre640A/4.gif
+
+R0lGODlh4gEqAvcAAAAAAP///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACwAAAAA4gEqAkAI/wADCBxI
+sKDBgwgTKlzIsKHDhxAjSpxIsaLFixgzatzIsaPHjyBDihx5EYBJAANPooyo8mQAlxRbrmQIM6VJ
+kjhz6tzJs6fPnx5d3lRps+XLm0VnHh2KVCDTg0STFk15VCpMoShrAt3KtavXr2DDih1LtqzZs2jT
+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
+aFicocOLEWLJ5g3hi5uONu2L8L3hqRzcDue1fIma8l3fU1niJm6vvV0oAC7Sjb3a/qtIMH4jHSQ2
+/g1aK87YIPkmWLWQPD7gr93fk62rDj7fCf4/oVbURE7i7WxFoM3UUcnk5iemK+2XsJh26s0ko21J
+7Y2ZS/5E2Zs05H04Fd5N73mnWW44Wz6Ynu3l9O3ebN7cHB7nuEqBMww7Hh7iIk7fBW6P4PbhZPpK
+CJpSsXXdErbYjp2qrf+Nhd1c15USgrPF4Pmk4IY9Pjd+6Djs4lCqssyd4g3s1UI96ZfN0+PH6JDl
+3bbI2T/th6SdNVIedZzOZB9XYOiN3hc65rrN1XKe62Y94hjG4MB8l1EN5+0DvTme2LKLxy356m9u
+6JucXkXN3gqefsGM6TXG641ejROpucAt6oYWUbPlpqi36+ar68Km7I5j7Sgly8UM7Klt7qhVxUgq
+ZaLa7n/C5ZzrlJp94dGOO5ir39tu7KUOkM6q7Xyo59GXVxgN7jRM1qpM7uvt7n6D7ih30OzuxqBJ
+7ON61+irZIjL7+LqvRBvlkNe1SHPtS0OeSXPf9o9kl556EVH6uo06S3/F15dRWsHk/IMOOZnXVt/
+Z/ATb9AV39C1ifFZqtfENO8Wv9dqnvFyh9S5HX0mD8RDFuF7iY3WG8Owzu0z7+1WXDb/zMgY7vC2
+Y/T43pEvT9BB/2I4j13oNq5kL6zIHuTUsvRy/F1PHebBntn93uywTuskaPVnz/c+lqDkjPAyKWrP
+/PWXbI1if1sA33U+z8THnPb2svbvXmJ+PPgc3+XcQ/c0ZvnvWI3CPvqrFvUGn1+xXfUB+qlVfr9+
+76+IbYMQ9vaA/PoITU4JbPaSb8yUb5kXVbUtXsSBhfSt//cfL/hlP+WfC/rRa/HMD9BQTc6ib8C2
+9fzQr/OU3lJCqPDI+s/7uN/4/Fx4kd+Sydz7EWP90oX561vtmx/Qxr/33X9Xd7/y5I/S057TaSXe
+/ITt1E9K6L+TABEAQACBBA0eRJhQ4UKGDR0+hBhR4kSKCgFcJHgRo0aDAxlqxGgRZEWSJU2eRJlS
+5UqWLV2+hBlT5kyEHm3SxJlT506ePX3+BBoUZ0iPQo0eRZr0KEeBTD8+dKpU6lSqVa1exfq0oMSi
+CYt2zRpW7FiyZc06BAtV69azbd2+hRt35s2DA9OmrdlR7l6+ff32ZTpyZN3BIvH+RZxY8eKqdhk/
+hhxZMtbCky1fxpwZZkjNnT1/Bh1a9GjSpU2fRp1a9WrVAQEAIf7UVGhpcyBpbWFnZSBmaWxlIHdh
+cyBjcmVhdGVkIHdpdGggYW4gZXZhbHVhdGlvbiBjb3B5IG9mIExWaWV3IFBybywgY29weXJpZ2h0
+IChDKSAxOTkzLTE5OTcgYnkgTGVvbmFyZG8gTG91cmVpcm8sIGFsbCByaWdodHMgcmVzZXJ2ZWQu
+IEZvciBpbmZvcm1hdGlvbiBhYm91dCBwdXJjaGFzaW5nIExWaWV3IFBybywgcGxlYXNlIHZpc2l0
+IGh0dHA6Ly93d3cubHZpZXcuY29tIAAAIf8LTFZpZXdQcm8yMDAAOwAAAAA=
+
+------=_NextPart_000_0000_01C689B9.037656C0
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://home.ubalt.edu/ntsbarsh/opre640A/7.gif
+
+R0lGODlh9wHQAfcAAAAAAP///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACwAAAAA9wHQAUAI/wADCBxI
+sKDBgwgTKlzIsKHDhxAjSpxIsaLFixgzatzIsaPHjyBDihxJsqTJkyhTqlzJsqXLlzArAgBwcCZN
+mzhnBrApEGdPnT8LAh0KdCdPo0gJ3ryZ9CdNo0STHnX6NKbVq1izat3KtavXr2DDih1LtqzZs2jT
+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
+LCBjb3B5cmlnaHQgKEMpIDE5OTMtMTk5NyBieSBMZW9uYXJkbyBMb3VyZWlybywgYWxsIHJpZ2h0
+cyByZXNlcnZlZC4gRm9yIGluZm9ybWF0aW9uIGFib3V0IHB1cmNoYXNpbmcgTFZpZXcgUHJvLCBw
+bGVhc2UgdmlzaXQgaHR0cDovL3d3dy5sdmlldy5jb20gAAAh/wtMVmlld1BybzIwMAA7AAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
+
+------=_NextPart_000_0000_01C689B9.037656C0
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://home.ubalt.edu/ntsbarsh/opre640A/slide8.gif
+
+R0lGODdh8gHeAfcAAAAAAP///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACwAAAAA8gHeAUAI/wADCBxI
+sKDBgwgTKlzIsKHDhxAjSpxIsaLFixgzatzIsaPHjyBDihxJsqTJkyhTqlzJsqXLlzBjypxJs6bN
+mzhzggQgEADPAD4JBgXKc6jQn0B7Fv3JdKlBowODSm1KVKfVq1izat3KtavXr2DDih1LtqzZs2ht
++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
+
+------=_NextPart_000_0000_01C689B9.037656C0
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://home.ubalt.edu/ntsbarsh/opre640A/slide6.gif
+
+R0lGODdhzQG2AfcAAAAAAP///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACwAAAAAzQG2AUAI/wADCBxI
+sKDBgwgTKlzIsKHDhxAjSpxIsaLFixgzatzIsaPHjyBDFgRAsiTJjSUDnJyYEsDBlCINmly5EOZA
+mzFz6tzJs6fPnyNtmrw5VKVLgjBnzjSqVCZTokpdJm15surKpVSPCiy6VehVo1ClXrX6FKjZs2jT
+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
+
+------=_NextPart_000_0000_01C689B9.037656C0--

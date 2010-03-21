@@ -117,9 +117,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Ximura Base\Ximura Base.csproj">
+    <ProjectReference Include="..\..\..\Ximura Base\Ximura.csproj">
       <Project>{7C2684DD-A055-4A7A-88D6-EC5BAE28AEB2}</Project>
-      <Name>Ximura Base</Name>
+      <Name>Ximura</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Ximura Communication Entities\Ximura Communication Entities.csproj">
       <Project>{039133D4-A947-405C-A441-71DF106C9EE5}</Project>
@@ -140,10 +140,6 @@
     <ProjectReference Include="..\..\..\Ximura Windows\WindowHost\Ximura Windows Host.csproj">
       <Project>{9232C921-5754-4F61-9B3A-024FB1359E44}</Project>
       <Name>Ximura Windows Host</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Ximura\Ximura.csproj">
-      <Project>{218ED92E-5D40-40DF-B6A2-11DEF3133589}</Project>
-      <Name>Ximura</Name>
     </ProjectReference>
     <ProjectReference Include="..\Common\XS SocialNetworking Common.csproj">
       <Project>{D9A6D00E-00EB-40C2-BDF3-D1D82C818532}</Project>
