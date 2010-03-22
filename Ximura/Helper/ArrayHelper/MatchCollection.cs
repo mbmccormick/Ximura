@@ -104,16 +104,20 @@ namespace Ximura
         public int Position { get { return position; } }
         #endregion // Position
 
+        #region this[int index]
         /// <summary>
         /// This method returns the specified item for the collection. You should override this indexer.
         /// </summary>
         /// <param name="index">The position index.</param>
         /// <returns></returns>
         public abstract MatchTerminator<TSource, TMatch> this[int index] { get; }
+        #endregion 
 
+        #region Count
         /// <summary>
         /// This property returns the number of items in the collection. You should override this property.
         /// </summary>
         public abstract int Count { get; }
+        #endregion 
     }
 }

@@ -31,192 +31,33 @@ namespace Ximura
             return enumData;
         }
 
-        public static MatchCollectionState<TSource, TMatch> MatchCollection<TSource, TMatch>(
-            this IEnumerator<TSource> sourceEnum, MatchCollectionState<TSource, TMatch> state)
+        #region GetEnumeratorAtPosition<T>(this IEnumerable<T> source, int pos)
+        /// <summary>
+        /// This method gets a enumerator for the IEnumerable object and moves it forward 
+        /// by the required number of places.
+        /// </summary>
+        /// <typeparam name="T">The enumeration type.</typeparam>
+        /// <param name="source">The boject source.</param>
+        /// <param name="pos">The number of positions to move forward.</param>
+        /// <returns>Returns the object or null if the method has moved passed the end of the collection.</returns>
+        public static IEnumerator<T> GetEnumeratorAtPosition<T>(this IEnumerable<T> source, int pos)
         {
-            if (state == null)
-                throw new ArgumentNullException("state cannot be null.");
+            IEnumerator<T> matchEnum = source.GetEnumerator();
+            matchEnum.Reset();
+            matchEnum.MoveNext();
 
-#if (DEBUG)
-            state.DebugTraceRecursion++;
-#endif
-            try
+            //OK, skip through the enumerator until we reach the correct position.
+            while (pos > 0)
             {
-#if (DEBUG)
-                if (state.DebugTrace)
-                    state.DebugTraceCollection.Add(
-                        string.Format("Enter -> {0} Q={1}, ({2})", state.DebugTraceRecursion,
-                        state.SlidingWindow == null ? "null" : state.SlidingWindow.Count.ToString(),
-                        !state.Status.HasValue ? "null" : state.Status.Value.ToString()));
-#endif
-                //Ok, have we already matched in which case return the current state unchanged.
-                if (state.Status.HasValue && ((state.Status.Value & MatchTerminatorStatus.Success) > 0))
-                    return state;
-
-                if (!state.Status.HasValue)
-                {
-                    state.Start = state.Length;
-                    state.Status = MatchTerminatorStatus.NotSet;
-                }
-
-                //OK, get the MatchTerminator enumerator.
-                IEnumerator<MatchTerminator<TSource, TMatch>> currentEnum;
-                if (state.CurrentEnumerator != null)
-                {
-                    currentEnum = state.CurrentEnumerator;
-                }
-                else
-                {
-                    currentEnum = state.GetEnumerator();
-                    currentEnum.Reset();
-                    currentEnum.MoveNext();
-                    state.CurrentEnumerator = currentEnum;
-                }
-
-                //Check whether there is any data from the sliding window
-                //and if so process it first.
-                if (state.SlidingWindow.Count > 0 && state.Status == MatchTerminatorStatus.NotSet)
-                    state = ValidateCollectionSlidingWindow(state, false);
-
-                //If the sliding window data has completed the match, then exit
-                if ((state.Status & MatchTerminatorStatus.Success) > 0)
-                    return state;
-
-                MatchTerminatorResult result;
-                bool reset = false;
-                do
-                {
-                    MatchTerminator<TSource, TMatch> term = currentEnum.Current;
-                    result = term.Match(sourceEnum, state.SlidingWindow, state.Length - state.Start);
-
-                    reset = (result.Status & MatchTerminatorStatus.Reset) > 0;
-#if (DEBUG)
-                    if (state.DebugTrace)
-                        state.DebugTraceCollection.Add(
-                            string.Format("Match ({0})={1} [{2:X}]", term.GetType().Name, result.Status, state.Length));
-#endif
-                    state.IsTerminator |= result.IsTerminator;
-                    switch (result.Status)
-                    {
-                        case MatchTerminatorStatus.Fail:
-                            term.Reset();
-                            state.Length += result.Length - 1;// +state.SlidingWindow.Count - 1;
-                            if (state.SlidingWindow.Count > 0)
-                            {
-                                int oldLength = state.Length;
-                                //Dispose of the first item, and process the queue.
-                                state = ValidateCollectionSlidingWindow<TSource, TMatch>(state, true);
-                                //Ok, we need to check whether we have a partial match in the enqueued bytes.
-                                currentEnum = state.CurrentEnumerator;
-                            }
-
-                            if (state.Status != MatchTerminatorStatus.SuccessPartial)
-                                currentEnum.Reset();
-
-                            break;
-
-                        case MatchTerminatorStatus.SuccessPartial:
-                            //Ok, we have a partial match but have reached the end of sourceEnum, so return
-                            //and wait for the next piece.
-                            state.Status = MatchTerminatorStatus.SuccessPartial;
-                            state.Length += result.Length;
-                            if (state.MatchPosition == -1)
-                                state.MatchPosition = state.Length - state.SlidingWindow.Count;
-                            return state;
-
-                        case MatchTerminatorStatus.NotSet:
-                            //Ok, we have scanned to the end of the array and not found a match.
-                            state.MatchPosition = -1;
-                            state.Length += result.Length;
-                            return state;
-
-                        case MatchTerminatorStatus.SuccessNoLength:
-                        case MatchTerminatorStatus.SuccessNoLengthReset:
-                            term.Reset();
-                            state.Length += result.Length;
-                            if (state.MatchPosition == -1)
-                                state.MatchPosition = state.Length - state.SlidingWindow.Count;
-
-                            if (reset)
-                            {
-                                currentEnum.Reset();
-                                currentEnum.MoveNext();
-                            }
-
-
-                            break;
-
-                        case MatchTerminatorStatus.Success:
-                        case MatchTerminatorStatus.SuccessReset:
-                            term.Reset();
-                            state.Length += result.Length;
-                            if (state.MatchPosition == -1)
-                                state.MatchPosition = state.Length - state.SlidingWindow.Count;
-
-                            if (reset)
-                            {
-                                currentEnum.Reset();
-                                currentEnum.MoveNext();
-                            }
-                            //Ok, we are successful, so we need to move on to the next step.
-
-                            if (!result.CanContinue || reset)
-                            {
-                                //We have reached the end of the byte stream so we need to check whether we have
-                                //actually terminated.
-                                bool moreTerminatorParts = reset ? false : currentEnum.MoveNext();
-                                if (!state.IsTerminator && moreTerminatorParts)
-                                {
-                                    //OK, we only have a partial match as the terminator flag is not set and we have more parts
-                                    //of the terminator to process.
-                                    state.Status = MatchTerminatorStatus.SuccessPartial;
-                                }
-                                else
-                                {
-                                    //Ok, either the termination flag is set, meaning the terminator chars match a specific character
-                                    //or there are no more parts of the terminator to match.
-                                    state.Status = MatchTerminatorStatus.Success;
-                                    state.SlidingWindow.Clear();
-                                }
-
-                                return state;
-                            }
-
-                            break;
-                        default:
-                            throw new ArgumentOutOfRangeException("Unknown MatchTerminatorStatus value.");
-                    }
-
-                }
-                while (result.CanContinue && currentEnum.MoveNext() && !reset);
-
-                //OK, we have completed. Either we have failed or succeeded
-                state.Status = result.Status;
-                //OK, time to do some tidy up.
-                if ((result.Status & MatchTerminatorStatus.Success) > 0)
-                {
-                    int extra = state.Length - state.MatchPosition;
-                    state.SlidingWindow.DequeueRemove(extra);
-                    state.CurrentEnumerator = null;
-                }
-                //Get the match array enumerator at the correct position.
-                //IEnumerator<MatchTerminator<TSource, TMatch>> matchEnum = match.GetEnumeratorAtPosition(state.MatchCollectionPosition);
-
-                return state;
+                if (!matchEnum.MoveNext())
+                    return null;
+                pos--;
             }
-            finally
-            {
-#if (DEBUG)
-                if (state.DebugTrace)
-                    state.DebugTraceCollection.Add(
-                        string.Format("Exit <- {0} Q={1}, ({2})", state.DebugTraceRecursion,
-                        state.SlidingWindow == null ? "null" : state.SlidingWindow.Count.ToString(),
-                        !state.Status.HasValue ? "null" : state.Status.Value.ToString()));
 
-                state.DebugTraceRecursion--;
-#endif
-            }
+            return matchEnum;
         }
+        #endregion // GetEnumeratorAtPosition<T>(this IEnumerable<T> source, int pos)
+
 
         public static void DequeueRemove<T>(this Queue<T> queue, int count)
         {
@@ -263,13 +104,103 @@ namespace Ximura
             return window.MatchCollection(state);
         }
 
-
-        public static MatchCollectionState<TSource, TMatch> MatchCollection<TSource, TMatch>(
-            this IEnumerable<TSource> source, MatchCollectionState<TSource, TMatch> matchCollectionState)
+        #region ValidateSlidingWindow
+        /// <summary>
+        /// This method validates the sliding windows of previous records. This is needed because
+        /// there may be partial matches in the previous array records. This is especially important
+        /// when the match array is long.
+        /// </summary>
+        /// <typeparam name="TSource">The source array type.</typeparam>
+        /// <typeparam name="TMatch">The match array type.</typeparam>
+        /// <param name="state">The current match state.</param>
+        /// <param name="matchEnum">The match enumerator.</param>
+        /// <param name="predicate">The predicate used to validate the source and match items.</param>
+        /// <returns>The match position or 0 if there is no match.</returns>
+        private static int ValidateSlidingWindow<TSource, TMatch>(MatchState<TSource> state, IEnumerator<TMatch> matchEnum,
+            Func<TSource, TMatch, bool> predicate)
         {
-            IEnumerator<TSource> sourceEnum = source.GetEnumerator();
-            sourceEnum.MoveNext();
-            return sourceEnum.MatchCollection(matchCollectionState);
+            int posMatch;
+
+            //Remove the start of the previous point.
+            state.SlidingWindow.Dequeue();
+
+            //OK, no match so reset the match buffer to its default position
+            while (state.SlidingWindow.Count > 0 && !SlidingWindowMatch(predicate, state.SlidingWindow, matchEnum))
+                state.SlidingWindow.Dequeue();
+
+            posMatch = state.SlidingWindow.Count;
+            //Reset the match enumerator to its initial position.
+            if (posMatch == 0)
+            {
+                matchEnum.Reset();
+                matchEnum.MoveNext();
+            }
+
+            return posMatch;
+        }
+        #endregion // ValidateSlidingWindow
+        #region SlidingWindowMatch
+        /// <summary>
+        /// This method matches the sliding window with the match.
+        /// </summary>
+        /// <typeparam name="TSource">The source array type.</typeparam>
+        /// <typeparam name="TMatch">The match array type.</typeparam>
+        /// <param name="predicate">The predicate used to validate the source and match items.</param>
+        /// <param name="queue">The sliding window queue.</param>
+        /// <param name="matchEnum">The match enumerator.</param>
+        /// <returns>Returns true if there is a partial match.</returns>
+        private static bool SlidingWindowMatch<TSource, TMatch>(Func<TSource, TMatch, bool> predicate,
+            Queue<TSource> queue, IEnumerator<TMatch> matchEnum)
+        {
+            matchEnum.Reset();
+            matchEnum.MoveNext();
+
+            TMatch match;
+
+            foreach (TSource item in queue)
+            {
+                match = matchEnum.Current;
+                if (!predicate(item, match))
+                {
+                    return false;
+                }
+                //Ok, move to the next item in the match enumeration.
+                if (!matchEnum.MoveNext())
+                    throw new ApplicationException("ArrayHelper/SlidingWindowMatch --> matchEnum.MoveNext() was not successful. This should not happen.");
+            }
+
+            return true;
+        }
+        #endregion // SlidingWindowMatch
+
+
+        public static bool Contains<T>(this IEnumerable<T> items, Predicate<T> action)
+        {
+            if (items == null) throw new ArgumentNullException("items");
+            if (action == null) throw new ArgumentNullException("action");
+
+            foreach (T item in items)
+                if (action(item))
+                    return true;
+
+            return false;
+        }
+
+        /// <summary>
+        /// This extension selects a range of array values based on the offset and the count value.
+        /// </summary>
+        /// <typeparam name="TSource">This extension method can be applied to any object that implements the IList interface.</typeparam>
+        /// <param name="source">The array source.</param>
+        /// <param name="offset">The offset value.</param>
+        /// <param name="count">The number of records to process.</param>
+        /// <returns>Returns a enumerable collection containing the records.</returns>
+        public static IEnumerable<TSource> Range<TSource>(this IList<TSource> source, int offset, int count)
+        {
+            int num = offset + count;
+            for (int i = offset; i < num; i++)
+            {
+                yield return source[i];
+            }
         }
     }
 }
