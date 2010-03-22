@@ -1,0 +1,509 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7C2684DD-A055-4A7A-88D6-EC5BAE28AEB2}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>XimuraBase</AssemblyName>
+    <AssemblyOriginatorKeyFile>Properties\ximura.snk</AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Ximura</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>ximurabase.XML</DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'SQL|AnyCPU' ">
+    <OutputPath>bin\SQL\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'SQLBudubu|AnyCPU' ">
+    <OutputPath>bin\SQLBudubu\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;PROFILING; LOCKDEBUG;</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <DocumentationFile>bin\x86\Debug\XimuraBase.xml</DocumentationFile>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <Optimize>true</Optimize>
+    <FileAlignment>4096</FileAlignment>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'SQL|x86' ">
+    <OutputPath>bin\x86\SQL\</OutputPath>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'SQLBudubu|x86' ">
+    <OutputPath>bin\x86\SQLBudubu\</OutputPath>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <DocumentationFile>XIMSBase.XML</DocumentationFile>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>x64</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <Optimize>true</Optimize>
+    <FileAlignment>4096</FileAlignment>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'SQL|x64' ">
+    <OutputPath>bin\x64\SQL\</OutputPath>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'SQLBudubu|x64' ">
+    <OutputPath>bin\x64\SQLBudubu\</OutputPath>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'XSSocNet x64 Release|AnyCPU' ">
+    <OutputPath>bin\XSSocNet x64 Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'XSSocNet x64 Release|x86' ">
+    <OutputPath>bin\x86\XSSocNet x64 Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'XSSocNet x64 Release|x64' ">
+    <OutputPath>bin\x64\XSSocNet x64 Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'XSSocNet x86 Release|AnyCPU' ">
+    <OutputPath>bin\XSSocNet x86 Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'XSSocNet x86 Release|x86' ">
+    <OutputPath>bin\x86\XSSocNet x86 Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'XSSocNet x86 Release|x64' ">
+    <OutputPath>bin\x64\XSSocNet x86 Release\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Applications\DJobType.cs" />
+    <Compile Include="Applications\JobPriority.cs" />
+    <Compile Include="Applications\SCMJobCompletionType.cs" />
+    <Compile Include="Attributes\ConfigurationLocation.cs" />
+    <Compile Include="Attributes\XimuraAppConfigurationAttribute.cs" />
+    <Compile Include="Attributes\XimuraAppConfigurationExternalAttribute.cs" />
+    <Compile Include="Attributes\XimuraAppModuleAttribute.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Attributes\XimuraAppModuleConfigAttribute.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Collections\Collection Wrappers\CollectionWrapperBase.cs" />
+    <Compile Include="Collections\Collection Wrappers\CollectionWrapperCourseGrained.cs" />
+    <Compile Include="Collections\Collection Wrappers\CollectionWrapperInterlocked.cs" />
+    <Compile Include="Collections\Collection Wrappers\CollectionWrapperReadWrite.cs" />
+    <Compile Include="Collections\Collections\CollectionHelperBase.cs" />
+    <Compile Include="Collections\Collections\CollectionHelperBase_Debug.cs" />
+    <Compile Include="Collections\Collections\ConcurrentDictionary.cs" />
+    <Compile Include="Collections\Collections\ConcurrentHashSet.cs" />
+    <Compile Include="Collections\Collections\ConcurrentCollectionBase.cs" />
+    <Compile Include="Collections\Collections\ConcurrentList.cs" />
+    <Compile Include="Collections\Collections\ConcurrentPool.cs" />
+    <Compile Include="Collections\Collections\ConcurrentPriorityQueue.cs" />
+    <Compile Include="Collections\Collections\ConcurrentStack.cs" />
+    <Compile Include="Collections\ConcurrentDictionary.cs" />
+    <Compile Include="Collections\ConcurrentList.cs" />
+    <Compile Include="Collections\ConcurrentHashSet.cs" />
+    <Compile Include="Collections\Graphs\Data\Edge.cs" />
+    <Compile Include="Collections\Graphs\Data\EdgeAttribute.cs" />
+    <Compile Include="Collections\Graphs\Data\EdgeReference.cs" />
+    <Compile Include="Collections\Graphs\Data\Vertex.cs" />
+    <Compile Include="Collections\Graphs\Data\VertexReference.cs" />
+    <Compile Include="Collections\Graphs\DirectedAcyclicalGraph.cs" />
+    <Compile Include="Collections\Graphs\Graph.cs" />
+    <Compile Include="Collections\Interfaces\ICollectionBase.cs" />
+    <Compile Include="Collections\Interfaces\ICollectionState.cs" />
+    <Compile Include="Collections\Interfaces\ICollectionVertex.cs" />
+    <Compile Include="Collections\Interfaces\ICollectionWrapper.cs" />
+    <Compile Include="Collections\Interfaces\IFineGrainedLockArray.cs" />
+    <Compile Include="Collections\Interfaces\IGraph.cs" />
+    <Compile Include="Collections\Interfaces\IPool.cs" />
+    <Compile Include="Collections\Interfaces\IPoolInitialization.cs" />
+    <Compile Include="Collections\Interfaces\IPriorityQueue.cs" />
+    <Compile Include="Collections\Interfaces\IStack.cs" />
+    <Compile Include="Collections\Interfaces\IVertexWindow.cs" />
+    <Compile Include="Collections\Interfaces\IXimuraBinarySerializable.cs" />
+    <Compile Include="Collections\Trees\LockFreeTreeBase.cs" />
+    <Compile Include="Collections\Trees\RedBlackTree\Data\TreeLockableVertex.cs" />
+    <Compile Include="Collections\Trees\RedBlackTree\Data\RedBlackTreeLockableVertex.cs" />
+    <Compile Include="Collections\Trees\RedBlackTree\LockFreeRedBlackTree.cs" />
+    <Compile Include="Collections\Trees\RedBlackTree\LockFreeRedBlackTreeBase.cs" />
+    <Compile Include="Collections\Trees\RedBlackTree\LockFreeRedBlackTreeBase_Main.cs" />
+    <Compile Include="Collections\Trees\RedBlackTree\LockFreeRedBlackTreeBase_Rebalancing.cs" />
+    <Compile Include="Collections\Trees\RedBlackTree\LockFreeRedBlackTreeBase_Sync.cs" />
+    <Compile Include="Collections\VertexArrays\ClassBasedVertexArray.cs" />
+    <Compile Include="Collections\VertexArrays\DataClass\ClassBasedVertexWindow.cs" />
+    <Compile Include="Collections\VertexArrays\DataClass\CollectionVertexClassSentinel.cs" />
+    <Compile Include="Collections\VertexArrays\DataClass\CollectionVertexClassDataSentinel.cs" />
+    <Compile Include="Collections\VertexArrays\DataClass\CollectionVertexClassData.cs" />
+    <Compile Include="Collections\VertexArrays\DataClass\CollectionVertexClassBase.cs" />
+    <Compile Include="Collections\VertexArrays\DataStruct\CollectionVertexStruct.cs" />
+    <Compile Include="Collections\VertexArrays\DataClass\CollectionVertexClass.cs" />
+    <Compile Include="Collections\VertexArrays\DataStruct\RedBlackTreeVertexStruct.cs" />
+    <Compile Include="Collections\VertexArrays\DataStruct\SkipListSentinelVertexStruct.cs" />
+    <Compile Include="Collections\VertexArrays\HashTable\HashTableClassBasedVertexArray.cs" />
+    <Compile Include="Collections\VertexArrays\HashTable\HashTableStructBasedVertexArrayV2.cs" />
+    <Compile Include="Collections\VertexArrays\HashTable\HashTableStructBasedVertexArrayV3.cs" />
+    <Compile Include="Collections\VertexArrays\HashTable\HashTableStructBasedVertexArrayV3_VertexWindow.cs" />
+    <Compile Include="Collections\VertexArrays\MultiLevelClassBasedVertexArray.cs" />
+    <Compile Include="Collections\VertexArrays\MultiLevelBucketStructBasedVertexArray.cs" />
+    <Compile Include="Collections\VertexArrays\SkipList\SkipListClassBasedVertexArray.cs" />
+    <Compile Include="Collections\VertexArrays\SkipList\SkipListStructBasedVertexArray.cs" />
+    <Compile Include="Collections\VertexArrays\StructBasedVertexArray.cs" />
+    <Compile Include="Collections\VertexArrays\VertexArray.cs" />
+    <Compile Include="Command\CommandCallbacks.cs" />
+    <Compile Include="Command\Data\EnvelopeAddress.cs" />
+    <Compile Include="Command\Interfaces\IXimuraEnvelopeHelper.cs" />
+    <Compile Include="Command\Interfaces\IXimuraRQRSEnvelope.cs" />
+    <Compile Include="Command\Data\RQRSContract.cs" />
+    <Compile Include="Command\Data\RQRSEnvTypes.cs" />
+    <Compile Include="Command\Data\RQRSFolder.cs" />
+    <Compile Include="Component\AppContainer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component\AppContainerEventArgs.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component\DisposableBase.cs" />
+    <Compile Include="Component\ElementSite.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Helper\ArrayHelper\ArrayHelper.cs" />
+    <Compile Include="Helper\ArrayHelper\ArrayHelper_Exists.cs" />
+    <Compile Include="Helper\ArrayHelper\ArrayHelper_FindPosition.cs" />
+    <Compile Include="Helper\ArrayHelper\ArrayHelper_Match.cs" />
+    <Compile Include="Helper\ArrayHelper\ArrayHelper_Range.cs" />
+    <Compile Include="Helper\ArrayHelper\MatchCollection.cs" />
+    <Compile Include="Helper\ArrayHelper\MatchCollectionState.cs" />
+    <Compile Include="Helper\ArrayHelper\MatchExceptionTerminator.cs" />
+    <Compile Include="Helper\ArrayHelper\MatchSequence.cs" />
+    <Compile Include="Helper\ArrayHelper\MatchSequenceSkipOrFailTerminator.cs" />
+    <Compile Include="Helper\ArrayHelper\MatchSequenceTerminator.cs" />
+    <Compile Include="Helper\ArrayHelper\MatchSkipTerminator.cs" />
+    <Compile Include="Helper\ArrayHelper\MatchState.cs" />
+    <Compile Include="Helper\ArrayHelper\MatchTerminator.cs" />
+    <Compile Include="Helper\ArrayHelper\MatchTerminatorResult.cs" />
+    <Compile Include="Helper\ArrayHelper\MatchTerminatorStatus.cs" />
+    <Compile Include="Helper\Bit\BitHelper.cs" />
+    <Compile Include="Helper\Bit\BitMask.cs" />
+    <Compile Include="Helper\Command.cs" />
+    <Compile Include="Helper\Binary.cs" />
+    <Compile Include="Helper\Common_DateTime.cs" />
+    <Compile Include="Helper\Common_Encoding.cs" />
+    <Compile Include="Helper\Common_Security.cs" />
+    <Compile Include="Helper\Linq\Linq_Compare.cs" />
+    <Compile Include="Helper\Linq\Linq_Convert.cs" />
+    <Compile Include="Helper\Linq\Linq_Currying.cs" />
+    <Compile Include="Helper\Linq\Linq_Folding.cs" />
+    <Compile Include="Helper\Linq\Linq_Forward_Reverse.cs" />
+    <Compile Include="Helper\Linq\Linq_Insert.cs" />
+    <Compile Include="Helper\Linq\Linq_Range.cs" />
+    <Compile Include="Helper\Linq\Linq_Stream.cs" />
+    <Compile Include="Helper\Linq\Linq_Unfolding.cs" />
+    <Compile Include="Helper\Locking\LockableBase.cs" />
+    <Compile Include="Helper\Locking\LockableMarkableWrapper.cs" />
+    <Compile Include="Helper\Locking\LockableNullableWrapper.cs" />
+    <Compile Include="Helper\Locking\LockableWrapper.cs" />
+    <Compile Include="Helper\Prime.cs" />
+    <Compile Include="Helper\Stream\StreamCounter.cs" />
+    <Compile Include="Helper\Stream\StreamHelper.cs" />
+    <Compile Include="Helper\Threading.cs" />
+    <Compile Include="Interfaces\Command\IXimuraFSMStateIdentifier.cs" />
+    <Compile Include="Interfaces\Component\IXimuraServiceContainer.cs" />
+    <Compile Include="Component\ServiceContainer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Helper\Linq\Tuple.cs" />
+    <Compile Include="Exceptions\XimuraException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Exceptions\XimuraRemotingException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Exceptions\XimuraServiceException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Helper\Attribute.cs" />
+    <Compile Include="Helper\Common.cs" />
+    <Compile Include="Helper\DateTime.cs" />
+    <Compile Include="Helper\Linq\Linq.cs" />
+    <Compile Include="Helper\Reflection.cs" />
+    <Compile Include="Helper\String.cs" />
+    <Compile Include="Helper\XML.cs" />
+    <Compile Include="Interfaces\Application\IXimuraApplication.cs" />
+    <Compile Include="Interfaces\Application\IXimuraApplicationDefinition.cs" />
+    <Compile Include="Interfaces\Application\IXimuraAppServer.cs" />
+    <Compile Include="Interfaces\Command\IXimuraCommand.cs" />
+    <Compile Include="Interfaces\Command\IXimuraCommandKnownService.cs" />
+    <Compile Include="Interfaces\Command\IXimuraCommandPermissions.cs" />
+    <Compile Include="Interfaces\Command\IXimuraCommandProcessConfigSH.cs" />
+    <Compile Include="Interfaces\Command\IXimuraCommandScheduleProcessConfigSH.cs" />
+    <Compile Include="Interfaces\Command\IXimuraSchedulerCommandRegister.cs" />
+    <Compile Include="Interfaces\Configuration\IXimuraConfigurationManager.cs" />
+    <Compile Include="Interfaces\Config\IXimuraConfigSH.cs" />
+    <Compile Include="Interfaces\Data\DataContentLinkType.cs" />
+    <Compile Include="Interfaces\Data\DataContentSummaryType.cs" />
+    <Compile Include="Interfaces\Data\IDataContentSummary.cs" />
+    <Compile Include="Interfaces\Data\ILockable.cs" />
+    <Compile Include="Interfaces\Data\ITextSummary.cs" />
+    <Compile Include="Interfaces\Data\IXimuraContent.cs" />
+    <Compile Include="Interfaces\Data\IXimuraContentEntityFragment.cs" />
+    <Compile Include="Interfaces\Data\IXimuraContentEntityPersistence.cs" />
+    <Compile Include="Interfaces\Data\IXimuraContentFormatterCapabilities.cs" />
+    <Compile Include="Interfaces\Data\IXimuraContentSerializationReaderWriter.cs" />
+    <Compile Include="Interfaces\Data\IXimuraDataContentLinkage.cs" />
+    <Compile Include="Interfaces\Data\IXimuraDataEntity.cs" />
+    <Compile Include="Interfaces\Data\IXimuraElement.cs" />
+    <Compile Include="Interfaces\Data\IXimuraFolder.cs" />
+    <Compile Include="Interfaces\Data\IXimuraParameter.cs" />
+    <Compile Include="Interfaces\Application\IXimuraAppSite.cs" />
+    <Compile Include="Interfaces\Component\IXimuraComponentBase.cs" />
+    <Compile Include="Interfaces\Logging\IXimuraLoggerConfigSH.cs" />
+    <Compile Include="Interfaces\Logging\IXimuraLogging.cs" />
+    <Compile Include="Interfaces\Logging\IXimuraLoggingAudit.cs" />
+    <Compile Include="Interfaces\Logging\IXimuraLoggingExtended.cs" />
+    <Compile Include="Interfaces\Logging\IXimuraLoggingManagerConfigSH.cs" />
+    <Compile Include="Interfaces\Logging\IXimuraLoggingProvider.cs" />
+    <Compile Include="Interfaces\Messaging\IXimuraBinarySerialize.cs" />
+    <Compile Include="Interfaces\Messaging\IXimuraMessageFragment.cs" />
+    <Compile Include="Interfaces\Messaging\IXimuraMessageFragmentBase.cs" />
+    <Compile Include="Interfaces\Messaging\IXimuraMessageFragmentBody.cs" />
+    <Compile Include="Interfaces\Messaging\IXimuraMessageStream.cs" />
+    <Compile Include="Interfaces\Messaging\IXimuraMessageStreamAsync.cs" />
+    <Compile Include="Interfaces\Messaging\IXimuraMessageStreamFeedback.cs" />
+    <Compile Include="Interfaces\Messaging\IXimuraMessageStreamLoad.cs" />
+    <Compile Include="Interfaces\Messaging\MessageDirection.cs" />
+    <Compile Include="Interfaces\Performance\IXimuraPerformance.cs" />
+    <Compile Include="Interfaces\Performance\IXimuraPerformanceAgent.cs" />
+    <Compile Include="Interfaces\Performance\IXimuraPerformanceCounter.cs" />
+    <Compile Include="Interfaces\Performance\IXimuraPerformanceCounterCollection.cs" />
+    <Compile Include="Interfaces\Performance\IXimuraPerformanceItem.cs" />
+    <Compile Include="Interfaces\Performance\IXimuraPerformanceManager.cs" />
+    <Compile Include="Interfaces\Pooling\IXimuraPool.cs" />
+    <Compile Include="Interfaces\Pooling\IXimuraPoolable.cs" />
+    <Compile Include="Interfaces\Pooling\IXimuraPoolDeserializable.cs" />
+    <Compile Include="Interfaces\Pooling\IXimuraPoolManager.cs" />
+    <Compile Include="Interfaces\Pooling\IXimuraPoolManagerDirectAccess.cs" />
+    <Compile Include="Interfaces\Pooling\IXimuraPoolReturnable.cs" />
+    <Compile Include="Interfaces\Service\IXimuraComponentService.cs" />
+    <Compile Include="Interfaces\Service\IXimuraService.cs" />
+    <Compile Include="Interfaces\Service\IXimuraServiceParentSettings.cs" />
+    <Compile Include="Interfaces\Service\IXimuraServiceWithEvent.cs" />
+    <Compile Include="Interfaces\Service\ServiceEventArgs.cs" />
+    <Compile Include="Interfaces\Service\XimuraServiceStatus.cs" />
+    <Compile Include="Interfaces\Service\XimuraServiceStatusAction.cs" />
+    <Compile Include="Interfaces\Session\IXimuraSession.cs" />
+    <Compile Include="Interfaces\Session\IXimuraSessionClient.cs" />
+    <Compile Include="Interfaces\SessionManager\IXimuraSessionManager.cs" />
+    <Compile Include="Interfaces\SessionManager\IXimuraSessionManagerAuth.cs" />
+    <Compile Include="Interfaces\Session\IXimuraSessionNegotiate.cs" />
+    <Compile Include="Interfaces\Session\IXimuraSessionNegotiateDigestAuthentication.cs" />
+    <Compile Include="Interfaces\Session\IXimuraSessionNegotiateMD5Hash.cs" />
+    <Compile Include="Interfaces\Session\IXimuraSessionNegotiatePlainText.cs" />
+    <Compile Include="Interfaces\Session\IXimuraSessionRQ.cs" />
+    <Compile Include="Interfaces\Session\IXimuraSessionRQAsync.cs" />
+    <Compile Include="Interfaces\Session\IXimuraSessionRQAsyncWithDependency.cs" />
+    <Compile Include="Interfaces\Session\IXimuraSessionSCM.cs" />
+    <Compile Include="Interfaces\Session\IXimuraSessionThread.cs" />
+    <Compile Include="Interfaces\Session\SessionState.cs" />
+    <Compile Include="Pooling\Exception\PoolObjectInvalidException.cs" />
+    <Compile Include="Pooling\Exception\PoolObjectUnavailableException.cs" />
+    <Compile Include="Pooling\Object\PoolableObjectBase.cs" />
+    <Compile Include="Pooling\Object\PoolableObjectPoolManagerDirectAccess.cs" />
+    <Compile Include="Pooling\Object\PoolableReturnableObjectBase.cs" />
+    <Compile Include="Pooling\Pool.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Pooling\PoolBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Pooling\PoolBaseParallel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Pooling\PoolBaseParallel_Collection.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Pooling\PoolBuffer.cs" />
+    <Compile Include="Pooling\PoolInvocator.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Pooling\PoolManager.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Server\Managers\Agents\IXimuraGatewayAgent.cs" />
+    <Compile Include="Server\Managers\Agents\IXimuraSessionAgent.cs" />
+    <Compile Include="Server\Managers\Agents\IXimuraStorageAgent.cs" />
+    <Compile Include="Server\Managers\IXimuraAppServerAgentService.cs" />
+    <Compile Include="Server\Managers\IXimuraGatewayManagerService.cs" />
+    <Compile Include="Server\Managers\IXimuraLoggingManagerService.cs" />
+    <Compile Include="Server\Managers\IXimuraPerformanceManagerService.cs" />
+    <Compile Include="Server\Managers\Agents\IXimuraServerAgent.cs" />
+    <Compile Include="Server\Managers\IXimuraSessionManagerService.cs" />
+    <Compile Include="Server\Managers\IXimuraStorage.cs" />
+    <Compile Include="Server\Managers\IXimuraStorageManagerService.cs" />
+    <Compile Include="Server\Managers\XimuraServerAgentHolder.cs" />
+    <Compile Include="Session\CompletionJobStatus.cs" />
+    <Compile Include="Session\JobBase.cs" />
+    <Compile Include="Session\JobSignature.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Collections\_Documentation\CodeProject Articles\_ReadMe.txt" />
+    <Content Include="Properties\epl-v10.html" />
+    <Content Include="Properties\Release Notes.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Command\Data\RQRSFolder.resx">
+      <DependentUpon>RQRSFolder.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Collections\_Documentation\CodeProject Articles\Concurrent Object Pooling.docx" />
+    <None Include="Collections\_Documentation\CodeProject Articles\Concurrent Priority Queue.docx" />
+    <None Include="Collections\_Documentation\CodeProject Articles\Concurrent Stack.docx" />
+    <None Include="Collections\_Documentation\CodeProject Articles\Drawing2.vsd" />
+    <None Include="Collections\_Documentation\CodeProject Articles\HashTable Algorithm.docx" />
+    <None Include="Collections\_Documentation\CodeProject Articles\Introduction.docx" />
+    <None Include="Collections\_Documentation\CodeProject Articles\SkipList Algorithm.docx" />
+    <None Include="Collections\_Documentation\Reference\CLR Inside Out 9 Reusable Parallel Data Structures and Algorithms.mht" />
+    <None Include="Collections\_Documentation\Reference\ScaleNet.pdf" />
+    <None Include="Collections\_Documentation\Reference\Stack.docx" />
+    <None Include="Properties\ximura.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="_Documentation\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>
