@@ -109,6 +109,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ximura", "Ximura\Ximura.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ximura Framework", "Ximura Framework\Ximura Framework.csproj", "{218ED92E-5D40-40DF-B6A2-11DEF3133589}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ximura Framework Base", "Ximura Framework Base\Ximura Framework Base.csproj", "{84AABA98-CA65-48E0-8610-44654BC0CD93}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = Ximura.vsmdi
@@ -1204,6 +1206,30 @@ Global
 		{218ED92E-5D40-40DF-B6A2-11DEF3133589}.XSSocNet x86 Release|x64.Build.0 = XSSocNet x86 Release|x64
 		{218ED92E-5D40-40DF-B6A2-11DEF3133589}.XSSocNet x86 Release|x86.ActiveCfg = XSSocNet x86 Release|x86
 		{218ED92E-5D40-40DF-B6A2-11DEF3133589}.XSSocNet x86 Release|x86.Build.0 = XSSocNet x86 Release|x86
+		{84AABA98-CA65-48E0-8610-44654BC0CD93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84AABA98-CA65-48E0-8610-44654BC0CD93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84AABA98-CA65-48E0-8610-44654BC0CD93}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{84AABA98-CA65-48E0-8610-44654BC0CD93}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{84AABA98-CA65-48E0-8610-44654BC0CD93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84AABA98-CA65-48E0-8610-44654BC0CD93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84AABA98-CA65-48E0-8610-44654BC0CD93}.Release|x64.ActiveCfg = Release|Any CPU
+		{84AABA98-CA65-48E0-8610-44654BC0CD93}.Release|x86.ActiveCfg = Release|Any CPU
+		{84AABA98-CA65-48E0-8610-44654BC0CD93}.SQL|Any CPU.ActiveCfg = Release|Any CPU
+		{84AABA98-CA65-48E0-8610-44654BC0CD93}.SQL|Any CPU.Build.0 = Release|Any CPU
+		{84AABA98-CA65-48E0-8610-44654BC0CD93}.SQL|x64.ActiveCfg = Release|Any CPU
+		{84AABA98-CA65-48E0-8610-44654BC0CD93}.SQL|x86.ActiveCfg = Release|Any CPU
+		{84AABA98-CA65-48E0-8610-44654BC0CD93}.SQLBudubu|Any CPU.ActiveCfg = Release|Any CPU
+		{84AABA98-CA65-48E0-8610-44654BC0CD93}.SQLBudubu|Any CPU.Build.0 = Release|Any CPU
+		{84AABA98-CA65-48E0-8610-44654BC0CD93}.SQLBudubu|x64.ActiveCfg = Release|Any CPU
+		{84AABA98-CA65-48E0-8610-44654BC0CD93}.SQLBudubu|x86.ActiveCfg = Release|Any CPU
+		{84AABA98-CA65-48E0-8610-44654BC0CD93}.XSSocNet x64 Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84AABA98-CA65-48E0-8610-44654BC0CD93}.XSSocNet x64 Release|Any CPU.Build.0 = Release|Any CPU
+		{84AABA98-CA65-48E0-8610-44654BC0CD93}.XSSocNet x64 Release|x64.ActiveCfg = Release|Any CPU
+		{84AABA98-CA65-48E0-8610-44654BC0CD93}.XSSocNet x64 Release|x86.ActiveCfg = Release|Any CPU
+		{84AABA98-CA65-48E0-8610-44654BC0CD93}.XSSocNet x86 Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84AABA98-CA65-48E0-8610-44654BC0CD93}.XSSocNet x86 Release|Any CPU.Build.0 = Release|Any CPU
+		{84AABA98-CA65-48E0-8610-44654BC0CD93}.XSSocNet x86 Release|x64.ActiveCfg = Release|Any CPU
+		{84AABA98-CA65-48E0-8610-44654BC0CD93}.XSSocNet x86 Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -79,8 +79,15 @@
     <Compile Include="Header\HeaderFragmentMultiPart.cs" />
     <Compile Include="Helper\ContentType.cs" />
     <Compile Include="Helper\MessageTemplate.cs" />
-    <Compile Include="Interfaces\IXIMSMimeMessageLoad.cs" />
     <Compile Include="Interfaces\IXimuraHeaderFragment.cs" />
+    <Compile Include="Interfaces\IXimuraMessage.cs" />
+    <Compile Include="Interfaces\IXimuraMessageFileStreamLoad.cs" />
+    <Compile Include="Interfaces\IXimuraMessageLoadInitialize.cs" />
+    <Compile Include="Interfaces\IXimuraMessageStream.cs" />
+    <Compile Include="Interfaces\IXimuraMessageStreamAsync.cs" />
+    <Compile Include="Interfaces\IXimuraMessageStreamFeedback.cs" />
+    <Compile Include="Interfaces\IXimuraMessageStreamLoad.cs" />
+    <Compile Include="Interfaces\IXimuraMimeMessageInitialize.cs" />
     <Compile Include="InternetMessage\InternetMessage.cs" />
     <Compile Include="InternetMessage\InternetMessageRequest.cs" />
     <Compile Include="InternetMessage\InternetMessageResponse.cs" />
@@ -89,6 +96,7 @@
     <Compile Include="Message.cs" />
     <Compile Include="MessageBase.cs" />
     <Compile Include="MessageCRLFFragment.cs" />
+    <Compile Include="MessageDirection.cs" />
     <Compile Include="MessageFragment.cs" />
     <Compile Include="MessageStreamBase.cs" />
     <Compile Include="MIMEMessage\Body\MimeMessageBody.cs" />
