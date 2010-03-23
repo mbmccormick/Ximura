@@ -129,6 +129,10 @@
       <Project>{7727E180-73B7-474B-84F6-BF0C6FFB181E}</Project>
       <Name>Ximura Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Ximura Framework Server\Ximura Framework Server.csproj">
+      <Project>{405721B9-1085-48DB-BBAA-3DF005169B96}</Project>
+      <Name>Ximura Framework Server</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Ximura Framework\Ximura Framework.csproj">
       <Project>{218ED92E-5D40-40DF-B6A2-11DEF3133589}</Project>
       <Name>Ximura Framework</Name>

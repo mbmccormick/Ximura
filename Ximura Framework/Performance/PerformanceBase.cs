@@ -42,6 +42,9 @@ using Ximura.Server;
 #endregion // using
 namespace Ximura
 {
+    /// <summary>
+    /// This is the base class for the performance counter architecture.
+    /// </summary>
     public class PerformanceBase : IXimuraPerformance
     {
 		#region Constructors
@@ -52,6 +55,58 @@ namespace Ximura
         {
         }
 		#endregion
+
+        #region PCID
+        /// <summary>
+        /// The performance counter id.
+        /// </summary>
+        public virtual Guid PCID
+        {
+            get;
+            set;
+        }
+        #endregion // PCID
+        #region AppID
+        /// <summary>
+        /// The command id.
+        /// </summary>
+        public virtual Guid AppID
+        {
+            get;
+            set;
+        }
+        #endregion // CommandID
+        #region ID
+        /// <summary>
+        /// The command id.
+        /// </summary>
+        public virtual Guid ID
+        {
+            get;
+            set;
+        }
+        #endregion // CommandID
+
+        #region Name
+        /// <summary>
+        /// The counter name.
+        /// </summary>
+        public virtual string Name
+        {
+            get;
+            set;
+        }
+        #endregion // Name
+        #region Category
+        /// <summary>
+        /// The category name.
+        /// </summary>
+        public virtual string Category
+        {
+            get;
+            set;
+        }
+        #endregion // Category
 
     }
 }

@@ -91,6 +91,8 @@
     <Compile Include="Interfaces\ICDSState.cs" />
     <Compile Include="Interfaces\IPersistenceContext.cs" />
     <Compile Include="Interfaces\IPersistenceState.cs" />
+    <Compile Include="Interfaces\IXimuraStorageFileSystem.cs" />
+    <Compile Include="Interfaces\IXimuraStorageSQLServerConnectivity.cs" />
     <Compile Include="Performance\CDSPerformance.cs" />
     <Compile Include="Performance\CDSPMPerformance.cs" />
     <Compile Include="Performance\CDSStatePerformance.cs" />

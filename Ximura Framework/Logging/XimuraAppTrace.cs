@@ -30,7 +30,7 @@ namespace Ximura
 	{
 		#region Declarations
         private static int threadCount = 0;
-        private static AppServer.Semaphore jobLogger;
+        private static ThreadingHelper.Semaphore jobLogger;
 		private static Queue<QueueItem> logQueue = new Queue<QueueItem>();
 		private static IXimuraLogging defaultLogger = NullLoggerAgent.NoLog();
 		private static IXimuraLogging[] defaultLoggerCol = new IXimuraLogging[]{defaultLogger};
@@ -79,7 +79,7 @@ namespace Ximura
 
                 mActive = true;
 
-                jobLogger = new AppServer.Semaphore(0);
+                jobLogger = new ThreadingHelper.Semaphore(0);
 
                 logThread1 = new Thread(new ThreadStart(ThreadLoop));
                 logThread2 = new Thread(new ThreadStart(ThreadLoop));

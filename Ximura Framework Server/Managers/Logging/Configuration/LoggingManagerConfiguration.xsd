@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:log="http://schema.ximura.org/configuration/logging/1.0"
+           xmlns:cmd="http://schema.ximura.org/configuration/command/1.0"
+           xmlns:ximura="http://schema.ximura.org/core"
+           attributeFormDefault="unqualified"
+           elementFormDefault="qualified"
+           targetNamespace="http://schema.ximura.org/configuration/logging/1.0"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+</xs:schema>

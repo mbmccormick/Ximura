@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://schema.ximura.org/server/configuration/system/1.0"
+           xmlns:ximura="http://schema.ximura.org/core"
+           attributeFormDefault="unqualified" elementFormDefault="qualified"
+           xmlns:cmd="http://schema.ximura.org/configuration/command/1.0"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           >
+
+  <xs:import namespace="http://schema.ximura.org/core" />
+  <xs:import namespace="http://schema.ximura.org/configuration/command/1.0" />
+
+  <xs:element name="AppServerSystemConfiguration">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="ximura:entity" />
+        
+        <xs:element name="name" />
+        <xs:element name="description" />
+        <xs:element name="settings">
+          <xs:complexType>
+            <xs:attribute name="useperfcounters" type="xs:boolean" use="required" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="threadpool">
+          <xs:complexType>
+            <xs:attribute name="min" type="xs:int" use="required" />
+            <xs:attribute name="prefer" type="xs:int" use="required" />
+            <xs:attribute name="max" type="xs:int" use="required" />
+            <xs:attribute name="timeoutinms" type="xs:int" use="optional" />
+          </xs:complexType>
+        </xs:element>
+        
+        <xs:element name="jobqueue">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="level">
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:unsignedShort">
+                      <xs:attribute name="id" type="xs:string" use="required" />
+                      <xs:attribute name="threadreserve" type="xs:int" use="optional" />
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="max" type="xs:int" use="required" />
+            <xs:attribute name="timeoutinms" type="xs:int" use="required" />
+          </xs:complexType>
+        </xs:element>
+        
+        <xs:element ref="cmd:childconfigurations" minOccurs ="0" maxOccurs ="1"/>
+        
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

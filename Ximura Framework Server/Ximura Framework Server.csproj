@@ -32,11 +32,35 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -47,13 +71,227 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppServer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AppServerBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AppServer_CommandBridge.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AppServer_Configuration.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AppServer_Control.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AppServer_Gateway.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AppServer_Initialization.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AppServer_Job.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AppServer_Logging.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AppServer_Performance.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AppServer_Pooling.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AppServer_Providers.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AppServer_Session.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AppServer_Storage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AppServer_Threading.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Attributes\XimuraApplicationIDAttribute.cs" />
+    <Compile Include="Attributes\XimuraAppServerAttribute.cs" />
+    <Compile Include="CommandBridge\CommandBridge.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Configuration\AppServerConfigOptions.cs" />
+    <Compile Include="Configuration\Command\AppServerCommandConfiguration.cs" />
+    <Compile Include="Configuration\System\AppServerSystemConfiguration.cs" />
+    <Compile Include="Configuration\XimuraAppServerConfigurationAttribute.cs" />
+    <Compile Include="Exceptions\AppServerException.cs" />
+    <Compile Include="Exceptions\AuthenticationException.cs" />
+    <Compile Include="Exceptions\CompletionJobPrerequisiteFailureException.cs" />
+    <Compile Include="Exceptions\DispatcherException.cs" />
+    <Compile Include="Exceptions\DispatcherSecurityException.cs" />
+    <Compile Include="Exceptions\SCMAuthenticationException.cs" />
+    <Compile Include="Exceptions\SCMCommandNotFoundException.cs" />
+    <Compile Include="Exceptions\SCMPermissionException.cs" />
+    <Compile Include="Exceptions\SCMServerErrorException.cs" />
+    <Compile Include="Exceptions\SCMValidationException.cs" />
+    <Compile Include="Exceptions\SecurityException.cs" />
+    <Compile Include="Exceptions\SessionException.cs" />
+    <Compile Include="Exceptions\SessionSecurityException.cs" />
+    <Compile Include="Installers\AppServerInstaller.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Installers\InstallerBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Installers\InstallerConfiguration.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Installers\InstallerLogging.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Installers\InstallerPerformance.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Installers\InstallerStorage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Interfaces\AppServerConfigSettingsType.cs" />
+    <Compile Include="Interfaces\IXimuraCommandBridgeService.cs" />
+    <Compile Include="Interfaces\IXimuraDispatcherJobPriorityQueue.cs" />
+    <Compile Include="Interfaces\IXimuraJobPriorityQueueList.cs" />
+    <Compile Include="Interfaces\IXimuraPerformanceService.cs" />
+    <Compile Include="Interfaces\IXimuraSecurityManagerConfigSH.cs" />
+    <Compile Include="Interfaces\IXimuraSecurityManagerSession.cs" />
+    <Compile Include="Interfaces\IXimuraSessionManagerAccess.cs" />
+    <Compile Include="Interfaces\IXimuraSessionManagerRegistration.cs" />
+    <Compile Include="Jobs\PriorityQueue\DispatcherJobPriorityGenericQueueList.cs" />
+    <Compile Include="Jobs\PriorityQueue\DispatcherJobPriorityQueue.cs" />
+    <Compile Include="Jobs\PriorityQueue\DispatcherJobPriorityQueueList.cs" />
+    <Compile Include="Jobs\PriorityQueue\JobPriorityRecord.cs" />
+    <Compile Include="Managers\AgentInvalidTypeException.cs" />
+    <Compile Include="Managers\AppServerAgentBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Managers\AppServerAgentManager.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Managers\AppServerProcessBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Managers\Gateway\Configuration\GatewayManagerConfiguration.cs" />
+    <Compile Include="Managers\Gateway\GatewayManager.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Managers\Gateway\Performance\GatewayManagerPerformance.cs" />
+    <Compile Include="Managers\Gateway\XimuraAppServerGatewayAttribute.cs" />
+    <Compile Include="Managers\Logging\Agents\DBLoggingProvider.cs" />
+    <Compile Include="Managers\Logging\Configuration\LoggingManagerConfiguration.cs" />
+    <Compile Include="Managers\Logging\LoggingManager.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Managers\Logging\Performance\LoggingManagerPerformance.cs" />
+    <Compile Include="Managers\Logging\XimuraAppServerLoggerAttribute.cs" />
+    <Compile Include="Managers\Performance\Agents\Configuration\PerformanceAgentConfiguration.cs" />
+    <Compile Include="Managers\Performance\Agents\PerformanceAgentBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Managers\Performance\AppServerPerformance.cs" />
+    <Compile Include="Managers\Performance\Configuration\PerformanceManagerConfiguration.cs" />
+    <Compile Include="Managers\Performance\PerformanceManager.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Managers\Performance\PerformanceManager_Manager.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Managers\Performance\XimuraAppServerPerformanceAgentAttribute.cs" />
+    <Compile Include="Managers\Pool\PoolManager.cs" />
+    <Compile Include="Managers\Session\Agent\Performance\SessionAgentPerformance.cs" />
+    <Compile Include="Managers\Session\Agent\SessionAgentBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Managers\Session\Agent\SessionAgentBase_Authorization.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Managers\Session\Agent\SessionAgentBase_Session.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Managers\Session\Agent\SQLServer\Configuration\SessionAgentSQLServerConfiguration.cs" />
+    <Compile Include="Managers\Session\Agent\SQLServer\SessionAgentSQLServer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Managers\Session\Agent\Standard\Configuration\SessionAgentStandardConfiguration.cs" />
+    <Compile Include="Managers\Session\Agent\Standard\SessionAgentStandard.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Managers\Session\Agent\Standard\SessionStandard.cs" />
+    <Compile Include="Managers\Session\Agent\System\Configuration\SessionAgentSystemConfiguration.cs" />
+    <Compile Include="Managers\Session\Agent\System\Interfaces\IXimuraSessionNegotiateSystem.cs" />
+    <Compile Include="Managers\Session\Agent\System\SessionAgentSystem.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Managers\Session\Agent\System\SessionSystem.cs" />
+    <Compile Include="Managers\Session\Configuration\SSMConfiguration.cs" />
+    <Compile Include="Managers\Session\Performance\SSMPerformance.cs" />
+    <Compile Include="Managers\Session\SessionManager.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Managers\Session\XimuraSessionManagerAttribute.cs" />
+    <Compile Include="Managers\Storage\Agents\FileSystem\Configuration\FileSystemStorageManagerConfiguration.cs" />
+    <Compile Include="Managers\Storage\Agents\FileSystem\FileSystemStorageAgent.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Managers\Storage\Agents\Resource\ResourceStorageAgent.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Managers\Storage\Agents\SQLServer\Configuration\SQLStorageManagerConfiguration.cs" />
+    <Compile Include="Managers\Storage\Agents\SQLServer\SQLServerStorageAgent.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Managers\Storage\Agents\StorageAgentBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Managers\Storage\Configuration\StorageManagerConfiguration.cs" />
+    <Compile Include="Managers\Storage\Performance\StorageManagerPerformance.cs" />
+    <Compile Include="Managers\Storage\StorageManager.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Managers\Storage\XimuraAppServerStorageAttribute.cs" />
+    <Compile Include="Managers\XimuraAppServerAgentAttributeBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SecurityManager\SecurityManager.cs" />
+    <Compile Include="SecurityManager\SecurityManager_CommandBridge.cs" />
+    <Compile Include="SecurityManager\SecurityManager_Job.cs" />
+    <Compile Include="SecurityManager\SecurityManager_JobPools.cs" />
+    <Compile Include="SecurityManager\SecurityManager_Session.cs" />
+    <Compile Include="SecurityManager\SecurityManager_Threading.cs" />
+    <Compile Include="Security\RequestProcessPermission.cs" />
+    <Compile Include="Security\Role.cs" />
+    <Compile Include="Security\XimuraPrincipal.cs" />
+    <Compile Include="Session\SessionBase.cs" />
+    <Compile Include="Session\SessionBase_Authentication.cs" />
+    <Compile Include="Session\SessionBase_Job.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Configuration\System\AppServerSystemConfiguration_Default.xml" />
+    <EmbeddedResource Include="Configuration\Command\AppServerCommandConfiguration_Default.xml" />
+    <EmbeddedResource Include="Managers\Logging\Configuration\LoggingManagerConfiguration_Default.xml" />
+    <EmbeddedResource Include="Managers\Performance\Configuration\PerformanceManagerConfiguration_Default.xml" />
+    <EmbeddedResource Include="Managers\Session\Configuration\SSMConfiguration_Default.xml" />
+    <EmbeddedResource Include="Managers\Session\Agent\System\Configuration\SessionAgentSystemConfiguration_Default.xml" />
+    <EmbeddedResource Include="Managers\Session\Agent\Standard\Configuration\SessionAgentStandardConfiguration_Default.xml" />
+    <EmbeddedResource Include="Managers\Session\Agent\SQLServer\Configuration\SessionAgentSQLServerConfiguration_Default.xml" />
     <Content Include="Properties\epl-v10.html" />
     <Content Include="Properties\Release Notes.txt" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Configuration\Command\AppServerCommandConfiguration.xsd" />
+    <EmbeddedResource Include="Configuration\System\AppServerSystemConfiguration.xsd" />
+    <EmbeddedResource Include="Managers\Logging\Configuration\LoggingManagerConfiguration.xsd" />
+    <EmbeddedResource Include="Managers\Performance\Configuration\PerformanceManagerConfiguration.xsd" />
+    <EmbeddedResource Include="Managers\Session\Configuration\SSMConfiguration.xsd" />
+    <EmbeddedResource Include="Managers\Session\Agent\Standard\Configuration\SessionAgentStandardConfiguration.xsd" />
+    <EmbeddedResource Include="Managers\Session\Agent\SQLServer\Configuration\SessionAgentSQLServerConfiguration.xsd" />
     <None Include="Properties\ximura.snk" />
   </ItemGroup>
   <ItemGroup>
@@ -64,10 +302,6 @@
     <ProjectReference Include="..\Ximura Communication Messaging\Ximura Communication Messaging.csproj">
       <Project>{4EB77EFC-5E84-446B-AA1A-C3121DEF7082}</Project>
       <Name>Ximura Communication Messaging</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Ximura Communication\Ximura Communication.csproj">
-      <Project>{D944608C-F5EA-4F48-9F8A-C9523EFCCA03}</Project>
-      <Name>Ximura Communication</Name>
     </ProjectReference>
     <ProjectReference Include="..\Ximura Data Persistence\Ximura Data Persistence.csproj">
       <Project>{79C7BB97-6ABB-4E63-829D-5B5F7A76F987}</Project>
