@@ -165,7 +165,7 @@
     <None Include="_Documentation\RFC 2822 - Internet Message Format.mht" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Ximura\Ximura.csproj">
+    <ProjectReference Include="..\Ximura\XimuraNew.csproj">
       <Project>{7C2684DD-A055-4A7A-88D6-EC5BAE28AEB2}</Project>
       <Name>Ximura</Name>
     </ProjectReference>
