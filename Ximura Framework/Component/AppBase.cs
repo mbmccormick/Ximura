@@ -28,7 +28,6 @@ using Ximura.Server;
 
 using CH = Ximura.Helper.Common;
 using RH = Ximura.Helper.Reflection;
-
 #endregion // using
 namespace Ximura
 {
@@ -60,6 +59,7 @@ namespace Ximura
     }
     #endregion // AppBase<CONF, PERF>
 
+    #region AppBase<CONF, PERF, EXTCONF>
     /// <summary>
     /// This is the base class for both command and application objects.
     /// </summary>
@@ -299,12 +299,16 @@ namespace Ximura
             set;
         }
         #endregion // PerformanceCounter
-
+        #region EnvelopeHelper
+        /// <summary>
+        /// This property comtains the envelope helper for the framework object.
+        /// </summary>
         protected virtual IXimuraEnvelopeHelper EnvelopeHelper
         {
             get;
             set;
         }
+        #endregion // EnvelopeHelper
 
         #region PoolManagerStart()
         /// <summary>
@@ -381,4 +385,5 @@ namespace Ximura
         }
         #endregion
     }
+    #endregion
 }

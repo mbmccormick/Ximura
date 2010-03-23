@@ -82,8 +82,8 @@ namespace Ximura.Command
         }
         #endregion
     }
-    #endregion // FiniteStateMachine<RQ, RS, CBRQ, CBRS, CNTX, ST, SET, CONF, PERF>
-
+    #endregion
+    #region FiniteStateMachine<RQ, RS, CBRQ, CBRS, CNTX, ST, SET, CONF, PERF, EXTCONF>
     /// <summary>
     /// The FiniteStateMachine is one of the root command objects. 
     /// It is used to implement system that operate using a well defined system of states.
@@ -581,4 +581,6 @@ namespace Ximura.Command
         #endregion // ExternalStatesAllow
 
     }
+    #endregion
+
 }

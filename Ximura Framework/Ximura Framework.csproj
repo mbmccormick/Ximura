@@ -227,6 +227,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Command Container\CommandContainer.cs" />
     <Compile Include="Command\Context\ContextSettings.cs" />
     <Compile Include="Command\Context\Context_Pooling.cs">
       <SubType>Component</SubType>
