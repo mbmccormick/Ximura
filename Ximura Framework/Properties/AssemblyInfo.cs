@@ -18,7 +18,7 @@ using System.Resources;
 
 [assembly: ComVisible(false)]
 
-[assembly: AssemblyTitle("Ximura")]
+[assembly: AssemblyTitle("Ximura Framework")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Ximura")]
