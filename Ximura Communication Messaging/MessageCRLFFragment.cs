@@ -45,7 +45,7 @@ namespace Ximura.Data
     /// This is the base generic CRLF fragment. You can set the folding characteristics by setting the 
     /// generic term parameter to either TerminatorCRLF or TerminatorCRLFNoFolding.
     /// </summary>
-    /// <typeparam name="TERM"></typeparam>
+    /// <typeparam name="TERM">The terminator class.</typeparam>
     public class MessageCRLFFragment<TERM> : MessageFragment<TERM>
         where TERM: MessageTerminatorCRLFFolding
     {

@@ -141,7 +141,7 @@
       <Project>{9232C921-5754-4F61-9B3A-024FB1359E44}</Project>
       <Name>Ximura Windows Host</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Ximura\XimuraNew.csproj">
+    <ProjectReference Include="..\..\..\Ximura\Ximura.csproj">
       <Project>{7C2684DD-A055-4A7A-88D6-EC5BAE28AEB2}</Project>
       <Name>Ximura</Name>
     </ProjectReference>

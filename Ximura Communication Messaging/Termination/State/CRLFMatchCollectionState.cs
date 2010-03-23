@@ -143,7 +143,7 @@ namespace Ximura.Data
         }
         #endregion // Class --> MimeMatchCollection
 
-        #region CRLFTerminatorWithReset
+        #region Class --> CRLFTerminatorWithReset
         /// <summary>
         /// This termination class specifically matches on CRLF and resets the match buffer when
         /// a termination character has been found.

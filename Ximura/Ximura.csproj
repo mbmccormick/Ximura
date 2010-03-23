@@ -10,7 +10,7 @@
     </ApplicationIcon>
     <AssemblyKeyContainerName>
     </AssemblyKeyContainerName>
-    <AssemblyName>XimuraBase</AssemblyName>
+    <AssemblyName>Ximura</AssemblyName>
     <AssemblyOriginatorKeyFile>Properties\ximura.snk</AssemblyOriginatorKeyFile>
     <DefaultClientScript>JScript</DefaultClientScript>
     <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
@@ -100,7 +100,7 @@
     <OutputPath>bin\x86\Debug\</OutputPath>
     <DefineConstants>TRACE;DEBUG;PROFILING; LOCKDEBUG;</DefineConstants>
     <BaseAddress>285212672</BaseAddress>
-    <DocumentationFile>bin\x86\Debug\XimuraBase.xml</DocumentationFile>
+    <DocumentationFile>Ximura.xml</DocumentationFile>
     <FileAlignment>4096</FileAlignment>
     <DebugType>full</DebugType>
     <PlatformTarget>x86</PlatformTarget>
