@@ -113,6 +113,20 @@
     <Compile Include="Attributes\XimuraDataContentSummaryAttribute.cs" />
     <Compile Include="Attributes\XimuraDataContentVersionMappingAttribute.cs" />
     <Compile Include="Attributes\XimuraSchemaAttribute.cs" />
+    <Compile Include="CDSContract\CDSRequestFolder.cs" />
+    <Compile Include="CDSContract\CDSResponseFolder.cs" />
+    <Compile Include="CDSContract\CDSRQRSFolderBase.cs" />
+    <Compile Include="CDSContract\CDSShortcuts.cs" />
+    <Compile Include="CDSContract\ContentDataStoreShortcuts.cs" />
+    <Compile Include="CDSData\CDSData.cs" />
+    <Compile Include="CDSData\CDSData_Data.cs" />
+    <Compile Include="CDSData\CDSResponse.cs" />
+    <Compile Include="CDSData\CDSStateAction.cs" />
+    <Compile Include="CDSHelper\CDSCallback.cs" />
+    <Compile Include="CDSHelper\CDSExpression.cs" />
+    <Compile Include="CDSHelper\CDSHelper.cs" />
+    <Compile Include="CDSHelper\CDSHelper_Linq.cs" />
+    <Compile Include="CDSHelper\CDSHelper_Static.cs" />
     <Compile Include="Content\Content.cs">
     </Compile>
     <Compile Include="Content\Content_Attributes.cs">

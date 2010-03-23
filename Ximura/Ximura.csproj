@@ -268,6 +268,7 @@
     <Compile Include="Command\Data\RQRSContract.cs" />
     <Compile Include="Command\Data\RQRSEnvTypes.cs" />
     <Compile Include="Command\Data\RQRSFolder.cs" />
+    <Compile Include="Command\RQRSEnvelopeHelper.cs" />
     <Compile Include="Component\AppContainer.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -390,6 +391,7 @@
     <Compile Include="Interfaces\Pooling\IXimuraPoolManager.cs" />
     <Compile Include="Interfaces\Pooling\IXimuraPoolManagerDirectAccess.cs" />
     <Compile Include="Interfaces\Pooling\IXimuraPoolReturnable.cs" />
+    <Compile Include="Interfaces\Service\ICDSSettingsService.cs" />
     <Compile Include="Interfaces\Service\IXimuraComponentService.cs" />
     <Compile Include="Interfaces\Service\IXimuraService.cs" />
     <Compile Include="Interfaces\Service\IXimuraServiceParentSettings.cs" />
