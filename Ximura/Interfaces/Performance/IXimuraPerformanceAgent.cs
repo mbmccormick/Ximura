@@ -15,7 +15,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 #endregion
-namespace Ximura.Server
+namespace Ximura.Framework
 {
     /// <summary>
     /// The IXimuraPerformanceAgent interface is implemented by class that recieve 

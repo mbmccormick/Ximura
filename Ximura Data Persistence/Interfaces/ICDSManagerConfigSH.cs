@@ -15,10 +15,10 @@ using System;
 using System.Collections;
 using System.Xml;
 
-using Ximura.Server;
-using Ximura.Command;
+using Ximura.Framework;
+using Ximura.Framework;
 #endregion // using
-namespace Ximura.Persistence
+namespace Ximura.Data
 {
     /// <summary>
     /// This interface is used to register configuration services to protocols within a

@@ -27,7 +27,7 @@ using System.Security.Cryptography;
 using System.Threading;
 
 using Ximura;
-using Ximura.Server;
+using Ximura.Framework;
 #endregion // using
 namespace Ximura.Helper
 {

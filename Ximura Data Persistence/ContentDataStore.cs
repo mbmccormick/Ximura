@@ -21,27 +21,27 @@ using System.Diagnostics;
 
 using Ximura;
 using Ximura.Data;
-using Ximura.Persistence;
+using Ximura.Data;
 
 using Ximura.Helper;
 using CH = Ximura.Helper.Common;
 using RH = Ximura.Helper.Reflection;
-using Ximura.Server;
+using Ximura.Framework;
 
 
-using Ximura.Command;
+using Ximura.Framework;
 #endregion // using
-namespace Ximura.Persistence
+namespace Ximura.Data
 {
     /// <summary>
     /// This command is the new content data store based fully on the Finite State Machine architecture.
     /// </summary>
 #if (DEBUG)
     [XimuraAppConfiguration(ConfigurationLocation.Hybrid,
-        "xmrres://Ximura/Ximura.Persistence.CDSConfiguration/Ximura.Persistence.CDS.Configuration.CDSConfiguration_Default.xml")]
+        "xmrres://Ximura/Ximura.Data.CDSConfiguration/Ximura.Data.CDS.Configuration.CDSConfiguration_Default.xml")]
 #else
     [XimuraAppConfiguration(ConfigurationLocation.Hybrid, 
-        "xmrres://Ximura/Ximura.Persistence.CDSConfiguration/Ximura.Persistence.CDS.Configuration.CDSConfiguration_Default.xml")]
+        "xmrres://Ximura/Ximura.Data.CDSConfiguration/Ximura.Data.CDS.Configuration.CDSConfiguration_Default.xml")]
 #endif
     [XimuraAppModule(ContentDataStoreShortcuts.ID, ContentDataStoreShortcuts.Name)]
     public class ContentDataStore : FiniteStateMachine<CDSRequestFolder, CDSResponseFolder, 

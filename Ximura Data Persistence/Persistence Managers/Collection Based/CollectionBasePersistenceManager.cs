@@ -27,12 +27,12 @@ using Ximura.Helper;
 using CH = Ximura.Helper.Common;
 using RH = Ximura.Helper.Reflection;
 using AH = Ximura.Helper.AttributeHelper;
-using Ximura.Server;
+using Ximura.Framework;
 
 
-using Ximura.Command;
+using Ximura.Framework;
 #endregion // using
-namespace Ximura.Persistence
+namespace Ximura.Data
 {
     /// <summary>
     /// This base Persistence Manager class is used for PMs that require a collection of resources to be stored in the PM.

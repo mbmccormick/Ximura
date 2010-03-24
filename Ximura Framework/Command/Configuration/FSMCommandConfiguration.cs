@@ -35,12 +35,12 @@ using Ximura.Helper;
 using CH = Ximura.Helper.Common;
 using RH = Ximura.Helper.Reflection;
 
-using Ximura.Server;
-using Ximura.Command;
+using Ximura.Framework;
+using Ximura.Framework;
 
 
 #endregion // using
-namespace Ximura.Command
+namespace Ximura.Framework
 {
     public class FSMCommandConfiguration<T> : FSMCommandConfiguration
         where T : TimerPollJob, new()
@@ -77,7 +77,7 @@ namespace Ximura.Command
 
     [XimuraContentTypeID("28C52546-68E7-4847-AD03-C7BEA2E17C8D")]
     [XimuraDataContentSchemaReference("http://schema.ximura.org/configuration/fsm/1.0",
-        "xmrres://Ximura/Ximura.Command.FSMCommandConfiguration/Ximura.Command.Configuration.FSMCommandConfiguration.xsd")]
+        "xmrres://Ximura/Ximura.Framework.FSMCommandConfiguration/Ximura.Framework.Configuration.FSMCommandConfiguration.xsd")]
     public class FSMCommandConfiguration : CommandConfiguration
     {
         #region Constructor

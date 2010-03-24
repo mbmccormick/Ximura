@@ -24,7 +24,7 @@ using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using Microsoft.SqlServer.Server;
 #endregion // using
-namespace Ximura.Persistence.SQL
+namespace Ximura.Data.SQL
 {
     public partial class EntityAccess
     {

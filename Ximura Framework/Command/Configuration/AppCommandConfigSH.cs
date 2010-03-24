@@ -19,7 +19,7 @@
 //using CH = Ximura.Helper.Common;
 //using RH = Ximura.Helper.Reflection;
 //#endregion // using
-//namespace Ximura.Command
+//namespace Ximura.Framework
 //{
 //    /// <summary>
 //    /// Summary description for AppCommand config section handler.

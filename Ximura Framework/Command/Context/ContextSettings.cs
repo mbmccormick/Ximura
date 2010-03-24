@@ -24,14 +24,14 @@ using System.Diagnostics;
 
 using Ximura;
 using Ximura.Data;
-using Ximura.Persistence;
+using Ximura.Data;
 using CH = Ximura.Helper.Common;
-using Ximura.Server;
+using Ximura.Framework;
 
-using Ximura.Command;
+using Ximura.Framework;
 
 #endregion // using
-namespace Ximura.Command
+namespace Ximura.Framework
 {
     /// <summary>
     /// The context settings class hold a collection of the settings that the context will use.

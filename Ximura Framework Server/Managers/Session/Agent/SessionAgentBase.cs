@@ -26,10 +26,10 @@ using System.Security.Principal;
 
 using Ximura;
 using Ximura.Helper;
-using Ximura.Server;
-using Ximura.Command;
+using Ximura.Framework;
+using Ximura.Framework;
 #endregion // using
-namespace Ximura.Server
+namespace Ximura.Framework
 {
     public partial class SessionAgentBase<S,CONF> : SessionAgentBase<CONF>
         where S : class, IXimuraSession

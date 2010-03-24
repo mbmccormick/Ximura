@@ -32,19 +32,19 @@ using Ximura.Data;
 using Ximura.Helper;
 using CH = Ximura.Helper.Common;
 using RH = Ximura.Helper.Reflection;
-using Ximura.Server;
+using Ximura.Framework;
 
 
-using Ximura.Command;
+using Ximura.Framework;
 #endregion // using
-namespace Ximura.Persistence
+namespace Ximura.Data
 {
     /// <summary>
     /// This class holds the resource collection for the Resource based Persistence Manager.
     /// </summary>
     [XimuraContentTypeID("B7D0B27E-DCCF-4ED7-8CD8-413E40379144")]
     [XimuraDataContentSchema("http://schema.ximura.org/persistence/resourcecatalog/1.0",
-       "xmrres://Ximura/Ximura.Persistence.ResourceCatalog/Ximura.Persistence.CDS.Data.ResourceCatalog.DataSet.ResourceCatalog.xsd")]
+       "xmrres://Ximura/Ximura.Data.ResourceCatalog/Ximura.Data.CDS.Data.ResourceCatalog.DataSet.ResourceCatalog.xsd")]
     public class ResourceCatalog: DataContent
     {
 		#region Constructors

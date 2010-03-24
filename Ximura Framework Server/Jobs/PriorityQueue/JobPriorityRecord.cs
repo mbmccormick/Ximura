@@ -16,7 +16,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 #endregion // using
-namespace Ximura.Server
+namespace Ximura.Framework
 {
     /// <summary>
     /// This is the job priority structure.

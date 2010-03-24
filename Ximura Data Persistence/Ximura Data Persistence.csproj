@@ -64,15 +64,14 @@
   <ItemGroup>
     <Compile Include="Attributes\CDSStateActionPermitAttribute.cs" />
     <Compile Include="Attributes\CDSStateTypePermitAttribute.cs" />
-    <Compile Include="CDSContext.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="CDSHelper\CDSHelperDirect.cs" />
-    <Compile Include="CDSSettings.cs" />
     <Compile Include="Configuration\CDSConfigSH.cs" />
     <Compile Include="Configuration\CDSConfiguration.cs" />
     <Compile Include="Configuration\PersistenceManagerConfigSH.cs" />
     <Compile Include="ContentDataStore.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ContentDataStoreContainer.cs" />
+    <Compile Include="Context\CDSContext.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Data\ResourceCatalog\ResourceCatalog.cs" />
@@ -84,6 +83,7 @@
     <Compile Include="Exceptions\InvalidCommandCDSException.cs" />
     <Compile Include="Helper\CacheCollectionHelperUriTID.cs" />
     <Compile Include="Helper\CacheItemContainer.cs" />
+    <Compile Include="Helper\CDSHelperDirect.cs" />
     <Compile Include="Helper\ContentIdentifier.cs" />
     <Compile Include="Interfaces\ICDSCacheManagerBridge.cs" />
     <Compile Include="Interfaces\ICDSConfigSH.cs" />
@@ -153,6 +153,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings\CDSSettings.cs" />
     <Compile Include="States\BaseCDSState.cs">
       <SubType>Component</SubType>
     </Compile>

@@ -17,11 +17,11 @@ using System.Collections.Generic;
 using System.Xml;
 using System.Configuration;
 
-using Ximura.Server;
-using Ximura.Command;
+using Ximura.Framework;
+using Ximura.Framework;
 using CH = Ximura.Helper.Common;
 #endregion // using
-namespace Ximura.Persistence
+namespace Ximura.Data
 {
     /// <summary>
     /// This interface is used to share CDS settings for data connections

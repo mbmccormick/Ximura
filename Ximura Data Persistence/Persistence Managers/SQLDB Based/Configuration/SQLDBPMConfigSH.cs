@@ -18,12 +18,12 @@ using System.Collections.Generic;
 using System.Diagnostics;
 
 using Ximura;
-using Ximura.Persistence;
-using Ximura.Server;
-using Ximura.Command;
+using Ximura.Data;
+using Ximura.Framework;
+using Ximura.Framework;
 
 #endregion
-namespace Ximura.Persistence
+namespace Ximura.Data
 {
     ///// <summary>
     ///// This is the base config section handler for the SQL persistence manager.

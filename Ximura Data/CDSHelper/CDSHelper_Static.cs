@@ -27,13 +27,13 @@ using CH = Ximura.Helper.Common;
 using RH = Ximura.Helper.Reflection;
 using AH = Ximura.Helper.AttributeHelper;
 using Ximura.Data;
-using Ximura.Persistence;
-using Ximura.Server;
-using Ximura.Command;
+using Ximura.Data;
+using Ximura.Framework;
+using Ximura.Framework;
 
 
 #endregion // using
-namespace Ximura.Persistence
+namespace Ximura.Data
 {
     /// <summary>
     /// This static class is used to simplify access to the Content Data Store

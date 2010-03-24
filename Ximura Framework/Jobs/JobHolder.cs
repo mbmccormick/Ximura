@@ -19,13 +19,13 @@ using System.Collections;
 using System.Threading;
 
 using Ximura;
-using Ximura.Command;
-using Ximura.Server;
+using Ximura.Framework;
+using Ximura.Framework;
 using Ximura.Helper;
 using CH=Ximura.Helper.Common;
 
 #endregion // using
-namespace Ximura.Server
+namespace Ximura.Framework
 {
 	/// <summary>
 	/// The job holder class is used to reference the requests in the completion job.

@@ -19,7 +19,7 @@ using Ximura.Helper;
 using CH = Ximura.Helper.Common;
 using RH = Ximura.Helper.Reflection;
 #endregion // using
-namespace Ximura.Server
+namespace Ximura.Framework
 {
     /// <summary>
     /// This attribute class is used to identify specific agents for the application.

@@ -15,7 +15,7 @@ using System;
 using System.Runtime.Remoting;
 using System.Runtime.Serialization;
 #endregion // using
-namespace Ximura.Server
+namespace Ximura.Framework
 {
     /// <summary>
     /// The AuthenticationException is thrown by an Application when a user authentication attempt fails

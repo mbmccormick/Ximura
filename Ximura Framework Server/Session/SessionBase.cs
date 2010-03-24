@@ -23,12 +23,12 @@ using System.Threading;
 using System.Diagnostics;
 
 using Ximura;
-using Ximura.Command;
-using Ximura.Server;
+using Ximura.Framework;
+using Ximura.Framework;
 using Ximura.Helper;
 using CH=Ximura.Helper.Common;
 #endregion // using
-namespace Ximura.Server
+namespace Ximura.Framework
 {
 	/// <summary>
 	/// A session is created for each is used to user connection. 
@@ -75,7 +75,7 @@ namespace Ximura.Server
 					return;
 
                 if (!IsAuthenticated)
-                    throw new Ximura.Server.SecurityException("Culture cannot be changed.");
+                    throw new Ximura.Framework.SecurityException("Culture cannot be changed.");
 
 				mCulture=value;
 			}

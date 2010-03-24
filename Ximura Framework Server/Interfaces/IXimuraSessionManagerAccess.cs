@@ -15,7 +15,7 @@ using System;
 using System.Collections;
 using System.Configuration;
 #endregion // using
-namespace Ximura.Server
+namespace Ximura.Framework
 {
     public interface IXimuraSessionManagerAccess
     {

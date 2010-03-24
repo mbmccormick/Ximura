@@ -17,7 +17,7 @@
 //using Ximura.Helper;
 //using CH = Ximura.Helper.Common;
 //#endregion // using
-//namespace Ximura.Command
+//namespace Ximura.Framework
 //{
 //    /// <summary>
 //    /// This class is used by Ximura Commands to specify their config section handlers.

@@ -26,11 +26,11 @@ using System.Security.Permissions;
 
 using Ximura;
 using Ximura.Helper;
-using Ximura.Server;
+using Ximura.Framework;
 
-using Ximura.Command;
+using Ximura.Framework;
 #endregion // using
-namespace Ximura.Server
+namespace Ximura.Framework
 {
     /// <summary>
     /// SessionToken is used to validate session requests.

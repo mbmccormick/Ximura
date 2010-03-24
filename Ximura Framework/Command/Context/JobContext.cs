@@ -23,12 +23,12 @@ using Ximura;
 using Ximura.Data;
 using CH = Ximura.Helper.Common;
 using Ximura.Helper;
-using Ximura.Server;
+using Ximura.Framework;
 
 
-using Ximura.Command;
+using Ximura.Framework;
 #endregion
-namespace Ximura.Command
+namespace Ximura.Framework
 {
     /// <summary>
     /// This context is used by finite state machines that require application support.

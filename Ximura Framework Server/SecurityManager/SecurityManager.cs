@@ -26,11 +26,11 @@
 
 //using Ximura;
 //using Ximura.Helper;
-//using Ximura.Server;
+//using Ximura.Framework;
 
-//using Ximura.Command;
+//using Ximura.Framework;
 //#endregion // using
-//namespace Ximura.Server
+//namespace Ximura.Framework
 //{
 //    /// <summary>
 //    /// The SecurityManager class is the central class within the Ximura/Ximura processing system. 

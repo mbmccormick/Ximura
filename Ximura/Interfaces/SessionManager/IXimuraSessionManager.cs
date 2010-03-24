@@ -19,7 +19,7 @@ using System.Collections.Specialized;
 using Ximura;
 using Ximura.Data;
 #endregion // using
-namespace Ximura.Server
+namespace Ximura.Framework
 {
     /// <summary>
     /// The session create remote delegate.

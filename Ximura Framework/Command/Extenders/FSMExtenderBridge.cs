@@ -16,7 +16,7 @@ using System;
 using Ximura;
 
 #endregion // using
-namespace Ximura.Command
+namespace Ximura.Framework
 {
 	/// <summary>
 	/// FSMExtenderBridge is used to link the various components within the finite state machine.

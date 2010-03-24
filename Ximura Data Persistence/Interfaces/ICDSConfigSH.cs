@@ -17,12 +17,12 @@ using System.Collections.Generic;
 using System.Xml;
 using System.Configuration;
 
-using Ximura.Server;
-using Ximura.Command;
+using Ximura.Framework;
+using Ximura.Framework;
 using CH = Ximura.Helper.Common;
 using RH = Ximura.Helper.Reflection;
 #endregion // using
-namespace Ximura.Persistence
+namespace Ximura.Data
 {
     ///// <summary>
     ///// This interface is used to get configuration settings for persistence managers within a

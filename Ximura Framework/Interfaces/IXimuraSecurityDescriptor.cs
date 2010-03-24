@@ -15,7 +15,7 @@ using System;
 
 using Ximura.Helper;
 #endregion // using
-namespace Ximura.Server
+namespace Ximura.Framework
 {
 	/// <summary>
 	/// This interface is used to provide security access information for

@@ -22,11 +22,11 @@ using Ximura.Data;
 using Ximura.Helper;
 using RH = Ximura.Helper.Reflection;
 using CH=Ximura.Helper.Common;
-using Ximura.Server;
-using Ximura.Command;
+using Ximura.Framework;
+using Ximura.Framework;
 
 #endregion // using
-namespace Ximura.Server
+namespace Ximura.Framework
 {
 	/// <summary>
 	/// The CommandBridge is used by the application server to isolate itself from the

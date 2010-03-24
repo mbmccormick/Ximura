@@ -22,9 +22,9 @@ using System.Drawing;
 
 using Ximura;
 using Ximura.Data;
-using Ximura.Command;
+using Ximura.Framework;
 using Ximura.Helper;
-using Ximura.Server;
+using Ximura.Framework;
 
 using CH = Ximura.Helper.Common;
 using RH = Ximura.Helper.Reflection;

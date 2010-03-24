@@ -26,11 +26,11 @@ using System.Security.Permissions;
 
 using Ximura;
 using Ximura.Helper;
-using Ximura.Server;
+using Ximura.Framework;
 
-using Ximura.Command;
+using Ximura.Framework;
 #endregion // using
-namespace Ximura.Command
+namespace Ximura.Framework
 {
     public class XimuraCommandPermission: IPermission
     {

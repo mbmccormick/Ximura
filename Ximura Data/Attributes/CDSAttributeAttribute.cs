@@ -13,7 +13,7 @@
 ﻿#region using
 using System;
 #endregion // using
-namespace Ximura.Persistence
+namespace Ximura.Data
 {
     /// <summary>
     /// This attribute is used to define search properties. Attributes do not need to be unique.

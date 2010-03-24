@@ -20,11 +20,11 @@ using System.Reflection;
 
 using Ximura;
 using Ximura.Helper;
-using Ximura.Server;
+using Ximura.Framework;
 using CH = Ximura.Helper.Common;
 using RH = Ximura.Helper.Reflection;
 #endregion // using
-namespace Ximura.Command
+namespace Ximura.Framework
 {
     /// <summary>
     /// The context pool holds the collection of context objects.

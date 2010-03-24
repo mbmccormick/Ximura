@@ -23,7 +23,7 @@ using System.Threading;
 
 using Ximura;
 using Ximura.Helper;
-using Ximura.Server;
+using Ximura.Framework;
 using AH = Ximura.Helper.AttributeHelper;
 #endregion // using
 namespace Ximura.Windows

@@ -15,7 +15,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 #endregion // using
-namespace Ximura.Persistence
+namespace Ximura.Data
 {
     /// <summary>
     /// This enumeration identifies the type of self call command for the CDS to process.

@@ -16,7 +16,7 @@ using System.Diagnostics;
 using System.Security.Permissions;
 
 using Ximura;
-using Ximura.Server;
+using Ximura.Framework;
 
 #endregion // using
 namespace Ximura.Windows

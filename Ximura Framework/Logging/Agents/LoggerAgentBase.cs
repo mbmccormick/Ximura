@@ -14,7 +14,7 @@
 using System;
 using System.Diagnostics;
 #endregion // using
-namespace Ximura.Server
+namespace Ximura.Framework
 {
 	/// <summary>
 	/// Summary description for BaseLogger.

@@ -23,7 +23,7 @@ using Ximura.Data;
 using Ximura.Helper;
 using RH = Ximura.Helper.Reflection;
 #endregion // using
-namespace Ximura.Command
+namespace Ximura.Framework
 {
     /// <summary>
     /// The RQRSEnvelopeHelper is used to centralize pooling for the RQRSContract objects.

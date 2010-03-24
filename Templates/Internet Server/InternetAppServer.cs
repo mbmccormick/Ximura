@@ -24,9 +24,9 @@ using System.Diagnostics;
 using Ximura;
 using Ximura.Helper;
 using Ximura.Data;
-using Ximura.Server;
-using Ximura.Command;
-using Ximura.Persistence;
+using Ximura.Framework;
+using Ximura.Framework;
+using Ximura.Data;
 using Ximura.Communication;
 #endregion // using
 namespace Ximura.Templates

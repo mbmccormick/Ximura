@@ -19,7 +19,7 @@ using Ximura.Helper;
 using CH = Ximura.Helper.Common;
 using RH = Ximura.Helper.Reflection;
 #endregion // using
-namespace Ximura.Server
+namespace Ximura.Framework
 {
     /// <summary>
     /// The agent holder class is used by the agent based attributes to pass common information to the 

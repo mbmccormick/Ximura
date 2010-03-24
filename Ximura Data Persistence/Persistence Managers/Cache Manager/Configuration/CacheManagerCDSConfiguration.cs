@@ -26,14 +26,14 @@ using System.Reflection;
 
 using Ximura;
 using Ximura.Data;
-using Ximura.Persistence;
-using Ximura.Server;
-using Ximura.Command;
+using Ximura.Data;
+using Ximura.Framework;
+using Ximura.Framework;
 
 using CH = Ximura.Helper.Common;
 using AH = Ximura.Helper.AttributeHelper;
 #endregion
-namespace Ximura.Persistence
+namespace Ximura.Data
 {
     public class CacheManagerCDSConfiguration: CommandConfiguration
     {

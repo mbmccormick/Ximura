@@ -15,7 +15,7 @@ using System;
 using System.Collections;
 using System.Configuration;
 #endregion // using
-namespace Ximura.Server
+namespace Ximura.Framework
 {
     /// <summary>
     /// This delegate is used to signal the completion of a set of jobs.

@@ -14,7 +14,7 @@
 using System;
 using System.Diagnostics;
 #endregion // using
-namespace Ximura.Server
+namespace Ximura.Framework
 {
 	/// <summary>
 	/// This is the empty logging provider. This class does nothing but is provided

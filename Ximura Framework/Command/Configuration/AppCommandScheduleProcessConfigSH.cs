@@ -18,7 +18,7 @@ using System.Configuration;
 
 using CH=Ximura.Helper.Common;
 #endregion // using
-namespace Ximura.Command
+namespace Ximura.Framework
 {
     ///// <summary>
     ///// Summary description for AppCommandScheduleProcessConfigSH.

@@ -13,7 +13,7 @@
 #region using
 using System;
 #endregion // using
-namespace Ximura.Persistence
+namespace Ximura.Data
 {
     /// <summary>
     /// This enum contains a list of actions that each CDSState can execute. This enumeration is used to build up

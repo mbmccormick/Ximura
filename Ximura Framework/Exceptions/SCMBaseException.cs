@@ -19,7 +19,7 @@ using Ximura;
 using Ximura.Helper;
 using CH=Ximura.Helper.Common;
 #endregion // using
-namespace Ximura.Server
+namespace Ximura.Framework
 {
 	/// <summary>
 	/// This is the abstract Security Manager Base Exception.

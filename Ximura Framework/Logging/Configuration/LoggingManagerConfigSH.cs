@@ -17,8 +17,8 @@
 //using System.Xml.XPath;
 
 //using Ximura;
-//using Ximura.Server;
-//using Ximura.Command;
+//using Ximura.Framework;
+//using Ximura.Framework;
 //#endregion // using
 //namespace Ximura.Logging
 //{

@@ -30,11 +30,11 @@ using System.Configuration.Install;
 
 using Ximura;
 using Ximura.Helper;
-using Ximura.Server;
+using Ximura.Framework;
 using RH = Ximura.Helper.Reflection;
 using AH = Ximura.Helper.AttributeHelper;
 #endregion
-namespace Ximura.Server
+namespace Ximura.Framework
 {
     /// <summary>
     /// This installer class creates the necessary installers to properly configure the app server for its environment.

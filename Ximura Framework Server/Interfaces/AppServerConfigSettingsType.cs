@@ -20,7 +20,7 @@ using System.Configuration;
 using Ximura;
 using Ximura.Helper;
 #endregion // using
-namespace Ximura.Server
+namespace Ximura.Framework
 {
     /// <summary>
     /// This enumeration determines which collection the AppSettings exposes through its collection.

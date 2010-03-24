@@ -20,8 +20,8 @@ using System.Drawing;
 
 using Ximura;
 using Ximura.Helper;
-using Ximura.Command;
-using Ximura.Server;
+using Ximura.Framework;
+using Ximura.Framework;
 
 #endregion //
 namespace Ximura

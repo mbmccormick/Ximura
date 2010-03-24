@@ -22,16 +22,16 @@ using System.Globalization;
 using System.Runtime.Serialization;
 
 using Ximura;
-using Ximura.Persistence;
+using Ximura.Data;
 using Ximura.Helper;
 using CH = Ximura.Helper.Common;
 using RH = Ximura.Helper.Reflection;
 using AH = Ximura.Helper.AttributeHelper;
 using Ximura.Data;
-using Ximura.Server;
-using Ximura.Command;
+using Ximura.Framework;
+using Ximura.Framework;
 #endregion // using
-namespace Ximura.Persistence
+namespace Ximura.Data
 {
     /// <summary>
     /// The CDSData class is used by the CDSHelper to hold the information for a request.

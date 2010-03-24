@@ -22,7 +22,7 @@ using Ximura;
 using Ximura.Data;
 using Ximura.Helper;
 #endregion // using
-namespace Ximura.Server
+namespace Ximura.Framework
 {
     /// <summary>
     /// This is an extended job priority queue list that uses generics to hold

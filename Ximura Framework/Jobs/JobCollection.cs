@@ -22,11 +22,11 @@ using System.Security.Cryptography;
 
 using Ximura;
 using Ximura.Helper;
-using Ximura.Server;
+using Ximura.Framework;
 
-using Ximura.Command;
+using Ximura.Framework;
 #endregion // using
-namespace Ximura.Server
+namespace Ximura.Framework
 {
     /// <summary>
     /// This class is thread synchronized and holds a collection of jobs currently being processed.

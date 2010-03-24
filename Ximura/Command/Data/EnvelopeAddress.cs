@@ -16,7 +16,7 @@ using System;
 using Ximura;
 using Ximura.Data;
 #endregion // using
-namespace Ximura.Command
+namespace Ximura.Framework
 {
     /// <summary>
     /// EnvelopeAddress is used to route a request to the relevant destination within

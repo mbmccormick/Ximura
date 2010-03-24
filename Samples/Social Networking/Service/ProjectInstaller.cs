@@ -10,8 +10,8 @@ using System.ServiceProcess;
 using Ximura;
 using Ximura.Helper;
 using CH = Ximura.Helper.Common;
-using Ximura.Server;
-using Ximura.Command;
+using Ximura.Framework;
+using Ximura.Framework;
 using Ximura.Communication;
 using Ximura.Windows;
 #endregion // using

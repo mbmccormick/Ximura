@@ -36,11 +36,11 @@ using Ximura.Helper;
 using CH = Ximura.Helper.Common;
 using RH = Ximura.Helper.Reflection;
 
-using Ximura.Server;
+using Ximura.Framework;
 
 
 #endregion // using
-namespace Ximura.Command
+namespace Ximura.Framework
 {
     /// <summary>
     /// This method holds the standard performance indicators the a command.

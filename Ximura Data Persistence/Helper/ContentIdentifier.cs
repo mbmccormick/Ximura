@@ -29,12 +29,12 @@ using Ximura.Helper;
 using CH = Ximura.Helper.Common;
 using AH = Ximura.Helper.AttributeHelper;
 using RH = Ximura.Helper.Reflection;
-using Ximura.Server;
+using Ximura.Framework;
 
 
-using Ximura.Command;
+using Ximura.Framework;
 #endregion // using
-namespace Ximura.Persistence
+namespace Ximura.Data
 {
     /// <summary>
     /// This structure holds the collection of content ID and their associated methods.

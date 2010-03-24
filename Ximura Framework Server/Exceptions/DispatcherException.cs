@@ -15,7 +15,7 @@ using System;
 using System.Runtime.Remoting;
 using System.Runtime.Serialization;
 #endregion // using
-namespace Ximura.Server
+namespace Ximura.Framework
 {
     /// <summary>
     /// This exception is used by the Dispatcher process.

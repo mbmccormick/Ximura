@@ -36,11 +36,11 @@
 //using CH = Ximura.Helper.Common;
 //using RH = Ximura.Helper.Reflection;
 
-//using Ximura.Server;
+//using Ximura.Framework;
 //
 
 //#endregion // using
-//namespace Ximura.Command
+//namespace Ximura.Framework
 //{
 //    public class CommandContainerConfiguration: CommandConfiguration
 //    {

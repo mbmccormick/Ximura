@@ -15,7 +15,7 @@ using System;
 using System.Runtime.Remoting;
 using System.Runtime.Serialization;
 #endregion // using
-namespace Ximura.Server
+namespace Ximura.Framework
 {
 	/// <summary>
 	/// AppServerException is used by the AppServer to raise generic exceptions.

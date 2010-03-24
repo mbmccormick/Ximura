@@ -27,15 +27,15 @@ using System.Runtime.Serialization;
 
 using Ximura;
 using Ximura.Data;
-using Ximura.Persistence;
+using Ximura.Data;
 using Ximura.Data.Serialization;
-using Ximura.Server;
-using Ximura.Command;
+using Ximura.Framework;
+using Ximura.Framework;
 
 using CH = Ximura.Helper.Common;
 using AH = Ximura.Helper.AttributeHelper;
 #endregion
-namespace Ximura.Persistence
+namespace Ximura.Data
 {
     public partial class SQLDBPersistenceManager<CONT, DCONT> 
     {

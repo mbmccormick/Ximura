@@ -19,12 +19,12 @@ using System.Collections;
 using System.Threading;
 
 using Ximura;
-using Ximura.Server;
+using Ximura.Framework;
 using Ximura.Helper;
 using CH=Ximura.Helper.Common;
 
 #endregion // using
-namespace Ximura.Server
+namespace Ximura.Framework
 {
     public delegate SecurityManagerJob SecurityManagerJobGet(
         JobBase job, SessionToken token, SecurityManagerJob parent, CommandRSCallback RSCallback, CommandProgressCallback ProgressCallback);

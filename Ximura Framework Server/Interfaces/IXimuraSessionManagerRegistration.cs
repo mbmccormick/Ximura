@@ -15,7 +15,7 @@ using System;
 using System.Collections;
 using System.Configuration;
 #endregion // using
-namespace Ximura.Server
+namespace Ximura.Framework
 {
     /// <summary>
 	/// IXimuraSecurityManager is the public interface that the security manager exposes

@@ -23,7 +23,7 @@ using Ximura.Helper;
 using CH=Ximura.Helper.Common;
 
 #endregion // using
-namespace Ximura.Server
+namespace Ximura.Framework
 {
 	/// <summary>
 	/// SessionJob is used to hold the job requests while they are being processed.

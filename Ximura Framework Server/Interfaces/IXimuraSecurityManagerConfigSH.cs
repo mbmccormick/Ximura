@@ -16,9 +16,9 @@ using System.Collections;
 using System.Xml;
 using System.Configuration;
 
-using Ximura.Command;
+using Ximura.Framework;
 #endregion // using
-namespace Ximura.Server
+namespace Ximura.Framework
 {
 	/// <summary>
 	/// This interface is the base interface all security manager config 

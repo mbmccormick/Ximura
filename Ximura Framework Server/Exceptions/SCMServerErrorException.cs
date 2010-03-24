@@ -19,7 +19,7 @@ using Ximura;
 using Ximura.Helper;
 using CH=Ximura.Helper.Common;
 #endregion // using
-namespace Ximura.Server
+namespace Ximura.Framework
 {
 	/// <summary>
 	/// Summary description for SCMAuthenticationException.

@@ -15,10 +15,10 @@ using System;
 using System.Runtime.Remoting;
 using System.Runtime.Serialization;
 
-using Ximura.Server;
+using Ximura.Framework;
 
 #endregion // using
-namespace Ximura.Command
+namespace Ximura.Framework
 {
     /// <summary>
     /// Summary description for FSMException.

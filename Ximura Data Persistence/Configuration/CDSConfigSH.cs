@@ -17,13 +17,13 @@ using System.Collections.Generic;
 using System.Xml;
 using System.Configuration;
 
-using Ximura.Server;
-using Ximura.Command;
+using Ximura.Framework;
+using Ximura.Framework;
 using CH = Ximura.Helper.Common;
 using RH = Ximura.Helper.Reflection;
 using Ximura.Helper;
 #endregion // using
-namespace Ximura.Persistence
+namespace Ximura.Data
 {
     ///// <summary>
     ///// The CDSConfigSH is used to provide the settings for the CDS object.

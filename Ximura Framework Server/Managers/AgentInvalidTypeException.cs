@@ -26,10 +26,10 @@ using System.Security.Principal;
 
 using Ximura;
 using Ximura.Helper;
-using Ximura.Server;
-using Ximura.Command;
+using Ximura.Framework;
+using Ximura.Framework;
 #endregion // using
-namespace Ximura.Server
+namespace Ximura.Framework
 {
     /// <summary>
     /// This exception is thrown be the AgentManagers when the type passed through the agent attributes

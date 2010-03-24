@@ -30,8 +30,8 @@ using System.Xml.Xsl;
 using System.Reflection;
 
 using Ximura;
-using Ximura.Command;
-using Ximura.Server;
+using Ximura.Framework;
+using Ximura.Framework;
 using Ximura.Data;
 using Ximura.Helper;
 using CH = Ximura.Helper.Common;
@@ -39,7 +39,7 @@ using RH = Ximura.Helper.Reflection;
 
 
 #endregion // using
-namespace Ximura.Persistence
+namespace Ximura.Data
 {
     public class CDSPerformance: FSMCommandPerformance
     {

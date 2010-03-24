@@ -19,7 +19,7 @@ using System.Diagnostics;
 using System.Reflection;
 
 using Ximura;
-using Ximura.Server;
+using Ximura.Framework;
 using Ximura.Helper;
 using RH = Ximura.Helper.Reflection;
 #endregion // using

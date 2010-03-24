@@ -26,10 +26,10 @@ using System.Security.Principal;
 
 using Ximura;
 using Ximura.Helper;
-using Ximura.Server;
-using Ximura.Command;
+using Ximura.Framework;
+using Ximura.Framework;
 #endregion // using
-namespace Ximura.Server
+namespace Ximura.Framework
 {
     /// <summary>
     /// The storage manager is responsible for managing persistence data for the application. This can be something as simple as a set of SQL connection strings,

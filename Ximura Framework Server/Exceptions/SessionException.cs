@@ -15,7 +15,7 @@ using System;
 using System.Runtime.Remoting;
 using System.Runtime.Serialization;
 #endregion // using
-namespace Ximura.Server
+namespace Ximura.Framework
 {
     /// <summary>
     /// SessionException is thrown when an error is throw in the Session object.

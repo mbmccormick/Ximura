@@ -23,7 +23,7 @@ using System.Drawing;
 using System.Diagnostics;
 
 using Ximura;
-using Ximura.Server;
+using Ximura.Framework;
 using CH = Ximura.Helper.Common;
 using RH = Ximura.Helper.Reflection;
 

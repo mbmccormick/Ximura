@@ -15,7 +15,7 @@ using System;
 using System.Collections;
 using System.Configuration;
 #endregion // using
-namespace Ximura.Server
+namespace Ximura.Framework
 {
 	/// <summary>
 	/// This enumeration is used by the security manager to identify the authorization

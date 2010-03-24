@@ -27,8 +27,8 @@ using System.Runtime.Serialization;
 
 using Ximura;
 using Ximura.Helper;
-using Ximura.Server;
-using Ximura.Command;
+using Ximura.Framework;
+using Ximura.Framework;
 
 #endregion // using
 namespace Ximura.Communication

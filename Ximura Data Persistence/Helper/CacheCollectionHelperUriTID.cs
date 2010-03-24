@@ -28,12 +28,12 @@ using Ximura.Helper;
 using CH = Ximura.Helper.Common;
 using AH = Ximura.Helper.AttributeHelper;
 
-using Ximura.Server;
+using Ximura.Framework;
 
 
-using Ximura.Command;
+using Ximura.Framework;
 #endregion // using
-namespace Ximura.Persistence
+namespace Ximura.Data
 {
     /// <summary>
     /// This helper class can be used to hold a set of Uri - Cid/Vid references.

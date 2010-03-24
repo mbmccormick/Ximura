@@ -29,12 +29,12 @@ using Ximura;
 using Ximura.Data;
 using Ximura.Helper;
 using CH = Ximura.Helper.Common;
-using Ximura.Server;
+using Ximura.Framework;
 
-using Ximura.Command;
+using Ximura.Framework;
 
 #endregion // using
-namespace Ximura.Server
+namespace Ximura.Framework
 {
     /// <summary>
     /// This is the base class for performance agents.

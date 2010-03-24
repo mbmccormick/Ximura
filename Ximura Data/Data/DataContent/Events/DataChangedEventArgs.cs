@@ -12,7 +12,7 @@
 #endregion
 using System;
 
-using Ximura.Server;
+using Ximura.Framework;
 
 namespace Ximura.Data
 {

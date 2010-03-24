@@ -22,12 +22,12 @@ using System.Reflection;
 using System.Runtime.Serialization;
 
 using Ximura;
-using Ximura.Persistence;
+using Ximura.Data;
 using CH = Ximura.Helper.Common;
-using Ximura.Server;
+using Ximura.Framework;
 
 #endregion // using
-namespace Ximura.Command
+namespace Ximura.Framework
 {
     public partial class Context<ST, SET, CONF, PERF>
     {

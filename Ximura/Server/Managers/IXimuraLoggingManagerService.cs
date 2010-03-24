@@ -18,14 +18,14 @@ using System.ComponentModel;
 using System.Diagnostics;
 
 using Ximura;
-using Ximura.Command;
-using Ximura.Server;
+using Ximura.Framework;
+using Ximura.Framework;
 using Ximura.Data;
 using Ximura.Helper;
 
 using RH = Ximura.Helper.Reflection;
 #endregion // using
-namespace Ximura.Server
+namespace Ximura.Framework
 {
     /// <summary>
     /// This interface is registered by the logging manager in the control container.

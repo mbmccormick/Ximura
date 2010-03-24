@@ -19,7 +19,7 @@ using Ximura.Helper;
 using CH = Ximura.Helper.Common;
 using RH = Ximura.Helper.Reflection;
 #endregion // using
-namespace Ximura.Server
+namespace Ximura.Framework
 {
     /// <summary>
     /// The XimuraApplicationIDAttribute attribute is used to define a unique Guid for the 

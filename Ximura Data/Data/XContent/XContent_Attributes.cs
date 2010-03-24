@@ -26,7 +26,7 @@ using System.Reflection;
 
 using Ximura;
 using Ximura.Data;
-using Ximura.Server;
+using Ximura.Framework;
 using Ximura.Helper;
 using AH = Ximura.Helper.AttributeHelper;
 using CH = Ximura.Helper.Common;

@@ -26,11 +26,11 @@
 
 //using Ximura;
 //using Ximura.Helper;
-//using Ximura.Server;
+//using Ximura.Framework;
 
-//using Ximura.Command;
+//using Ximura.Framework;
 //#endregion // using
-//namespace Ximura.Server
+//namespace Ximura.Framework
 //{
 //    public partial class SecurityManager
 //    {
@@ -109,7 +109,7 @@
 //        {
 //            //Check to see whether the session already exists
 //            if (mSessionTokens.ContainsKey(theSession.SessionID))
-//                throw new Ximura.Server.SecurityException("SessionRegister: the session already exists.");
+//                throw new Ximura.Framework.SecurityException("SessionRegister: the session already exists.");
 
 //            //Create the new SessionEvidence object
 //            theSession.SetSCMPublicKey = SCMRSAPublicKey;

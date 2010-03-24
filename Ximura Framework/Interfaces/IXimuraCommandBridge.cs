@@ -17,10 +17,10 @@ using System.ComponentModel;
 using System.ComponentModel.Design;
 
 using Ximura;
-using Ximura.Command;
+using Ximura.Framework;
 using Ximura.Helper;
 #endregion // using
-namespace Ximura.Server
+namespace Ximura.Framework
 {
 	/// <summary>
 	/// This interface is registered as a service and is used by application 

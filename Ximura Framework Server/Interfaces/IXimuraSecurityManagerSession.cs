@@ -15,7 +15,7 @@ using System;
 using System.Collections;
 using System.Configuration;
 #endregion // using
-namespace Ximura.Server
+namespace Ximura.Framework
 {
     /// <summary>
     /// This interface is shared with a session object and enables it to make system requests.

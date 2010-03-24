@@ -11,8 +11,8 @@ using System.Xml.Xsl;
 using Ximura;
 using Ximura.Helper;
 using CH = Ximura.Helper.Common;
-using Ximura.Server;
-using Ximura.Command;
+using Ximura.Framework;
+using Ximura.Framework;
 using Ximura.Communication;
 #endregion // using
 namespace Ximura.Communication

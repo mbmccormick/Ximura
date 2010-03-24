@@ -28,8 +28,8 @@ using System.Security.Cryptography;
 using System.Runtime.Serialization;
 
 using Ximura;
-using Ximura.Server;
-using Ximura.Command;
+using Ximura.Framework;
+using Ximura.Framework;
 using Ximura.Data;
 using Ximura.Helper;
 using AH = Ximura.Helper.AttributeHelper;
@@ -37,7 +37,7 @@ using RH = Ximura.Helper.Reflection;
 using CH = Ximura.Helper.Common;
 
 #endregion
-namespace Ximura.Server
+namespace Ximura.Framework
 {
     public class AppServerCommandConfiguration : CommandConfiguration, IXimuraConfigurationManager
     {

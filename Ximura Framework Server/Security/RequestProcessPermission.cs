@@ -21,7 +21,7 @@ using System.Security.Permissions;
 using System.Security.Policy;
 using System.Security.Principal;
 #endregion // using
-namespace Ximura.Server
+namespace Ximura.Framework
 {
     [Serializable()]
     public class RequestProcessPermission: CodeAccessPermission

@@ -34,16 +34,16 @@ using Ximura.Data;
 using Ximura.Helper;
 using CH = Ximura.Helper.Common;
 using RH = Ximura.Helper.Reflection;
-using Ximura.Server;
-using Ximura.Command;
+using Ximura.Framework;
+using Ximura.Framework;
 
 
 #endregion // using
-namespace Ximura.Persistence
+namespace Ximura.Data
 {
     [XimuraContentTypeID("2F6A8D71-86AA-495f-A4C2-3FECD6B4F097")]
     [XimuraDataContentSchema("http://schema.ximura.org/configuration/cds/1.0",
-        "xmrres://Ximura/Ximura.Persistence.CDSConfiguration/Ximura.Persistence.CDS.Configuration.CDSConfiguration.xsd")]
+        "xmrres://Ximura/Ximura.Data.CDSConfiguration/Ximura.Data.CDS.Configuration.CDSConfiguration.xsd")]
     [XimuraContentCachePolicy(ContentCacheOptions.CannotCache)]
     public class CDSConfiguration: FSMCommandConfiguration<CDSTimerPollJob>
     {

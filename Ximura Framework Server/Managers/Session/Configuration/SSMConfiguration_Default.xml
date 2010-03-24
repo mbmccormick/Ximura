@@ -3,8 +3,8 @@
   <SystemSessionManager>
     <settings defaultRealm="system">
       <Realms>
-        <add name="RealmSystem" type="Ximura.Server.SessionManagerConfigSH, Ximura" />
-        <add name="RealmUser" type="Ximura.Server.SessionManagerConfigSH, Ximura" />
+        <add name="RealmSystem" type="Ximura.Framework.SessionManagerConfigSH, Ximura" />
+        <add name="RealmUser" type="Ximura.Framework.SessionManagerConfigSH, Ximura" />
       </Realms>
     </settings>
     <RealmSystem realm="system">

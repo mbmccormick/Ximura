@@ -28,10 +28,10 @@ using Ximura;
 using Ximura.Helper;
 using AH=Ximura.Helper.AttributeHelper;
 using RH=Ximura.Helper.Reflection;
-using Ximura.Server;
-using Ximura.Command;
+using Ximura.Framework;
+using Ximura.Framework;
 #endregion // using
-namespace Ximura.Server
+namespace Ximura.Framework
 {
 	/// <summary>
 	/// SessionManager is the default class that all Session Manager services 

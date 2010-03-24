@@ -25,12 +25,12 @@ using System.Diagnostics;
 using Ximura;
 using Ximura.Data;
 using CH = Ximura.Helper.Common;
-using Ximura.Server;
+using Ximura.Framework;
 
-using Ximura.Command;
+using Ximura.Framework;
 
 #endregion // using
-namespace Ximura.Command
+namespace Ximura.Framework
 {
     /// <summary>
     /// This overriden FSM is for processes that require Completion job support.

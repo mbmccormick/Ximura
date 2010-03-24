@@ -17,7 +17,7 @@ using System.Diagnostics;
 using System.Threading;
 
 using Ximura;
-using Ximura.Server;
+using Ximura.Framework;
 #endregion // using
 namespace Ximura
 {

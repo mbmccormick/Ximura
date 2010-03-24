@@ -17,8 +17,8 @@ using System.ComponentModel.Design;
 using System.Drawing;
 
 using Ximura;
-using Ximura.Command;
-using Ximura.Server;
+using Ximura.Framework;
+using Ximura.Framework;
 
 #endregion // using
 namespace Ximura

@@ -23,12 +23,12 @@ using System.Threading;
 using System.Diagnostics;
 
 using Ximura;
-using Ximura.Command;
-using Ximura.Server;
+using Ximura.Framework;
+using Ximura.Framework;
 using Ximura.Helper;
 using CH = Ximura.Helper.Common;
 #endregion // using
-namespace Ximura.Server
+namespace Ximura.Framework
 {
     /// <summary>
     /// This class is the base.
@@ -164,7 +164,7 @@ namespace Ximura.Server
         /// <param name="RSCallback">The call back completion delegate.</param>
         /// <param name="ProgressCallback">The request progress delegate.</param>
         /// <returns>The Session job object.</returns>
-        /// <exception cref="Ximura.Server.SCMBaseException">
+        /// <exception cref="Ximura.Framework.SCMBaseException">
         /// This method will throw a security exception on the calling thread
         /// you should be prepared to catch such an exception.</exception>
         private SessionJob ProcessRQAsyncInternal(Guid jobid, IXimuraRQRSEnvelope data,

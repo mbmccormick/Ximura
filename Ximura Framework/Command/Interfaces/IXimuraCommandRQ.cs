@@ -17,8 +17,8 @@ using Ximura;
 using Ximura.Data;
 using Ximura.Helper;
 
-using Ximura.Server;
-using Ximura.Command;
+using Ximura.Framework;
+using Ximura.Framework;
 
 #endregion // using
 namespace Ximura

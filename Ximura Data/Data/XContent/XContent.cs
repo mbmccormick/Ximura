@@ -28,7 +28,7 @@ using System.Xml.Linq;
 
 using Ximura;
 using Ximura.Data;
-using Ximura.Server;
+using Ximura.Framework;
 using Ximura.Helper;
 using CH = Ximura.Helper.Common;
 #endregion // using

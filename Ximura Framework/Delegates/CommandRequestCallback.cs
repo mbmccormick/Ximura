@@ -13,7 +13,7 @@
 #region using
 using System;
 #endregion // using
-namespace Ximura.Server
+namespace Ximura.Framework
 {
     /// <summary>
     /// This delegate is used to call back commands with specific jobs.

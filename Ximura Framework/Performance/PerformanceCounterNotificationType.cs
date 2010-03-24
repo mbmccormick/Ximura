@@ -16,7 +16,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 
 using Ximura;
-using Ximura.Server;
+using Ximura.Framework;
 #endregion // using
 namespace Ximura
 {

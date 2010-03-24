@@ -13,8 +13,8 @@ using Ximura.Data;
 using Ximura.Helper;
 using CH = Ximura.Helper.Common;
 using AH = Ximura.Helper.AttributeHelper;
-using Ximura.Server;
-using Ximura.Command;
+using Ximura.Framework;
+using Ximura.Framework;
 #endregion // using
 namespace Ximura.Communication
 {

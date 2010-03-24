@@ -31,13 +31,13 @@ using System.Security.Cryptography;
 using Ximura;
 using Ximura.Data;
 using Ximura.Helper;
-using Ximura.Server;
-using Ximura.Command;
+using Ximura.Framework;
+using Ximura.Framework;
 using AH = Ximura.Helper.AttributeHelper;
 using RH = Ximura.Helper.Reflection;
 using CH = Ximura.Helper.Common;
 #endregion
-namespace Ximura.Server
+namespace Ximura.Framework
 {
     public interface IXimuraPerformanceService : IXimuraPerformanceManagerService, IXimuraAppServerAgentService
     {

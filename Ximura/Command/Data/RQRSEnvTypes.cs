@@ -22,7 +22,7 @@ using Ximura;
 using Ximura.Data;
 using Ximura.Helper;
 #endregion // using
-namespace Ximura.Command
+namespace Ximura.Framework
 {
     /// <summary>
     /// EnvelopeKnownTypes are used by IXimuraRQRSEnvelope to specify special folders 

@@ -28,13 +28,13 @@ using System.Linq;
 using Ximura;
 using Ximura.Data;
 using Ximura.Helper;
-using Ximura.Server;
-using Ximura.Command;
+using Ximura.Framework;
+using Ximura.Framework;
 using AH = Ximura.Helper.AttributeHelper;
 using RH = Ximura.Helper.Reflection;
 using CH = Ximura.Helper.Common;
 #endregion // using
-namespace Ximura.Server
+namespace Ximura.Framework
 {
     /// <summary>
     /// This interface is implemented by system gateway agents.

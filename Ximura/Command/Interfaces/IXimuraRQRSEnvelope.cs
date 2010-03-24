@@ -19,8 +19,8 @@ using System.Collections;
 using System.Collections.Generic;
 
 using Ximura;
-using Ximura.Command;
-using Ximura.Server;
+using Ximura.Framework;
+using Ximura.Framework;
 using Ximura.Data;
 using Ximura.Helper;
 #endregion // using

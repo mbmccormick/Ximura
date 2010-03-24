@@ -18,7 +18,7 @@ using System.Security.Permissions;
 using Ximura;
 using Ximura.Helper;
 using RH = Ximura.Helper.Reflection;
-using Ximura.Server;
+using Ximura.Framework;
 
 #endregion // using
 namespace Ximura.Windows

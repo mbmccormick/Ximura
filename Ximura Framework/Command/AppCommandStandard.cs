@@ -24,11 +24,11 @@ using Ximura.Data;
 using Ximura.Helper;
 using CH=Ximura.Helper.Common;
 
-using Ximura.Server;
+using Ximura.Framework;
  
  
 #endregion // using
-namespace Ximura.Command
+namespace Ximura.Framework
 {
     #region AppCommandStandard
     /// <summary>

@@ -25,12 +25,12 @@ using Ximura.Helper;
 using CH = Ximura.Helper.Common;
 using RH = Ximura.Helper.Reflection;
 using AH = Ximura.Helper.AttributeHelper;
-using Ximura.Server;
+using Ximura.Framework;
 
 
-using Ximura.Command;
+using Ximura.Framework;
 #endregion // using
-namespace Ximura.Persistence
+namespace Ximura.Data
 {
     /// <summary>
     /// This class is the base state for the Content Data Store. Persistence Managers, 
@@ -81,7 +81,7 @@ namespace Ximura.Persistence
         /// that the request was resolved by this Persistence Manager and that execution is complete. A false response indicates that this
         /// Persistence Manager could not resolve the request and that the Content Data Store should continue with the execution plan.
         /// </returns>
-        /// <exception cref="Ximura.Persistence.CDSStateException">
+        /// <exception cref="Ximura.Data.CDSStateException">
         /// A CDSStateException will be thrown if a request is made that this persistence manager does not support.
         /// </exception>
         public virtual bool ProcessAction(CDSStateAction action, CDSContext context)

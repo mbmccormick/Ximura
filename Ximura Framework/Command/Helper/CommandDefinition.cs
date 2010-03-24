@@ -24,13 +24,13 @@ using System.Drawing;
 using Ximura;
 using Ximura.Data;
 using Ximura.Helper;
-using Ximura.Server;
+using Ximura.Framework;
 
 using AH = Ximura.Helper.AttributeHelper;
 using CH = Ximura.Helper.Common;
 using RH = Ximura.Helper.Reflection;
 #endregion // using
-namespace Ximura.Command
+namespace Ximura.Framework
 {
     /// <summary>
     /// This helper class is used to pass the command definition without passing a reference to the command.

@@ -27,10 +27,10 @@ using System.Security.Principal;
 using Ximura;
 using Ximura.Helper;
 using RH=Ximura.Helper.Reflection;
-using Ximura.Server;
-using Ximura.Command;
+using Ximura.Framework;
+using Ximura.Framework;
 #endregion // using
-namespace Ximura.Server
+namespace Ximura.Framework
 {
     /// <summary>
     /// The gateway manager manages interactions with the external agents that interact with the system.

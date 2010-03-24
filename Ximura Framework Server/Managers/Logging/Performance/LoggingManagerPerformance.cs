@@ -23,11 +23,11 @@ using System.Security.Cryptography;
 
 using Ximura;
 using Ximura.Helper;
-using Ximura.Server;
+using Ximura.Framework;
 
-using Ximura.Command;
+using Ximura.Framework;
 #endregion // using
-namespace Ximura.Server
+namespace Ximura.Framework
 {
     /// <summary>
     /// This is the performance counter for the logging system command. By default the logging manager does not connect

@@ -26,11 +26,11 @@ using System.Diagnostics;
 using Ximura;
 using Ximura.Data;
 using Ximura.Helper;
-using Ximura.Server;
-using Ximura.Command;
+using Ximura.Framework;
+using Ximura.Framework;
 
 #endregion // using
-namespace Ximura.Command
+namespace Ximura.Framework
 {
     /// <summary>
     /// The state extender service object is the intermediary between a Finite State Machine and the FSM extender commands. 

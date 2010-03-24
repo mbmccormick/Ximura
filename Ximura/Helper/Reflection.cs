@@ -27,7 +27,7 @@ using System.Threading;
 using System.Linq;
 
 using Ximura;
-using Ximura.Server;
+using Ximura.Framework;
 #endregion // using
 namespace Ximura.Helper
 {

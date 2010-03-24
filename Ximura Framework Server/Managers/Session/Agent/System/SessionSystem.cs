@@ -23,12 +23,12 @@ using System.Threading;
 using System.Diagnostics;
 
 using Ximura;
-using Ximura.Command;
-using Ximura.Server;
+using Ximura.Framework;
+using Ximura.Framework;
 using Ximura.Helper;
 using CH = Ximura.Helper.Common;
 #endregion // using
-namespace Ximura.Server
+namespace Ximura.Framework
 {
     public class SessionSystem : SessionBase, IXimuraSessionNegotiateSystem
     {

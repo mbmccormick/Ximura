@@ -14,12 +14,12 @@
 using System;
 
 using Ximura;
-using Ximura.Command;
-using Ximura.Server;
+using Ximura.Framework;
+using Ximura.Framework;
 using Ximura.Data;
-using Ximura.Persistence;
+using Ximura.Data;
 #endregion // using
-namespace Ximura.Server
+namespace Ximura.Framework
 {
     /// <summary>
     /// The Content Data Store shortcut collection

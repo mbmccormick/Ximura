@@ -35,7 +35,7 @@ using Ximura.Data.Linq;
 using Ximura.Helper;
 using CH = Ximura.Helper.Common;
 using RH = Ximura.Helper.Reflection;
-using Ximura.Server;
+using Ximura.Framework;
 #endregion // using
 namespace Ximura.Windows
 {

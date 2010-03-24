@@ -19,7 +19,7 @@ using Ximura;
 using Ximura.Helper;
 using CH = Ximura.Helper.Common;
 #endregion // using
-namespace Ximura.Server
+namespace Ximura.Framework
 {
     /// <summary>
     /// This exception is thrown by the completion job when an earlier dependency ID has thrown as exception.

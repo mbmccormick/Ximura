@@ -31,13 +31,13 @@ using System.Security.Cryptography;
 using Ximura;
 using Ximura.Data;
 using Ximura.Helper;
-using Ximura.Server;
-using Ximura.Command;
+using Ximura.Framework;
+using Ximura.Framework;
 using AH = Ximura.Helper.AttributeHelper;
 using RH = Ximura.Helper.Reflection;
 using CH = Ximura.Helper.Common;
 #endregion
-namespace Ximura.Server
+namespace Ximura.Framework
 {
     public partial class AppServer<CONFSYS, CONFCOM, PERF>
     {
@@ -156,7 +156,7 @@ namespace Ximura.Server
         protected virtual Stream ConfigurationDefault()
         {
             return RH.ResourceLoadFromUriAsStream(new Uri(
-                "xmrres://Ximura/Ximura.Server.AppServer/Ximura.Server.Configuration.Command.AppServerCommandConfiguration_Default.xml"));
+                "xmrres://Ximura/Ximura.Framework.AppServer/Ximura.Framework.Configuration.Command.AppServerCommandConfiguration_Default.xml"));
         }
         #endregion // ConfigurationDefault()
 
@@ -179,7 +179,7 @@ namespace Ximura.Server
         protected virtual Stream ConfigurationSystemDefault()
         {
             return RH.ResourceLoadFromUriAsStream(new Uri(
-                "xmrres://Ximura/Ximura.Server.AppServer/Ximura.Server.Configuration.System.AppServerSystemConfiguration_Default.xml"));
+                "xmrres://Ximura/Ximura.Framework.AppServer/Ximura.Framework.Configuration.System.AppServerSystemConfiguration_Default.xml"));
         }
         #endregion // protected virtual Stream ConfigurationSystemDefault()
 

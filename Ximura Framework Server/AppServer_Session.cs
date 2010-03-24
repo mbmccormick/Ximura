@@ -31,13 +31,13 @@ using System.Security.Cryptography;
 using Ximura;
 using Ximura.Data;
 using Ximura.Helper;
-using Ximura.Server;
-using Ximura.Command;
+using Ximura.Framework;
+using Ximura.Framework;
 using AH = Ximura.Helper.AttributeHelper;
 using RH = Ximura.Helper.Reflection;
 using CH = Ximura.Helper.Common;
 #endregion
-namespace Ximura.Server
+namespace Ximura.Framework
 {
     public partial class AppServer<CONFSYS, CONFCOM, PERF>
     {
@@ -153,7 +153,7 @@ namespace Ximura.Server
         {
             //Check to see whether the session already exists
             if (mSessionTokens.ContainsKey(theSession.SessionID))
-                throw new Ximura.Server.SecurityException("SessionRegister: the session already exists.");
+                throw new Ximura.Framework.SecurityException("SessionRegister: the session already exists.");
 
             //Create the new SessionEvidence object
             //theSession.SetSCMPublicKey = SCMRSAPublicKey;

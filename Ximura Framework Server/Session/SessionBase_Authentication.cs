@@ -23,12 +23,12 @@ using System.Threading;
 using System.Diagnostics;
 
 using Ximura;
-using Ximura.Command;
-using Ximura.Server;
+using Ximura.Framework;
+using Ximura.Framework;
 using Ximura.Helper;
 using CH = Ximura.Helper.Common;
 #endregion // using
-namespace Ximura.Server
+namespace Ximura.Framework
 {
     public abstract partial class SessionBase
     {
@@ -162,7 +162,7 @@ namespace Ximura.Server
         //    set
         //    {
         //        if (SCMSessionRSAPublicKey != null)
-        //            throw new Ximura.Server.SecurityException("SCM Public Key is already set.");
+        //            throw new Ximura.Framework.SecurityException("SCM Public Key is already set.");
 
         //        SCMSessionRSAPublicKey = new RSACryptoServiceProvider();
         //        SCMSessionRSAPublicKey.ImportParameters(value);

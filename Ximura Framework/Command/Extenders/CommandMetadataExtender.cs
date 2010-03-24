@@ -29,10 +29,10 @@ using System.Xml;
 using Ximura;
 using Ximura.Helper;
 using CH=Ximura.Helper.Common;
-using Ximura.Server;
-using Ximura.Command;
+using Ximura.Framework;
+using Ximura.Framework;
 #endregion // using
-namespace Ximura.Server
+namespace Ximura.Framework
 {
 	/// <summary>
 	/// AppServerCommandExtender is used to start commands in the order specified within a command container.

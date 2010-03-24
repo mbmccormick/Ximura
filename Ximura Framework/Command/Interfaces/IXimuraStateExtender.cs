@@ -24,11 +24,11 @@ using System.Diagnostics;
 
 using Ximura;
 using Ximura.Data;
-using Ximura.Persistence;
+using Ximura.Data;
 using CH = Ximura.Helper.Common;
-using Ximura.Server;
+using Ximura.Framework;
 
-using Ximura.Command;
+using Ximura.Framework;
 
 #endregion // using
 namespace Ximura

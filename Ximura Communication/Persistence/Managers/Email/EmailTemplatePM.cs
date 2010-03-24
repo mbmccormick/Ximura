@@ -13,10 +13,10 @@ using System.Data.SqlTypes;
 
 using Ximura;
 using Ximura.Data;
-using Ximura.Persistence;
+using Ximura.Data;
 using Ximura.Helper;
-using Ximura.Server;
-using Ximura.Command;
+using Ximura.Framework;
+using Ximura.Framework;
 using CH = Ximura.Helper.Common;
 using RH = Ximura.Helper.Reflection;
 #endregion

@@ -16,9 +16,9 @@ using System.Globalization;
 using System.Security.Cryptography;
 
 using Ximura;
-using Ximura.Command;
+using Ximura.Framework;
 using Ximura.Data;
-using Ximura.Server;
+using Ximura.Framework;
 
 #endregion // using
 namespace Ximura

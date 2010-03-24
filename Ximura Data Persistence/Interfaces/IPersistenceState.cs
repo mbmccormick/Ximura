@@ -6,7 +6,7 @@ using System.Text;
 
 using Ximura;
 using Ximura.Data;
-using Ximura.Persistence;
+using Ximura.Data;
 #endregion 
 namespace Ximura.Data.Persistence
 {
@@ -30,7 +30,7 @@ namespace Ximura.Data.Persistence
         /// that the request was resolved by this Persistence Manager and that execution is complete. A false response indicates that this
         /// Persistence Manager could not resolve the request and that the Content Data Store should continue with the execution plan.
         /// </returns>
-        /// <exception cref="Ximura.Persistence.CDSStateException">
+        /// <exception cref="Ximura.Data.CDSStateException">
         /// A CDSStateException will be thrown if a request is made that this persistence manager does not support.
         /// </exception>
         bool ProcessAction(CDSStateAction action, IPersistenceContext context);

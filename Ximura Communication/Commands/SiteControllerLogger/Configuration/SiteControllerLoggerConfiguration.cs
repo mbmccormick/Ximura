@@ -13,8 +13,8 @@ using Ximura.Data;
 using Ximura.Helper;
 using CH = Ximura.Helper.Common;
 using AH = Ximura.Helper.AttributeHelper;
-using Ximura.Server;
-using Ximura.Command;
+using Ximura.Framework;
+using Ximura.Framework;
 using Ximura.Communication;
 #endregion // using
 namespace Ximura.Communication
@@ -24,7 +24,7 @@ namespace Ximura.Communication
     /// </summary>
     [XimuraContentTypeID("BF0EB25E-31C1-4d17-806A-DA6DFD290D2C")]
     [XimuraDataContentSchema("http://schema.ximura.org/configuration/command/1.0",
-        "xmrres://Ximura/Ximura.Command.CommandConfiguration/Ximura.Command.Configuration.CommandConfiguration.xsd")]
+        "xmrres://Ximura/Ximura.Framework.CommandConfiguration/Ximura.Framework.Configuration.CommandConfiguration.xsd")]
     public class SiteControllerLoggerConfiguration : CommandConfiguration<SiteControllerTimerPollJob>
     {
         #region Constructor

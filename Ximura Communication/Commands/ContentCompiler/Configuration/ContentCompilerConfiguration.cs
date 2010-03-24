@@ -22,9 +22,9 @@ using Ximura;
 using Ximura.Data;
 using Ximura.Helper;
 using CH = Ximura.Helper.Common;
-using CDS = Ximura.Persistence.CDSHelper;
-using Ximura.Server;
-using Ximura.Command;
+using CDS = Ximura.Data.CDSHelper;
+using Ximura.Framework;
+using Ximura.Framework;
 using Ximura.Communication;
 #endregion // using
 namespace Ximura.Communication

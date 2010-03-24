@@ -25,9 +25,9 @@ using System.Diagnostics;
 using Ximura;
 using Ximura.Data;
 using Ximura.Helper;
-using Ximura.Server;
+using Ximura.Framework;
 
-using Ximura.Command;
+using Ximura.Framework;
 
 #endregion // using
 namespace Ximura.Communication

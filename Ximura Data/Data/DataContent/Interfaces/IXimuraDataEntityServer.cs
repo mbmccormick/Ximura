@@ -17,7 +17,7 @@ using System.Data;
 using Ximura;
 using Ximura.Data;
 #endregion // using
-namespace Ximura.Server
+namespace Ximura.Framework
 {
 	/// <summary>
 	/// IXimuraDataEntityServer is used by DataContent Entities to load

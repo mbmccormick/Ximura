@@ -22,12 +22,12 @@ using System.Text;
 using System.Diagnostics;
 
 using Ximura;
-using Ximura.Server;
-using Ximura.Command;
+using Ximura.Framework;
+using Ximura.Framework;
 using Ximura.Helper;
 using CH=Ximura.Helper.Common;
 #endregion // using
-namespace Ximura.Server
+namespace Ximura.Framework
 {
 	/// <summary>
 	/// The CompletionJob object is used to run multiple parallel jobs within a 

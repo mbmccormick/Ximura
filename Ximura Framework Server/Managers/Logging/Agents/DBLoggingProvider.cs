@@ -21,7 +21,7 @@
 //using Ximura.Helper;
 //using SHL=Ximura.Helper.SQLHelper;
 
-//using Ximura.Server;
+//using Ximura.Framework;
 //#endregion // using
 //namespace Ximura.Logging
 //{

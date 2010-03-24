@@ -37,12 +37,12 @@ using Ximura.Helper;
 using CH = Ximura.Helper.Common;
 using RH = Ximura.Helper.Reflection;
 
-using Ximura.Server;
+using Ximura.Framework;
 
 
 
 #endregion // using
-namespace Ximura.Command
+namespace Ximura.Framework
 {
     public class CommandConfiguration<T> : CommandConfiguration
         where T : TimerPollJob, new()
@@ -83,9 +83,9 @@ namespace Ximura.Command
     /// </summary>
     [XimuraContentTypeID("DB4784B5-7B8C-4bf5-96BD-174A1ECC90B9")]
     [XimuraDataContentDefault(
-         "xmrres://Ximura/Ximura.Command.CommandConfiguration/Ximura.Command.Configuration.CommandConfiguration_Default.xml")]
+         "xmrres://Ximura/Ximura.Framework.CommandConfiguration/Ximura.Framework.Configuration.CommandConfiguration_Default.xml")]
     [XimuraDataContentSchemaReference("http://schema.ximura.org/configuration/command/1.0",
-        "xmrres://Ximura/Ximura.Command.CommandConfiguration/Ximura.Command.Configuration.CommandConfiguration.xsd")]
+        "xmrres://Ximura/Ximura.Framework.CommandConfiguration/Ximura.Framework.Configuration.CommandConfiguration.xsd")]
     public class CommandConfiguration : ConfigurationBase, IXimuraCommandConfiguration
     {
         #region Declarations

@@ -28,8 +28,8 @@ using Ximura;
 using Ximura.Data;
 using Ximura.Helper;
 using CH=Ximura.Helper.Common;
-using Ximura.Server;
-using Ximura.Command;
+using Ximura.Framework;
+using Ximura.Framework;
 #endregion // using
 namespace Ximura
 {

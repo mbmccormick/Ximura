@@ -30,10 +30,10 @@ using Ximura.Data;
 using Ximura.Helper;
 using CH = Ximura.Helper.Common;
 using RH = Ximura.Helper.Reflection;
-using Ximura.Server;
-using Ximura.Command;
+using Ximura.Framework;
+using Ximura.Framework;
 #endregion // using
-namespace Ximura.Server
+namespace Ximura.Framework
 {
     /// <summary>
     /// The performance manager manages the interaction between the performance system and the commands.
@@ -103,7 +103,7 @@ namespace Ximura.Server
         /// </summary>
         /// <param name="holder">The agent holder.</param>
         /// <returns>The performance agent.</returns>
-        /// <exception cref="Ximura.Server.AgentInvalidTypeException">This exception is thrown if the agent type does not implement the IXimuraPerformanceAgent interface.</exception>
+        /// <exception cref="Ximura.Framework.AgentInvalidTypeException">This exception is thrown if the agent type does not implement the IXimuraPerformanceAgent interface.</exception>
         protected override IXimuraPerformanceAgent AgentCreate(XimuraServerAgentHolder holder)
         {
             if (!RH.ValidateInterface(holder.AgentType, typeof(IXimuraPerformanceAgent)))

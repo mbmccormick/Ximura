@@ -25,10 +25,10 @@ using System.Security.Principal;
 
 using Ximura;
 using Ximura.Helper;
-using Ximura.Server;
-using Ximura.Command;
+using Ximura.Framework;
+using Ximura.Framework;
 #endregion // using
-namespace Ximura.Server
+namespace Ximura.Framework
 {
     public interface IXimuraStorageAgent : IXimuraServerAgent
     {

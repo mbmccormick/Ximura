@@ -26,10 +26,10 @@ using System.Diagnostics;
 using Ximura;
 using Ximura.Data;
 using CH = Ximura.Helper.Common;
-using Ximura.Server;
-using Ximura.Command;
+using Ximura.Framework;
+using Ximura.Framework;
 #endregion // using
-namespace Ximura.Command
+namespace Ximura.Framework
 {
     /// <summary>
     /// This class is used to hold command objects and run them without the need for the server environment.

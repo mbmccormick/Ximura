@@ -31,13 +31,13 @@ using System.Security.Cryptography;
 using Ximura;
 using Ximura.Data;
 using Ximura.Helper;
-using Ximura.Server;
-using Ximura.Command;
+using Ximura.Framework;
+using Ximura.Framework;
 using AH = Ximura.Helper.AttributeHelper;
 using RH = Ximura.Helper.Reflection;
 using CH = Ximura.Helper.Common;
 #endregion
-namespace Ximura.Server
+namespace Ximura.Framework
 {
     public partial class AppServer<CONFSYS, CONFCOM, PERF>
     {
@@ -45,7 +45,7 @@ namespace Ximura.Server
         /// <summary>
         /// This method is called by the ServiceProcess parent object.
         /// </summary>
-        /// <exception cref="Ximura.Server.AppServerException">An exception is thrown detailing 
+        /// <exception cref="Ximura.Framework.AppServerException">An exception is thrown detailing 
         /// the error encountered when starting the application.</exception>
         protected override void InternalStart()
         {

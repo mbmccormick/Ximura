@@ -20,10 +20,10 @@ using System.Threading;
 
 using Ximura;
 using Ximura.Helper;
-using Ximura.Command;
+using Ximura.Framework;
 using CH=Ximura.Helper.Common;
 #endregion // using
-namespace Ximura.Server
+namespace Ximura.Framework
 {
 	/// <summary>
 	/// This is the base request job object.

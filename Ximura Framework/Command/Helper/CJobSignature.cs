@@ -25,10 +25,10 @@ using System.Diagnostics;
 using Ximura;
 using Ximura.Data;
 using CH = Ximura.Helper.Common;
-using Ximura.Server;
-using Ximura.Command;
+using Ximura.Framework;
+using Ximura.Framework;
 #endregion // using
-namespace Ximura.Command
+namespace Ximura.Framework
 {
     /// <summary>
     /// The job signature class is used to hold metadata for a JobContext completion job request.

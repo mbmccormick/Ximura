@@ -16,7 +16,7 @@ using System.Collections;
 using System.ComponentModel;
 using System.Configuration;
 #endregion // using
-namespace Ximura.Server
+namespace Ximura.Framework
 {
     /// <summary>
     /// Summary description for IXimuraAppServer.

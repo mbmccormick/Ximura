@@ -13,10 +13,10 @@ using System.Net;
 
 using Ximura;
 using Ximura.Data;
-using Ximura.Persistence;
+using Ximura.Data;
 using Ximura.Helper;
-using Ximura.Server;
-using Ximura.Command;
+using Ximura.Framework;
+using Ximura.Framework;
 using Ximura.Communication;
 using CH = Ximura.Helper.Common;
 using XH = Ximura.Helper.XMLHelper;
