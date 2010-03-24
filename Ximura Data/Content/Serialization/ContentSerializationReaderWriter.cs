@@ -22,7 +22,7 @@ using Ximura.Data;
 using Ximura.Helper;
 using CH = Ximura.Helper.Common;
 #endregion
-namespace Ximura.Data.Serialization
+namespace Ximura.Data
 {
     /// <summary>
     /// Summary description for BinaryReaderWriter.

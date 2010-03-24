@@ -37,81 +37,81 @@
             <param name="depth">The service depth. If this is set to -1 the depth is unlimited.</param>
             <returns>Returns the service requested, or null if the service cannot be found.</returns>
         </member>
-        <member name="T:Ximura.Data.Serialization.IXimuraContentFormatterCapabilities">
+        <member name="T:Ximura.Data.IXimuraContentFormatterCapabilities">
             <summary>
             Summary description for IXimuraContentFormatterCapabilities.
             </summary>
         </member>
-        <member name="M:Ximura.Data.Serialization.IXimuraContentFormatterCapabilities.Load(System.IO.Stream)">
+        <member name="M:Ximura.Data.IXimuraContentFormatterCapabilities.Load(System.IO.Stream)">
             <summary>
             This method loads the header from the stream.
             </summary>
             <param name="inStream">The stream to read from.</param>
         </member>
-        <member name="M:Ximura.Data.Serialization.IXimuraContentFormatterCapabilities.Output(System.IO.Stream,Ximura.Data.IXimuraContent,System.Runtime.Serialization.SerializationInfo)">
+        <member name="M:Ximura.Data.IXimuraContentFormatterCapabilities.Output(System.IO.Stream,Ximura.Data.IXimuraContent,System.Runtime.Serialization.SerializationInfo)">
             <summary>
             This method outputs the header for the stream.
             </summary>
             <param name="outStream">The stream to write to.</param>
             <param name="entity">The entity specified.</param>
         </member>
-        <member name="P:Ximura.Data.Serialization.IXimuraContentFormatterCapabilities.Max">
+        <member name="P:Ximura.Data.IXimuraContentFormatterCapabilities.Max">
             <summary>
             The maximum version value up to a maximum of 63.
             </summary>
         </member>
-        <member name="P:Ximura.Data.Serialization.IXimuraContentFormatterCapabilities.Min">
+        <member name="P:Ximura.Data.IXimuraContentFormatterCapabilities.Min">
             <summary>
             The minimum version number, between 0 and 63.
             </summary>
         </member>
-        <member name="P:Ximura.Data.Serialization.IXimuraContentFormatterCapabilities.Revision">
+        <member name="P:Ximura.Data.IXimuraContentFormatterCapabilities.Revision">
             <summary>
             The revision number between 0 and 63.
             </summary>
         </member>
-        <member name="P:Ximura.Data.Serialization.IXimuraContentFormatterCapabilities.TypeID">
+        <member name="P:Ximura.Data.IXimuraContentFormatterCapabilities.TypeID">
             <summary>
             The Type ID
             </summary>
         </member>
-        <member name="P:Ximura.Data.Serialization.IXimuraContentFormatterCapabilities.ContentID">
+        <member name="P:Ximura.Data.IXimuraContentFormatterCapabilities.ContentID">
             <summary>
             The Content ID
             </summary>
         </member>
-        <member name="P:Ximura.Data.Serialization.IXimuraContentFormatterCapabilities.VersionID">
+        <member name="P:Ximura.Data.IXimuraContentFormatterCapabilities.VersionID">
             <summary>
             The Version ID
             </summary>
         </member>
-        <member name="P:Ximura.Data.Serialization.IXimuraContentFormatterCapabilities.ContentType">
+        <member name="P:Ximura.Data.IXimuraContentFormatterCapabilities.ContentType">
             <summary>
             The content type specified.
             </summary>
         </member>
-        <member name="P:Ximura.Data.Serialization.IXimuraContentFormatterCapabilities.ContentBaseType">
+        <member name="P:Ximura.Data.IXimuraContentFormatterCapabilities.ContentBaseType">
             <summary>
             The content base type specified.
             </summary>
         </member>
-        <member name="P:Ximura.Data.Serialization.IXimuraContentFormatterCapabilities.AllowRelativeType">
+        <member name="P:Ximura.Data.IXimuraContentFormatterCapabilities.AllowRelativeType">
             <summary>
             This specifies whether the deserializer can use the best match for creating
             the object from the type.
             </summary>
         </member>
-        <member name="P:Ximura.Data.Serialization.IXimuraContentFormatterCapabilities.SupportsBaseType">
+        <member name="P:Ximura.Data.IXimuraContentFormatterCapabilities.SupportsBaseType">
             <summary>
             This method identifies whether the content supports a base type.
             </summary>
         </member>
-        <member name="P:Ximura.Data.Serialization.IXimuraContentFormatterCapabilities.RWHelper">
+        <member name="P:Ximura.Data.IXimuraContentFormatterCapabilities.RWHelper">
             <summary>
             This is the helper used to read and write objects to the stream.
             </summary>
         </member>
-        <member name="P:Ximura.Data.Serialization.IXimuraContentFormatterCapabilities.StreamCompressed">
+        <member name="P:Ximura.Data.IXimuraContentFormatterCapabilities.StreamCompressed">
             <summary>
             This property indicates whether the body data is compressed.
             </summary>

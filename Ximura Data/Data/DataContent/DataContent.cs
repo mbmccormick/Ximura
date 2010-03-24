@@ -43,7 +43,7 @@ namespace Ximura.Data
 	/// and saved from a database based on the ID and Version number.
 	/// </summary>
 	[DefaultProperty("DataSource"),DefaultEvent("DataChanged")]
-	[XimuraContentSerialization("Ximura.Data.Serialization.DataContentFormatter, Ximura")]
+	[XimuraContentSerialization("Ximura.Data.DataContentFormatter, Ximura")]
     [XimuraDataContentSchemaReference("http://www.w3.org/XML/1998/namespace", 
         "xmrres://XimuraData/Ximura.Data.DataContent/Ximura.Data.Resources.Xml.xsd")]
     [XimuraDataContentSchemaReference("http://schema.ximura.org/core", 

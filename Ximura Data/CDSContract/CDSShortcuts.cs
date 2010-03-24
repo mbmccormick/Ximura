@@ -19,7 +19,7 @@ using Ximura.Framework;
 using Ximura.Data;
 using Ximura.Data;
 #endregion // using
-namespace Ximura.Framework
+namespace Ximura.Data
 {
     /// <summary>
     /// The Content Data Store shortcut collection

@@ -24,7 +24,7 @@ using System.Text;
 
 using Ximura;
 using Ximura.Data;
-using Ximura.Data.Serialization;
+using Ximura.Data;
 using Ximura.Helper;
 using CH=Ximura.Helper.Common;
 #endregion // using
@@ -33,7 +33,7 @@ namespace Ximura.Data
 	/// <summary>
 	/// This is the base abstract Ximura Content object. 
 	/// </summary>
-	[XimuraContentSerialization("Ximura.Data.Serialization.ContentFormatter, XimuraData")]
+	[XimuraContentSerialization("Ximura.Data.ContentFormatter, XimuraData")]
     [XimuraContentCachePolicy(ContentCacheOptions.VersionCheck)]
     public abstract partial class Content : ISupportInitializeNotification, IDisposable 
 	{

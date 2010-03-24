@@ -23,7 +23,7 @@ using System.IO;
 
 using Ximura;
 using Ximura.Data;
-using Ximura.Data.Serialization;
+using Ximura.Data;
 using Ximura.Helper;
 using CH = Ximura.Helper.Common;
 using AH = Ximura.Helper.AttributeHelper;

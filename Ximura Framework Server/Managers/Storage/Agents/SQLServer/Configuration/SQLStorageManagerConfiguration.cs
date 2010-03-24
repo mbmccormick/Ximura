@@ -29,7 +29,7 @@ using RH = Ximura.Helper.Reflection;
 using Ximura.Framework;
 using Ximura.Framework;
 #endregion // using
-namespace Ximura.Data
+namespace Ximura.Framework
 {
     public class SQLStorageManagerConfiguration : StorageManagerConfiguration
     {

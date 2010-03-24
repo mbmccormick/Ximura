@@ -31,7 +31,6 @@ using Ximura;
 using Ximura.Data;
 using Ximura.Helper;
 using Ximura.Framework;
-using Ximura.Framework;
 using AH = Ximura.Helper.AttributeHelper;
 using RH = Ximura.Helper.Reflection;
 using CH = Ximura.Helper.Common;

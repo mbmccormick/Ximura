@@ -7,7 +7,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using Ximura;
 using Ximura.Data;
-using Ximura.Data.Persistence;
 #endregion
 namespace Ximura.UnitTest.Data
 {

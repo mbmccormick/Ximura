@@ -22,7 +22,7 @@ using Ximura.Data;
 
 using RH = Ximura.Helper.Reflection;
 #endregion // using
-namespace Ximura.Helper
+namespace Ximura.Framework
 {
     /// <summary>
     /// This interface adds addition fucntionality to the configuration system to allow

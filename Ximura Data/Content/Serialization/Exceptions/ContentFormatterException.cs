@@ -19,7 +19,7 @@ using Ximura;
 using Ximura.Helper;
 using CH = Ximura.Helper.Common;
 #endregion // using
-namespace Ximura.Data.Serialization
+namespace Ximura.Data
 {
     /// <summary>
     /// The ContentFormatterException is used by the Content Formatter when an exception is encountered.

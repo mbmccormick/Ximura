@@ -26,7 +26,7 @@ using Ximura.Helper;
 using CH = Ximura.Helper.Common;
 using RH = Ximura.Helper.Reflection;
 #endregion
-namespace Ximura.Data.Serialization
+namespace Ximura.Data
 {
     /// <summary>
     /// This class is used to serialize and deserialize the content.

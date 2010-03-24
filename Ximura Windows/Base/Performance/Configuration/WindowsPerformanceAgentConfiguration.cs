@@ -31,7 +31,7 @@ using System.Reflection;
 
 using Ximura;
 using Ximura.Data;
-using Ximura.Data.Linq;
+
 using Ximura.Helper;
 using CH = Ximura.Helper.Common;
 using RH = Ximura.Helper.Reflection;

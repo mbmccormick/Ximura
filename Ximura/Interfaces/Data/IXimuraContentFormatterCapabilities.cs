@@ -19,7 +19,7 @@ using Ximura;
 using Ximura.Data;
 using Ximura.Helper;
 #endregion
-namespace Ximura.Data.Serialization
+namespace Ximura.Data
 {
     /// <summary>
     /// Summary description for IXimuraContentFormatterCapabilities.

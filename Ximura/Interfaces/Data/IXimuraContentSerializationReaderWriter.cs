@@ -14,7 +14,7 @@
 using System;
 using System.IO;
 #endregion // using
-namespace Ximura.Data.Serialization
+namespace Ximura.Data
 {
     public interface IXimuraContentSerializationReaderWriter
     {

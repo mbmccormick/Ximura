@@ -30,7 +30,7 @@ using Ximura.Framework;
 using Ximura.Helper;
 using CH = Ximura.Helper.Common;
 #endregion // using
-namespace Ximura.Data.Linq
+namespace Ximura.Data
 {
     /// <summary>
     /// This is the base XML content class using the new .NET 3.5 Linq XML classes.

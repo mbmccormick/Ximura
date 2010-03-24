@@ -28,7 +28,7 @@ using System.Runtime.Serialization;
 using Ximura;
 using Ximura.Data;
 using Ximura.Data;
-using Ximura.Data.Serialization;
+using Ximura.Data;
 using Ximura.Framework;
 using Ximura.Framework;
 

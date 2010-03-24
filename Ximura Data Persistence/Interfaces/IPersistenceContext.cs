@@ -8,7 +8,7 @@ using Ximura;
 using Ximura.Data;
 using Ximura.Data;
 #endregion
-namespace Ximura.Data.Persistence
+namespace Ximura.Data
 {
     /// <summary>
     /// This interface is implemented by context objects that process persistence service requests.
