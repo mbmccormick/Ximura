@@ -19,9 +19,9 @@ using System.Configuration;
 
 using Ximura.Framework;
 using Ximura.Framework;
-using CH = Ximura.Helper.Common;
-using RH = Ximura.Helper.Reflection;
-using Ximura.Helper;
+using CH = Ximura.Common;
+using RH = Ximura.Reflection;
+
 #endregion // using
 namespace Ximura.Data
 {

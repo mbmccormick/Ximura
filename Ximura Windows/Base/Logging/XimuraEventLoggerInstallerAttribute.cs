@@ -16,8 +16,8 @@ using System.Diagnostics;
 using System.Security.Permissions;
 
 using Ximura;
-using Ximura.Helper;
-using RH=Ximura.Helper.Reflection;
+
+using RH=Ximura.Reflection;
 using Ximura.Framework;
 
 #endregion // using

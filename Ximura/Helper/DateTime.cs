@@ -28,7 +28,7 @@ using System.Threading;
 using Ximura;
 using Ximura.Framework;
 #endregion // using
-namespace Ximura.Helper
+namespace Ximura
 {
     [Flags]
     /// <summary>

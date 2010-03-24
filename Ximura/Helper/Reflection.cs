@@ -29,7 +29,7 @@ using System.Linq;
 using Ximura;
 using Ximura.Framework;
 #endregion // using
-namespace Ximura.Helper
+namespace Ximura
 {
     /// <summary>
     /// The reflection helper provides help on creating objects using reflection.

@@ -24,9 +24,9 @@ using System.Xml;
 
 using Ximura;
 using Ximura.Data;
-using Ximura.Helper;
-using CH = Ximura.Helper.Common;
-using RH = Ximura.Helper.Reflection;
+
+using CH = Ximura.Common;
+using RH = Ximura.Reflection;
 using Ximura.Framework;
 using Ximura.Framework;
 #endregion // using

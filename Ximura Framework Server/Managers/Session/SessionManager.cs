@@ -25,9 +25,9 @@ using System.Security.Cryptography;
 using System.Security.Principal;
 
 using Ximura;
-using Ximura.Helper;
-using AH=Ximura.Helper.AttributeHelper;
-using RH=Ximura.Helper.Reflection;
+
+using AH=Ximura.AttributeHelper;
+using RH=Ximura.Reflection;
 using Ximura.Framework;
 using Ximura.Framework;
 #endregion // using

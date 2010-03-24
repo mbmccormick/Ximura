@@ -20,10 +20,10 @@ using System.Text;
 using System.Collections.Generic;
 
 using Ximura;
-using Ximura.Helper;
-using CH = Ximura.Helper.Common;
+
+using CH = Ximura.Common;
 #endregion
-namespace Ximura.Data
+namespace Ximura.Communication
 {
     /// <summary>
     /// This class matches on CRLF

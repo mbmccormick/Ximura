@@ -17,8 +17,8 @@ using System.Net;
 using System.Net.Sockets;
 
 using Ximura;
-using Ximura.Helper;
-using CH = Ximura.Helper.Common;
+
+using CH = Ximura.Common;
 #endregion // using
 namespace Ximura.Communication
 {

@@ -26,7 +26,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 
 using Ximura;
-using Ximura.Helper;
+
 using Ximura.Collections;
 using Ximura.Collections.Data;
 #endregion // using

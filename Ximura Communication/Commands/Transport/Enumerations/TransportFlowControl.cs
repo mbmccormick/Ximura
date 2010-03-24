@@ -20,7 +20,7 @@ using System.Security.Principal;
 
 using Ximura;
 using Ximura.Framework;
-using Ximura.Helper;
+
 #endregion // using
 namespace Ximura.Communication
 {

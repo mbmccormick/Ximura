@@ -21,7 +21,7 @@ using Ximura.Framework;
 using Ximura.Framework;
 
 #endregion // using
-namespace Ximura
+namespace Ximura.Framework
 {
     /// <summary>
     /// This interface is a bridge between the command and the context.

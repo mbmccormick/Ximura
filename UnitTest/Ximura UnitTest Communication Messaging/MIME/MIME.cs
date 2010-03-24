@@ -7,7 +7,7 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using Ximura;
-using RH = Ximura.Helper.Reflection;
+using RH = Ximura.Reflection;
 using Ximura.Communication;
 #endregion
 namespace Ximura.UnitTest.Communication

@@ -18,8 +18,8 @@ using System.ComponentModel;
 
 using Ximura;
 using Ximura.Data;
-using Ximura.Helper;
-using HTTPCD = Ximura.Helper.Common.HTTPCodes;
+
+using HTTPCD = Ximura.Common.HTTPCodes;
 #endregion // using
 namespace Ximura.Framework
 {

@@ -6,7 +6,7 @@ using System.Text;
 using System.Web;
 using System.Web.Security;
 
-using CH = Ximura.Helper.Common;
+using CH = Ximura.Common;
 using System.Security.Principal;
 using System.Configuration;
 using System.Security.Permissions;

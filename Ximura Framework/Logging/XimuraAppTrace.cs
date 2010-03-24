@@ -21,7 +21,7 @@ using Ximura;
 using Ximura.Framework;
 
 #endregion // using
-namespace Ximura
+namespace Ximura.Framework
 {
 	/// <summary>
 	/// XimuraAppTrace is the static trace object for the Ximura Application framework.

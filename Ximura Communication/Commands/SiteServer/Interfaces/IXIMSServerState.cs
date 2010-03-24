@@ -21,8 +21,8 @@ using System.Collections.Generic;
 
 using Ximura;
 using Ximura.Data;
-using CH = Ximura.Helper.Common;
-using Ximura.Helper;
+using CH = Ximura.Common;
+
 using Ximura.Framework;
 
 

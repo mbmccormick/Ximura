@@ -29,7 +29,7 @@ using System.Xml.Xsl;
 using System.Xml.XPath;
 
 using Ximura;
-using Ximura.Helper;
+
 using Ximura.Data;
 
 using Ximura.Framework;

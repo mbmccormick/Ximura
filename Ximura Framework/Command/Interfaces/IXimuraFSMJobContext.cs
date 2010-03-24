@@ -21,14 +21,14 @@ using System.Collections.Generic;
 
 using Ximura;
 using Ximura.Data;
-using CH = Ximura.Helper.Common;
-using Ximura.Helper;
+using CH = Ximura.Common;
+
 using Ximura.Framework;
 
 
 using Ximura.Framework;
 #endregion
-namespace Ximura
+namespace Ximura.Framework
 {
     public interface IXimuraJobContext<RQ, RS, CONF, PERF> : IXimuraFSMContext
         where RQ : RQRSFolder, new()

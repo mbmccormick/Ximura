@@ -21,7 +21,7 @@ using System.Reflection;
 using System.Runtime.Serialization;
 
 using Ximura;
-using Ximura.Helper;
+
 #endregion // using
 namespace Ximura
 {

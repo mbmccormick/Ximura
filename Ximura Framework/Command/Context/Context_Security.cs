@@ -23,7 +23,7 @@ using System.Runtime.Serialization;
 
 using Ximura;
 using Ximura.Data;
-using CH = Ximura.Helper.Common;
+using CH = Ximura.Common;
 using Ximura.Framework;
 
 #endregion // using

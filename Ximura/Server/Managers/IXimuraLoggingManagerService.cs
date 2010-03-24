@@ -21,9 +21,9 @@ using Ximura;
 using Ximura.Framework;
 using Ximura.Framework;
 using Ximura.Data;
-using Ximura.Helper;
 
-using RH = Ximura.Helper.Reflection;
+
+using RH = Ximura.Reflection;
 #endregion // using
 namespace Ximura.Framework
 {

@@ -20,9 +20,9 @@ using System.Text;
 using System.Data;
 
 using Ximura;
-using CH = Ximura.Helper.Common;
+using CH = Ximura.Common;
 #endregion // using
-namespace Ximura.Helper
+namespace Ximura
 {
     /// <summary>
     /// This wrapper stream is used to count the number of bytes being written to the underlying stream.

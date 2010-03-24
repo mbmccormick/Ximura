@@ -18,8 +18,8 @@
 //using System.Data.Common;
 //using System.Data.SqlClient;
 
-//using Ximura.Helper;
-//using SHL=Ximura.Helper.SQLHelper;
+//
+//using SHL=Ximura.SQLHelper;
 
 //using Ximura.Framework;
 //#endregion // using

@@ -19,7 +19,7 @@ using System.ComponentModel;
 using System.ComponentModel.Design;
 
 using Ximura;
-using Ximura.Helper;
+
 using Ximura.Framework;
 #endregion
 namespace Ximura

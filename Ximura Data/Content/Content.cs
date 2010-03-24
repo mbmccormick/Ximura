@@ -25,8 +25,8 @@ using System.Text;
 using Ximura;
 using Ximura.Data;
 using Ximura.Data;
-using Ximura.Helper;
-using CH=Ximura.Helper.Common;
+
+using CH=Ximura.Common;
 #endregion // using
 namespace Ximura.Data
 {

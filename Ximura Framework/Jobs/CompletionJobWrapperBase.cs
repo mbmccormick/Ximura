@@ -21,8 +21,8 @@ using System.Threading;
 using Ximura;
 using Ximura.Framework;
 using Ximura.Framework;
-using Ximura.Helper;
-using CH=Ximura.Helper.Common;
+
+using CH=Ximura.Common;
 #endregion // using
 namespace Ximura.Framework
 {

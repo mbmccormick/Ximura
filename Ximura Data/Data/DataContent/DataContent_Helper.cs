@@ -32,9 +32,9 @@ using System.Text;
 using Ximura;
 using Ximura.Data;
 using Ximura.Framework;
-using Ximura.Helper;
-using CH = Ximura.Helper.Common;
-using RH = Ximura.Helper.Reflection;
+
+using CH = Ximura.Common;
+using RH = Ximura.Reflection;
 #endregion // using
 namespace Ximura.Data
 {

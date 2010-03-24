@@ -16,7 +16,7 @@ using System.Threading;
 
 using Ximura;
 #endregion // using
-namespace Ximura.Helper
+namespace Ximura
 {
     /// <summary>
     /// This delegate is used by the Services to report back progress

@@ -19,7 +19,7 @@ using System.Diagnostics;
 using System.Reflection;
 
 using Ximura;
-using Ximura.Helper;
+
 #endregion // using
 namespace Ximura
 {

@@ -25,7 +25,7 @@ using System.Runtime.InteropServices;
 using System.Threading;
 
 using Ximura;
-using Ximura.Helper;
+
 #endregion // using
 namespace Ximura.Collections
 {

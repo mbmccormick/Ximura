@@ -24,9 +24,9 @@ using System.Threading;
 using System.Diagnostics;
 
 using Ximura;
-using Ximura.Helper;
+
 using Ximura.Framework;
-using AH = Ximura.Helper.AttributeHelper;
+using AH = Ximura.AttributeHelper;
 #endregion // using
 namespace Ximura.Windows
 {

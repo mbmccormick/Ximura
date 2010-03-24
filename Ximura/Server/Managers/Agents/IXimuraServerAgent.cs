@@ -27,12 +27,12 @@ using System.Linq;
 
 using Ximura;
 using Ximura.Data;
-using Ximura.Helper;
+
 using Ximura.Framework;
 using Ximura.Framework;
-using AH = Ximura.Helper.AttributeHelper;
-using RH = Ximura.Helper.Reflection;
-using CH = Ximura.Helper.Common;
+using AH = Ximura.AttributeHelper;
+using RH = Ximura.Reflection;
+using CH = Ximura.Common;
 #endregion // using
 namespace Ximura.Framework
 {

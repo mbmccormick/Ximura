@@ -16,7 +16,7 @@ using System.Collections;
 using System.Xml;
 using System.Configuration;
 
-using CH=Ximura.Helper.Common;
+using CH=Ximura.Common;
 #endregion // using
 namespace Ximura.Framework
 {

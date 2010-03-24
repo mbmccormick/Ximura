@@ -19,7 +19,7 @@ using System.Threading;
 using Ximura;
 using Ximura.Framework;
 #endregion // using
-namespace Ximura
+namespace Ximura.Framework
 {
     /// <summary>
     /// This class is the default class for the performance counters.

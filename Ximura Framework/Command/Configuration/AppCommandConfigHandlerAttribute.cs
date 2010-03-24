@@ -14,8 +14,8 @@
 //using System;
 
 //using Ximura;
-//using Ximura.Helper;
-//using CH = Ximura.Helper.Common;
+//
+//using CH = Ximura.Common;
 //#endregion // using
 //namespace Ximura.Framework
 //{

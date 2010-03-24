@@ -21,8 +21,8 @@ using System.Threading;
 
 using Ximura;
 using Ximura.Data;
-using Ximura.Helper;
-using CH=Ximura.Helper.Common;
+
+using CH=Ximura.Common;
 
 using Ximura.Framework;
  

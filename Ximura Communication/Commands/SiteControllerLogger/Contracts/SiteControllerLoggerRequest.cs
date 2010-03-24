@@ -10,9 +10,9 @@ using System.Net;
 
 using Ximura;
 using Ximura.Data;
-using Ximura.Helper;
-using CH = Ximura.Helper.Common;
-using AH = Ximura.Helper.AttributeHelper;
+
+using CH = Ximura.Common;
+using AH = Ximura.AttributeHelper;
 using Ximura.Framework;
 using Ximura.Framework;
 using Ximura.Communication;

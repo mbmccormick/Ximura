@@ -26,12 +26,12 @@ using System.Reflection;
 
 using Ximura;
 using Ximura.Data;
-using Ximura.Helper;
-using CH = Ximura.Helper.Common;
+
+using CH = Ximura.Common;
 using Ximura.Framework;
 using Ximura.Framework;
 #endregion // using
-namespace Ximura
+namespace Ximura.Framework
 {
     /// <summary>
     /// This exception is thrown when an error is encountered during the component status change event.

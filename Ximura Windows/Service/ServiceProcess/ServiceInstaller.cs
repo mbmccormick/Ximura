@@ -30,10 +30,10 @@ using System.Configuration.Install;
 using System.ServiceProcess;
 
 using Ximura;
-using Ximura.Helper;
-using AH=Ximura.Helper.AttributeHelper;
+
+using AH=Ximura.AttributeHelper;
 using Ximura.Framework;
-using RH = Ximura.Helper.Reflection;
+using RH = Ximura.Reflection;
 #endregion // using
 namespace Ximura.Windows
 {

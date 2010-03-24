@@ -19,9 +19,9 @@ using System.ComponentModel.Design;
 
 using Ximura;
 using Ximura.Data;
-using Ximura.Helper;
-using RH = Ximura.Helper.Reflection;
-using CH=Ximura.Helper.Common;
+
+using RH = Ximura.Reflection;
+using CH=Ximura.Common;
 using Ximura.Framework;
 using Ximura.Framework;
 

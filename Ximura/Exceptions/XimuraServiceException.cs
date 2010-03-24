@@ -23,7 +23,7 @@ using System.ComponentModel.Design.Serialization;
 using System.Threading;
 using System.Reflection;
 #endregion // using
-namespace Ximura.Helper
+namespace Ximura
 {
 	/// <summary>
 	/// XimuraException is the root exception object for the Ximura system.

@@ -18,7 +18,7 @@ using System.Diagnostics;
 using Ximura;
 using Ximura.Framework;
 #endregion // using
-namespace Ximura
+namespace Ximura.Framework
 {
     /// <summary>
     /// This method is used to determine the notification logic that the counter wishes to use.

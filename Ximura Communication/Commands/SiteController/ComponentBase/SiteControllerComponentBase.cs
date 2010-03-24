@@ -4,8 +4,8 @@ using System.Runtime.Serialization;
 using System.IO;
 
 using Ximura;
-using Ximura.Helper;
-using CH = Ximura.Helper.Common;
+
+using CH = Ximura.Common;
 using Ximura.Framework;
 using Ximura.Framework;
 using Ximura.Communication;

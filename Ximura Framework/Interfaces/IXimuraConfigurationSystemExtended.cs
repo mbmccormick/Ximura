@@ -20,7 +20,7 @@ using System.Configuration;
 
 using Ximura.Data;
 
-using RH = Ximura.Helper.Reflection;
+using RH = Ximura.Reflection;
 #endregion // using
 namespace Ximura.Framework
 {

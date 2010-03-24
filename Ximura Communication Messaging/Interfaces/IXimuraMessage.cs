@@ -19,10 +19,10 @@ using System.Collections;
 using System.Text;
 
 using Ximura;
-using Ximura.Helper;
+
 using Ximura.Data;
 #endregion
-namespace Ximura.Data
+namespace Ximura.Communication
 {
     public interface IXimuraMessage : IXimuraPoolReturnable, ISupportInitialize, IXimuraMessageStreamLoad
     {

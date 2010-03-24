@@ -18,10 +18,10 @@ using System.Collections;
 using System.Collections.Generic;
 
 using Ximura;
-using Ximura.Helper;
+
 using Ximura.Framework;
 #endregion // using
-namespace Ximura
+namespace Ximura.Framework
 {
     /// <summary>
     /// The PerformanceCounterCollection class provides group functionality

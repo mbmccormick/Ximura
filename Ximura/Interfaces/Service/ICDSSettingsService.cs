@@ -19,7 +19,7 @@ using System.Configuration;
 
 using Ximura.Framework;
 using Ximura.Framework;
-using CH = Ximura.Helper.Common;
+using CH = Ximura.Common;
 #endregion // using
 namespace Ximura.Data
 {

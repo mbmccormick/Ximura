@@ -17,7 +17,7 @@ using System.Runtime.Serialization;
 
 using Ximura;
 using Ximura.Data;
-using Ximura.Helper;
+
 #endregion
 namespace Ximura.Data
 {

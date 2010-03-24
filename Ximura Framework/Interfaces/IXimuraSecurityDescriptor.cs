@@ -13,7 +13,7 @@
 #region using
 using System;
 
-using Ximura.Helper;
+
 #endregion // using
 namespace Ximura.Framework
 {

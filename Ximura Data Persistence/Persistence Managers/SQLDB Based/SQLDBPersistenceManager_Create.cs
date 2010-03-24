@@ -30,8 +30,8 @@ using Ximura.Data;
 using Ximura.Framework;
 using Ximura.Framework;
 
-using CH = Ximura.Helper.Common;
-using AH = Ximura.Helper.AttributeHelper;
+using CH = Ximura.Common;
+using AH = Ximura.AttributeHelper;
 #endregion
 namespace Ximura.Data
 {

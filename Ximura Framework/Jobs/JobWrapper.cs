@@ -19,9 +19,9 @@ using System.Collections;
 using System.Threading;
 
 using Ximura;
-using Ximura.Helper;
+
 using Ximura.Framework;
-using CH=Ximura.Helper.Common;
+using CH=Ximura.Common;
 #endregion // using
 namespace Ximura.Framework
 {

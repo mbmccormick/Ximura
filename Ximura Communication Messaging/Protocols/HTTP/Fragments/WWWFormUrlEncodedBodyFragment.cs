@@ -25,8 +25,8 @@ using System.Reflection;
 using System.Diagnostics;
 
 using Ximura;
-using Ximura.Helper;
-using CH=Ximura.Helper.Common;
+
+using CH=Ximura.Common;
 using Ximura.Data;
 
 using Ximura.Framework;

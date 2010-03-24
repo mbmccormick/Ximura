@@ -9,7 +9,7 @@ using System.Linq.Expressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using Ximura;
-using Ximura.Helper;
+
 using Ximura.Collections;
 #endregion // using
 namespace Ximura.UnitTest

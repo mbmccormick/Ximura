@@ -24,7 +24,7 @@ using System.Xml.Schema;
 using System.Xml.XPath;
 using System.Xml.Xsl;
 #endregion // using
-namespace Ximura.Helper
+namespace Ximura
 {
     /// <summary>
     /// The XML Helper library is used to provide a set of reusable methods for manipulation XML Document information.

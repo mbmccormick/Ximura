@@ -18,10 +18,10 @@ using System.Threading;
 
 using Ximura;
 using Ximura.Data;
-using Ximura.Helper;
-using CH = Ximura.Helper.Common;
-using RH = Ximura.Helper.Reflection;
-using AH = Ximura.Helper.AttributeHelper;
+
+using CH = Ximura.Common;
+using RH = Ximura.Reflection;
+using AH = Ximura.AttributeHelper;
 using Ximura.Framework;
 using Ximura.Framework;
 using Ximura.Communication;

@@ -19,7 +19,7 @@ using System.ComponentModel.Design;
 using System.Drawing;
 
 using Ximura;
-using Ximura.Helper;
+
 using Ximura.Framework;
 using Ximura.Framework;
 #endregion // 

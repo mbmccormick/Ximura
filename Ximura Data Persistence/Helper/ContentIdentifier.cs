@@ -25,10 +25,10 @@ using System.Security.Cryptography;
 
 using Ximura;
 using Ximura.Data;
-using Ximura.Helper;
-using CH = Ximura.Helper.Common;
-using AH = Ximura.Helper.AttributeHelper;
-using RH = Ximura.Helper.Reflection;
+
+using CH = Ximura.Common;
+using AH = Ximura.AttributeHelper;
+using RH = Ximura.Reflection;
 using Ximura.Framework;
 
 

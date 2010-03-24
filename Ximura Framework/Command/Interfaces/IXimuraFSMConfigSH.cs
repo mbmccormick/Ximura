@@ -27,7 +27,7 @@ using Ximura.Framework;
 using Ximura.Framework;
 
 #endregion // using
-namespace Ximura
+namespace Ximura.Framework
 {
 	/// <summary>
 	/// IXimuraFSMConfigSH is used to provide specific settings for the context pool.

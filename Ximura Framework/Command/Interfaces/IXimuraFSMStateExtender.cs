@@ -23,12 +23,12 @@ using System.Diagnostics;
 
 using Ximura;
 using Ximura.Data;
-using Ximura.Helper;
+
 using Ximura.Framework;
 using Ximura.Framework;
 
 #endregion // using
-namespace Ximura
+namespace Ximura.Framework
 {
 	/// <summary>
 	/// Summary description for IXimuraFSMStateExtender.

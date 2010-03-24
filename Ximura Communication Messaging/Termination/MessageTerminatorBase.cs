@@ -17,11 +17,11 @@ using System.ComponentModel;
 using System.Collections.Generic;
 
 using Ximura;
-using Ximura.Helper;
+
 using Ximura.Data;
-using CH = Ximura.Helper.Common;
+using CH = Ximura.Common;
 #endregion
-namespace Ximura.Data
+namespace Ximura.Communication
 {
     /// <summary>
     /// This is base class for message termination. This class is used to provide custom termination logic for messages

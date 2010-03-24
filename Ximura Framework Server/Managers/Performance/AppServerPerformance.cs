@@ -23,11 +23,11 @@ using System.Drawing;
 using Ximura;
 using Ximura.Data;
 using Ximura.Framework;
-using Ximura.Helper;
+
 using Ximura.Framework;
 
-using CH = Ximura.Helper.Common;
-using RH = Ximura.Helper.Reflection;
+using CH = Ximura.Common;
+using RH = Ximura.Reflection;
 
 #endregion // using
 namespace Ximura.Framework

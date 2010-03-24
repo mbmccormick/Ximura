@@ -1,5 +1,4 @@
-﻿using System;
-#region Copyright
+﻿#region Copyright
 // *******************************************************************************
 // Copyright (c) 2000-2009 Paul Stancer.
 // All rights reserved. This program and the accompanying materials
@@ -20,11 +19,11 @@ using System.Collections;
 using System.Text;
 
 using Ximura;
-using Ximura.Helper;
+
 using Ximura.Data;
-using CH = Ximura.Helper.Common;
+using CH = Ximura.Common;
 #endregion 
-namespace Ximura.Data
+namespace Ximura.Communication
 {
     /// <summary>
     /// This is the default terminator for the MessageCRLFFragment message class.

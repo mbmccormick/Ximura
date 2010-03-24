@@ -19,10 +19,10 @@ using System.ComponentModel.Design;
 using System.Drawing;
 
 using Ximura;
-using Ximura.Helper;
+
 using Ximura.Framework;
 #endregion //
-namespace Ximura
+namespace Ximura.Framework
 {
     /// <summary>
     /// This interface should be implemented by components that can be hosted as a state in a finite 

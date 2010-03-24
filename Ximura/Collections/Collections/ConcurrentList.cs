@@ -25,7 +25,7 @@ using System.Security.Permissions;
 using System.Threading;
 
 using Ximura;
-using Ximura.Helper;
+
 #endregion // using
 namespace Ximura.Collections
 {

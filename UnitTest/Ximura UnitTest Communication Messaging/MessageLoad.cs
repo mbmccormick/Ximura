@@ -6,7 +6,7 @@ using System.Text;
 using System.IO;
 
 using Ximura;
-using RH = Ximura.Helper.Reflection;
+using RH = Ximura.Reflection;
 using Ximura.Data;
 using Ximura.Communication;
 #endregion

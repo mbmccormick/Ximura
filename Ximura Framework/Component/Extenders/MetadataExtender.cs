@@ -24,11 +24,11 @@ using System.Diagnostics;
 
 using Ximura;
 using Ximura.Framework;
-using CH = Ximura.Helper.Common;
-using RH = Ximura.Helper.Reflection;
+using CH = Ximura.Common;
+using RH = Ximura.Reflection;
 
 #endregion // using
-namespace Ximura
+namespace Ximura.Framework
 {
 	/// <summary>
 	/// MetadataExtender is the base class for all extenders.

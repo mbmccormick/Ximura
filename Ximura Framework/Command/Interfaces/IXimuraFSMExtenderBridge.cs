@@ -13,7 +13,7 @@
 #region using
 using System;
 #endregion // using
-namespace Ximura
+namespace Ximura.Framework
 {
     /// <summary>
     /// IXimuraFSMExtenderBridge is used to connect.

@@ -25,9 +25,9 @@ using System.Text;
 using Ximura;
 using Ximura.Data;
 using Ximura.Data;
-using Ximura.Helper;
-using CH = Ximura.Helper.Common;
-using AH = Ximura.Helper.AttributeHelper;
+
+using CH = Ximura.Common;
+using AH = Ximura.AttributeHelper;
 #endregion // using
 namespace Ximura.Data
 {

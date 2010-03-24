@@ -26,13 +26,13 @@ using System.Reflection;
 
 using Ximura;
 using Ximura.Data;
-using Ximura.Helper;
-using CH=Ximura.Helper.Common;
+
+using CH=Ximura.Common;
 
 using Ximura.Framework;
 using Ximura.Framework;
 #endregion // using
-namespace Ximura
+namespace Ximura.Framework
 {
 	/// <summary>
 	/// XimuraComponentBase is the base component for all components in the Ximura system.

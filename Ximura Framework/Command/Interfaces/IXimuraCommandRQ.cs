@@ -15,13 +15,13 @@ using System;
 
 using Ximura;
 using Ximura.Data;
-using Ximura.Helper;
+
 
 using Ximura.Framework;
 using Ximura.Framework;
 
 #endregion // using
-namespace Ximura
+namespace Ximura.Framework
 {
     /// <summary>
     /// This is the default command processing interface.

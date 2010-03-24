@@ -22,9 +22,9 @@ using System.Windows.Threading;
 using System.Threading;
 
 using Ximura;
-using Ximura.Helper;
+
 using Ximura.Framework;
-using AH = Ximura.Helper.AttributeHelper;
+using AH = Ximura.AttributeHelper;
 #endregion // using
 namespace Ximura.Windows
 {

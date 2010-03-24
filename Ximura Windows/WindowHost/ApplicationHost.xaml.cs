@@ -19,8 +19,8 @@ using System.Linq;
 using System.Windows;
 
 using Ximura;
-using Ximura.Helper;
-using AH = Ximura.Helper.AttributeHelper;
+
+using AH = Ximura.AttributeHelper;
 #endregion // using
 namespace Ximura.Windows
 {

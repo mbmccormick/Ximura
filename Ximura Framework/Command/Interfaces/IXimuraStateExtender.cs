@@ -25,13 +25,13 @@ using System.Diagnostics;
 using Ximura;
 using Ximura.Data;
 using Ximura.Data;
-using CH = Ximura.Helper.Common;
+using CH = Ximura.Common;
 using Ximura.Framework;
 
 using Ximura.Framework;
 
 #endregion // using
-namespace Ximura
+namespace Ximura.Framework
 {
     public interface IXimuraStateExtender
     {

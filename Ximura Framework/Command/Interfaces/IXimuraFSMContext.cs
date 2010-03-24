@@ -19,12 +19,12 @@ using System.ComponentModel.Design;
 using System.Drawing;
 
 using Ximura;
-using Ximura.Helper;
+
 using Ximura.Framework;
 using Ximura.Framework;
 
 #endregion //
-namespace Ximura
+namespace Ximura.Framework
 {
     /// <summary>
     /// This interface is implemented by all contexts in the FSM architecture.

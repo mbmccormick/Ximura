@@ -14,12 +14,12 @@ using System.Net;
 using Ximura;
 using Ximura.Data;
 using Ximura.Data;
-using Ximura.Helper;
+
 using Ximura.Framework;
 using Ximura.Framework;
 using Ximura.Communication;
-using CH = Ximura.Helper.Common;
-using XH = Ximura.Helper.XMLHelper;
+using CH = Ximura.Common;
+using XH = Ximura.XMLHelper;
 #endregion // using
 namespace Ximura.Communication
 {

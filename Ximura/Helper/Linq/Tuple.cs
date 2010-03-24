@@ -29,7 +29,7 @@ using System.Threading;
 using Ximura;
 using Ximura.Framework;
 #endregion // using
-namespace Ximura.Helper
+namespace Ximura
 {
     /// <summary>
     /// The tuple structure is used to hold two values, predominantly for fast comparison.

@@ -8,7 +8,7 @@ using System.Diagnostics;
 using System.Linq.Expressions;
 
 using Ximura;
-using Ximura.Helper;
+
 using Ximura.Collections;
 #endregion // using
 namespace Ximura.UnitTest

@@ -20,9 +20,9 @@ using System.Text;
 using System.Data;
 
 using Ximura;
-using CH = Ximura.Helper.Common;
+using CH = Ximura.Common;
 #endregion // using
-namespace Ximura.Helper
+namespace Ximura
 {
     [CLSCompliant(false)]
     public static class StreamHelper

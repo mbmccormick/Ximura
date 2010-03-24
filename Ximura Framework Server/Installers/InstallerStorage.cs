@@ -29,10 +29,10 @@ using System.Text;
 using System.Configuration.Install;
 
 using Ximura;
-using Ximura.Helper;
+
 using Ximura.Framework;
-using RH = Ximura.Helper.Reflection;
-using AH = Ximura.Helper.AttributeHelper;
+using RH = Ximura.Reflection;
+using AH = Ximura.AttributeHelper;
 #endregion
 namespace Ximura.Framework
 {

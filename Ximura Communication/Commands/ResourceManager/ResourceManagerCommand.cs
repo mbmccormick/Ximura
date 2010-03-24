@@ -5,8 +5,8 @@ using System.IO;
 using System.ComponentModel;
 
 using Ximura;
-using Ximura.Helper;
-using CH = Ximura.Helper.Common;
+
+using CH = Ximura.Common;
 using CDS = Ximura.Data.CDSHelper;
 using Ximura.Framework;
 using Ximura.Framework;

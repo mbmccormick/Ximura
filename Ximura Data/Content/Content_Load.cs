@@ -19,14 +19,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Diagnostics;
-
 using System.Text;
 
 using Ximura;
 using Ximura.Data;
-using Ximura.Data;
-using Ximura.Helper;
-using CH = Ximura.Helper.Common;
+using Ximura.Communication;
+using CH = Ximura.Common;
 #endregion // using
 namespace Ximura.Data
 {

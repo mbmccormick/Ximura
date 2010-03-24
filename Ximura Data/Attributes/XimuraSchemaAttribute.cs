@@ -19,8 +19,8 @@ using System.Xml;
 using System.Xml.Schema;
 
 using Ximura;
-using CH = Ximura.Helper.Common;
-using RH = Ximura.Helper.Reflection;
+using CH = Ximura.Common;
+using RH = Ximura.Reflection;
 #endregion // using
 namespace Ximura.Data
 {

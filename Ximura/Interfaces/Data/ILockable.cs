@@ -25,9 +25,9 @@ using System.Runtime.Serialization;
 using System.Runtime.InteropServices;
 
 using Ximura;
-using Ximura.Helper;
+
 #endregion // using
-namespace Ximura.Helper
+namespace Ximura
 {
     /// <summary>
     /// This interface is implemented by items that are individually lockable.

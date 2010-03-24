@@ -9,8 +9,8 @@ using System.Linq;
 
 using Ximura;
 using Ximura.Data;
-using Ximura.Helper;
-using CH = Ximura.Helper.Common;
+
+using CH = Ximura.Common;
 using CDS = Ximura.Data.CDSHelper;
 using Ximura.Data;
 using Ximura.Framework;

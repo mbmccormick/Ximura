@@ -15,13 +15,13 @@ using System;
 
 using Ximura;
 using Ximura.Data;
-using Ximura.Helper;
+
 
 
 using Ximura.Framework;
 
 #endregion // using
-namespace Ximura
+namespace Ximura.Framework
 {
 	/// <summary>
 	/// This interface is used by a command process and is not currently used.

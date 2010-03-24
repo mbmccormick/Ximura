@@ -23,7 +23,7 @@ using System.Runtime.Serialization;
 
 using Ximura;
 using Ximura.Data;
-using CH = Ximura.Helper.Common;
+using CH = Ximura.Common;
 using Ximura.Framework;
 
 #endregion // using
@@ -43,7 +43,7 @@ namespace Ximura.Framework
         /// This method checks and then changes the state. If the state is not valid an exception is thrown.
         /// </summary>
         /// <param name="stateName">The state name to check.</param>
-        /// <exception cref="Ximura.Helper.InvalidStateNameFSMException">This exception is thrown if the stateName cannot be resolved.</exception>
+        /// <exception cref="Ximura.InvalidStateNameFSMException">This exception is thrown if the stateName cannot be resolved.</exception>
         public virtual void CheckChangeState(string stateName)
         {
             if (!CheckState(stateName))

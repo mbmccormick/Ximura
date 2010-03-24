@@ -16,9 +16,9 @@ using System.IO;
 using System.Runtime.Serialization;
 
 using Ximura;
-using Ximura.Helper;
+
 using Ximura.Data;
-using CH = Ximura.Helper.Common;
+using CH = Ximura.Common;
 #endregion
 namespace Ximura.Communication
 {
