@@ -236,6 +236,7 @@
       <DependentUpon>Xml.xsd</DependentUpon>
     </None>
     <None Include="Properties\ximura.snk" />
+    <None Include="_Documentation\Building a LINQ Provider.mht" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\epl-v10.html" />
@@ -246,9 +247,6 @@
       <Project>{7C2684DD-A055-4A7A-88D6-EC5BAE28AEB2}</Project>
       <Name>Ximura</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="_Documentation\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
