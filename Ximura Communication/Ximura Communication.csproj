@@ -197,6 +197,7 @@
     </Compile>
     <Compile Include="Commands\InternetServer\Configuration\InternetServerConfiguration.cs">
     </Compile>
+    <Compile Include="Exceptions\ResponseStatusException.cs" />
     <Compile Include="Persistence\InternetServerCDSCommand.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -418,7 +419,6 @@
     </Compile>
     <Compile Include="Common\ConnectionInfo.cs" />
     <Compile Include="Common\ConnectionSettingsBase.cs" />
-    <Compile Include="Common\Exceptions\ResponseStatusException.cs" />
     <Compile Include="Common\MessageProcessingCommand.cs">
       <SubType>Component</SubType>
     </Compile>
