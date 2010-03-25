@@ -113,51 +113,37 @@
     <Compile Include="Attributes\XimuraDataContentSummaryAttribute.cs" />
     <Compile Include="Attributes\XimuraDataContentVersionMappingAttribute.cs" />
     <Compile Include="Attributes\XimuraSchemaAttribute.cs" />
-    <Compile Include="CDSContract\CDSRequestFolder.cs" />
-    <Compile Include="CDSContract\CDSResponseFolder.cs" />
-    <Compile Include="CDSContract\CDSRQRSFolderBase.cs" />
-    <Compile Include="CDSContract\CDSShortcuts.cs" />
-    <Compile Include="CDSContract\ContentDataStoreShortcuts.cs" />
-    <Compile Include="CDSData\CDSData.cs" />
-    <Compile Include="CDSData\CDSData_Data.cs" />
-    <Compile Include="CDSData\CDSResponse.cs" />
-    <Compile Include="CDSData\CDSStateAction.cs" />
-    <Compile Include="CDSHelper\CDSCallback.cs" />
-    <Compile Include="CDSHelper\CDSExpression.cs" />
-    <Compile Include="CDSHelper\CDSHelper.cs" />
-    <Compile Include="CDSHelper\CDSHelper_Linq.cs" />
-    <Compile Include="CDSHelper\CDSHelper_Static.cs" />
-    <Compile Include="Content\Content.cs">
-    </Compile>
-    <Compile Include="Content\Content_Attributes.cs">
-    </Compile>
-    <Compile Include="Content\Content_Cache.cs">
-    </Compile>
-    <Compile Include="Content\Content_Fragmentation.cs">
-    </Compile>
-    <Compile Include="Content\Content_Helper.cs">
-    </Compile>
-    <Compile Include="Content\Content_IEquatable.cs">
-    </Compile>
-    <Compile Include="Content\Content_Load.cs">
-    </Compile>
-    <Compile Include="Content\Content_Pooling.cs">
-    </Compile>
-    <Compile Include="Content\Content_Properties.cs">
-    </Compile>
-    <Compile Include="Content\Content_Serialization.cs">
-    </Compile>
-    <Compile Include="Content\Content_Static.cs">
-    </Compile>
+    <Compile Include="Content.cs" />
+    <Compile Include="ContentDataStore\Contract\CDSRequestFolder.cs" />
+    <Compile Include="ContentDataStore\Contract\CDSResponseFolder.cs" />
+    <Compile Include="ContentDataStore\Contract\CDSRQRSFolderBase.cs" />
+    <Compile Include="ContentDataStore\Contract\CDSShortcuts.cs" />
+    <Compile Include="ContentDataStore\Contract\ContentDataStoreShortcuts.cs" />
+    <Compile Include="ContentDataStore\Data\CDSData.cs" />
+    <Compile Include="ContentDataStore\Data\CDSData_Data.cs" />
+    <Compile Include="ContentDataStore\Data\CDSResponse.cs" />
+    <Compile Include="ContentDataStore\Data\CDSStateAction.cs" />
+    <Compile Include="ContentDataStore\Helper\CDSCallback.cs" />
+    <Compile Include="ContentDataStore\Helper\CDSExpression.cs" />
+    <Compile Include="ContentDataStore\Helper\CDSHelper.cs" />
+    <Compile Include="ContentDataStore\Helper\CDSHelper_Linq.cs" />
+    <Compile Include="ContentDataStore\Helper\CDSHelper_Static.cs" />
+    <Compile Include="Content_Attributes.cs" />
+    <Compile Include="Content_Cache.cs" />
+    <Compile Include="Content_Fragmentation.cs" />
+    <Compile Include="Content_Helper.cs" />
+    <Compile Include="Content_IEquatable.cs" />
+    <Compile Include="Content_Load.cs" />
+    <Compile Include="Content_Pooling.cs" />
+    <Compile Include="Content_Properties.cs" />
+    <Compile Include="Content_Serialization.cs" />
+    <Compile Include="Content_Static.cs" />
+    <Compile Include="Data\XmlContentBase\XsdResolver\ContentXsdResolver.cs" />
+    <Compile Include="Data\XmlContentBase\XsdResolver\ContentXsdResolver_Static.cs" />
     <Compile Include="Exceptions\ContentException.cs" />
+    <Compile Include="Exceptions\ContentFormatterCapabilitiesException.cs" />
+    <Compile Include="Exceptions\ContentFormatterException.cs" />
     <Compile Include="Exceptions\ContentLoadException.cs" />
-    <Compile Include="Content\Serialization\ContentFormatter.cs" />
-    <Compile Include="Content\Serialization\ContentFormatterCapabilities.cs" />
-    <Compile Include="Content\Serialization\ContentSerializationReaderWriter.cs" />
-    <Compile Include="Content\Serialization\Exceptions\ContentFormatterCapabilitiesException.cs" />
-    <Compile Include="Content\Serialization\Exceptions\ContentFormatterException.cs" />
-    <Compile Include="Content\Serialization\FormatterBase.cs" />
-    <Compile Include="Content\Serialization\Interfaces\IXIMSFormatter.cs" />
     <Compile Include="Data\Atom\AtomBase.cs">
     </Compile>
     <Compile Include="Data\Atom\AtomEntry.cs">
@@ -223,9 +209,12 @@
     </Compile>
     <Compile Include="Data\XmlContent\XmlContent_Serialization.cs">
     </Compile>
-    <Compile Include="Helper\XsdResolver\ContentXsdResolver.cs" />
-    <Compile Include="Helper\XsdResolver\ContentXsdResolver_Static.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Serialization\ContentFormatter.cs" />
+    <Compile Include="Serialization\ContentFormatterCapabilities.cs" />
+    <Compile Include="Serialization\ContentSerializationReaderWriter.cs" />
+    <Compile Include="Serialization\FormatterBase.cs" />
+    <Compile Include="Serialization\IXIMSFormatter.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Data\DataContent\DataContent.resx">
