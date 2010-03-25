@@ -66,6 +66,7 @@
     <Compile Include="Attributes\CDSStateTypePermitAttribute.cs" />
     <Compile Include="Configuration\CDSConfigSH.cs" />
     <Compile Include="Configuration\CDSConfiguration.cs" />
+    <Compile Include="Configuration\CDSSettings.cs" />
     <Compile Include="Configuration\PersistenceManagerConfigSH.cs" />
     <Compile Include="ContentDataStore.cs">
       <SubType>Component</SubType>
@@ -153,7 +154,6 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Settings\CDSSettings.cs" />
     <Compile Include="States\BaseCDSState.cs">
       <SubType>Component</SubType>
     </Compile>
