@@ -26,7 +26,10 @@ namespace Ximura.Data
     /// </summary>
     public struct scContentDataStore
     {
+        #region CDSCommandID
         public static readonly Guid CDSCommandID = new Guid(ContentDataStoreShortcuts.ID);
+        #endregion // CDSCommandID
+        #region ID
         /// <summary>
         /// This is the command ID
         /// </summary>
@@ -34,6 +37,9 @@ namespace Ximura.Data
         {
             get { return CDSCommandID; }
         }
+        #endregion // ID
+
+        #region Create
         /// <summary>
         /// The Save command
         /// </summary>
@@ -41,6 +47,8 @@ namespace Ximura.Data
         {
             get { return new EnvelopeAddress(CDSCommandID, CDSStateAction.Create); }
         }
+        #endregion // Create
+
         ///// <summary>
         ///// The Load command
         ///// </summary>
@@ -48,6 +56,8 @@ namespace Ximura.Data
         //{
         //    get{return new EnvelopeAddress(guidCommand,PMCapabilities.ReadByReference);}
         //}
+
+        #region Read
         /// <summary>
         /// The Load command
         /// </summary>
@@ -55,6 +65,8 @@ namespace Ximura.Data
         {
             get { return new EnvelopeAddress(CDSCommandID, CDSStateAction.Read); }
         }
+        #endregion // Read
+        #region Update
         /// <summary>
         /// The Load command
         /// </summary>
@@ -62,6 +74,8 @@ namespace Ximura.Data
         {
             get { return new EnvelopeAddress(CDSCommandID, CDSStateAction.Update); }
         }
+        #endregion // Update
+        #region Delete
         /// <summary>
         /// The Update command
         /// </summary>
@@ -69,6 +83,8 @@ namespace Ximura.Data
         {
             get { return new EnvelopeAddress(CDSCommandID, CDSStateAction.Delete); }
         }
+        #endregion // Delete
+        #region VersionCheck
         /// <summary>
         /// The VersionCheck command
         /// </summary>
@@ -76,6 +92,8 @@ namespace Ximura.Data
         {
             get { return new EnvelopeAddress(CDSCommandID, CDSStateAction.VersionCheck); }
         }
+        #endregion // VersionCheck
+        #region Custom
         /// <summary>
         /// The custom command
         /// </summary>
@@ -83,6 +101,6 @@ namespace Ximura.Data
         {
             get { return new EnvelopeAddress(CDSCommandID, CDSStateAction.Custom); }
         }
+        #endregion // Custom
     }
-
 }
