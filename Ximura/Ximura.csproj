@@ -266,8 +266,8 @@
     <Compile Include="Command\Interfaces\IXimuraEnvelopeHelper.cs" />
     <Compile Include="Command\Interfaces\IXimuraRQRSEnvelope.cs" />
     <Compile Include="Command\Data\RQRSContract.cs" />
-    <Compile Include="Command\Data\RQRSEnvTypes.cs" />
     <Compile Include="Command\Data\RQRSFolder.cs" />
+    <Compile Include="Command\Interfaces\RQRSEnvTypes.cs" />
     <Compile Include="Command\RQRSEnvelopeHelper.cs" />
     <Compile Include="Component\AppContainer.cs">
       <SubType>Code</SubType>
@@ -473,12 +473,6 @@
     <Content Include="Collections\_Documentation\CodeProject Articles\_ReadMe.txt" />
     <Content Include="Properties\epl-v10.html" />
     <Content Include="Properties\Release Notes.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Command\Data\RQRSFolder.resx">
-      <DependentUpon>RQRSFolder.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="Collections\_Documentation\CodeProject Articles\Concurrent Object Pooling.docx" />

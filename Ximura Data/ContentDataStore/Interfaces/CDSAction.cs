@@ -19,7 +19,7 @@ namespace Ximura.Data
     /// This enum contains a list of actions that each CDSState can execute. This enumeration is used to build up
     /// an execution plan.
     /// </summary>
-    public enum CDSStateAction : short
+    public enum CDSAction : short
     {
         /// <summary>
         /// This is the default value when the specific action has not been set.

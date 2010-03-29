@@ -34,13 +34,13 @@ using Ximura.Framework;
 #endregion // using
 namespace Ximura.Data
 {
-    [CDSStateActionPermit(CDSStateAction.Create)]
-    [CDSStateActionPermit(CDSStateAction.Read)]
-    [CDSStateActionPermit(CDSStateAction.Update)]
-    [CDSStateActionPermit(CDSStateAction.Delete)]
-    [CDSStateActionPermit(CDSStateAction.VersionCheck)]
-    [CDSStateActionPermit(CDSStateAction.ResolveReference)]
-    [CDSStateActionPermit(CDSStateAction.Browse)]
+    [CDSStateActionPermit(CDSAction.Create)]
+    [CDSStateActionPermit(CDSAction.Read)]
+    [CDSStateActionPermit(CDSAction.Update)]
+    [CDSStateActionPermit(CDSAction.Delete)]
+    [CDSStateActionPermit(CDSAction.VersionCheck)]
+    [CDSStateActionPermit(CDSAction.ResolveReference)]
+    [CDSStateActionPermit(CDSAction.Browse)]
     public class FileSystemPersistenceManager<CONT, DCONT, CONF> : FileSystemBasePMCDSState<CONT, DCONT, CONF>
         where CONT : Content, DCONT
         where DCONT : Content

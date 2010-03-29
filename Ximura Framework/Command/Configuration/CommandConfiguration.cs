@@ -83,9 +83,9 @@ namespace Ximura.Framework
     /// </summary>
     [XimuraContentTypeID("DB4784B5-7B8C-4bf5-96BD-174A1ECC90B9")]
     [XimuraDataContentDefault(
-         "xmrres://Ximura/Ximura.Framework.CommandConfiguration/Ximura.Framework.Configuration.CommandConfiguration_Default.xml")]
+        "xmrres://XimuraFramework/Ximura.Framework.CommandConfiguration/Ximura.Framework.Command.Configuration.CommandConfiguration_Default.xml")]
     [XimuraDataContentSchemaReference("http://schema.ximura.org/configuration/command/1.0",
-        "xmrres://Ximura/Ximura.Framework.CommandConfiguration/Ximura.Framework.Configuration.CommandConfiguration.xsd")]
+        "xmrres://XimuraFramework/Ximura.Framework.CommandConfiguration/Ximura.Framework.Command.Configuration.CommandConfiguration.xsd")]
     public class CommandConfiguration : ConfigurationBase, IXimuraCommandConfiguration
     {
         #region Declarations

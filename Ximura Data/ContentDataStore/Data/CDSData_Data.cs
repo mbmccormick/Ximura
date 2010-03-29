@@ -49,7 +49,7 @@ namespace Ximura.Data
             IDContent = null;
             RefValue = null;
             RefType = null;
-            Action = CDSStateAction.NotSet;
+            Action = CDSAction.NotSet;
             RequestID = Guid.NewGuid();
             Priority = JobPriority.Normal;
         }
@@ -80,7 +80,7 @@ namespace Ximura.Data
         /// <summary>
         /// This is the specific action for the CDS to process.
         /// </summary>
-        public CDSStateAction Action
+        public CDSAction Action
         {
             get;
             protected set;
@@ -97,7 +97,6 @@ namespace Ximura.Data
             protected set;
         }
         #endregion
-
         #region RefType
         /// <summary>
         /// This is the reference type for the entity.

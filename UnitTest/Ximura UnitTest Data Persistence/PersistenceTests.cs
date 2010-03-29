@@ -4,11 +4,15 @@ using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+using Ximura;
+using Ximura.Data;
+using Ximura.Framework;
 #endregion 
 namespace Ximura.UnitTest.Data
 {
     /// <summary>
-    /// Summary description for UnitTest1
+    /// These test validate the persistence functionality.
     /// </summary>
     [TestClass]
     public class PersistenceTests
@@ -19,9 +23,6 @@ namespace Ximura.UnitTest.Data
         /// </summary>
         public PersistenceTests()
         {
-            //
-            // TODO: Add constructor logic here
-            //
         }
         #endregion 
 
@@ -60,9 +61,11 @@ namespace Ximura.UnitTest.Data
         #endregion
 
         [TestMethod]
-        public void TestMethod1()
+        public void PersistenceTestContainerGeneric()
         {
-            
+            ContentDataStoreContainer<BinaryTestCDS> cont = new ContentDataStoreContainer<BinaryTestCDS>();
+
+            BinaryTest bt = cont.Initialize<BinaryTest>();
         }
     }
 }

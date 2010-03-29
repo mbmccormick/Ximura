@@ -40,12 +40,12 @@ namespace Ximura.Data
         /// This method maps the PMCapability request to its corresponding CDS Action type.
         /// </summary>
         /// <returns></returns>
-        CDSStateAction CDSStateActionResolve();
+        CDSAction CDSStateActionResolve();
 
         /// <summary>
         /// This method processes the specific CRUD execution plan for the request.
         /// </summary>
-        bool CDSStateProcessDirective(CDSStateAction action);
+        bool CDSStateProcessDirective(CDSAction action);
 
         /// <summary>
         /// This method provides any clean up or finalization of the response.

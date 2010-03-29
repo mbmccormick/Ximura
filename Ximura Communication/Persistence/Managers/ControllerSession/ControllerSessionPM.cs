@@ -25,9 +25,9 @@ namespace Ximura.Communication
     /// <summary>
     /// This CDS persistence manager contains the temporary session objects.
     /// </summary>
-    [CDSStateActionPermit(CDSStateAction.Read)]
-    [CDSStateActionPermit(CDSStateAction.Delete)]
-    [CDSStateActionPermit(CDSStateAction.VersionCheck)]
+    [CDSStateActionPermit(CDSAction.Read)]
+    [CDSStateActionPermit(CDSAction.Delete)]
+    [CDSStateActionPermit(CDSAction.VersionCheck)]
     public class ControllerSessionPM :
         PersistenceManagerCDSState<ControllerSession, ControllerSession, CommandConfiguration>
     {

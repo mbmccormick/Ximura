@@ -134,7 +134,7 @@ namespace Ximura.Communication
         {
             Guid? cid, vid;
             string status = context.CDSHelper.Execute(contentType,
-                CDSData.Get(CDSStateAction.VersionCheck, cidIn, null), out cid, out vid);
+                CDSData.Get(CDSAction.VersionCheck, cidIn, null), out cid, out vid);
 
             if (status != CH.HTTPCodes.OK_200)
                 return false;

@@ -16,7 +16,7 @@
     <enabled>true</enabled>
     <priority>normal</priority>
     <usersessionrealm></usersessionrealm>
-    <processsession required="true" usesystemcredentials="true"/>
+    <processsession required="false" usesystemcredentials="true"/>
   </commandconfig>
 
   <timerpoll xmlns="http://schema.ximura.org/configuration/command/1.0" 

@@ -77,7 +77,7 @@ namespace Ximura.Framework
 
     [XimuraContentTypeID("28C52546-68E7-4847-AD03-C7BEA2E17C8D")]
     [XimuraDataContentSchemaReference("http://schema.ximura.org/configuration/fsm/1.0",
-        "xmrres://Ximura/Ximura.Framework.FSMCommandConfiguration/Ximura.Framework.Configuration.FSMCommandConfiguration.xsd")]
+        "xmrres://XimuraFramework/Ximura.Framework.FSMCommandConfiguration/Ximura.Framework.Command.Configuration.FSMCommandConfiguration.xsd")]
     public class FSMCommandConfiguration : CommandConfiguration
     {
         #region Constructor

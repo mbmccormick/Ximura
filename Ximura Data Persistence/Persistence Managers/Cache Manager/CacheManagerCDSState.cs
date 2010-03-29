@@ -39,8 +39,8 @@ namespace Ximura.Data
     /// <summary>
     /// This is the cache manager PM state.
     /// </summary>
-    [CDSStateActionPermit(CDSStateAction.Cache)]
-    [CDSStateActionPermit(CDSStateAction.Read)]
+    [CDSStateActionPermit(CDSAction.Cache)]
+    [CDSStateActionPermit(CDSAction.Read)]
     public class CacheManagerCDSState : FileSystemBasePMCDSState<Content, Content, CacheManagerCDSConfiguration>, ICDSCacheManager
     {
         #region Declarations
@@ -106,7 +106,7 @@ namespace Ximura.Data
                 //Ok, the cache has expired, but we can check whether the version is still valid and return the content.
                 Guid? CID, VID;
                 string vidStatus = context.CDSHelperDirect.Execute(objectType,
-                    CDSData.Get(CDSStateAction.VersionCheck, id.Value.ContentID, id.Value.VersionID), 
+                    CDSData.Get(CDSAction.VersionCheck, id.Value.ContentID, id.Value.VersionID), 
                     out CID, out VID);
                 //Ok, the cached item is valid so we can return.
                 if (vidStatus == CH.HTTPCodes.OK_200 && VID.HasValue && id.Value.VersionID == VID.Value)
@@ -136,12 +136,12 @@ namespace Ximura.Data
             if (!context.ContentIsCacheable)
                 return false;
 
-            CDSStateAction action = context.CDSStateActionResolve();
+            CDSAction action = context.CDSStateActionResolve();
 
             //Cache call can only support read at the moment.
             switch (action)
             {
-                case CDSStateAction.Read:
+                case CDSAction.Read:
                     break;
                 default:
                     return false;
@@ -192,10 +192,10 @@ namespace Ximura.Data
         /// <param name="action">The actions.</param>
         /// <param name="objectType">The object type.</param>
         /// <returns>Returns int.max if the content type supports caching.</returns>
-        public override int SupportsEntityAction(CDSStateAction action, Type objectType)
+        public override int SupportsEntityAction(CDSAction action, Type objectType)
         {
             //Only read and cache are supported.
-            if (action != CDSStateAction.Read && action != CDSStateAction.Cache)
+            if (action != CDSAction.Read && action != CDSAction.Cache)
                 return -1;
 
             //If we support caching then we returns the highest priority 0, else we 
@@ -243,6 +243,7 @@ namespace Ximura.Data
         #endregion // ServicesDereference()
 
         #region CacheHits
+#if (DEBUG)
         /// <summary>
         /// This text property contains a brief description of the number of cache hits for the cache collection.
         /// </summary>
@@ -263,8 +264,10 @@ namespace Ximura.Data
                 return sb.ToString();
             }
         }
+#endif
         #endregion // CacheHits
         #region EntityCount
+#if (DEBUG)
         /// <summary>
         /// This text property contains thebreakdown of cached entities in the cache manager.
         /// </summary>
@@ -285,6 +288,7 @@ namespace Ximura.Data
                 return sb.ToString();
             }
         }
+#endif
         #endregion // EntityCount
 
         #region TimerPoll()

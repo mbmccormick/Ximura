@@ -8,7 +8,7 @@
     <ProjectGuid>{79C7BB97-6ABB-4E63-829D-5B5F7A76F987}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Ximura.Data.Persistence</RootNamespace>
+    <RootNamespace>Ximura.Data</RootNamespace>
     <AssemblyName>XimuraDataPersistence</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -71,7 +71,9 @@
     <Compile Include="ContentDataStore.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ContentDataStoreContainer.cs" />
+    <Compile Include="ContentDataStoreContainer.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Context\CDSContext.cs">
       <SubType>Component</SubType>
     </Compile>

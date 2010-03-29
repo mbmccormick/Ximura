@@ -38,7 +38,7 @@ namespace Ximura.Data
     public class CDSSettings : ContextSettings<ICDSState, CDSConfiguration, CDSPerformance>
     {
         #region Declarations
-        private Dictionary<CDSStateAction, Dictionary<string, string[]>> mStateExecutionPlanCache;
+        private Dictionary<CDSAction, Dictionary<string, string[]>> mStateExecutionPlanCache;
 
         private ICDSCacheManagerBridge mCacheManagerBridge = null;
 
@@ -70,18 +70,18 @@ namespace Ximura.Data
         /// </summary>
         protected virtual void InitializeStateExecutionPlan()
         {
-            mStateExecutionPlanCache = new Dictionary<CDSStateAction, Dictionary<string, string[]>>();
+            mStateExecutionPlanCache = new Dictionary<CDSAction, Dictionary<string, string[]>>();
 
-            mStateExecutionPlanCache.Add(CDSStateAction.Cache, new Dictionary<string, string[]>());
-            mStateExecutionPlanCache.Add(CDSStateAction.Create, new Dictionary<string, string[]>());
-            mStateExecutionPlanCache.Add(CDSStateAction.Custom, new Dictionary<string, string[]>());
-            mStateExecutionPlanCache.Add(CDSStateAction.Delete, new Dictionary<string, string[]>());
-            mStateExecutionPlanCache.Add(CDSStateAction.Read, new Dictionary<string, string[]>());
-            mStateExecutionPlanCache.Add(CDSStateAction.ResolveReference, new Dictionary<string, string[]>());
-            mStateExecutionPlanCache.Add(CDSStateAction.Update, new Dictionary<string, string[]>());
-            mStateExecutionPlanCache.Add(CDSStateAction.VersionCheck, new Dictionary<string, string[]>());
-            mStateExecutionPlanCache.Add(CDSStateAction.Browse, new Dictionary<string, string[]>());
-            mStateExecutionPlanCache.Add(CDSStateAction.Restore, new Dictionary<string, string[]>());
+            mStateExecutionPlanCache.Add(CDSAction.Cache, new Dictionary<string, string[]>());
+            mStateExecutionPlanCache.Add(CDSAction.Create, new Dictionary<string, string[]>());
+            mStateExecutionPlanCache.Add(CDSAction.Custom, new Dictionary<string, string[]>());
+            mStateExecutionPlanCache.Add(CDSAction.Delete, new Dictionary<string, string[]>());
+            mStateExecutionPlanCache.Add(CDSAction.Read, new Dictionary<string, string[]>());
+            mStateExecutionPlanCache.Add(CDSAction.ResolveReference, new Dictionary<string, string[]>());
+            mStateExecutionPlanCache.Add(CDSAction.Update, new Dictionary<string, string[]>());
+            mStateExecutionPlanCache.Add(CDSAction.VersionCheck, new Dictionary<string, string[]>());
+            mStateExecutionPlanCache.Add(CDSAction.Browse, new Dictionary<string, string[]>());
+            mStateExecutionPlanCache.Add(CDSAction.Restore, new Dictionary<string, string[]>());
         }
         #endregion // InitializeStateExecutionPlan()
 
@@ -91,7 +91,7 @@ namespace Ximura.Data
         /// </summary>
         /// <param name="objectType">The entity object type.</param>
         /// <returns>Returns a string array containing the state name collection.</returns>
-        public string[] ResolveExecutionPlan(CDSStateAction action, Type objectType)
+        public string[] ResolveExecutionPlan(CDSAction action, Type objectType)
         {
             try
             {
@@ -134,7 +134,7 @@ namespace Ximura.Data
         /// <param name="action">The action.</param>
         /// <param name="objectType">The object type.</param>
         /// <returns>The CDSState execution plan.</returns>
-        private string[] GetAndCacheExecutionPlan(CDSStateAction action, Type objectType)
+        private string[] GetAndCacheExecutionPlan(CDSAction action, Type objectType)
         {
             string[] executionPlan = GetExecutionPlan(action, objectType);
             string objectTypeReduced = objectType.FullName;
@@ -170,7 +170,7 @@ namespace Ximura.Data
         /// <param name="action">The action.</param>
         /// <param name="objectType">The object type.</param>
         /// <returns>The CDSState execution plan.</returns>
-        private string[] GetExecutionPlan(CDSStateAction action, Type objectType)
+        private string[] GetExecutionPlan(CDSAction action, Type objectType)
         {
             SortedList<int, string> stateOrder = new SortedList<int, string>();
             foreach (string stateName in mStateExtender.GetStateIDList())

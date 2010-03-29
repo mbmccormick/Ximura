@@ -17,12 +17,12 @@ using RH = Ximura.Reflection;
 #endregion
 namespace Ximura.Communication
 {
-    [CDSStateActionPermit(CDSStateAction.Create)]
-    [CDSStateActionPermit(CDSStateAction.Update)]
-    [CDSStateActionPermit(CDSStateAction.Read)]
-    [CDSStateActionPermit(CDSStateAction.VersionCheck)]
-    [CDSStateActionPermit(CDSStateAction.ResolveReference)]
-    [CDSStateActionPermit(CDSStateAction.Browse)]
+    [CDSStateActionPermit(CDSAction.Create)]
+    [CDSStateActionPermit(CDSAction.Update)]
+    [CDSStateActionPermit(CDSAction.Read)]
+    [CDSStateActionPermit(CDSAction.VersionCheck)]
+    [CDSStateActionPermit(CDSAction.ResolveReference)]
+    [CDSStateActionPermit(CDSAction.Browse)]
     public class ControllerScriptPM :
         SQLDBPersistenceManager<ControllerScript, ControllerScript>
     {

@@ -38,10 +38,10 @@ namespace Ximura.Data
     /// </summary>
 #if (DEBUG)
     [XimuraAppConfiguration(ConfigurationLocation.Hybrid,
-        "xmrres://Ximura/Ximura.Data.CDSConfiguration/Ximura.Data.CDS.Configuration.CDSConfiguration_Default.xml")]
+        "xmrres://XimuraDataPersistence/Ximura.Data.CDSConfiguration/Ximura.Data.Configuration.CDSConfiguration_Default.xml")]
 #else
     [XimuraAppConfiguration(ConfigurationLocation.Hybrid, 
-        "xmrres://Ximura/Ximura.Data.CDSConfiguration/Ximura.Data.CDS.Configuration.CDSConfiguration_Default.xml")]
+        "xmrres://XimuraDataPersistence/Ximura.Data.CDSConfiguration/Ximura.Data.Configuration.CDSConfiguration_Default.xml")]
 #endif
     [XimuraAppModule(ContentDataStoreShortcuts.ID, ContentDataStoreShortcuts.Name)]
     public class ContentDataStore : FiniteStateMachine<CDSRequestFolder, CDSResponseFolder, 
@@ -163,9 +163,9 @@ namespace Ximura.Data
                 return;
             }
 
-            CDSStateAction action = context.CDSStateActionResolve();
-            if (action == CDSStateAction.Cache || 
-                (action == CDSStateAction.ResolveReference && !context.Request.InternalCall))
+            CDSAction action = context.CDSStateActionResolve();
+            if (action == CDSAction.Cache || 
+                (action == CDSAction.ResolveReference && !context.Request.InternalCall))
             {
                 //OK, the request could not be resolved.
                 context.Response.Status = CH.HTTPCodes.BadRequest_400;
@@ -181,9 +181,9 @@ namespace Ximura.Data
                     context.Initialize();
 
                     //Special case for internal Resolve Reference requests.
-                    if (action == CDSStateAction.ResolveReference && context.Request.InternalCall)
+                    if (action == CDSAction.ResolveReference && context.Request.InternalCall)
                     {
-                        if (!context.CDSStateProcessDirective(CDSStateAction.ResolveReference))
+                        if (!context.CDSStateProcessDirective(CDSAction.ResolveReference))
                         {
                             //OK, the request could not be resolved.
                             context.Response.Status = CH.HTTPCodes.NotImplemented_501;
@@ -194,7 +194,7 @@ namespace Ximura.Data
 
                     //If the request is by reference, then resolve the reference before continuing.
                     if (context.RequestIsByReference)
-                        if (!context.CDSStateProcessDirective(CDSStateAction.ResolveReference))
+                        if (!context.CDSStateProcessDirective(CDSAction.ResolveReference))
                         {
                             ProcessRequestFailed(CH.HTTPCodes.NotFound_404,
                                 string.Format("Reference cannot be resolved: {0}/{1}", context.Request.DataReferenceType, context.Request.DataReferenceValue), 
@@ -204,13 +204,13 @@ namespace Ximura.Data
 
                     //OK, we need to check whether we have all the necessary IDs for the request.
                     //If we do not then we cannot use the cache.
-                    if (context.ContentIsCacheable && action == CDSStateAction.Read)
+                    if (context.ContentIsCacheable && action == CDSAction.Read)
                     {
                         if (!context.Request.DataVersionID.HasValue || !context.Request.DataContentID.HasValue)
                         {
                             Guid? vid, cid;
                             string status = context.CDSHelperDirect.Execute(
-                                context.Request.DataType, CDSData.Get(CDSStateAction.VersionCheck,
+                                context.Request.DataType, CDSData.Get(CDSAction.VersionCheck,
                                     context.Request.DataContentID, context.Request.DataVersionID), 
                                         out cid, out vid);
 
@@ -237,7 +237,7 @@ namespace Ximura.Data
                     //Can the resulting data be cached after the operation.
                     if (context.ContentIsCacheable && 
                         context.Response.Status == CH.HTTPCodes.OK_200)
-                        context.CDSStateProcessDirective(CDSStateAction.Cache);
+                        context.CDSStateProcessDirective(CDSAction.Cache);
                 }
                 catch (NotImplementedException niex)
                 {
@@ -257,7 +257,7 @@ namespace Ximura.Data
                 ProcessRequestFailed(CH.HTTPCodes.InternalServerError_500, ex.Message, context.Job, context.Data);
             }
         }
-        #endregion // ProcessRequest --> MAIN ENTRY POINT
+        #endregion
 
         #region SubCommands
         #region ProcessRequestIsSubCommand(CDSContext context)
@@ -394,6 +394,10 @@ namespace Ximura.Data
         }
         #endregion // InternalContinue()
 
+        #region StatesStart()
+        /// <summary>
+        /// This override starts the storage persistence states.
+        /// </summary>
         protected override void StatesStart()
         {
             //Ensure that the storage is started before the states.
@@ -401,7 +405,11 @@ namespace Ximura.Data
 
             base.StatesStart();
         }
-
+        #endregion 
+        #region StatesStop()
+        /// <summary>
+        /// This override stops the storage persistence states.
+        /// </summary>
         protected override void StatesStop()
         {
             base.StatesStop();
@@ -410,6 +418,7 @@ namespace Ximura.Data
             ComponentsStatusChange(XimuraServiceStatusAction.Stop, ServiceComponents, typeof(IXimuraStorage));
 
         }
+        #endregion 
 
         #region ServiceStatusChange
         /// <summary>
@@ -545,6 +554,5 @@ namespace Ximura.Data
                 mCacheManagerBridge);
         }
         #endregion // InitializeContextConnection(IContainer baseContainer)
-
     }
 }

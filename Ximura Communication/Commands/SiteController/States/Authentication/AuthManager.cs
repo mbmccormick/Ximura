@@ -74,7 +74,7 @@ namespace Ximura.Communication
             {
                 Type userType = context.ContextSettings.ResolveSecurityObjectType(username.Host);
 
-                string status = context.CDSHelper.Execute(userType, CDSData.Get(CDSStateAction.Read, "userid", username.Address), out secEnt);
+                string status = context.CDSHelper.Execute(userType, CDSData.Get(CDSAction.Read, "userid", username.Address), out secEnt);
 
                 rqUser = secEnt as IAuthUser;
 

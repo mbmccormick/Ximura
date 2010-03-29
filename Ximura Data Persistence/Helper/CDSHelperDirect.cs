@@ -57,12 +57,12 @@ namespace Ximura.Data
         #region ResolveReference/ResolveReference<T>
         public CDSResponse ResolveReference<T>(string refType, string refValue, out Guid? cid, out Guid? vid) where T : Content
         {
-            return TranslateResponseCode(Execute<T>(CDSData.Get(CDSStateAction.ResolveReference, refType, refValue), out cid, out vid));
+            return TranslateResponseCode(Execute<T>(CDSData.Get(CDSAction.ResolveReference, refType, refValue), out cid, out vid));
         }
 
         public CDSResponse ResolveReference(Type objectType, string refType, string refValue, out Guid? cid, out Guid? vid)
         {
-            return TranslateResponseCode(Execute(objectType, CDSData.Get(CDSStateAction.ResolveReference, refType, refValue), out cid, out vid));
+            return TranslateResponseCode(Execute(objectType, CDSData.Get(CDSAction.ResolveReference, refType, refValue), out cid, out vid));
         }
 
         #endregion // VersionCheck

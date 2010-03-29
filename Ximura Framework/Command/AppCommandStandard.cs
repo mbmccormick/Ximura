@@ -124,7 +124,6 @@ namespace Ximura.Framework
         #endregion
     }
     #endregion // AppCommandStandard<RQ, RS, CONF>
-
     #region AppCommandStandard<RQ, RS, CBRQ, CBRS, CONF, PERF>
     /// <summary>
     /// AppCommandStandard is the base command object that all standard commands should inherit from.
@@ -165,8 +164,7 @@ namespace Ximura.Framework
         #endregion
     }
     #endregion
-
-    #region AppCommandStandard<RQ, RS, CBRQ, CBRS, CONF, PERF>
+    #region AppCommandStandard<RQ, RS, CBRQ, CBRS, CONF, PERF, EXTCONF>
     /// <summary>
     /// AppCommandStandard is the base command object that all standard commands should inherit from.
     /// </summary>

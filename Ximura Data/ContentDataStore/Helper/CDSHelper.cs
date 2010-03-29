@@ -37,7 +37,7 @@ namespace Ximura.Data
     /// <summary>
     /// This static class is used to simplify access to the Content Data Store
     /// </summary>
-    public partial class CDSHelper
+    public partial class CDSHelper : ICDSHelperLegacy
     {
         #region Declarations
 		/// <summary>
@@ -190,19 +190,19 @@ namespace Ximura.Data
         /// <returns>Returns the CDS status</returns>
         public CDSResponse Create(Content inData)
         {
-            return TranslateResponseCode(Execute(inData.GetType(), CDSData.Get(CDSStateAction.Create), inData));
+            return TranslateResponseCode(Execute(inData.GetType(), CDSData.Get(CDSAction.Create), inData));
         }
         #endregion // Create(Content inData)
         #region Read<T>
 
         public CDSResponse Read<T>(string refType, string refValue, out T data) where T : Content
         {
-            return TranslateResponseCode(Execute<T>(CDSData.Get(CDSStateAction.Read, refType, refValue), out data));
+            return TranslateResponseCode(Execute<T>(CDSData.Get(CDSAction.Read, refType, refValue), out data));
         }
 
         public CDSResponse Read<T>(Guid? CID, Guid? VID, out T data) where T : Content
         {
-            return TranslateResponseCode(Execute<T>(CDSData.Get(CDSStateAction.Read, CID, VID), out data));
+            return TranslateResponseCode(Execute<T>(CDSData.Get(CDSAction.Read, CID, VID), out data));
         }
 
         #endregion // Create(Content inData)
@@ -214,66 +214,66 @@ namespace Ximura.Data
         /// <returns>Returns the CDS status</returns>
         public CDSResponse Update(Content inData, out Content outData)
         {
-            return TranslateResponseCode(Execute(inData.GetType(), CDSData.Get(CDSStateAction.Update), inData, out outData));
+            return TranslateResponseCode(Execute(inData.GetType(), CDSData.Get(CDSAction.Update), inData, out outData));
         }
 
         public CDSResponse Update<T>(T inData, out T outData) where T : Content
         {
-            return TranslateResponseCode(Execute(CDSData.Get(CDSStateAction.Update), inData, out outData));
+            return TranslateResponseCode(Execute(CDSData.Get(CDSAction.Update), inData, out outData));
         }
 
         public CDSResponse Update(Content inData)
         {
-            return TranslateResponseCode(Execute(inData.GetType(), CDSData.Get(CDSStateAction.Update), inData));
+            return TranslateResponseCode(Execute(inData.GetType(), CDSData.Get(CDSAction.Update), inData));
         }
 
         public CDSResponse Update<T>(T inData) where T : Content
         {
-            return TranslateResponseCode(Execute(CDSData.Get(CDSStateAction.Update), inData));
+            return TranslateResponseCode(Execute(CDSData.Get(CDSAction.Update), inData));
         }
         #endregion // Create(Content inData)
         #region Delete/Delete<T>
 
         public CDSResponse Delete<T>(string refType, string refValue) where T : Content
         {
-            return TranslateResponseCode(Execute<T>(CDSData.Get(CDSStateAction.Delete, refType, refValue)));
+            return TranslateResponseCode(Execute<T>(CDSData.Get(CDSAction.Delete, refType, refValue)));
         }
 
         public CDSResponse Delete<T>(Guid? CID, Guid? VID) where T : Content
         {
-            return TranslateResponseCode(Execute<T>(CDSData.Get(CDSStateAction.Delete, CID, VID)));
+            return TranslateResponseCode(Execute<T>(CDSData.Get(CDSAction.Delete, CID, VID)));
         }
 
         public CDSResponse Delete(Type objectType, string refType, string refValue)
         {
-            return TranslateResponseCode(Execute(objectType, CDSData.Get(CDSStateAction.Delete, refType, refValue)));
+            return TranslateResponseCode(Execute(objectType, CDSData.Get(CDSAction.Delete, refType, refValue)));
         }
 
         public CDSResponse Delete(Type objectType, Guid? CID, Guid? VID)
         {
-            return TranslateResponseCode(Execute(objectType, CDSData.Get(CDSStateAction.Delete, CID, VID)));
+            return TranslateResponseCode(Execute(objectType, CDSData.Get(CDSAction.Delete, CID, VID)));
         }
 
         #endregion // Create(Content inData)VersionCheck
         #region VersionCheck/VersionCheck<T>
         public CDSResponse VersionCheck<T>(string refType, string refValue, out Guid? cid, out Guid? vid) where T : Content
         {
-            return TranslateResponseCode(Execute<T>(CDSData.Get(CDSStateAction.VersionCheck, refType, refValue), out cid, out vid));
+            return TranslateResponseCode(Execute<T>(CDSData.Get(CDSAction.VersionCheck, refType, refValue), out cid, out vid));
         }
 
         public CDSResponse VersionCheck<T>(Guid? CID, Guid? VID, out Guid? cid, out Guid? vid) where T : Content
         {
-            return TranslateResponseCode(Execute<T>(CDSData.Get(CDSStateAction.VersionCheck, CID, VID), out cid, out vid));
+            return TranslateResponseCode(Execute<T>(CDSData.Get(CDSAction.VersionCheck, CID, VID), out cid, out vid));
         }
 
         public CDSResponse VersionCheck(Type objectType, string refType, string refValue, out Guid? cid, out Guid? vid)
         {
-            return TranslateResponseCode(Execute(objectType, CDSData.Get(CDSStateAction.VersionCheck, refType, refValue), out cid, out vid));
+            return TranslateResponseCode(Execute(objectType, CDSData.Get(CDSAction.VersionCheck, refType, refValue), out cid, out vid));
         }
 
         public CDSResponse VersionCheck(Type objectType, Guid? CID, Guid? VID, out Guid? cid, out Guid? vid)
         {
-            return TranslateResponseCode(Execute(objectType, CDSData.Get(CDSStateAction.VersionCheck, CID, VID), out cid, out vid));
+            return TranslateResponseCode(Execute(objectType, CDSData.Get(CDSAction.VersionCheck, CID, VID), out cid, out vid));
         }
         #endregion // VersionCheck
         #region Browse<T>

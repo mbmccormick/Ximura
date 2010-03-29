@@ -111,7 +111,7 @@ namespace Ximura.Communication
 
             C data;
             string status = CDSHelperProcess.Execute<C>(
-                CDSData.Get(CDSStateAction.Read, refType, refValue), out data);
+                CDSData.Get(CDSAction.Read, refType, refValue), out data);
 
             if (status != CH.HTTPCodes.OK_200)
                 throw new ArgumentException("Stylesheet name cannot be found.");

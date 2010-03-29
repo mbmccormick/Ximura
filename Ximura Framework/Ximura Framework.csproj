@@ -227,7 +227,15 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Command Container\CommandContainer.cs" />
+    <Compile Include="Command Container\CommandContainer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Command Container\CommandContainerBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Command Container\FSMCommandContainer.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Command\Context\ContextSettings.cs" />
     <Compile Include="Command\Context\Context_Pooling.cs">
       <SubType>Component</SubType>
@@ -247,6 +255,7 @@
     <Compile Include="Command\Helper\CJobSignature.cs" />
     <Compile Include="Command\Helper\CommandDefinition.cs" />
     <Compile Include="Command\Interfaces\IXimuraCommandRQ.cs" />
+    <Compile Include="Command\Interfaces\IXimuraFSM.cs" />
     <Compile Include="Command\Permission\CommandPermission.cs" />
     <Compile Include="Command\Permission\CommandPermissionSet.cs" />
     <Compile Include="Component\AppBase.cs">
@@ -414,14 +423,6 @@
     <None Include="_Documentation\RFC 3310 %28rfc3310%29 - Hypertext Transfer Protocol %28HTTP%29 Digest Authenticat.mht" />
     <None Include="_Documentation\XIMS Diagrams.vsd" />
     <None Include="_Documentation\XIMURA Framework SDS.doc" />
-    <EmbeddedResource Include="Command\AppCommandBase.resx">
-      <DependentUpon>AppCommandBase.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Command\AppCommandProcess.resx">
-      <DependentUpon>AppCommandProcess.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Component\XimuraComponentService.resx">
       <DependentUpon>XimuraComponentService.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -451,10 +452,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Command\Configuration\CommandConfiguration_Default.xml" />
-    <EmbeddedResource Include="Command\FiniteStateMachine.resx">
-      <DependentUpon>FiniteStateMachine.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <Content Include="Properties\epl-v10.html" />
     <Content Include="Properties\Release Notes.txt" />
     <EmbeddedResource Include="Command\Configuration\FSMCommandConfiguration_Default.xml" />

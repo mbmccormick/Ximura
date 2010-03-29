@@ -43,7 +43,7 @@ namespace Ximura.Data
 {
     [XimuraContentTypeID("2F6A8D71-86AA-495f-A4C2-3FECD6B4F097")]
     [XimuraDataContentSchema("http://schema.ximura.org/configuration/cds/1.0",
-        "xmrres://Ximura/Ximura.Data.CDSConfiguration/Ximura.Data.CDS.Configuration.CDSConfiguration.xsd")]
+        "xmrres://XimuraDataPersistence/Ximura.Data.CDSConfiguration/Ximura.Data.Configuration.CDSConfiguration.xsd")]
     [XimuraContentCachePolicy(ContentCacheOptions.CannotCache)]
     public class CDSConfiguration: FSMCommandConfiguration<CDSTimerPollJob>
     {

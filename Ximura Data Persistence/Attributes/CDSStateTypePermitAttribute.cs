@@ -40,7 +40,7 @@ namespace Ximura.Data
     public class CDSStateTypePermitAttribute : Attribute
     {
         #region Declarations
-        CDSStateAction mAction;
+        CDSAction mAction;
         bool mDeny;
         int mPriority;
         #endregion // Declarations
@@ -53,7 +53,7 @@ namespace Ximura.Data
         /// <param name="action">
         /// This is the CDSStateAction that the attribute defines.
         /// </param>
-        public CDSStateTypePermitAttribute(CDSStateAction action)
+        public CDSStateTypePermitAttribute(CDSAction action)
             : this(action, false, 0)
         {
 
@@ -70,7 +70,7 @@ namespace Ximura.Data
         /// <param name="deny">
         /// This property defines whether the action is specifically denied. Deny will override a permit when they have the same priority. By default this value is set to false.
         /// </param>
-        public CDSStateTypePermitAttribute(CDSStateAction action, bool deny)
+        public CDSStateTypePermitAttribute(CDSAction action, bool deny)
             : this(action, deny, 0)
         {
 
@@ -91,7 +91,7 @@ namespace Ximura.Data
         /// This is the priority of the attribute. Higher value attributes will override lower value attributes.
         /// By default this value will be 0.
         /// </param>
-        public CDSStateTypePermitAttribute(CDSStateAction action, bool deny, int priority)
+        public CDSStateTypePermitAttribute(CDSAction action, bool deny, int priority)
         {
             mAction = action;
             mDeny = deny;
@@ -103,7 +103,7 @@ namespace Ximura.Data
         /// <summary>
         /// This is the CDSStateAction that the attribute is specifying.
         /// </summary>
-        public CDSStateAction Action
+        public CDSAction Action
         {
             get { return mAction; }
         }

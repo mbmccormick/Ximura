@@ -32,11 +32,29 @@ using Ximura.Framework;
 namespace Ximura.Framework
 {
     /// <summary>
-    /// This class is used to hold command objects and run them without the need for the server environment.
+    /// This is the standard container for hosting a Application command that has a standard constructor.
     /// </summary>
-    public class CommandContainer<COMM>
-        where COMM : IXimuraCommandBase
+    /// <typeparam name="COMM">The command type.</typeparam>
+    public class CommandContainer<COMM> : CommandContainerBase<COMM>
+        where COMM : class, IXimuraCommandBase, IXimuraCommandRQ, new()
     {
+        #region Constructor
+        /// <summary>
+        /// This is the default constructor.
+        /// </summary>
+        public CommandContainer()
+        {
+        }
+        #endregion
+        #region CommandCreate()
+        /// <summary>
+        /// This override creates the command.
+        /// </summary>
+        protected override void CommandCreate()
+        {
+            mCommand = new COMM();
+        }
+        #endregion 
 
     }
 }

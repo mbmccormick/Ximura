@@ -66,12 +66,12 @@ namespace Ximura.Data
             sID = new Guid(ID);
             sType = typeof(RQRSContract<RQRSFolder, RQRSFolder>);
 
-            sAddressRead = new EnvelopeAddress(sID, CDSStateAction.Read);
-            sAddressUpdate = new EnvelopeAddress(sID, CDSStateAction.Update);
-            sAddressCreate = new EnvelopeAddress(sID, CDSStateAction.Create);
-            sAddressDelete = new EnvelopeAddress(sID, CDSStateAction.Delete);
-            sAddressVersionCheck = new EnvelopeAddress(sID, CDSStateAction.VersionCheck);
-            sAddressCustom = new EnvelopeAddress(sID, CDSStateAction.Custom);
+            sAddressRead = new EnvelopeAddress(sID, CDSAction.Read);
+            sAddressUpdate = new EnvelopeAddress(sID, CDSAction.Update);
+            sAddressCreate = new EnvelopeAddress(sID, CDSAction.Create);
+            sAddressDelete = new EnvelopeAddress(sID, CDSAction.Delete);
+            sAddressVersionCheck = new EnvelopeAddress(sID, CDSAction.VersionCheck);
+            sAddressCustom = new EnvelopeAddress(sID, CDSAction.Custom);
         }
         #endregion
 

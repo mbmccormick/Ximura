@@ -45,7 +45,7 @@ namespace Ximura.Data
         /// </summary>
         public static EnvelopeAddress Create
         {
-            get { return new EnvelopeAddress(CDSCommandID, CDSStateAction.Create); }
+            get { return new EnvelopeAddress(CDSCommandID, CDSAction.Create); }
         }
         #endregion // Create
 
@@ -63,7 +63,7 @@ namespace Ximura.Data
         /// </summary>
         public static EnvelopeAddress Read
         {
-            get { return new EnvelopeAddress(CDSCommandID, CDSStateAction.Read); }
+            get { return new EnvelopeAddress(CDSCommandID, CDSAction.Read); }
         }
         #endregion // Read
         #region Update
@@ -72,7 +72,7 @@ namespace Ximura.Data
         /// </summary>
         public static EnvelopeAddress Update
         {
-            get { return new EnvelopeAddress(CDSCommandID, CDSStateAction.Update); }
+            get { return new EnvelopeAddress(CDSCommandID, CDSAction.Update); }
         }
         #endregion // Update
         #region Delete
@@ -81,7 +81,7 @@ namespace Ximura.Data
         /// </summary>
         public static EnvelopeAddress Delete
         {
-            get { return new EnvelopeAddress(CDSCommandID, CDSStateAction.Delete); }
+            get { return new EnvelopeAddress(CDSCommandID, CDSAction.Delete); }
         }
         #endregion // Delete
         #region VersionCheck
@@ -90,7 +90,7 @@ namespace Ximura.Data
         /// </summary>
         public static EnvelopeAddress VersionCheck
         {
-            get { return new EnvelopeAddress(CDSCommandID, CDSStateAction.VersionCheck); }
+            get { return new EnvelopeAddress(CDSCommandID, CDSAction.VersionCheck); }
         }
         #endregion // VersionCheck
         #region Custom
@@ -99,7 +99,7 @@ namespace Ximura.Data
         /// </summary>
         public static EnvelopeAddress Custom
         {
-            get { return new EnvelopeAddress(CDSCommandID, CDSStateAction.Custom); }
+            get { return new EnvelopeAddress(CDSCommandID, CDSAction.Custom); }
         }
         #endregion // Custom
     }

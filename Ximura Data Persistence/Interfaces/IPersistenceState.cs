@@ -33,7 +33,7 @@ namespace Ximura.Data
         /// <exception cref="Ximura.Data.CDSStateException">
         /// A CDSStateException will be thrown if a request is made that this persistence manager does not support.
         /// </exception>
-        bool ProcessAction(CDSStateAction action, IPersistenceContext context);
+        bool ProcessAction(CDSAction action, IPersistenceContext context);
         /// <summary>
         /// This method can be used to modify a response before it is sent back to a user.
         /// </summary>
@@ -55,6 +55,6 @@ namespace Ximura.Data
         /// the Execution plan for specific Entity types and actions.
         /// </summary>
         /// <returns>Returns -1 is the action is not supported, otherwise the combined order is returned.</returns>
-        int SupportsEntityAction(CDSStateAction action, Type objectType);
+        int SupportsEntityAction(CDSAction action, Type objectType);
     }
 }

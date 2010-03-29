@@ -22,12 +22,12 @@ using RH = Ximura.Reflection;
 #endregion
 namespace Ximura.Communication
 {
-    [CDSStateActionPermit(CDSStateAction.Create)]
-    [CDSStateActionPermit(CDSStateAction.Read)]
-    [CDSStateActionPermit(CDSStateAction.Update)]
-    [CDSStateActionPermit(CDSStateAction.Delete)]
-    [CDSStateActionPermit(CDSStateAction.VersionCheck)]
-    [CDSStateActionPermit(CDSStateAction.ResolveReference)]
+    [CDSStateActionPermit(CDSAction.Create)]
+    [CDSStateActionPermit(CDSAction.Read)]
+    [CDSStateActionPermit(CDSAction.Update)]
+    [CDSStateActionPermit(CDSAction.Delete)]
+    [CDSStateActionPermit(CDSAction.VersionCheck)]
+    [CDSStateActionPermit(CDSAction.ResolveReference)]
     public class StylesheetPM<CONT, DCONT> : SQLDBPersistenceManager<CONT, DCONT>
         where CONT : DCONT
         where DCONT : StylesheetBase

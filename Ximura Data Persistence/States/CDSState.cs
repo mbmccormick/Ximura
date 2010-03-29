@@ -84,29 +84,29 @@ namespace Ximura.Data
         /// <exception cref="Ximura.Data.CDSStateException">
         /// A CDSStateException will be thrown if a request is made that this persistence manager does not support.
         /// </exception>
-        public virtual bool ProcessAction(CDSStateAction action, CDSContext context)
+        public virtual bool ProcessAction(CDSAction action, CDSContext context)
         {
             switch (action)
             {
-                case CDSStateAction.ResolveReference:
+                case CDSAction.ResolveReference:
                     return ResolveReference(context);
-                case CDSStateAction.Browse:
+                case CDSAction.Browse:
                     return Browse(context);
-                case CDSStateAction.Create:
+                case CDSAction.Create:
                     return Create(context);
-                case CDSStateAction.Custom:
+                case CDSAction.Custom:
                     return Custom(context);
-                case CDSStateAction.Delete:
+                case CDSAction.Delete:
                     return Delete(context);
-                case CDSStateAction.Read:
+                case CDSAction.Read:
                     return Read(context);
-                case CDSStateAction.Restore:
+                case CDSAction.Restore:
                     return Restore(context);
-                case CDSStateAction.Update:
+                case CDSAction.Update:
                     return Update(context);
-                case CDSStateAction.Cache:
+                case CDSAction.Cache:
                     return Cache(context);
-                case CDSStateAction.VersionCheck:
+                case CDSAction.VersionCheck:
                     return VersionCheck(context);
             }
 
@@ -130,7 +130,7 @@ namespace Ximura.Data
         /// the Execution plan for specific Entity types and actions.
         /// </summary>
         /// <returns>Returns -1 is the action is not supported, otherwise the combined order is returned.</returns>
-        public virtual int SupportsEntityAction(CDSStateAction action, Type objectType)
+        public virtual int SupportsEntityAction(CDSAction action, Type objectType)
         {
             return -1;
         }

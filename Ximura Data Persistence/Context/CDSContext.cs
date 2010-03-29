@@ -138,9 +138,9 @@ namespace Ximura.Data
         /// This method maps the PMCapability request to its corresponding CDS Action type.
         /// </summary>
         /// <returns></returns>
-        public virtual CDSStateAction CDSStateActionResolve()
+        public virtual CDSAction CDSStateActionResolve()
         {
-            return (CDSStateAction)Data.DestinationAddress.SubCommand;
+            return (CDSAction)Data.DestinationAddress.SubCommand;
             
             //throw new InvalidCommandCDSException("The PMCapability is not recognised: " + Data.DestinationAddress.subcommand.ToString());
         }
@@ -149,7 +149,7 @@ namespace Ximura.Data
         /// <summary>
         /// This method processes the specific CRUD execution plan for the request.
         /// </summary>
-        public virtual bool CDSStateProcessDirective(CDSStateAction action)
+        public virtual bool CDSStateProcessDirective(CDSAction action)
         {
             bool resolved = false;
 
@@ -234,7 +234,7 @@ namespace Ximura.Data
         /// <param name="job">The current request.</param>
         /// <param name="action">The current action. This may be changed depending on the merge action performed.</param>
         protected virtual void ContentProcessFragment(SecurityManagerJob job,
-            RQRSContract<CDSRequestFolder, CDSResponseFolder> Data, ref CDSStateAction action)
+            RQRSContract<CDSRequestFolder, CDSResponseFolder> Data, ref CDSAction action)
         {
             CDSRequestFolder Request = Data.ContractRequest;
             CDSResponseFolder Response = Data.ContractResponse;
@@ -257,11 +257,11 @@ namespace Ximura.Data
             //the original request so is no longer necessary.
             if (content.FragmentIDIsByReference())
                 status = CDSHelperDirect.Execute(content.FragmentBaseType(),
-                    CDSData.Get(CDSStateAction.Read, content.FragmentReferenceID(), content.FragmentReferenceType()),
+                    CDSData.Get(CDSAction.Read, content.FragmentReferenceID(), content.FragmentReferenceType()),
                         out parentContent);
             else
                 status = CDSHelperDirect.Execute(content.FragmentBaseType(),
-                    CDSData.Get(CDSStateAction.Read, content.IDContent, null),
+                    CDSData.Get(CDSAction.Read, content.IDContent, null),
                         out parentContent);
 
             if (status == CH.HTTPCodes.InternalServerError_500)

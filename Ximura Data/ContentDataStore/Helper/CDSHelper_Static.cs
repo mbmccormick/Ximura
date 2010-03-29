@@ -96,7 +96,7 @@ namespace Ximura.Data
 
                 CDSResponseFolder rs = rqEnv.ContractResponse;
                 if (rqEnv.ContractRequest.InternalCall && 
-                    rqH.Action == CDSStateAction.ResolveReference)
+                    rqH.Action == CDSAction.ResolveReference)
                 {
                     cid = rq.DataContentID;
                     vid = rq.DataVersionID;
@@ -216,9 +216,8 @@ namespace Ximura.Data
         }
         #endregion 
 
-        #region CDSAccessAsync
-        public static void ExecuteAsync(IXimuraSessionRQ SessionRQ,
-            CDSData rq, CDSCallback rsCallback, object state)
+        #region ExecuteAsync(IXimuraSessionRQ SessionRQ, CDSData rq, CDSCallback rsCallback, object state)
+        public static void ExecuteAsync(IXimuraSessionRQ SessionRQ, CDSData rq, CDSCallback rsCallback, object state)
         {
             //RQRSContract<CDSRequestFolder, CDSResponseFolder> rqEnv = null;
 
@@ -266,9 +265,8 @@ namespace Ximura.Data
             //}
         }
         #endregion
-        #region CDSAccessAsync
-        public static void ExecuteAsync<T>(IXimuraSessionRQ SessionRQ,
-            CDSData rq, CDSCallback<T> rsCallback, object state)
+        #region ExecuteAsync<T>(IXimuraSessionRQ SessionRQ,CDSData rq, CDSCallback<T> rsCallback, object state)
+        public static void ExecuteAsync<T>(IXimuraSessionRQ SessionRQ,CDSData rq, CDSCallback<T> rsCallback, object state)
             where T:Content
         {
             //RQRSContract<CDSRequestFolder, CDSResponseFolder> rqEnv = null;
@@ -318,7 +316,7 @@ namespace Ximura.Data
         }
                 #endregion
 
-        #region AsyncCDSCallback
+        #region AsyncCDSCallback(object sender, CommandRSEventArgs args)
         /// <summary>
         /// This is the Read call back.
         /// </summary>

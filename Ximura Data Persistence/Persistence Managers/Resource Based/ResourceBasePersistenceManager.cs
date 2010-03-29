@@ -37,9 +37,9 @@ namespace Ximura.Data
     /// </summary>
     /// <typeparam name="CONT">The content type to handle.</typeparam>
     /// <typeparam name="DCONT">The base content type to scan.</typeparam>
-    [CDSStateActionPermit(CDSStateAction.Read)]
-    [CDSStateActionPermit(CDSStateAction.VersionCheck)]
-    [CDSStateActionPermit(CDSStateAction.ResolveReference)]
+    [CDSStateActionPermit(CDSAction.Read)]
+    [CDSStateActionPermit(CDSAction.VersionCheck)]
+    [CDSStateActionPermit(CDSAction.ResolveReference)]
     public class ResourceBasePersistenceManager<CONT, DCONT, CONF> : CollectionBasePersistenceManager<CONT, DCONT, CONF>
         where CONT : DCONT
         where DCONT : Content
@@ -107,7 +107,7 @@ namespace Ximura.Data
                 //Ok, the cache has expired, but we can check whether the version is still valid and return the content.
                 Guid? CID, VID;
                 string vidStatus = context.CDSHelperDirect.Execute(objectType,
-                    CDSData.Get(CDSStateAction.VersionCheck, id.Value.ContentID, id.Value.VersionID),
+                    CDSData.Get(CDSAction.VersionCheck, id.Value.ContentID, id.Value.VersionID),
                     out CID, out VID);
                 //Ok, the cached item is valid so we can return.
                 if (vidStatus == CH.HTTPCodes.OK_200 && VID.HasValue && id.Value.VersionID == VID.Value)

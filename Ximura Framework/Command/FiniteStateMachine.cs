@@ -97,7 +97,7 @@ namespace Ximura.Framework
     /// <typeparam name="SET">The FSM base settings.</typeparam>
     /// <typeparam name="EXTCONF">The external configuration object type which contains the settings for the internal commands.</typeparam>
     public class FiniteStateMachine<RQ, RS, CBRQ, CBRS, CNTX, ST, SET, CONF, PERF, EXTCONF> :
-        AppCommandProcess<RQ, RS, CBRQ, CBRS, CONF, PERF, EXTCONF>
+        AppCommandProcess<RQ, RS, CBRQ, CBRS, CONF, PERF, EXTCONF>, IXimuraFSM
         where RQ : RQRSFolder, new()
         where RS : RQRSFolder, new() 
         where CBRQ : RQRSFolder, new()
@@ -311,21 +311,6 @@ namespace Ximura.Framework
             return Env;
         }
         #endregion // CreateSystemRequest
-
-        #region FSMConfig
-        ///// <summary>
-        ///// This is the finite state machine configuration object.
-        ///// </summary>
-        //[Browsable(false)]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        //public virtual IXimuraFSMConfigSH FSMConfig
-        //{
-        //    get
-        //    {
-        //        return CommandSettings as IXimuraFSMConfigSH;
-        //    }
-        //}
-        #endregion // FSMSettings
 
         #region ProcessRequest(SecurityManagerJob job, RQRSContract<RQ, RS> Data)
         /// <summary>
@@ -548,7 +533,7 @@ namespace Ximura.Framework
         /// <summary>
         /// This method retrieves a context from the pool.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Returns a context object.</returns>
         protected virtual CNTX ContextGetContext()
         {
             return null;
@@ -558,7 +543,7 @@ namespace Ximura.Framework
         /// <summary>
         /// This method returns a context to the pool.
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">The context to return.</param>
         protected virtual void ContextReturnContext(CNTX context)
         {
 
@@ -582,5 +567,4 @@ namespace Ximura.Framework
 
     }
     #endregion
-
 }

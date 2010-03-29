@@ -49,7 +49,7 @@ namespace Ximura.Data
 
         private CDSStateActionPermitAttribute[] attrsCDSStateActionPermit;
         private CDSStateTypePermitAttribute attrCDSStateTypePermit;
-        private Dictionary<CDSStateAction, bool> mActionPermitCache;
+        private Dictionary<CDSAction, bool> mActionPermitCache;
         private Dictionary<Type, bool> mTypePermitCache;
         #endregion // Declarations
         #region Constructors
@@ -66,7 +66,7 @@ namespace Ximura.Data
         {
             SetAttributes();
 
-            mActionPermitCache = new Dictionary<CDSStateAction, bool>();
+            mActionPermitCache = new Dictionary<CDSAction, bool>();
             mTypePermitCache = new Dictionary<Type, bool>();
         }
         #endregion // Constructors
@@ -90,7 +90,7 @@ namespace Ximura.Data
         /// the Execution plan for specific Entity types and actions.
         /// </summary>
         /// <returns>Returns -1 is the action is not supported, otherwise the combined order is returned.</returns>
-        public override int SupportsEntityAction(CDSStateAction action, Type objectType)
+        public override int SupportsEntityAction(CDSAction action, Type objectType)
         {
             if (!PermitType(objectType))
                 return -1;
@@ -107,7 +107,7 @@ namespace Ximura.Data
         /// This method scans the CDSStateActionPermit attributes and pull out the permit settings.
         /// </summary>
         /// <param name="action">The action to scan for.</param>
-        protected virtual bool PermitAction(CDSStateAction action)
+        protected virtual bool PermitAction(CDSAction action)
         {
             if (mActionPermitCache.ContainsKey(action))
                 return mActionPermitCache[action];

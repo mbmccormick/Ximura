@@ -36,7 +36,7 @@ namespace Ximura.Data
     /// <summary>
     /// The CDSData class is used by the CDSHelper to hold the information for a request.
     /// </summary>
-    public partial class CDSData : CDSDataBase, IXimuraPoolReturnable
+    public class CDSData : CDSDataBase, IXimuraPoolReturnable
     {
         #region Static Declarations
         private static readonly Guid sCDSCommandGuid = new Guid("FE21CBF6-2CDC-4549-9F13-49385CAE8DDA");
@@ -55,7 +55,7 @@ namespace Ximura.Data
         /// parameters
         /// </summary>
         /// <returns>Returns an object from the pool.</returns>
-        public static CDSData Get(CDSStateAction action, Guid? CID, Guid? VID)
+        public static CDSData Get(CDSAction action, Guid? CID, Guid? VID)
         {
             return Get(action, CID, VID, JobPriority.Normal);
         }
@@ -64,7 +64,7 @@ namespace Ximura.Data
         /// parameters
         /// </summary>
         /// <returns>Returns an object from the pool.</returns>
-        public static CDSData Get(CDSStateAction action, Guid? CID, Guid? VID, JobPriority priority)
+        public static CDSData Get(CDSAction action, Guid? CID, Guid? VID, JobPriority priority)
         {
             CDSData rq = sCDSRequestPool.Get();
             rq.ByReference = false;
@@ -85,7 +85,7 @@ namespace Ximura.Data
         /// parameters
         /// </summary>
         /// <returns>Returns an object from the pool.</returns>
-        public static CDSData Get(CDSStateAction action, string refType, string refValue)
+        public static CDSData Get(CDSAction action, string refType, string refValue)
         {
             return Get(action, refType, refValue, JobPriority.Normal);
         }
@@ -94,7 +94,7 @@ namespace Ximura.Data
         /// parameters
         /// </summary>
         /// <returns>Returns an object from the pool.</returns>
-        public static CDSData Get(CDSStateAction action, string refType, string refValue, JobPriority priority)
+        public static CDSData Get(CDSAction action, string refType, string refValue, JobPriority priority)
         {
             CDSData rq = sCDSRequestPool.Get();
             rq.ByReference = true;
@@ -110,7 +110,7 @@ namespace Ximura.Data
         /// parameters
         /// </summary>
         /// <returns>Returns an object from the pool.</returns>
-        public static CDSData Get(CDSStateAction action)
+        public static CDSData Get(CDSAction action)
         {
             return Get(action, JobPriority.Normal);
         }
@@ -120,7 +120,7 @@ namespace Ximura.Data
         /// parameters
         /// </summary>
         /// <returns>Returns an object from the pool.</returns>
-        public static CDSData Get(CDSStateAction action, JobPriority priority)
+        public static CDSData Get(CDSAction action, JobPriority priority)
         {
             CDSData rq = sCDSRequestPool.Get();
             rq.Action = action;

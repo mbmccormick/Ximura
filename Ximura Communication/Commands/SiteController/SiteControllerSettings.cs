@@ -229,7 +229,7 @@ namespace Ximura.Communication
 
             ControllerScript newScript;
             string status = CDSHelper.Execute<ControllerScript>(
-                CDSData.Get(CDSStateAction.Read, "name", refScript), out newScript);
+                CDSData.Get(CDSAction.Read, "name", refScript), out newScript);
 
             if (status != CH.HTTPCodes.OK_200 && mExtScriptResolver != null)
             {

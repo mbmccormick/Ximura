@@ -110,7 +110,7 @@ namespace Ximura.Communication
                         try
                         {
                             status = context.CDSHelper.Execute(insert.EntityType,
-                                CDSData.Get(CDSStateAction.Read, insert.ReferenceType, insert.ReferenceValue),
+                                CDSData.Get(CDSAction.Read, insert.ReferenceType, insert.ReferenceValue),
                                 out outData);
 
                             if (status != CH.HTTPCodes.OK_200 && !insert.PermitError)
