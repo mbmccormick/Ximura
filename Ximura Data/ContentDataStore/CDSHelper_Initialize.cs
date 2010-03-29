@@ -35,7 +35,7 @@ namespace Ximura.Data
     /// <summary>
     /// This staic class allows for dynamic updates to the persistence service.
     /// </summary>
-    public static partial class CDSExtensionMethods
+    public static partial class CDSHelper
     {
         #region Initialize
         /// <summary>
@@ -44,13 +44,14 @@ namespace Ximura.Data
         /// <typeparam name="E">The entity type.</typeparam>
         /// <param name="svc">The persistence service.</param>
         /// <returns>Returns the entity.</returns>
-        public static E Initialize<E>(this ICDSHelper svc) where E : Content
+        public static CDSResponse CDSInitialize<E>(this IXimuraSessionRQ SessionRQ, out E data) where E : Content
         {
             //CDSContext pc = PersistenceContext.Initialize(typeof(E));
             //svc.Execute(typeof(E));
 
             //return (E)pc.ResponseData;
-            return default(E);
+            data = null;
+            return CDSResponse.BadRequest;
         }
         #endregion
 

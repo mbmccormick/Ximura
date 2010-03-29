@@ -40,7 +40,6 @@ namespace Ximura.Communication
         private object syncCacheContainer = new object();
         private object syncCache = new object();
 
-        private CDSHelper mCDSHelper;// = new CDSHelper(null);
         #endregion // Declarations
         #region Constructors
         /// <summary>
@@ -110,7 +109,7 @@ namespace Ximura.Communication
             }
 
             C data;
-            string status = CDSHelperProcess.Execute<C>(
+            string status = ProcessSession.Execute<C>(
                 CDSData.Get(CDSAction.Read, refType, refValue), out data);
 
             if (status != CH.HTTPCodes.OK_200)
@@ -128,22 +127,6 @@ namespace Ximura.Communication
             } 
         }
 
-
-        #region CDSHelperProcess
-        /// <summary>
-        /// This is the Command Session used to retrieve system data.
-        /// </summary>
-        protected CDSHelper CDSHelperProcess
-        {
-            get
-            {
-                if (mCDSHelper == null)
-                    mCDSHelper = new CDSHelper(ProcessSession);
-
-                return mCDSHelper;
-            }
-        }
-        #endregion // CDSHelperProcess
 
     }
 }

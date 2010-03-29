@@ -65,7 +65,8 @@ namespace Ximura.UnitTest.Data
         {
             ContentDataStoreContainer<BinaryTestCDS> cont = new ContentDataStoreContainer<BinaryTestCDS>();
 
-            BinaryTest bt = cont.Initialize<BinaryTest>();
+            BinaryTest bt;
+            cont.CDSInitialize<BinaryTest>(out bt);
         }
     }
 }

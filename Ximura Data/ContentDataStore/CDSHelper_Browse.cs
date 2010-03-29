@@ -10,7 +10,7 @@
 //     Paul Stancer - initial implementation
 // *******************************************************************************
 #endregion
-﻿#region using
+#region using
 using System;
 using System.Data;
 using System.Linq;
@@ -31,26 +31,42 @@ using Ximura.Data;
 using Ximura.Framework;
 #endregion // using
 namespace Ximura.Data
-{
-    public partial class CDSHelper 
+{    /// <summary>
+    /// This static class allows for dynamic updates to the CDS persistence service.
+    /// </summary>
+    public static partial class CDSHelper
     {
+        #region Initialize
         /// <summary>
-        /// This property specifies the browse options
+        /// This method initializes the entity from the persistence store.
         /// </summary>
-        [Flags]
-        public enum CDSBrowseConstraints : int
+        /// <typeparam name="E">The entity type.</typeparam>
+        /// <param name="svc">The persistence service.</param>
+        /// <returns>Returns the entity.</returns>
+        public static CDSResponse CDSBrowse<E>(this IXimuraSessionRQ SessionRQ, out E data) where E : Content
         {
-            /// <summary>
-            /// The CDS will browse on all content fields. This may be very slow.
-            /// </summary>
-            All = 0,
-            /// <summary>
-            /// The CDS will only browse of fields that have been marked relational.
-            /// </summary>
-            Relational = 1
-        }
+            //CDSContext pc = PersistenceContext.Initialize(typeof(E));
+            //svc.Execute(typeof(E));
 
-        public class BrowseContext<T> : IQueryable<T>, IQueryProvider
+            //return (E)pc.ResponseData;
+            data = null;
+            return CDSResponse.BadRequest;
+        }
+        #endregion
+
+        //#region Browse<T>
+        //public static BrowseContext<T> Browse<T>(IXimuraSessionRQ SessionRQ) where T : Content
+        //{
+        //    return Browse<T>(SessionRQ, CDSBrowseConstraints.Relational);
+        //}
+
+        //public static BrowseContext<T> Browse<T>(IXimuraSessionRQ SessionRQ, CDSBrowseConstraints constraints) where T : Content
+        //{
+        //    return new BrowseContext<T>(SessionRQ, constraints);
+        //}
+        //#endregion // Browse<T>
+
+        public class CDSBrowseContext<T> : IQueryable<T>, IQueryProvider
             where T : Content
         {
             #region Declarations
@@ -65,7 +81,7 @@ namespace Ximura.Data
             /// </summary>
             /// <param name="SessionRQ">The session object to execute under.</param>
             /// <param name="constraints">The browse constraints identifying what sort of request should be accepted.</param>
-            public BrowseContext(IXimuraSessionRQ SessionRQ, CDSBrowseConstraints constraints)
+            public CDSBrowseContext(IXimuraSessionRQ SessionRQ, CDSBrowseConstraints constraints)
             {
                 mSessionRQ = SessionRQ;
                 mConstraints = constraints;

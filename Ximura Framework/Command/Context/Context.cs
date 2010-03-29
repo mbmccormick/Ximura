@@ -53,9 +53,6 @@ namespace Ximura.Framework
         /// </summary>
         private SET mContextSettings;
 
-        //private DataContentSessionWrapper mDataContentSessionWrapper;
-        private CDSHelper mCDSHelper;
-
         private IXimuraFSMContextPoolAccess mContextPoolAccess;
         #endregion // Declarations
         #region Constructor
@@ -64,9 +61,6 @@ namespace Ximura.Framework
         /// </summary>
         public Context()
         {
-            //mDataContentSessionWrapper = new DataContentSessionWrapper(null);
-            mCDSHelper = new CDSHelper(null);
-
             Reset();
         }
         #endregion // Constructor
@@ -78,9 +72,6 @@ namespace Ximura.Framework
         public virtual void Reset()
         {
             mContextSession = null;
-
-            //DCWrapper.Session = null;
-            CDSHelper.Session = null;
 
             mContextSettings = null;
             mState = null;
@@ -105,22 +96,12 @@ namespace Ximura.Framework
             //Reset the session parameters.
             mContextSession = contextSession;
             //DCWrapper.Session = contextSession;
-            CDSHelper.Session = contextSession;
+
             mContextPoolAccess = cntxGet;
             //Set the initial state for the connection
             this.ChangeState();
         }
         #endregion // Reset(SET fsm, IXimuraSession contextSession)
-
-        #region CDSHelper
-        /// <summary>
-        /// This is the CDS Helper, that simplifies access to the Content Data Store
-        /// </summary>
-        public virtual CDSHelper CDSHelper
-        {
-            get { return mCDSHelper; }
-        }
-        #endregion // CDSHelper
 
         #region ContextSettings
         /// <summary>

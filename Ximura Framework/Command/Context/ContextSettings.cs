@@ -50,8 +50,6 @@ namespace Ximura.Framework
         /// </summary>
         protected StateExtender<ST> mStateExtender = null;
 
-        private CDSHelper mCDSHelper;
-
         private IXimuraApplicationDefinition baseApplication;
         private IXimuraCommand baseCommand;
 
@@ -67,7 +65,6 @@ namespace Ximura.Framework
         public ContextSettings()
         {
             mStateExtender = null;
-            mCDSHelper = new CDSHelper(null);
         }
         #endregion
 
@@ -242,22 +239,11 @@ namespace Ximura.Framework
             this.EnvelopeHelper = envelopeHelper;
 
             this.SessionManager = sessionManager;
-            mCDSHelper.Session = processSession;
 
             this.mConfig = config;
             this.mPerf = perf;
         }
         #endregion
-
-        #region CDSHelper
-        /// <summary>
-        /// This is the CDS Helper for the process session object.
-        /// </summary>
-        protected virtual CDSHelper CDSHelper
-        {
-            get { return mCDSHelper; }
-        }
-        #endregion // CDSHelper
 
         #region DomainDefault
         /// <summary>

@@ -109,17 +109,6 @@ namespace Ximura.Framework
         }
         #endregion
 
-        #region Culture
-        /// <summary>
-        /// The culture for the request/response.
-        /// </summary>
-        public CultureInfo Culture
-        {
-            get { return mCulture; }
-            set { mCulture = value; }
-        }
-        #endregion
-
         #region IXimuraPoolableObject Members
         #region CanPool
         /// <summary>
@@ -144,6 +133,5 @@ namespace Ximura.Framework
             set { mID = value; }
         }
         #endregion // ID
-
     }
 }

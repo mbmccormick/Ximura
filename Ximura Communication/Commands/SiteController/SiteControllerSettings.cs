@@ -228,8 +228,10 @@ namespace Ximura.Communication
                 return;
 
             ControllerScript newScript;
-            string status = CDSHelper.Execute<ControllerScript>(
-                CDSData.Get(CDSAction.Read, "name", refScript), out newScript);
+            throw new NotImplementedException();
+            string status;
+            //= CDSHelper.Execute<ControllerScript>(
+            //    CDSData.Get(CDSAction.Read, "name", refScript), out newScript);
 
             if (status != CH.HTTPCodes.OK_200 && mExtScriptResolver != null)
             {

@@ -202,8 +202,6 @@ namespace Ximura.Framework
 		/// </summary>
 		protected IXimuraCommandProcessConfigSH mSettings = null;
 
-        private CDSHelper mCDSHelper = null;
-
 		#endregion
 		#region Constructors
 		/// <summary>
@@ -316,49 +314,6 @@ namespace Ximura.Framework
 			}
 		}
 		#endregion
-
-		#region CDSSettings
-		/// <summary>
-		/// This protected property is the CDS settings object.
-		/// </summary>
-        [Browsable(false)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        protected virtual ICDSSettingsService CDSSettings
-		{
-			get
-			{
-				if (mCDSSettings == null)
-					mCDSSettings = GetService(typeof(ICDSSettingsService)) 
-						as ICDSSettingsService;
-
-				return mCDSSettings;
-			}
-		}
-		#endregion // CDSSettings
-
-        #region CDSHelper
-        /// <summary>
-        /// The CDSHelper is the object that encapsulates the functionality needed
-        /// to receive and manage content from the Content Data Store.
-        /// </summary>
-        [Browsable(false)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        protected virtual CDSHelper CDSHelper
-        {
-            get
-            {
-                if (mCDSHelper != null)
-                    return mCDSHelper;
-
-                if (this.mProcessSession == null)
-                    return null;
-
-                mCDSHelper = new CDSHelper(this.mProcessSession);
-
-                return mCDSHelper;
-            }
-        }
-        #endregion // DCWrapper
 
 		#region PrepareJob
 		/// <summary>

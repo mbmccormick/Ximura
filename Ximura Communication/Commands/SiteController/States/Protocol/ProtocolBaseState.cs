@@ -46,15 +46,16 @@ namespace Ximura.Communication
         {
             ControllerSession session;
 
-            switch (context.CDSHelper.Read<ControllerSession>(context.ScriptRequest.SessionID, null, out session))
-            {
-                case CDSResponse.OK:
-                    context.ScriptSession = session;
-                    context.ScriptRequest.SessionID = session.IDContent;
+            throw new NotImplementedException();
+            //switch (context.Job.CDSRead<ControllerSession>(context.ScriptRequest.SessionID, null, out session))
+            //{
+            //    case CDSResponse.OK:
+            //        context.ScriptSession = session;
+            //        context.ScriptRequest.SessionID = session.IDContent;
 
-                    ProcessMemberSecurity(context);
-                    return true;
-            }
+            //        ProcessMemberSecurity(context);
+            //        return true;
+            //}
 
             return false;
         }

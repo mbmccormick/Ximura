@@ -159,13 +159,14 @@ namespace Ximura.Communication
             {
                 string refValue = absoluteUri.OriginalString.Replace('/', '.');
 
-                switch (context.CDSHelperDirect.Read<CONT>("name", refValue, out data))
-                {
-                    case CDSResponse.OK:
-                        return new MemoryStream(data.ToArray());
-                    default:
-                        throw new ArgumentOutOfRangeException(string.Format("{0} cannot be resolved", absoluteUri.OriginalString));
-                }
+                throw new NotImplementedException();
+                //switch (context.CDSHelperDirect.Read<CONT>("name", refValue, out data))
+                //{
+                //    case CDSResponse.OK:
+                //        return new MemoryStream(data.ToArray());
+                //    default:
+                //        throw new ArgumentOutOfRangeException(string.Format("{0} cannot be resolved", absoluteUri.OriginalString));
+                //}
             }
             finally
             {

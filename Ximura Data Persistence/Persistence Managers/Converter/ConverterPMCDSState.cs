@@ -75,8 +75,10 @@ namespace Ximura.Data
 
             try
             {
-                CDSResponse response = context.CDSHelperDirect.Read<CNVR>(
-                    context.Request.DataContentID, context.Request.DataVersionID, out original);
+                throw new NotImplementedException();
+                CDSResponse response = CDSResponse.SystemError;
+                //context.CDSHelperDirect.Read<CNVR>(
+                //     context.Request.DataContentID, context.Request.DataVersionID, out original);
 
                 switch (response)
                 {
@@ -132,8 +134,10 @@ namespace Ximura.Data
         protected override bool ResolveReference(CDSContext context)
         {
             Guid? cid, vid;
-            CDSResponse response = context.CDSHelperDirect.ResolveReference<CNVR>(
-                context.Request.DataReferenceType, context.Request.DataReferenceValue, out cid, out vid);
+            throw new NotImplementedException();
+            CDSResponse response = CDSResponse.SystemError;
+            //context.CDSHelperDirect.ResolveReference<CNVR>(
+            //    context.Request.DataReferenceType, context.Request.DataReferenceValue, out cid, out vid);
 
             context.Request.DataContentID = cid;
             context.Request.DataVersionID = vid;
@@ -151,8 +155,10 @@ namespace Ximura.Data
         protected override bool VersionCheck(CDSContext context)
         {
             Guid? cid, vid;
-            CDSResponse response = context.CDSHelperDirect.VersionCheck<CNVR>(
-                context.Request.DataContentID, context.Request.DataVersionID, out cid, out vid);
+            CDSResponse response = CDSResponse.SystemError;
+            throw new NotImplementedException();
+                //context.CDSHelperDirect.VersionCheck<CNVR>(
+                //context.Request.DataContentID, context.Request.DataVersionID, out cid, out vid);
 
             context.Response.CurrentContentID = cid;
             context.Response.CurrentVersionID = vid;

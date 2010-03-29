@@ -51,9 +51,11 @@ namespace Ximura.Communication
 
                 Type entityType = RH.CreateTypeFromString(context.Request.Settings.OutputColl[0].Output);
 
-                string status= context.CDSHelper.Execute(entityType, 
-                    CDSData.Get(CDSAction.Read, refType, refValue)
-                    , out content);
+                string status;
+                throw new NotImplementedException();
+                //= context.CDSHelper.Execute(entityType, 
+                //    CDSData.Get(CDSAction.Read, refType, refValue)
+                //    , out content);
 
                 if (status == CH.HTTPCodes.OK_200 && content is BinaryContent)
                 {

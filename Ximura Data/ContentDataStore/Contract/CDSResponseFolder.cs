@@ -32,6 +32,9 @@ using Ximura.Framework;
 #endregion // using
 namespace Ximura.Data
 {
+    /// <summary>
+    /// This class contains the data for the CDS response.
+    /// </summary>
     public class CDSResponseFolder : CDSRQRSFolderBase
     {
 		#region Declarations

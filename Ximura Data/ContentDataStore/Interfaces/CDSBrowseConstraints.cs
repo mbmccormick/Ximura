@@ -13,8 +13,6 @@
 #region using
 using System;
 using System.Data;
-using System.Linq;
-using System.Linq.Expressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,18 +22,27 @@ using System.Globalization;
 using System.Runtime.Serialization;
 
 using Ximura;
+using Ximura.Data;
+using Ximura.Framework;
 using CH = Ximura.Common;
 using RH = Ximura.Reflection;
 using AH = Ximura.AttributeHelper;
-using Ximura.Data;
-using Ximura.Framework;
 #endregion // using
 namespace Ximura.Data
-{    /// <summary>
-    /// This static class allows for dynamic updates to the CDS persistence service.
+{
+    /// <summary>
+    /// This property specifies the browse options
     /// </summary>
-    public static partial class CDSExtensionMethods
+    [Flags]
+    public enum CDSBrowseConstraints : int
     {
-
+        /// <summary>
+        /// The CDS will browse on all content fields. This may be very slow.
+        /// </summary>
+        All = 0,
+        /// <summary>
+        /// The CDS will only browse of fields that have been marked relational.
+        /// </summary>
+        Relational = 1
     }
 }

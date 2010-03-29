@@ -33,7 +33,7 @@ namespace Ximura.Data
     /// This class encapsulates the Content Data Store for use in standalone projects that 
     /// does not use the Ximura Framework.
     /// </summary>
-    public class ContentDataStoreContainer<CDS> : FSMCommandContainer<CDS>, ICDSHelper
+    public class ContentDataStoreContainer<CDS> : FSMCommandContainer<CDS>
         where CDS: ContentDataStore, new()
     {
         #region Constructor
@@ -57,63 +57,5 @@ namespace Ximura.Data
         }
         #endregion 
 
-        #region ICDSHelper Members
-
-        public string Execute(Type contentType, CDSData rq, Content inData, out Content outData)
-        {
-            throw new NotImplementedException();
-        }
-
-        public string Execute(Type contentType, CDSData rq, out Guid? cid, out Guid? vid)
-        {
-            throw new NotImplementedException();
-        }
-
-        public string Execute(Type contentType, CDSData rq)
-        {
-            throw new NotImplementedException();
-        }
-
-        public string Execute(Type contentType, CDSData rq, out Content outData)
-        {
-            throw new NotImplementedException();
-        }
-
-        public string Execute(Type contentType, CDSData rq, Content inData)
-        {
-            throw new NotImplementedException();
-        }
-
-        public string Execute<T>(CDSData rq, out Guid? cid, out Guid? vid) where T : Content
-        {
-            throw new NotImplementedException();
-        }
-
-        public string Execute<T>(CDSData rq, T inData, out Guid? newVersionID) where T : Content
-        {
-            throw new NotImplementedException();
-        }
-
-        public string Execute<T>(CDSData rq) where T : Content
-        {
-            throw new NotImplementedException();
-        }
-
-        public string Execute<T>(CDSData rq, T inData) where T : Content
-        {
-            throw new NotImplementedException();
-        }
-
-        public string Execute<T>(CDSData rq, T inData, out T outData) where T : Content
-        {
-            throw new NotImplementedException();
-        }
-
-        public string Execute<T>(CDSData rq, out T outData) where T : Content
-        {
-            throw new NotImplementedException();
-        }
-
-        #endregion
     }
 }

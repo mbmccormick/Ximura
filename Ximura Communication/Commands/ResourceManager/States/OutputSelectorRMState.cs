@@ -133,8 +133,10 @@ namespace Ximura.Communication
             Guid vidIn, Guid cidIn, Type contentType)
         {
             Guid? cid, vid;
-            string status = context.CDSHelper.Execute(contentType,
-                CDSData.Get(CDSAction.VersionCheck, cidIn, null), out cid, out vid);
+            throw new NotImplementedException();
+            string status;
+            //= context.CDSHelper.Execute(contentType,
+            //    CDSData.Get(CDSAction.VersionCheck, cidIn, null), out cid, out vid);
 
             if (status != CH.HTTPCodes.OK_200)
                 return false;

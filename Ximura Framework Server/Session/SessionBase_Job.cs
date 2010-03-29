@@ -89,8 +89,8 @@ namespace Ximura.Framework
         {
             RQRSFolder rq = Data.Request;
 
-            if (rq != null && rq.Culture == null && this.SessionCulture != null)
-                rq.Culture = this.SessionCulture;
+            //if (rq != null && rq.Culture == null && this.SessionCulture != null)
+            //    rq.Culture = this.SessionCulture;
 
             SessionJob job = ProcessRQAsyncInternal(Guid.NewGuid(), Data, null, ProgressCallback, priority);
 
@@ -171,10 +171,6 @@ namespace Ximura.Framework
             CommandRSCallback RSCallback, CommandProgressCallback ProgressCallback, JobPriority priority)
         {
             RQRSFolder rq = data.Request;
-
-            //Set the culture if the session culture is set.
-            if (rq != null && rq.Culture == null && this.SessionCulture != null)
-                rq.Culture = this.SessionCulture;
 
             //TODO: Place the temporary user details here
             data.JobUserID = Guid.Empty;

@@ -109,9 +109,10 @@ namespace Ximura.Communication
                         Content outData = null;
                         try
                         {
-                            status = context.CDSHelper.Execute(insert.EntityType,
-                                CDSData.Get(CDSAction.Read, insert.ReferenceType, insert.ReferenceValue),
-                                out outData);
+                            throw new NotImplementedException();
+                            //status = context.CDSHelper.Execute(insert.EntityType,
+                            //    CDSData.Get(CDSAction.Read, insert.ReferenceType, insert.ReferenceValue),
+                            //    out outData);
 
                             if (status != CH.HTTPCodes.OK_200 && !insert.PermitError)
                                 throw new ContentCompilerException(

@@ -105,9 +105,11 @@ namespace Ximura.Data
 
                 //Ok, the cache has expired, but we can check whether the version is still valid and return the content.
                 Guid? CID, VID;
-                string vidStatus = context.CDSHelperDirect.Execute(objectType,
-                    CDSData.Get(CDSAction.VersionCheck, id.Value.ContentID, id.Value.VersionID), 
-                    out CID, out VID);
+                throw new NotImplementedException();
+                string vidStatus = null;
+                //context.CDSHelperDirect.Execute(objectType,
+                //     CDSData.Get(CDSAction.VersionCheck, id.Value.ContentID, id.Value.VersionID),
+                //     out CID, out VID);
                 //Ok, the cached item is valid so we can return.
                 if (vidStatus == CH.HTTPCodes.OK_200 && VID.HasValue && id.Value.VersionID == VID.Value)
                 {

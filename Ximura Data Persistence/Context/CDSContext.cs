@@ -48,7 +48,7 @@ namespace Ximura.Data
         private bool mContentIsCacheable;
         private ContentCacheOptions mCacheStyle;
         private int mCacheTimeOut;
-        private CDSHelperDirect mCDSHelperDirect = null;
+        //private CDSHelperDirect mCDSHelperDirect = null;
         private CDSDirectAccess mCDSda = null;
         #endregion // Declarations
         #region Constructor
@@ -79,8 +79,6 @@ namespace Ximura.Data
                 mCDSda.DelProcessRequest = null;
             }
 
-            if (mCDSHelperDirect == null)
-                mCDSHelperDirect = new CDSHelperDirect(mCDSda);
         }
         #endregion // Reset()
 
@@ -256,11 +254,11 @@ namespace Ximura.Data
             //n.b. Job priority has been removed, as CDSHelperDirect operates on the same thread as 
             //the original request so is no longer necessary.
             if (content.FragmentIDIsByReference())
-                status = CDSHelperDirect.Execute(content.FragmentBaseType(),
+                status = job.Execute(content.FragmentBaseType(),
                     CDSData.Get(CDSAction.Read, content.FragmentReferenceID(), content.FragmentReferenceType()),
                         out parentContent);
             else
-                status = CDSHelperDirect.Execute(content.FragmentBaseType(),
+                status = job.Execute(content.FragmentBaseType(),
                     CDSData.Get(CDSAction.Read, content.IDContent, null),
                         out parentContent);
 
@@ -281,15 +279,15 @@ namespace Ximura.Data
         }
         #endregion // ProcessFragment
 
-        #region CDSHelperDirect
-        /// <summary>
-        /// This CDSHelper wrapper access the CDS directly using the current thread and security settings. 
-        /// </summary>
-        public virtual CDSHelperDirect CDSHelperDirect
-        {
-            get { return mCDSHelperDirect; }
-        }
-        #endregion // CDSHelper
+        //#region CDSHelperDirect
+        ///// <summary>
+        ///// This CDSHelper wrapper access the CDS directly using the current thread and security settings. 
+        ///// </summary>
+        //public virtual CDSHelperDirect CDSHelperDirect
+        //{
+        //    get { return mCDSHelperDirect; }
+        //}
+        //#endregion // CDSHelper
 
         #region Reset(IXimuraFSMSettingsBase fsm, SecurityManagerJob job,...
         /// <summary>

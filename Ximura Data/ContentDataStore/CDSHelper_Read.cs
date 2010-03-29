@@ -34,8 +34,35 @@ namespace Ximura.Data
 {    /// <summary>
     /// This static class allows for dynamic updates to the CDS persistence service.
     /// </summary>
-    public static partial class CDSExtensionMethods
+    public static partial class CDSHelper
     {
+        /// <summary>
+        /// This method initializes the entity from the persistence store.
+        /// </summary>
+        /// <typeparam name="E">The entity type.</typeparam>
+        /// <param name="svc">The persistence service.</param>
+        /// <returns>Returns the entity.</returns>
+        public static CDSResponse CDSRead<E>(this IXimuraSessionRQ SessionRQ) where E : Content
+        {
+            //CDSContext pc = PersistenceContext.Initialize(typeof(E));
+            //svc.Execute(typeof(E));
 
+            //return (E)pc.ResponseData;
+            return CDSResponse.NotImplemented;
+        }
+
+        //#region Read<T>
+
+        //public static CDSResponse Read<T>(string refType, string refValue, out T data) where T : Content
+        //{
+        //    return TranslateResponseCode(Execute<T>(CDSData.Get(CDSStateAction.Read, refType, refValue), out data));
+        //}
+
+        //public static CDSResponse Read<T>(Guid? CID, Guid? VID, out T data) where T : Content
+        //{
+        //    return TranslateResponseCode(Execute<T>(CDSData.Get(CDSStateAction.Read, CID, VID), out data));
+        //}
+
+        //#endregion
     }
 }

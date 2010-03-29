@@ -43,7 +43,7 @@ namespace Ximura.Data
     [XimuraAppConfiguration(ConfigurationLocation.Hybrid, 
         "xmrres://XimuraDataPersistence/Ximura.Data.CDSConfiguration/Ximura.Data.Configuration.CDSConfiguration_Default.xml")]
 #endif
-    [XimuraAppModule(ContentDataStoreShortcuts.ID, ContentDataStoreShortcuts.Name)]
+    [XimuraAppModule(CDSHelper.ID, CDSHelper.Name)]
     public class ContentDataStore : FiniteStateMachine<CDSRequestFolder, CDSResponseFolder, 
         RQRSFolder, RQRSFolder, CDSContext, ICDSState, CDSSettings, CDSConfiguration, CDSPerformance>
     {
@@ -209,7 +209,7 @@ namespace Ximura.Data
                         if (!context.Request.DataVersionID.HasValue || !context.Request.DataContentID.HasValue)
                         {
                             Guid? vid, cid;
-                            string status = context.CDSHelperDirect.Execute(
+                            string status = context.Job.Execute(
                                 context.Request.DataType, CDSData.Get(CDSAction.VersionCheck,
                                     context.Request.DataContentID, context.Request.DataVersionID), 
                                         out cid, out vid);
