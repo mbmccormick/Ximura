@@ -209,12 +209,12 @@ namespace Ximura.Data
                         if (!context.Request.DataVersionID.HasValue || !context.Request.DataContentID.HasValue)
                         {
                             Guid? vid, cid;
-                            string status = context.Job.Execute(
+                            CDSResponse status = context.Job.CDSExecute(
                                 context.Request.DataType, CDSData.Get(CDSAction.VersionCheck,
                                     context.Request.DataContentID, context.Request.DataVersionID), 
                                         out cid, out vid);
 
-                            if (status == CH.HTTPCodes.OK_200)
+                            if (status == CDSResponse.OK)
                             {
                                 context.Request.DataContentID = cid;
                                 context.Request.DataVersionID = vid;

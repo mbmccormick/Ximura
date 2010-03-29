@@ -36,24 +36,90 @@ namespace Ximura.Data
     /// <summary>
     /// The CDSData class is used by the CDSHelper to hold the information for a request.
     /// </summary>
-    public class CDSDataBase
+    public struct CDSData
     {
-        #region Reset()
+        #region Get() - Factory method
         /// <summary>
-        /// This reset method resets the object to it's default values.
+        /// This factory method can be used to Get a request object and set its 
+        /// parameters
         /// </summary>
-        public void Reset()
+        /// <returns>Returns an object from the pool.</returns>
+        public static CDSData Get(CDSAction action, Guid? CID, Guid? VID)
         {
-            ByReference = false;
-            IDVersion = null;
-            IDContent = null;
-            RefValue = null;
-            RefType = null;
-            Action = CDSAction.NotSet;
-            RequestID = Guid.NewGuid();
-            Priority = JobPriority.Normal;
+            return Get(action, CID, VID, JobPriority.Normal);
         }
-        #endregion // Reset()
+        /// <summary>
+        /// This factory method can be used to Get a request object and set its 
+        /// parameters
+        /// </summary>
+        /// <returns>Returns an object from the pool.</returns>
+        public static CDSData Get(CDSAction action, Guid? CID, Guid? VID, JobPriority priority)
+        {
+            CDSData rq = new CDSData();
+            rq.ByReference = false;
+
+            if (CID.HasValue)
+                rq.IDContent = CID.Value;
+
+            if (VID.HasValue)
+                rq.IDVersion = VID.Value;
+
+            rq.Action = action;
+            rq.Priority = priority;
+            return rq;
+        }
+
+        /// <summary>
+        /// This factory method can be used to Get a request object and set its 
+        /// parameters
+        /// </summary>
+        /// <returns>Returns an object from the pool.</returns>
+        public static CDSData Get(CDSAction action, string refType, string refValue)
+        {
+            return Get(action, refType, refValue, JobPriority.Normal);
+        }
+
+        /// <summary>
+        /// This factory method can be used to Get a request object and set its 
+        /// parameters
+        /// </summary>
+        /// <returns>Returns an object from the pool.</returns>
+        public static CDSData Get(CDSAction action, string refType, string refValue, JobPriority priority)
+        {
+            CDSData rq = new CDSData();
+
+            rq.ByReference = true;
+            rq.RefType = refType;
+            rq.RefValue = refValue;
+            rq.Action = action;
+            rq.Priority = priority;
+
+            return rq;
+        }
+
+        /// <summary>
+        /// This factory method can be used to Get a request object and set its 
+        /// parameters
+        /// </summary>
+        /// <returns>Returns an object from the pool.</returns>
+        public static CDSData Get(CDSAction action)
+        {
+            return Get(action, JobPriority.Normal);
+        }
+
+        /// <summary>
+        /// This factory method can be used to Get a request object and set its 
+        /// parameters
+        /// </summary>
+        /// <returns>Returns an object from the pool.</returns>
+        public static CDSData Get(CDSAction action, JobPriority priority)
+        {
+            CDSData rq = new CDSData();
+            rq.Action = action;
+            rq.Priority = priority;
+            return rq;
+        }
+        #endregion
 
         #region Priority
         /// <summary>
@@ -62,7 +128,7 @@ namespace Ximura.Data
         public JobPriority Priority
         {
             get;
-            protected set;
+            private set;
         }
         #endregion
         #region RequestID
@@ -72,7 +138,7 @@ namespace Ximura.Data
         public Guid RequestID
         {
             get;
-            protected set;
+            private set;
         }
         #endregion
 
@@ -83,7 +149,7 @@ namespace Ximura.Data
         public CDSAction Action
         {
             get;
-            protected set;
+            private set;
         }
         #endregion
 
@@ -94,7 +160,7 @@ namespace Ximura.Data
         public bool ByReference
         {
             get;
-            protected set;
+            private set;
         }
         #endregion
         #region RefType
@@ -104,7 +170,7 @@ namespace Ximura.Data
         public string RefType
         {
             get;
-            protected set;
+            private set;
         }
         #endregion
         #region RefValue
@@ -114,7 +180,7 @@ namespace Ximura.Data
         public string RefValue
         {
             get;
-            protected set;
+            private set;
         }
         #endregion
 
@@ -125,7 +191,7 @@ namespace Ximura.Data
         public Guid? IDType
         {
             get;
-            protected set;
+            private set;
         }
         #endregion
         #region IDContent
@@ -135,7 +201,7 @@ namespace Ximura.Data
         public Guid? IDContent
         {
             get;
-            protected set;
+            private set;
         }
         #endregion
         #region IDVersion
@@ -146,7 +212,7 @@ namespace Ximura.Data
         public Guid? IDVersion
         {
             get;
-            protected set;
+            private set;
         }
         #endregion 
     }

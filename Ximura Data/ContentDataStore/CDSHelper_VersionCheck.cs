@@ -42,34 +42,28 @@ namespace Ximura.Data
         /// <typeparam name="E">The entity type.</typeparam>
         /// <param name="svc">The persistence service.</param>
         /// <returns>Returns the entity.</returns>
-        public static CDSResponse CDSVersionCheck<E>(this IXimuraSessionRQ SessionRQ) where E : Content
+        public static CDSResponse CDSVersionCheck<T>(this IXimuraSessionRQ SessionRQ, string refType, string refValue, 
+            out Guid? cid, out Guid? vid) where T : Content
         {
-            //CDSContext pc = PersistenceContext.Initialize(typeof(E));
-            //svc.Execute(typeof(E));
-
-            //return (E)pc.ResponseData;
-            return CDSResponse.NotImplemented;
+            return SessionRQ.CDSExecute<T>(CDSData.Get(CDSAction.VersionCheck, refType, refValue), out cid, out vid);
         }
-        //#region VersionCheck/VersionCheck<T>
-        //public static CDSResponse VersionCheck<T>(string refType, string refValue, out Guid? cid, out Guid? vid) where T : Content
-        //{
-        //    return TranslateResponseCode(Execute<T>(CDSData.Get(CDSStateAction.VersionCheck, refType, refValue), out cid, out vid));
-        //}
 
-        //public static CDSResponse VersionCheck<T>(Guid? CID, Guid? VID, out Guid? cid, out Guid? vid) where T : Content
-        //{
-        //    return TranslateResponseCode(Execute<T>(CDSData.Get(CDSStateAction.VersionCheck, CID, VID), out cid, out vid));
-        //}
+        public static CDSResponse CDSVersionCheck<T>(this IXimuraSessionRQ SessionRQ, Guid? CID, Guid? VID, 
+            out Guid? cid, out Guid? vid) where T : Content
+        {
+            return SessionRQ.CDSExecute<T>(CDSData.Get(CDSAction.VersionCheck, CID, VID), out cid, out vid);
+        }
 
-        //public static CDSResponse VersionCheck(Type objectType, string refType, string refValue, out Guid? cid, out Guid? vid)
-        //{
-        //    return TranslateResponseCode(Execute(objectType, CDSData.Get(CDSStateAction.VersionCheck, refType, refValue), out cid, out vid));
-        //}
+        public static CDSResponse CDSVersionCheck(this IXimuraSessionRQ SessionRQ, Type objectType, string refType, string refValue, 
+            out Guid? cid, out Guid? vid)
+        {
+            return SessionRQ.CDSExecute(objectType, CDSData.Get(CDSAction.VersionCheck, refType, refValue), out cid, out vid);
+        }
 
-        //public static CDSResponse VersionCheck(Type objectType, Guid? CID, Guid? VID, out Guid? cid, out Guid? vid)
-        //{
-        //    return TranslateResponseCode(Execute(objectType, CDSData.Get(CDSStateAction.VersionCheck, CID, VID), out cid, out vid));
-        //}
-        //#endregion
+        public static CDSResponse CDSVersionCheck(this IXimuraSessionRQ SessionRQ, Type objectType, Guid? CID, Guid? VID, 
+            out Guid? cid, out Guid? vid)
+        {
+            return SessionRQ.CDSExecute(objectType, CDSData.Get(CDSAction.VersionCheck, CID, VID), out cid, out vid);
+        }
     }
 }

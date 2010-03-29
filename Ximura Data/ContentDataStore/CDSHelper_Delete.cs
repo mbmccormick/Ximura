@@ -36,43 +36,28 @@ namespace Ximura.Data
     /// </summary>
     public static partial class CDSHelper
     {
-        /// <summary>
-        /// This method initializes the entity from the persistence store.
-        /// </summary>
-        /// <typeparam name="E">The entity type.</typeparam>
-        /// <param name="svc">The persistence service.</param>
-        /// <returns>Returns the entity.</returns>
-        public static CDSResponse CDSDelete<E>(this IXimuraSessionRQ SessionRQ) where E : Content
-        {
-            //CDSContext pc = PersistenceContext.Initialize(typeof(E));
-            //svc.Execute(typeof(E));
+        #region Delete/Delete<T>
 
-            //return (E)pc.ResponseData;
-            return CDSResponse.NotImplemented;
+        public static CDSResponse CDSDelete<T>(this IXimuraSessionRQ SessionRQ, string refType, string refValue) where T : Content
+        {
+            return SessionRQ.CDSExecute<T>(CDSData.Get(CDSAction.Delete, refType, refValue));
         }
 
-        //#region Delete/Delete<T>
+        public static CDSResponse CDSDelete<T>(this IXimuraSessionRQ SessionRQ, Guid? CID, Guid? VID) where T : Content
+        {
+            return SessionRQ.CDSExecute<T>(CDSData.Get(CDSAction.Delete, CID, VID));
+        }
 
-        //public static CDSResponse Delete<T>(string refType, string refValue) where T : Content
-        //{
-        //    return TranslateResponseCode(Execute<T>(CDSData.Get(CDSStateAction.Delete, refType, refValue)));
-        //}
+        public static CDSResponse CDSDelete(this IXimuraSessionRQ SessionRQ, Type objectType, string refType, string refValue)
+        {
+            return SessionRQ.CDSExecute(objectType, CDSData.Get(CDSAction.Delete, refType, refValue));
+        }
 
-        //public static CDSResponse Delete<T>(Guid? CID, Guid? VID) where T : Content
-        //{
-        //    return TranslateResponseCode(Execute<T>(CDSData.Get(CDSStateAction.Delete, CID, VID)));
-        //}
+        public static CDSResponse CDSDelete(this IXimuraSessionRQ SessionRQ, Type objectType, Guid? CID, Guid? VID)
+        {
+            return SessionRQ.CDSExecute(objectType, CDSData.Get(CDSAction.Delete, CID, VID));
+        }
 
-        //public static CDSResponse Delete(Type objectType, string refType, string refValue)
-        //{
-        //    return TranslateResponseCode(Execute(objectType, CDSData.Get(CDSStateAction.Delete, refType, refValue)));
-        //}
-
-        //public static CDSResponse Delete(Type objectType, Guid? CID, Guid? VID)
-        //{
-        //    return TranslateResponseCode(Execute(objectType, CDSData.Get(CDSStateAction.Delete, CID, VID)));
-        //}
-
-        //#endregion
+        #endregion
     }
 }

@@ -36,31 +36,16 @@ namespace Ximura.Data
     /// </summary>
     public static partial class CDSHelper
     {
+        #region CDSCreate(this IXimuraSessionRQ SessionRQ, Content inData)
         /// <summary>
-        /// This method initializes the entity from the persistence store.
+        /// This is a shortcut method for creating an entity.
         /// </summary>
-        /// <typeparam name="E">The entity type.</typeparam>
-        /// <param name="svc">The persistence service.</param>
-        /// <returns>Returns the entity.</returns>
-        public static CDSResponse CDSCreate<E>(this IXimuraSessionRQ SessionRQ) where E : Content
+        /// <param name="inData">The content to create in the CDS.</param>
+        /// <returns>Returns the CDS status</returns>
+        public static CDSResponse CDSCreate(this IXimuraSessionRQ SessionRQ, Content inData)
         {
-            //CDSContext pc = PersistenceContext.Initialize(typeof(E));
-            //svc.Execute(typeof(E));
-
-            //return (E)pc.ResponseData;
-            return CDSResponse.NotImplemented;
+            return SessionRQ.CDSExecute(CDSData.Get(CDSAction.Create), inData);
         }
-
-        //#region Create(Content inData)
-        ///// <summary>
-        ///// This is a shortcut method for creating an entity.
-        ///// </summary>
-        ///// <param name="inData">The content to create in the CDS.</param>
-        ///// <returns>Returns the CDS status</returns>
-        //public static CDSResponse Create(IXimuraSessionRQ SessionRQ, Content inData)
-        //{
-        //    return TranslateResponseCode(Execute(SessionRQ, inData.GetType(), CDSData.Get(CDSStateAction.Create), inData));
-        //}
-        //#endregion // Create(Content inData)
+        #endregion // Create(Content inData)
     }
 }

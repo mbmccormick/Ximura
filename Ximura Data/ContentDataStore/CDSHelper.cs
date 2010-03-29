@@ -358,13 +358,13 @@ namespace Ximura.Data
         }
         #endregion // EnvelopeRequest/EnvelopeReturn
 
-        #region ResponseTranslate
+        #region ResponseCodeTranslate(string responseCode)
         /// <summary>
         /// This method translates the response code in to a CDSResponse enumeration.
         /// </summary>
         /// <param name="responseCode">The string response code.</param>
         /// <returns>Returns the CDSResponse enumeration value, or Unknown if the value is not recognised.</returns>
-        private static CDSResponse TranslateResponseCode(string responseCode)
+        private static CDSResponse ResponseCodeTranslate(string responseCode)
         {
             if (responseCode == null || responseCode == "")
                 return CDSResponse.ResponseCodeNotSet;

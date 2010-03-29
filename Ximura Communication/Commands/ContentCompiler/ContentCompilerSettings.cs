@@ -109,10 +109,10 @@ namespace Ximura.Communication
             }
 
             C data;
-            string status = ProcessSession.Execute<C>(
+            CDSResponse status = ProcessSession.CDSExecute<C>(
                 CDSData.Get(CDSAction.Read, refType, refValue), out data);
 
-            if (status != CH.HTTPCodes.OK_200)
+            if (status != CDSResponse.OK)
                 throw new ArgumentException("Stylesheet name cannot be found.");
 
             lock (syncCache)

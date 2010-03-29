@@ -242,7 +242,7 @@ namespace Ximura.Data
 
             Content parentContent = null;
 
-            string status = CH.HTTPCodes.InternalServerError_500;
+            CDSResponse status = CDSResponse.SystemError;
 
             //if (content.FragmentIDIsByReference())
             //    parentContent = DCWrapper.DataContentReadByReference(job, content.FragmentBaseType(),
@@ -254,15 +254,15 @@ namespace Ximura.Data
             //n.b. Job priority has been removed, as CDSHelperDirect operates on the same thread as 
             //the original request so is no longer necessary.
             if (content.FragmentIDIsByReference())
-                status = job.Execute(content.FragmentBaseType(),
+                status = job.CDSExecute(content.FragmentBaseType(),
                     CDSData.Get(CDSAction.Read, content.FragmentReferenceID(), content.FragmentReferenceType()),
                         out parentContent);
             else
-                status = job.Execute(content.FragmentBaseType(),
+                status = job.CDSExecute(content.FragmentBaseType(),
                     CDSData.Get(CDSAction.Read, content.IDContent, null),
                         out parentContent);
 
-            if (status == CH.HTTPCodes.InternalServerError_500)
+            if (status == CDSResponse.SystemError)
                 throw new ContentDataStoreException("Cannot get parent content to merge.");
 
             if (parentContent != null)

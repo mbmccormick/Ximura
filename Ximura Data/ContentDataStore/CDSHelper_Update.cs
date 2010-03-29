@@ -37,44 +37,32 @@ namespace Ximura.Data
     public static partial class CDSHelper
     {
         /// <summary>
-        /// This method initializes the entity from the persistence store.
+        /// This is a shortcut method for creating an entity.
         /// </summary>
-        /// <typeparam name="E">The entity type.</typeparam>
-        /// <param name="svc">The persistence service.</param>
-        /// <returns>Returns the entity.</returns>
-        public static CDSResponse CDSUpdate<E>(this IXimuraSessionRQ SessionRQ) where E : Content
+        /// <param name="inData">The content to create in the CDS.</param>
+        /// <returns>Returns the CDS status</returns>
+        public static CDSResponse Update(this IXimuraSessionRQ SessionRQ, Content inData)
         {
-            //CDSContext pc = PersistenceContext.Initialize(typeof(E));
-            //svc.Execute(typeof(E));
-
-            //return (E)pc.ResponseData;
-            return CDSResponse.NotImplemented;
+            return SessionRQ.CDSExecute(inData.GetType(), CDSData.Get(CDSAction.Update), inData);
         }
-        //#region Update/Update<T>
-        ///// <summary>
-        ///// This is a shortcut method for creating an entity.
-        ///// </summary>
-        ///// <param name="inData">The content to create in the CDS.</param>
-        ///// <returns>Returns the CDS status</returns>
-        //public static CDSResponse Update(Content inData, out Content outData)
-        //{
-        //    return TranslateResponseCode(Execute(inData.GetType(), CDSData.Get(CDSStateAction.Update), inData, out outData));
-        //}
 
-        //public static CDSResponse Update<T>(T inData, out T outData) where T : Content
-        //{
-        //    return TranslateResponseCode(Execute(CDSData.Get(CDSStateAction.Update), inData, out outData));
-        //}
+        public static CDSResponse Update(this IXimuraSessionRQ SessionRQ, Content inData, out Content outData)
+        {
+            return SessionRQ.CDSExecute(inData.GetType(), CDSData.Get(CDSAction.Update), inData, out outData);
+        }
 
-        //public static CDSResponse Update(Content inData)
-        //{
-        //    return TranslateResponseCode(Execute(inData.GetType(), CDSData.Get(CDSStateAction.Update), inData));
-        //}
+        public static CDSResponse Update<T>(this IXimuraSessionRQ SessionRQ, T inData) where T : Content
+        {
+            return SessionRQ.CDSExecute(CDSData.Get(CDSAction.Update), inData);
+        }
 
-        //public static CDSResponse Update<T>(T inData) where T : Content
-        //{
-        //    return TranslateResponseCode(Execute(CDSData.Get(CDSStateAction.Update), inData));
-        //}
-        //#endregion
+        public static CDSResponse Update<T>(this IXimuraSessionRQ SessionRQ, T inData, out T outData) where T : Content
+        {
+            return SessionRQ.CDSExecute(CDSData.Get(CDSAction.Update), inData, out outData);
+        }
+
+
+
+
     }
 }

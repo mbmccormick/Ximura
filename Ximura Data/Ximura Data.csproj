@@ -222,12 +222,12 @@
     </Compile>
     <Compile Include="Data\XmlContent\XmlContent_Serialization.cs">
     </Compile>
+    <Compile Include="Interfaces\IXimuraFormatter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Serialization\ContentFormatter.cs" />
     <Compile Include="Serialization\ContentFormatterCapabilities.cs" />
     <Compile Include="Serialization\ContentSerializationReaderWriter.cs" />
     <Compile Include="Serialization\FormatterBase.cs" />
-    <Compile Include="Serialization\IXIMSFormatter.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Data\DataContent\DataContent.resx">
