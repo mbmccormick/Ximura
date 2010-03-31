@@ -26,12 +26,9 @@ using System.Reflection;
 
 using Ximura;
 using Ximura.Data;
-
 using CH = Ximura.Common;
-using Ximura.Framework;
-using Ximura.Framework;
 #endregion // using
-namespace Ximura.Framework
+namespace Ximura
 {
     /// <summary>
     /// XimuraComponentPermissionAttribute is used to specify the security permissions for the 

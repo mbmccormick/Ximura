@@ -12,10 +12,8 @@
 #endregion
 #region using
 using System;
-
-
 #endregion // using
-namespace Ximura.Framework
+namespace Ximura
 {
 	/// <summary>
 	/// This interface is used to provide security access information for

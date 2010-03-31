@@ -26,40 +26,37 @@ using System.Reflection;
 
 using Ximura;
 using Ximura.Data;
-
 using CH = Ximura.Common;
-using Ximura.Framework;
-using Ximura.Framework;
 #endregion // using
-namespace Ximura.Framework
+namespace Ximura
 {
     /// <summary>
     /// This exception is thrown when an error is encountered during the component status change event.
     /// </summary>
     [Serializable()]
-    public class XimuraComponentServiceException: XimuraException
+    public class XimuraComponentServiceException : XimuraException
     {
-		/// <summary>
-		/// Initializes a new instance of the XimuraException class.
-		/// </summary>
-		public XimuraComponentServiceException():base(){}
-		/// <summary>
-		/// Initializes a new instance of the XimuraException class.
-		/// </summary>
-		/// <param name="message">The error message.</param>
-		public XimuraComponentServiceException(string message):base(message){}
-		/// <summary>
-		/// Initializes a new instance of the XimuraException class.
-		/// </summary>
-		/// <param name="message">The error message.</param>
-		/// <param name="ex">The base exception.</param>
-		public XimuraComponentServiceException(string message,Exception ex):base(message,ex){}
+        /// <summary>
+        /// Initializes a new instance of the XimuraException class.
+        /// </summary>
+        public XimuraComponentServiceException() : base() { }
+        /// <summary>
+        /// Initializes a new instance of the XimuraException class.
+        /// </summary>
+        /// <param name="message">The error message.</param>
+        public XimuraComponentServiceException(string message) : base(message) { }
+        /// <summary>
+        /// Initializes a new instance of the XimuraException class.
+        /// </summary>
+        /// <param name="message">The error message.</param>
+        /// <param name="ex">The base exception.</param>
+        public XimuraComponentServiceException(string message, Exception ex) : base(message, ex) { }
 
-		/// <summary>
-		/// This exception is used for deserialization.
-		/// </summary>
-		/// <param name="info">The serialization info.</param>
-		/// <param name="context">The serialization context.</param>
+        /// <summary>
+        /// This exception is used for deserialization.
+        /// </summary>
+        /// <param name="info">The serialization info.</param>
+        /// <param name="context">The serialization context.</param>
         protected XimuraComponentServiceException(SerializationInfo info, StreamingContext context) : base(info, context) { }
     }
 }

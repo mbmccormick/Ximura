@@ -254,11 +254,20 @@
     </Compile>
     <Compile Include="Command\Helper\CJobSignature.cs" />
     <Compile Include="Command\Helper\CommandDefinition.cs" />
+    <Compile Include="Command\Interfaces\IXimuraCommand.cs" />
+    <Compile Include="Command\Interfaces\IXimuraCommandKnownService.cs" />
+    <Compile Include="Command\Interfaces\IXimuraCommandPermissions.cs" />
+    <Compile Include="Command\Interfaces\IXimuraCommandProcessConfigSH.cs" />
     <Compile Include="Command\Interfaces\IXimuraCommandRQ.cs" />
+    <Compile Include="Command\Interfaces\IXimuraCommandScheduleProcessConfigSH.cs" />
     <Compile Include="Command\Interfaces\IXimuraFSM.cs" />
+    <Compile Include="Command\Interfaces\IXimuraFSMStateIdentifier.cs" />
+    <Compile Include="Command\Interfaces\IXimuraSchedulerCommandRegister.cs" />
     <Compile Include="Command\Permission\CommandPermission.cs" />
     <Compile Include="Command\Permission\CommandPermissionSet.cs" />
     <Compile Include="Component\AppBase.cs">
+    </Compile>
+    <Compile Include="Component\FrameworkComponentBase.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Configuration\ConfigurationBase.cs">
@@ -315,13 +324,6 @@
     <Compile Include="Interfaces\Application\IXimuraApplication.cs" />
     <Compile Include="Interfaces\Application\IXimuraApplicationDefinition.cs" />
     <Compile Include="Interfaces\Application\IXimuraAppServer.cs" />
-    <Compile Include="Interfaces\Command\IXimuraCommand.cs" />
-    <Compile Include="Interfaces\Command\IXimuraCommandKnownService.cs" />
-    <Compile Include="Interfaces\Command\IXimuraCommandPermissions.cs" />
-    <Compile Include="Interfaces\Command\IXimuraCommandProcessConfigSH.cs" />
-    <Compile Include="Interfaces\Command\IXimuraCommandScheduleProcessConfigSH.cs" />
-    <Compile Include="Interfaces\Command\IXimuraFSMStateIdentifier.cs" />
-    <Compile Include="Interfaces\Command\IXimuraSchedulerCommandRegister.cs" />
     <Compile Include="Interfaces\IXimuraAppServerAgentService.cs" />
     <Compile Include="Interfaces\IXimuraAppSettings.cs" />
     <Compile Include="Interfaces\IXimuraCommandBridge.cs" />
@@ -329,15 +331,9 @@
     <Compile Include="Interfaces\IXimuraGatewayManagerService.cs" />
     <Compile Include="Interfaces\IXimuraLoggingManagerService.cs" />
     <Compile Include="Interfaces\IXimuraPerformanceManagerService.cs" />
-    <Compile Include="Interfaces\IXimuraSecurityDescriptor.cs" />
     <Compile Include="Interfaces\IXimuraSessionManagerService.cs" />
     <Compile Include="Interfaces\IXimuraStorage.cs" />
     <Compile Include="Interfaces\IXimuraStorageManagerService.cs" />
-    <Compile Include="Interfaces\Logging\IXimuraLoggerConfigSH.cs" />
-    <Compile Include="Interfaces\Logging\IXimuraLoggingAudit.cs" />
-    <Compile Include="Interfaces\Logging\IXimuraLoggingExtended.cs" />
-    <Compile Include="Interfaces\Logging\IXimuraLoggingManagerConfigSH.cs" />
-    <Compile Include="Interfaces\Logging\IXimuraLoggingProvider.cs" />
     <Compile Include="Interfaces\Performance\IXimuraPerformance.cs" />
     <Compile Include="Interfaces\Performance\IXimuraPerformanceAgent.cs" />
     <Compile Include="Interfaces\Performance\IXimuraPerformanceCounter.cs" />
@@ -369,17 +365,7 @@
     <Compile Include="Logging\Configuration\LoggingManagerConfigSH.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Component\Helper\ServiceHelper.cs" />
-    <Compile Include="Component\XimuraComponentBase.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Component\Attributes\ComponentPermissionAttribute.cs" />
     <Compile Include="Component\XimuraComponentPermissionCollection.cs" />
-    <Compile Include="Component\XimuraComponentService.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Component\Exceptions\ComponentServiceException.cs" />
-    <Compile Include="Component\Helper\ComponentServiceHelper.cs" />
     <Compile Include="Command\Configuration\FSMCommandConfiguration.cs">
     </Compile>
     <Compile Include="Command\Performance\FSMCommandPerformance.cs">
@@ -438,9 +424,11 @@
     <Compile Include="Command\States\State.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Component\Extenders\MetadataExtender.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Logging\Interfaces\IXimuraLoggerConfigSH.cs" />
+    <Compile Include="Logging\Interfaces\IXimuraLoggingAudit.cs" />
+    <Compile Include="Logging\Interfaces\IXimuraLoggingExtended.cs" />
+    <Compile Include="Logging\Interfaces\IXimuraLoggingManagerConfigSH.cs" />
+    <Compile Include="Logging\Interfaces\IXimuraLoggingProvider.cs" />
     <Compile Include="Logging\XimuraAppTrace.cs" />
     <Compile Include="Performance\PerformanceBase.cs" />
     <Compile Include="Performance\PerformanceCounter.cs" />
@@ -466,10 +454,6 @@
     <None Include="_Documentation\RFC 3310 %28rfc3310%29 - Hypertext Transfer Protocol %28HTTP%29 Digest Authenticat.mht" />
     <None Include="_Documentation\XIMS Diagrams.vsd" />
     <None Include="_Documentation\XIMURA Framework SDS.doc" />
-    <EmbeddedResource Include="Component\XimuraComponentService.resx">
-      <DependentUpon>XimuraComponentService.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppServer.bmp" />
     <EmbeddedResource Include="Resources\CacheManager.bmp" />
     <EmbeddedResource Include="Resources\CommandBase.bmp" />

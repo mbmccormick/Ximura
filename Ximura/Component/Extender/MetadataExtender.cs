@@ -19,16 +19,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.Design;
 using System.Reflection;
-using System.Drawing;
 using System.Diagnostics;
 
 using Ximura;
-using Ximura.Framework;
 using CH = Ximura.Common;
 using RH = Ximura.Reflection;
-
 #endregion // using
-namespace Ximura.Framework
+namespace Ximura
 {
 	/// <summary>
 	/// MetadataExtender is the base class for all extenders.
@@ -207,8 +204,6 @@ namespace Ximura.Framework
 
 					if (!Locked)
 						mMetaData.Add(key, item);
-					else
-						XimuraAppTrace.WriteLine("Cannot add to metdata collection.");
 
 					return item;
 				}

@@ -26,13 +26,9 @@ using System.Reflection;
 
 using Ximura;
 using Ximura.Data;
-
 using CH=Ximura.Common;
-
-using Ximura.Framework;
-using Ximura.Framework;
 #endregion // using
-namespace Ximura.Framework
+namespace Ximura
 {
 	/// <summary>
 	/// XimuraComponentBase is the base component for all components in the Ximura system.
@@ -507,7 +503,7 @@ namespace Ximura.Framework
             if (components != null && !Containers.Contains(components))
                 Containers.Add(components, null);
             else
-                XimuraAppTrace.WriteLine("Duplicate");
+                Debug.WriteLine("Duplicate");
 		}
 		#endregion // RegisterContainer
 		#region Containers

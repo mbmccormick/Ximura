@@ -40,9 +40,13 @@ namespace Ximura.Framework
     /// </summary>
     public class XimuraComponentPermissionCollection
     {
+        #region Declarations
         private long? mSupportedPermissions = null;
         private long? mUnsupportedPermissions = null;
         private object[] classAttributes;
+
+        #endregion // Declarations
+
         /// <summary>
         /// This method returns true if the permission is supported.
         /// </summary>

@@ -26,12 +26,9 @@ using System.Reflection;
 
 using Ximura;
 using Ximura.Data;
-
 using CH = Ximura.Common;
-using Ximura.Framework;
-using Ximura.Framework;
 #endregion // using
-namespace Ximura.Framework
+namespace Ximura
 {
     /// <summary>
     /// The XimuraComponentServiceHelper object is used to provide common functionality for 
@@ -45,10 +42,10 @@ namespace Ximura.Framework
         /// </summary>
         /// <param name="action">The action.</param>
         /// <param name="service">Thse service notification.</param>
-        public delegate bool ComponentStatusChangeNotify(XimuraServiceStatusAction action,IXimuraService service);
+        public delegate bool ComponentStatusChangeNotify(XimuraServiceStatusAction action, IXimuraService service);
 
         private Dictionary<XimuraServiceStatus, ServiceEvent> EventsCollection = null;
-        
+
         private XimuraServiceStatus m_ServiceStatus = XimuraServiceStatus.NotStarted;
         private ISite mSite = null;
         /// <summary>
@@ -123,7 +120,7 @@ namespace Ximura.Framework
         /// <param name="delInternalStop"></param>
         /// <param name="delInternalPause"></param>
         /// <param name="delInternalContinue"></param>
-        public XimuraComponentServiceHelper(object rootClass, ServiceCallBack delInternalStart, ServiceCallBack delInternalStop, 
+        public XimuraComponentServiceHelper(object rootClass, ServiceCallBack delInternalStart, ServiceCallBack delInternalStop,
             ServiceCallBack delInternalPause, ServiceCallBack delInternalContinue)
         {
             this.rootClass = rootClass;
@@ -431,108 +428,108 @@ namespace Ximura.Framework
 
         #region ComponentsStatusChange
         /// <summary>
-		/// This method can start, stop, resume or pause a group of components of the specified type.
-		/// </summary>
-		/// <param name="action">The action required</param>
-		/// <param name="components">The components to which the action should be provided</param>
-        public virtual void ComponentsStatusChange(XimuraServiceStatusAction action, 
-			ICollection components)
-		{
+        /// This method can start, stop, resume or pause a group of components of the specified type.
+        /// </summary>
+        /// <param name="action">The action required</param>
+        /// <param name="components">The components to which the action should be provided</param>
+        public virtual void ComponentsStatusChange(XimuraServiceStatusAction action,
+            ICollection components)
+        {
             ComponentsStatusChange(action, components, null, mNotifyAfter, mNotifyBefore);
         }
         /// <summary>
-		/// This method can start, stop, resume or pause a group of components of the specified type.
-		/// </summary>
-		/// <param name="action">The action required</param>
-		/// <param name="components">The components to which the action should be provided</param>
-		/// <param name="componentType">The component type.</param>
-        public virtual void ComponentsStatusChange(XimuraServiceStatusAction action, 
-			ICollection components, Type componentType)
-		{
+        /// This method can start, stop, resume or pause a group of components of the specified type.
+        /// </summary>
+        /// <param name="action">The action required</param>
+        /// <param name="components">The components to which the action should be provided</param>
+        /// <param name="componentType">The component type.</param>
+        public virtual void ComponentsStatusChange(XimuraServiceStatusAction action,
+            ICollection components, Type componentType)
+        {
             ComponentsStatusChange(action, components, componentType, mNotifyAfter, mNotifyBefore);
         }
         /// <summary>
-		/// This method can start, stop, resume or pause a group of components of the specified type.
-		/// </summary>
-		/// <param name="action">The action required</param>
-		/// <param name="components">The components to which the action should be provided</param>
-		/// <param name="componentType">The component type.</param>
-		public virtual void ComponentsStatusChange(XimuraServiceStatusAction action, 
-			ICollection components, Type componentType, 
+        /// This method can start, stop, resume or pause a group of components of the specified type.
+        /// </summary>
+        /// <param name="action">The action required</param>
+        /// <param name="components">The components to which the action should be provided</param>
+        /// <param name="componentType">The component type.</param>
+        public virtual void ComponentsStatusChange(XimuraServiceStatusAction action,
+            ICollection components, Type componentType,
             ComponentStatusChangeNotify NotifyAfter, ComponentStatusChangeNotify NotifyBefore)
-		{
-			if (components == null)
-				return;
+        {
+            if (components == null)
+                return;
 
-            bool donotNotifyBefore = NotifyBefore==null;
-            bool doNotifyAfter = NotifyAfter!=null;
+            bool donotNotifyBefore = NotifyBefore == null;
+            bool doNotifyAfter = NotifyAfter != null;
 
-			foreach(object objService in components)
-			{
-				IXimuraService service = objService as IXimuraService;
-				if (service != null && 
-					(componentType==null || (componentType.IsInstanceOfType(service))))
-				{
-					try
-					{
-						switch (action)
-						{
-							case XimuraServiceStatusAction.Start:
-								if (service.ServiceStatus == XimuraServiceStatus.Stopped ||
-									service.ServiceStatus == XimuraServiceStatus.NotStarted)
-								{
-									if (donotNotifyBefore || NotifyBefore(action, service))
-									{
-										service.Start();
-										if (doNotifyAfter) NotifyAfter(action, service);
-									}
-								}
-								break;
-							case XimuraServiceStatusAction.Stop:
-								if (service.ServiceStatus != XimuraServiceStatus.Stopped ||
-									service.ServiceStatus != XimuraServiceStatus.Stopping ||
-									service.ServiceStatus != XimuraServiceStatus.NotStarted ||
-									service.ServiceStatus != XimuraServiceStatus.Undefined)
-								{
-									if (donotNotifyBefore || NotifyBefore(action, service))
-									{
-										service.Stop();
-										if (doNotifyAfter) NotifyAfter(action, service);
-									}				
-								}
-								break;
-							case XimuraServiceStatusAction.Pause:
-								if (service.ServiceStatus == XimuraServiceStatus.Started)
-								{
-									if (donotNotifyBefore || NotifyBefore(action, service))
-									{
-										service.Pause();
-										if (doNotifyAfter) NotifyAfter(action, service);
-									}				
-								}								
-								break;
-							case XimuraServiceStatusAction.Continue:
-								if (service.ServiceStatus == XimuraServiceStatus.Paused)
-									if (service.ServiceStatus == XimuraServiceStatus.Started)
-									{
-										if (donotNotifyBefore || NotifyBefore(action, service))
-										{
-											service.Continue();
-											if (doNotifyAfter) NotifyAfter(action, service);
-										}				
-									}									
-								break;
-						}
-					}
-					catch (Exception ex)
-					{
-                        XimuraAppTrace.WriteLine("ComponentsStatusChange -> " + action.ToString() + 
-                            " -> " + ex.Message, "Start error.", EventLogEntryType.Error);
+            foreach (object objService in components)
+            {
+                IXimuraService service = objService as IXimuraService;
+                if (service != null &&
+                    (componentType == null || (componentType.IsInstanceOfType(service))))
+                {
+                    try
+                    {
+                        switch (action)
+                        {
+                            case XimuraServiceStatusAction.Start:
+                                if (service.ServiceStatus == XimuraServiceStatus.Stopped ||
+                                    service.ServiceStatus == XimuraServiceStatus.NotStarted)
+                                {
+                                    if (donotNotifyBefore || NotifyBefore(action, service))
+                                    {
+                                        service.Start();
+                                        if (doNotifyAfter) NotifyAfter(action, service);
+                                    }
+                                }
+                                break;
+                            case XimuraServiceStatusAction.Stop:
+                                if (service.ServiceStatus != XimuraServiceStatus.Stopped ||
+                                    service.ServiceStatus != XimuraServiceStatus.Stopping ||
+                                    service.ServiceStatus != XimuraServiceStatus.NotStarted ||
+                                    service.ServiceStatus != XimuraServiceStatus.Undefined)
+                                {
+                                    if (donotNotifyBefore || NotifyBefore(action, service))
+                                    {
+                                        service.Stop();
+                                        if (doNotifyAfter) NotifyAfter(action, service);
+                                    }
+                                }
+                                break;
+                            case XimuraServiceStatusAction.Pause:
+                                if (service.ServiceStatus == XimuraServiceStatus.Started)
+                                {
+                                    if (donotNotifyBefore || NotifyBefore(action, service))
+                                    {
+                                        service.Pause();
+                                        if (doNotifyAfter) NotifyAfter(action, service);
+                                    }
+                                }
+                                break;
+                            case XimuraServiceStatusAction.Continue:
+                                if (service.ServiceStatus == XimuraServiceStatus.Paused)
+                                    if (service.ServiceStatus == XimuraServiceStatus.Started)
+                                    {
+                                        if (donotNotifyBefore || NotifyBefore(action, service))
+                                        {
+                                            service.Continue();
+                                            if (doNotifyAfter) NotifyAfter(action, service);
+                                        }
+                                    }
+                                break;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine("ComponentsStatusChange -> " + action.ToString() +
+                            " -> " + ex.Message, "Start error.");
                         throw ex;
-					}
-				}
-			}
-		}
+                    }
+                }
+            }
+        }
         #endregion // ComponentsStatusChange
     }
 }

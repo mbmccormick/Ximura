@@ -25,12 +25,9 @@ using System.Reflection;
 
 using Ximura;
 using Ximura.Data;
-
 using CH = Ximura.Common;
-using Ximura.Framework;
-using Ximura.Framework;
 #endregion // using
-namespace Ximura.Framework
+namespace Ximura
 {
     /// <summary>
     /// This helper provides service based functionality for the components that require it.
@@ -41,7 +38,7 @@ namespace Ximura.Framework
         /// <summary>
         /// The service collection.
         /// </summary>
-        private Dictionary<Type,object> mServices;
+        private Dictionary<Type, object> mServices;
         /// <summary>
         /// currentType is used to identify the parent during debegging time.
         /// </summary>
@@ -386,7 +383,7 @@ namespace Ximura.Framework
             {
                 if (mServices == null)
                 {
-                    mServices = new Dictionary<Type,object>();
+                    mServices = new Dictionary<Type, object>();
                 }
 
                 return mServices;

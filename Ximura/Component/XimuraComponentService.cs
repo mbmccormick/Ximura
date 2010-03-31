@@ -26,12 +26,9 @@ using System.Reflection;
 
 using Ximura;
 using Ximura.Data;
-
 using CH=Ximura.Common;
-using Ximura.Framework;
-using Ximura.Framework;
 #endregion // using
-namespace Ximura.Framework
+namespace Ximura
 {
 	/// <summary>
 	/// XimuraComponentService is the base object for all Ximura components 
@@ -376,8 +373,9 @@ namespace Ximura.Framework
 					{
                         string message = "ComponentsStatusChange: " + objService.ToString() + " -> " 
                             + action.ToString() + " -> " + ex.Message;
-
-                        XimuraAppTrace.WriteLine(message, action.ToString() + " error.", EventLogEntryType.Error);
+#if (DEBUG)
+                        Debug.WriteLine(message, action.ToString() + " error.");
+#endif
                         throw new XimuraComponentServiceException(message,ex);
 					}
 				}

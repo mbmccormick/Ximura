@@ -264,13 +264,26 @@
     <Compile Include="Component\AppContainerEventArgs.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Component\Attributes\XimuraComponentPermissionAttribute.cs" />
     <Compile Include="Component\DisposableBase.cs" />
     <Compile Include="Component\ElementSite.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Component\Exception\XimuraComponentServiceException.cs" />
+    <Compile Include="Component\Extender\MetadataExtender.cs">
+    </Compile>
+    <Compile Include="Component\Helper\XimuraComponentBaseHelper.cs" />
+    <Compile Include="Component\Helper\XimuraComponentServiceHelper.cs" />
     <Compile Include="Component\Interfaces\IXimuraAppSite.cs" />
     <Compile Include="Component\Interfaces\IXimuraComponentBase.cs" />
+    <Compile Include="Component\Interfaces\IXimuraSecurityDescriptor.cs" />
     <Compile Include="Component\Interfaces\IXimuraServiceContainer.cs" />
+    <Compile Include="Component\XimuraComponentBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Component\XimuraComponentService.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Helper\ArrayHelper\ArrayHelper.cs" />
     <Compile Include="Helper\ArrayHelper\ArrayHelper_FindFirstPosition.cs" />
     <Compile Include="Helper\ArrayHelper\ArrayHelper_MatchAny.cs" />
