@@ -189,6 +189,22 @@ namespace Ximura.Data
         }
         #endregion // PriorityCombined
 
+        #region Construct
+        /// <summary>
+        /// This is the Construct method, which is used to create a new instance of an entity and set any default data.
+        /// </summary>
+        /// <param name="context">The job context.</param>
+        /// <returns>
+        /// The boolean return value should indicate whether the request was successfully resolved. A true response indicates
+        /// that the request was resolved by this Persistence Manager and that execution is complete. A false response indicates that this
+        /// Persistence Manager could not resolve the request and that the Content Data Store should continue with the execution plan.
+        /// </returns>
+        protected virtual bool Construct(CDSContext context)
+        {
+            throw new NotImplementedException("Initialize is not implemented in this CDS state");
+        }
+        #endregion
+
         #region Create
         /// <summary>
         /// This is the Create method.
@@ -234,6 +250,7 @@ namespace Ximura.Data
             throw new NotImplementedException("Update is not implemented in this CDS state");
         }
         #endregion        
+
         #region Delete
         /// <summary>
         /// This is the delete method.
@@ -249,6 +266,115 @@ namespace Ximura.Data
             throw new NotImplementedException("Delete is not implemented in this CDS state");
         }
         #endregion
+        #region Restore
+        /// <summary>
+        /// This is the restore method that reactivates a previously deleted entity or restores a previous version.
+        /// </summary>
+        /// <param name="context">The job context.</param>
+        /// <returns>
+        /// The boolean return value should indicate whether the request was successfully resolved. A true response indicates
+        /// that the request was resolved by this Persistence Manager and that execution is complete. A false response indicates that this
+        /// Persistence Manager could not resolve the request and that the Content Data Store should continue with the execution plan.
+        /// </returns>
+        protected virtual bool Restore(CDSContext context)
+        {
+            throw new NotImplementedException("Restore is not implemented in this CDS state");
+        }
+        #endregion
+
+        #region Lock
+        /// <summary>
+        /// This method locks an existing entity for exclusive access to calling parties that supply the lock ID.
+        /// </summary>
+        /// <param name="context">The job context.</param>
+        /// <returns>
+        /// The boolean return value should indicate whether the request was successfully resolved. A true response indicates
+        /// that the request was resolved by this Persistence Manager and that execution is complete. A false response indicates that this
+        /// Persistence Manager could not resolve the request and that the Content Data Store should continue with the execution plan.
+        /// </returns>
+        protected virtual bool Lock(CDSContext context)
+        {
+            throw new NotImplementedException("Lock is not implemented in this CDS state");
+        }
+        #endregion
+        #region Unlock
+        /// <summary>
+        /// This method unlocks an entity that was previously locked. This can be done by supplying the lock ID.
+        /// </summary>
+        /// <param name="context">The job context.</param>
+        /// <returns>
+        /// The boolean return value should indicate whether the request was successfully resolved. A true response indicates
+        /// that the request was resolved by this Persistence Manager and that execution is complete. A false response indicates that this
+        /// Persistence Manager could not resolve the request and that the Content Data Store should continue with the execution plan.
+        /// </returns>
+        protected virtual bool Unlock(CDSContext context)
+        {
+            throw new NotImplementedException("Unlock is not implemented in this CDS state");
+        }
+        #endregion
+
+        #region Publish
+        /// <summary>
+        /// This method marks an entity as published, where this is supported by the underlying persistence store.
+        /// </summary>
+        /// <param name="context">The job context.</param>
+        /// <returns>
+        /// The boolean return value should indicate whether the request was successfully resolved. A true response indicates
+        /// that the request was resolved by this Persistence Manager and that execution is complete. A false response indicates that this
+        /// Persistence Manager could not resolve the request and that the Content Data Store should continue with the execution plan.
+        /// </returns>
+        protected virtual bool Publish(CDSContext context)
+        {
+            throw new NotImplementedException("Publish is not implemented in this CDS state");
+        }
+        #endregion
+        #region Redact
+        /// <summary>
+        /// This method removed the published flag against a previously published entity.
+        /// </summary>
+        /// <param name="context">The job context.</param>
+        /// <returns>
+        /// The boolean return value should indicate whether the request was successfully resolved. A true response indicates
+        /// that the request was resolved by this Persistence Manager and that execution is complete. A false response indicates that this
+        /// Persistence Manager could not resolve the request and that the Content Data Store should continue with the execution plan.
+        /// </returns>
+        protected virtual bool Redact(CDSContext context)
+        {
+            throw new NotImplementedException("Redact is not implemented in this CDS state");
+        }
+        #endregion
+
+        #region Browse
+        /// <summary>
+        /// This is the browse method.
+        /// </summary>
+        /// <param name="context">The job context.</param>
+        /// <returns>
+        /// The boolean return value should indicate whether the request was successfully resolved. A true response indicates
+        /// that the request was resolved by this Persistence Manager and that execution is complete. A false response indicates that this
+        /// Persistence Manager could not resolve the request and that the Content Data Store should continue with the execution plan.
+        /// </returns>
+        protected virtual bool Browse(CDSContext context)
+        {
+            throw new NotImplementedException("Browse is not implemented in this CDS state");
+        }
+        #endregion
+        #region Custom
+        /// <summary>
+        /// This is the custom command method.
+        /// </summary>
+        /// <param name="context">The job context.</param>
+        /// <returns>
+        /// The boolean return value should indicate whether the request was successfully resolved. A true response indicates
+        /// that the request was resolved by this Persistence Manager and that execution is complete. A false response indicates that this
+        /// Persistence Manager could not resolve the request and that the Content Data Store should continue with the execution plan.
+        /// </returns>
+        protected virtual bool Custom(CDSContext context)
+        {
+            throw new NotImplementedException("Custom is not implemented in this CDS state");
+        }
+        #endregion
+
         #region VersionCheck
         /// <summary>
         /// This method checks the data store to see whether the references to the entity are current.
@@ -272,52 +398,6 @@ namespace Ximura.Data
             throw new NotImplementedException("VersionCheck is not implemented in this CDS state");
         }
         #endregion
-        #region Browse
-        /// <summary>
-        /// This is the browse method.
-        /// </summary>
-        /// <param name="context">The job context.</param>
-        /// <returns>
-        /// The boolean return value should indicate whether the request was successfully resolved. A true response indicates
-        /// that the request was resolved by this Persistence Manager and that execution is complete. A false response indicates that this
-        /// Persistence Manager could not resolve the request and that the Content Data Store should continue with the execution plan.
-        /// </returns>
-        protected virtual bool Browse(CDSContext context)
-        {
-            throw new NotImplementedException("Browse is not implemented in this CDS state");
-        }
-        #endregion
-        #region Restore
-        /// <summary>
-        /// This is the restore method that reactivates a previously deleted entity or restores a previous version.
-        /// </summary>
-        /// <param name="context">The job context.</param>
-        /// <returns>
-        /// The boolean return value should indicate whether the request was successfully resolved. A true response indicates
-        /// that the request was resolved by this Persistence Manager and that execution is complete. A false response indicates that this
-        /// Persistence Manager could not resolve the request and that the Content Data Store should continue with the execution plan.
-        /// </returns>
-        protected virtual bool Restore(CDSContext context)
-        {
-            throw new NotImplementedException("Restore is not implemented in this CDS state");
-        }
-        #endregion
-        #region Custom
-        /// <summary>
-        /// This is the custom command method.
-        /// </summary>
-        /// <param name="context">The job context.</param>
-        /// <returns>
-        /// The boolean return value should indicate whether the request was successfully resolved. A true response indicates
-        /// that the request was resolved by this Persistence Manager and that execution is complete. A false response indicates that this
-        /// Persistence Manager could not resolve the request and that the Content Data Store should continue with the execution plan.
-        /// </returns>
-        protected virtual bool Custom(CDSContext context)
-        {
-            throw new NotImplementedException("Custom is not implemented in this CDS state");
-        }
-        #endregion
-
         #region ResolveReference
         /// <summary>
         /// This method resolves reference parameters for the current request.

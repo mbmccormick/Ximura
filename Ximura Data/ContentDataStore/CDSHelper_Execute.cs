@@ -24,11 +24,10 @@ using System.Globalization;
 using System.Runtime.Serialization;
 
 using Ximura;
+using Ximura.Data;
 using CH = Ximura.Common;
 using RH = Ximura.Reflection;
 using AH = Ximura.AttributeHelper;
-using Ximura.Data;
-using Ximura.Framework;
 #endregion // using
 namespace Ximura.Data
 {
@@ -44,8 +43,7 @@ namespace Ximura.Data
 
             try
             {
-                rqEnv = EnvelopeRequest(
-                    new EnvelopeAddress(CDSCommandID, rqH.Action));
+                rqEnv = EnvelopeRequest(new EnvelopeAddress(CDSCommandID, rqH.Action));
                 //Get the request
                 CDSRequestFolder rq = rqEnv.ContractRequest;
                 //Set the value type
@@ -138,8 +136,7 @@ namespace Ximura.Data
 
             try
             {
-                rqEnv = EnvelopeRequest(
-                    new EnvelopeAddress(CDSCommandID, rqH.Action));
+                rqEnv = EnvelopeRequest(new EnvelopeAddress(CDSCommandID, rqH.Action));
                 //Get the request
                 CDSRequestFolder rq = rqEnv.ContractRequest;
                 //Set the value type
@@ -173,6 +170,7 @@ namespace Ximura.Data
             }
         }
         #endregion // Execute(IXimuraSessionRQ SessionRQ, Type itemType, CDSData rqH, Content inData, out Content outData)
+
         #region CDSExecute(this IXimuraSessionRQ SessionRQ, Type itemType, CDSData rqH, T inData)
         public static CDSResponse CDSExecute(this IXimuraSessionRQ SessionRQ, Type itemType, CDSData rqH, Content inData)
         {

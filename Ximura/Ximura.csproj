@@ -186,9 +186,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Applications\DJobType.cs" />
-    <Compile Include="Applications\JobPriority.cs" />
-    <Compile Include="Applications\SCMJobCompletionType.cs" />
     <Compile Include="Attributes\ConfigurationLocation.cs" />
     <Compile Include="Attributes\XimuraAppConfigurationAttribute.cs" />
     <Compile Include="Attributes\XimuraAppConfigurationExternalAttribute.cs" />
@@ -261,14 +258,6 @@
     <Compile Include="Collections\VertexArrays\SkipList\SkipListStructBasedVertexArray.cs" />
     <Compile Include="Collections\VertexArrays\StructBasedVertexArray.cs" />
     <Compile Include="Collections\VertexArrays\VertexArray.cs" />
-    <Compile Include="Command\CommandCallbacks.cs" />
-    <Compile Include="Command\Data\EnvelopeAddress.cs" />
-    <Compile Include="Command\Interfaces\IXimuraEnvelopeHelper.cs" />
-    <Compile Include="Command\Interfaces\IXimuraRQRSEnvelope.cs" />
-    <Compile Include="Command\Data\RQRSContract.cs" />
-    <Compile Include="Command\Data\RQRSFolder.cs" />
-    <Compile Include="Command\Interfaces\RQRSEnvTypes.cs" />
-    <Compile Include="Command\RQRSEnvelopeHelper.cs" />
     <Compile Include="Component\AppContainer.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -279,6 +268,9 @@
     <Compile Include="Component\ElementSite.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Component\Interfaces\IXimuraAppSite.cs" />
+    <Compile Include="Component\Interfaces\IXimuraComponentBase.cs" />
+    <Compile Include="Component\Interfaces\IXimuraServiceContainer.cs" />
     <Compile Include="Helper\ArrayHelper\ArrayHelper.cs" />
     <Compile Include="Helper\ArrayHelper\ArrayHelper_FindFirstPosition.cs" />
     <Compile Include="Helper\ArrayHelper\ArrayHelper_MatchAny.cs" />
@@ -311,6 +303,7 @@
     <Compile Include="Helper\Linq\Linq_Range.cs" />
     <Compile Include="Helper\Linq\Linq_Stream.cs" />
     <Compile Include="Helper\Linq\Linq_Unfolding.cs" />
+    <Compile Include="Helper\Locking\ILockable.cs" />
     <Compile Include="Helper\Locking\LockableBase.cs" />
     <Compile Include="Helper\Locking\LockableMarkableWrapper.cs" />
     <Compile Include="Helper\Locking\LockableNullableWrapper.cs" />
@@ -319,8 +312,6 @@
     <Compile Include="Helper\Stream\StreamCounter.cs" />
     <Compile Include="Helper\Stream\StreamHelper.cs" />
     <Compile Include="Helper\Threading.cs" />
-    <Compile Include="Interfaces\Command\IXimuraFSMStateIdentifier.cs" />
-    <Compile Include="Interfaces\Component\IXimuraServiceContainer.cs" />
     <Compile Include="Component\ServiceContainer.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -341,56 +332,16 @@
     <Compile Include="Helper\Reflection.cs" />
     <Compile Include="Helper\String.cs" />
     <Compile Include="Helper\XML.cs" />
-    <Compile Include="Interfaces\Application\IXimuraApplication.cs" />
-    <Compile Include="Interfaces\Application\IXimuraApplicationDefinition.cs" />
-    <Compile Include="Interfaces\Application\IXimuraAppServer.cs" />
-    <Compile Include="Interfaces\Command\IXimuraCommand.cs" />
-    <Compile Include="Interfaces\Command\IXimuraCommandKnownService.cs" />
-    <Compile Include="Interfaces\Command\IXimuraCommandPermissions.cs" />
-    <Compile Include="Interfaces\Command\IXimuraCommandProcessConfigSH.cs" />
-    <Compile Include="Interfaces\Command\IXimuraCommandScheduleProcessConfigSH.cs" />
-    <Compile Include="Interfaces\Command\IXimuraSchedulerCommandRegister.cs" />
-    <Compile Include="Interfaces\Configuration\IXimuraConfigurationManager.cs" />
     <Compile Include="Interfaces\Config\IXimuraConfigSH.cs" />
-    <Compile Include="Interfaces\Data\DataContentLinkType.cs" />
-    <Compile Include="Interfaces\Data\DataContentSummaryType.cs" />
-    <Compile Include="Interfaces\Data\IDataContentSummary.cs" />
-    <Compile Include="Interfaces\Data\ILockable.cs" />
-    <Compile Include="Interfaces\Data\ITextSummary.cs" />
     <Compile Include="Interfaces\Data\IXimuraContent.cs" />
     <Compile Include="Interfaces\Data\IXimuraContentEntityFragment.cs" />
     <Compile Include="Interfaces\Data\IXimuraContentEntityPersistence.cs" />
     <Compile Include="Interfaces\Data\IXimuraContentFormatterCapabilities.cs" />
     <Compile Include="Interfaces\Data\IXimuraContentSerializationReaderWriter.cs" />
-    <Compile Include="Interfaces\Data\IXimuraDataContentLinkage.cs" />
-    <Compile Include="Interfaces\Data\IXimuraDataEntity.cs" />
-    <Compile Include="Interfaces\Data\IXimuraElement.cs" />
-    <Compile Include="Interfaces\Data\IXimuraFolder.cs" />
-    <Compile Include="Interfaces\Data\IXimuraParameter.cs" />
-    <Compile Include="Interfaces\Application\IXimuraAppSite.cs" />
-    <Compile Include="Interfaces\Component\IXimuraComponentBase.cs" />
-    <Compile Include="Interfaces\Logging\IXimuraLoggerConfigSH.cs" />
-    <Compile Include="Interfaces\Logging\IXimuraLogging.cs" />
-    <Compile Include="Interfaces\Logging\IXimuraLoggingAudit.cs" />
-    <Compile Include="Interfaces\Logging\IXimuraLoggingExtended.cs" />
-    <Compile Include="Interfaces\Logging\IXimuraLoggingManagerConfigSH.cs" />
-    <Compile Include="Interfaces\Logging\IXimuraLoggingProvider.cs" />
     <Compile Include="Interfaces\Messaging\IXimuraBinarySerialize.cs" />
     <Compile Include="Interfaces\Messaging\IXimuraMessageLoad.cs" />
     <Compile Include="Interfaces\Messaging\IXimuraMessageLoadData.cs" />
     <Compile Include="Interfaces\Messaging\IXimuraMessageTermination.cs" />
-    <Compile Include="Interfaces\Performance\IXimuraPerformance.cs" />
-    <Compile Include="Interfaces\Performance\IXimuraPerformanceAgent.cs" />
-    <Compile Include="Interfaces\Performance\IXimuraPerformanceCounter.cs" />
-    <Compile Include="Interfaces\Performance\IXimuraPerformanceCounterCollection.cs" />
-    <Compile Include="Interfaces\Performance\IXimuraPerformanceItem.cs" />
-    <Compile Include="Interfaces\Performance\IXimuraPerformanceManager.cs" />
-    <Compile Include="Interfaces\Pooling\IXimuraPool.cs" />
-    <Compile Include="Interfaces\Pooling\IXimuraPoolable.cs" />
-    <Compile Include="Interfaces\Pooling\IXimuraPoolDeserializable.cs" />
-    <Compile Include="Interfaces\Pooling\IXimuraPoolManager.cs" />
-    <Compile Include="Interfaces\Pooling\IXimuraPoolManagerDirectAccess.cs" />
-    <Compile Include="Interfaces\Pooling\IXimuraPoolReturnable.cs" />
     <Compile Include="Interfaces\Service\ICDSSettingsService.cs" />
     <Compile Include="Interfaces\Service\IXimuraComponentService.cs" />
     <Compile Include="Interfaces\Service\IXimuraService.cs" />
@@ -399,22 +350,14 @@
     <Compile Include="Interfaces\Service\ServiceEventArgs.cs" />
     <Compile Include="Interfaces\Service\XimuraServiceStatus.cs" />
     <Compile Include="Interfaces\Service\XimuraServiceStatusAction.cs" />
-    <Compile Include="Interfaces\Session\IXimuraSession.cs" />
-    <Compile Include="Interfaces\Session\IXimuraSessionClient.cs" />
-    <Compile Include="Interfaces\SessionManager\IXimuraSessionManager.cs" />
-    <Compile Include="Interfaces\SessionManager\IXimuraSessionManagerAuth.cs" />
-    <Compile Include="Interfaces\Session\IXimuraSessionNegotiate.cs" />
-    <Compile Include="Interfaces\Session\IXimuraSessionNegotiateDigestAuthentication.cs" />
-    <Compile Include="Interfaces\Session\IXimuraSessionNegotiateMD5Hash.cs" />
-    <Compile Include="Interfaces\Session\IXimuraSessionNegotiatePlainText.cs" />
-    <Compile Include="Interfaces\Session\IXimuraSessionRQ.cs" />
-    <Compile Include="Interfaces\Session\IXimuraSessionRQAsync.cs" />
-    <Compile Include="Interfaces\Session\IXimuraSessionRQAsyncWithDependency.cs" />
-    <Compile Include="Interfaces\Session\IXimuraSessionSCM.cs" />
-    <Compile Include="Interfaces\Session\IXimuraSessionThread.cs" />
-    <Compile Include="Interfaces\Session\SessionState.cs" />
     <Compile Include="Pooling\Exception\PoolObjectInvalidException.cs" />
     <Compile Include="Pooling\Exception\PoolObjectUnavailableException.cs" />
+    <Compile Include="Pooling\Interfaces\IXimuraPool.cs" />
+    <Compile Include="Pooling\Interfaces\IXimuraPoolable.cs" />
+    <Compile Include="Pooling\Interfaces\IXimuraPoolDeserializable.cs" />
+    <Compile Include="Pooling\Interfaces\IXimuraPoolManager.cs" />
+    <Compile Include="Pooling\Interfaces\IXimuraPoolManagerDirectAccess.cs" />
+    <Compile Include="Pooling\Interfaces\IXimuraPoolReturnable.cs" />
     <Compile Include="Pooling\Object\PoolableObjectBase.cs" />
     <Compile Include="Pooling\Object\PoolableObjectPoolManagerDirectAccess.cs" />
     <Compile Include="Pooling\Object\PoolableReturnableObjectBase.cs" />
@@ -436,21 +379,25 @@
     </Compile>
     <Compile Include="Pooling\PoolManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Server\Managers\Agents\IXimuraGatewayAgent.cs" />
-    <Compile Include="Server\Managers\Agents\IXimuraSessionAgent.cs" />
-    <Compile Include="Server\Managers\Agents\IXimuraStorageAgent.cs" />
-    <Compile Include="Server\Managers\IXimuraAppServerAgentService.cs" />
-    <Compile Include="Server\Managers\IXimuraGatewayManagerService.cs" />
-    <Compile Include="Server\Managers\IXimuraLoggingManagerService.cs" />
-    <Compile Include="Server\Managers\IXimuraPerformanceManagerService.cs" />
-    <Compile Include="Server\Managers\Agents\IXimuraServerAgent.cs" />
-    <Compile Include="Server\Managers\IXimuraSessionManagerService.cs" />
-    <Compile Include="Server\Managers\IXimuraStorage.cs" />
-    <Compile Include="Server\Managers\IXimuraStorageManagerService.cs" />
-    <Compile Include="Server\Managers\XimuraServerAgentHolder.cs" />
-    <Compile Include="Session\CompletionJobStatus.cs" />
-    <Compile Include="Session\JobBase.cs" />
-    <Compile Include="Session\JobSignature.cs" />
+    <Compile Include="Session\CommandCallbacks.cs" />
+    <Compile Include="Session\Contract\RQRSContract.cs" />
+    <Compile Include="Session\Contract\RQRSFolder.cs" />
+    <Compile Include="Session\Envelope\EnvelopeAddress.cs" />
+    <Compile Include="Session\Envelope\IXimuraEnvelopeHelper.cs" />
+    <Compile Include="Session\Envelope\IXimuraRQRSEnvelope.cs" />
+    <Compile Include="Session\Envelope\RQRSEnvelopeHelper.cs" />
+    <Compile Include="Session\IXimuraLogging.cs" />
+    <Compile Include="Session\IXimuraSessionRQ.cs" />
+    <Compile Include="Session\IXimuraSessionRQAsync.cs" />
+    <Compile Include="Session\IXimuraSessionRQAsyncWithDependency.cs" />
+    <Compile Include="Session\Job\DJobType.cs" />
+    <Compile Include="Session\Job\Job.cs" />
+    <Compile Include="Session\Job\JobBase.cs" />
+    <Compile Include="Session\Job\JobHolder.cs" />
+    <Compile Include="Session\Job\JobPriority.cs" />
+    <Compile Include="Session\Job\JobSignature.cs" />
+    <Compile Include="Session\Job\JobWrapper.cs" />
+    <Compile Include="Session\Job\SCMJobCompletionType.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">

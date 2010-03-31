@@ -80,7 +80,7 @@ namespace Ximura.Framework
 		/// <param name="RSCallback">The request progress callback.</param>
 		/// <param name="ProgressCallback">The request progress callback.</param>
 		/// <param name="priority">The job priority.</param>
-		internal JobHolder(Guid? jobID, IXimuraRQRSEnvelope data, CommandRSCallback RSCallback,
+		public JobHolder(Guid? jobID, IXimuraRQRSEnvelope data, CommandRSCallback RSCallback,
 			CommandProgressCallback ProgressCallback, JobPriority priority):
             this(jobID,data,RSCallback,ProgressCallback,priority,null,null, null){}
         /// <summary>
@@ -93,7 +93,7 @@ namespace Ximura.Framework
         /// <param name="priority">The job priority.</param>
         /// <param name="NextJob">The next job for linked jobs.</param>
         /// <param name="LastJob">The last job for linked jobs.</param>
-        internal JobHolder(Guid? jobID, IXimuraRQRSEnvelope data, CommandRSCallback RSCallback,
+        public JobHolder(Guid? jobID, IXimuraRQRSEnvelope data, CommandRSCallback RSCallback,
             CommandProgressCallback ProgressCallback, JobPriority priority,
             Guid? NextJob, Guid? LastJob, DependencyValidateRSCallback ValidateRSCallBack)
         {

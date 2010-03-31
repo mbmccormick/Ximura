@@ -10,7 +10,7 @@
 //     Paul Stancer - initial implementation
 // *******************************************************************************
 #endregion
-﻿#region using
+#region using
 using System;
 using System.Collections.Generic;
 using System.Text;

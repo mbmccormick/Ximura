@@ -23,7 +23,7 @@ using Ximura;
 using CH = Ximura.Common;
 
 #endregion // using
-namespace Ximura.Framework
+namespace Ximura
 {
     /// <summary>
     /// This structure is used hold the job signature.

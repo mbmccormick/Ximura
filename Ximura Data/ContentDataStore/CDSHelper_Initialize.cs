@@ -24,11 +24,10 @@ using System.Globalization;
 using System.Runtime.Serialization;
 
 using Ximura;
+using Ximura.Data;
 using CH = Ximura.Common;
 using RH = Ximura.Reflection;
 using AH = Ximura.AttributeHelper;
-using Ximura.Data;
-using Ximura.Framework;
 #endregion // using
 namespace Ximura.Data
 {
@@ -44,85 +43,14 @@ namespace Ximura.Data
         /// <typeparam name="E">The entity type.</typeparam>
         /// <param name="svc">The persistence service.</param>
         /// <returns>Returns the entity.</returns>
-        public static CDSResponse CDSInitialize<E>(this IXimuraSessionRQ SessionRQ, out E data) where E : Content
+        public static CDSResponse CDSConstruct<E>(this IXimuraSessionRQ SessionRQ, out E data) where E : Content
         {
-            //CDSContext pc = PersistenceContext.Initialize(typeof(E));
-            //svc.Execute(typeof(E));
+            return SessionRQ.CDSExecute<E>(CDSData.Get(CDSAction.Construct), out data);
 
-            //return (E)pc.ResponseData;
-            data = null;
-            return CDSResponse.BadRequest;
         }
         #endregion
 
-        //        /// <summary>
-        //        /// This method initializes the entity from the persistence store.
-        //        /// </summary>
-        //        /// <typeparam name="E">The entity type.</typeparam>
-        //        /// <param name="svc">The persistence service.</param>
-        //        /// <returns>Returns the entity.</returns>
-        //        public static Entity Initialize<E>(this IPersistenceService svc, Type EntityType)
-        //        {
-        //            PersistenceContext pc = PersistenceContext.Initialize(typeof(E));
-        //            svc.Execute(pc);
 
-        //            return pc.ResponseData;
-        //        }
-        //        #endregion // Initialize
-
-        //        #region Read
-        //        public static E Read<E>(this IPersistenceService svc, Guid IDContent) where E : Entity
-        //        {
-        //            return svc.Read<E>(IDContent, null);
-        //        }
-
-        //        public static E Read<E>(this IPersistenceService svc, Guid IDContent, Guid? IDVersion) where E : Entity
-        //        {
-        //            PersistenceContext pc = PersistenceContext.Read(typeof(E), IDContent, IDVersion);
-        //            svc.Execute(pc);
-
-        //            return (E)pc.ResponseData;
-        //        }
-
-        //        public static E Read<E>(this IPersistenceService svc, string refType, string refValue) where E : Entity
-        //        {
-        //            PersistenceContext pc = PersistenceContext.Read(typeof(E), refType, refValue);
-        //            svc.Execute(pc);
-
-        //            return (E)pc.ResponseData;
-        //        }
-
-        //        public static Entity Read(this IPersistenceService svc, Type EntityType, Guid IDContent, Guid? IDVersion)
-        //        {
-        //            PersistenceContext pc = PersistenceContext.Read(EntityType, IDContent, IDVersion);
-        //            svc.Execute(pc);
-
-        //            return pc.ResponseData;
-        //        }
-
-        //        public static Entity Read(this IPersistenceService svc, Type EntityType, string refType, string refValue)
-        //        {
-        //            PersistenceContext pc = PersistenceContext.Read(EntityType, refType, refValue);
-        //            svc.Execute(pc);
-
-        //            return pc.ResponseData;
-        //        }
-        //        #endregion // Read
-
-        //        #region Create
-        //        public static E Create<E>(this IPersistenceService svc, E entity) where E : Entity
-        //        {
-        //            return svc.Create(entity, null);
-        //        }
-
-        //        public static E Create<E>(this IPersistenceService svc, E entity, EntityLockID? eLock) where E : Entity
-        //        {
-        //            PersistenceContext pc = PersistenceContext.Create(entity, eLock);
-        //            svc.Execute(pc);
-
-        //            return (E)pc.ResponseData;
-        //        }
-        //        #endregion // Create
 
         //        #region Update
         //        /// <summary>

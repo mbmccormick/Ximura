@@ -22,15 +22,10 @@ using System.Globalization;
 using System.Runtime.Serialization;
 
 using Ximura;
-
+using Ximura.Data;
 using CH = Ximura.Common;
 using RH = Ximura.Reflection;
 using AH = Ximura.AttributeHelper;
-using Ximura.Data;
-using Ximura.Framework;
-using Ximura.Framework;
-
-
 #endregion // using
 namespace Ximura.Data
 {
@@ -275,11 +270,15 @@ namespace Ximura.Data
         public static readonly Guid CDSCommandID = new Guid(ID);
         #endregion // CDSCommandID
 
+        #region Struct -> CDSJobHolder
+        /// <summary>
+        /// This struct holds the CDS job status.
+        /// </summary>
         private struct CDSJobHolder
         {
             public object State;
         }
-
+        #endregion 
         #region Declarations
         /// <summary>
         /// The job tracker.
@@ -289,6 +288,8 @@ namespace Ximura.Data
         /// The Version Check callback.
         /// </summary>
         private static CommandRSCallback cbVersionCheck;
+
+        private static Pool<RQRSContract<CDSRequestFolder, CDSResponseFolder>> mCDSEnvelopes;
         #endregion
 
         #region Constructor - Static
@@ -297,9 +298,10 @@ namespace Ximura.Data
             mAsyncJobTracker = new Dictionary<Guid, CDSJobHolder>();
 
             cbVersionCheck = new CommandRSCallback(AsyncCDSCallback);
+
+            mCDSEnvelopes = new Pool<RQRSContract<CDSRequestFolder, CDSResponseFolder>>();
         }
         #endregion // Constructor - Static
-
 
         #region AsyncCDSCallback(object sender, CommandRSEventArgs args)
         /// <summary>
@@ -311,7 +313,6 @@ namespace Ximura.Data
         {
             try
             {
-
 
             }
             catch (Exception ex)
@@ -333,7 +334,9 @@ namespace Ximura.Data
         /// <returns></returns>
         private static RQRSContract<CDSRequestFolder, CDSResponseFolder> EnvelopeRequest(EnvelopeAddress addr)
         {
-            return RQRSEnvelopeHelper.Get(addr) as RQRSContract<CDSRequestFolder, CDSResponseFolder>;
+            RQRSContract<CDSRequestFolder, CDSResponseFolder> env = mCDSEnvelopes.Get(j => { j.DestinationAddress = addr; });
+            
+            return env;
         }
         /// <summary>
         /// This method is used by sync methods to return the envelope back to the pool.
@@ -356,7 +359,7 @@ namespace Ximura.Data
             EnvelopeReturn(args.Data);
             args.Reset();
         }
-        #endregion // EnvelopeRequest/EnvelopeReturn
+        #endregion
 
         #region ResponseCodeTranslate(string responseCode)
         /// <summary>

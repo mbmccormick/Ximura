@@ -12,6 +12,7 @@
 #endregion
 #region using
 using System;
+using System.Linq;
 using System.Data;
 using System.Data.SqlClient;
 using System.Collections;
@@ -22,12 +23,8 @@ using System.Threading;
 
 using Ximura;
 using Ximura.Data;
-
 using CH = Ximura.Common;
 using RH = Ximura.Reflection;
-using Ximura.Framework;
-
-
 using Ximura.Framework;
 #endregion // using
 namespace Ximura.Data
@@ -72,18 +69,12 @@ namespace Ximura.Data
         {
             mStateExecutionPlanCache = new Dictionary<CDSAction, Dictionary<string, string[]>>();
 
-            mStateExecutionPlanCache.Add(CDSAction.Cache, new Dictionary<string, string[]>());
-            mStateExecutionPlanCache.Add(CDSAction.Create, new Dictionary<string, string[]>());
-            mStateExecutionPlanCache.Add(CDSAction.Custom, new Dictionary<string, string[]>());
-            mStateExecutionPlanCache.Add(CDSAction.Delete, new Dictionary<string, string[]>());
-            mStateExecutionPlanCache.Add(CDSAction.Read, new Dictionary<string, string[]>());
-            mStateExecutionPlanCache.Add(CDSAction.ResolveReference, new Dictionary<string, string[]>());
-            mStateExecutionPlanCache.Add(CDSAction.Update, new Dictionary<string, string[]>());
-            mStateExecutionPlanCache.Add(CDSAction.VersionCheck, new Dictionary<string, string[]>());
-            mStateExecutionPlanCache.Add(CDSAction.Browse, new Dictionary<string, string[]>());
-            mStateExecutionPlanCache.Add(CDSAction.Restore, new Dictionary<string, string[]>());
+            Enum.GetValues(typeof(CDSAction))
+                .Cast<CDSAction>()
+                .Where(a => a != CDSAction.NotSet)
+                .ForEach(a => mStateExecutionPlanCache.Add(a, new Dictionary<string, string[]>()));
         }
-        #endregion // InitializeStateExecutionPlan()
+        #endregion
 
         #region ResolveExecutionPlan(CDSStateActions action, Type objectType)
         /// <summary>

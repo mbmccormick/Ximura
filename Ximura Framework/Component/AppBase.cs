@@ -37,7 +37,6 @@ namespace Ximura.Framework
     /// </summary>
     /// <typeparam name="CONF">The configuration class.</typeparam>
     /// <typeparam name="PERF">The performance class.</typeparam>
-    /// <typeparam name="PERF">The configuration class.</typeparam>
     public class AppBase<CONF, PERF> : AppBase<CONF, PERF, CONF>
         where CONF : ConfigurationBase, new()
         where PERF : PerformanceCounterCollection, new()
@@ -57,7 +56,7 @@ namespace Ximura.Framework
         }
         #endregion
     }
-    #endregion // AppBase<CONF, PERF>
+    #endregion
 
     #region AppBase<CONF, PERF, EXTCONF>
     /// <summary>

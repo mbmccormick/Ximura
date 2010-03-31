@@ -1,142 +1,215 @@
-﻿//#region Copyright
-//// *******************************************************************************
-//// Copyright (c) 2000-2009 Paul Stancer.
-//// All rights reserved. This program and the accompanying materials
-//// are made available under the terms of the Eclipse Public License v1.0
-//// which accompanies this distribution, and is available at
-//// http://www.eclipse.org/legal/epl-v10.html
-////
-//// Contributors:
-////     Paul Stancer - initial implementation
-//// *******************************************************************************
-//#endregion
-//#region using
-//using System;
-//using System.Data;
-//using System.Collections;
-//using System.Collections.Generic;
-//using System.ComponentModel;
-//using System.Security;
-//using System.Security.Cryptography;
-//using System.Globalization;
-//using System.Runtime.Serialization;
+﻿#region Copyright
+// *******************************************************************************
+// Copyright (c) 2000-2009 Paul Stancer.
+// All rights reserved. This program and the accompanying materials
+// are made available under the terms of the Eclipse Public License v1.0
+// which accompanies this distribution, and is available at
+// http://www.eclipse.org/legal/epl-v10.html
+//
+// Contributors:
+//     Paul Stancer - initial implementation
+// *******************************************************************************
+#endregion
+#region using
+using System;
+using System.Data;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Security;
+using System.Security.Cryptography;
+using System.Globalization;
+using System.Runtime.Serialization;
 
-//using Ximura;
-//using Ximura.Data;
+using Ximura;
+using Ximura.Data;
+using CH = Ximura.Common;
+using RH = Ximura.Reflection;
+using AH = Ximura.AttributeHelper;
+#endregion // using
+namespace Ximura.Data
+{
+    /// <summary>
+    /// The CDSData class is used by the CDSHelper to hold the information for a request.
+    /// </summary>
+    public struct CDSData
+    {
+        #region Get() - Factory method
+        /// <summary>
+        /// This factory method can be used to Get a request object and set its 
+        /// parameters
+        /// </summary>
+        /// <returns>Returns an object from the pool.</returns>
+        public static CDSData Get(CDSAction action, Guid? CID, Guid? VID)
+        {
+            return Get(action, CID, VID, JobPriority.Normal);
+        }
+        /// <summary>
+        /// This factory method can be used to Get a request object and set its 
+        /// parameters
+        /// </summary>
+        /// <returns>Returns an object from the pool.</returns>
+        public static CDSData Get(CDSAction action, Guid? CID, Guid? VID, JobPriority priority)
+        {
+            CDSData rq = new CDSData();
+            rq.ByReference = false;
 
-//using CH = Ximura.Common;
-//using RH = Ximura.Reflection;
-//using AH = Ximura.AttributeHelper;
-//using Ximura.Data;
-//using Ximura.Framework;
-//using Ximura.Framework;
-//#endregion // using
-//namespace Ximura.Data
-//{
-//    /// <summary>
-//    /// The CDSData class is used by the CDSHelper to hold the information for a request.
-//    /// </summary>
-//    public class CDSData : CDSDataBase, IXimuraPoolReturnable
-//    {
-//        #region Static Declarations
-//        private static readonly Guid sCDSCommandGuid = new Guid("FE21CBF6-2CDC-4549-9F13-49385CAE8DDA");
-//        private static IXimuraPool<CDSData> sCDSRequestPool;
-//        #endregion // Declarations
-//        #region Static Constructor
-//        static CDSData()
-//        {
-//            sCDSRequestPool = new PoolInvocator<CDSData>(delegate(){ return new CDSData(); });
-//        }
-//        #endregion // Static Constructor
+            if (CID.HasValue)
+                rq.IDContent = CID.Value;
 
+            if (VID.HasValue)
+                rq.IDVersion = VID.Value;
 
-//        #region Declarations
-//        private readonly Guid mTrackID = Guid.NewGuid();
-//        #endregion 
+            rq.Action = action;
+            rq.Priority = priority;
+            return rq;
+        }
 
-//        #region Constructor - Private
-//        private CDSData()
-//        {
-//            Reset();
-//        }
-//        #endregion
-//        #region IDisposable Members/Finalize
-//        private bool disposed = false;
-//        /// <summary>
-//        /// The dispose method.
-//        /// </summary>
-//        public void Dispose()
-//        {
-//            Dispose(true);
-//            GC.SuppressFinalize(this);
-//        }
-//        /// <summary>
-//        /// The overrided dispose method
-//        /// </summary>
-//        /// <param name="disposing">True if this is called by dispose, false if this
-//        /// is called by the finalizer.</param>
-//        protected virtual void Dispose(bool disposing)
-//        {
-//            if (!disposed && disposing)
-//            {
-//                RefValue = null;
-//                RefType = null;
-//                disposed = true;
-//            }
-//        }
-//        #endregion
+        /// <summary>
+        /// This factory method can be used to Get a request object and set its 
+        /// parameters
+        /// </summary>
+        /// <returns>Returns an object from the pool.</returns>
+        public static CDSData Get(CDSAction action, string refType, string refValue)
+        {
+            return Get(action, refType, refValue, JobPriority.Normal);
+        }
 
-//        #region IXimuraPoolReturnable Members
-//        #region ObjectPool
-//        /// <summary>
-//        /// This property is not supported.
-//        /// </summary>
-//        public IXimuraPool ObjectPool
-//        {
-//            get
-//            {
-//                throw new NotSupportedException("Access to the internal object pool is not supported.");
-//            }
-//            set
-//            {
-//                //throw new NotSupportedException("Access to the internal object pool is not supported.");
-//            }
-//        }
-//        #endregion // ObjectPool
-//        #region ObjectPoolCanReturn
-//        /// <summary>
-//        /// This property will always be true as objects will always be part of a pool.
-//        /// </summary>
-//        public bool ObjectPoolCanReturn
-//        {
-//            get { return true; }
-//        }
-//        #endregion // ObjectPoolCanReturn
-//        #region ObjectPoolReturn()
-//        /// <summary>
-//        /// This method returns the request to the pool for re-use.
-//        /// </summary>
-//        public void ObjectPoolReturn()
-//        {
-//            sCDSRequestPool.Return(this);
-//        }
-//        #endregion // ObjectPoolReturn()
-//        #endregion
-//        #region IXimuraPoolableObject Members
-//        /// <summary>
-//        /// This will always return true for this object type.
-//        /// </summary>
-//        public bool CanPool
-//        {
-//            get { return true; }
-//        }
-//        /// <summary>
-//        /// This is the internal track ID.
-//        /// </summary>
-//        public Guid TrackID
-//        {
-//            get { return mTrackID; }
-//        }
-//        #endregion
-//    }
-//}
+        /// <summary>
+        /// This factory method can be used to Get a request object and set its 
+        /// parameters
+        /// </summary>
+        /// <returns>Returns an object from the pool.</returns>
+        public static CDSData Get(CDSAction action, string refType, string refValue, JobPriority priority)
+        {
+            CDSData rq = new CDSData();
+
+            rq.ByReference = true;
+            rq.RefType = refType;
+            rq.RefValue = refValue;
+            rq.Action = action;
+            rq.Priority = priority;
+
+            return rq;
+        }
+
+        /// <summary>
+        /// This factory method can be used to Get a request object and set its 
+        /// parameters
+        /// </summary>
+        /// <returns>Returns an object from the pool.</returns>
+        public static CDSData Get(CDSAction action)
+        {
+            return Get(action, JobPriority.Normal);
+        }
+
+        /// <summary>
+        /// This factory method can be used to Get a request object and set its 
+        /// parameters
+        /// </summary>
+        /// <returns>Returns an object from the pool.</returns>
+        public static CDSData Get(CDSAction action, JobPriority priority)
+        {
+            CDSData rq = new CDSData();
+            rq.Action = action;
+            rq.Priority = priority;
+            return rq;
+        }
+        #endregion
+
+        #region Priority
+        /// <summary>
+        /// This is the priority for the request.
+        /// </summary>
+        public JobPriority Priority
+        {
+            get;
+            private set;
+        }
+        #endregion
+        #region RequestID
+        /// <summary>
+        /// This is the unique request ID.
+        /// </summary>
+        public Guid RequestID
+        {
+            get;
+            private set;
+        }
+        #endregion
+
+        #region Action
+        /// <summary>
+        /// This is the specific action for the CDS to process.
+        /// </summary>
+        public CDSAction Action
+        {
+            get;
+            private set;
+        }
+        #endregion
+
+        #region ByReference
+        /// <summary>
+        /// This boolean property indicates whether the request is by reference.
+        /// </summary>
+        public bool ByReference
+        {
+            get;
+            private set;
+        }
+        #endregion
+        #region RefType
+        /// <summary>
+        /// This is the reference type for the entity.
+        /// </summary>
+        public string RefType
+        {
+            get;
+            private set;
+        }
+        #endregion
+        #region RefValue
+        /// <summary>
+        /// The is the reference key value for the entity.
+        /// </summary>
+        public string RefValue
+        {
+            get;
+            private set;
+        }
+        #endregion
+
+        #region IDType
+        /// <summary>
+        /// This is the optional type ID for the entity.
+        /// </summary>
+        public Guid? IDType
+        {
+            get;
+            private set;
+        }
+        #endregion
+        #region IDContent
+        /// <summary>
+        /// This is the content ID for the entity.
+        /// </summary>
+        public Guid? IDContent
+        {
+            get;
+            private set;
+        }
+        #endregion
+        #region IDVersion
+        /// <summary>
+        /// THis is the version ID for the entity. If this version is null the latest version will be returned for
+        /// a read operation.
+        /// </summary>
+        public Guid? IDVersion
+        {
+            get;
+            private set;
+        }
+        #endregion
+    }
+}

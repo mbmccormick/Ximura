@@ -77,6 +77,7 @@
     <Compile Include="AppServerBase.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="AppServerContainer.cs" />
     <Compile Include="AppServer_CommandBridge.cs">
       <SubType>Component</SubType>
     </Compile>

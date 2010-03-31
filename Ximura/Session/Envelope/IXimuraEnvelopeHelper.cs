@@ -23,7 +23,7 @@ using Ximura.Data;
 
 using RH = Ximura.Reflection;
 #endregion // using
-namespace Ximura.Framework
+namespace Ximura
 {
     /// <summary>
     /// This interface is used to provide access the Envelope pool for the application.

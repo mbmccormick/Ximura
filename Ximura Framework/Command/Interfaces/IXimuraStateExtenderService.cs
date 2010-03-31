@@ -32,6 +32,9 @@ using Ximura.Framework;
 #endregion // using
 namespace Ximura.Framework
 {
+    /// <summary>
+    /// This interface is implemented by classes 
+    /// </summary>
     public interface IXimuraStateExtenderService
     {
         void Register(Guid CommandID, Type stateType, IXimuraStateExtender mStateExtender);

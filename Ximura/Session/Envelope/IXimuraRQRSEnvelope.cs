@@ -19,10 +19,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 using Ximura;
-using Ximura.Framework;
-using Ximura.Framework;
 using Ximura.Data;
-
 #endregion // using
 namespace Ximura
 {

@@ -29,11 +29,7 @@ using System.Xml.Xsl;
 using System.Xml.XPath;
 
 using Ximura;
-
 using Ximura.Data;
-
-using Ximura.Framework;
-using Ximura.Framework;
 #endregion // using
 namespace Ximura.Communication
 {

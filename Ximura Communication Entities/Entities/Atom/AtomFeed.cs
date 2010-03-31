@@ -9,10 +9,7 @@ using System.Xml;
 
 using Ximura;
 using Ximura.Data;
-
 using CH = Ximura.Common;
-using Ximura.Framework;
-using Ximura.Framework;
 using Ximura.Communication;
 #endregion // using
 namespace Ximura.Communication

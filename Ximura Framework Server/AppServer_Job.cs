@@ -66,7 +66,7 @@ namespace Ximura.Framework
             mJobActiveCollection =
                 new JobCollection(ConfigurationSystem.JobMax, ConfigurationSystem.JobCapacityOverrideLevel, false);
 
-            mPoolJob = new PoolInvocator<Job>(delegate() { return new Job(); });
+            mPoolSecurityManagerJob = new PoolInvocator<SecurityManagerJob>(() => { return new SecurityManagerJob(); });
         }
         #endregion
         #region JobProcessStop()

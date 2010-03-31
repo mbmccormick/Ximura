@@ -33,9 +33,11 @@ namespace Ximura.Framework
     /// <summary>
     /// This is the standard container for hosting a Application command that has a standard constructor.
     /// </summary>
-    /// <typeparam name="COMM">The command type.</typeparam>
-    public class FSMCommandContainer<COMM> : CommandContainer<COMM>
+    /// <typeparam name="COMM">The FSM command type.</typeparam>
+    /// <typeparam name="STAT">The FSM command state type.</typeparam>
+    public class FSMCommandContainer<COMM, STAT> : CommandContainer<COMM>
         where COMM : class, IXimuraFSM, new()
+        where STAT : IXimuraFSMState
     {
         #region Constructor
         /// <summary>
@@ -55,5 +57,22 @@ namespace Ximura.Framework
         }
         #endregion
 
+        protected override void InternalStart()
+        {
+            List<STAT> extensionStates = ExtensionStates.ToList();
+            mCommand.ExternalStatesAllow = true;// extensionStates.Count > 0;
+            base.InternalStart();
+
+            IXimuraStateExtenderService stEx = GetService<IXimuraStateExtenderService>();
+        }
+
+
+        protected virtual IEnumerable<STAT> ExtensionStates
+        {
+            get
+            {
+                yield break;
+            }
+        }
     }
 }

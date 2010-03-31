@@ -13,10 +13,6 @@ using System.Net;
 
 using Ximura;
 using Ximura.Data;
-using Ximura.Data;
-
-using Ximura.Framework;
-using Ximura.Framework;
 using Ximura.Communication;
 using CH = Ximura.Common;
 using XH = Ximura.XMLHelper;

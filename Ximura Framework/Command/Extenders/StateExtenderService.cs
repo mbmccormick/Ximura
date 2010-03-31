@@ -51,15 +51,25 @@ namespace Ximura.Framework
         }
         #endregion // Constructor
 
-
-        #region IXimuraStateExtenderService Members
-
+        #region Register(Guid CommandID, Type stateType, IXimuraStateExtender mStateExtender)
+        /// <summary>
+        /// This method registers a new extender for a particular class.
+        /// </summary>
+        /// <param name="CommandID">The command ID.</param>
+        /// <param name="stateType">The state stype.</param>
+        /// <param name="mStateExtender">The extender class.</param>
         public void Register(Guid CommandID, Type stateType, IXimuraStateExtender mStateExtender)
         {
             KeyValuePair<Guid, Type> key = new KeyValuePair<Guid, Type>(CommandID, stateType);
             mRegisteredExtendees.Add(key, mStateExtender);
         }
-
+        #endregion 
+        #region Unregister(Guid CommandID, Type stateType)
+        /// <summary>
+        /// This method removes the extender for the particular command and state type.
+        /// </summary>
+        /// <param name="CommandID">The command ID.</param>
+        /// <param name="stateType">The state stype.</param>
         public void Unregister(Guid CommandID, Type stateType)
         {
             KeyValuePair<Guid, Type> key = new KeyValuePair<Guid, Type>(CommandID, stateType);
@@ -67,7 +77,6 @@ namespace Ximura.Framework
                 mRegisteredExtendees.Remove(key);
 
         }
-
-        #endregion
+        #endregion 
     }
 }

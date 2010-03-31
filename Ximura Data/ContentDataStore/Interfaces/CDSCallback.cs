@@ -22,15 +22,10 @@ using System.Globalization;
 using System.Runtime.Serialization;
 
 using Ximura;
-
+using Ximura.Data;
 using CH = Ximura.Common;
 using RH = Ximura.Reflection;
 using AH = Ximura.AttributeHelper;
-using Ximura.Data;
-using Ximura.Framework;
-using Ximura.Framework;
-
-
 #endregion // using
 namespace Ximura.Data
 {

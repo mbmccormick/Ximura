@@ -28,8 +28,6 @@ using System.Threading;
 
 using Ximura;
 using Ximura.Collections;
-
-using Ximura.Framework;
 #endregion // using
 namespace Ximura
 {

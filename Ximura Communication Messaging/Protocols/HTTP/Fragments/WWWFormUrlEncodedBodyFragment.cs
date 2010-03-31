@@ -21,16 +21,11 @@ using System.ComponentModel;
 using System.ComponentModel.Design;
 using System.ComponentModel.Design.Serialization;
 using System.Reflection;
-
 using System.Diagnostics;
 
 using Ximura;
-
-using CH=Ximura.Common;
 using Ximura.Data;
-
-using Ximura.Framework;
-using Ximura.Framework;
+using CH=Ximura.Common;
 #endregion // using
 namespace Ximura.Communication
 {

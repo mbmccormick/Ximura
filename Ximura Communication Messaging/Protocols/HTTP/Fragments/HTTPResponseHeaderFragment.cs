@@ -23,11 +23,7 @@ using System.Reflection;
 using System.Diagnostics;
 
 using Ximura;
-
 using Ximura.Data;
-
-using Ximura.Framework;
-using Ximura.Framework;
 #endregion // using
 namespace Ximura.Communication
 {

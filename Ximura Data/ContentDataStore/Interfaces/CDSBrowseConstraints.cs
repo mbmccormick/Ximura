@@ -23,7 +23,6 @@ using System.Runtime.Serialization;
 
 using Ximura;
 using Ximura.Data;
-using Ximura.Framework;
 using CH = Ximura.Common;
 using RH = Ximura.Reflection;
 using AH = Ximura.AttributeHelper;

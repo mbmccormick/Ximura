@@ -27,11 +27,7 @@ using System.IO.Compression;
 using System.Text;
 
 using Ximura;
-
 using Ximura.Data;
-
-using Ximura.Framework;
-using Ximura.Framework;
 #endregion // using
 namespace Ximura.Communication
 {

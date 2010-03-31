@@ -20,11 +20,9 @@ using System.Threading;
 using System.ComponentModel;
 
 using Ximura;
-using Ximura.Framework;
-
 using CH = Ximura.Common;
 #endregion // using
-namespace Ximura.Framework
+namespace Ximura
 {
 	/// <summary>
 	/// This is an abstract class that all job based implementations inherit from.

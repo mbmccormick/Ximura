@@ -4,36 +4,6 @@
         <name>Ximura</name>
     </assembly>
     <members>
-        <member name="T:Ximura.IXimuraPerformance">
-            <summary>
-            THis is the base interface for the performance architecture.
-            </summary>
-        </member>
-        <member name="P:Ximura.IXimuraPerformance.PCID">
-            <summary>
-            The unique performance counter ID.
-            </summary>
-        </member>
-        <member name="P:Ximura.IXimuraPerformance.AppID">
-            <summary>
-            This is the application ID for the counter.
-            </summary>
-        </member>
-        <member name="P:Ximura.IXimuraPerformance.ID">
-            <summary>
-            The container id.
-            </summary>
-        </member>
-        <member name="P:Ximura.IXimuraPerformance.Name">
-            <summary>
-            The friendly name.
-            </summary>
-        </member>
-        <member name="P:Ximura.IXimuraPerformance.Category">
-            <summary>
-            The category.
-            </summary>
-        </member>
         <member name="T:Ximura.Data.IXimuraContentEntityPersistence">
             <summary>
             This interface implements the basic entity properties for persistence storage.
@@ -64,89 +34,6 @@
         <member name="P:Ximura.Data.IXimuraContentEntityPersistence.EntityDescription">
             <summary>
             This is the entity description used for search display.
-            </summary>
-        </member>
-        <member name="T:Ximura.Data.IDataContentSummary">
-            <summary>
-            Entities that implement this interface provide a summary of the content
-            </summary>
-        </member>
-        <member name="M:Ximura.Data.IDataContentSummary.GetSummary(Ximura.Data.DataContentSummaryType)">
-            <summary>
-            This method retrieves a summary based on the summary type.
-            </summary>
-            <param name="type">The summary type.</param>
-            <returns>An object containing the summary.</returns>
-        </member>
-        <member name="M:Ximura.Data.IDataContentSummary.GetSummary(Ximura.Data.DataContentSummaryType,System.String)">
-            <summary>
-            This method retrieves a summary based on the summary type.
-            </summary>
-            <param name="type">The summary type.</param>
-            <param name="id">An identifier.</param>
-            <returns>An object containing the summary.</returns>
-        </member>
-        <member name="T:Ximura.IXimuraCommandProcessConfigSH">
-            <summary>
-            This is the default interface for an application config section handler
-            </summary>
-        </member>
-        <member name="T:Ximura.IXimuraConfigSH">
-            <summary>
-            This is the default interface for an application config section handler
-            </summary>
-        </member>
-        <member name="M:Ximura.IXimuraConfigSH.GetSetting(System.String)">
-            <summary>
-            Get the config setting by specific Type
-            </summary>
-            <param name="Type">setting type</param>
-            <returns>setting value</returns>
-        </member>
-        <member name="M:Ximura.IXimuraConfigSH.GetSettingExtended(System.String,System.String)">
-            <summary>
-            This method returns the extended setting object or null if the type 
-            specified does not exist.
-            </summary>
-            <param name="Type">The name of the type.</param>
-            <param name="subType">The name of the subtype.</param>
-            <returns>The settings object containing the specific settings or null if the object can not be found.</returns>
-        </member>
-        <member name="P:Ximura.IXimuraConfigSH.Enabled">
-            <summary>
-            This property determines whether the command is enabled.
-            </summary>
-        </member>
-        <member name="M:Ximura.IXimuraCommandProcessConfigSH.getPasswordHash(System.Byte[])">
-            <summary>
-            Returns the hash of the password based on the session seed value
-            </summary>
-            <param name="seed">The session seed.</param>
-            <returns>The hash of the password.</returns>
-        </member>
-        <member name="P:Ximura.IXimuraCommandProcessConfigSH.UserName">
-            <summary>
-            The username of the process.
-            </summary>
-        </member>
-        <member name="P:Ximura.IXimuraCommandProcessConfigSH.UserRealm">
-            <summary>
-            This is the realm for the user to connect to.
-            </summary>
-        </member>
-        <member name="P:Ximura.IXimuraCommandProcessConfigSH.UserSessionRealm">
-            <summary>
-            This is the realm for the user to connect to.
-            </summary>
-        </member>
-        <member name="P:Ximura.IXimuraCommandProcessConfigSH.RequiresProcessSession">
-            <summary>
-            This method determines whether the process command requires a process session.
-            </summary>
-        </member>
-        <member name="P:Ximura.IXimuraCommandProcessConfigSH.SecurityData">
-            <summary>
-            Returns the security data.
             </summary>
         </member>
         <member name="T:Ximura.XimuraServiceContainer">
@@ -1009,148 +896,6 @@
             The configuration location.
             </summary>
         </member>
-        <member name="T:Ximura.IXimuraSessionSCM">
-            <summary>
-            The IXimuraSessionSM interface is the primary interface implemented
-            by the session object, and is refernced by the Security Manager
-            </summary>
-        </member>
-        <member name="T:Ximura.IXimuraSession">
-            <summary>
-            The IXimuraSession interface is exposed to the user.
-            </summary>
-        </member>
-        <member name="T:Ximura.IXimuraSessionClient">
-            <summary>
-            This interface is used to identify a session.
-            </summary>
-        </member>
-        <member name="P:Ximura.IXimuraSessionClient.SessionID">
-            <summary>
-            This is the session ID
-            </summary>
-        </member>
-        <member name="P:Ximura.IXimuraSessionClient.SessionCulture">
-            <summary>
-            The session culture.
-            </summary>
-        </member>
-        <member name="P:Ximura.IXimuraSessionClient.State">
-            <summary>
-            this is the current session state
-            </summary>
-        </member>
-        <member name="T:Ximura.IXimuraSessionRQ">
-            <summary>
-            This interface is used by the session object to support requests.
-            </summary>
-        </member>
-        <member name="T:Ximura.IXimuraSessionRQAsync">
-            <summary>
-            This is the async interface
-            </summary>
-        </member>
-        <member name="M:Ximura.IXimuraSessionRQAsync.ProcessRequestAsync(Ximura.IXimuraRQRSEnvelope,Ximura.CommandRSCallback)">
-            <summary>
-            Process an asychronous request.
-            </summary>
-            <param name="data">The data</param>
-            <param name="RSCallback">The call back completion delegate.</param>
-            <returns>The job guid.</returns>
-        </member>
-        <member name="M:Ximura.IXimuraSessionRQAsync.ProcessRequestAsync(Ximura.IXimuraRQRSEnvelope,Ximura.CommandRSCallback,Ximura.CommandProgressCallback,Ximura.JobPriority)">
-            <summary>
-            Process an asychronous request.
-            </summary>
-            <param name="data">The data</param>
-            <param name="RSCallback">The call back completion delegate.</param>
-            <param name="ProgessCallback">The request progress delegate. Set this to null if not needed.</param>
-            <param name="priority">The request priority.</param>
-            <returns>The job guid.</returns>
-        </member>
-        <member name="M:Ximura.IXimuraSessionRQAsync.ProcessRequestAsync(System.Guid,Ximura.IXimuraRQRSEnvelope,Ximura.CommandRSCallback)">
-            <summary>
-            Process an asychronous request.
-            </summary>
-            <param name="jobID">The job ID. This should be set to a new Guid.</param>
-            <param name="data">The data</param>
-            <param name="RSCallback">The call back completion delegate.</param>
-            <returns>The job guid.</returns>
-        </member>
-        <member name="M:Ximura.IXimuraSessionRQAsync.ProcessRequestAsync(System.Guid,Ximura.IXimuraRQRSEnvelope,Ximura.CommandRSCallback,Ximura.CommandProgressCallback,Ximura.JobPriority)">
-            <summary>
-            Process an asychronous request.
-            </summary>
-            <param name="jobID">The job ID. This should be set to a new Guid.</param>
-            <param name="data">The data</param>
-            <param name="RSCallback">The call back completion delegate.</param>
-            <param name="ProgessCallback">The request progress delegate. Set this to null if not needed.</param>
-            <param name="priority">The request priority.</param>
-            <returns>The job guid.</returns>
-        </member>
-        <member name="P:Ximura.IXimuraSessionRQAsync.EnvelopeHelper">
-            <summary>
-            This is the envelope helper, used for creating requests.
-            </summary>
-        </member>
-        <member name="M:Ximura.IXimuraSessionRQ.CancelRequest(System.Guid)">
-            <summary>
-            This method cancels a pending request.
-            </summary>
-            <param name="jobID">The job id.</param>
-        </member>
-        <member name="M:Ximura.IXimuraSessionRQ.ProcessRequest(Ximura.IXimuraRQRSEnvelope)">
-            <summary>
-            Process a synchronous request.
-            </summary>
-            <param name="Data">The data.</param>
-        </member>
-        <member name="M:Ximura.IXimuraSessionRQ.ProcessRequest(Ximura.IXimuraRQRSEnvelope,Ximura.JobPriority)">
-            <summary>
-            Process a synchronous request.
-            </summary>
-            <param name="Data">The data.</param>
-            <param name="priority">The request priority.</param>
-        </member>
-        <member name="M:Ximura.IXimuraSessionRQ.ProcessRequest(Ximura.IXimuraRQRSEnvelope,Ximura.CommandProgressCallback)">
-            <summary>
-            Process a synchronous request.
-            </summary>
-            <param name="Data">The data.</param>
-            <param name="ProgressCallback">The progress calback delegate. 
-            This can be used to report progress during long running processes.</param>
-        </member>
-        <member name="M:Ximura.IXimuraSessionRQ.ProcessRequest(Ximura.IXimuraRQRSEnvelope,Ximura.JobPriority,Ximura.CommandProgressCallback)">
-            <summary>
-            Process a synchronous request.
-            </summary>
-            <param name="Data">The data.</param>
-            <param name="priority">The request priority.</param>
-            <param name="ProgressCallback">The progress calback delegate. 
-            This can be used to report progress during long running processes.</param>
-        </member>
-        <member name="M:Ximura.IXimuraSession.Close">
-            <summary>
-            This method closes the session and cancals any pending job requests.
-            </summary>
-        </member>
-        <member name="P:Ximura.IXimuraSession.AuthenticationTypes">
-            <summary>
-            This enumeration returns the supported authentication interfaces.
-            </summary>
-        </member>
-        <member name="P:Ximura.IXimuraSessionSCM.SetSCMPublicKey">
-            <summary>
-            This property allows the Security Manager to pass the session it's
-            public key.
-            </summary>
-        </member>
-        <member name="P:Ximura.IXimuraSessionSCM.GetSessionPublicKey">
-            <summary>
-            This method allows the Session Token to get the session's
-            public key.
-            </summary>
-        </member>
         <member name="T:Ximura.Data.ICDSSettingsService">
             <summary>
             This interface is used to share CDS settings for data connections
@@ -1169,197 +914,6 @@
             Get All Connection Strings
             </summary>
             <returns>setting value</returns>
-        </member>
-        <member name="T:Ximura.IXimuraPerformanceItem">
-            <summary>
-            This method is 
-            </summary>
-        </member>
-        <member name="T:Ximura.IXimuraLoggerConfigSH">
-            <summary>
-            This interface is used by the logging config section handlers
-            </summary>
-        </member>
-        <member name="M:Ximura.IXimuraLoggerSettings.GetSwitchValue(System.String)">
-            <summary>
-            This method returns a specific switch value for the type of message.
-            </summary>
-            <param name="Type">The switch type.</param>
-            <returns>An integer value with the switch value.</returns>
-        </member>
-        <member name="M:Ximura.IXimuraLoggerSettings.GetSetting(System.String)">
-            <summary>
-            Get the config setting by specific Type
-            </summary>
-            <param name="Type">setting type</param>
-            <returns>setting value</returns>
-        </member>
-        <member name="P:Ximura.IXimuraLoggerSettings.LoggerID">
-            <summary>
-            This is the logger identifier.
-            </summary>
-        </member>
-        <member name="P:Ximura.IXimuraLoggerSettings.LoggerName">
-            <summary>
-            This is the logger public name.
-            </summary>
-        </member>
-        <member name="P:Ximura.IXimuraLoggerSettings.LogLevel">
-            <summary>
-            This is the default log level
-            </summary>
-        </member>
-        <member name="T:Ximura.Data.IXimuraFolder">
-            <summary>
-            IXimuraFolder is the facade interface that extends the content class and allows it to 
-            include additional content and parameters.
-            </summary>
-        </member>
-        <member name="T:Ximura.Data.IXimuraParameter">
-            <summary>
-            The IXimuraParameter interface is used by the parameter element. 
-            The interface is defined from IDictionary and is based on a the Composite design pattern.
-            </summary>
-        </member>
-        <member name="M:Ximura.Data.IXimuraParameter.Add(System.String,System.Object)">
-            <summary>
-            This method will add a new parameter based on the key and the value.
-            </summary>
-            <param name="key">The key of the new parameter</param>
-            <param name="Value">The value of the new parameter</param>
-        </member>
-        <member name="M:Ximura.Data.IXimuraParameter.Add(System.String,Ximura.Data.IXimuraParameter)">
-            <summary>
-            This method will append an existing parameter to the parameter collection.
-            </summary>
-            <param name="key">The key you wish to use for this parameter in the collection</param>
-            <param name="Value">The parameter.</param>
-        </member>
-        <member name="M:Ximura.Data.IXimuraParameter.Contains(System.String)">
-            <summary>
-            This method checks whether a key exists in the parameter collection.
-            </summary>
-            <param name="key">The key to check</param>
-            <returns>Returns true if the key exist in the folder collection</returns>
-        </member>
-        <member name="M:Ximura.Data.IXimuraParameter.Contains(Ximura.Data.IXimuraParameter)">
-            <summary>
-            This method checks whether a parameter exists within the parameter collection.
-            </summary>
-            <param name="childParameter">The child parameter.</param>
-            <returns>Returns true if the parameter exists</returns>
-        </member>
-        <member name="M:Ximura.Data.IXimuraParameter.Remove(System.String)">
-            <summary>
-            This method removes a parameter from the collection based on the key passed.
-            </summary>
-            <param name="key">The key of the parameter to remove</param>
-        </member>
-        <member name="M:Ximura.Data.IXimuraParameter.Remove(Ximura.Data.IXimuraParameter)">
-            <summary>
-            This method removes a parameter from the collection based on the parameter passed.
-            </summary>
-            <param name="childParameter">The child parameter to be removed.</param>
-        </member>
-        <member name="M:Ximura.Data.IXimuraParameter.AddParameter(System.String,System.Object)">
-            <summary>
-            This method creates a new parameter and adds it to the collection.
-            </summary>
-            <param name="Key">The parameter key.</param>
-            <param name="Value">The parameter value.</param>
-            <returns>This method returns the newly created parameter.</returns>
-        </member>
-        <member name="M:Ximura.Data.IXimuraParameter.SetAsRootParameter">
-            <summary>
-            This method sets the parameter as the root parameter within a collection.
-            </summary>
-        </member>
-        <member name="M:Ximura.Data.IXimuraParameter.IsRootParameter">
-            <summary>
-            This method checks whether the parameter is the root parameter within the collection.
-            </summary>
-            <returns>Returns true if the parameter is the root parameter.</returns>
-        </member>
-        <member name="M:Ximura.Data.IXimuraParameter.HasChildParameters">
-            <summary>
-            This method checks whether the parameter has any children.
-            </summary>
-            <returns>Returns true if the parameter has children.</returns>
-        </member>
-        <member name="M:Ximura.Data.IXimuraParameter.ParameterValue(System.String)">
-            <summary>
-            This helper method retieves a parameter value from the collection.
-            </summary>
-            <param name="key">The key to retrieve.</param>
-            <returns>Returns the valus of the parameter.</returns>
-        </member>
-        <member name="P:Ximura.Data.IXimuraParameter.Key">
-            <summary>
-            This is the root key of the parameter.
-            </summary>
-        </member>
-        <member name="P:Ximura.Data.IXimuraParameter.Value">
-            <summary>
-            This is the root value of the paramter. A parameter can contain any type of object.
-            </summary>
-        </member>
-        <member name="P:Ximura.Data.IXimuraParameter.Item(System.String)">
-            <summary>
-            This is the default enumerator for the parameter and will return the value of the 
-            sub-paramters based on the key supplied.
-            </summary>
-        </member>
-        <member name="M:Ximura.Data.IXimuraFolder.ContentCount">
-            <summary>
-            This property returns the count of the folder content objects.
-            </summary>
-            <returns>The number of Content object.</returns>
-        </member>
-        <member name="M:Ximura.Data.IXimuraFolder.ParameterCount">
-            <summary>
-            This property returns the count of the child parameter object.
-            </summary>
-            <returns>The number of child parameter objects.</returns>
-        </member>
-        <member name="M:Ximura.Data.IXimuraFolder.Add(System.String,Ximura.Data.IXimuraContent)">
-            <summary>
-            This method add a content object to the Folder collection.
-            </summary>
-            <param name="Key">The content key.</param>
-            <param name="theContent">The content object to add.</param>
-        </member>
-        <member name="M:Ximura.Data.IXimuraFolder.Contains(Ximura.Data.IXimuraContent)">
-            <summary>
-            This method checks whether the Folder contains this Content object.
-            </summary>
-            <param name="theContent">The content object to check</param>
-            <returns>Returns true is the content object is in the Folder</returns>
-        </member>
-        <member name="M:Ximura.Data.IXimuraFolder.Remove(Ximura.Data.IXimuraContent)">
-            <summary>
-            This method removes a content object from the Folder collection.
-            </summary>
-            <param name="theContent">The content object to remove.</param>
-        </member>
-        <member name="P:Ximura.Data.IXimuraFolder.ContentKeys">
-            <summary>
-            This property returns a collection of Content keys.
-            </summary>
-        </member>
-        <member name="P:Ximura.Data.IXimuraFolder.ContentValues">
-            <summary>
-            This property returns a collection of Content values.
-            </summary>
-        </member>
-        <member name="P:Ximura.Data.IXimuraFolder.ParameterKeys">
-            <summary>
-            This property returns a collection of Parameters keys.
-            </summary>
-        </member>
-        <member name="P:Ximura.Data.IXimuraFolder.ParameterValues">
-            <summary>
-            This property returns a collection of Parameters values.
-            </summary>
         </member>
         <member name="T:Ximura.Data.IXimuraContentFormatterCapabilities">
             <summary>
@@ -2019,108 +1573,6 @@
             Enumeration list for hash algorithms
             </summary>
         </member>
-        <member name="T:Ximura.CommandRSCallback">
-            <summary>
-            The command call back delegate is used for asynchronous command calls.
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="args">The arguments including the envelope.</param>
-        </member>
-        <member name="T:Ximura.DependencyValidateRSCallback">
-            <summary>
-            The command call back delegate is used for asynchronous command calls.
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="args">The arguments including the envelope.</param>
-            <returns>Returns the true if the response can be deemed a success, otherwise if this returns false
-            any further jobs using this validation ID will be ignored.</returns>
-        </member>
-        <member name="T:Ximura.CommandProgressCallback">
-            <summary>
-            This delegate is used to provide feedback for long running jobs.
-            </summary>
-        </member>
-        <member name="T:Ximura.DependencyValidateRSStatus">
-            <summary>
-            This enumeration is used to signal the job status.
-            </summary>
-        </member>
-        <member name="F:Ximura.DependencyValidateRSStatus.Failure">
-            <summary>
-            The job has failed; all further jobs using this dependency key will be ignored, and any queued jobs
-            will be cancelled.
-            </summary>
-        </member>
-        <member name="F:Ximura.DependencyValidateRSStatus.Success">
-            <summary>
-            The job executed successfully
-            </summary>
-        </member>
-        <member name="F:Ximura.DependencyValidateRSStatus.Abort">
-            <summary>
-            The entire completion job will be aborted.
-            </summary>
-            <remarks>This is not currently implemented and will be treated as a failure.</remarks>
-        </member>
-        <member name="T:Ximura.CommandRSEventArgs">
-            <summary>
-            This class is used to send information when a command request completes.
-            </summary>
-        </member>
-        <member name="M:Ximura.CommandRSEventArgs.#ctor(Ximura.Framework.JobBase)">
-            <summary>
-            This is the default constructor.
-            </summary>
-            <param name="job">The job.</param>
-        </member>
-        <member name="M:Ximura.CommandRSEventArgs.Reset">
-            <summary>
-            This method is used for pooling resets.
-            </summary>
-        </member>
-        <member name="P:Ximura.CommandRSEventArgs.Data">
-            <summary>
-            This is the returning job data.
-            </summary>
-        </member>
-        <member name="P:Ximura.CommandRSEventArgs.ID">
-            <summary>
-            This is the returning job id.
-            </summary>
-        </member>
-        <member name="T:Ximura.CommandProgressEventArgs">
-            <summary>
-            This class is used to report progress during a command request.
-            </summary>
-        </member>
-        <member name="M:Ximura.CommandProgressEventArgs.#ctor">
-            <summary>
-            This is the empty constructor.
-            </summary>
-        </member>
-        <member name="M:Ximura.CommandProgressEventArgs.#ctor(System.Int32)">
-            <summary>
-            This method can be used to return a straight progress indicator.
-            </summary>
-            <param name="progress">The command progress.</param>
-        </member>
-        <member name="M:Ximura.CommandProgressEventArgs.#ctor(System.Int32,System.String)">
-            <summary>
-            This method can be used to return a straight progress indicator.
-            </summary>
-            <param name="progress">The command progress.</param>
-            <param name="description">The command progress description.</param>
-        </member>
-        <member name="P:Ximura.CommandProgressEventArgs.Progress">
-            <summary>
-            The command progress.
-            </summary>
-        </member>
-        <member name="P:Ximura.CommandProgressEventArgs.Description">
-            <summary>
-            The progress description.
-            </summary>
-        </member>
         <member name="T:Ximura.Collections.Data.CollectionVertexClassSentinel`1">
             <summary>
             
@@ -2327,11 +1779,6 @@
             The friendly description of the module.
             </summary>
         </member>
-        <member name="T:Ximura.Framework.IXimuraServerAgent">
-            <summary>
-            This is the base interface implemented by all server agents.
-            </summary>
-        </member>
         <member name="T:Ximura.PoolObjectUnavailableException">
             <summary>
             This exception is thrown when the pool is not able to return an object.
@@ -2361,344 +1808,6 @@
             </summary>
             <param name="info">The serialization info.</param>
             <param name="context">The serialization context.</param>
-        </member>
-        <member name="T:Ximura.IXimuraSessionNegotiatePlainText">
-            <summary>
-            This method is used to authenticate a user using plain text.
-            </summary>
-        </member>
-        <member name="T:Ximura.IXimuraSessionNegotiate">
-            <summary>
-            This interface is used to negotiate an authenticated session.
-            </summary>
-        </member>
-        <member name="M:Ximura.IXimuraSessionNegotiate.PasswordChangeSupported">
-            <summary>
-            This method specifies whether the user is able to change their password.
-            </summary>
-            <returns>Returns true is the user is able to change their password.</returns>
-        </member>
-        <member name="P:Ximura.IXimuraSessionNegotiate.Realm">
-            <summary>
-            The session realm.
-            </summary>
-        </member>
-        <member name="M:Ximura.IXimuraSessionNegotiatePlainText.Authenticate(System.String)">
-            <summary>
-            This method extends the basic session functionality and
-            authenticates a user based on their plain text username and
-            password.
-            </summary>
-            <param name="password">The password.</param>
-        </member>
-        <member name="M:Ximura.IXimuraSessionNegotiatePlainText.Authenticate(System.String,System.String)">
-            <summary>
-            This method extends the basic session functionality and
-            authenticates a user based on their plain text username and
-            password.
-            </summary>
-            <param name="username">The username.</param>
-            <param name="password">The password.</param>
-        </member>
-        <member name="T:Ximura.IXimuraSessionNegotiateMD5Hash">
-            <summary>
-            This interface is used for MD5 authentication.
-            </summary>
-        </member>
-        <member name="M:Ximura.IXimuraSessionNegotiateMD5Hash.GetSeed">
-            <summary>
-            This method returns the seed for the current username.
-            </summary>
-            <returns>The seed as a byte array</returns>
-        </member>
-        <member name="M:Ximura.IXimuraSessionNegotiateMD5Hash.GetSeed(System.String)">
-            <summary>
-            This method returns the seed for the specified username.
-            </summary>
-            <param name="Username">The username required</param>
-            <returns>The seed as a byte array</returns>
-        </member>
-        <member name="M:Ximura.IXimuraSessionNegotiateMD5Hash.GetSeed(System.String,System.Globalization.CultureInfo)">
-            <summary>
-            This method returns the seed for the specified username.
-            </summary>
-            <param name="Username">The username required</param>
-            <param name="newCulture">The culture for the session.</param>
-            <returns>The seed as a byte array</returns>
-        </member>
-        <member name="M:Ximura.IXimuraSessionNegotiateMD5Hash.Authenticate(System.Byte[])">
-            <summary>
-            This method will attempt to authenticate the session.
-            </summary>
-            <param name="hash">The MD5 hash of the username and the seed</param>
-            <returns>The session state after the authtication attempt</returns>
-        </member>
-        <member name="M:Ximura.IXimuraSessionNegotiateMD5Hash.Authenticate(System.Byte[],System.Globalization.CultureInfo)">
-            <summary>
-            This method will attempt to authenticate the session.
-            </summary>
-            <param name="hash">The MD5 hash of the username and the seed</param>
-            <param name="sessionCulture">The session culture</param>
-            <returns>The session state after the authtication attempt</returns>
-        </member>
-        <member name="T:Ximura.IXimuraLoggingManagerConfigSH">
-            <summary>
-            This interface is used by the logging config section handler.
-            </summary>
-        </member>
-        <member name="M:Ximura.IXimuraLoggingManagerConfigSH.Loggers">
-            <summary>
-            This method returns an ArrayList containing a collection of strings with the name of the 
-            logging providers.
-            </summary>
-            <returns>An ArrayList containing a collection of strings.</returns>
-        </member>
-        <member name="M:Ximura.IXimuraLoggingManagerConfigSH.LoggerType(System.String)">
-            <summary>
-            This method returns the specific logger type.
-            </summary>
-            <param name="provider">The provider.</param>
-            <returns>An ArrayList containing the list of loggers.</returns>
-        </member>
-        <member name="M:Ximura.IXimuraLoggingManagerConfigSH.getLoggerSettings(System.String)">
-            <summary>
-            This method returns the specific logger settings object.
-            </summary>
-            <param name="provider">The provider to return the settings for.</param>
-            <returns>The logging object.</returns>
-        </member>
-        <member name="T:Ximura.IXimuraLoggingExtended">
-            <summary>
-            This interface provides extended functionality to enable the EventLogEntryType parameter
-            to be passed to the write methods
-            </summary>
-        </member>
-        <member name="M:Ximura.IXimuraLoggingExtended.Write(System.String,System.String,System.Diagnostics.EventLogEntryType)">
-            <summary>
-            Writes a category name and message to the trace listeners in the Listeners
-             collection.
-            </summary>
-            <param name="message">A message to write. </param>
-            <param name="category">A category name used to organize the output.</param>
-            <param name="type">The event log type.</param>
-        </member>
-        <member name="M:Ximura.IXimuraLoggingExtended.WriteLine(System.String,System.String,System.Diagnostics.EventLogEntryType)">
-            <summary>
-            Writes a category name and message to the trace listeners in the Listeners collection.
-            </summary>
-            <param name="message">A message to write.</param>
-            <param name="category">A category name used to organize the output.</param>
-            <param name="type">The event log type.</param>
-        </member>
-        <member name="T:Ximura.IXimuraCommand">
-            <summary>
-            IXimuraCommand is the base interface for the command object.
-            </summary>
-        </member>
-        <member name="P:Ximura.IXimuraCommand.CommandID">
-            <summary>
-            The command unique identifier.
-            </summary>
-        </member>
-        <member name="P:Ximura.IXimuraCommand.CommandName">
-            <summary>
-            The command name. This is used in to the config file to retrieve the
-            settings.
-            </summary>
-        </member>
-        <member name="P:Ximura.IXimuraCommand.CommandDescription">
-            <summary>
-            The command friendly description
-            </summary>
-        </member>
-        <member name="T:Ximura.IXimuraCommandNotification">
-            <summary>
-            This interface is implemented by commands that support notification.
-            </summary>
-        </member>
-        <member name="M:Ximura.IXimuraCommandNotification.Notify(System.Type,System.Object)">
-            <summary>
-            This method is called when there is a system notification.
-            </summary>
-            <param name="notificationType">The notification object type.</param>
-            <param name="notification">The notification object.</param>
-        </member>
-        <member name="P:Ximura.IXimuraCommandNotification.SupportsNotifications">
-            <summary>
-            This boolean property specifies that the object supports system notification.
-            </summary>
-        </member>
-        <member name="T:Ximura.Framework.RQRSEnvelopeHelper">
-            <summary>
-            The RQRSEnvelopeHelper is used to centralize pooling for the RQRSContract objects.
-            </summary>
-        </member>
-        <member name="M:Ximura.Framework.RQRSEnvelopeHelper.#cctor">
-            <summary>
-            This is the static constuctor for the class.
-            </summary>
-        </member>
-        <member name="M:Ximura.Framework.RQRSEnvelopeHelper.Start(Ximura.IXimuraPoolManager)">
-            <summary>
-            This method starts the pooling.
-            </summary>
-        </member>
-        <member name="M:Ximura.Framework.RQRSEnvelopeHelper.Stop">
-            <summary>
-            This method stops the pooling and clears any remaining objects..
-            </summary>
-        </member>
-        <member name="M:Ximura.Framework.RQRSEnvelopeHelper.Get(Ximura.Framework.EnvelopeAddress)">
-            <summary>
-            This method get the appropriate EnvelopeContract based on the command ID in the address. By
-            default the address is set to the EnvelopeContract, and the request id is set to new ID.
-            </summary>
-            <param name="address">The envelope address. 
-            This will be set to the EnvelopeAddress property in the envelope.</param>
-            <returns>Returns the EnvelopeContract.</returns>
-        </member>
-        <member name="M:Ximura.Framework.RQRSEnvelopeHelper.GetCallback(Ximura.Framework.EnvelopeAddress)">
-            <summary>
-            This method get the appropriate EnvelopeContract based on the command ID in the address. By
-            default the address is set to the EnvelopeContract, and the request id is set to new ID.
-            </summary>
-            <param name="address">The envelope address. 
-            This will be set to the EnvelopeAddress property in the envelope.</param>
-            <returns>Returns the EnvelopeContract.</returns>
-        </member>
-        <member name="M:Ximura.Framework.RQRSEnvelopeHelper.Get(Ximura.Framework.EnvelopeAddress,System.Nullable{System.Guid})">
-            <summary>
-            This method get the appropriate EnvelopeContract based on the command ID in the address. By
-            default the address is set to the EnvelopeContract.
-            </summary>
-            <param name="address">The envelope address. This will be set to the EnvelopeAddress property in the envelope.</param>
-            <param name="requestID">The required request id. Set this to null if you do not want the ID set.</param>
-            <returns>Returns the EnvelopeContract.</returns>
-        </member>
-        <member name="M:Ximura.Framework.RQRSEnvelopeHelper.GetCallback(Ximura.Framework.EnvelopeAddress,System.Nullable{System.Guid})">
-            <summary>
-            This method get the appropriate EnvelopeContract based on the command ID in the address. By
-            default the address is set to the EnvelopeContract.
-            </summary>
-            <param name="address">The envelope address. This will be set to the EnvelopeAddress property in the envelope.</param>
-            <param name="requestID">The required request id. Set this to null if you do not want the ID set.</param>
-            <returns>Returns the EnvelopeContract.</returns>
-        </member>
-        <member name="M:Ximura.Framework.RQRSEnvelopeHelper.Get(Ximura.Framework.EnvelopeAddress,System.Boolean,System.Nullable{System.Guid})">
-            <summary>
-            This method get the appropriate EnvelopeContract based on the command ID in the address.
-            </summary>
-            <param name="address">The envelope address.</param>
-            <param name="setAddress">If this parameter is set to true the addess will be set to the Envelope.</param>
-            <param name="requestID">The required request id. Set this to null if you do not want the ID set.</param>
-            <returns>Returns the EnvelopeContract.</returns>
-        </member>
-        <member name="M:Ximura.Framework.RQRSEnvelopeHelper.GetCallback(Ximura.Framework.EnvelopeAddress,System.Boolean,System.Nullable{System.Guid})">
-            <summary>
-            This method get the appropriate EnvelopeContract based on the command ID in the address.
-            </summary>
-            <param name="address">The envelope address.</param>
-            <param name="setAddress">If this parameter is set to true the addess will be set to the Envelope.</param>
-            <param name="requestID">The required request id. Set this to null if you do not want the ID set.</param>
-            <returns>Returns the EnvelopeContract.</returns>
-        </member>
-        <member name="M:Ximura.Framework.RQRSEnvelopeHelper.Get(System.Guid)">
-            <summary>
-            This static method returns an EnvelopeContract from the pool for the specific
-            command type.
-            </summary>
-            <param name="commandID">The command ID.</param>
-            <returns>Returns a EnvelopeContract for the specific command ID. If the command
-            is not registered for the application, this method will return null.</returns>
-        </member>
-        <member name="M:Ximura.Framework.RQRSEnvelopeHelper.GetCallback(System.Guid)">
-            <summary>
-            This static method returns an EnvelopeContract from the pool for the specific
-            command type.
-            </summary>
-            <param name="commandID">The command ID.</param>
-            <returns>Returns a EnvelopeContract for the specific command ID. If the command
-            is not registered for the application, this method will return null.</returns>
-        </member>
-        <member name="M:Ximura.Framework.RQRSEnvelopeHelper.Get(System.Type)">
-            <summary>
-            This static method returns an EnvelopeContract from the pool for the specific
-            object type.
-            </summary>
-            <param name="objectType">The envelope type.</param>
-            <returns>Returns a EnvelopeContract for the specific command ID. If the command
-            is not registered for the application, this method will return null.</returns>
-        </member>
-        <member name="M:Ximura.Framework.RQRSEnvelopeHelper.Get``2">
-            <summary>
-            This static method returns an EnvelopeContract from the pool for the specific
-            object type.
-            </summary>
-            <returns>Returns a EnvelopeContract for the specific command ID. If the command
-            is not registered for the application, this method will return null.</returns>
-        </member>
-        <member name="M:Ximura.Framework.RQRSEnvelopeHelper.ResolveType(System.Guid)">
-            <summary>
-            This method returns the envelope request type for registered commands.
-            </summary>
-            <param name="commandID">The command ID.</param>
-            <returns>Returns the type, or null if the command cannot be found.</returns>
-        </member>
-        <member name="M:Ximura.Framework.RQRSEnvelopeHelper.ResolveTypeCallback(System.Guid)">
-            <summary>
-            This method resolves the envelope callback type for registered commands.
-            </summary>
-            <param name="commandID">The command ID.</param>
-            <returns>Returns the type, or null if the command cannot be found.</returns>
-        </member>
-        <member name="M:Ximura.Framework.RQRSEnvelopeHelper.GetPoolManager(System.Guid)">
-            <summary>
-            This method returns the pool manager based on the command ID type.
-            </summary>
-            <param name="commandID">The command ID to resolve.</param>
-            <returns>Returns the pool, or null if the pool cannot be resolved.</returns>
-        </member>
-        <member name="M:Ximura.Framework.RQRSEnvelopeHelper.GetPoolManagerCallback(System.Guid)">
-            <summary>
-            This method returns the callback pool manager based on the command ID type.
-            </summary>
-            <param name="commandID">The command ID to resolve.</param>
-            <returns>Returns the pool, or null if the pool cannot be resolved.</returns>
-        </member>
-        <member name="M:Ximura.Framework.RQRSEnvelopeHelper.GetPoolManager(System.Type)">
-            <summary>
-            This method returns the pool manager based on the object type of the envelope.
-            </summary>
-            <param name="objectType">The envelope object type.</param>
-            <returns>Returns a pool manager object or null if the type is null or cannot be resolved..</returns>
-        </member>
-        <member name="M:Ximura.Framework.RQRSEnvelopeHelper.GetPoolManagerInternal(System.Type,System.Boolean)">
-            <summary>
-            This method returns a unbuffered pool manager for the type specified.
-            </summary>
-            <param name="objectType">The envelope type required.</param>
-            <param name="buffered">This parameter specifies whether the pool should be wrapped
-            around a buffered wrapper to disable the Clear() method.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Ximura.Framework.RQRSEnvelopeHelper.GetPoolManagerInternal``2(System.Boolean)">
-            <summary>
-            This method returns a unbuffered pool manager for the type specified.
-            </summary>
-            <param name="objectType">The envelope type required.</param>
-            <param name="buffered">This parameter specifies whether the pool should be wrapped
-            around a buffered wrapper to disable the Clear() method.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Ximura.Framework.RQRSEnvelopeHelper.RegisterCommand(System.Guid,System.String,System.Type,System.Type)">
-            <summary>
-            This method registers the command in the object pool. If the object pool type does not exist the command
-            creates a new pool.
-            </summary>
-            <param name="commandID">The command ID to register.</param>
-            <param name="commandName">This is the name of the command which is used by the performance counters.</param>
-            <param name="objectType">The envelope type to register.</param>
-            <param name="objectCallbackType">The envelope callback type to register.</param>
         </member>
         <member name="T:Ximura.Collections.Data.ClassBasedVertexWindow`1">
             <summary>
@@ -3332,103 +2441,6 @@
             </summary>
             <param name="array">The array to copy to.</param>
             <param name="arrayIndex">The array index where the class should start copying to.</param>
-        </member>
-        <member name="T:Ximura.SCMJobCompletionType">
-            <summary>
-            This is the completion behaviour of the security manager job.
-            </summary>
-        </member>
-        <member name="F:Ximura.SCMJobCompletionType.OnExit">
-            <summary>
-            The job will complete when the job leaves the main calling method.
-            </summary>
-        </member>
-        <member name="F:Ximura.SCMJobCompletionType.ManualSignal">
-            <summary>
-            The job will complete when the SignalCompletion method is called.
-            </summary>
-        </member>
-        <member name="F:Ximura.SCMJobCompletionType.SignalOrTimeout">
-            <summary>
-            This property specifies 
-            </summary>
-        </member>
-        <member name="T:Ximura.Framework.XimuraServerAgentHolder">
-            <summary>
-            The agent holder class is used by the agent based attributes to pass common information to the 
-            server processes.
-            </summary>
-        </member>
-        <member name="T:Ximura.IXimuraPoolReturnable">
-            <summary>
-            This interface is implemented by objects that are poolable, and in addition 
-            can return themselves to the pool without the need for child objects to have a reference
-            to the pool.
-            </summary>
-        </member>
-        <member name="T:Ximura.IXimuraPoolableObject">
-            <summary>
-            This interface is implemented by poolable objects.
-            </summary>
-        </member>
-        <member name="M:Ximura.IXimuraPoolableObject.Reset">
-            <summary>
-            This method resets the object in to its default state.
-            </summary>
-        </member>
-        <member name="P:Ximura.IXimuraPoolableObject.CanPool">
-            <summary>
-            This property returns true if the object can pool. This allows inherited objects to turn
-            off the ability to be pooled. By default, objects that implement this interface should
-            return true if they wish to pool.
-            </summary>
-        </member>
-        <member name="P:Ximura.IXimuraPoolableObject.TrackID">
-            <summary>
-            This property is used by the object pool for statistical tracking
-            of the object through the system. This Guid should be created when the object
-            is first created and should not change. The ID is independent of any data actually 
-            stored in the object.
-            </summary>
-        </member>
-        <member name="M:Ximura.IXimuraPoolReturnable.ObjectPoolReturn">
-            <summary>
-            This method returns the object to the pool
-            </summary>
-            <returns>Returns true if the object has been successfully returned to the pool.</returns>
-        </member>
-        <member name="P:Ximura.IXimuraPoolReturnable.ObjectPool">
-            <summary>
-            This property sets or gets the object pool for the object.
-            </summary>
-        </member>
-        <member name="P:Ximura.IXimuraPoolReturnable.ObjectPoolCanReturn">
-            <summary>
-            This boolean property determines whether the object can be returned to the pool
-            for reuse.
-            </summary>
-        </member>
-        <member name="T:Ximura.Framework.IXimuraPerformanceAgent">
-            <summary>
-            The IXimuraPerformanceAgent interface is implemented by class that recieve 
-            performance information from the performance counters.
-            </summary>
-        </member>
-        <member name="T:Ximura.Data.IXimuraDataContentLinkage">
-            <summary>
-            This interface specifically identifies the linkage behaviour of the data content.
-            </summary>
-        </member>
-        <member name="P:Ximura.Data.IXimuraDataContentLinkage.LinkType">
-            <summary>
-            This property defines the DataContent linkage type.
-            </summary>
-        </member>
-        <member name="P:Ximura.Data.IXimuraDataContentLinkage.LinkTypeIdentifier">
-            <summary>
-            This property identifies the specific object to link to, when the LinkType property
-            is set to Link.
-            </summary>
         </member>
         <member name="T:Ximura.Collections.HashTableStructBasedVertexArrayV3`1">
             <summary>
@@ -4233,46 +3245,6 @@
             This property specifies whether the pool can grow when more items are requested than are currently available.
             </summary>
         </member>
-        <member name="T:Ximura.Framework.CompletionJobStatus">
-            <summary>
-            This enumeration is used to indicate the completion job status.
-            </summary>
-        </member>
-        <member name="F:Ximura.Framework.CompletionJobStatus.Unset">
-            <summary>
-            The job is unset.
-            </summary>
-        </member>
-        <member name="F:Ximura.Framework.CompletionJobStatus.Submitting">
-            <summary>
-            This property is used when manual signaling is required for the completion job.
-            </summary>
-        </member>
-        <member name="F:Ximura.Framework.CompletionJobStatus.Complete">
-            <summary>
-            The job is complete.
-            </summary>
-        </member>
-        <member name="F:Ximura.Framework.CompletionJobStatus.Processing">
-            <summary>
-            The job is currently processing.
-            </summary>
-        </member>
-        <member name="F:Ximura.Framework.CompletionJobStatus.TimeOut">
-            <summary>
-            The job has timed out.
-            </summary>
-        </member>
-        <member name="F:Ximura.Framework.CompletionJobStatus.Cancelled">
-            <summary>
-            The parent job has been cancelled.
-            </summary>
-        </member>
-        <member name="F:Ximura.Framework.CompletionJobStatus.Aborted">
-            <summary>
-            The completion job has been aborted.
-            </summary>
-        </member>
         <member name="T:Ximura.PoolBase`1">
             <summary>
             The PoolBase class is used to hold a collection of objects that can be re-used.
@@ -4587,6 +3559,31 @@
             from this class, this class simplifies the construction of poolable objects.
             </summary>
         </member>
+        <member name="T:Ximura.IXimuraPoolableObject">
+            <summary>
+            This interface is implemented by poolable objects.
+            </summary>
+        </member>
+        <member name="M:Ximura.IXimuraPoolableObject.Reset">
+            <summary>
+            This method resets the object in to its default state.
+            </summary>
+        </member>
+        <member name="P:Ximura.IXimuraPoolableObject.CanPool">
+            <summary>
+            This property returns true if the object can pool. This allows inherited objects to turn
+            off the ability to be pooled. By default, objects that implement this interface should
+            return true if they wish to pool.
+            </summary>
+        </member>
+        <member name="P:Ximura.IXimuraPoolableObject.TrackID">
+            <summary>
+            This property is used by the object pool for statistical tracking
+            of the object through the system. This Guid should be created when the object
+            is first created and should not change. The ID is independent of any data actually 
+            stored in the object.
+            </summary>
+        </member>
         <member name="M:Ximura.PoolableObjectBase.#ctor">
             <summary>
             This is the default constructor. It is called when the object is created by the pool.
@@ -4623,6 +3620,30 @@
             <summary>
             This is the track ID for the poolable object. This value will not change between the various
             uses of the object through the application.
+            </summary>
+        </member>
+        <member name="T:Ximura.IXimuraPoolReturnable">
+            <summary>
+            This interface is implemented by objects that are poolable, and in addition 
+            can return themselves to the pool without the need for child objects to have a reference
+            to the pool.
+            </summary>
+        </member>
+        <member name="M:Ximura.IXimuraPoolReturnable.ObjectPoolReturn">
+            <summary>
+            This method returns the object to the pool
+            </summary>
+            <returns>Returns true if the object has been successfully returned to the pool.</returns>
+        </member>
+        <member name="P:Ximura.IXimuraPoolReturnable.ObjectPool">
+            <summary>
+            This property sets or gets the object pool for the object.
+            </summary>
+        </member>
+        <member name="P:Ximura.IXimuraPoolReturnable.ObjectPoolCanReturn">
+            <summary>
+            This boolean property determines whether the object can be returned to the pool
+            for reuse.
             </summary>
         </member>
         <member name="M:Ximura.PoolableReturnableObjectBase.#ctor">
@@ -4717,83 +3738,6 @@
         <member name="P:Ximura.ServiceEventArgs.Status">
             <summary>
             The status of the service
-            </summary>
-        </member>
-        <member name="T:Ximura.IXimuraPoolBuffer">
-            <summary>
-            This is the pool buffer interface. This interface is used by the pool managers 
-            to reset the references when closing down.
-            </summary>
-        </member>
-        <member name="M:Ximura.IXimuraPoolBuffer.ResetBuffer">
-            <summary>
-            This method resets the buffer and it's connection to the underlying object pool.
-            </summary>
-        </member>
-        <member name="T:Ximura.IXimuraPerformanceCounter">
-            <summary>
-            This interface is used by performance counter classes.
-            </summary>
-        </member>
-        <member name="M:Ximura.IXimuraPerformanceCounter.Increment">
-            <summary>
-            This method increments the counter by 1.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Ximura.IXimuraPerformanceCounter.IncrementBy(System.Int64)">
-            <summary>
-            This method increments or decrements the counter by the value specified.
-            </summary>
-            <param name="value"></param>
-            <returns>Returns the new value of the counter.</returns>
-        </member>
-        <member name="M:Ximura.IXimuraPerformanceCounter.Decrement">
-            <summary>
-            This method decrements the counter by 1.
-            </summary>
-            <returns>Returns the new value of the counter.</returns>
-        </member>
-        <member name="P:Ximura.IXimuraPerformanceCounter.CounterType">
-            <summary>
-            This is the system counter type.
-            </summary>
-        </member>
-        <member name="P:Ximura.IXimuraPerformanceCounter.RawValue">
-            <summary>
-            This property gets or sets the raw value of the counter directly.
-            </summary>
-        </member>
-        <member name="P:Ximura.IXimuraPerformanceCounter.Active">
-            <summary>
-            This property indicates whether the counter is active.
-            </summary>
-        </member>
-        <member name="P:Ximura.IXimuraPerformanceCounter.Dirty">
-            <summary>
-            This readonly property determines whether the counter has been read since it was last changed.
-            </summary>
-        </member>
-        <member name="T:Ximura.Data.IXimuraElement">
-            <summary>
-            IXimuraElement is the base interface for the Element object.
-            </summary>
-        </member>
-        <member name="T:Ximura.Data.IXimuraElementLeaf">
-            <summary>
-            This interface is used as the default intreface of the Data Element Composite pattern.
-            </summary>
-        </member>
-        <member name="M:Ximura.Data.IXimuraElementLeaf.IsDirty">
-            <summary>
-            This is a public function that indicated whether the object
-            internal data has been changed since it was created or last saved.
-            </summary>
-            <returns>A boolean value - true indicates the object has been changed.</returns>
-        </member>
-        <member name="P:Ximura.Data.IXimuraElementLeaf.Dirty">
-            <summary>
-            This boolean property indicates whether the object has been changed.
             </summary>
         </member>
         <member name="T:Ximura.DateTimeHelper">
@@ -4920,114 +3864,6 @@
             <summary>
             This method holds the current enumerator during a partial match
             </summary>
-        </member>
-        <member name="T:Ximura.Framework.RQRSEnvTypes">
-            <summary>
-            EnvelopeKnownTypes are used by IXimuraRQRSEnvelope to specify special folders 
-            within the Envelope
-            </summary>
-        </member>
-        <member name="F:Ximura.Framework.RQRSEnvTypes.Request">
-            <summary>
-            This specifies a request
-            </summary>
-        </member>
-        <member name="F:Ximura.Framework.RQRSEnvTypes.Response">
-            <summary>
-            This specifies a response
-            </summary>
-        </member>
-        <member name="F:Ximura.Framework.RQRSEnvTypes.Custom">
-            <summary>
-            This is for custom folders
-            </summary>
-        </member>
-        <member name="T:Ximura.IXimuraRQRSEnvelope">
-            <summary>
-            This interface implements the public methods and properties for the IXimuraRQRSEnvelope
-            and contract definitions.
-            </summary>
-        </member>
-        <member name="T:Ximura.IXimuraPoolableObjectDeserializable">
-            <summary>
-            This interface is implemented by poolable object that also support deserialization.
-            </summary>
-        </member>
-        <member name="M:Ximura.IXimuraPoolableObjectDeserializable.Reset(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <summary>
-            This method resets the object in to the deserialized state specified in the info and context.
-            </summary>
-            <param name="info">The serialization information.</param>
-            <param name="context">The serialization context.</param>
-        </member>
-        <member name="P:Ximura.IXimuraPoolableObjectDeserializable.CanResetWithDeserialization">
-            <summary>
-            This propoerty indicates whether the object support a deserialization reset.
-            </summary>
-        </member>
-        <member name="M:Ximura.IXimuraRQRSEnvelope.PrepareResponse(System.String,System.String)">
-            <summary>
-            This shortcut is used to prepare the response status and substatus.
-            </summary>
-            <param name="status">The status.</param>
-            <param name="subStatus">The substatus.</param>
-        </member>
-        <member name="P:Ximura.IXimuraRQRSEnvelope.DestinationAddress">
-            <summary>
-            The destination address for the envelope/contract.
-            </summary>
-        </member>
-        <member name="P:Ximura.IXimuraRQRSEnvelope.Sender">
-            <summary>
-            The originator/owner of the request.
-            </summary>
-        </member>
-        <member name="P:Ximura.IXimuraRQRSEnvelope.SenderReference">
-            <summary>
-            The internal reference for the sender.
-            </summary>
-        </member>
-        <member name="P:Ximura.IXimuraRQRSEnvelope.JobUserID">
-            <summary>
-            This is the job user ID.
-            </summary>
-        </member>
-        <member name="P:Ximura.IXimuraRQRSEnvelope.JobUserReferenceID">
-            <summary>
-            This is the job user plain text reference ID.
-            </summary>
-        </member>
-        <member name="P:Ximura.IXimuraRQRSEnvelope.JobSecurityIdentifier">
-            <summary>
-            This is the unique job security reference ID.
-            </summary>
-        </member>
-        <member name="P:Ximura.IXimuraRQRSEnvelope.Request">
-            <summary>
-            The Request property
-            </summary>
-        </member>
-        <member name="P:Ximura.IXimuraRQRSEnvelope.Response">
-            <summary>
-            The Response property
-            </summary>
-        </member>
-        <member name="T:Ximura.Framework.IXimuraStorageManagerService">
-            <summary>
-            This interface is implemented by storage manager.
-            </summary>
-        </member>
-        <member name="T:Ximura.Framework.IXimuraAppServerAgentService">
-            <summary>
-            THis interface is implemented by application server components that need the ability to register specific agents, 
-            such as logging providers, session managers etc.
-            </summary>
-        </member>
-        <member name="M:Ximura.Framework.IXimuraAppServerAgentService.AgentAdd(Ximura.Framework.XimuraServerAgentHolder)">
-            <summary>
-            This method adds an agent to the service.
-            </summary>
-            <param name="holder">The agent identifying information.</param>
         </member>
         <member name="T:Ximura.PoolBaseParallel`1">
             <summary>
@@ -5294,82 +4130,6 @@
             </summary>
             <param name="val">The item value.</param>
             <param name="next">The next item in the chain.</param>
-        </member>
-        <member name="T:Ximura.Framework.EnvelopeAddress">
-            <summary>
-            EnvelopeAddress is used to route a request to the relevant destination within
-            the Ximura Application framework.
-            </summary>
-        </member>
-        <member name="F:Ximura.Framework.EnvelopeAddress.NullDestination">
-            <summary>
-            This is the null destination property.
-            </summary>
-        </member>
-        <member name="F:Ximura.Framework.EnvelopeAddress.command">
-            <summary>
-            The destination command ID
-            </summary>
-        </member>
-        <member name="F:Ximura.Framework.EnvelopeAddress.SubCommand">
-            <summary>
-            The subcommand.
-            </summary>
-        </member>
-        <member name="M:Ximura.Framework.EnvelopeAddress.#cctor">
-            <summary>
-            This is the default static constructor that creates the Null destination address.
-            </summary>
-        </member>
-        <member name="M:Ximura.Framework.EnvelopeAddress.#ctor(System.Guid)">
-            <summary>
-            This is the default constructor for the address command.
-            </summary>
-            <param name="command">The destination command ID.</param>
-        </member>
-        <member name="M:Ximura.Framework.EnvelopeAddress.#ctor(System.Guid,System.Object)">
-            <summary>
-            This is the default constructor for the Envelope address where a sub command is specified..
-            </summary>
-            <param name="command">The destination id of the command this message should be sent to.</param>
-            <param name="subcommand">The sub address for the command. 
-            Set this to Null if you do not require a subcommand.</param>
-        </member>
-        <member name="M:Ximura.Framework.EnvelopeAddress.Equals(System.Object)">
-            <summary>
-            This is the equals override.
-            </summary>
-            <param name="obj">The object to compare to.</param>
-            <returns>Returns true if the object is the same as this EnvelopeAddress.</returns>
-        </member>
-        <member name="M:Ximura.Framework.EnvelopeAddress.GetHashCode">
-            <summary>
-            This is the hash code of the object.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Ximura.Framework.EnvelopeAddress.Equals(Ximura.Framework.EnvelopeAddress)">
-            <summary>
-            This the equateble interface implementation.
-            </summary>
-            <param name="other">The address to compare.</param>
-            <returns>Returns true if the address is equal.</returns>
-        </member>
-        <member name="M:Ximura.Framework.EnvelopeAddress.op_Equality(Ximura.Framework.EnvelopeAddress,Ximura.Framework.EnvelopeAddress)">
-            <summary>
-            This static operator is the equals operator.
-            </summary>
-            <param name="a">Op A</param>
-            <param name="b">Op B</param>
-            <returns>Returns true if the two addresses are the same.</returns>
-        </member>
-        <member name="M:Ximura.Framework.EnvelopeAddress.op_Inequality(Ximura.Framework.EnvelopeAddress,Ximura.Framework.EnvelopeAddress)">
-            <summary>
-            This is the not equals operator.
-            </summary>
-            <param name="a">Op A</param>
-            <param name="b">Op B</param>
-            <returns>Returns true if the two addresses are not the same.</returns>
         </member>
         <member name="T:Ximura.Collections.HashTableStructBasedVertexArrayV2`1">
             <summary>
@@ -5772,11 +4532,6 @@
             <param name="info">The serialization info.</param>
             <param name="context">The serialization context.</param>
         </member>
-        <member name="T:Ximura.IXimuraSessionThread">
-            <summary>
-            This interface is used by an app process to request a thread from the thread pool.
-            </summary>
-        </member>
         <member name="T:Ximura.IXimuraServiceParentSettings">
             <summary>
             This interface is implemented by commands that can be nested in other commands.
@@ -5803,61 +4558,6 @@
             Converts a user-defined type (UDT) or user-defined aggregate into its binary format.
             </summary>
             <param name="w">The System.IO.BinaryWriter stream to which the UDT or user-defined aggregate is serialized.</param>
-        </member>
-        <member name="T:Ximura.IXimuraSchedulerCommandRegister">
-            <summary>
-            The IXimuraSchedulerCommandRegister interface provides an interaction between the scheduler and the 
-            application commands.
-            </summary>
-        </member>
-        <member name="M:Ximura.IXimuraSchedulerCommandRegister.RegisterCommand(System.Guid)">
-            <summary>
-            This method is used by a command to register with the scheduler, a valid Guid identifies that the 
-            scheduler is able to process the schedules.
-            </summary>
-            <param name="CommandID">Returns true if the command was registered successfully.</param>
-        </member>
-        <member name="M:Ximura.IXimuraSchedulerCommandRegister.RegisterSubCommand(System.Guid,System.String,System.String,System.String,System.Object,Ximura.JobPriority)">
-            <summary>
-            This method is used to register a subcommand. The scheduler will then call the command based
-            on the schedule set in entity.
-            </summary>
-            <param name="registerID">The register ID.</param>
-            <param name="subCommandID">The sub command id, this can be null if it is the default command.</param>
-            <param name="description">The sub command description.</param>
-            <param name="subCommand">The subcommand object that will be sent to the command as a subcommand parameter.</param>
-            <param name="priority">The priority set for the request.</param>
-            <returns>Returns true if the command is registered correctly.</returns>
-        </member>
-        <member name="M:Ximura.IXimuraSchedulerCommandRegister.RegisterSubCommand(System.Guid,System.String,System.String,System.String,System.Object,Ximura.JobPriority,System.Boolean)">
-            <summary>
-            This method is used to register a subcommand. The scheduler will then call the command based
-            on the schedule set in entity.
-            </summary>
-            <param name="registerID">The register ID.</param>
-            <param name="subCommandID">The sub command id, this can be null if it is the default command.</param>
-            <param name="description">The sub command description.</param>
-            <param name="subCommand">The subcommand object that will be sent to the command as a subcommand parameter.</param>
-            <param name="priority">The priority set for the request.</param>
-            <param name="active">This method specifies whether the subcommand is active. This property can be used to remove a subcommand
-            that has been depreciated in a new version of a command. If this is set to false
-            the Scheduler will remove all references to this command if they exist in the schedule.</param>
-            <returns>Returns true if the command is registered correctly.</returns>
-        </member>
-        <member name="M:Ximura.IXimuraSchedulerCommandRegister.UnregisterSubCommand(System.Guid,System.String)">
-            <summary>
-            This method is used to specifically disable/unregister a subcommand that has already been registered.
-            </summary>
-            <param name="registerID">The registerID previously passed back from the scheduler.</param>
-            <param name="subCommandID">The subcommand id.</param>
-            <returns>Returns true if the command was successfully unregistered.</returns>
-        </member>
-        <member name="M:Ximura.IXimuraSchedulerCommandRegister.UnregisterCommand(System.Guid)">
-            <summary>
-            This method is used by the command to signal that it is completed/stopped and no longer wishes
-            to receive shedule requests.
-            </summary>
-            <param name="schedulerID"></param>
         </member>
         <member name="T:Ximura.LockableWrapper`1">
             <summary>
@@ -6163,11 +4863,6 @@
             This is the key comparer.
             </summary>
         </member>
-        <member name="T:Ximura.Framework.IXimuraLoggingManagerService">
-            <summary>
-            This interface is registered by the logging manager in the control container.
-            </summary>
-        </member>
         <member name="T:Ximura.XimuraServiceStatusAction">
             <summary>
             This enumerations is used to signal an action for the collection
@@ -6191,33 +4886,6 @@
         <member name="F:Ximura.XimuraServiceStatusAction.Continue">
             <summary>
             Continue the collection
-            </summary>
-        </member>
-        <member name="T:Ximura.Data.DataContentLinkType">
-            <summary>
-            This is the linkage option for the DataContent
-            </summary>
-        </member>
-        <member name="F:Ximura.Data.DataContentLinkType.NoLinkage">
-            <summary>
-            This object is not linked to any other object.
-            </summary>
-        </member>
-        <member name="F:Ximura.Data.DataContentLinkType.MergeIfPresent">
-            <summary>
-            The data content is copied from another object in the model folder. Changes made to the
-            data in this object will not be passed on to the linked object.
-            </summary>
-        </member>
-        <member name="F:Ximura.Data.DataContentLinkType.Link">
-            <summary>
-            The entity is directly linked to another object in the model folder. Changes made to this
-            object will be directly syncronised with the parent object.
-            </summary>
-        </member>
-        <member name="T:Ximura.IXimuraCommandPermissions">
-            <summary>
-            This interface determines the specific permissions that the command presents to the application.
             </summary>
         </member>
         <member name="T:Ximura.StreamCounter">
@@ -6656,19 +5324,35 @@
             <param name="collection">The values in this enumeration will be loaded in to the collection.</param>
             <param name="isFixedSize">The collection is fixed to the size passed in the capacity parameter.</param>
         </member>
-        <member name="T:Ximura.Framework.IXimuraStorage">
-            <summary>
-            This interface is implemented by storage manager.
-            </summary>
-        </member>
-        <member name="T:Ximura.Framework.IXimuraGatewayManagerService">
-            <summary>
-            This interface is implemented by the Gateway service.
-            </summary>
-        </member>
         <member name="P:Ximura.Communication.IXimuraMessageLoad.CanLoad">
             <summary>
             This boolean property determines whether the message can be loaded.
+            </summary>
+        </member>
+        <member name="T:Ximura.IXimuraConfigSH">
+            <summary>
+            This is the default interface for an application config section handler
+            </summary>
+        </member>
+        <member name="M:Ximura.IXimuraConfigSH.GetSetting(System.String)">
+            <summary>
+            Get the config setting by specific Type
+            </summary>
+            <param name="Type">setting type</param>
+            <returns>setting value</returns>
+        </member>
+        <member name="M:Ximura.IXimuraConfigSH.GetSettingExtended(System.String,System.String)">
+            <summary>
+            This method returns the extended setting object or null if the type 
+            specified does not exist.
+            </summary>
+            <param name="Type">The name of the type.</param>
+            <param name="subType">The name of the subtype.</param>
+            <returns>The settings object containing the specific settings or null if the object can not be found.</returns>
+        </member>
+        <member name="P:Ximura.IXimuraConfigSH.Enabled">
+            <summary>
+            This property determines whether the command is enabled.
             </summary>
         </member>
         <member name="T:Ximura.Collections.MultiLevelClassBasedVertexArray`1">
@@ -6878,11 +5562,6 @@
         <!-- Badly formed XML comment ignored for member "M:Ximura.Collections.ConcurrentDictionarySLC`2.#ctor(System.Collections.Generic.IEqualityComparer{`0},System.Int32,System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{`0,`1}})" -->
         <!-- Badly formed XML comment ignored for member "M:Ximura.Collections.ConcurrentDictionarySLC`2.#ctor(System.Collections.Generic.IEqualityComparer{`0},System.Int32,System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{`0,`1}},System.Boolean)" -->
         <!-- Badly formed XML comment ignored for member "M:Ximura.Collections.ConcurrentDictionarySLC`2.#ctor(Ximura.Collections.ConcurrentDictionary{`0,`1,Ximura.Collections.SkipListClassBasedVertexArray{System.Collections.Generic.KeyValuePair{`0,`1}}}.KeyValueOnlyKeyEqualityComparer{`0,`1},System.Int32,System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{`0,`1}},System.Boolean)" -->
-        <member name="T:Ximura.Framework.IXimuraGatewayAgent">
-            <summary>
-            This interface is implemented by system gateway agents.
-            </summary>
-        </member>
         <member name="T:Ximura.PoolManager">
             <summary>
             The pool manager is a static class which controls system wide object pooling within the 
@@ -6971,47 +5650,6 @@
             The buffered pool.
             </summary>
         </member>
-        <member name="T:Ximura.Framework.IXimuraSessionManagerAuth">
-            <summary>
-            IXimuraSessionManagerAuth
-            </summary>
-        </member>
-        <member name="M:Ximura.Framework.IXimuraSessionManagerAuth.Logout(Ximura.IXimuraSessionSCM)">
-            <summary>
-            This method logs out a session and resets its permission to an
-            unathorized user.
-            </summary>
-            <param name="theSession">The session to logout.</param>
-        </member>
-        <member name="M:Ximura.Framework.IXimuraSessionManagerAuth.Close(Ximura.IXimuraSessionSCM)">
-            <summary>
-            This method closes a session and removes it from the session collection.
-            </summary>
-            <param name="theSession">The session object to close.</param>
-        </member>
-        <member name="M:Ximura.Framework.IXimuraSessionManagerAuth.GetSeed(Ximura.IXimuraSessionSCM)">
-            <summary>
-            This method gets the seed for the user.
-            </summary>
-            <param name="theSession">The session.</param>
-            <returns>Returns a byte array containing the seed.</returns>
-        </member>
-        <member name="M:Ximura.Framework.IXimuraSessionManagerAuth.GetNonce(Ximura.IXimuraSessionSCM)">
-            <summary>
-            This is the one time parameter used to prevent replay attacks. This method
-            is not currently implemented.
-            </summary>
-            <param name="theSession">The session to generate the nonce for.</param>
-            <returns>A byte array containing the nonce.</returns>
-        </member>
-        <member name="M:Ximura.Framework.IXimuraSessionManagerAuth.Authenticate(Ximura.IXimuraSessionSCM,System.Byte[])">
-            <summary>
-            This method will authenticate the user.
-            </summary>
-            <param name="theSession">The session.</param>
-            <param name="hash">The hash.</param>
-            <returns>The session state after the authentication request.</returns>
-        </member>
         <member name="T:Ximura.XimuraServiceStatus">
             <summary>
             The CatalogProcessStatus shows the current status of the Catalog Process.
@@ -7082,41 +5720,26 @@
             The service is disabled.
             </summary>
         </member>
-        <member name="T:Ximura.IXimuraLoggingAudit">
-            <summary>
-            This 
-            </summary>
-        </member>
-        <member name="T:Ximura.IXimuraComponentBase">
-            <summary>
-            This is the base interface supported by components that support the Ximura component architecture.
-            </summary>
-        </member>
-        <member name="T:Ximura.IXimuraServiceContainer">
-            <summary>
-            This interface provides extended functionality for the service based architecture.
-            </summary>
-        </member>
-        <member name="M:Ximura.IXimuraServiceContainer.AddService(System.Type,System.Object,System.Boolean,System.Int32)">
-            <summary>
-            Adds the service specified to the service container.
-            </summary>
-            <param name="serviceType">The type of service to add.</param>
-            <param name="serviceInstance">The service.</param>
-            <param name="promote">True promotes this service to the parent service container.</param>
-            <param name="depth">The depth the service should be promoted. Set this value to -1 if you require it to be unlimited.</param>
-        </member>
-        <member name="M:Ximura.IXimuraServiceContainer.GetService(System.Type,System.Int32)">
-            <summary>
-            This method returns the requested service.
-            </summary>
-            <param name="serviceType">The service type.</param>
-            <param name="depth">The service depth. If this is set to -1 the depth is unlimited.</param>
-            <returns>Returns the service requested, or null if the service cannot be found.</returns>
-        </member>
         <member name="T:Ximura.Data.IXimuraContent">
             <summary>
             IXimuraContent is the default interface for the content object.
+            </summary>
+        </member>
+        <member name="T:Ximura.IXimuraPoolableObjectDeserializable">
+            <summary>
+            This interface is implemented by poolable object that also support deserialization.
+            </summary>
+        </member>
+        <member name="M:Ximura.IXimuraPoolableObjectDeserializable.Reset(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            This method resets the object in to the deserialized state specified in the info and context.
+            </summary>
+            <param name="info">The serialization information.</param>
+            <param name="context">The serialization context.</param>
+        </member>
+        <member name="P:Ximura.IXimuraPoolableObjectDeserializable.CanResetWithDeserialization">
+            <summary>
+            This propoerty indicates whether the object support a deserialization reset.
             </summary>
         </member>
         <member name="M:Ximura.Data.IXimuraContent.IsDirty">
@@ -7144,21 +5767,6 @@
         <member name="P:Ximura.Data.IXimuraContent.Dirty">
             <summary>
             This boolean property indicates whether the object has been changed.
-            </summary>
-        </member>
-        <member name="T:Ximura.Framework.IXimuraAppServer">
-            <summary>
-            Summary description for IXimuraAppServer.
-            </summary>
-        </member>
-        <member name="T:Ximura.IXimuraApplication">
-            <summary>
-            Summary description for IXimuraApplication.
-            </summary>
-        </member>
-        <member name="P:Ximura.IXimuraApplication.ApplicationID">
-            <summary>
-            This is the application ID.
             </summary>
         </member>
         <member name="T:Ximura.XimuraAppContainer">
@@ -7448,52 +6056,6 @@
             The >NET type name of the command config section handler.
             </summary>
         </member>
-        <member name="T:Ximura.Data.IXimuraDataEntity">
-            <summary>
-            This interface is retired and is currently only used by old data
-            entities.
-            </summary>
-        </member>
-        <member name="P:Ximura.Data.IXimuraDataEntity.SatelliteEntity">
-            <summary>
-            This property returns true if the content is a satelite entity.
-            </summary>
-        </member>
-        <member name="P:Ximura.Data.IXimuraDataEntity.GetDataSet">
-            <summary>
-            This method returns the internal dataset for the Data Entity
-            </summary>
-        </member>
-        <member name="M:Ximura.Data.IXimuraDataContentLoad.Load(System.Data.DataSet)">
-            <summary> 
-            This method loads the DataContent from a DataSet.
-            </summary>
-            <param name="data">The DataSet this content should hold.</param>
-        </member>
-        <member name="M:Ximura.Data.IXimuraDataContentLoad.Load">
-            <summary>
-            This method is used to create a new entity.
-            </summary>
-        </member>
-        <member name="M:Ximura.Data.IXimuraDataContentLoad.Load(System.Boolean)">
-            <summary>
-            This method is used to create a new entity.
-            </summary>
-            <param name="force">if this property is set to true the entity will discard any changes if set to true.</param>
-            <returns>Returns true if a new entity was created.</returns>
-        </member>
-        <member name="T:Ximura.IXimuraCommandScheduleProcessConfigSH">
-            <summary>
-            This is the default interface for a scheduler config section handler
-            </summary>
-        </member>
-        <member name="M:Ximura.IXimuraCommandScheduleProcessConfigSH.GetNextSchedules(System.Double)">
-            <summary>
-            Get Next Schedules within interval(in minutes)
-            </summary>
-            <param name="interval">interval in minutes</param>
-            <returns>return all upcoming schedules in time/schedule pairs</returns>
-        </member>
         <member name="T:Ximura.BitMaskInt32">
             <summary>
             This struct sets the appropriate bits.
@@ -7530,61 +6092,6 @@
             This method creates a new pool object of type T.
             </summary>
             <returns>Returns the new object.</returns>
-        </member>
-        <member name="T:Ximura.IXimuraPoolDeserializable">
-            <summary>
-            This interface is used to retrieve an object that support the deserializable interface.
-            </summary>
-        </member>
-        <member name="M:Ximura.IXimuraPoolDeserializable.Get(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <summary>
-            This method returns an object from the pool and deserializes this information in the serialization
-            objects.
-            </summary>
-            <param name="info">The serialization information.</param>
-            <param name="context">The serialization context.</param>
-            <returns>Returns the object specified from the pool.</returns>
-        </member>
-        <member name="P:Ximura.IXimuraPoolDeserializable.SupportsDeserialization">
-            <summary>
-            This boolean property returns true if the object type for the pool supports deserialization.
-            </summary>
-        </member>
-        <member name="T:Ximura.IXimuraPoolDeserializable`1">
-            <summary>
-            This is the generic interface for poolable deserializable objects.
-            </summary>
-            <typeparam name="T">The poolable object type.</typeparam>
-        </member>
-        <member name="M:Ximura.IXimuraPoolDeserializable`1.Get(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <summary>
-            This method returns an object of type T from the pool and deserializes this 
-            information in the serialization objects.
-            </summary>
-            <param name="info">The serialization information.</param>
-            <param name="context">The serialization context.</param>
-            <returns>Returns the object specified from the pool.</returns>
-        </member>
-        <member name="T:Ximura.IXimuraPerformanceCounterCollection">
-            <summary>
-            This interface is used by classes that provide performance counter consolidation.
-            </summary>
-        </member>
-        <member name="T:Ximura.IXimuraAppSite">
-            <summary>
-            IXimuraAppSite is an interface that inherits from ISite and provides 
-            specific component model method for the Ximura Application framework.
-            </summary>
-        </member>
-        <member name="P:Ximura.IXimuraAppSite.parent">
-            <summary>
-            An additional property which is the parent of the component
-            </summary>
-        </member>
-        <member name="P:Ximura.IXimuraAppSite.ServiceContainer">
-            <summary>
-            The service container.
-            </summary>
         </member>
         <member name="T:Ximura.LockableNullableWrapper`1">
             <summary>
@@ -7671,134 +6178,6 @@
         <member name="P:Ximura.LockableNullableWrapper`1.HasValue">
             <summary>
             Specifies whether the wrapper contains a value.
-            </summary>
-        </member>
-        <member name="T:Ximura.DJobType">
-            <summary>
-            This enumeration is the Dispatcher Job Types
-            </summary>
-        </member>
-        <member name="F:Ximura.DJobType.Command">
-            <summary>
-            The job type is a command.
-            </summary>
-        </member>
-        <member name="F:Ximura.DJobType.Callback">
-            <summary>
-            The job type is a straight call back.
-            </summary>
-        </member>
-        <member name="T:Ximura.Framework.JobSignature">
-            <summary>
-            This structure is used hold the job signature.
-            </summary>
-        </member>
-        <member name="F:Ximura.Framework.JobSignature.encryptHeader">
-            <summary>
-            The header
-            </summary>
-        </member>
-        <member name="F:Ximura.Framework.JobSignature.encryptBuffer">
-            <summary>
-            The buffer
-            </summary>
-        </member>
-        <member name="F:Ximura.Framework.JobSignature.encryptedHash">
-            <summary>
-            The hash.
-            </summary>
-        </member>
-        <member name="M:Ximura.Framework.JobSignature.#ctor(System.Byte[],System.Byte[],System.Byte[])">
-            <summary>
-            This creates the signature. You may pass null as a parameter.
-            </summary>
-            <param name="encryptHeader">The header.</param>
-            <param name="encryptBuffer">The buffer.</param>
-            <param name="encryptedHash">The hash.</param>
-        </member>
-        <member name="F:Ximura.Framework.JobSignature.Empty">
-            <summary>
-            This is the empty job signature.
-            </summary>
-        </member>
-        <member name="M:Ximura.Framework.JobSignature.#cctor">
-            <summary>
-            This is the static constructor.
-            </summary>
-        </member>
-        <member name="T:Ximura.SessionState">
-            <summary>
-            The XimuraSessionState enumeration identifies the current state of a session.
-            </summary>
-        </member>
-        <member name="F:Ximura.SessionState.Undefined">
-            <summary>
-            The session is undefined.
-            </summary>
-        </member>
-        <member name="F:Ximura.SessionState.NotInitialized">
-            <summary>
-            The session is not initialized.
-            </summary>
-        </member>
-        <member name="F:Ximura.SessionState.Initialized">
-            <summary>
-            The session is initialized.
-            </summary>
-        </member>
-        <member name="F:Ximura.SessionState.Authenticating">
-            <summary>
-            The session is currently authenticating.
-            </summary>
-        </member>
-        <member name="F:Ximura.SessionState.Authenticated">
-            <summary>
-            The session is authenticated with the security manager.
-            </summary>
-        </member>
-        <member name="F:Ximura.SessionState.Closing">
-            <summary>
-            The session is closing.
-            </summary>
-        </member>
-        <member name="F:Ximura.SessionState.Closed">
-            <summary>
-            The session is closed.
-            </summary>
-        </member>
-        <member name="F:Ximura.SessionState.NotAuthorized">
-            <summary>
-            The session is not authorized.
-            </summary>
-        </member>
-        <member name="F:Ximura.SessionState.Rejected">
-            <summary>
-            The session was rejected by the security manager.
-            </summary>
-        </member>
-        <member name="T:Ximura.Data.DataContentSummaryType">
-            <summary>
-            The data content summary type.
-            </summary>
-        </member>
-        <member name="F:Ximura.Data.DataContentSummaryType.Text">
-            <summary>
-            Summary should be in text format.
-            </summary>
-        </member>
-        <member name="F:Ximura.Data.DataContentSummaryType.Html">
-            <summary>
-            Sumary should be in HTML format.
-            </summary>
-        </member>
-        <member name="F:Ximura.Data.DataContentSummaryType.Custom">
-            <summary>
-            Summary is custom.
-            </summary>
-        </member>
-        <member name="T:Ximura.IXimuraCommandKnownService">
-            <summary>
-            This interface is used to identify known services.
             </summary>
         </member>
         <member name="T:Ximura.XMLHelper">
@@ -7934,158 +6313,6 @@
         <member name="P:Ximura.MatchCollection`2.Count">
             <summary>
             This property returns the number of items in the collection. You should override this property.
-            </summary>
-        </member>
-        <member name="T:Ximura.Framework.RQRSContract`2">
-            <summary>
-            IXimuraRQRSEnvelope is used to hold the information needed for a system request, and is the 
-            primary object used to transmit information arounds the Ximura system.
-            </summary>
-        </member>
-        <member name="F:Ximura.Framework.RQRSContract`2.mPoolTrackingID">
-            <summary>
-            This ID is used to track the lifecycle of the poolable object, and does not change throughout
-            the lifetime of the object.
-            </summary>
-        </member>
-        <member name="F:Ximura.Framework.RQRSContract`2.mTTL">
-            <summary>
-            This variable determines the maximum number of hops that the Envelope
-            can pass through before it expires.
-            </summary>
-        </member>
-        <member name="F:Ximura.Framework.RQRSContract`2.destination">
-            <summary>
-            This is the destination for the Request
-            </summary>
-        </member>
-        <member name="M:Ximura.Framework.RQRSContract`2.#ctor">
-            <summary>
-            The default constructor.
-            </summary>
-        </member>
-        <member name="M:Ximura.Framework.RQRSContract`2.#ctor(Ximura.Framework.EnvelopeAddress)">
-            <summary>
-            The constructor that specifies the destination for the request.
-            </summary>
-            <param name="destination"></param>
-        </member>
-        <member name="M:Ximura.Framework.RQRSContract`2.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <summary>
-            This is the deserialization constructor.
-            </summary>
-            <param name="info"></param>
-            <param name="context"></param>
-        </member>
-        <member name="M:Ximura.Framework.RQRSContract`2.Reset">
-            <summary>
-            This method resets the object.
-            </summary>
-        </member>
-        <member name="M:Ximura.Framework.RQRSContract`2.PrepareResponse(System.String,System.String)">
-            <summary>
-            This shortcut is used to prepare the response status and substatus.
-            </summary>
-            <param name="status"></param>
-            <param name="subStatus"></param>
-        </member>
-        <member name="M:Ximura.Framework.RQRSContract`2.Reset(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <summary>
-            This is the deserialization reset method.
-            </summary>
-            <param name="info"></param>
-            <param name="context"></param>
-        </member>
-        <member name="M:Ximura.Framework.RQRSContract`2.ObjectPoolReturn">
-            <summary>
-            This method returns the IXimuraRQRSEnvelope to the pool.
-            </summary>
-        </member>
-        <member name="M:Ximura.Framework.RQRSContract`2.Dispose">
-            <summary>
-            The dispose method.
-            </summary>
-        </member>
-        <member name="M:Ximura.Framework.RQRSContract`2.Dispose(System.Boolean)">
-            <summary>
-            The overrided dispose method
-            </summary>
-            <param name="disposing">True if this is called by dispose, false if this
-            is called by the finalizer.</param>
-        </member>
-        <member name="P:Ximura.Framework.RQRSContract`2.DestinationAddress">
-            <summary>
-            The destination address for the envelope.
-            </summary>
-        </member>
-        <member name="P:Ximura.Framework.RQRSContract`2.Sender">
-            <summary>
-            The original sender
-            </summary>
-        </member>
-        <member name="P:Ximura.Framework.RQRSContract`2.SenderReference">
-            <summary>
-            The original sender internal reference 
-            </summary>
-        </member>
-        <member name="P:Ximura.Framework.RQRSContract`2.ContractRequest">
-            <summary>
-            The Contract Request property
-            </summary>
-        </member>
-        <member name="P:Ximura.Framework.RQRSContract`2.Request">
-            <summary>
-            The Request property
-            </summary>
-        </member>
-        <member name="P:Ximura.Framework.RQRSContract`2.ContractResponse">
-            <summary>
-            The Response property
-            </summary>
-        </member>
-        <member name="P:Ximura.Framework.RQRSContract`2.Response">
-            <summary>
-            The backwards compatible response property
-            </summary>
-        </member>
-        <member name="P:Ximura.Framework.RQRSContract`2.JobUserID">
-            <summary>
-            This is the job user ID.
-            </summary>
-        </member>
-        <member name="P:Ximura.Framework.RQRSContract`2.JobUserReferenceID">
-            <summary>
-            This is the job user plain text reference ID.
-            </summary>
-        </member>
-        <member name="P:Ximura.Framework.RQRSContract`2.JobSecurityIdentifier">
-            <summary>
-            This is the unique job security reference ID.
-            </summary>
-        </member>
-        <member name="P:Ximura.Framework.RQRSContract`2.CanResetWithDeserialization">
-            <summary>
-            This propoerty indicates whether the object support a deserialization reset.
-            </summary>
-        </member>
-        <member name="P:Ximura.Framework.RQRSContract`2.ObjectPool">
-            <summary>
-            This property contains a reference to the object pool for the IXimuraRQRSEnvelope.
-            </summary>
-        </member>
-        <member name="P:Ximura.Framework.RQRSContract`2.ObjectPoolCanReturn">
-            <summary>
-            This property returns true if the object can be returns to the pool.
-            </summary>
-        </member>
-        <member name="P:Ximura.Framework.RQRSContract`2.CanPool">
-            <summary>
-            This method returns true if the object can be pooled.
-            </summary>
-        </member>
-        <member name="P:Ximura.Framework.RQRSContract`2.TrackID">
-            <summary>
-            This property is the pool tracking ID.
             </summary>
         </member>
         <member name="T:Ximura.Collections.SkipListStructBasedVertexArray`1">
@@ -8648,94 +6875,6 @@
             This property returns the number of active objects.
             </summary>
         </member>
-        <member name="T:Ximura.JobPriority">
-            <summary>
-            Thread pool priority is used to assign the job position within the 
-            Priority Job queue.
-            </summary>
-        </member>
-        <member name="F:Ximura.JobPriority.Realtime">
-            <summary>
-            This is the highest priority
-            </summary>
-        </member>
-        <member name="F:Ximura.JobPriority.High">
-            <summary>
-            This is high priority
-            </summary>
-        </member>
-        <member name="F:Ximura.JobPriority.AboveNormal">
-            <summary>
-            This is above normal priority
-            </summary>
-        </member>
-        <member name="F:Ximura.JobPriority.Normal">
-            <summary>
-            This is the default priority
-            </summary>
-        </member>
-        <member name="F:Ximura.JobPriority.BelowNormal">
-            <summary>
-            This is below normal priority
-            </summary>
-        </member>
-        <member name="F:Ximura.JobPriority.Low">
-            <summary>
-            This is the lowest priority
-            </summary>
-        </member>
-        <member name="F:Ximura.JobPriority.NotSet">
-            <summary>
-            This is the not set state.
-            </summary>
-        </member>
-        <member name="T:Ximura.IXimuraSessionRQAsyncWithDependency">
-            <summary>
-            This is the async interface
-            </summary>
-        </member>
-        <member name="M:Ximura.IXimuraSessionRQAsyncWithDependency.ProcessRequestAsyncWithDependency(Ximura.IXimuraRQRSEnvelope,Ximura.CommandRSCallback,System.String)">
-            <summary>
-            Process an asychronous request.
-            </summary>
-            <param name="data">The data</param>
-            <param name="RSCallback">The call back completion delegate.</param>
-            <param name="dependencyKey">The dependency key, if this is set to null the key is ignored.</param>
-            <returns>The job guid.</returns>
-        </member>
-        <member name="M:Ximura.IXimuraSessionRQAsyncWithDependency.ProcessRequestAsyncWithDependency(Ximura.IXimuraRQRSEnvelope,Ximura.CommandRSCallback,Ximura.CommandProgressCallback,Ximura.JobPriority,System.String)">
-            <summary>
-            Process an asychronous request.
-            </summary>
-            <param name="data">The data</param>
-            <param name="RSCallback">The call back completion delegate.</param>
-            <param name="ProgessCallback">The request progress delegate. Set this to null if not needed.</param>
-            <param name="priority">The request priority.</param>
-            <param name="dependencyKey">The dependency key, if this is set to null the key is ignored.</param>
-            <returns>The job guid.</returns>
-        </member>
-        <member name="M:Ximura.IXimuraSessionRQAsyncWithDependency.ProcessRequestAsyncWithDependency(System.Guid,Ximura.IXimuraRQRSEnvelope,Ximura.CommandRSCallback,System.String)">
-            <summary>
-            Process an asychronous request.
-            </summary>
-            <param name="jobID">The job ID. This should be set to a new Guid.</param>
-            <param name="data">The data</param>
-            <param name="RSCallback">The call back completion delegate.</param>
-            <param name="dependencyKey">The dependency key, if this is set to null the key is ignored.</param>
-            <returns>The job guid.</returns>
-        </member>
-        <member name="M:Ximura.IXimuraSessionRQAsyncWithDependency.ProcessRequestAsyncWithDependency(System.Guid,Ximura.IXimuraRQRSEnvelope,Ximura.CommandRSCallback,Ximura.CommandProgressCallback,Ximura.JobPriority,System.String)">
-            <summary>
-            Process an asychronous request.
-            </summary>
-            <param name="jobID">The job ID. This should be set to a new Guid.</param>
-            <param name="data">The data</param>
-            <param name="RSCallback">The call back completion delegate.</param>
-            <param name="ProgressCallback">The request progress delegate. Set this to null if not needed.</param>
-            <param name="priority">The request priority.</param>
-            <param name="dependencyKey">The dependency key, if this is set to null the key is ignored.</param>
-            <returns>The job guid.</returns>
-        </member>
         <member name="T:Ximura.IXimuraComponentService">
             <summary>
             Summary description for IXimuraComponentService.
@@ -8802,36 +6941,9 @@
             This event will be fired when the service is stopped
             </summary>
         </member>
-        <member name="T:Ximura.IXimuraPerformanceManager">
-            <summary>
-            This interface should be used by all services providing performance services
-            </summary>
-        </member>
-        <member name="M:Ximura.IXimuraPerformanceManager.PerformanceCounterCollectionRegister(Ximura.IXimuraPerformanceCounterCollection)">
-            <summary>
-            This method registers a performance counter will the application.
-            </summary>
-            <param name="collection">The counter collection to register.</param>
-        </member>
-        <member name="M:Ximura.IXimuraPerformanceManager.PerformanceCounterCollectionUnregister(Ximura.IXimuraPerformanceCounterCollection)">
-            <summary>
-            This method removes a performance counter collection from the application.
-            </summary>
-            <param name="collection"></param>
-        </member>
         <member name="P:Ximura.Communication.IXimuraMessageTermination.IsTerminator">
             <summary>
             This property specifies whether the fragment byte array has reached the termination requirements
-            </summary>
-        </member>
-        <member name="T:Ximura.Data.ITextSummary">
-            <summary>
-            This interface is used to provide a content summary of the content
-            </summary>
-        </member>
-        <member name="P:Ximura.Data.ITextSummary.TextSummary">
-            <summary>
-            The text summary of the content.
             </summary>
         </member>
         <member name="T:Ximura.StringHelper">
@@ -9074,6 +7186,22 @@
             within an aggreagate Content/Element object.
             </summary>
         </member>
+        <member name="T:Ximura.IXimuraAppSite">
+            <summary>
+            IXimuraAppSite is an interface that inherits from ISite and provides 
+            specific component model method for the Ximura Application framework.
+            </summary>
+        </member>
+        <member name="P:Ximura.IXimuraAppSite.parent">
+            <summary>
+            An additional property which is the parent of the component
+            </summary>
+        </member>
+        <member name="P:Ximura.IXimuraAppSite.ServiceContainer">
+            <summary>
+            The service container.
+            </summary>
+        </member>
         <member name="F:Ximura.ElementSite.m_Component">
             <summary>
             This is the component.
@@ -9183,11 +7311,6 @@
             The service container.
             </summary>
         </member>
-        <member name="T:Ximura.Framework.IXimuraEnvelopeHelper">
-            <summary>
-            This interface is used to provide access the Envelope pool for the application.
-            </summary>
-        </member>
         <member name="T:Ximura.Collections.RedBlackTreeVertexStruct`2">
             <summary>
             This structture holds the array data for the red black tree.
@@ -9290,278 +7413,26 @@
             The configuration location.
             </summary>
         </member>
-        <member name="T:Ximura.Framework.IXimuraPerformanceManagerService">
-            <summary>
-            This interface is implemented by performance manager service.
-            </summary>
-        </member>
-        <member name="T:Ximura.Framework.SessionCreateRemote">
-            <summary>
-            The session create remote delegate.
-            </summary>
-        </member>
-        <member name="T:Ximura.Framework.IXimuraSessionManager">
-            <summary>
-            The IXimuraSessionManager interface is the public face of the session manager and is registered
-            in the components collection of the Application.
-            </summary>
-        </member>
-        <member name="M:Ximura.Framework.IXimuraSessionManager.SessionCreate">
-            <summary>
-            This method creates a blank session.
-            </summary>
-            <returns>A IXimuraSession object is returned.</returns>
-        </member>
-        <member name="M:Ximura.Framework.IXimuraSessionManager.SessionCreate(System.String)">
-            <summary>
-            This method creates a session object for the named user.
-            </summary>
-            <param name="username">The user ID of the user.</param>
-            <returns>A IXimuraSession object is returned.</returns>
-        </member>
-        <member name="M:Ximura.Framework.IXimuraSessionManager.SessionCreate(System.String,System.String)">
-            <summary>
-            This method creates a session object for the named user.
-            </summary>
-            <param name="domain">The domain for the session or null if the default is to be used.</param>
-            <param name="username">The user ID of the user.</param>
-            <returns>A IXimuraSession object is returned.</returns>
-        </member>
         <member name="T:Ximura.ServiceEvent">
             <summary>
             This delegate is used by the Services to report back progress
-            </summary>
-        </member>
-        <member name="T:Ximura.IXimuraLogging">
-            <summary>
-            The IXimuraLogging interface provides the necessary methods to enable logging.
-            </summary>
-        </member>
-        <member name="M:Ximura.IXimuraLogging.AcceptCategory(System.String,System.Diagnostics.EventLogEntryType)">
-            <summary>
-            This method inform the Logging Manager whether it will accept the 
-            category for logging.
-            </summary>
-            <param name="category">The logging category.</param>
-            <returns>A boolean value. True indicated the category is accepted.</returns>
-        </member>
-        <member name="M:Ximura.IXimuraLogging.Close">
-            <summary>
-            Flushes the output buffer and then closes the Listeners.
-            </summary>
-        </member>
-        <member name="M:Ximura.IXimuraLogging.Flush">
-            <summary>
-            Flushes the output buffer and causes buffered data to write to the Listeners
-            collection.
-            </summary>
-        </member>
-        <member name="M:Ximura.IXimuraLogging.Fail(System.String,System.String)">
-            <summary>
-            Emits an error message and a detailed error message.
-            </summary>
-            <param name="message">A message to emit.</param>
-            <param name="detailMessage">A detailed message to emit.</param>
-        </member>
-        <member name="M:Ximura.IXimuraLogging.Fail(System.String)">
-            <summary>
-            Emits the specified error message.
-            </summary>
-            <param name="message">A message to emit.</param>
-        </member>
-        <member name="M:Ximura.IXimuraLogging.Indent">
-            <summary>
-            Increases the current IndentLevel by one.
-            </summary>
-        </member>
-        <member name="M:Ximura.IXimuraLogging.Unindent">
-            <summary>
-            Decreases the current IndentLevel by one.
-            </summary>
-        </member>
-        <member name="M:Ximura.IXimuraLogging.Write(System.Object,System.String)">
-            <summary>
-            Writes a category name and the value of the object's ToString method to 
-            the trace listeners in the Listeners collection.
-            </summary>
-            <param name="value">An object whose name is sent to the Listeners.</param>
-            <param name="category">A category name used to organize the output.</param>
-        </member>
-        <member name="M:Ximura.IXimuraLogging.Write(System.String)">
-            <summary>
-            Writes a category name and message to the trace listeners in the Listeners
-             collection.
-            </summary>
-            <param name="message">A message to write. </param>
-        </member>
-        <member name="M:Ximura.IXimuraLogging.Write(System.String,System.String)">
-            <summary>
-            Writes a category name and message to the trace listeners in the Listeners
-             collection.
-            </summary>
-            <param name="message">A message to write. </param>
-            <param name="category">A category name used to organize the output.</param>
-        </member>
-        <member name="M:Ximura.IXimuraLogging.Write(System.Object)">
-            <summary>
-            Writes the value of the object's ToString method to the trace listeners
-            in the Listeners collection.
-            </summary>
-            <param name="value">An object whose name is sent to the Listeners.</param>
-        </member>
-        <member name="M:Ximura.IXimuraLogging.WriteLine(System.Object,System.String)">
-            <summary>
-            Writes a category name and the value of the object's ToString method to the trace 
-            listeners in the Listeners collection.
-            </summary>
-            <param name="value">An object whose name is sent to the Listeners.</param>
-            <param name="category">A category name used to organize the output.</param>
-        </member>
-        <member name="M:Ximura.IXimuraLogging.WriteLine(System.String,System.String)">
-            <summary>
-            Writes a category name and message to the trace listeners in the Listeners collection.
-            </summary>
-            <param name="message">A message to write.</param>
-            <param name="category">A category name used to organize the output.</param>
-        </member>
-        <member name="M:Ximura.IXimuraLogging.WriteLine(System.Object)">
-            <summary>
-            Writes the value of the object's ToString method to the trace listeners
-            in the Listeners collection.
-            </summary>
-            <param name="value">An object whose name is sent to the Listeners. </param>
-        </member>
-        <member name="M:Ximura.IXimuraLogging.WriteLine(System.String)">
-            <summary>
-            Writes a category name and message to the trace listeners in the
-            Listeners collection.
-            </summary>
-            <param name="message">A message to write.</param>
-        </member>
-        <member name="P:Ximura.IXimuraLogging.Name">
-            <summary>
-            Gets or sets a name for this LoggingProvider.
-            </summary>
-        </member>
-        <member name="P:Ximura.IXimuraLogging.AutoFlush">
-            <summary>
-            Gets or sets a value indicating whether Flush should be called on the 
-            Listeners after every write.
-            </summary>
-        </member>
-        <member name="P:Ximura.IXimuraLogging.IndentLevel">
-            <summary>
-            Gets or sets the indent level.
-            </summary>
-        </member>
-        <member name="P:Ximura.IXimuraLogging.IndentSize">
-            <summary>
-            Gets or sets the number of spaces in an indent.
-            </summary>
-        </member>
-        <member name="T:Ximura.Framework.IXimuraConfigurationManager">
-            <summary>
-            This is the configuration manager.
-            </summary>
-        </member>
-        <member name="T:Ximura.Framework.JobBase">
-            <summary>
-            This is an abstract class that all job based implementations inherit from.
-            </summary>
-        </member>
-        <member name="M:Ximura.Framework.JobBase.IDBuffer(System.Guid,System.Guid,System.Guid)">
-            <summary>
-            This static method is use to create the byte buffer
-            containing the three ids.
-            </summary>
-            <param name="id1">The Session ID</param>
-            <param name="id2">The Job ID.</param>
-            <param name="id3">The Request ID.</param>
-            <returns>A byte buffer</returns>
-        </member>
-        <member name="M:Ximura.Framework.JobBase.IDBuffer">
-            <summary>
-            The ID buffer
-            </summary>
-            <returns>The byte array containing the buffer.</returns>
-        </member>
-        <member name="M:Ximura.Framework.JobBase.Dispose">
-            <summary>
-            This is the dispose method for the job.
-            </summary>
-        </member>
-        <member name="M:Ximura.Framework.JobBase.Finalize">
-            <summary>
-            The class destructor.
-            </summary>
-        </member>
-        <member name="M:Ximura.Framework.JobBase.Dispose(System.Boolean)">
-            <summary>
-            This method should be overriden to provide specific clean up code.
-            Specifically, any delegates references in the object should be set to null;
-            </summary>
-            <param name="disposing">This parameter is true if the call is from the disposable interface.</param>
-        </member>
-        <member name="M:Ximura.Framework.JobBase.Reset">
-            <summary>
-            This virtual empty method should be implemented when resources may not be 
-            automatically cleaned up when using garbage collection, i.e. when using delegates.
-            </summary>
-        </member>
-        <member name="P:Ximura.Framework.JobBase.Priority">
-            <summary>
-            This is the job priority.
-            </summary>
-        </member>
-        <member name="P:Ximura.Framework.JobBase.SessionID">
-            <summary>
-            The Session ID
-            </summary>
-        </member>
-        <member name="P:Ximura.Framework.JobBase.ID">
-            <summary>
-            The job ID
-            </summary>
-        </member>
-        <member name="P:Ximura.Framework.JobBase.Data">
-            <summary>
-            The envelope containing the request
-            </summary>
-        </member>
-        <member name="P:Ximura.Framework.JobBase.Signature">
-            <summary>
-            The job signature
-            </summary>
-        </member>
-        <member name="P:Ximura.Framework.JobBase.EnvelopeHelper">
-            <summary>
-            This property provides access to the envelope helper.
-            </summary>
-        </member>
-        <member name="P:Ximura.Framework.JobBase.IsDisposed">
-            <summary>
-            This property can be used to identify whether the object has been disposed.
-            </summary>
-        </member>
-        <member name="P:Ximura.Framework.JobBase.CanPool">
-            <summary>
-            This method returns true if the object can be pooled.
-            </summary>
-        </member>
-        <member name="P:Ximura.Framework.JobBase.TrackID">
-            <summary>
-            This property is used to track the object through the object pool.
-            </summary>
-        </member>
-        <member name="T:Ximura.Framework.IXimuraSessionManagerService">
-            <summary>
-            This interface is implemented by storage manager.
             </summary>
         </member>
         <member name="T:Ximura.PoolBuffer`1">
             <summary>
             The pool buffer allow multiple clients to connect to the same underlying pool, but removes direct
             access to the underlying pool allowing more stable support.
+            </summary>
+        </member>
+        <member name="T:Ximura.IXimuraPoolBuffer">
+            <summary>
+            This is the pool buffer interface. This interface is used by the pool managers 
+            to reset the references when closing down.
+            </summary>
+        </member>
+        <member name="M:Ximura.IXimuraPoolBuffer.ResetBuffer">
+            <summary>
+            This method resets the buffer and it's connection to the underlying object pool.
             </summary>
         </member>
         <member name="M:Ximura.PoolBuffer`1.#ctor(Ximura.IXimuraPool)">
@@ -9629,55 +7500,6 @@
             This method creates a new pool object of type T.
             </summary>
             <returns>Returns the new object.</returns>
-        </member>
-        <member name="T:Ximura.IXimuraPoolManagerDirectAccess">
-            <summary>
-            This method is for poolable objects that require access to the base pool manager, so that they can retrieve
-            additional internal objects from the pool.
-            </summary>
-        </member>
-        <member name="M:Ximura.IXimuraPoolManagerDirectAccess.PoolGet(System.Type)">
-            <summary>
-            This method returns the specific pool manager for the type.
-            </summary>
-            <param name="objectType"></param>
-            <returns>Returns the pool for the object type.</returns>
-        </member>
-        <member name="M:Ximura.IXimuraPoolManagerDirectAccess.PoolGetObject(System.Type)">
-            <summary>
-            Returns a new object of the type specified.
-            </summary>
-            <param name="objectType">The object type required.</param>
-            <returns>Returns a poolable object of the type defined.</returns>
-        </member>
-        <member name="M:Ximura.IXimuraPoolManagerDirectAccess.PoolGetReturn(System.Object)">
-            <summary>
-            This method returns the object to the appropriate pool.
-            </summary>
-            <param name="poolObject">The object to return.</param>
-        </member>
-        <member name="P:Ximura.IXimuraPoolManagerDirectAccess.PoolManager">
-            <summary>
-            This is the pool manager for the object.
-            </summary>
-        </member>
-        <member name="T:Ximura.IXimuraLoggingProvider">
-            <summary>
-            The logging provider interface is used by implemented by loggers and is used 
-            by the logging manager to initialize logger in preperation for being inserted
-            in the application logging collection.
-            </summary>
-        </member>
-        <member name="M:Ximura.IXimuraLoggingProvider.Initialize(Ximura.IXimuraLoggerSettings)">
-            <summary>
-            This method initializes a logger
-            </summary>
-            <param name="settings">The logger settings.</param>
-        </member>
-        <member name="M:Ximura.IXimuraLoggingProvider.Deinitialize">
-            <summary>
-            This method should be used to free up any resources used by the logger.
-            </summary>
         </member>
         <member name="T:Ximura.Data.IXimuraContentEntityFragment">
             <summary>
@@ -9771,16 +7593,6 @@
             this method set the fragment reference id 
             </summary>
             <param name="referenceID"></param>
-        </member>
-        <member name="T:Ximura.IXimuraApplicationDefinition">
-            <summary>
-            This interface is used to provide application based configuration settings.
-            </summary>
-        </member>
-        <member name="P:Ximura.IXimuraApplicationDefinition.ApplicationName">
-            <summary>
-            This is the application name.
-            </summary>
         </member>
         <member name="T:Ximura.Reflection">
             <summary>
@@ -10194,6 +8006,37 @@
             that the object implements this interface.
             </summary>
         </member>
+        <member name="T:Ximura.IXimuraPoolManagerDirectAccess">
+            <summary>
+            This method is for poolable objects that require access to the base pool manager, so that they can retrieve
+            additional internal objects from the pool.
+            </summary>
+        </member>
+        <member name="M:Ximura.IXimuraPoolManagerDirectAccess.PoolGet(System.Type)">
+            <summary>
+            This method returns the specific pool manager for the type.
+            </summary>
+            <param name="objectType"></param>
+            <returns>Returns the pool for the object type.</returns>
+        </member>
+        <member name="M:Ximura.IXimuraPoolManagerDirectAccess.PoolGetObject(System.Type)">
+            <summary>
+            Returns a new object of the type specified.
+            </summary>
+            <param name="objectType">The object type required.</param>
+            <returns>Returns a poolable object of the type defined.</returns>
+        </member>
+        <member name="M:Ximura.IXimuraPoolManagerDirectAccess.PoolGetReturn(System.Object)">
+            <summary>
+            This method returns the object to the appropriate pool.
+            </summary>
+            <param name="poolObject">The object to return.</param>
+        </member>
+        <member name="P:Ximura.IXimuraPoolManagerDirectAccess.PoolManager">
+            <summary>
+            This is the pool manager for the object.
+            </summary>
+        </member>
         <member name="M:Ximura.PoolableObjectPoolManagerDirectAccess.#ctor">
             <summary>
             The default constructor.
@@ -10202,16 +8045,6 @@
         <member name="T:Ximura.AttributeHelper">
             <summary>
             Provide special functionality to deal with Attribute.
-            </summary>
-        </member>
-        <member name="T:Ximura.IXimuraFSMStateIdentifier">
-            <summary>
-            This is the default state property
-            </summary>
-        </member>
-        <member name="P:Ximura.IXimuraFSMStateIdentifier.Identifier">
-            <summary>
-            This is the state identifier string.
             </summary>
         </member>
         <member name="T:Ximura.LockableMarkableWrapper`1">
@@ -10311,71 +8144,6 @@
             This is the component name. This is only used when a component
             is added to the collection. If the name is not set this value 
             is null.
-            </summary>
-        </member>
-        <member name="T:Ximura.Framework.RQRSFolder">
-            <summary>
-            RQRSFolder is a composite content object that can contain multiple entity object along with numerous other
-            named parameters.
-            </summary>
-        </member>
-        <member name="F:Ximura.Framework.RQRSFolder.mStatus">
-            <summary>
-            This is the internal HTTP status code.
-            </summary>
-        </member>
-        <member name="F:Ximura.Framework.RQRSFolder.mSubstatus">
-            <summary>
-            This is the internal substatus code/description
-            </summary>
-        </member>
-        <member name="F:Ximura.Framework.RQRSFolder.mCulture">
-            <summary>
-            The culture for the request.
-            </summary>
-        </member>
-        <member name="M:Ximura.Framework.RQRSFolder.#ctor">
-            <summary>
-            This is the default constuctor.
-            </summary>
-        </member>
-        <member name="M:Ximura.Framework.RQRSFolder.#ctor(System.ComponentModel.IContainer)">
-            <summary>
-            This is the component model constructor.
-            </summary>
-            <param name="container">The base container.</param>
-        </member>
-        <member name="M:Ximura.Framework.RQRSFolder.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <summary>
-            This is the deserialization constructor
-            </summary>
-            <param name="info"></param>
-            <param name="context"></param>
-        </member>
-        <member name="M:Ximura.Framework.RQRSFolder.Reset">
-            <summary>
-            This method resets the object.
-            </summary>
-        </member>
-        <member name="P:Ximura.Framework.RQRSFolder.Status">
-            <summary>
-            The Status is the HTTP status code that is used to define the object's status.
-            </summary>
-        </member>
-        <member name="P:Ximura.Framework.RQRSFolder.Substatus">
-            <summary>
-            This is the response substatus. This can be used to return a substatus
-            field or a text description.
-            </summary>
-        </member>
-        <member name="P:Ximura.Framework.RQRSFolder.CanPool">
-            <summary>
-            This method returns true if the object can be pooled.
-            </summary>
-        </member>
-        <member name="P:Ximura.Framework.RQRSFolder.ID">
-            <summary>
-            This is the request ID.
             </summary>
         </member>
         <member name="T:Ximura.Collections.SkipListClassBasedVertexArray`1">
@@ -10598,6 +8366,1524 @@
         <member name="F:Ximura.ConfigurationLocation.Hybrid">
             <summary>
             The configuration file is a resource embedded by the system, but should be updated using the settings class.
+            </summary>
+        </member>
+        <member name="T:Ximura.IXimuraPoolDeserializable">
+            <summary>
+            This interface is used to retrieve an object that support the deserializable interface.
+            </summary>
+        </member>
+        <member name="M:Ximura.IXimuraPoolDeserializable.Get(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            This method returns an object from the pool and deserializes this information in the serialization
+            objects.
+            </summary>
+            <param name="info">The serialization information.</param>
+            <param name="context">The serialization context.</param>
+            <returns>Returns the object specified from the pool.</returns>
+        </member>
+        <member name="P:Ximura.IXimuraPoolDeserializable.SupportsDeserialization">
+            <summary>
+            This boolean property returns true if the object type for the pool supports deserialization.
+            </summary>
+        </member>
+        <member name="T:Ximura.IXimuraPoolDeserializable`1">
+            <summary>
+            This is the generic interface for poolable deserializable objects.
+            </summary>
+            <typeparam name="T">The poolable object type.</typeparam>
+        </member>
+        <member name="M:Ximura.IXimuraPoolDeserializable`1.Get(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            This method returns an object of type T from the pool and deserializes this 
+            information in the serialization objects.
+            </summary>
+            <param name="info">The serialization information.</param>
+            <param name="context">The serialization context.</param>
+            <returns>Returns the object specified from the pool.</returns>
+        </member>
+        <member name="T:Ximura.CommandRSCallback">
+            <summary>
+            The command call back delegate is used for asynchronous command calls.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="args">The arguments including the envelope.</param>
+        </member>
+        <member name="T:Ximura.DependencyValidateRSCallback">
+            <summary>
+            The command call back delegate is used for asynchronous command calls.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="args">The arguments including the envelope.</param>
+            <returns>Returns the true if the response can be deemed a success, otherwise if this returns false
+            any further jobs using this validation ID will be ignored.</returns>
+        </member>
+        <member name="T:Ximura.CommandProgressCallback">
+            <summary>
+            This delegate is used to provide feedback for long running jobs.
+            </summary>
+        </member>
+        <member name="T:Ximura.DependencyValidateRSStatus">
+            <summary>
+            This enumeration is used to signal the job status.
+            </summary>
+        </member>
+        <member name="F:Ximura.DependencyValidateRSStatus.Failure">
+            <summary>
+            The job has failed; all further jobs using this dependency key will be ignored, and any queued jobs
+            will be cancelled.
+            </summary>
+        </member>
+        <member name="F:Ximura.DependencyValidateRSStatus.Success">
+            <summary>
+            The job executed successfully
+            </summary>
+        </member>
+        <member name="F:Ximura.DependencyValidateRSStatus.Abort">
+            <summary>
+            The entire completion job will be aborted.
+            </summary>
+            <remarks>This is not currently implemented and will be treated as a failure.</remarks>
+        </member>
+        <member name="T:Ximura.CommandRSEventArgs">
+            <summary>
+            This class is used to send information when a command request completes.
+            </summary>
+        </member>
+        <member name="M:Ximura.CommandRSEventArgs.#ctor(Ximura.JobBase)">
+            <summary>
+            This is the default constructor.
+            </summary>
+            <param name="job">The job.</param>
+        </member>
+        <member name="M:Ximura.CommandRSEventArgs.Reset">
+            <summary>
+            This method is used for pooling resets.
+            </summary>
+        </member>
+        <member name="P:Ximura.CommandRSEventArgs.Data">
+            <summary>
+            This is the returning job data.
+            </summary>
+        </member>
+        <member name="P:Ximura.CommandRSEventArgs.ID">
+            <summary>
+            This is the returning job id.
+            </summary>
+        </member>
+        <member name="T:Ximura.CommandProgressEventArgs">
+            <summary>
+            This class is used to report progress during a command request.
+            </summary>
+        </member>
+        <member name="M:Ximura.CommandProgressEventArgs.#ctor">
+            <summary>
+            This is the empty constructor.
+            </summary>
+        </member>
+        <member name="M:Ximura.CommandProgressEventArgs.#ctor(System.Int32)">
+            <summary>
+            This method can be used to return a straight progress indicator.
+            </summary>
+            <param name="progress">The command progress.</param>
+        </member>
+        <member name="M:Ximura.CommandProgressEventArgs.#ctor(System.Int32,System.String)">
+            <summary>
+            This method can be used to return a straight progress indicator.
+            </summary>
+            <param name="progress">The command progress.</param>
+            <param name="description">The command progress description.</param>
+        </member>
+        <member name="P:Ximura.CommandProgressEventArgs.Progress">
+            <summary>
+            The command progress.
+            </summary>
+        </member>
+        <member name="P:Ximura.CommandProgressEventArgs.Description">
+            <summary>
+            The progress description.
+            </summary>
+        </member>
+        <member name="T:Ximura.IXimuraLogging">
+            <summary>
+            The IXimuraLogging interface provides the necessary methods to enable logging.
+            </summary>
+        </member>
+        <member name="M:Ximura.IXimuraLogging.AcceptCategory(System.String,System.Diagnostics.EventLogEntryType)">
+            <summary>
+            This method inform the Logging Manager whether it will accept the 
+            category for logging.
+            </summary>
+            <param name="category">The logging category.</param>
+            <returns>A boolean value. True indicated the category is accepted.</returns>
+        </member>
+        <member name="M:Ximura.IXimuraLogging.Close">
+            <summary>
+            Flushes the output buffer and then closes the Listeners.
+            </summary>
+        </member>
+        <member name="M:Ximura.IXimuraLogging.Flush">
+            <summary>
+            Flushes the output buffer and causes buffered data to write to the Listeners
+            collection.
+            </summary>
+        </member>
+        <member name="M:Ximura.IXimuraLogging.Fail(System.String,System.String)">
+            <summary>
+            Emits an error message and a detailed error message.
+            </summary>
+            <param name="message">A message to emit.</param>
+            <param name="detailMessage">A detailed message to emit.</param>
+        </member>
+        <member name="M:Ximura.IXimuraLogging.Fail(System.String)">
+            <summary>
+            Emits the specified error message.
+            </summary>
+            <param name="message">A message to emit.</param>
+        </member>
+        <member name="M:Ximura.IXimuraLogging.Indent">
+            <summary>
+            Increases the current IndentLevel by one.
+            </summary>
+        </member>
+        <member name="M:Ximura.IXimuraLogging.Unindent">
+            <summary>
+            Decreases the current IndentLevel by one.
+            </summary>
+        </member>
+        <member name="M:Ximura.IXimuraLogging.Write(System.Object,System.String)">
+            <summary>
+            Writes a category name and the value of the object's ToString method to 
+            the trace listeners in the Listeners collection.
+            </summary>
+            <param name="value">An object whose name is sent to the Listeners.</param>
+            <param name="category">A category name used to organize the output.</param>
+        </member>
+        <member name="M:Ximura.IXimuraLogging.Write(System.String)">
+            <summary>
+            Writes a category name and message to the trace listeners in the Listeners
+             collection.
+            </summary>
+            <param name="message">A message to write. </param>
+        </member>
+        <member name="M:Ximura.IXimuraLogging.Write(System.String,System.String)">
+            <summary>
+            Writes a category name and message to the trace listeners in the Listeners
+             collection.
+            </summary>
+            <param name="message">A message to write. </param>
+            <param name="category">A category name used to organize the output.</param>
+        </member>
+        <member name="M:Ximura.IXimuraLogging.Write(System.Object)">
+            <summary>
+            Writes the value of the object's ToString method to the trace listeners
+            in the Listeners collection.
+            </summary>
+            <param name="value">An object whose name is sent to the Listeners.</param>
+        </member>
+        <member name="M:Ximura.IXimuraLogging.WriteLine(System.Object,System.String)">
+            <summary>
+            Writes a category name and the value of the object's ToString method to the trace 
+            listeners in the Listeners collection.
+            </summary>
+            <param name="value">An object whose name is sent to the Listeners.</param>
+            <param name="category">A category name used to organize the output.</param>
+        </member>
+        <member name="M:Ximura.IXimuraLogging.WriteLine(System.String,System.String)">
+            <summary>
+            Writes a category name and message to the trace listeners in the Listeners collection.
+            </summary>
+            <param name="message">A message to write.</param>
+            <param name="category">A category name used to organize the output.</param>
+        </member>
+        <member name="M:Ximura.IXimuraLogging.WriteLine(System.Object)">
+            <summary>
+            Writes the value of the object's ToString method to the trace listeners
+            in the Listeners collection.
+            </summary>
+            <param name="value">An object whose name is sent to the Listeners. </param>
+        </member>
+        <member name="M:Ximura.IXimuraLogging.WriteLine(System.String)">
+            <summary>
+            Writes a category name and message to the trace listeners in the
+            Listeners collection.
+            </summary>
+            <param name="message">A message to write.</param>
+        </member>
+        <member name="P:Ximura.IXimuraLogging.Name">
+            <summary>
+            Gets or sets a name for this LoggingProvider.
+            </summary>
+        </member>
+        <member name="P:Ximura.IXimuraLogging.AutoFlush">
+            <summary>
+            Gets or sets a value indicating whether Flush should be called on the 
+            Listeners after every write.
+            </summary>
+        </member>
+        <member name="P:Ximura.IXimuraLogging.IndentLevel">
+            <summary>
+            Gets or sets the indent level.
+            </summary>
+        </member>
+        <member name="P:Ximura.IXimuraLogging.IndentSize">
+            <summary>
+            Gets or sets the number of spaces in an indent.
+            </summary>
+        </member>
+        <member name="T:Ximura.IXimuraSessionRQ">
+            <summary>
+            This interface is used by the session object to support requests.
+            </summary>
+        </member>
+        <member name="T:Ximura.IXimuraSessionRQAsync">
+            <summary>
+            This is the async interface
+            </summary>
+        </member>
+        <member name="M:Ximura.IXimuraSessionRQAsync.ProcessRequestAsync(Ximura.IXimuraRQRSEnvelope,Ximura.CommandRSCallback)">
+            <summary>
+            Process an asychronous request.
+            </summary>
+            <param name="data">The data</param>
+            <param name="RSCallback">The call back completion delegate.</param>
+            <returns>The job guid.</returns>
+        </member>
+        <member name="M:Ximura.IXimuraSessionRQAsync.ProcessRequestAsync(Ximura.IXimuraRQRSEnvelope,Ximura.CommandRSCallback,Ximura.CommandProgressCallback,Ximura.JobPriority)">
+            <summary>
+            Process an asychronous request.
+            </summary>
+            <param name="data">The data</param>
+            <param name="RSCallback">The call back completion delegate.</param>
+            <param name="ProgessCallback">The request progress delegate. Set this to null if not needed.</param>
+            <param name="priority">The request priority.</param>
+            <returns>The job guid.</returns>
+        </member>
+        <member name="M:Ximura.IXimuraSessionRQAsync.ProcessRequestAsync(System.Guid,Ximura.IXimuraRQRSEnvelope,Ximura.CommandRSCallback)">
+            <summary>
+            Process an asychronous request.
+            </summary>
+            <param name="jobID">The job ID. This should be set to a new Guid.</param>
+            <param name="data">The data</param>
+            <param name="RSCallback">The call back completion delegate.</param>
+            <returns>The job guid.</returns>
+        </member>
+        <member name="M:Ximura.IXimuraSessionRQAsync.ProcessRequestAsync(System.Guid,Ximura.IXimuraRQRSEnvelope,Ximura.CommandRSCallback,Ximura.CommandProgressCallback,Ximura.JobPriority)">
+            <summary>
+            Process an asychronous request.
+            </summary>
+            <param name="jobID">The job ID. This should be set to a new Guid.</param>
+            <param name="data">The data</param>
+            <param name="RSCallback">The call back completion delegate.</param>
+            <param name="ProgessCallback">The request progress delegate. Set this to null if not needed.</param>
+            <param name="priority">The request priority.</param>
+            <returns>The job guid.</returns>
+        </member>
+        <member name="P:Ximura.IXimuraSessionRQAsync.EnvelopeHelper">
+            <summary>
+            This is the envelope helper, used for creating requests.
+            </summary>
+        </member>
+        <member name="M:Ximura.IXimuraSessionRQ.CancelRequest(System.Guid)">
+            <summary>
+            This method cancels a pending request.
+            </summary>
+            <param name="jobID">The job id.</param>
+        </member>
+        <member name="M:Ximura.IXimuraSessionRQ.ProcessRequest(Ximura.IXimuraRQRSEnvelope)">
+            <summary>
+            Process a synchronous request.
+            </summary>
+            <param name="Data">The data.</param>
+        </member>
+        <member name="M:Ximura.IXimuraSessionRQ.ProcessRequest(Ximura.IXimuraRQRSEnvelope,Ximura.JobPriority)">
+            <summary>
+            Process a synchronous request.
+            </summary>
+            <param name="Data">The data.</param>
+            <param name="priority">The request priority.</param>
+        </member>
+        <member name="M:Ximura.IXimuraSessionRQ.ProcessRequest(Ximura.IXimuraRQRSEnvelope,Ximura.CommandProgressCallback)">
+            <summary>
+            Process a synchronous request.
+            </summary>
+            <param name="Data">The data.</param>
+            <param name="ProgressCallback">The progress calback delegate. 
+            This can be used to report progress during long running processes.</param>
+        </member>
+        <member name="M:Ximura.IXimuraSessionRQ.ProcessRequest(Ximura.IXimuraRQRSEnvelope,Ximura.JobPriority,Ximura.CommandProgressCallback)">
+            <summary>
+            Process a synchronous request.
+            </summary>
+            <param name="Data">The data.</param>
+            <param name="priority">The request priority.</param>
+            <param name="ProgressCallback">The progress calback delegate. 
+            This can be used to report progress during long running processes.</param>
+        </member>
+        <member name="T:Ximura.IXimuraSessionRQAsyncWithDependency">
+            <summary>
+            This is the async interface
+            </summary>
+        </member>
+        <member name="M:Ximura.IXimuraSessionRQAsyncWithDependency.ProcessRequestAsyncWithDependency(Ximura.IXimuraRQRSEnvelope,Ximura.CommandRSCallback,System.String)">
+            <summary>
+            Process an asychronous request.
+            </summary>
+            <param name="data">The data</param>
+            <param name="RSCallback">The call back completion delegate.</param>
+            <param name="dependencyKey">The dependency key, if this is set to null the key is ignored.</param>
+            <returns>The job guid.</returns>
+        </member>
+        <member name="M:Ximura.IXimuraSessionRQAsyncWithDependency.ProcessRequestAsyncWithDependency(Ximura.IXimuraRQRSEnvelope,Ximura.CommandRSCallback,Ximura.CommandProgressCallback,Ximura.JobPriority,System.String)">
+            <summary>
+            Process an asychronous request.
+            </summary>
+            <param name="data">The data</param>
+            <param name="RSCallback">The call back completion delegate.</param>
+            <param name="ProgessCallback">The request progress delegate. Set this to null if not needed.</param>
+            <param name="priority">The request priority.</param>
+            <param name="dependencyKey">The dependency key, if this is set to null the key is ignored.</param>
+            <returns>The job guid.</returns>
+        </member>
+        <member name="M:Ximura.IXimuraSessionRQAsyncWithDependency.ProcessRequestAsyncWithDependency(System.Guid,Ximura.IXimuraRQRSEnvelope,Ximura.CommandRSCallback,System.String)">
+            <summary>
+            Process an asychronous request.
+            </summary>
+            <param name="jobID">The job ID. This should be set to a new Guid.</param>
+            <param name="data">The data</param>
+            <param name="RSCallback">The call back completion delegate.</param>
+            <param name="dependencyKey">The dependency key, if this is set to null the key is ignored.</param>
+            <returns>The job guid.</returns>
+        </member>
+        <member name="M:Ximura.IXimuraSessionRQAsyncWithDependency.ProcessRequestAsyncWithDependency(System.Guid,Ximura.IXimuraRQRSEnvelope,Ximura.CommandRSCallback,Ximura.CommandProgressCallback,Ximura.JobPriority,System.String)">
+            <summary>
+            Process an asychronous request.
+            </summary>
+            <param name="jobID">The job ID. This should be set to a new Guid.</param>
+            <param name="data">The data</param>
+            <param name="RSCallback">The call back completion delegate.</param>
+            <param name="ProgressCallback">The request progress delegate. Set this to null if not needed.</param>
+            <param name="priority">The request priority.</param>
+            <param name="dependencyKey">The dependency key, if this is set to null the key is ignored.</param>
+            <returns>The job guid.</returns>
+        </member>
+        <member name="T:Ximura.Job">
+            <summary>
+            This is the base request job object.
+            </summary>
+        </member>
+        <member name="T:Ximura.JobBase">
+            <summary>
+            This is an abstract class that all job based implementations inherit from.
+            </summary>
+        </member>
+        <member name="M:Ximura.JobBase.IDBuffer(System.Guid,System.Guid,System.Guid)">
+            <summary>
+            This static method is use to create the byte buffer
+            containing the three ids.
+            </summary>
+            <param name="id1">The Session ID</param>
+            <param name="id2">The Job ID.</param>
+            <param name="id3">The Request ID.</param>
+            <returns>A byte buffer</returns>
+        </member>
+        <member name="M:Ximura.JobBase.IDBuffer">
+            <summary>
+            The ID buffer
+            </summary>
+            <returns>The byte array containing the buffer.</returns>
+        </member>
+        <member name="M:Ximura.JobBase.Dispose">
+            <summary>
+            This is the dispose method for the job.
+            </summary>
+        </member>
+        <member name="M:Ximura.JobBase.Finalize">
+            <summary>
+            The class destructor.
+            </summary>
+        </member>
+        <member name="M:Ximura.JobBase.Dispose(System.Boolean)">
+            <summary>
+            This method should be overriden to provide specific clean up code.
+            Specifically, any delegates references in the object should be set to null;
+            </summary>
+            <param name="disposing">This parameter is true if the call is from the disposable interface.</param>
+        </member>
+        <member name="M:Ximura.JobBase.Reset">
+            <summary>
+            This virtual empty method should be implemented when resources may not be 
+            automatically cleaned up when using garbage collection, i.e. when using delegates.
+            </summary>
+        </member>
+        <member name="P:Ximura.JobBase.Priority">
+            <summary>
+            This is the job priority.
+            </summary>
+        </member>
+        <member name="P:Ximura.JobBase.SessionID">
+            <summary>
+            The Session ID
+            </summary>
+        </member>
+        <member name="P:Ximura.JobBase.ID">
+            <summary>
+            The job ID
+            </summary>
+        </member>
+        <member name="P:Ximura.JobBase.Data">
+            <summary>
+            The envelope containing the request
+            </summary>
+        </member>
+        <member name="P:Ximura.JobBase.Signature">
+            <summary>
+            The job signature
+            </summary>
+        </member>
+        <member name="P:Ximura.JobBase.EnvelopeHelper">
+            <summary>
+            This property provides access to the envelope helper.
+            </summary>
+        </member>
+        <member name="P:Ximura.JobBase.IsDisposed">
+            <summary>
+            This property can be used to identify whether the object has been disposed.
+            </summary>
+        </member>
+        <member name="P:Ximura.JobBase.CanPool">
+            <summary>
+            This method returns true if the object can be pooled.
+            </summary>
+        </member>
+        <member name="P:Ximura.JobBase.TrackID">
+            <summary>
+            This property is used to track the object through the object pool.
+            </summary>
+        </member>
+        <member name="M:Ximura.Job.#ctor">
+            <summary>
+            This is the private constructor used by the job pool.
+            </summary>
+        </member>
+        <member name="M:Ximura.Job.Reset">
+            <summary>
+            This method resets the job to its unitialized state.
+            </summary>
+        </member>
+        <member name="M:Ximura.Job.Initialize(System.Guid,System.Guid,Ximura.IXimuraRQRSEnvelope,Ximura.JobSignature,Ximura.JobPriority,Ximura.IXimuraEnvelopeHelper)">
+            <summary>
+            This method initializes the job.
+            </summary>
+            <param name="sessionid">The session id</param>
+            <param name="id">The job id</param>
+            <param name="data">The data</param>
+            <param name="signature">The signature</param>
+            <param name="priority">The job priority.</param>
+        </member>
+        <member name="M:Ximura.Job.IDBuffer">
+            <summary>
+            This method returns the buffer for the request.
+            </summary>
+            <returns>A byte array containing the identifying IDs.</returns>
+        </member>
+        <member name="P:Ximura.Job.Priority">
+            <summary>
+            This is the job priority.
+            </summary>
+        </member>
+        <member name="P:Ximura.Job.SessionID">
+            <summary>
+            The Session ID
+            </summary>
+        </member>
+        <member name="P:Ximura.Job.ID">
+            <summary>
+            The Job ID
+            </summary>
+        </member>
+        <member name="P:Ximura.Job.Data">
+            <summary>
+            The job data
+            </summary>
+        </member>
+        <member name="P:Ximura.Job.Signature">
+            <summary>
+            The originator signature.
+            </summary>
+        </member>
+        <member name="P:Ximura.Job.EnvelopeHelper">
+            <summary>
+            This property provides access to the envelope object pool.
+            </summary>
+        </member>
+        <member name="T:Ximura.JobWrapper">
+            <summary>
+            The Job Wrapper class is used by inherited method to add
+            additional properties to the request while maintaining the 
+            original job request.
+            </summary>
+        </member>
+        <member name="F:Ximura.JobWrapper.mBaseJob">
+            <summary>
+            This is the base job.
+            </summary>
+        </member>
+        <member name="F:Ximura.JobWrapper.timeoutTimer">
+            <summary>
+            This is the thread timer used for time out operations
+            </summary>
+        </member>
+        <member name="F:Ximura.JobWrapper.timeoutCallback">
+            <summary>
+            The time out callback
+            </summary>
+        </member>
+        <member name="M:Ximura.JobWrapper.#ctor(Ximura.JobBase)">
+            <summary>
+            This is the wrapper constructor.
+            </summary>
+            <param name="baseJob">The base job.</param>
+        </member>
+        <member name="M:Ximura.JobWrapper.InitializeJob">
+            <summary>
+            This method is used to initialize any variables before the initial
+            Reset() is called.
+            </summary>
+        </member>
+        <member name="M:Ximura.JobWrapper.Reset">
+            <summary>
+            This virtual method resets the base properties for the JobWrapper.
+            </summary>
+        </member>
+        <member name="M:Ximura.JobWrapper.Inititialize(Ximura.JobBase,Ximura.CommandRSCallback,Ximura.CommandProgressCallback)">
+            <summary>
+            This is the root initialization for the JobWrapper.
+            </summary>
+            <param name="baseJob"></param>
+            <param name="RSCallback"></param>
+            <param name="ProgressCallback"></param>
+        </member>
+        <member name="M:Ximura.JobWrapper.IDBuffer">
+            <summary>
+            This method returns the buffer for the request.
+            </summary>
+            <returns>A byte array containing the identifying IDs.</returns>
+        </member>
+        <member name="M:Ximura.JobWrapper.OnTimeOut(System.Object)">
+            <summary>
+            This method initializes the timer callback
+            </summary>
+        </member>
+        <member name="M:Ximura.JobWrapper.SetTimer(System.Int32)">
+            <summary>
+            This method sets the timer to the delay requested.
+            </summary>
+            <param name="Timeout"></param>
+        </member>
+        <member name="M:Ximura.JobWrapper.SetTimer(System.Int32,System.Object)">
+            <summary>
+            This method sets the timer to the delay requested.
+            </summary>
+            <param name="Timeout">The time out in milliseconds.</param>
+            <param name="state">The object state.</param>
+        </member>
+        <member name="M:Ximura.JobWrapper.ResetTimer">
+            <summary>
+            This method resets the timer and stops it firing.
+            </summary>
+        </member>
+        <member name="M:Ximura.JobWrapper.TimeoutFire(System.Object)">
+            <summary>
+            This method is called when the timer fires. 
+            Override this object to implement your own functionality.
+            </summary>
+            <param name="state">The object state.</param>
+        </member>
+        <member name="M:Ximura.JobWrapper.ProgressReport(System.Int32)">
+            <summary>
+            This method reports the progress to the calling party.
+            </summary>
+            <param name="progress">The progress percentage as an integer.</param>
+            <param name="message">An optional progress message.</param>
+        </member>
+        <member name="M:Ximura.JobWrapper.ProgressReport(System.Int32,System.String)">
+            <summary>
+            This method reports the progress to the calling party.
+            </summary>
+            <param name="progress">The progress percentage as an integer.</param>
+            <param name="message">An optional progress message.</param>
+            <returns>Returns true if the progress message was successfully delivered.</returns>
+        </member>
+        <member name="M:Ximura.JobWrapper.ObjectPoolReturn">
+            <summary>
+            This method returns the job to the pool.
+            </summary>
+        </member>
+        <member name="P:Ximura.JobWrapper.Priority">
+            <summary>
+            This is the job priority.
+            </summary>
+        </member>
+        <member name="P:Ximura.JobWrapper.SessionID">
+            <summary>
+            The Session ID
+            </summary>
+        </member>
+        <member name="P:Ximura.JobWrapper.ID">
+            <summary>
+            The Job ID
+            </summary>
+        </member>
+        <member name="P:Ximura.JobWrapper.Data">
+            <summary>
+            The job data
+            </summary>
+        </member>
+        <member name="P:Ximura.JobWrapper.Signature">
+            <summary>
+            The originator signature.
+            </summary>
+        </member>
+        <member name="P:Ximura.JobWrapper.RSCallback">
+            <summary>
+            This is the completion callback delegate.
+            </summary>
+        </member>
+        <member name="P:Ximura.JobWrapper.ProgressCallback">
+            <summary>
+            This is the progress call back delegate
+            </summary>
+        </member>
+        <member name="P:Ximura.JobWrapper.SupportsProgressNotification">
+            <summary>
+            This property identifies whether the request supports 
+            progress notification.
+            </summary>
+        </member>
+        <member name="P:Ximura.JobWrapper.ObjectPool">
+            <summary>
+            This is the object pool for the job.
+            </summary>
+        </member>
+        <member name="P:Ximura.JobWrapper.ObjectPoolCanReturn">
+            <summary>
+            This boolean property identifies whether the job can be returned to the pool.
+            </summary>
+        </member>
+        <member name="P:Ximura.JobWrapper.EnvelopeHelper">
+            <summary>
+            This method returns the envelope helper for the base job.
+            </summary>
+        </member>
+        <member name="T:Ximura.Framework.JobHolder">
+            <summary>
+            The job holder class is used to reference the requests in the completion job.
+            </summary>
+        </member>
+        <member name="F:Ximura.Framework.JobHolder.mPriority">
+            <summary>
+            The job priority.
+            </summary>
+        </member>
+        <member name="F:Ximura.Framework.JobHolder.mData">
+            <summary>
+            The request data.
+            </summary>
+        </member>
+        <member name="F:Ximura.Framework.JobHolder.mRSCallback">
+            <summary>
+            The request completion callback.
+            </summary>
+        </member>
+        <member name="F:Ximura.Framework.JobHolder.mProgressCallback">
+            <summary>
+            The request progress callback.
+            </summary>
+        </member>
+        <member name="F:Ximura.Framework.JobHolder.mjobID">
+            <summary>
+            This is the child job ID.
+            </summary>
+        </member>
+        <member name="F:Ximura.Framework.JobHolder.Executed">
+            <summary>
+            This boolean method indicates whether the request has been executed.
+            </summary>
+        </member>
+        <member name="F:Ximura.Framework.JobHolder.mNextJob">
+            <summary>
+            This is the next job in the chain.
+            </summary>
+        </member>
+        <member name="F:Ximura.Framework.JobHolder.mLastJob">
+            <summary>
+            This is the last job in the chain.
+            </summary>
+        </member>
+        <member name="F:Ximura.Framework.JobHolder.mDependencyID">
+            <summary>
+            This is the job holder dependency ID.
+            </summary>
+        </member>
+        <member name="M:Ximura.Framework.JobHolder.#ctor(System.Nullable{System.Guid},Ximura.IXimuraRQRSEnvelope,Ximura.CommandRSCallback,Ximura.CommandProgressCallback,Ximura.JobPriority)">
+            <summary>
+            This is the internal constructor for the job.
+            </summary>
+            <param name="jobID">The job ID.</param>
+            <param name="data">The data.</param>
+            <param name="RSCallback">The request progress callback.</param>
+            <param name="ProgressCallback">The request progress callback.</param>
+            <param name="priority">The job priority.</param>
+        </member>
+        <member name="M:Ximura.Framework.JobHolder.#ctor(System.Nullable{System.Guid},Ximura.IXimuraRQRSEnvelope,Ximura.CommandRSCallback,Ximura.CommandProgressCallback,Ximura.JobPriority,System.Nullable{System.Guid},System.Nullable{System.Guid},Ximura.DependencyValidateRSCallback)">
+            <summary>
+            This is the internal constructor for the job.
+            </summary>
+            <param name="jobID">The job ID.</param>
+            <param name="data">The data.</param>
+            <param name="RSCallback">The request progress callback.</param>
+            <param name="ProgressCallback">The request progress callback.</param>
+            <param name="priority">The job priority.</param>
+            <param name="NextJob">The next job for linked jobs.</param>
+            <param name="LastJob">The last job for linked jobs.</param>
+        </member>
+        <member name="M:Ximura.Framework.JobHolder.Reset">
+            <summary>
+            This method should be overriden to provide specific clean up code.
+            Specifically, any delegates references in the object should be set to null;
+            </summary>
+            <param name="disposing">This parameter is true if the call is from the disposable interface.</param>
+        </member>
+        <member name="M:Ximura.Framework.JobHolder.IDBuffer">
+            <summary>
+            Not supported.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Ximura.Framework.JobHolder.SessionID">
+            <summary>
+            The session ID.
+            </summary>
+        </member>
+        <member name="P:Ximura.Framework.JobHolder.ID">
+            <summary>
+            The job ID.
+            </summary>
+        </member>
+        <member name="P:Ximura.Framework.JobHolder.RSCallback">
+            <summary>
+            The Response callback.
+            </summary>
+        </member>
+        <member name="P:Ximura.Framework.JobHolder.ProgressCallback">
+            <summary>
+            The progress callback.
+            </summary>
+        </member>
+        <member name="P:Ximura.Framework.JobHolder.Data">
+            <summary>
+            The data.
+            </summary>
+        </member>
+        <member name="P:Ximura.Framework.JobHolder.Priority">
+            <summary>
+            The job priority.
+            </summary>
+        </member>
+        <member name="P:Ximura.Framework.JobHolder.Signature">
+            <summary>
+            Not supported.
+            </summary>
+        </member>
+        <member name="P:Ximura.Framework.JobHolder.Expired">
+            <summary>
+            This property indicates whether the job has exceeded its timeslice.
+            </summary>
+        </member>
+        <member name="P:Ximura.Framework.JobHolder.NextJob">
+            <summary>
+            This is the next job in the chain.
+            </summary>
+        </member>
+        <member name="P:Ximura.Framework.JobHolder.LastJob">
+            <summary>
+            This is the last job in the chain.
+            </summary>
+        </member>
+        <member name="P:Ximura.Framework.JobHolder.DependencyID">
+            <summary>
+            This is the job holder dependency ID.
+            </summary>
+        </member>
+        <member name="P:Ximura.Framework.JobHolder.EnvelopeHelper">
+            <summary>
+            This property is not supported.
+            </summary>
+            <exception cref="T:System.NotSupportedException">This exception is thrown.</exception>
+        </member>
+        <member name="T:Ximura.JobSignature">
+            <summary>
+            This structure is used hold the job signature.
+            </summary>
+        </member>
+        <member name="F:Ximura.JobSignature.encryptHeader">
+            <summary>
+            The header
+            </summary>
+        </member>
+        <member name="F:Ximura.JobSignature.encryptBuffer">
+            <summary>
+            The buffer
+            </summary>
+        </member>
+        <member name="F:Ximura.JobSignature.encryptedHash">
+            <summary>
+            The hash.
+            </summary>
+        </member>
+        <member name="M:Ximura.JobSignature.#ctor(System.Byte[],System.Byte[],System.Byte[])">
+            <summary>
+            This creates the signature. You may pass null as a parameter.
+            </summary>
+            <param name="encryptHeader">The header.</param>
+            <param name="encryptBuffer">The buffer.</param>
+            <param name="encryptedHash">The hash.</param>
+        </member>
+        <member name="F:Ximura.JobSignature.Empty">
+            <summary>
+            This is the empty job signature.
+            </summary>
+        </member>
+        <member name="M:Ximura.JobSignature.#cctor">
+            <summary>
+            This is the static constructor.
+            </summary>
+        </member>
+        <member name="T:Ximura.DJobType">
+            <summary>
+            This enumeration is the Dispatcher Job Types
+            </summary>
+        </member>
+        <member name="F:Ximura.DJobType.Command">
+            <summary>
+            The job type is a command.
+            </summary>
+        </member>
+        <member name="F:Ximura.DJobType.Callback">
+            <summary>
+            The job type is a straight call back.
+            </summary>
+        </member>
+        <member name="T:Ximura.SCMJobCompletionType">
+            <summary>
+            This is the completion behaviour of the security manager job.
+            </summary>
+        </member>
+        <member name="F:Ximura.SCMJobCompletionType.OnExit">
+            <summary>
+            The job will complete when the job leaves the main calling method.
+            </summary>
+        </member>
+        <member name="F:Ximura.SCMJobCompletionType.ManualSignal">
+            <summary>
+            The job will complete when the SignalCompletion method is called.
+            </summary>
+        </member>
+        <member name="F:Ximura.SCMJobCompletionType.SignalOrTimeout">
+            <summary>
+            This property specifies 
+            </summary>
+        </member>
+        <member name="T:Ximura.JobPriority">
+            <summary>
+            Thread pool priority is used to assign the job position within the 
+            Priority Job queue.
+            </summary>
+        </member>
+        <member name="F:Ximura.JobPriority.Realtime">
+            <summary>
+            This is the highest priority
+            </summary>
+        </member>
+        <member name="F:Ximura.JobPriority.High">
+            <summary>
+            This is high priority
+            </summary>
+        </member>
+        <member name="F:Ximura.JobPriority.AboveNormal">
+            <summary>
+            This is above normal priority
+            </summary>
+        </member>
+        <member name="F:Ximura.JobPriority.Normal">
+            <summary>
+            This is the default priority
+            </summary>
+        </member>
+        <member name="F:Ximura.JobPriority.BelowNormal">
+            <summary>
+            This is below normal priority
+            </summary>
+        </member>
+        <member name="F:Ximura.JobPriority.Low">
+            <summary>
+            This is the lowest priority
+            </summary>
+        </member>
+        <member name="F:Ximura.JobPriority.NotSet">
+            <summary>
+            This is the not set state.
+            </summary>
+        </member>
+        <member name="T:Ximura.RQRSFolder">
+            <summary>
+            RQRSFolder is a composite content object that can contain multiple entity object along with numerous other
+            named parameters.
+            </summary>
+        </member>
+        <member name="F:Ximura.RQRSFolder.mStatus">
+            <summary>
+            This is the internal HTTP status code.
+            </summary>
+        </member>
+        <member name="F:Ximura.RQRSFolder.mSubstatus">
+            <summary>
+            This is the internal substatus code/description
+            </summary>
+        </member>
+        <member name="F:Ximura.RQRSFolder.mCulture">
+            <summary>
+            The culture for the request.
+            </summary>
+        </member>
+        <member name="M:Ximura.RQRSFolder.#ctor">
+            <summary>
+            This is the default constuctor.
+            </summary>
+        </member>
+        <member name="M:Ximura.RQRSFolder.#ctor(System.ComponentModel.IContainer)">
+            <summary>
+            This is the component model constructor.
+            </summary>
+            <param name="container">The base container.</param>
+        </member>
+        <member name="M:Ximura.RQRSFolder.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            This is the deserialization constructor
+            </summary>
+            <param name="info"></param>
+            <param name="context"></param>
+        </member>
+        <member name="M:Ximura.RQRSFolder.Reset">
+            <summary>
+            This method resets the object.
+            </summary>
+        </member>
+        <member name="P:Ximura.RQRSFolder.Status">
+            <summary>
+            The Status is the HTTP status code that is used to define the object's status.
+            </summary>
+        </member>
+        <member name="P:Ximura.RQRSFolder.Substatus">
+            <summary>
+            This is the response substatus. This can be used to return a substatus
+            field or a text description.
+            </summary>
+        </member>
+        <member name="P:Ximura.RQRSFolder.CanPool">
+            <summary>
+            This method returns true if the object can be pooled.
+            </summary>
+        </member>
+        <member name="P:Ximura.RQRSFolder.ID">
+            <summary>
+            This is the request ID.
+            </summary>
+        </member>
+        <member name="T:Ximura.RQRSContract`2">
+            <summary>
+            IXimuraRQRSEnvelope is used to hold the information needed for a system request, and is the 
+            primary object used to transmit information arounds the Ximura system.
+            </summary>
+        </member>
+        <member name="T:Ximura.IXimuraRQRSEnvelope">
+            <summary>
+            This interface implements the public methods and properties for the IXimuraRQRSEnvelope
+            and contract definitions.
+            </summary>
+        </member>
+        <member name="M:Ximura.IXimuraRQRSEnvelope.PrepareResponse(System.String,System.String)">
+            <summary>
+            This shortcut is used to prepare the response status and substatus.
+            </summary>
+            <param name="status">The status.</param>
+            <param name="subStatus">The substatus.</param>
+        </member>
+        <member name="P:Ximura.IXimuraRQRSEnvelope.DestinationAddress">
+            <summary>
+            The destination address for the envelope/contract.
+            </summary>
+        </member>
+        <member name="P:Ximura.IXimuraRQRSEnvelope.Sender">
+            <summary>
+            The originator/owner of the request.
+            </summary>
+        </member>
+        <member name="P:Ximura.IXimuraRQRSEnvelope.SenderReference">
+            <summary>
+            The internal reference for the sender.
+            </summary>
+        </member>
+        <member name="P:Ximura.IXimuraRQRSEnvelope.JobUserID">
+            <summary>
+            This is the job user ID.
+            </summary>
+        </member>
+        <member name="P:Ximura.IXimuraRQRSEnvelope.JobUserReferenceID">
+            <summary>
+            This is the job user plain text reference ID.
+            </summary>
+        </member>
+        <member name="P:Ximura.IXimuraRQRSEnvelope.JobSecurityIdentifier">
+            <summary>
+            This is the unique job security reference ID.
+            </summary>
+        </member>
+        <member name="P:Ximura.IXimuraRQRSEnvelope.Request">
+            <summary>
+            The Request property
+            </summary>
+        </member>
+        <member name="P:Ximura.IXimuraRQRSEnvelope.Response">
+            <summary>
+            The Response property
+            </summary>
+        </member>
+        <member name="F:Ximura.RQRSContract`2.mPoolTrackingID">
+            <summary>
+            This ID is used to track the lifecycle of the poolable object, and does not change throughout
+            the lifetime of the object.
+            </summary>
+        </member>
+        <member name="F:Ximura.RQRSContract`2.mTTL">
+            <summary>
+            This variable determines the maximum number of hops that the Envelope
+            can pass through before it expires.
+            </summary>
+        </member>
+        <member name="F:Ximura.RQRSContract`2.destination">
+            <summary>
+            This is the destination for the Request
+            </summary>
+        </member>
+        <member name="M:Ximura.RQRSContract`2.#ctor">
+            <summary>
+            The default constructor.
+            </summary>
+        </member>
+        <member name="M:Ximura.RQRSContract`2.#ctor(Ximura.EnvelopeAddress)">
+            <summary>
+            The constructor that specifies the destination for the request.
+            </summary>
+            <param name="destination"></param>
+        </member>
+        <member name="M:Ximura.RQRSContract`2.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            This is the deserialization constructor.
+            </summary>
+            <param name="info"></param>
+            <param name="context"></param>
+        </member>
+        <member name="M:Ximura.RQRSContract`2.Reset">
+            <summary>
+            This method resets the object.
+            </summary>
+        </member>
+        <member name="M:Ximura.RQRSContract`2.PrepareResponse(System.String,System.String)">
+            <summary>
+            This shortcut is used to prepare the response status and substatus.
+            </summary>
+            <param name="status"></param>
+            <param name="subStatus"></param>
+        </member>
+        <member name="M:Ximura.RQRSContract`2.Reset(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            This is the deserialization reset method.
+            </summary>
+            <param name="info"></param>
+            <param name="context"></param>
+        </member>
+        <member name="M:Ximura.RQRSContract`2.ObjectPoolReturn">
+            <summary>
+            This method returns the IXimuraRQRSEnvelope to the pool.
+            </summary>
+        </member>
+        <member name="M:Ximura.RQRSContract`2.Dispose">
+            <summary>
+            The dispose method.
+            </summary>
+        </member>
+        <member name="M:Ximura.RQRSContract`2.Dispose(System.Boolean)">
+            <summary>
+            The overrided dispose method
+            </summary>
+            <param name="disposing">True if this is called by dispose, false if this
+            is called by the finalizer.</param>
+        </member>
+        <member name="P:Ximura.RQRSContract`2.DestinationAddress">
+            <summary>
+            The destination address for the envelope.
+            </summary>
+        </member>
+        <member name="P:Ximura.RQRSContract`2.Sender">
+            <summary>
+            The original sender
+            </summary>
+        </member>
+        <member name="P:Ximura.RQRSContract`2.SenderReference">
+            <summary>
+            The original sender internal reference 
+            </summary>
+        </member>
+        <member name="P:Ximura.RQRSContract`2.ContractRequest">
+            <summary>
+            The Contract Request property
+            </summary>
+        </member>
+        <member name="P:Ximura.RQRSContract`2.Request">
+            <summary>
+            The Request property
+            </summary>
+        </member>
+        <member name="P:Ximura.RQRSContract`2.ContractResponse">
+            <summary>
+            The Response property
+            </summary>
+        </member>
+        <member name="P:Ximura.RQRSContract`2.Response">
+            <summary>
+            The backwards compatible response property
+            </summary>
+        </member>
+        <member name="P:Ximura.RQRSContract`2.JobUserID">
+            <summary>
+            This is the job user ID.
+            </summary>
+        </member>
+        <member name="P:Ximura.RQRSContract`2.JobUserReferenceID">
+            <summary>
+            This is the job user plain text reference ID.
+            </summary>
+        </member>
+        <member name="P:Ximura.RQRSContract`2.JobSecurityIdentifier">
+            <summary>
+            This is the unique job security reference ID.
+            </summary>
+        </member>
+        <member name="P:Ximura.RQRSContract`2.CanResetWithDeserialization">
+            <summary>
+            This propoerty indicates whether the object support a deserialization reset.
+            </summary>
+        </member>
+        <member name="P:Ximura.RQRSContract`2.ObjectPool">
+            <summary>
+            This property contains a reference to the object pool for the IXimuraRQRSEnvelope.
+            </summary>
+        </member>
+        <member name="P:Ximura.RQRSContract`2.ObjectPoolCanReturn">
+            <summary>
+            This property returns true if the object can be returns to the pool.
+            </summary>
+        </member>
+        <member name="P:Ximura.RQRSContract`2.CanPool">
+            <summary>
+            This method returns true if the object can be pooled.
+            </summary>
+        </member>
+        <member name="P:Ximura.RQRSContract`2.TrackID">
+            <summary>
+            This property is the pool tracking ID.
+            </summary>
+        </member>
+        <member name="T:Ximura.IXimuraComponentBase">
+            <summary>
+            This is the base interface supported by components that support the Ximura component architecture.
+            </summary>
+        </member>
+        <member name="T:Ximura.IXimuraServiceContainer">
+            <summary>
+            This interface provides extended functionality for the service based architecture.
+            </summary>
+        </member>
+        <member name="M:Ximura.IXimuraServiceContainer.AddService(System.Type,System.Object,System.Boolean,System.Int32)">
+            <summary>
+            Adds the service specified to the service container.
+            </summary>
+            <param name="serviceType">The type of service to add.</param>
+            <param name="serviceInstance">The service.</param>
+            <param name="promote">True promotes this service to the parent service container.</param>
+            <param name="depth">The depth the service should be promoted. Set this value to -1 if you require it to be unlimited.</param>
+        </member>
+        <member name="M:Ximura.IXimuraServiceContainer.GetService(System.Type,System.Int32)">
+            <summary>
+            This method returns the requested service.
+            </summary>
+            <param name="serviceType">The service type.</param>
+            <param name="depth">The service depth. If this is set to -1 the depth is unlimited.</param>
+            <returns>Returns the service requested, or null if the service cannot be found.</returns>
+        </member>
+        <member name="T:Ximura.EnvelopeAddress">
+            <summary>
+            EnvelopeAddress is used to route a request to the relevant destination within
+            the Ximura Application framework.
+            </summary>
+        </member>
+        <member name="F:Ximura.EnvelopeAddress.NullDestination">
+            <summary>
+            This is the null destination property.
+            </summary>
+        </member>
+        <member name="F:Ximura.EnvelopeAddress.command">
+            <summary>
+            The destination command ID
+            </summary>
+        </member>
+        <member name="F:Ximura.EnvelopeAddress.SubCommand">
+            <summary>
+            The subcommand.
+            </summary>
+        </member>
+        <member name="M:Ximura.EnvelopeAddress.#cctor">
+            <summary>
+            This is the default static constructor that creates the Null destination address.
+            </summary>
+        </member>
+        <member name="M:Ximura.EnvelopeAddress.#ctor(System.Guid)">
+            <summary>
+            This is the default constructor for the address command.
+            </summary>
+            <param name="command">The destination command ID.</param>
+        </member>
+        <member name="M:Ximura.EnvelopeAddress.#ctor(System.Guid,System.Object)">
+            <summary>
+            This is the default constructor for the Envelope address where a sub command is specified..
+            </summary>
+            <param name="command">The destination id of the command this message should be sent to.</param>
+            <param name="subcommand">The sub address for the command. 
+            Set this to Null if you do not require a subcommand.</param>
+        </member>
+        <member name="M:Ximura.EnvelopeAddress.Equals(System.Object)">
+            <summary>
+            This is the equals override.
+            </summary>
+            <param name="obj">The object to compare to.</param>
+            <returns>Returns true if the object is the same as this EnvelopeAddress.</returns>
+        </member>
+        <member name="M:Ximura.EnvelopeAddress.GetHashCode">
+            <summary>
+            This is the hash code of the object.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ximura.EnvelopeAddress.Equals(Ximura.EnvelopeAddress)">
+            <summary>
+            This the equateble interface implementation.
+            </summary>
+            <param name="other">The address to compare.</param>
+            <returns>Returns true if the address is equal.</returns>
+        </member>
+        <member name="M:Ximura.EnvelopeAddress.op_Equality(Ximura.EnvelopeAddress,Ximura.EnvelopeAddress)">
+            <summary>
+            This static operator is the equals operator.
+            </summary>
+            <param name="a">Op A</param>
+            <param name="b">Op B</param>
+            <returns>Returns true if the two addresses are the same.</returns>
+        </member>
+        <member name="M:Ximura.EnvelopeAddress.op_Inequality(Ximura.EnvelopeAddress,Ximura.EnvelopeAddress)">
+            <summary>
+            This is the not equals operator.
+            </summary>
+            <param name="a">Op A</param>
+            <param name="b">Op B</param>
+            <returns>Returns true if the two addresses are not the same.</returns>
+        </member>
+        <member name="T:Ximura.RQRSEnvelopeHelper">
+            <summary>
+            The RQRSEnvelopeHelper is used to centralize pooling for the RQRSContract objects.
+            </summary>
+        </member>
+        <member name="M:Ximura.RQRSEnvelopeHelper.#cctor">
+            <summary>
+            This is the static constuctor for the class.
+            </summary>
+        </member>
+        <member name="M:Ximura.RQRSEnvelopeHelper.Start(Ximura.IXimuraPoolManager)">
+            <summary>
+            This method starts the pooling.
+            </summary>
+        </member>
+        <member name="M:Ximura.RQRSEnvelopeHelper.Stop">
+            <summary>
+            This method stops the pooling and clears any remaining objects..
+            </summary>
+        </member>
+        <member name="M:Ximura.RQRSEnvelopeHelper.Get(Ximura.EnvelopeAddress)">
+            <summary>
+            This method get the appropriate EnvelopeContract based on the command ID in the address. By
+            default the address is set to the EnvelopeContract, and the request id is set to new ID.
+            </summary>
+            <param name="address">The envelope address. 
+            This will be set to the EnvelopeAddress property in the envelope.</param>
+            <returns>Returns the EnvelopeContract.</returns>
+        </member>
+        <member name="M:Ximura.RQRSEnvelopeHelper.GetCallback(Ximura.EnvelopeAddress)">
+            <summary>
+            This method get the appropriate EnvelopeContract based on the command ID in the address. By
+            default the address is set to the EnvelopeContract, and the request id is set to new ID.
+            </summary>
+            <param name="address">The envelope address. 
+            This will be set to the EnvelopeAddress property in the envelope.</param>
+            <returns>Returns the EnvelopeContract.</returns>
+        </member>
+        <member name="M:Ximura.RQRSEnvelopeHelper.Get(Ximura.EnvelopeAddress,System.Nullable{System.Guid})">
+            <summary>
+            This method get the appropriate EnvelopeContract based on the command ID in the address. By
+            default the address is set to the EnvelopeContract.
+            </summary>
+            <param name="address">The envelope address. This will be set to the EnvelopeAddress property in the envelope.</param>
+            <param name="requestID">The required request id. Set this to null if you do not want the ID set.</param>
+            <returns>Returns the EnvelopeContract.</returns>
+        </member>
+        <member name="M:Ximura.RQRSEnvelopeHelper.GetCallback(Ximura.EnvelopeAddress,System.Nullable{System.Guid})">
+            <summary>
+            This method get the appropriate EnvelopeContract based on the command ID in the address. By
+            default the address is set to the EnvelopeContract.
+            </summary>
+            <param name="address">The envelope address. This will be set to the EnvelopeAddress property in the envelope.</param>
+            <param name="requestID">The required request id. Set this to null if you do not want the ID set.</param>
+            <returns>Returns the EnvelopeContract.</returns>
+        </member>
+        <member name="M:Ximura.RQRSEnvelopeHelper.Get(Ximura.EnvelopeAddress,System.Boolean,System.Nullable{System.Guid})">
+            <summary>
+            This method get the appropriate EnvelopeContract based on the command ID in the address.
+            </summary>
+            <param name="address">The envelope address.</param>
+            <param name="setAddress">If this parameter is set to true the addess will be set to the Envelope.</param>
+            <param name="requestID">The required request id. Set this to null if you do not want the ID set.</param>
+            <returns>Returns the EnvelopeContract.</returns>
+        </member>
+        <member name="M:Ximura.RQRSEnvelopeHelper.GetCallback(Ximura.EnvelopeAddress,System.Boolean,System.Nullable{System.Guid})">
+            <summary>
+            This method get the appropriate EnvelopeContract based on the command ID in the address.
+            </summary>
+            <param name="address">The envelope address.</param>
+            <param name="setAddress">If this parameter is set to true the addess will be set to the Envelope.</param>
+            <param name="requestID">The required request id. Set this to null if you do not want the ID set.</param>
+            <returns>Returns the EnvelopeContract.</returns>
+        </member>
+        <member name="M:Ximura.RQRSEnvelopeHelper.Get(System.Guid)">
+            <summary>
+            This static method returns an EnvelopeContract from the pool for the specific
+            command type.
+            </summary>
+            <param name="commandID">The command ID.</param>
+            <returns>Returns a EnvelopeContract for the specific command ID. If the command
+            is not registered for the application, this method will return null.</returns>
+        </member>
+        <member name="M:Ximura.RQRSEnvelopeHelper.GetCallback(System.Guid)">
+            <summary>
+            This static method returns an EnvelopeContract from the pool for the specific
+            command type.
+            </summary>
+            <param name="commandID">The command ID.</param>
+            <returns>Returns a EnvelopeContract for the specific command ID. If the command
+            is not registered for the application, this method will return null.</returns>
+        </member>
+        <member name="M:Ximura.RQRSEnvelopeHelper.Get(System.Type)">
+            <summary>
+            This static method returns an EnvelopeContract from the pool for the specific
+            object type.
+            </summary>
+            <param name="objectType">The envelope type.</param>
+            <returns>Returns a EnvelopeContract for the specific command ID. If the command
+            is not registered for the application, this method will return null.</returns>
+        </member>
+        <member name="M:Ximura.RQRSEnvelopeHelper.Get``2">
+            <summary>
+            This static method returns an EnvelopeContract from the pool for the specific
+            object type.
+            </summary>
+            <returns>Returns a EnvelopeContract for the specific command ID. If the command
+            is not registered for the application, this method will return null.</returns>
+        </member>
+        <member name="M:Ximura.RQRSEnvelopeHelper.ResolveType(System.Guid)">
+            <summary>
+            This method returns the envelope request type for registered commands.
+            </summary>
+            <param name="commandID">The command ID.</param>
+            <returns>Returns the type, or null if the command cannot be found.</returns>
+        </member>
+        <member name="M:Ximura.RQRSEnvelopeHelper.ResolveTypeCallback(System.Guid)">
+            <summary>
+            This method resolves the envelope callback type for registered commands.
+            </summary>
+            <param name="commandID">The command ID.</param>
+            <returns>Returns the type, or null if the command cannot be found.</returns>
+        </member>
+        <member name="M:Ximura.RQRSEnvelopeHelper.GetPoolManager(System.Guid)">
+            <summary>
+            This method returns the pool manager based on the command ID type.
+            </summary>
+            <param name="commandID">The command ID to resolve.</param>
+            <returns>Returns the pool, or null if the pool cannot be resolved.</returns>
+        </member>
+        <member name="M:Ximura.RQRSEnvelopeHelper.GetPoolManagerCallback(System.Guid)">
+            <summary>
+            This method returns the callback pool manager based on the command ID type.
+            </summary>
+            <param name="commandID">The command ID to resolve.</param>
+            <returns>Returns the pool, or null if the pool cannot be resolved.</returns>
+        </member>
+        <member name="M:Ximura.RQRSEnvelopeHelper.GetPoolManager(System.Type)">
+            <summary>
+            This method returns the pool manager based on the object type of the envelope.
+            </summary>
+            <param name="objectType">The envelope object type.</param>
+            <returns>Returns a pool manager object or null if the type is null or cannot be resolved..</returns>
+        </member>
+        <member name="M:Ximura.RQRSEnvelopeHelper.GetPoolManagerInternal(System.Type,System.Boolean)">
+            <summary>
+            This method returns a unbuffered pool manager for the type specified.
+            </summary>
+            <param name="objectType">The envelope type required.</param>
+            <param name="buffered">This parameter specifies whether the pool should be wrapped
+            around a buffered wrapper to disable the Clear() method.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ximura.RQRSEnvelopeHelper.GetPoolManagerInternal``2(System.Boolean)">
+            <summary>
+            This method returns a unbuffered pool manager for the type specified.
+            </summary>
+            <param name="objectType">The envelope type required.</param>
+            <param name="buffered">This parameter specifies whether the pool should be wrapped
+            around a buffered wrapper to disable the Clear() method.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ximura.RQRSEnvelopeHelper.RegisterCommand(System.Guid,System.String,System.Type,System.Type)">
+            <summary>
+            This method registers the command in the object pool. If the object pool type does not exist the command
+            creates a new pool.
+            </summary>
+            <param name="commandID">The command ID to register.</param>
+            <param name="commandName">This is the name of the command which is used by the performance counters.</param>
+            <param name="objectType">The envelope type to register.</param>
+            <param name="objectCallbackType">The envelope callback type to register.</param>
+        </member>
+        <member name="T:Ximura.IXimuraEnvelopeHelper">
+            <summary>
+            This interface is used to provide access the Envelope pool for the application.
             </summary>
         </member>
     </members>

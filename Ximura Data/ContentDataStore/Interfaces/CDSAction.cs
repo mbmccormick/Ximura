@@ -27,9 +27,9 @@ namespace Ximura.Data
         NotSet,
 
         /// <summary>
-        /// Initialize creates a new entity and returns it to the calling party.
+        /// Construct creates a new entity and returns it to the calling party without saving it to the persistence store..
         /// </summary>
-        Initialize,
+        Construct,
 
         /// <summary>
         /// The Persistence agent supports the create action.

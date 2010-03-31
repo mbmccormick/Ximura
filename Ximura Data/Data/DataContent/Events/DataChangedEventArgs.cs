@@ -11,9 +11,6 @@
 // *******************************************************************************
 #endregion
 using System;
-
-using Ximura.Framework;
-
 namespace Ximura.Data
 {
 	/// <summary>

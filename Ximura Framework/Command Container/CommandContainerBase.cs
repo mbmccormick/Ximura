@@ -37,10 +37,22 @@ namespace Ximura.Framework
         where COMM : class, IXimuraCommandBase, IXimuraCommandRQ
     {
         #region Declarations
+        private IContainer components = null;
         /// <summary>
         /// This is the instance of the command.
         /// </summary>
         protected COMM mCommand;
+        /// <summary>
+        /// This pool contains the collection of security manager jobs used by the command container.
+        /// </summary>
+        protected PoolInvocator<SecurityManagerJob> mPoolSecurityManagerJob = null;
+        /// <summary>
+        /// This pool contains the actual job information.
+        /// </summary>
+        protected PoolInvocator<Job> mPoolJob = null;
+
+        protected XimuraServiceContainer mServContainer;
+
         #endregion
         #region Constructor
         /// <summary>
@@ -48,12 +60,22 @@ namespace Ximura.Framework
         /// </summary>
         public CommandContainerBase()
         {
+            InitializeComponents();
             CommandCreate();
             if (mCommand == null)
                 throw new ArgumentNullException("mCommand", "The command object has not been created.");
+            components.Add(mCommand);
+            mPoolSecurityManagerJob = new PoolInvocator<SecurityManagerJob>(() => { return new SecurityManagerJob(); });
+            mPoolJob = new PoolInvocator<Job>(() => { return new Job(); });
+            RegisterContainer(components);            
         }
         #endregion
-
+        #region InitializeComponents()
+        private void InitializeComponents()
+        {
+            components = new System.ComponentModel.Container();
+        }
+        #endregion // InitializeComponents()
         #region CommandCreate()
         /// <summary>
         /// This virtual method creates the command and sets the mCommand property. You should override this method
@@ -126,27 +148,50 @@ namespace Ximura.Framework
 
         public void CancelRequest(Guid jobID)
         {
-            throw new NotImplementedException();
+            throw new NotSupportedException("CancelRequest is not currently supported.");
         }
 
         public void ProcessRequest(IXimuraRQRSEnvelope Data)
         {
-            throw new NotImplementedException();
+            ProcessRequest(Data, JobPriority.Normal, null);
         }
 
         public void ProcessRequest(IXimuraRQRSEnvelope Data, JobPriority priority)
         {
-            throw new NotImplementedException();
+            ProcessRequest(Data, priority, null);
         }
 
         public void ProcessRequest(IXimuraRQRSEnvelope Data, CommandProgressCallback ProgressCallback)
         {
-            throw new NotImplementedException();
+            ProcessRequest(Data, JobPriority.Normal, ProgressCallback);
         }
 
         public void ProcessRequest(IXimuraRQRSEnvelope Data, JobPriority priority, CommandProgressCallback ProgressCallback)
         {
-            throw new NotImplementedException();
+            Job rqJob = null;
+            SecurityManagerJob scmJob = null;
+            try
+            {
+                SessionToken token = new SessionToken();
+
+                rqJob = mPoolJob.Get(j => j.Initialize(Guid.Empty, Guid.NewGuid(), Data, JobSignature.Empty, priority, null));
+
+                scmJob = mPoolSecurityManagerJob.Get(j => j.Initialize(rqJob, token, null, null, ProgressCallback));
+
+                mCommand.ProcessRequestSCM(scmJob);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (scmJob != null && scmJob.ObjectPoolCanReturn)
+                    scmJob.ObjectPoolReturn();
+
+                if (rqJob != null)
+                    mPoolJob.Return(rqJob);
+            }
         }
 
         #endregion

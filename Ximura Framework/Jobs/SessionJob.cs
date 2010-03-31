@@ -30,134 +30,6 @@ namespace Ximura.Framework
 	/// </summary>
 	public class SessionJob : JobWrapper
 	{
-		#region Static JobPool
-//        private static PoolInvocator<SessionJob> sJobPool;
-//        private static bool sPoolDisposed = false;
-//        private static bool sPoolInitiated = false;
-//        private static int mActiveJobs = 0;
-
-//        #region ActiveJobs
-//        /// <summary>
-//        /// This property returns a count of the currently active jobs on the system.
-//        /// </summary>
-//        public static int ActiveJobs
-//        {
-//            get
-//            {
-//                return mActiveJobs;
-//            }
-//        }
-//        #endregion // ActiveJobs
-
-
-//        internal static void InitializePool()
-//        {
-//            //sJobPool = new XimuraObjectPool(
-//            //    XimuraObjectPoolType.StandardPool,typeof(SessionJob),"SessionJob Pool","",false);
-//            sJobPool = new PoolInvocator<SessionJob>(internalCreateJobRequest, internalGetPool);
-//            sPoolInitiated = true;
-//            sPoolDisposed = false;
-//        }
-
-//        internal static void DisposePool()
-//        {
-//            sPoolInitiated = false;
-//            sPoolDisposed = true;
-//            sJobPool.Dispose();
-//            sJobPool = null;
-//        }
-
-//        #region Static -> internalCreateCDSRequest()
-//        /// <summary>
-//        /// This internal static method is used by the pool manager to create a new object.
-//        /// </summary>
-//        /// <returns></returns>
-//        private static SessionJob internalCreateJobRequest()
-//        {
-//            return new SessionJob();
-//        }
-
-//        private static IXimuraPool internalGetPool()
-//        {
-//            return sJobPool;
-//        }
-//        #endregion // Static -> internalCreateCDSRequest()
-
-//        /// <summary>
-//        /// Session Job is used to submit jobs to the dispatcher from processing.
-//        /// </summary>
-//        /// <param name="sessionid">The session id.</param>
-//        /// <param name="id">The job id.</param>
-//        /// <param name="data">The envelope data to process.</param>
-//        /// <param name="RSCallback">The response call back delegate. This will
-//        /// be used to respond after the job is complete.</param>
-//        /// <param name="ProgressCallback">The progress call back delegate. 
-//        /// This should be null if callbacks are not required.</param>
-//        /// <param name="signature">The job signature.</param>
-//        internal static SessionJob GetSessionJob(Guid sessionid, Guid id, IXimuraRQRSEnvelope data, 
-//            CommandRSCallback RSCallback, CommandProgressCallback ProgressCallback, 
-//            JobSignature signature)
-//        {
-//            return GetSessionJob(sessionid,id,data,RSCallback,
-//                ProgressCallback,signature,JobPriority.Normal);
-//        }
-//        /// <summary>
-//        /// Session Job is used to submit jobs to the dispatcher from processing.
-//        /// </summary>
-//        /// <param name="sessionid">The session id.</param>
-//        /// <param name="id">The job id.</param>
-//        /// <param name="data">The envelope data to process.</param>
-//        /// <param name="RSCallback">The response call back delegate. This will
-//        /// be used to respond after the job is complete.</param>
-//        /// <param name="ProgressCallback">The progress call back delegate. 
-//        /// This should be null if callbacks are not required.</param>
-//        /// <param name="signature">The job signature.</param>
-//        /// <param name="priority">The job priority.</param>
-//        internal static SessionJob GetSessionJob(Guid sessionid, Guid id, IXimuraRQRSEnvelope data, 
-//            CommandRSCallback RSCallback, CommandProgressCallback ProgressCallback, 
-//            JobSignature signature, JobPriority priority)
-//        {
-//#if (USEJOBPOOL)
-//            SessionJob newJob = sJobPool.Get() as SessionJob;
-//#else
-//            SessionJob newJob = new SessionJob();
-//#endif
-//            Interlocked.Increment(ref mActiveJobs);
-//            try
-//            {
-//                newJob.Initialize(sessionid,id,data,RSCallback,ProgressCallback,signature,priority);
-
-//                return newJob;
-//            }
-//            catch (Exception ex)
-//            {
-//                if (newJob != null)
-//                    SessionJobReturn(newJob);
-//                else
-//                    Interlocked.Decrement(ref mActiveJobs);
-
-//                throw ex;
-//            }
-
-//        }
-//        /// <summary>
-//        /// This method returns a job to the pool.
-//        /// </summary>
-//        /// <param name="completedJob"></param>
-//        internal static void SessionJobReturn(SessionJob completedJob)
-//        {
-//            if (completedJob == null)
-//                return;
-
-//            Interlocked.Decrement(ref mActiveJobs);
-
-//            completedJob.Reset();
-//#if (USEJOBPOOL)
-//            sJobPool.ObjectReturn(completedJob);
-//#endif
-//        }
-		#endregion
-
 		#region Declarations
 		private ManualResetEvent signalComplete;
         private object syncJobReturn = new object();
@@ -212,7 +84,7 @@ namespace Ximura.Framework
 		/// This should be null if callbacks are not required.</param>
 		/// <param name="signature">The job signature.</param>
 		/// <param name="priority">The job priority.</param>
-		private void Initialize(
+		public void Initialize(
             Guid sessionid, Guid id, IXimuraRQRSEnvelope data, 
 			CommandRSCallback RSCallback, CommandProgressCallback ProgressCallback, 
 			JobSignature signature, JobPriority priority)

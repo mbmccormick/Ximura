@@ -33,13 +33,12 @@ namespace Ximura.Data
     /// This class encapsulates the Content Data Store for use in standalone projects that 
     /// does not use the Ximura Framework.
     /// </summary>
-    public class ContentDataStoreContainer<CDS> : FSMCommandContainer<CDS>
+    public class ContentDataStoreContainer<CDS> : FSMCommandContainer<CDS, ICDSState>
         where CDS: ContentDataStore, new()
     {
         #region Constructor
         public ContentDataStoreContainer()
         {
-            Start();
         }
         #endregion 
         #region Dispose(bool disposing)
@@ -56,6 +55,7 @@ namespace Ximura.Data
             base.Dispose(disposing);
         }
         #endregion 
+
 
     }
 }

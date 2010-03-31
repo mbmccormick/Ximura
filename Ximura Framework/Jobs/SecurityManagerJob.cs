@@ -172,7 +172,7 @@ namespace Ximura.Framework
 		/// <summary>
 		/// This is the job pool constructor.
 		/// </summary>
-		internal SecurityManagerJob():base(null){}
+		public SecurityManagerJob():base(null){}
 		#endregion // Constructors
 
 		#region Initialize(...)

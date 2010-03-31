@@ -23,7 +23,7 @@ using Ximura;
 using Ximura.Framework;
 using CH=Ximura.Common;
 #endregion // using
-namespace Ximura.Framework
+namespace Ximura
 {
 	/// <summary>
 	/// The Job Wrapper class is used by inherited method to add
@@ -55,7 +55,7 @@ namespace Ximura.Framework
 		/// This is the wrapper constructor.
 		/// </summary>
 		/// <param name="baseJob">The base job.</param>
-		internal JobWrapper(JobBase baseJob)
+		protected internal JobWrapper(JobBase baseJob)
 		{
 			mBaseJob=baseJob;
 			InitializeJob();

@@ -22,7 +22,7 @@ using Ximura;
 using Ximura.Data;
 
 #endregion // using
-namespace Ximura.Framework
+namespace Ximura
 {
     /// <summary>
     /// IXimuraRQRSEnvelope is used to hold the information needed for a system request, and is the 

@@ -27,7 +27,6 @@ using System.Threading;
 using System.Linq;
 
 using Ximura;
-using Ximura.Framework;
 #endregion // using
 namespace Ximura
 {

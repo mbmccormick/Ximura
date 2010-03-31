@@ -26,8 +26,6 @@ using System.Reflection;
 
 using Ximura;
 using Ximura.Data;
-using Ximura.Framework;
-
 using AH = Ximura.AttributeHelper;
 using CH = Ximura.Common;
 #endregion // using

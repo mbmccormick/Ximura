@@ -21,7 +21,7 @@ using Ximura.Data;
 
 using HTTPCD = Ximura.Common.HTTPCodes;
 #endregion // using
-namespace Ximura.Framework
+namespace Ximura
 {
     /// <summary>
     /// RQRSFolder is a composite content object that can contain multiple entity object along with numerous other

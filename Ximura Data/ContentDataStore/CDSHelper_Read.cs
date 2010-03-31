@@ -24,11 +24,10 @@ using System.Globalization;
 using System.Runtime.Serialization;
 
 using Ximura;
+using Ximura.Data;
 using CH = Ximura.Common;
 using RH = Ximura.Reflection;
 using AH = Ximura.AttributeHelper;
-using Ximura.Data;
-using Ximura.Framework;
 #endregion // using
 namespace Ximura.Data
 {    /// <summary>
@@ -42,27 +41,25 @@ namespace Ximura.Data
         /// <typeparam name="E">The entity type.</typeparam>
         /// <param name="svc">The persistence service.</param>
         /// <returns>Returns the entity.</returns>
-        public static CDSResponse CDSRead<E>(this IXimuraSessionRQ SessionRQ) where E : Content
+        public static CDSResponse CDSRead<T>(this IXimuraSessionRQ SessionRQ, string refType, string refValue, out T data) where T : Content
         {
-            //CDSContext pc = PersistenceContext.Initialize(typeof(E));
-            //svc.Execute(typeof(E));
-
-            //return (E)pc.ResponseData;
-            return CDSResponse.NotImplemented;
+            return SessionRQ.CDSExecute<T>(CDSData.Get(CDSAction.Read, refType, refValue), out data);
         }
 
-        //#region Read<T>
+        public static CDSResponse CDSRead<T>(this IXimuraSessionRQ SessionRQ, Guid? CID, Guid? VID, out T data) where T : Content
+        {
+            return SessionRQ.CDSExecute<T>(CDSData.Get(CDSAction.Read, CID, VID), out data);
+        }
 
-        //public static CDSResponse Read<T>(string refType, string refValue, out T data) where T : Content
-        //{
-        //    return TranslateResponseCode(Execute<T>(CDSData.Get(CDSStateAction.Read, refType, refValue), out data));
-        //}
+        public static CDSResponse CDSRead(this IXimuraSessionRQ SessionRQ, Type outType, string refType, string refValue, out Content data)
+        {
+            return SessionRQ.CDSExecute(outType, CDSData.Get(CDSAction.Read, refType, refValue), out data);
+        }
 
-        //public static CDSResponse Read<T>(Guid? CID, Guid? VID, out T data) where T : Content
-        //{
-        //    return TranslateResponseCode(Execute<T>(CDSData.Get(CDSStateAction.Read, CID, VID), out data));
-        //}
+        public static CDSResponse CDSRead(this IXimuraSessionRQ SessionRQ, Type outType, Guid? CID, Guid? VID, out Content data)
+        {
+            return SessionRQ.CDSExecute(outType, CDSData.Get(CDSAction.Read, CID, VID), out data);
+        }
 
-        //#endregion
     }
 }

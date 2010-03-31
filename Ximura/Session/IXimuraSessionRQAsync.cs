@@ -16,10 +16,7 @@ using System.Globalization;
 using System.Security.Cryptography;
 
 using Ximura;
-using Ximura.Framework;
 using Ximura.Data;
-using Ximura.Framework;
-
 #endregion // using
 namespace Ximura
 {

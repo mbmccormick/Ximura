@@ -17,8 +17,7 @@ using System.Collections.Generic;
 using System.Xml;
 using System.Configuration;
 
-using Ximura.Framework;
-using Ximura.Framework;
+using Ximura;
 using CH = Ximura.Common;
 #endregion // using
 namespace Ximura.Data
