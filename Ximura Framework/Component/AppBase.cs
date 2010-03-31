@@ -1,6 +1,6 @@
 ﻿#region Copyright
 // *******************************************************************************
-// Copyright (c) 2000-2009 Paul Stancer.
+// Copyright (c) 2000-2010 Paul Stancer.
 // All rights reserved. This program and the accompanying materials
 // are made available under the terms of the Eclipse Public License v1.0
 // which accompanies this distribution, and is available at
@@ -57,8 +57,6 @@ namespace Ximura.Framework
         #endregion
     }
     #endregion
-
-
 
     #region AppBase<CONF, PERF, EXTCONF>
     /// <summary>
@@ -149,7 +147,6 @@ namespace Ximura.Framework
             set;
         }
         #endregion
-
         #region ConfigurationStart()
         /// <summary>
         /// This method creates and registers the configuration data object.
@@ -227,7 +224,6 @@ namespace Ximura.Framework
             }
         }
         #endregion
-
         #region PerformanceCreate()/PerformanceInitialize(PERF perf)
         /// <summary>
         /// This method creates the performance object and calls the extended PerformanceInitialize method before setting 
@@ -259,7 +255,6 @@ namespace Ximura.Framework
             Performance = null;
         }
         #endregion // PerformanceDispose()
-
         #region PerformanceStart()
         /// <summary>
         /// This method starts the performance counters.

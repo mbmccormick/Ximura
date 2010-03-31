@@ -52,6 +52,8 @@ namespace Ximura
         /// </summary>
         public XimuraComponentBaseHelper(Type currentType)
         {
+            //This type is defined for debug purposes to identity
+            //the class that the helper belongs to.
             this.currentType = currentType;
         }
         #endregion // ServiceHelper

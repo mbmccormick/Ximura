@@ -271,6 +271,7 @@
     </Compile>
     <Compile Include="Component\Exception\XimuraComponentServiceException.cs" />
     <Compile Include="Component\Extender\MetadataExtender.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Component\Helper\XimuraComponentBaseHelper.cs" />
     <Compile Include="Component\Helper\XimuraComponentServiceHelper.cs" />
@@ -448,6 +449,7 @@
     <None Include="Properties\ximura.snk" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Collections\Pool\" />
     <Folder Include="_Documentation\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

@@ -39,14 +39,23 @@ namespace Ximura.Framework
         where COMM : class, IXimuraFSM, new()
         where STAT : IXimuraFSMState
     {
+        List<STAT> mExtensionStates;
         #region Constructor
         /// <summary>
         /// This is the default constructor.
         /// </summary>
-        public FSMCommandContainer()
+        public FSMCommandContainer():this(null)
         {
         }
-        #endregion
+
+        public FSMCommandContainer(IEnumerable<STAT> states)
+        {
+            if (states != null)
+                mExtensionStates = states.ToList();
+            else
+                mExtensionStates = new List<STAT>();
+        }
+        #endregion 
         #region CommandCreate()
         /// <summary>
         /// This override creates the command.
@@ -59,7 +68,8 @@ namespace Ximura.Framework
 
         protected override void InternalStart()
         {
-            List<STAT> extensionStates = ExtensionStates.ToList();
+            mExtensionStates.AddRange(ExtensionStates);
+
             mCommand.ExternalStatesAllow = true;// extensionStates.Count > 0;
             base.InternalStart();
 

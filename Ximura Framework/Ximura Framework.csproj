@@ -266,6 +266,7 @@
     <Compile Include="Command\Permission\CommandPermission.cs" />
     <Compile Include="Command\Permission\CommandPermissionSet.cs" />
     <Compile Include="Component\AppBase.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Component\FrameworkComponentBase.cs">
       <SubType>Component</SubType>

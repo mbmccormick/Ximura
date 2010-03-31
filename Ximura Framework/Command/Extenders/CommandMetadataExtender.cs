@@ -247,33 +247,6 @@ namespace Ximura.Framework
 			}
 			#endregion // Constructors
 
-            #region IComparer Members old
-            ///// <summary>
-            ///// This object compares two AppServerCommandMetadataContainer objects. The highest
-            ///// priority will bubble to the top of the sorted list.
-            ///// Null objects will also be set to the highest priority.
-            ///// </summary>
-            ///// <param name="x">The first object.</param>
-            ///// <param name="y">The second object.</param>
-            ///// <returns>Returns a positive integer if the first object is greater than the second.</returns>
-            //public int Compare(object x, object y)
-            //{
-            //    AppServerCommandMetadataContainer aX = x as AppServerCommandMetadataContainer;
-            //    AppServerCommandMetadataContainer aY = y as AppServerCommandMetadataContainer;
-
-            //    if (aX == null && aY == null)
-            //        return 0;
-            //    if (aX == null || aX.Priority == 0)
-            //        return nullBubbleOrder;
-            //    if (aY == null || aY.Priority == 0)
-            //        return nullBubbleOrder * -1;
-            //    if (aY.Priority == aX.Priority)
-            //        return nullBubbleOrder;
-
-            //    return (aY.Priority-aX.Priority);
-            //}
-            #endregion
-
             #region IComparer<AppServerCommandMetadataContainer> Members
             /// <summary>
             /// This object compares two AppServerCommandMetadataContainer objects. The highest

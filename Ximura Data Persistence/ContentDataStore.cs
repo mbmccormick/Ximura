@@ -343,8 +343,8 @@ namespace Ximura.Data
 
 
             //Start the persistence managers and then the cache managers
-            //ComponentsStatusChange(
-            //    XimuraServiceStatusAction.Start, ServiceComponents, typeof(ICDSState));
+            ComponentsStatusChange(
+                XimuraServiceStatusAction.Start, ServiceComponents, typeof(ICDSState));
 
             //Record the component status in the event log.
             ServiceStatusChange(XimuraServiceStatusAction.Start);
@@ -358,8 +358,8 @@ namespace Ximura.Data
         {
             ServiceStatusChange(XimuraServiceStatusAction.Stop);
 
-            //ComponentsStatusChange(
-            //    XimuraServiceStatusAction.Stop, ServiceComponents, typeof(ICDSState));
+            ComponentsStatusChange(
+                XimuraServiceStatusAction.Stop, ServiceComponents, typeof(ICDSState));
 
 
             base.InternalStop();

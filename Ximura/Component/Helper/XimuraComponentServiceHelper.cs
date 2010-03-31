@@ -137,7 +137,6 @@ namespace Ximura
 
         #region IXimuraService Members
 
-        #region IXimuraService Members - Start/Stop/Pause/Continue
         #region Start()
         /// <summary>
         /// This method starts the service based on the default async settings
@@ -300,7 +299,6 @@ namespace Ximura
                 mServiceEnabled = value;
             }
         }
-        #endregion
         #endregion
 
         #region Virtual Service Control methods - InternalStart/InternalStop etc.

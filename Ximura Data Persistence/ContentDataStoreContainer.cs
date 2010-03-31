@@ -37,10 +37,17 @@ namespace Ximura.Data
         where CDS: ContentDataStore, new()
     {
         #region Constructor
-        public ContentDataStoreContainer()
+        public ContentDataStoreContainer():base(null)
         {
         }
         #endregion 
+
+        #region Constructor
+        public ContentDataStoreContainer(IEnumerable<ICDSState> states):base(states)
+        {
+        }
+        #endregion 
+
         #region Dispose(bool disposing)
         /// <summary>
         /// This override stops the service before it is disposed.

@@ -62,7 +62,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Agents\BinaryPersistenceAgent.cs" />
+    <Compile Include="Agents\BinaryPersistenceAgent.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="CDS\BinaryTestCDS.cs">
       <SubType>Component</SubType>
     </Compile>

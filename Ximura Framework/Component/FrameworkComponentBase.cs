@@ -64,7 +64,7 @@ namespace Ximura.Framework
             components = new System.ComponentModel.Container();
         }
         #endregion // InitializeComponents()
-        #region InitializeCommandExtender()
+        #region CommandExtenderInitialize()
         /// <summary>
         /// This method initializes the 
         /// </summary>
@@ -84,7 +84,6 @@ namespace Ximura.Framework
             set;
         }
         #endregion // PerformanceCounter
-
         #region PoolManagerStart()
         /// <summary>
         /// This protected method creates the default pool manager for the application.

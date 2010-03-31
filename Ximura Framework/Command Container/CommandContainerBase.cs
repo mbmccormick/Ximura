@@ -33,7 +33,7 @@ namespace Ximura.Framework
     /// <summary>
     /// This class is used to hold command objects and run them without the need for the server environment.
     /// </summary>
-    public abstract class CommandContainerBase<COMM> : XimuraComponentService, IXimuraCommand, IXimuraSessionRQ
+    public abstract class CommandContainerBase<COMM> : FrameworkComponentBase, IXimuraCommand, IXimuraSessionRQ
         where COMM : class, IXimuraCommandBase, IXimuraCommandRQ
     {
         #region Declarations
@@ -67,6 +67,9 @@ namespace Ximura.Framework
             components.Add(mCommand);
             mPoolSecurityManagerJob = new PoolInvocator<SecurityManagerJob>(() => { return new SecurityManagerJob(); });
             mPoolJob = new PoolInvocator<Job>(() => { return new Job(); });
+
+            CommandExtenderInitialize();
+
             RegisterContainer(components);            
         }
         #endregion
@@ -125,22 +128,22 @@ namespace Ximura.Framework
         #region Service control
         protected override void InternalStart()
         {
-            mCommand.Start();
+            CommandsStart();
         }
 
         protected override void InternalStop()
         {
-            mCommand.Stop();
+            CommandsStop();
         }
 
         protected override void InternalPause()
         {
-            mCommand.Pause();
+            //mCommand.Pause();
         }
 
         protected override void InternalContinue()
         {
-            mCommand.Continue();
+            //mCommand.Continue();
         }
         #endregion 
 
