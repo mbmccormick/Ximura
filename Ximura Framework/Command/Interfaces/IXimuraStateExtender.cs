@@ -35,6 +35,33 @@ namespace Ximura.Framework
 {
     public interface IXimuraStateExtender
     {
+        /// <summary>
+        /// This property is used to return the state ID.
+        /// </summary>
+        /// <param name="state">The state.</param>
+        /// <returns>The ID of the state.</returns>
+        string GetStateID(IXimuraFSMState state);
+
+        /// <summary>
+		/// This property is used to set the state id
+		/// </summary>
+		/// <param name="state">The state object.</param>
+		/// <param name="value">The state ID.</param>
+        void SetStateID(IXimuraFSMState state, string value);
+
+        /// <summary>
+		/// This property is used to return the enabled state.
+		/// </summary>
+		/// <param name="state">The state.</param>
+		/// <returns>The enabled boolean value of the state.</returns>
+        bool GetEnabled(IXimuraFSMState state);
+
+        /// <summary>
+		/// This property is used to set the enabled state.
+		/// </summary>
+		/// <param name="state">The state object.</param>
+		/// <param name="value">The state enabled value.</param>
+        void SetEnabled(IXimuraFSMState state, bool value);
     }
 
     public interface IXimuraStateExtender<ST> : IXimuraStateExtender

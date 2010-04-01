@@ -43,7 +43,7 @@ namespace Ximura.Data
         #endregion 
 
         #region Constructor
-        public ContentDataStoreContainer(IEnumerable<ICDSState> states):base(states)
+        public ContentDataStoreContainer(IEnumerable<KeyValuePair<string,ICDSState>> states):base(states)
         {
         }
         #endregion 

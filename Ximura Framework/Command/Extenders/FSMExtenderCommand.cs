@@ -123,16 +123,5 @@ namespace Ximura.Framework
             base.ServicesDereference();
         }
         #endregion // ServicesReference/ServicesDereference
-
-
-        protected override void InternalStart()
-        {
-            base.InternalStart();
-        }
-
-        protected override void InternalStop()
-        {
-            base.InternalStop();
-        }
     }
 }

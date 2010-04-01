@@ -60,15 +60,18 @@ namespace Ximura.Framework
         /// </summary>
         public CommandContainerBase()
         {
+            ServerComponentsInitialize();
+
             InitializeComponents();
+
             CommandCreate();
             if (mCommand == null)
                 throw new ArgumentNullException("mCommand", "The command object has not been created.");
             components.Add(mCommand);
-            mPoolSecurityManagerJob = new PoolInvocator<SecurityManagerJob>(() => { return new SecurityManagerJob(); });
-            mPoolJob = new PoolInvocator<Job>(() => { return new Job(); });
 
             CommandExtenderInitialize();
+
+            CommandExtender.SetPriority(mCommand, 9);
 
             RegisterContainer(components);            
         }
@@ -128,22 +131,32 @@ namespace Ximura.Framework
         #region Service control
         protected override void InternalStart()
         {
+            //Connect the components to the messaging architecture.
+            ConnectComponents();
+
             CommandsStart();
+
+            CommandExtender.CommandsNotify(typeof(XimuraServiceStatus), XimuraServiceStatus.Started);
         }
 
         protected override void InternalStop()
         {
-            CommandsStop();
-        }
 
-        protected override void InternalPause()
-        {
-            //mCommand.Pause();
-        }
+            CommandExtender.CommandsNotify(typeof(XimuraServiceStatus), XimuraServiceStatus.Stopping);
 
-        protected override void InternalContinue()
-        {
-            //mCommand.Continue();
+            Exception aex = null;
+
+            try
+            {
+                //Close all the commands
+                CommandsStop();
+                //ComponentsStatusChange(XimuraServiceStatusAction.Stop, ServiceComponents);		
+            }
+            catch (Exception ex)
+            {
+                aex = ex;
+            }
+
         }
         #endregion 
 
@@ -226,5 +239,29 @@ namespace Ximura.Framework
         }
 
         #endregion
+
+        #region ServerComponentsInitialize()
+        /// <summary>
+        /// This method is used to create the server components.
+        /// </summary>
+        protected virtual void ServerComponentsInitialize()
+        {
+            PoolManagerCreate();
+
+            mPoolSecurityManagerJob = new PoolInvocator<SecurityManagerJob>(() => { return new SecurityManagerJob(); });
+            mPoolJob = new PoolInvocator<Job>(() => { return new Job(); });
+
+        }
+        #endregion // InitializeServerComponents()
+
+        #region PoolManagerCreate()
+        /// <summary>
+        /// This method creates the pool manager for the system.
+        /// </summary>
+        protected virtual void PoolManagerCreate()
+        {
+            PoolManager = new PoolManager(true);
+        }
+        #endregion // PoolManagerCreate()
     }
 }

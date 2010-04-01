@@ -64,7 +64,7 @@ namespace Ximura.Framework
                 //Start the Performance managers.
                 PerformanceStart();
 
-                //This methos starts the agent services such as the storage and session managers.
+                //This method starts the agent services such as the storage and session managers.
                 AgentServicesStart();
 
                 //Create the session manager

@@ -33,12 +33,30 @@ using Ximura.Framework;
 namespace Ximura.Framework
 {
     /// <summary>
-    /// This interface is implemented by classes 
+    /// This interface is used to register remote states with a FSM that allows this functionality.
     /// </summary>
     public interface IXimuraStateExtenderService
     {
+        /// <summary>
+        /// This method registers a new extender for a particular class.
+        /// </summary>
+        /// <param name="CommandID">The command ID.</param>
+        /// <param name="stateType">The state stype.</param>
+        /// <param name="mStateExtender">The extender class.</param>
         void Register(Guid CommandID, Type stateType, IXimuraStateExtender mStateExtender);
-
+        /// <summary>
+        /// This method removes the extender for the particular command and state type.
+        /// </summary>
+        /// <param name="CommandID">The command ID.</param>
+        /// <param name="stateType">The state stype.</param>
         void Unregister(Guid CommandID, Type stateType);
+        /// <summary>
+        /// This method returns the extender to allow a remote service to register new states.
+        /// </summary>
+        /// <param name="CommandID">The command ID.</param>
+        /// <param name="stateType">The state type.</param>
+        /// <returns>Returns the state extender.</returns>
+        /// <exception cref="System.ArgumentOutOfRangeException">This exception will be thrown if the extender cannot be found.</exception>
+        IXimuraStateExtender Resolve(Guid CommandID, Type stateType);
     }
 }

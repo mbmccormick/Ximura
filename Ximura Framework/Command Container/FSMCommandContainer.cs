@@ -37,9 +37,9 @@ namespace Ximura.Framework
     /// <typeparam name="STAT">The FSM command state type.</typeparam>
     public class FSMCommandContainer<COMM, STAT> : CommandContainer<COMM>
         where COMM : class, IXimuraFSM, new()
-        where STAT : IXimuraFSMState
+        where STAT : class, IXimuraFSMState
     {
-        List<STAT> mExtensionStates;
+        List<KeyValuePair<string, STAT>> mExtensionStates;
         #region Constructor
         /// <summary>
         /// This is the default constructor.
@@ -48,12 +48,12 @@ namespace Ximura.Framework
         {
         }
 
-        public FSMCommandContainer(IEnumerable<STAT> states)
+        public FSMCommandContainer(IEnumerable<KeyValuePair<string, STAT>> states)
         {
             if (states != null)
                 mExtensionStates = states.ToList();
             else
-                mExtensionStates = new List<STAT>();
+                mExtensionStates = new List<KeyValuePair<string, STAT>>();
         }
         #endregion 
         #region CommandCreate()
@@ -68,16 +68,26 @@ namespace Ximura.Framework
 
         protected override void InternalStart()
         {
+            //Connect the components to the messaging architecture.
+            ConnectComponents();
+
             mExtensionStates.AddRange(ExtensionStates);
 
-            mCommand.ExternalStatesAllow = true;// extensionStates.Count > 0;
-            base.InternalStart();
+            mCommand.ExternalStatesAllow = mExtensionStates.Count > 0;
 
             IXimuraStateExtenderService stEx = GetService<IXimuraStateExtenderService>();
+
+            IXimuraStateExtender<STAT> ex = (IXimuraStateExtender<STAT>)stEx.Resolve(mCommand.CommandID, typeof(STAT));
+
+            mExtensionStates.ForEach(a => ex.SetStateID(a.Value, a.Key));
+
+            CommandsStart();
+
+            CommandExtender.CommandsNotify(typeof(XimuraServiceStatus), XimuraServiceStatus.Started);
         }
 
 
-        protected virtual IEnumerable<STAT> ExtensionStates
+        protected virtual IEnumerable<KeyValuePair<string,STAT>> ExtensionStates
         {
             get
             {

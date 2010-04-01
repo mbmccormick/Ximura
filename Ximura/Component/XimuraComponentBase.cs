@@ -36,7 +36,7 @@ namespace Ximura
     public class XimuraComponentBase : Component, IXimuraComponentBase
 	{
 		#region Declarations
-		private Hashtable mContainers;
+        private HashSet<IContainer> mContainers;
 		private ArrayList mConnectedComponents = null;
 
         private XimuraComponentBaseHelper xcbaseHelp;
@@ -81,7 +81,7 @@ namespace Ximura
 
 				if (mContainers != null)
 				{
-					foreach(IContainer components in mContainers.Keys)
+					foreach(IContainer components in mContainers)
 					{
 						components.Dispose();
 					}
@@ -412,7 +412,7 @@ namespace Ximura
 			if (ServiceComponents.Count>0)
 				ServiceComponents.Clear();
 
-			foreach(IContainer components in mContainers.Keys)
+			foreach(IContainer components in mContainers)
 			{
                 try
                 {
@@ -501,18 +501,18 @@ namespace Ximura
 		protected virtual void RegisterContainer(IContainer components)
 		{
             if (components != null && !Containers.Contains(components))
-                Containers.Add(components, null);
+                Containers.Add(components);
             else
                 Debug.WriteLine("Duplicate");
 		}
 		#endregion // RegisterContainer
 		#region Containers
-		private Hashtable Containers
+		private HashSet<IContainer> Containers
 		{
 			get
 			{
 				if (mContainers == null)
-					mContainers = new Hashtable();
+                    mContainers = new HashSet<IContainer>();
 
 				return mContainers;
 			}

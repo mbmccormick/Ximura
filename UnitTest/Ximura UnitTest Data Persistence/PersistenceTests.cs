@@ -63,7 +63,9 @@ namespace Ximura.UnitTest.Data
         [TestMethod]
         public void PersistenceTestContainerGeneric()
         {
-            ContentDataStoreContainer<BinaryTestCDS> cont = new ContentDataStoreContainer<BinaryTestCDS>(new ICDSState[] { new BinaryPersistenceAgent() });
+            ContentDataStoreContainer<BinaryTestCDS> cont = 
+                new ContentDataStoreContainer<BinaryTestCDS>(
+                    new KeyValuePair<string,ICDSState>[] { new KeyValuePair<string,ICDSState>("BinaryTest",new BinaryPersistenceAgent()) });
 
             try
             {

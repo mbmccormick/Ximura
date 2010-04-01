@@ -37,7 +37,10 @@ namespace Ximura.UnitTest.Data
 
         protected override bool Construct(CDSContext context)
         {
-            return base.Construct(context);
+            context.Response.Data = new BinaryTest();
+            context.Response.Status = "200";
+
+            return true;
         }
     }
 }

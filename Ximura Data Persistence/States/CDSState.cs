@@ -88,24 +88,48 @@ namespace Ximura.Data
         {
             switch (action)
             {
-                case CDSAction.ResolveReference:
-                    return ResolveReference(context);
                 case CDSAction.Browse:
                     return Browse(context);
-                case CDSAction.Create:
-                    return Create(context);
-                case CDSAction.Custom:
-                    return Custom(context);
-                case CDSAction.Delete:
-                    return Delete(context);
-                case CDSAction.Read:
-                    return Read(context);
-                case CDSAction.Restore:
-                    return Restore(context);
-                case CDSAction.Update:
-                    return Update(context);
+
                 case CDSAction.Cache:
                     return Cache(context);
+
+                case CDSAction.Construct:
+                    return Construct(context);
+
+                case CDSAction.Create:
+                    return Create(context);
+
+                case CDSAction.Custom:
+                    return Custom(context);
+
+                case CDSAction.Delete:
+                    return Delete(context);
+
+                case CDSAction.Lock:
+                    return Lock(context);
+
+                case CDSAction.Publish:
+                    return Publish(context);
+
+                case CDSAction.Read:
+                    return Read(context);
+
+                case CDSAction.Redact:
+                    return Redact(context);
+
+                case CDSAction.ResolveReference:
+                    return ResolveReference(context);
+
+                case CDSAction.Restore:
+                    return Restore(context);
+
+                case CDSAction.Unlock:
+                    return Unlock(context);
+
+                case CDSAction.Update:
+                    return Update(context);
+
                 case CDSAction.VersionCheck:
                     return VersionCheck(context);
             }

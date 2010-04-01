@@ -78,5 +78,24 @@ namespace Ximura.Framework
 
         }
         #endregion 
+    
+        #region Resolve(Guid CommandID, Type stateType)
+        /// <summary>
+        /// This method returns the extender to allow a remote service to register new states.
+        /// </summary>
+        /// <param name="CommandID">The command ID.</param>
+        /// <param name="stateType">The state type.</param>
+        /// <returns>Returns the state extender.</returns>
+        /// <exception cref="System.ArgumentOutOfRangeException">This exception will be thrown if the extender cannot be found.</exception>
+        public IXimuraStateExtender Resolve(Guid CommandID, Type stateType)
+        {
+            KeyValuePair<Guid, Type> key = new KeyValuePair<Guid, Type>(CommandID, stateType);
+
+            if (mRegisteredExtendees.ContainsKey(key))
+                return mRegisteredExtendees[key];
+
+            throw new ArgumentOutOfRangeException();
+        }
+        #endregion
     }
 }
