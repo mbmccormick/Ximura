@@ -34,10 +34,9 @@ namespace Ximura.Data
 	/// This is the base abstract Ximura Content object. 
 	/// </summary>
 	[XimuraContentSerialization("Ximura.Data.ContentFormatter, XimuraData")]
-    [XimuraContentCachePolicy(ContentCacheOptions.VersionCheck)]
-    public abstract partial class Content : ISupportInitializeNotification, IDisposable 
+    public abstract partial class Content : IDisposable  
 	{
-		#region Constructors / Destructors
+		#region Constructor
 		/// <summary>
 		/// This is the default constructor for the Content object.
 		/// </summary>
@@ -49,7 +48,7 @@ namespace Ximura.Data
         }
 		#endregion
 
-        #region IDisposable Members
+        #region Dispose()
         /// <summary>
         /// This is the dispose method.
         /// </summary>
@@ -59,5 +58,30 @@ namespace Ximura.Data
             GC.SuppressFinalize(this);
         }
         #endregion
+        #region Dispose(bool disposing)
+        private bool mDisposed = false;
+        /// <summary>
+        /// This is the dispose override.
+        /// </summary>
+        /// <param name="disposing">True when this is called by the dispose method.</param>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!mDisposed)
+            {
+                if (disposing)
+                {
+                    mOnInitialized = null;
+                    mInfo = null;
+                    mEntityType = null;
+                    mEntitySubType = null;
+                    mPoolManager = null;
+                    mPool = null;
+
+                    //base.Dispose(disposing);
+                }
+                mDisposed = true;
+            }
+        }
+        #endregion // Dispose(bool disposing)
     }
 }

@@ -28,7 +28,7 @@ using CH = Ximura.Common;
 #endregion // using
 namespace Ximura.Data
 {
-    public abstract partial class Content : IXimuraMessageLoadData, IXimuraMessageLoad
+    public abstract partial class Content : IXimuraMessageLoadData, IXimuraMessageLoad, ISupportInitializeNotification
     {
         #region Declarations
         private EventHandler mOnInitialized;

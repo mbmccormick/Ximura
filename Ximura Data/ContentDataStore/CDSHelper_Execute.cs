@@ -79,7 +79,7 @@ namespace Ximura.Data
             cid = null;
             vid = null;
             RQRSContract<CDSRequestFolder, CDSResponseFolder> rqEnv = null;
-            Content rsData = null;
+            IXimuraContent rsData = null;
             try
             {
                 rqEnv = EnvelopeRequest(new EnvelopeAddress(CDSCommandID, rqH.Action));
@@ -123,14 +123,18 @@ namespace Ximura.Data
             }
             finally
             {
-                if (rsData != null && rsData.ObjectPoolCanReturn)
-                    rsData.ObjectPoolReturn();
+                IXimuraPoolReturnable retData = rsData as IXimuraPoolReturnable;
+
+                if (retData != null && retData.ObjectPoolCanReturn)
+                    retData.ObjectPoolReturn();
+
                 EnvelopeReturn(rqEnv);
             }
         }
         #endregion
         #region CDSExecute(this IXimuraSessionRQ SessionRQ, Type itemType, CDSData rqH, Content inData, out Content outData)
-        public static CDSResponse CDSExecute(this IXimuraSessionRQ SessionRQ, Type itemType, CDSData rqH, Content inData, out Content outData)
+        public static CDSResponse CDSExecute(this IXimuraSessionRQ SessionRQ, Type itemType, CDSData rqH, 
+            IXimuraContent inData, out IXimuraContent outData)
         {
             RQRSContract<CDSRequestFolder, CDSResponseFolder> rqEnv = null;
 
@@ -171,23 +175,25 @@ namespace Ximura.Data
         }
         #endregion // Execute(IXimuraSessionRQ SessionRQ, Type itemType, CDSData rqH, Content inData, out Content outData)
 
-        #region CDSExecute(this IXimuraSessionRQ SessionRQ, Type itemType, CDSData rqH, T inData)
-        public static CDSResponse CDSExecute(this IXimuraSessionRQ SessionRQ, Type itemType, CDSData rqH, Content inData)
+        #region CDSExecute(this IXimuraSessionRQ SessionRQ, Type itemType, CDSData rqH, Content inData)
+        public static CDSResponse CDSExecute(this IXimuraSessionRQ SessionRQ, Type itemType, CDSData rqH, IXimuraContent inData)
         {
-            Content intContent = null;
+            IXimuraContent intContent = null;
             try
             {
                 return SessionRQ.CDSExecute(itemType, rqH, inData, out intContent);
             }
             finally
             {
-                if (intContent != null && intContent.ObjectPoolCanReturn)
-                    intContent.ObjectPoolReturn();
+                IXimuraPoolReturnable retData = intContent as IXimuraPoolReturnable;
+
+                if (retData != null && retData.ObjectPoolCanReturn)
+                    retData.ObjectPoolReturn();
             }
         }
         #endregion
-        #region CDSExecute(this IXimuraSessionRQ SessionRQ, Type itemType, CDSData rqH, out Content outData)
-        public static CDSResponse CDSExecute(this IXimuraSessionRQ SessionRQ, Type itemType, CDSData rqH, out Content outData)
+        #region CDSExecute(this IXimuraSessionRQ SessionRQ, Type itemType, CDSData rqH, out IXimuraContent outData)
+        public static CDSResponse CDSExecute(this IXimuraSessionRQ SessionRQ, Type itemType, CDSData rqH, out IXimuraContent outData)
         {
             return SessionRQ.CDSExecute(itemType, rqH, null, out outData);
         }
@@ -202,32 +208,34 @@ namespace Ximura.Data
         #endregion
         #region CDSExecute<T>(this IXimuraSessionRQ SessionRQ, CDSData rqH, out T outData)
         public static CDSResponse CDSExecute<T>(this IXimuraSessionRQ SessionRQ, CDSData rqH, out T outData)
-            where T : Content
+            where T : class, IXimuraContent
         {
             return SessionRQ.CDSExecute<T>(rqH, null, out outData);
         }
         #endregion
         #region CDSExecute<T>(this IXimuraSessionRQ SessionRQ, CDSData rqH, T inData)
         public static CDSResponse CDSExecute<T>(this IXimuraSessionRQ SessionRQ, CDSData rqH, T inData)
-            where T : Content
+            where T : class, IXimuraContent
         {
-            Content intContent = null;
+            IXimuraContent intContent = null;
             try
             {
                 return SessionRQ.CDSExecute(typeof(T), rqH, inData, out intContent);
             }
             finally
             {
-                if (intContent != null && intContent.ObjectPoolCanReturn)
-                    intContent.ObjectPoolReturn();
+                IXimuraPoolReturnable retData = intContent as IXimuraPoolReturnable;
+
+                if (retData != null && retData.ObjectPoolCanReturn)
+                    retData.ObjectPoolReturn();
             }
         }
         #endregion
         #region CDSExecute<T>(this IXimuraSessionRQ SessionRQ, CDSData rqH, T inData, out T outData)
         public static CDSResponse CDSExecute<T>(this IXimuraSessionRQ SessionRQ, CDSData rqH, T inData, out T outData)
-            where T : Content
+            where T : class, IXimuraContent
         {
-            Content intContent;
+            IXimuraContent intContent;
             CDSResponse status = SessionRQ.CDSExecute(typeof(T), rqH, inData, out intContent);
             outData = intContent as T;
             return status;
@@ -235,7 +243,7 @@ namespace Ximura.Data
         #endregion
         #region CDSExecute<T>(this IXimuraSessionRQ SessionRQ, CDSData rqH, out Guid? cid, out Guid? vid)
         public static CDSResponse CDSExecute<T>(this IXimuraSessionRQ SessionRQ, CDSData rqH, out Guid? cid, out Guid? vid)
-            where T : Content
+            where T : class, IXimuraContent
         {
             return SessionRQ.CDSExecute(typeof(T), rqH, out cid, out vid);
         }

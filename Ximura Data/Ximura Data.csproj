@@ -140,6 +140,7 @@
     <Compile Include="ContentDataStore\Interfaces\CDSResponse.cs" />
     <Compile Include="ContentDataStore\Interfaces\ICDSHelper.cs" />
     <Compile Include="ContentDataStore\Interfaces\ICDSHelperLegacy.cs" />
+    <Compile Include="ContentHolder.cs" />
     <Compile Include="Content_Attributes.cs" />
     <Compile Include="Content_Cache.cs" />
     <Compile Include="Content_Fragmentation.cs" />
@@ -150,6 +151,12 @@
     <Compile Include="Content_Properties.cs" />
     <Compile Include="Content_Serialization.cs" />
     <Compile Include="Content_Static.cs" />
+    <Compile Include="Data\DataContent\Interfaces\DataContentLinkType.cs" />
+    <Compile Include="Data\DataContent\Interfaces\DataContentSummaryType.cs" />
+    <Compile Include="Data\DataContent\Interfaces\IDataContentSummary.cs" />
+    <Compile Include="Data\DataContent\Interfaces\IXimuraDataContentLinkage.cs" />
+    <Compile Include="Data\DataContent\Interfaces\IXimuraDataContentLoad.cs" />
+    <Compile Include="Data\DataContent\Interfaces\IXimuraDataEntity.cs" />
     <Compile Include="Data\XmlContentBase\XsdResolver\ContentXsdResolver.cs" />
     <Compile Include="Data\XmlContentBase\XsdResolver\ContentXsdResolver_Static.cs" />
     <Compile Include="Exceptions\ContentException.cs" />
@@ -221,12 +228,12 @@
     </Compile>
     <Compile Include="Data\XmlContent\XmlContent_Serialization.cs">
     </Compile>
-    <Compile Include="Interfaces\DataContentLinkType.cs" />
-    <Compile Include="Interfaces\DataContentSummaryType.cs" />
-    <Compile Include="Interfaces\IDataContentSummary.cs" />
-    <Compile Include="Interfaces\IXimuraDataContentLinkage.cs" />
-    <Compile Include="Interfaces\IXimuraDataEntity.cs" />
-    <Compile Include="Interfaces\IXimuraFormatter.cs" />
+    <Compile Include="Interfaces\IXimuraContent.cs" />
+    <Compile Include="Interfaces\IXimuraContentEntityFragment.cs" />
+    <Compile Include="Interfaces\IXimuraContentEntityPersistence.cs" />
+    <Compile Include="Interfaces\IXimuraContentFormatterCapabilities.cs" />
+    <Compile Include="Interfaces\IXimuraContentSerializationReaderWriter.cs" />
+    <Compile Include="IXimuraFormatter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Serialization\ContentFormatter.cs" />
     <Compile Include="Serialization\ContentFormatterCapabilities.cs" />

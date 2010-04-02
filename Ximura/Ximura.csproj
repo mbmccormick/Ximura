@@ -347,11 +347,6 @@
     <Compile Include="Helper\String.cs" />
     <Compile Include="Helper\XML.cs" />
     <Compile Include="Interfaces\Config\IXimuraConfigSH.cs" />
-    <Compile Include="Interfaces\Data\IXimuraContent.cs" />
-    <Compile Include="Interfaces\Data\IXimuraContentEntityFragment.cs" />
-    <Compile Include="Interfaces\Data\IXimuraContentEntityPersistence.cs" />
-    <Compile Include="Interfaces\Data\IXimuraContentFormatterCapabilities.cs" />
-    <Compile Include="Interfaces\Data\IXimuraContentSerializationReaderWriter.cs" />
     <Compile Include="Interfaces\Messaging\IXimuraBinarySerialize.cs" />
     <Compile Include="Interfaces\Messaging\IXimuraMessageLoad.cs" />
     <Compile Include="Interfaces\Messaging\IXimuraMessageLoadData.cs" />

@@ -32,9 +32,6 @@ namespace Ximura.Data
     /// </summary>
     public class CDSRQRSFolderBase: RQRSFolder
     {
-		#region Declarations
-        private Content mData;
-        #endregion
 		#region Constructors
 		/// <summary>
 		/// This is the default constuctor.
@@ -66,7 +63,7 @@ namespace Ximura.Data
         /// </summary>
         public override void Reset()
         {
-            mData = null;
+            Data = null;
             base.Reset();
         }
         #endregion // Reset()
@@ -75,16 +72,10 @@ namespace Ximura.Data
         /// <summary>
         /// This is the Data for the request.
         /// </summary>
-        public virtual Content Data
+        public virtual IXimuraContent Data
         {
-            get
-            {
-                return mData;
-            }
-            set
-            {
-                mData = value;
-            }
+            get;
+            set;
         }
         #endregion // Data
     }

@@ -30,6 +30,7 @@ using CH = Ximura.Common;
 #endregion // using
 namespace Ximura.Data
 {
+    [XimuraContentCachePolicy(ContentCacheOptions.VersionCheck)]
     public abstract partial class Content
     {
         #region CacheOptions

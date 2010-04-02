@@ -31,7 +31,7 @@ using AH = Ximura.AttributeHelper;
 #endregion // using
 namespace Ximura.Data
 {
-    public abstract partial class Content : IXimuraContent
+    public abstract partial class Content : IXimuraContent, IXimuraContentEntityPersistence, IXimuraContentSupportsDirty
     {
         #region Declarations
         /// <summary>

@@ -34,6 +34,7 @@ using Ximura.Framework;
 #endregion // using
 namespace Ximura.Data
 {
+    [CDSStateActionPermit(CDSAction.Construct)]
     [CDSStateActionPermit(CDSAction.Create)]
     [CDSStateActionPermit(CDSAction.Read)]
     [CDSStateActionPermit(CDSAction.Update)]

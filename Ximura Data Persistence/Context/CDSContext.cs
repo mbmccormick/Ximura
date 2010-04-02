@@ -45,10 +45,6 @@ namespace Ximura.Data
     public class CDSContext : JobContext<ICDSState, CDSSettings, CDSRequestFolder, CDSResponseFolder, CDSConfiguration, CDSPerformance>
     {
         #region Declarations
-        private bool mContentIsCacheable;
-        private ContentCacheOptions mCacheStyle;
-        private int mCacheTimeOut;
-        //private CDSHelperDirect mCDSHelperDirect = null;
         private CDSDirectAccess mCDSda = null;
         #endregion // Declarations
         #region Constructor
@@ -67,9 +63,10 @@ namespace Ximura.Data
         public override void Reset()
         {
             base.Reset();
-            mContentIsCacheable = false;
-            mCacheTimeOut = -1;
-            mCacheStyle = ContentCacheOptions.CannotCache;
+
+            ContentIsCacheable = false;
+            CacheTimeOut = -1;
+            CacheStyle = ContentCacheOptions.CannotCache;
 
             if (mCDSda == null)
                 mCDSda = new CDSDirectAccess();
@@ -81,6 +78,20 @@ namespace Ximura.Data
 
         }
         #endregion // Reset()
+        #region Reset(IXimuraFSMSettingsBase fsm, SecurityManagerJob job,...
+        /// <summary>
+        /// This method resets a connection and sets the connection state to ClosedRBPState.
+        /// </summary>
+        /// <param name="fsm">A reference to the finite state machine.</param>
+        /// <param name="job">The job request.</param>
+        public virtual void Reset(IXimuraFSMSettingsBase fsm, SecurityManagerJob job, RQRSContract<CDSRequestFolder, CDSResponseFolder> data,
+            IXimuraFSMContextPoolAccess contextGet, DelCDSProcessRQ mDel)
+        {
+            base.Reset(fsm, job, data, contextGet);
+            mCDSda.Job = job;
+            mCDSda.DelProcessRequest = mDel;
+        }
+        #endregion // Reset(IXimuraFSMSettingsBase fsm, SecurityManagerJob job, RQRSContract<RQ, RS> data, IXimuraFSMContextPoolAccess contextGet, IXimuraSessionRQ directSession)
 
         #region CacheStyle
         /// <summary>
@@ -88,7 +99,8 @@ namespace Ximura.Data
         /// </summary>
         public ContentCacheOptions CacheStyle
         {
-            get { return mCacheStyle; }
+            get;
+            private set;
         }
         #endregion // CacheStyle
         #region CacheTimeOut
@@ -97,7 +109,8 @@ namespace Ximura.Data
         /// </summary>
         public int CacheTimeOut
         {
-            get { return mCacheTimeOut; }
+            get;
+            private set;
         }
         #endregion // CacheTimeOut
 
@@ -121,10 +134,10 @@ namespace Ximura.Data
         public void Initialize()
         {
             XimuraContentCachePolicyAttribute attr = ContextSettings.CacheManagerBridge.CacheAttribute(Request.DataType);
-            mCacheStyle = attr.CacheStyle;
-            mCacheTimeOut = attr.TimeOut;
+            CacheStyle = attr.CacheStyle;
+            CacheTimeOut = attr.TimeOut;
 
-            ContentIsCacheable = mCacheStyle != ContentCacheOptions.CannotCache;
+            ContentIsCacheable = CacheStyle != ContentCacheOptions.CannotCache;
 
             //OK, set the initial state.
             this.ChangeState();
@@ -197,14 +210,8 @@ namespace Ximura.Data
         /// </summary>
         public bool ContentIsCacheable
         {
-            get
-            {
-                return mContentIsCacheable;
-            }
-            set
-            {
-                mContentIsCacheable = value;
-            }
+            get;
+            set;
         }
         #endregion // ContentIsCacheable
         #region ContentIsFragment
@@ -226,57 +233,57 @@ namespace Ximura.Data
         }
         #endregion // FragmentCheck
         #region ContentProcessFragment
-        /// <summary>
-        /// This method processes a fragment object and merges the updates with the base content.
-        /// </summary>
-        /// <param name="job">The current request.</param>
-        /// <param name="action">The current action. This may be changed depending on the merge action performed.</param>
-        protected virtual void ContentProcessFragment(SecurityManagerJob job,
-            RQRSContract<CDSRequestFolder, CDSResponseFolder> Data, ref CDSAction action)
-        {
-            CDSRequestFolder Request = Data.ContractRequest;
-            CDSResponseFolder Response = Data.ContractResponse;
+        ///// <summary>
+        ///// This method processes a fragment object and merges the updates with the base content.
+        ///// </summary>
+        ///// <param name="job">The current request.</param>
+        ///// <param name="action">The current action. This may be changed depending on the merge action performed.</param>
+        //protected virtual void ContentProcessFragment(SecurityManagerJob job,
+        //    RQRSContract<CDSRequestFolder, CDSResponseFolder> Data, ref CDSAction action)
+        //{
+        //    CDSRequestFolder Request = Data.ContractRequest;
+        //    CDSResponseFolder Response = Data.ContractResponse;
 
-            //Get the active content.
-            Content content = Request.Data;
+        //    //Get the active content.
+        //    IXimuraContent content = Request.Data;
 
-            Content parentContent = null;
+        //    IXimuraContent parentContent = null;
 
-            CDSResponse status = CDSResponse.SystemError;
+        //    CDSResponse status = CDSResponse.SystemError;
 
-            //if (content.FragmentIDIsByReference())
-            //    parentContent = DCWrapper.DataContentReadByReference(job, content.FragmentBaseType(),
-            //        content.FragmentReferenceID(), content.FragmentReferenceType(), job.Priority, out status);
-            //else
-            //    parentContent = DCWrapper.DataContentRead(job, content.FragmentBaseType(),
-            //        content.ID, IDType.ContentID, job.Priority, out status);
+        //    //if (content.FragmentIDIsByReference())
+        //    //    parentContent = DCWrapper.DataContentReadByReference(job, content.FragmentBaseType(),
+        //    //        content.FragmentReferenceID(), content.FragmentReferenceType(), job.Priority, out status);
+        //    //else
+        //    //    parentContent = DCWrapper.DataContentRead(job, content.FragmentBaseType(),
+        //    //        content.ID, IDType.ContentID, job.Priority, out status);
 
-            //n.b. Job priority has been removed, as CDSHelperDirect operates on the same thread as 
-            //the original request so is no longer necessary.
-            if (content.FragmentIDIsByReference())
-                status = job.CDSExecute(content.FragmentBaseType(),
-                    CDSData.Get(CDSAction.Read, content.FragmentReferenceID(), content.FragmentReferenceType()),
-                        out parentContent);
-            else
-                status = job.CDSExecute(content.FragmentBaseType(),
-                    CDSData.Get(CDSAction.Read, content.IDContent, null),
-                        out parentContent);
+        //    //n.b. Job priority has been removed, as CDSHelperDirect operates on the same thread as 
+        //    //the original request so is no longer necessary.
+        //    if (content.FragmentIDIsByReference())
+        //        status = job.CDSExecute(content.FragmentBaseType(),
+        //            CDSData.Get(CDSAction.Read, content.FragmentReferenceID(), content.FragmentReferenceType()),
+        //                out parentContent);
+        //    else
+        //        status = job.CDSExecute(content.FragmentBaseType(),
+        //            CDSData.Get(CDSAction.Read, content.IDContent, null),
+        //                out parentContent);
 
-            if (status == CDSResponse.SystemError)
-                throw new ContentDataStoreException("Cannot get parent content to merge.");
+        //    if (status == CDSResponse.SystemError)
+        //        throw new ContentDataStoreException("Cannot get parent content to merge.");
 
-            if (parentContent != null)
-                content.MergeContent(parentContent);
-            else
-            {
-                content.ConvertFragmentToPrimaryEntity();
-                parentContent = content;
-                //				action = PMCapabilities.Create;
-            }
+        //    if (parentContent != null)
+        //        content.MergeContent(parentContent);
+        //    else
+        //    {
+        //        content.ConvertFragmentToPrimaryEntity();
+        //        parentContent = content;
+        //        //				action = PMCapabilities.Create;
+        //    }
 
-            Request.DataContentID = parentContent.IDContent;
-            Request.Data = parentContent;
-        }
+        //    Request.DataContentID = parentContent.IDContent;
+        //    Request.Data = parentContent;
+        //}
         #endregion // ProcessFragment
 
         //#region CDSHelperDirect
@@ -285,24 +292,10 @@ namespace Ximura.Data
         ///// </summary>
         //public virtual CDSHelperDirect CDSHelperDirect
         //{
-        //    get { return mCDSHelperDirect; }
+        //    get;
+        //    private set;
         //}
         //#endregion // CDSHelper
-
-        #region Reset(IXimuraFSMSettingsBase fsm, SecurityManagerJob job,...
-        /// <summary>
-        /// This method resets a connection and sets the connection state to ClosedRBPState.
-        /// </summary>
-        /// <param name="fsm">A reference to the finite state machine.</param>
-        /// <param name="job">The job request.</param>
-        public virtual void Reset(IXimuraFSMSettingsBase fsm, SecurityManagerJob job, RQRSContract<CDSRequestFolder, CDSResponseFolder> data,
-            IXimuraFSMContextPoolAccess contextGet, DelCDSProcessRQ mDel)
-        {
-            base.Reset(fsm, job, data, contextGet);
-            mCDSda.Job = job;
-            mCDSda.DelProcessRequest = mDel;
-        }
-        #endregion // Reset(IXimuraFSMSettingsBase fsm, SecurityManagerJob job, RQRSContract<RQ, RS> data, IXimuraFSMContextPoolAccess contextGet, IXimuraSessionRQ directSession)
 
         #region CDSDirectAccess --> Class
         /// <summary>
@@ -405,6 +398,5 @@ namespace Ximura.Data
             #endregion
         }
         #endregion // CDSDirectAccess --> Class
-
     }
 }

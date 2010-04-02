@@ -10,42 +10,42 @@
 //     Paul Stancer - initial implementation
 // *******************************************************************************
 #endregion
-#region using
+﻿#region using
 using System;
 using System.Data;
-using System.Linq;
-using System.Linq.Expressions;
+using System.Data.SqlClient;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Security;
-using System.Security.Cryptography;
-using System.Globalization;
-using System.Runtime.Serialization;
+using System.Diagnostics;
 
 using Ximura;
 using Ximura.Data;
+
 using CH = Ximura.Common;
 using RH = Ximura.Reflection;
-using AH = Ximura.AttributeHelper;
+using Ximura.Framework;
+
+
+using Ximura.Framework;
 #endregion // using
 namespace Ximura.Data
 {
-    /// <summary>
-    /// This staic class allows for dynamic updates to the persistence service.
-    /// </summary>
-    public static partial class CDSHelper
+    public class BaseCDSState : CDSState<CommandConfiguration, CDSStatePerformance>
     {
+        #region Constructors
         /// <summary>
-        /// This method initializes the entity from the persistence store.
+        /// This is the default constructor.
         /// </summary>
-        /// <typeparam name="E">The entity type.</typeparam>
-        /// <param name="svc">The persistence service.</param>
-        /// <returns>Returns the entity.</returns>
-        public static CDSResponse CDSConstruct<E>(this IXimuraSessionRQ SessionRQ, out E data) where E : Content
+        public BaseCDSState() : this(null) { }
+        /// <summary>
+        /// This is the component model constructor.
+        /// </summary>
+        /// <param name="container">The container</param>
+        public BaseCDSState(IContainer container)
+            : base(container)
         {
-            return SessionRQ.CDSExecute<E>(CDSData.Get(CDSAction.Construct), out data);
-
         }
+        #endregion // Constructors
     }
 }

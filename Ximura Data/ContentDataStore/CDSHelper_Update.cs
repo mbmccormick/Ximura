@@ -40,22 +40,24 @@ namespace Ximura.Data
         /// </summary>
         /// <param name="inData">The content to create in the CDS.</param>
         /// <returns>Returns the CDS status</returns>
-        public static CDSResponse Update(this IXimuraSessionRQ SessionRQ, Content inData)
+        public static CDSResponse Update(this IXimuraSessionRQ SessionRQ, IXimuraContent inData)
         {
             return SessionRQ.CDSExecute(inData.GetType(), CDSData.Get(CDSAction.Update), inData);
         }
 
-        public static CDSResponse Update(this IXimuraSessionRQ SessionRQ, Content inData, out Content outData)
+        public static CDSResponse Update(this IXimuraSessionRQ SessionRQ, IXimuraContent inData, out IXimuraContent outData)
         {
             return SessionRQ.CDSExecute(inData.GetType(), CDSData.Get(CDSAction.Update), inData, out outData);
         }
 
-        public static CDSResponse Update<T>(this IXimuraSessionRQ SessionRQ, T inData) where T : Content
+        public static CDSResponse Update<T>(this IXimuraSessionRQ SessionRQ, T inData)
+            where T : class, IXimuraContent
         {
             return SessionRQ.CDSExecute(CDSData.Get(CDSAction.Update), inData);
         }
 
-        public static CDSResponse Update<T>(this IXimuraSessionRQ SessionRQ, T inData, out T outData) where T : Content
+        public static CDSResponse Update<T>(this IXimuraSessionRQ SessionRQ, T inData, out T outData)
+            where T : class, IXimuraContent
         {
             return SessionRQ.CDSExecute(CDSData.Get(CDSAction.Update), inData, out outData);
         }

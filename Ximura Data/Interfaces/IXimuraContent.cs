@@ -25,9 +25,7 @@ namespace Ximura.Data
     /// <summary>
     /// IXimuraContent is the default interface for the content object.
     /// </summary>
-    public interface IXimuraContent : IXimuraContentEntityPersistence, 
-        ISerializable, IDeserializationCallback, IXimuraPoolableObjectDeserializable, 
-        IXimuraPoolReturnable
+    public interface IXimuraContent : ICloneable
     {
         /// <summary>
         /// This is the Content Type ID.
@@ -41,11 +39,14 @@ namespace Ximura.Data
         /// This is the Content Version ID.
         /// </summary>
         Guid IDVersion { get;set;}
+    }
 
+    public interface IXimuraContentSupportsDirty
+    {
         /// <summary>
         /// This boolean property indicates whether the object has been changed.
         /// </summary>
-        bool Dirty { get;set;}
+        bool Dirty { get; set; }
         /// <summary>
         /// This is a public function that indicated whether the object
         /// internal data has been changed since it was created or last saved.

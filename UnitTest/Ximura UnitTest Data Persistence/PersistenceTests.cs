@@ -70,8 +70,10 @@ namespace Ximura.UnitTest.Data
             try
             {
                 cont.Start();
+
                 BinaryTest bt;
                 CDSResponse res = cont.CDSConstruct<BinaryTest>(out bt);
+
             }
             catch (Exception ex)
             {
