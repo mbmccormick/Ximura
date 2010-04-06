@@ -446,7 +446,7 @@ namespace Ximura.Data
     /// </summary>
     /// <typeparam name="C">The content type.</typeparam>
     public class CacheItemContainer<C> : CacheItemContainer
-        where C : Content
+        where C : class, IXimuraContent
     {
         #region Declarations
         /// <summary>
@@ -485,11 +485,19 @@ namespace Ximura.Data
             if (data == null)
                 throw new ArgumentNullException("data", "The content cannot be null");
 
-            CacheOptions = data.CacheOptions;
-            CacheExpiry = data.CacheExpiry;
+            if (data is IXimuraContentSupportsCaching)
+            {
+                CacheOptions = ((IXimuraContentSupportsCaching)data).CacheOptions;
+                CacheExpiry = ((IXimuraContentSupportsCaching)data).CacheExpiry;
+            }
+            else
+            {
+                CacheOptions = ContentCacheOptions.VersionCheck;
+                CacheExpiry = 0;
+            }
 
             mIsInterned = internData;
-            if (mIsInterned)
+            if (mIsInterned && data is Content)
             {
                 mItem = null;
                 mBlob = Content.SerializeEntity(data);
@@ -530,6 +538,7 @@ namespace Ximura.Data
             lock (syncLock)
             {
                 CacheHitInternal();
+
                 if (IsInterned)
                     return (C)Content.DeserializeEntity(this.Blob, pMan);
                 else
@@ -546,8 +555,9 @@ namespace Ximura.Data
         {
             lock (syncLock)
             {
-                if (mItem != null && mItem.ObjectPoolCanReturn)
-                    mItem.ObjectPoolReturn();
+                IXimuraPoolReturnable item = mItem as IXimuraPoolReturnable;
+                if (item != null && item.ObjectPoolCanReturn)
+                    item.ObjectPoolReturn();
 
                 mItem = null;
                 mBlob = null;

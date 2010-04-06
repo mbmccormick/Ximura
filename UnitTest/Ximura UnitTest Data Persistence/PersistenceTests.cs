@@ -65,7 +65,10 @@ namespace Ximura.UnitTest.Data
         {
             ContentDataStoreContainer<BinaryTestCDS> cont = 
                 new ContentDataStoreContainer<BinaryTestCDS>(
-                    new KeyValuePair<string,ICDSState>[] { new KeyValuePair<string,ICDSState>("BinaryTest",new BinaryPersistenceAgent()) });
+                    new KeyValuePair<string,ICDSState>[] 
+                    { 
+                        new KeyValuePair<string,ICDSState>("BinaryTest",new BinaryPersistenceAgent())
+                    });
 
             try
             {

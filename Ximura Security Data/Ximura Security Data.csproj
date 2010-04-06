@@ -61,13 +61,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\Permission.cs" />
-    <Compile Include="Entities\Realm.cs" />
-    <Compile Include="Entities\Role.cs" />
-    <Compile Include="Entities\SecurityContentBase.cs" />
-    <Compile Include="Entities\User.cs" />
-    <Compile Include="Entities\UserAuth.cs" />
-    <Compile Include="Entities\UserRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -86,6 +79,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\ximura.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Entities\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -133,10 +133,10 @@ namespace Ximura.Data
         {
             try
             {
-                List<KeyValuePair<PropertyInfo, CDSAttributeAttribute>>
-                    attrList = AH.GetPropertyAttributes<CDSAttributeAttribute>(data.GetType());
+                List<KeyValuePair<PropertyInfo, CDSAttributeAttribute>> attrList = 
+                    AH.GetPropertyAttributes<CDSAttributeAttribute>(data.GetType());
 
-                List<KeyValuePair<CDSAttributeAttribute, string>> listData =
+                List<KeyValuePair<CDSAttributeAttribute, string>> listData = 
                     new List<KeyValuePair<CDSAttributeAttribute, string>>();
 
                 foreach (KeyValuePair<PropertyInfo, CDSAttributeAttribute> reference in attrList)

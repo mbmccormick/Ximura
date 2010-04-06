@@ -72,6 +72,11 @@ namespace Ximura.Data
         Browse,
 
         /// <summary>
+        /// The Persistence agent supports browsing and pagination for entity version histories.
+        /// </summary>
+        History,
+
+        /// <summary>
         /// The Persistence agent supports publishing for entities. This is reserved for future use.
         /// </summary>
         Publish,

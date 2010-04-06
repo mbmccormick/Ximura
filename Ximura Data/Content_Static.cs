@@ -73,7 +73,7 @@ namespace Ximura.Data
         /// </summary>
         /// <param name="content">The content to serialize.</param>
         /// <returns>A byte array containing the serialized entity.</returns>
-        public static byte[] SerializeEntity(Content content)
+        public static byte[] SerializeEntity(IXimuraContent content)
         {
             Type contentType = content.GetType();
             IFormatter formatter = ResolveFormatter(contentType);
@@ -85,16 +85,22 @@ namespace Ximura.Data
         /// <param name="content">The content to serialize.</param>
         /// <param name="formatter">The formatter to serialize the entity with.</param>
         /// <returns>A byte array containing the serialized entity.</returns>
-        public static byte[] SerializeEntity(Content content, IFormatter formatter)
+        public static byte[] SerializeEntity(IXimuraContent content, IFormatter formatter)
         {
-            MemoryStream memStream = new MemoryStream();
-            SerializeToStream(content, memStream, formatter);
+            byte[] returnByte = null;
 
-            long length = memStream.Length;
-            byte[] returnByte = new byte[length];
+            using (MemoryStream memStream = new MemoryStream())
+            {
+                if (content is Content)
+                {
+                    SerializeToStream(content as Content, memStream, formatter);
+                }
 
-            Array.Copy(memStream.GetBuffer(), 0, returnByte, 0, length);
+                long length = memStream.Length;
+                returnByte = new byte[length];
 
+                Array.Copy(memStream.GetBuffer(), 0, returnByte, 0, length);
+            }
             return returnByte;
         }
         #endregion // SerializeEntity
@@ -105,7 +111,7 @@ namespace Ximura.Data
         /// </summary>
         /// <param name="blob">The binary blob to deserialize.</param>
         /// <returns>A content object</returns>
-        public static Content DeserializeEntity(byte[] blob, IXimuraPoolManager pMan)
+        public static IXimuraContent DeserializeEntity(byte[] blob, IXimuraPoolManager pMan)
         {
             return DeserializeEntity(blob, 0, blob.Length, pMan);
         }
@@ -115,7 +121,7 @@ namespace Ximura.Data
         /// <param name="blob">The binary blob to deserialize.</param>
         /// <param name="formatter">The formatter to use.</param>
         /// <returns>A content object</returns>
-        public static Content DeserializeEntity(byte[] blob, IXimuraFormatter formatter, IXimuraPoolManager pMan)
+        public static IXimuraContent DeserializeEntity(byte[] blob, IXimuraFormatter formatter, IXimuraPoolManager pMan)
         {
             return DeserializeEntity(blob, 0, blob.Length, formatter,pMan);
         }
@@ -126,7 +132,7 @@ namespace Ximura.Data
         /// <param name="index">The index.</param>
         /// <param name="length">The length.</param>
         /// <returns>A content object</returns>
-        public static Content DeserializeEntity(byte[] blob, int index, int length, IXimuraPoolManager pMan)
+        public static IXimuraContent DeserializeEntity(byte[] blob, int index, int length, IXimuraPoolManager pMan)
         {
             IXimuraFormatter formatter = ResolveFormatter(blob);
 
@@ -140,7 +146,7 @@ namespace Ximura.Data
         /// <param name="length">The length.</param>
         /// <param name="formatter">The formatter to use.</param>
         /// <returns>A content object</returns>
-        public static Content DeserializeEntity(byte[] blob, int index, int length,
+        public static IXimuraContent DeserializeEntity(byte[] blob, int index, int length,
             IXimuraFormatter formatter, IXimuraPoolManager pMan)
         {
             using (MemoryStream memStream = new MemoryStream(blob, index, length))
@@ -153,7 +159,7 @@ namespace Ximura.Data
         /// </summary>
         /// <param name="stream">The stream to deserialize from.</param>
         /// <returns>The content entity.</returns>
-        public static Content DeserializeEntity(Stream stream, IXimuraPoolManager pMan)
+        public static IXimuraContent DeserializeEntity(Stream stream, IXimuraPoolManager pMan)
         {
             IXimuraFormatter formatter = ResolveFormatter(stream);
             return DeserializeEntity(stream, formatter, pMan);
@@ -165,7 +171,7 @@ namespace Ximura.Data
         /// <param name="formatter">The formatter.</param>
         /// <param name="pMan">The pool manager to retrieve a new object.</param>
         /// <returns>The content entity.</returns>
-        public static Content DeserializeEntity(Stream stream, IXimuraFormatter formatter, IXimuraPoolManager pMan)
+        public static IXimuraContent DeserializeEntity(Stream stream, IXimuraFormatter formatter, IXimuraPoolManager pMan)
         {
             Content content = formatter.Deserialize(stream, pMan) as Content;
 

@@ -99,18 +99,12 @@
     <Compile Include="Performance\CDSPerformance.cs" />
     <Compile Include="Performance\CDSPMPerformance.cs" />
     <Compile Include="Performance\CDSStatePerformance.cs" />
-    <Compile Include="Persistence Managers\BaseCDSState.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Persistence Managers\Cache Manager\CacheManagerCDSState.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Persistence Managers\Cache Manager\CDSCacheManagerBridge.cs" />
     <Compile Include="Persistence Managers\Cache Manager\Configuration\CacheManagerCDSConfiguration.cs" />
     <Compile Include="Persistence Managers\Cache Manager\ICDSCacheManager.cs" />
-    <Compile Include="Persistence Managers\CDSState.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Persistence Managers\Collection Based\CollectionBasePersistenceManager.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -123,10 +117,13 @@
     <Compile Include="Persistence Managers\File Based\FileSystemPersistenceManager.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Persistence Managers\FinishCDSState.cs">
+    <Compile Include="Persistence Managers\File Based\IsolatedStoragePersistenceManager.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Persistence Managers\PersistenceManagerCDSState.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Persistence Managers\PersistenceManagerCDSState_Reflection.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Persistence Managers\Resource Based\ResourceBasePersistenceManager.cs">
@@ -167,10 +164,19 @@
     <Compile Include="Persistence Managers\SQLDB Relational Based\SQLDBRelationalBasedPersistenceManager.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Persistence Managers\StartCDSState.cs">
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="States\BaseCDSState.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="States\CDSState.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="States\FinishCDSState.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="States\StartCDSState.cs">
+      <SubType>Component</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ximura Communication Entities\Ximura Communication Entities.csproj">

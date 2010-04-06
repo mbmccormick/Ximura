@@ -35,11 +35,11 @@ using Ximura.Framework;
 namespace Ximura.Data
 {
     /// <summary>
-    /// This class is th base class for persistence managers that use the file system as a store.
+    /// This class is the base class for persistence managers that use the file system as a store.
     /// </summary>
     /// <typeparam name="CONT"></typeparam>
     /// <typeparam name="DCONT"></typeparam>
-    public class FileSystemBasePMCDSState<CONT, DCONT, CONF> : CollectionBasePersistenceManager<CONT, DCONT, CONF>
+    public abstract class FileSystemBasePMCDSState<CONT, DCONT, CONF> : CollectionBasePersistenceManager<CONT, DCONT, CONF>
         where CONT : Content, DCONT
         where DCONT : Content
         where CONF : CommandConfiguration, new()
@@ -60,5 +60,46 @@ namespace Ximura.Data
         {
         }
         #endregion // Constructors
+
+        protected override bool Create(CDSContext context)
+        {
+            return base.Create(context);
+        }
+
+        protected override bool Read(CDSContext context)
+        {
+            
+            return base.Read(context);
+        }
+
+        protected override bool Update(CDSContext context)
+        {
+            return base.Update(context);
+        }
+
+        protected override bool Delete(CDSContext context)
+        {
+            return base.Delete(context);
+        }
+
+        protected override bool ResolveReference(CDSContext context)
+        {
+            return base.ResolveReference(context);
+        }
+
+        protected override bool VersionCheck(CDSContext context)
+        {
+            return base.VersionCheck(context);
+        }
+
+        protected override bool Lock(CDSContext context)
+        {
+            return base.Lock(context);
+        }
+
+        protected override bool Unlock(CDSContext context)
+        {
+            return base.Unlock(context);
+        }
     }
 }

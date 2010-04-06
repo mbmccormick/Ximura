@@ -47,8 +47,12 @@ namespace Ximura.Data
         where DCONT : Content
         where CONF : CommandConfiguration, new()
     {
-        private Dictionary<ContentIdentifier, byte[]> mLookUpTable;
-
+        #region Declarations
+        /// <summary>
+        /// This collection holds the data for the persistence manager.
+        /// </summary>
+        protected Dictionary<ContentIdentifier, byte[]> mLookUpTable;
+        #endregion 
         #region Constructors
         /// <summary>
         /// This is the default constructor.

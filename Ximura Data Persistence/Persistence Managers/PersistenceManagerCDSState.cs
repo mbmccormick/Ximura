@@ -19,15 +19,16 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Reflection;
+using System.IO;
+using System.Text;
 
 using Ximura;
 using Ximura.Data;
-
+using Ximura.Framework;
 using CH = Ximura.Common;
 using RH = Ximura.Reflection;
 using AH = Ximura.AttributeHelper;
-using Ximura.Framework;
-using Ximura.Framework;
 #endregion // using
 namespace Ximura.Data
 {
@@ -35,18 +36,13 @@ namespace Ximura.Data
     /// This is the base state for persistence managers.
     /// </summary>
     //[ToolboxBitmap(typeof(XimuraResourcePlaceholder), "Ximura.Resources.PersistenceManager.bmp")]
-    public class PersistenceManagerCDSState<CONT,DCONT,CONF> : CDSState<CONF, CDSPMPerformance>
-        where CONT : DCONT
-        where DCONT : Content
+    public partial class PersistenceManagerCDSState<CONT, DCONT, CONF> : CDSState<CONF, CDSPMPerformance>
+        where CONT : class, DCONT
+        where DCONT : class, IXimuraContent
         where CONF : CommandConfiguration, new()
     {
         #region Declarations
         private object syncActionPermit = new object();
-        /// <summary>
-        /// This is the specific pool for the data content.
-        /// </summary>
-        protected IXimuraPool<CONT> mPool;
-
         private CDSStateActionPermitAttribute[] attrsCDSStateActionPermit;
         private CDSStateTypePermitAttribute attrCDSStateTypePermit;
         private Dictionary<CDSAction, bool> mActionPermitCache;
@@ -169,6 +165,8 @@ namespace Ximura.Data
             return false;
         }
         #endregion // PermitType(Type objectType)
+
+
 
     }
 }

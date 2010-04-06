@@ -23,14 +23,10 @@ using System.IO;
 
 using Ximura;
 using Ximura.Data;
-
+using Ximura.Framework;
 using CH = Ximura.Common;
 using RH = Ximura.Reflection;
 using AH = Ximura.AttributeHelper;
-using Ximura.Framework;
-
-
-using Ximura.Framework;
 #endregion // using
 namespace Ximura.Data
 {
@@ -40,8 +36,8 @@ namespace Ximura.Data
     /// <typeparam name="CONT">The entity type.</typeparam>
     /// <typeparam name="DCONT">The entity scan type.</typeparam>
     public class CollectionBasePersistenceManager<CONT, DCONT, CONF> : PersistenceManagerCDSState<CONT, DCONT, CONF>
-        where CONT : Content, DCONT
-        where DCONT : Content
+        where CONT : class, DCONT
+        where DCONT : class, IXimuraContent
         where CONF : CommandConfiguration, new()
     {
         #region Declarations

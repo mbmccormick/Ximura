@@ -85,10 +85,6 @@
       <Project>{218ED92E-5D40-40DF-B6A2-11DEF3133589}</Project>
       <Name>Ximura Framework</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Ximura Security Data\Ximura Security Data.csproj">
-      <Project>{79671FEB-6E9F-4366-8A34-D4A75102C711}</Project>
-      <Name>Ximura Security Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Ximura\Ximura.csproj">
       <Project>{7C2684DD-A055-4A7A-88D6-EC5BAE28AEB2}</Project>
       <Name>Ximura</Name>

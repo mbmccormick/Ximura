@@ -41,6 +41,13 @@ namespace Ximura.Data
         Guid IDVersion { get;set;}
     }
 
+    public interface IXimuraContentSupportsCaching
+    {
+        ContentCacheOptions CacheOptions { get; }
+
+        int CacheExpiry { get; }
+    }
+
     public interface IXimuraContentSupportsDirty
     {
         /// <summary>

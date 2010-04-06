@@ -10,7 +10,7 @@
 //     Paul Stancer - initial implementation
 // *******************************************************************************
 #endregion
-﻿#region using
+#region using
 using System;
 using System.Data;
 using System.Data.SqlClient;
@@ -18,34 +18,62 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Drawing;
+using System.IO;
+using System.IO.Compression;
+using System.IO.IsolatedStorage;
 
 using Ximura;
 using Ximura.Data;
-
 using CH = Ximura.Common;
 using RH = Ximura.Reflection;
-using Ximura.Framework;
-
-
+using AH = Ximura.AttributeHelper;
 using Ximura.Framework;
 #endregion // using
 namespace Ximura.Data
 {
-    public class BaseCDSState : CDSState<CommandConfiguration, CDSStatePerformance>
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="CONT"></typeparam>
+    /// <typeparam name="DCONT"></typeparam>
+    /// <typeparam name="CONF"></typeparam>
+    [CDSStateActionPermit(CDSAction.Construct)]
+    [CDSStateActionPermit(CDSAction.Create)]
+    [CDSStateActionPermit(CDSAction.Read)]
+    [CDSStateActionPermit(CDSAction.Update)]
+    [CDSStateActionPermit(CDSAction.Delete)]
+    [CDSStateActionPermit(CDSAction.VersionCheck)]
+    [CDSStateActionPermit(CDSAction.ResolveReference)]
+    [CDSStateActionPermit(CDSAction.Browse)]
+    public class IsolatedStoragePersistenceManager<CONT, DCONT, CONF> : FileSystemPersistenceManager<CONT, DCONT, CONF>
+        where CONT : Content, DCONT
+        where DCONT : Content
+        where CONF : CommandConfiguration, new()
     {
         #region Constructors
         /// <summary>
         /// This is the default constructor.
         /// </summary>
-        public BaseCDSState() : this(null) { }
+        public IsolatedStoragePersistenceManager() : this(null) { }
         /// <summary>
         /// This is the component model constructor.
         /// </summary>
         /// <param name="container">The container</param>
-        public BaseCDSState(IContainer container)
+        public IsolatedStoragePersistenceManager(IContainer container)
             : base(container)
         {
+
         }
         #endregion // Constructors
+
+
+
+
+
+
+
+
+
     }
 }
