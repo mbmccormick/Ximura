@@ -304,5 +304,4 @@ namespace Ximura.Collections
         #endregion // Constructor
     }
     #endregion
-
 }

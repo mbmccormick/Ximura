@@ -123,9 +123,6 @@
     <Compile Include="Persistence Managers\PersistenceManagerCDSState.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Persistence Managers\PersistenceManagerCDSState_Reflection.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Persistence Managers\Resource Based\ResourceBasePersistenceManager.cs">
       <SubType>Component</SubType>
     </Compile>

@@ -312,12 +312,12 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Helper\ArrayHelper\ArrayHelper.cs" />
+    <Compile Include="Helper\ArrayHelper\ArrayHelper_Binary.cs" />
     <Compile Include="Helper\ArrayHelper\ArrayHelper_FindFirstPosition.cs" />
     <Compile Include="Helper\ArrayHelper\ArrayHelper_MatchAny.cs" />
     <Compile Include="Helper\ArrayHelper\ArrayHelper_MatchCollection.cs" />
     <Compile Include="Helper\ArrayHelper\ArrayHelper_MatchSequence.cs" />
     <Compile Include="Helper\ArrayHelper\ArrayHelper_MatchSkip.cs" />
-    <Compile Include="Helper\ArrayHelper\Binary.cs" />
     <Compile Include="Helper\ArrayHelper\MatchCollection.cs" />
     <Compile Include="Helper\ArrayHelper\MatchCollectionState.cs" />
     <Compile Include="Helper\ArrayHelper\MatchExceptionTerminator.cs" />

@@ -14,7 +14,6 @@
 using System;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -32,7 +31,10 @@ using AH = Ximura.AttributeHelper;
 #endregion // using
 namespace Ximura.Data
 {
-    public partial class PersistenceManagerCDSState<CONT, DCONT, CONF>
+    /// <summary>
+    /// This class provides extension methods for classes that implement IXimuraContent.
+    /// </summary>
+    public static class ContentHelper
     {
         #region CDSAttributesRetrieve(IXimuraContent data, TypeConverter conv)
         /// <summary>
@@ -41,7 +43,8 @@ namespace Ximura.Data
         /// <param name="data">The class to examine.</param>
         /// <param name="conv">A converter function to turn the value in to a string.</param>
         /// <returns>Returns an enumerable collection of attributes and values.</returns>
-        protected virtual IEnumerable<KeyValuePair<CDSAttributeAttribute, string>> CDSAttributesRetrieve(IXimuraContent data, TypeConverter conv)
+        public static IEnumerable<KeyValuePair<CDSAttributeAttribute, string>> CDSAttributesRetrieve(
+            this IXimuraContent data, TypeConverter conv)
         {
             List<KeyValuePair<PropertyInfo, CDSAttributeAttribute>> attrList =
                 AH.GetPropertyAttributes<CDSAttributeAttribute>(data.GetType());
@@ -77,7 +80,8 @@ namespace Ximura.Data
         /// <param name="data">The class to examine.</param>
         /// <param name="conv">A converter function to turn the value in to a string.</param>
         /// <returns>Returns an enumerable collection of attributes and values.</returns>
-        protected virtual IEnumerable<KeyValuePair<CDSReferenceAttribute, string>> CDSReferencesRetrieve(IXimuraContent data, TypeConverter conv)
+        public static IEnumerable<KeyValuePair<CDSReferenceAttribute, string>> CDSReferencesRetrieve(
+            this IXimuraContent data, TypeConverter conv)
         {
             List<KeyValuePair<PropertyInfo, CDSReferenceAttribute>> attrList =
                 AH.GetPropertyAttributes<CDSReferenceAttribute>(data.GetType());
@@ -100,6 +104,6 @@ namespace Ximura.Data
                 yield return new KeyValuePair<CDSReferenceAttribute, string>(reference.Value, value);
             }
         }
-        #endregion 
+        #endregion
     }
 }

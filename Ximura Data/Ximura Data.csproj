@@ -140,12 +140,14 @@
     <Compile Include="ContentDataStore\Interfaces\CDSResponse.cs" />
     <Compile Include="ContentDataStore\Interfaces\ICDSHelper.cs" />
     <Compile Include="ContentDataStore\Interfaces\ICDSHelperLegacy.cs" />
+    <Compile Include="ContentHelper.cs" />
     <Compile Include="ContentHolder.cs" />
     <Compile Include="Content_Attributes.cs" />
     <Compile Include="Content_Cache.cs" />
     <Compile Include="Content_Fragmentation.cs" />
     <Compile Include="Content_Helper.cs" />
     <Compile Include="Content_IEquatable.cs" />
+    <Compile Include="Content_Initialization.cs" />
     <Compile Include="Content_Load.cs" />
     <Compile Include="Content_Pooling.cs" />
     <Compile Include="Content_Properties.cs" />

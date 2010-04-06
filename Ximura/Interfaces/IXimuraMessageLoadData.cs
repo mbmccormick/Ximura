@@ -24,6 +24,9 @@ using Ximura.Data;
 #endregion
 namespace Ximura.Communication
 {
+    /// <summary>
+    /// This interface is used to provide a consistent interface for initializing an entity from a byte stream or array.
+    /// </summary>
     public interface IXimuraMessageLoadData
     {
         int Load(byte[] buffer, int offset, int count);
@@ -36,7 +39,7 @@ namespace Ximura.Communication
     }
 
     public interface IXimuraMessageLoadData<TERM>
-        where TERM: IXimuraMessageTermination
+        where TERM : IXimuraMessageTermination
     {
         int Load(TERM terminator, byte[] buffer, int offset, int count);
 

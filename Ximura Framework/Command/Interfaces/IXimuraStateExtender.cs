@@ -33,6 +33,10 @@ using Ximura.Framework;
 #endregion // using
 namespace Ximura.Framework
 {
+    #region IXimuraStateExtender
+    /// <summary>
+    /// This interface is used to extend a finite machine.
+    /// </summary>
     public interface IXimuraStateExtender
     {
         /// <summary>
@@ -63,10 +67,16 @@ namespace Ximura.Framework
 		/// <param name="value">The state enabled value.</param>
         void SetEnabled(IXimuraFSMState state, bool value);
     }
-
+    #endregion 
+    #region IXimuraStateExtender<ST> 
+    /// <summary>
+    /// This is the generic extender for the finite state machine.
+    /// </summary>
+    /// <typeparam name="ST">The finite state machine state.</typeparam>
     public interface IXimuraStateExtender<ST> : IXimuraStateExtender
         where ST : class, IXimuraFSMState
     {
 
     }
+    #endregion 
 }

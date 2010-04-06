@@ -107,10 +107,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Component\" />
     <Folder Include="Helper\Binary\" />
     <Folder Include="Helper\Common\" />
     <Folder Include="Helper\Locking\" />
     <Folder Include="Helper\Stream\" />
+    <Folder Include="Session\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

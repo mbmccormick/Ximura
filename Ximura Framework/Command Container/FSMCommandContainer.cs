@@ -39,7 +39,12 @@ namespace Ximura.Framework
         where COMM : class, IXimuraFSM, new()
         where STAT : class, IXimuraFSMState
     {
-        List<KeyValuePair<string, STAT>> mExtensionStates;
+        #region Declarations
+        /// <summary>
+        /// This is the list of extension states.
+        /// </summary>
+        protected List<KeyValuePair<string, STAT>> mExtensionStates;
+        #endregion 
         #region Constructor
         /// <summary>
         /// This is the default constructor.
@@ -47,7 +52,10 @@ namespace Ximura.Framework
         public FSMCommandContainer():this(null)
         {
         }
-
+        /// <summary>
+        /// This is the state extension constructor.
+        /// </summary>
+        /// <param name="states">A collection of extension states.</param>
         public FSMCommandContainer(IEnumerable<KeyValuePair<string, STAT>> states)
         {
             if (states != null)
@@ -66,6 +74,11 @@ namespace Ximura.Framework
         }
         #endregion
 
+        #region InternalStart()
+        /// <summary>
+        /// This override mimics the steps taken when starting an application. This is to 
+        /// enable the command to start in the correct environment,
+        /// </summary>
         protected override void InternalStart()
         {
             //Connect the components to the messaging architecture.
@@ -75,18 +88,21 @@ namespace Ximura.Framework
 
             mCommand.ExternalStatesAllow = mExtensionStates.Count > 0;
 
-            IXimuraStateExtenderService stEx = GetService<IXimuraStateExtenderService>();
+            IXimuraStateExtenderService stExServ = GetService<IXimuraStateExtenderService>();
 
-            IXimuraStateExtender<STAT> ex = (IXimuraStateExtender<STAT>)stEx.Resolve(mCommand.CommandID, typeof(STAT));
+            IXimuraStateExtender<STAT> stateEx = (IXimuraStateExtender<STAT>)stExServ.Resolve(mCommand.CommandID, typeof(STAT));
 
-            mExtensionStates.ForEach(a => ex.SetStateID(a.Value, a.Key));
+            mExtensionStates.ForEach(a => stateEx.SetStateID(a.Value, a.Key));
 
             CommandsStart();
 
             CommandExtender.CommandsNotify(typeof(XimuraServiceStatus), XimuraServiceStatus.Started);
         }
-
-
+        #endregion 
+        #region ExtensionStates
+        /// <summary>
+        /// This virtual method can be overriden to add states the collection.
+        /// </summary>
         protected virtual IEnumerable<KeyValuePair<string,STAT>> ExtensionStates
         {
             get
@@ -94,5 +110,7 @@ namespace Ximura.Framework
                 yield break;
             }
         }
+        #endregion 
+
     }
 }

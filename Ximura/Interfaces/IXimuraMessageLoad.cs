@@ -24,12 +24,18 @@ using Ximura.Data;
 #endregion
 namespace Ximura.Communication
 {
+    /// <summary>
+    /// This interface specifies whether the entity can be loaded.
+    /// </summary>
     public interface IXimuraMessageLoad
     {
         /// <summary>
-        /// This boolean property determines whether the message can be loaded.
+        /// This boolean property that specifies whether the message can be loaded.
         /// </summary>
         bool CanLoad { get; }
+        /// <summary>
+        /// This boolean property specifies whether the entity has been loaded.
+        /// </summary>
         bool Loaded { get; }
     }
 }

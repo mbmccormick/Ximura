@@ -24,7 +24,6 @@ namespace Ximura
     /// </summary>
     public static partial class ArrayHelper
     {
-        #region MatchSkip
         public static MatchState<TSource> MatchSkip<TSource, TMatch>(
             this IEnumerable<TSource> source, IEnumerable<TMatch> match, MatchState<TSource> state)
         {
@@ -55,7 +54,5 @@ namespace Ximura
         {
             return null;
         }
-        #endregion // MatchAny
-
     }
 }

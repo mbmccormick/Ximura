@@ -29,20 +29,14 @@ using Ximura;
 #endregion // using
 namespace Ximura
 {
-    /// <summary>
-    /// The <b>Common</b> class includes a number of useful utilities.
-    /// </summary>
-    public static partial class Binary
+    public static partial class ArrayHelper
     {
-
-        private static int FindCharCaseInsensitive(byte[] byData,
-            byte byteSearch, int intStart)
+        private static int FindCharCaseInsensitive(byte[] byData, byte byteSearch, int intStart)
         {
-            return FindCharCaseInsensitive(byData, byteSearch, intStart, false);
+            return FindCharCaseInsensitive(byData,byteSearch, intStart, false);
         }
 
-        private static int FindCharCaseInsensitive(byte[] byData,
-            byte byteSearch, int intStart, bool blnCaseInsensitive)
+        private static int FindCharCaseInsensitive(byte[] byData, byte byteSearch, int intStart, bool blnCaseInsensitive)
         {
             if (!blnCaseInsensitive)
                 return Array.IndexOf(byData, (byte)byteSearch, intStart);
@@ -67,22 +61,17 @@ namespace Ximura
 
         }
 
-        public static int BinarySearchExt(byte[] byData,
-            byte[] bySearch, int intSearchPosition)
+        public static int BinarySearchExt(this byte[] byData, byte[] bySearch, int intSearchPosition)
         {
-            return BinarySearchExt(byData, bySearch, intSearchPosition, byData.Length, false);
+            return byData.BinarySearchExt(bySearch, intSearchPosition, byData.Length, false);
         }
 
-        public static int BinarySearchExt(byte[] byData,
-            byte[] bySearch, int intSearchPosition,
-            int intLength)
+        public static int BinarySearchExt(this byte[] byData, byte[] bySearch, int intSearchPosition, int intLength)
         {
-            return BinarySearchExt(byData, bySearch, intSearchPosition, intLength, false);
+            return byData.BinarySearchExt(bySearch, intSearchPosition, intLength, false);
         }
 
-        public static int BinarySearchExt(byte[] byData,
-            byte[] bySearch, int intSearchPosition,
-            int intLength, bool blnIgnoreCase)
+        public static int BinarySearchExt(this byte[] byData, byte[] bySearch, int intSearchPosition, int intLength, bool blnIgnoreCase)
         {
 
             if (intSearchPosition < 0)

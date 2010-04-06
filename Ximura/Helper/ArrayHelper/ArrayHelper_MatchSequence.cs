@@ -24,7 +24,6 @@ namespace Ximura
     /// </summary>
     public static partial class ArrayHelper
     {
-        #region MatchSequence
         /// <summary>
         /// This method matches the sequence against the source array.
         /// </summary>
@@ -170,7 +169,6 @@ namespace Ximura
                 throw ex;
             }
         }
-        #endregion // MatchSequence
 
     }
 }

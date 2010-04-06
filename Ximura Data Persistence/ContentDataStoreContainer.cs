@@ -37,12 +37,16 @@ namespace Ximura.Data
         where CDS: ContentDataStore, new()
     {
         #region Constructor
+        /// <summary>
+        /// This is the default constructor.
+        /// </summary>
         public ContentDataStoreContainer():base(null)
         {
         }
-        #endregion 
-
-        #region Constructor
+        /// <summary>
+        /// This is the state extension constructor.
+        /// </summary>
+        /// <param name="states">A collection of states to add to the finite state machine.</param>
         public ContentDataStoreContainer(IEnumerable<KeyValuePair<string,ICDSState>> states):base(states)
         {
         }
