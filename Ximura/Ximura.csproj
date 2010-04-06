@@ -202,6 +202,8 @@
     <Compile Include="Collections\ConcurrentDictionary.cs" />
     <Compile Include="Collections\ConcurrentList.cs" />
     <Compile Include="Collections\ConcurrentHashSet.cs" />
+    <Compile Include="Collections\Exceptions\PoolObjectInvalidException.cs" />
+    <Compile Include="Collections\Exceptions\PoolObjectUnavailableException.cs" />
     <Compile Include="Collections\Graphs\Data\Edge.cs" />
     <Compile Include="Collections\Graphs\Data\EdgeAttribute.cs" />
     <Compile Include="Collections\Graphs\Data\EdgeReference.cs" />
@@ -221,6 +223,32 @@
     <Compile Include="Collections\Interfaces\IStack.cs" />
     <Compile Include="Collections\Interfaces\IVertexWindow.cs" />
     <Compile Include="Collections\Interfaces\IXimuraBinarySerializable.cs" />
+    <Compile Include="Collections\Interfaces\IXimuraPool.cs" />
+    <Compile Include="Collections\Interfaces\IXimuraPoolable.cs" />
+    <Compile Include="Collections\Interfaces\IXimuraPoolDeserializable.cs" />
+    <Compile Include="Collections\Interfaces\IXimuraPoolManager.cs" />
+    <Compile Include="Collections\Interfaces\IXimuraPoolManagerDirectAccess.cs" />
+    <Compile Include="Collections\Interfaces\IXimuraPoolReturnable.cs" />
+    <Compile Include="Collections\Pool\Object\PoolableObjectBase.cs" />
+    <Compile Include="Collections\Pool\Object\PoolableObjectPoolManagerDirectAccess.cs" />
+    <Compile Include="Collections\Pool\Object\PoolableReturnableObjectBase.cs" />
+    <Compile Include="Collections\Pool\Pool.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Collections\Pool\PoolBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Collections\Pool\PoolBaseParallel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Collections\Pool\PoolBaseParallel_Collection.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Collections\Pool\PoolBuffer.cs" />
+    <Compile Include="Collections\Pool\PoolInvocator.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Collections\Pool\PoolManager.cs" />
     <Compile Include="Collections\Trees\LockFreeTreeBase.cs" />
     <Compile Include="Collections\Trees\RedBlackTree\Data\TreeLockableVertex.cs" />
     <Compile Include="Collections\Trees\RedBlackTree\Data\RedBlackTreeLockableVertex.cs" />
@@ -289,6 +317,7 @@
     <Compile Include="Helper\ArrayHelper\ArrayHelper_MatchCollection.cs" />
     <Compile Include="Helper\ArrayHelper\ArrayHelper_MatchSequence.cs" />
     <Compile Include="Helper\ArrayHelper\ArrayHelper_MatchSkip.cs" />
+    <Compile Include="Helper\ArrayHelper\Binary.cs" />
     <Compile Include="Helper\ArrayHelper\MatchCollection.cs" />
     <Compile Include="Helper\ArrayHelper\MatchCollectionState.cs" />
     <Compile Include="Helper\ArrayHelper\MatchExceptionTerminator.cs" />
@@ -301,11 +330,13 @@
     <Compile Include="Helper\ArrayHelper\MatchTerminatorStatus.cs" />
     <Compile Include="Helper\Bit\BitHelper.cs" />
     <Compile Include="Helper\Bit\BitMask.cs" />
-    <Compile Include="Helper\Command.cs" />
-    <Compile Include="Helper\Binary.cs" />
-    <Compile Include="Helper\Common_DateTime.cs" />
-    <Compile Include="Helper\Common_Encoding.cs" />
-    <Compile Include="Helper\Common_Security.cs" />
+    <Compile Include="Helper\Common\Common.cs" />
+    <Compile Include="Helper\Common\Common_CommandArgs.cs" />
+    <Compile Include="Helper\Common\Common_DateTime.cs" />
+    <Compile Include="Helper\Common\Common_Encoding.cs" />
+    <Compile Include="Helper\Common\Common_Security.cs" />
+    <Compile Include="Helper\Common\Common_String.cs" />
+    <Compile Include="Helper\Common\Common_XML.cs" />
     <Compile Include="Helper\Linq\Linq_Compare.cs" />
     <Compile Include="Helper\Linq\Linq_Convert.cs" />
     <Compile Include="Helper\Linq\Linq_Currying.cs" />
@@ -321,6 +352,8 @@
     <Compile Include="Helper\Locking\LockableNullableWrapper.cs" />
     <Compile Include="Helper\Locking\LockableWrapper.cs" />
     <Compile Include="Helper\Prime.cs" />
+    <Compile Include="Helper\Reflection\Attribute.cs" />
+    <Compile Include="Helper\Reflection\Reflection.cs" />
     <Compile Include="Helper\Stream\StreamCounter.cs" />
     <Compile Include="Helper\Stream\StreamHelper.cs" />
     <Compile Include="Helper\Threading.cs" />
@@ -337,45 +370,11 @@
     <Compile Include="Exceptions\XimuraServiceException.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Helper\Attribute.cs" />
-    <Compile Include="Helper\Common.cs" />
-    <Compile Include="Helper\DateTime.cs" />
     <Compile Include="Helper\Linq\Linq.cs" />
-    <Compile Include="Helper\Reflection.cs" />
-    <Compile Include="Helper\String.cs" />
-    <Compile Include="Helper\XML.cs" />
-    <Compile Include="Interfaces\Messaging\IXimuraBinarySerialize.cs" />
-    <Compile Include="Interfaces\Messaging\IXimuraMessageLoad.cs" />
-    <Compile Include="Interfaces\Messaging\IXimuraMessageLoadData.cs" />
-    <Compile Include="Interfaces\Messaging\IXimuraMessageTermination.cs" />
-    <Compile Include="Pooling\Exception\PoolObjectInvalidException.cs" />
-    <Compile Include="Pooling\Exception\PoolObjectUnavailableException.cs" />
-    <Compile Include="Pooling\Interfaces\IXimuraPool.cs" />
-    <Compile Include="Pooling\Interfaces\IXimuraPoolable.cs" />
-    <Compile Include="Pooling\Interfaces\IXimuraPoolDeserializable.cs" />
-    <Compile Include="Pooling\Interfaces\IXimuraPoolManager.cs" />
-    <Compile Include="Pooling\Interfaces\IXimuraPoolManagerDirectAccess.cs" />
-    <Compile Include="Pooling\Interfaces\IXimuraPoolReturnable.cs" />
-    <Compile Include="Pooling\Object\PoolableObjectBase.cs" />
-    <Compile Include="Pooling\Object\PoolableObjectPoolManagerDirectAccess.cs" />
-    <Compile Include="Pooling\Object\PoolableReturnableObjectBase.cs" />
-    <Compile Include="Pooling\Pool.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Pooling\PoolBase.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Pooling\PoolBaseParallel.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Pooling\PoolBaseParallel_Collection.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Pooling\PoolBuffer.cs" />
-    <Compile Include="Pooling\PoolInvocator.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Pooling\PoolManager.cs" />
+    <Compile Include="Interfaces\IXimuraBinarySerialize.cs" />
+    <Compile Include="Interfaces\IXimuraMessageLoad.cs" />
+    <Compile Include="Interfaces\IXimuraMessageLoadData.cs" />
+    <Compile Include="Interfaces\IXimuraMessageTermination.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Session\CommandCallbacks.cs" />
     <Compile Include="Session\Contract\RQRSContract.cs" />
@@ -433,7 +432,6 @@
     <None Include="Properties\ximura.snk" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Collections\Pool\" />
     <Folder Include="_Documentation\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

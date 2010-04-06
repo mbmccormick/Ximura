@@ -27,7 +27,7 @@ namespace Ximura
     /// RQRSFolder is a composite content object that can contain multiple entity object along with numerous other
     /// named parameters.
     /// </summary>
-    public class RQRSFolder : PoolableReturnableObjectBase//, IXimuraPoolableObject
+    public class RQRSFolder : PoolableReturnableObjectBase
     {
         #region Declarations
         private Guid mID;

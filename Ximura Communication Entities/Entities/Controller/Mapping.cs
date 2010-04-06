@@ -14,7 +14,6 @@ using Ximura;
 using Ximura.Data;
 using Ximura.Communication;
 using CH = Ximura.Common;
-using XH = Ximura.XMLHelper;
 #endregion // using
 namespace Ximura.Communication
 {

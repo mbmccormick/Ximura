@@ -1,6 +1,6 @@
 ﻿#region Copyright
 // *******************************************************************************
-// Copyright (c) 2000-2009 Paul Stancer.
+// Copyright (c) 2000-2010 Paul Stancer.
 // All rights reserved. This program and the accompanying materials
 // are made available under the terms of the Eclipse Public License v1.0
 // which accompanies this distribution, and is available at
@@ -32,28 +32,32 @@ namespace Ximura
     /// <summary>
     /// The <b>Common</b> class includes a number of useful utilities.
     /// </summary>
-    public static class Command
+    public static partial class Common
     {
-        #region Command Parsing
+        #region CommandArgsParse(string[] Args)
         /// <summary>
         /// 
         /// </summary>
         /// <param name="Args"></param>
         /// <returns>Returns a dictionary containing the collection of parameters and values.</returns>
-        public static Dictionary<string, string> ParseArgs(string[] Args)
+        public static Dictionary<string, string> CommandArgsParse(string[] Args)
         {
-            return ParseArgs(Args, false);
+            return CommandArgsParse(Args, false);
         }
+        #endregion // CommandArgsParse(string[] Args)
+        #region CommandArgsParse(string[] Args, bool throwErrors)
         /// <summary>
         /// 
         /// </summary>
         /// <param name="Args"></param>
         /// <param name="throwErrors"></param>
         /// <returns>Returns a dictionary containing the collection of parameters and values.</returns>
-        public static Dictionary<string, string> ParseArgs(string[] Args, bool throwErrors)
+        public static Dictionary<string, string> CommandArgsParse(string[] Args, bool throwErrors)
         {
-            return ParseArgs(Args, @"/", @":", throwErrors);
+            return CommandArgsParse(Args, @"/", @":", throwErrors);
         }
+        #endregion // CommandArgsParse(string[] Args, bool throwErrors)
+        #region CommandArgsParse(string[] Args, string strStart, bool throwErrors)
         /// <summary>
         /// 
         /// </summary>
@@ -61,10 +65,12 @@ namespace Ximura
         /// <param name="strStart"></param>
         /// <param name="throwErrors"></param>
         /// <returns>Returns a dictionary containing the collection of parameters and values.</returns>
-        public static Dictionary<string, string> ParseArgs(string[] Args, string strStart, bool throwErrors)
+        public static Dictionary<string, string> CommandArgsParse(string[] Args, string strStart, bool throwErrors)
         {
-            return ParseArgs(Args, strStart, @":", throwErrors);
+            return CommandArgsParse(Args, strStart, @":", throwErrors);
         }
+        #endregion // CommandArgsParse(string[] Args, string strStart, bool throwErrors)
+        #region CommandArgsParse(string[] Args, string strStart, string strDelim, bool throwErrors)
         /// <summary>
         /// 
         /// </summary>
@@ -73,7 +79,7 @@ namespace Ximura
         /// <param name="strDelim"></param>
         /// <param name="throwErrors"></param>
         /// <returns>Returns a dictionary containing the collection of parameters and values.</returns>
-        public static Dictionary<string, string> ParseArgs(string[] Args, string strStart, string strDelim, bool throwErrors)
+        public static Dictionary<string, string> CommandArgsParse(string[] Args, string strStart, string strDelim, bool throwErrors)
         {
             //	This function parses the command line arguments to find the correct type
             //	based on the syntax /strOption:[strReturnData]
@@ -119,6 +125,7 @@ namespace Ximura
             return data;
 
         }
+        #endregion // CommandArgsParse(string[] Args, string strStart, string strDelim, bool throwErrors)
 
         private static void ParseData(string strData, out string strKey,
             out string strValue, string strStart, string strDelim)
@@ -154,7 +161,6 @@ namespace Ximura
 
 
         }
-        #endregion
 
     }
 }

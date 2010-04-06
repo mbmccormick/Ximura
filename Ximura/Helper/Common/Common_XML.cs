@@ -1,6 +1,6 @@
 ﻿#region Copyright
 // *******************************************************************************
-// Copyright (c) 2000-2009 Paul Stancer.
+// Copyright (c) 2000-2010 Paul Stancer.
 // All rights reserved. This program and the accompanying materials
 // are made available under the terms of the Eclipse Public License v1.0
 // which accompanies this distribution, and is available at
@@ -10,26 +10,30 @@
 //     Paul Stancer - initial implementation
 // *******************************************************************************
 #endregion
-﻿#region using
+#region using
 using System;
+using System.Text;
 using System.IO;
-using System.Data;
-using System.Data.SqlClient;
+using System.Security;
+using System.Reflection;
+using System.ComponentModel;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text;
+using System.Globalization;
+using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
+using System.Threading;
+
+using Ximura;
 using System.Xml;
-using System.Xml.Schema;
-using System.Xml.XPath;
-using System.Xml.Xsl;
 #endregion // using
 namespace Ximura
 {
     /// <summary>
-    /// The XML Helper library is used to provide a set of reusable methods for manipulation XML Document information.
+    /// The <b>Common</b> class includes a number of useful utilities.
     /// </summary>
-    public static class XMLHelper
+    public static partial class Common
     {
         #region XmlMappingGet
         public static T XmlMappingGet<T>(XmlDocument XmlDataDoc, XmlNamespaceManager NSM, string xPath, Converter<string, T> convert)

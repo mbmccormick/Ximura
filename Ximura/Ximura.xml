@@ -432,512 +432,6 @@
             <param name="convert">The conversion function.</param>
             <returns>Returns a enumeration of converted items.</returns>
         </member>
-        <member name="T:Ximura.Common">
-            <summary>
-            The <b>Common</b> class includes a number of useful utilities.
-            </summary>
-            <summary>
-            The <b>Common</b> class includes a number of useful utilities.
-            </summary>
-            <summary>
-            The <b>Common</b> class includes a number of useful utilities.
-            </summary>
-            <summary>
-            The <b>Common</b> class includes a number of useful utilities.
-            </summary>
-        </member>
-        <member name="M:Ximura.Common.ConvertHexStringToBase64(System.String)">
-            <summary>
-            Converting a hex string to base 64 string
-            </summary>
-            <param name="HexString"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Ximura.Common.ConvertBase64ToHexString(System.String)">
-            <summary>
-            Converts a Base64 string in to a hex string.
-            </summary>
-            <param name="base64String">The base64 string.</param>
-            <returns>The hex string.</returns>
-        </member>
-        <member name="M:Ximura.Common.ConvertStringToByte(System.String)">
-            <summary>
-            Converting a string to byte[] using UTF8 encoding
-            </summary>
-            <param name="stringToHash"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Ximura.Common.ComputeHash(System.String)">
-            <summary>
-            Function to hash a string by default hash algorithm (MD5)
-            </summary>
-            <param name="stringToHash">String to hash</param>
-            <returns>Hashed string</returns>
-        </member>
-        <member name="M:Ximura.Common.ComputeHash(System.String,Ximura.Common.HashAlgorithmType)">
-            <summary>
-            Function to hash a string by specific hash algorithm
-            </summary>
-            <param name="stringToHash">String to hash</param>
-            <param name="hashType">Hash Algorithm Type</param>
-            <returns>Hashed string</returns>
-        </member>
-        <member name="M:Ximura.Common.ComputeHash(System.Byte[])">
-            <summary>
-            Function to hash a byte[] by default hash algorithm (MD5) 
-            </summary>
-            <param name="HashValue">Byte[] to hash</param>
-            <returns>Hashed byte[]</returns>
-        </member>
-        <member name="M:Ximura.Common.ComputeHash(System.Byte[],Ximura.Common.HashAlgorithmType)">
-            <summary>
-            Function to hash a byte[] by specific hash algorithm
-            </summary>
-            <param name="HashValue">Byte[] to hash</param>
-            <param name="hashType">Hash Algorithm Type</param>
-            <returns>Hashed byte[]</returns>
-        </member>
-        <member name="M:Ximura.Common.CompareByteArray(System.Byte[],System.Byte[])">
-            <summary>
-            This method compares two byte arrays and returns true is the two are equal.
-            </summary>
-            <param name="Array1"></param>
-            <param name="Array2"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Ximura.Common.ConcatenateByteArray(System.Byte[],System.Byte[])">
-            <summary>
-            This method concatenates two byte arrays and returns the concatenation.
-            </summary>
-            <param name="Array1"></param>
-            <param name="Array2"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Ximura.Common.CreateSeedHash(System.String,System.String)">
-            <summary>
-            Create a salted password given the salt value.
-            </summary>
-            <param name="seedValue">The seed as a byte array</param>
-            <param name="unsaltedPassword">The password as a string</param>
-            <returns>A hash byte array</returns>
-        </member>
-        <member name="M:Ximura.Common.CreateSeedHash(System.Byte[],System.Byte[])">
-            <summary>
-            Create a salted password given the salt value.
-            </summary>
-            <param name="seedValue">The seed as a byte array</param>
-            <param name="unsaltedPassword">The password as a UTF-8 byte array</param>
-            <returns>A hash byte array</returns>
-        </member>
-        <member name="M:Ximura.Common.SelectHashAlgorithm(System.String)">
-            <summary>
-            This method selects the appropriate hash algorithm based on the value submitted.
-            </summary>
-            <param name="hashType">The hash algorithm identifier.</param>
-            <returns>Returns the selected hash algorithm.</returns>
-        </member>
-        <member name="M:Ximura.Common.Enc_EncodeByteToHex(System.Byte[])">
-            <summary>
-            This function converts a binary array in to a hexadecimal string.
-            </summary>
-            <param name="data">The byte array to convert.</param>
-            <returns>A string that represents the byte array as hexadecimal</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">This exception 
-            is thrown if the offset and the length and greater than the 
-            binary array length.</exception>
-        </member>
-        <member name="M:Ximura.Common.Enc_EncodeByteToHex(System.Byte[],System.Int32,System.Int32,System.Boolean)">
-            <summary>
-            This function converts a binary array in to a hexadecimal string.
-            </summary>
-            <param name="data">The byte array to convert.</param>
-            <param name="offset">The starting point in the byte array.</param>
-            <param name="length">The number of bytes to convert.</param>
-            <returns>A string that represents the byte array as hexadecimal</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">This exception 
-            is thrown if the offset and the length and greater than the 
-            binary array length.</exception>
-        </member>
-        <member name="M:Ximura.Common.Enc_DecodeHexAsByte(System.String,System.Byte[],System.Int32,System.Int32)">
-            <summary>
-            This method decodes a hex string and inserts it into a byte array.
-            </summary>
-            <param name="HexString">The hex string that you wish to parse.</param>
-            <param name="data">The byte array that you wish to be updated</param>
-            <param name="offset">The point within the byte array that the method should start inserting encoded data.</param>
-            <param name="length">The number of decoded bytes that the method should insert in the byte array.</param>
-            <exception cref="T:System.ArgumentException">This exception is thrown if the hex 
-            string is not divisible by 2. All strings should be left padded with 0 to ensure
-            that they are divisible by 2.</exception>
-        </member>
-        <member name="M:Ximura.Common.Enc_DecodeHexString(System.String)">
-            <summary>
-            This method decodes a hex string and returns it as a byte array.
-            </summary>
-            <param name="HexString">The hex string to decode.</param>
-            <returns>A byte array containing the bytes corresponding to the decoded string.</returns>
-            <exception cref="T:System.ArgumentException">This exception is thrown if the hex 
-            string is not divisible by 2. All strings should be left padded with 0 to ensure
-            that they are divisible by 2.</exception>
-        </member>
-        <member name="M:Ximura.Common.IsDateTime(System.String)">
-            <summary>
-            This method tests whether a string is a DateTime.
-            </summary>
-            <param name="dateValue">The date value.</param>
-            <returns>Returns true if the string is a date.</returns>
-        </member>
-        <member name="M:Ximura.Common.IsDateTime(System.String,System.String)">
-            <summary>
-            This method tests whether a string is a DateTime.
-            </summary>
-            <param name="dateValue">The date value.</param>
-            <param name="timeValue">The time value.</param>
-            <returns>Returns true if the string is a date.</returns>
-        </member>
-        <member name="M:Ximura.Common.IsDateTime(System.String,System.String,System.Nullable{System.DateTime}@)">
-            <summary>
-            This method tests whether a string is a DateTime.
-            </summary>
-            <param name="dateValue">The date value.</param>
-            <param name="timeValue">The time value.</param>
-            <returns>Returns true if the string is a date.</returns>
-        </member>
-        <member name="M:Ximura.Common.ConvertToRFC1123DateString(System.DateTime)">
-            <summary>
-            This method converts a datetime parameter to an RFC1123 string formar.
-            </summary>
-            <param name="dt">The date time.</param>
-            <returns>The string representation.</returns>
-        </member>
-        <member name="M:Ximura.Common.ToRFC1123String(System.DateTime)">
-            <summary>
-            This method converts a datetime parameter to an RFC1123 string formar.
-            </summary>
-            <param name="dt">The date time.</param>
-            <returns>The string representation.</returns>
-        </member>
-        <member name="M:Ximura.Common.ConvertToISO8601DateString(System.String)">
-            <summary>
-            Function to convert string to ISO8601 datetime string yyyy-MM-ddTHH:mm:ss
-            </summary>
-            <param name="strDateTime">string in special format ( yyyyMMdd | yyyyMMddHH | yyyyMMddHHmm | yyyyMMddHHmmss</param>		
-            <returns>ISO8601 datetime string</returns>
-        </member>
-        <member name="M:Ximura.Common.ConvertToISO8601DateString(System.DateTime)">
-            <summary>
-            Function to convert datetime to ISO8601 datetime string yyyy-MM-ddTHH:mm:ss
-            </summary>
-            <param name="dtDateTime">datetime</param>		
-            <returns>ISO8601 datetime string</returns>
-        </member>
-        <member name="M:Ximura.Common.AdjustCentury(System.String)">
-            <summary>
-            This method adjusts the incoming 6 digit date to a 8 digit date with the century included.
-            </summary>
-            <param name="strDate">date</param>		
-            <returns>8-digit string</returns>
-        </member>
-        <member name="M:Ximura.Common.GuessYear(System.Int32)">
-            <summary>
-            Guess the Year based on the Month and the Current Year
-            </summary>
-            <param name="Month">Month</param>
-            <returns>Year</returns>
-        </member>
-        <member name="M:Ximura.Common.GuessCentury(System.Int32)">
-            <summary>
-            Guess the Century of the 2-digit Year, calculated based on the current century +/- 50 years
-            </summary>
-            <param name="Year">Year</param>
-            <returns>Century</returns>
-        </member>
-        <member name="M:Ximura.Common.ASCByt(System.String)">
-            <summary>
-            This converts a string in to an ASCII byte array. This method
-            adds a CRLF at the end of the string by default.
-            </summary>
-            <param name="strData">The string you wish to convert.</param>
-            <returns>A byte array containing an ASCII representation of the string.</returns>
-        </member>
-        <member name="M:Ximura.Common.ASCByt(System.String,System.Boolean)">
-            <summary>
-            This converts a string in to an ASCII byte array.
-            </summary>
-            <param name="strData">The string you wish to convert.</param>
-            <param name="blnAddCRLF">Select true if you want a new line appended at the end.</param>
-            <returns>A byte array containing an ASCII representation of the string.</returns>
-        </member>
-        <member name="M:Ximura.Common.IsNumeric(System.String)">
-            <summary>
-            This method tests whether a string is numeric.
-            </summary>
-            <param name="value"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Ximura.Common.CreatePasswordHash(System.String,System.String)">
-            <summary>
-            This method creates a password hash from a byte64 encoded text seed and plain text password
-            </summary>
-            <param name="Seed"></param>
-            <param name="Pass"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Ximura.Common.SplitOnChars``2(System.String,System.Converter{System.String,``0},System.Converter{System.String,``1},System.Char[],System.Char[])">
-            <summary>
-            This method is used to split string pairs.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <typeparam name="U"></typeparam>
-            <param name="toSplit"></param>
-            <param name="convertT"></param>
-            <param name="convertU"></param>
-            <param name="split1"></param>
-            <param name="split2"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Ximura.Common.SplitOnCharsUnique``2(System.String,System.Converter{System.String,``0},System.Converter{System.String,``1},System.Char[],System.Char[])">
-            <summary>
-            
-            </summary>
-            <typeparam name="T"></typeparam>
-            <typeparam name="U"></typeparam>
-            <param name="toSplit"></param>
-            <param name="convertT"></param>
-            <param name="convertU"></param>
-            <param name="split1"></param>
-            <param name="split2"></param>
-            <returns></returns>
-        </member>
-        <member name="T:Ximura.Common.HashAlgorithmType">
-            <summary>
-            Enumeration list for hash algorithms
-            </summary>
-        </member>
-        <member name="T:Ximura.Common.HTTPCodes">
-            <summary>
-            This class provides shortcuts to the HTTP codes.
-            </summary>
-        </member>
-        <member name="M:Ximura.Common.HTTPCodes.IsHTTPError(System.String)">
-            <summary>
-            This method returns true if the status is an HTTP error.
-            </summary>
-            <param name="status">The status to check.</param>
-            <returns>Returns true if the status code denotes an error.</returns>
-        </member>
-        <member name="M:Ximura.Common.HTTPCodes.IsServerError(System.String)">
-            <summary>
-            This method returns true if the status code is an error.
-            </summary>
-            <param name="status">The status to check.</param>
-            <returns>Returns true if the status code denotes an error.</returns>
-        </member>
-        <member name="P:Ximura.Common.HTTPCodes.Continue_100">
-            <summary>
-            100: Continue
-            </summary>
-        </member>
-        <member name="P:Ximura.Common.HTTPCodes.SwitchingProtocols_101">
-            <summary>
-            101: Switching Protocols
-            </summary>
-        </member>
-        <member name="P:Ximura.Common.HTTPCodes.OK_200">
-            <summary>
-            200: OK
-            </summary>
-        </member>
-        <member name="P:Ximura.Common.HTTPCodes.Created_201">
-            <summary>
-            201: Created
-            </summary>
-        </member>
-        <member name="P:Ximura.Common.HTTPCodes.Accepted_202">
-            <summary>
-            202: Accepted
-            </summary>
-        </member>
-        <member name="P:Ximura.Common.HTTPCodes.NonAuthoritative_203">
-            <summary>
-            203: Non Authoritative
-            </summary>
-        </member>
-        <member name="P:Ximura.Common.HTTPCodes.NoContent_204">
-            <summary>
-            204: No Content
-            </summary>
-        </member>
-        <member name="P:Ximura.Common.HTTPCodes.ResetContent_205">
-            <summary>
-            205: Reset Content
-            </summary>
-        </member>
-        <member name="P:Ximura.Common.HTTPCodes.PartialContent_206">
-            <summary>
-            206: Partial Content
-            </summary>
-        </member>
-        <member name="P:Ximura.Common.HTTPCodes.MultipleChoices_300">
-            <summary>
-            300: Multiple Choices
-            </summary>
-        </member>
-        <member name="P:Ximura.Common.HTTPCodes.MovedPermanently_301">
-            <summary>
-            301: Moved Permanently
-            </summary>
-        </member>
-        <member name="P:Ximura.Common.HTTPCodes.Found_302">
-            <summary>
-            302: Found
-            </summary>
-        </member>
-        <member name="P:Ximura.Common.HTTPCodes.SeeOther_303">
-            <summary>
-            303: See Other
-            </summary>
-        </member>
-        <member name="P:Ximura.Common.HTTPCodes.NotModified_304">
-            <summary>
-            304: Not Modified
-            </summary>
-        </member>
-        <member name="P:Ximura.Common.HTTPCodes.UseProxy_305">
-            <summary>
-            305: Use Proxy
-            </summary>
-        </member>
-        <member name="P:Ximura.Common.HTTPCodes.ReDirectionCommandNotUsed_306">
-            <summary>
-            306: Redirection Command Not Used
-            </summary>
-        </member>
-        <member name="P:Ximura.Common.HTTPCodes.MovedTemporarily_307">
-            <summary>
-            307: Moved Temporarily
-            </summary>
-        </member>
-        <member name="P:Ximura.Common.HTTPCodes.BadRequest_400">
-            <summary>
-            400: Bad Request
-            </summary>
-        </member>
-        <member name="P:Ximura.Common.HTTPCodes.Unauthorized_401">
-            <summary>
-            401: Unauthorized
-            </summary>
-        </member>
-        <member name="P:Ximura.Common.HTTPCodes.PaymentRequired_402">
-            <summary>
-            402: Payment Required
-            </summary>
-        </member>
-        <member name="P:Ximura.Common.HTTPCodes.Forbidden_403">
-            <summary>
-            403: Forbidden
-            </summary>
-        </member>
-        <member name="P:Ximura.Common.HTTPCodes.NotFound_404">
-            <summary>
-            404: Not Found
-            </summary>
-        </member>
-        <member name="P:Ximura.Common.HTTPCodes.MethodNotAllowed_405">
-            <summary>
-            405: Method Not Allowed
-            </summary>
-        </member>
-        <member name="P:Ximura.Common.HTTPCodes.NotAcceptable_406">
-            <summary>
-            406: Not Acceptable
-            </summary>
-        </member>
-        <member name="P:Ximura.Common.HTTPCodes.ProxyAuthenticationRequired_407">
-            <summary>
-            407: Proxy Authentication Required
-            </summary>
-        </member>
-        <member name="P:Ximura.Common.HTTPCodes.RequestTimeout_408">
-            <summary>
-            408: Request Timeout
-            </summary>
-        </member>
-        <member name="P:Ximura.Common.HTTPCodes.Conflict_409">
-            <summary>
-            409: Conflict
-            </summary>
-        </member>
-        <member name="P:Ximura.Common.HTTPCodes.Gone_410">
-            <summary>
-            410: Gone
-            </summary>
-        </member>
-        <member name="P:Ximura.Common.HTTPCodes.LengthRequired_411">
-            <summary>
-            411: Length Required
-            </summary>
-        </member>
-        <member name="P:Ximura.Common.HTTPCodes.PreconditionFailed_412">
-            <summary>
-            412: Precondition Failed
-            </summary>
-        </member>
-        <member name="P:Ximura.Common.HTTPCodes.RequestEntityTooLarge_413">
-            <summary>
-            413: Request Entity Too Large
-            </summary>
-        </member>
-        <member name="P:Ximura.Common.HTTPCodes.RequestURITooLong_414">
-            <summary>
-            414: Request URI Too Long
-            </summary>
-        </member>
-        <member name="P:Ximura.Common.HTTPCodes.UnsupportedMediaType_415">
-            <summary>
-            415: Unsupported Media Type
-            </summary>
-        </member>
-        <member name="P:Ximura.Common.HTTPCodes.RequestedRangeNotSatisfiable_416">
-            <summary>
-            416: Requested Range Not Satisfiable
-            </summary>
-        </member>
-        <member name="P:Ximura.Common.HTTPCodes.ExpectationFailed_417">
-            <summary>
-            417: Expectation Failed
-            </summary>
-        </member>
-        <member name="P:Ximura.Common.HTTPCodes.InternalServerError_500">
-            <summary>
-            500: Internal Server Error
-            </summary>
-        </member>
-        <member name="P:Ximura.Common.HTTPCodes.NotImplemented_501">
-            <summary>
-            501: Not Implemented
-            </summary>
-        </member>
-        <member name="P:Ximura.Common.HTTPCodes.BadGateway_502">
-            <summary>
-            502: Bad Gateway
-            </summary>
-        </member>
-        <member name="P:Ximura.Common.HTTPCodes.ServiceUnavailable_503">
-            <summary>
-            503: Service Unavailable
-            </summary>
-        </member>
-        <member name="P:Ximura.Common.HTTPCodes.GatewayTimeout_504">
-            <summary>
-            504: Gateway Timeout
-            </summary>
-        </member>
-        <member name="P:Ximura.Common.HTTPCodes.VersionNotSupported_505">
-            <summary>
-            505: Version No tSupported
-            </summary>
-        </member>
         <member name="T:Ximura.ArrayHelper">
             <summary>
             This static class provides a number of extension method for array objects.
@@ -1040,6 +534,16 @@
             <param name="count">The number of items to process.</param>
             <param name="predicate">The match condition.</param>
             <returns>Return the position in the list, or -1 if the predicate cannot be matched.</returns>
+        </member>
+        <member name="T:Ximura.IXimuraServiceParentSettings">
+            <summary>
+            This interface is implemented by commands that can be nested in other commands.
+            </summary>
+        </member>
+        <member name="P:Ximura.IXimuraServiceParentSettings.ParentCommandName">
+            <summary>
+            The parent command service name.
+            </summary>
         </member>
         <member name="T:Ximura.IXimuraComponentBase">
             <summary>
@@ -1815,121 +1319,6 @@
         <member name="F:Ximura.SCMJobCompletionType.SignalOrTimeout">
             <summary>
             This property specifies 
-            </summary>
-        </member>
-        <member name="T:Ximura.IXimuraPool">
-            <summary>
-            This interface is implemented by the object pool
-            </summary>
-        </member>
-        <member name="M:Ximura.IXimuraPool.Get">
-            <summary>
-            This method returns an object of the specified type.
-            </summary>
-            <returns>An object of the pool type.</returns>
-        </member>
-        <member name="M:Ximura.IXimuraPool.Get(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <summary>
-            This method returns an object of the specified type, with the deserialized data.
-            </summary>
-            <param name="info">The serialization info.</param>
-            <param name="context">The serialization context.</param>
-            <returns>An object of the pool type.</returns>
-        </member>
-        <member name="M:Ximura.IXimuraPool.Return(System.Object)">
-            <summary>
-            This method returns an object to the pool.
-            </summary>
-            <param name="value">The object to return to the pool.</param>
-        </member>
-        <member name="P:Ximura.IXimuraPool.Available">
-            <summary>
-            This method returns true if there are objects available in the pool.
-            </summary>
-        </member>
-        <member name="P:Ximura.IXimuraPool.Max">
-            <summary>
-            This is the maximum pool size, a value of -1 specifies no maximum size.
-            </summary>
-        </member>
-        <member name="P:Ximura.IXimuraPool.Min">
-            <summary>
-            This is the minimum pool size.
-            </summary>
-        </member>
-        <member name="P:Ximura.IXimuraPool.Prefered">
-            <summary>
-            This is prefered pool size.
-            </summary>
-        </member>
-        <member name="P:Ximura.IXimuraPool.Count">
-            <summary>
-            This property returns the number of active objects.
-            </summary>
-        </member>
-        <member name="P:Ximura.IXimuraPool.IsBuffered">
-            <summary>
-            This property indicates whether the pool is buffered. Buffered pools are shared amongst multiple 
-            clients and do not expose the PoolManager.
-            </summary>
-        </member>
-        <member name="P:Ximura.IXimuraPool.PoolManager">
-            <summary>
-            This property is used to set the pool manager for the specific pool.
-            </summary>
-        </member>
-        <member name="T:Ximura.IXimuraPool`1">
-            <summary>
-            This interface is implemented by the generic object pool
-            </summary>
-        </member>
-        <member name="M:Ximura.IXimuraPool`1.Get">
-            <summary>
-            The Get() method takes an object from the pool, if 
-            there are no objects available the pool will create a new object.
-            </summary>
-            <returns>An object of the type defined in the pool definition.</returns>
-        </member>
-        <member name="M:Ximura.IXimuraPool`1.Get(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <summary>
-            The Get() method takes an object from the pool, if 
-            there are no objects available the pool will create a new object.
-            </summary>
-            <param name="info">The serialization info.</param>
-            <param name="context">The serialization context.</param>
-            <returns>An object of the type defined in the pool definition, with the serialization data.</returns>
-        </member>
-        <member name="M:Ximura.IXimuraPool`1.Return(`0)">
-            <summary>
-            This method returns an object to the pool.
-            </summary>
-            <param name="value">The object to return to the pool.</param>
-        </member>
-        <member name="M:Ximura.IXimuraPoolInitialize`1.Get(System.Action{`0})">
-            <summary>
-            The Get() method takes an object from the pool, if 
-            there are no objects available the pool will create a new object.
-            </summary>
-            <returns>An object of the type defined in the pool definition.</returns>
-        </member>
-        <member name="M:Ximura.IXimuraPoolInitialize`1.Get(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext,System.Action{`0})">
-            <summary>
-            The Get() method takes an object from the pool, if 
-            there are no objects available the pool will create a new object.
-            </summary>
-            <param name="info">The serialization info.</param>
-            <param name="context">The serialization context.</param>
-            <returns>An object of the type defined in the pool definition, with the serialization data.</returns>
-        </member>
-        <member name="T:Ximura.IXimuraPoolBuffer">
-            <summary>
-            This is the pool buffer interface. This interface is used by the pool managers 
-            to reset the references when closing down.
-            </summary>
-        </member>
-        <member name="M:Ximura.IXimuraPoolBuffer.ResetBuffer">
-            <summary>
-            This method resets the buffer and it's connection to the underlying object pool.
             </summary>
         </member>
         <member name="T:Ximura.MatchTerminator`2">
@@ -3177,44 +2566,6 @@
             This is the static constructor.
             </summary>
         </member>
-        <member name="T:Ximura.StringHelper">
-            <summary>
-            Provide special functionality to deal with string
-            </summary>
-        </member>
-        <member name="M:Ximura.StringHelper.XmlDecode(System.String)">
-            <summary>
-            Handle the special xml decode.
-            </summary>
-            <param name="source"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Ximura.StringHelper.StringToTypedValue(System.String,System.Type,System.Globalization.CultureInfo)">
-            <summary>
-            Turns a string into a typed value. Useful for auto-conversion routines
-            like form variable or XML parsers.
-            <seealso>Class wwUtils</seealso>
-            </summary>
-            <param name="SourceString">
-            The string to convert from
-            </param>
-            <param name="TargetType">
-            The type to convert to
-            </param>
-            <param name="Culture">
-            Culture used for numeric and datetime values.
-            </param>
-            <returns>object. Throws exception if it cannot be converted.</returns>
-        </member>
-        <member name="M:Ximura.StringHelper.StringToTypedValue(System.String,System.Type)">
-            <summary>
-            Turns a string into a typed value. Useful for auto-conversion routines
-            like form variable or XML parsers.
-            </summary>
-            <param name="SourceString">The input string to convert</param>
-            <param name="TargetType">The Type to convert it to</param>
-            <returns>object reference. Throws Exception if type can not be converted</returns>
-        </member>
         <member name="T:Ximura.StreamCounter">
             <summary>
             This wrapper stream is used to count the number of bytes being written to the underlying stream.
@@ -3293,11 +2644,6 @@
             Returns true if the item is locked.
             </summary>
             <returns>Returns true if the item is locked.</returns>
-        </member>
-        <member name="T:Ximura.Binary">
-            <summary>
-            The <b>Common</b> class includes a number of useful utilities.
-            </summary>
         </member>
         <member name="T:Ximura.MatchCollection`2">
             <summary>
@@ -4393,320 +3739,6 @@
             This is the request ID.
             </summary>
         </member>
-        <member name="T:Ximura.PoolInvocator`1">
-            <summary>
-            This is the base object pool. 
-            </summary>
-            <typeparam name="T">The pool type.</typeparam>
-        </member>
-        <member name="T:Ximura.PoolBase`1">
-            <summary>
-            The PoolBase class is used to hold a collection of objects that can be re-used.
-            </summary>
-            <typeparam name="T">The object pool type.</typeparam>
-        </member>
-        <member name="F:Ximura.PoolBase`1.mAvailable">
-            <summary>
-            This queue contains a list of available object waiting to be assigned.
-            </summary>
-        </member>
-        <member name="M:Ximura.PoolBase`1.#ctor">
-            <summary>
-            The default constructor.
-            </summary>
-        </member>
-        <member name="M:Ximura.PoolBase`1.#ctor(System.Int32,System.Int32,System.Int32)">
-            <summary>
-            This constructor sets the pool create parameters.
-            </summary>
-            <param name="min">The initial set of objects.</param>
-            <param name="max">The maximum set of object for the pool. Set this to -1 is you do not 
-            wish to set a maximum value.</param>
-            <param name="prefer">The prefered number of object for the pool.</param>
-        </member>
-        <member name="M:Ximura.PoolBase`1.InitializePool">
-            <summary>
-            This method initiates the object pool with the required number of objects.
-            </summary>
-        </member>
-        <member name="M:Ximura.PoolBase`1.Dispose(System.Boolean)">
-            <summary>
-            This is the component model Dispose method.
-            </summary>
-            <param name="disposing"></param>
-        </member>
-        <member name="M:Ximura.PoolBase`1.CreateNewPoolObject">
-            <summary>
-            This method creates a new pool object of type T.
-            </summary>
-            <returns>Returns the new object.</returns>
-        </member>
-        <member name="M:Ximura.PoolBase`1.ResetPoolObject(`0)">
-            <summary>
-            This method is used to reset the pool object. You should override this method if
-            you wish to set particular values.
-            </summary>
-            <param name="obj">The object to reset.</param>
-        </member>
-        <member name="M:Ximura.PoolBase`1.ResetPoolObject(`0,System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <summary>
-            This method is used to reset the pool object from the serialization information.
-            You should override this method if you wish to set particular values.
-            </summary>
-            <param name="obj">The object to reset.</param>
-            <param name="info">The serialization info.</param>
-            <param name="context">The context.</param>
-        </member>
-        <member name="M:Ximura.PoolBase`1.Ximura#IXimuraPool#Get">
-            <summary>
-            This is the default get() accessor.
-            </summary>
-            <returns>An object of the type defined in the pool.</returns>
-        </member>
-        <member name="M:Ximura.PoolBase`1.Get">
-            <summary>
-            The Get() method takes an object from the pool, if 
-            there are no objects available the pool will create a new object.
-            </summary>
-            <returns>An object of the type defined in the pool.</returns>
-            <exception cref="T:System.ObjectDisposedException">
-            An object disposed exception will be thrown if the pool has been disposed.
-            </exception>
-        </member>
-        <member name="M:Ximura.PoolBase`1.Get(System.Action{`0})">
-            <summary>
-            The Get() method takes an object from the pool, if 
-            there are no objects available the pool will create a new object.
-            </summary>
-            <param name="initializer">This is the object initialization action. This value can be null.</param>
-            <returns>An object of the type defined in the pool.</returns>
-            <exception cref="T:System.ObjectDisposedException">
-            An object disposed exception will be thrown if the pool has been disposed.
-            </exception>
-        </member>
-        <member name="M:Ximura.PoolBase`1.Get(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <summary>
-            The Get() method takes an object from the pool, if 
-            there are no objects available the pool will create a new object.
-            </summary>
-            <param name="info">The serialization info.</param>
-            <param name="context">The context.</param>
-            <returns>An object of the type defined in the pool.</returns>
-            <exception cref="T:System.ObjectDisposedException">
-            An object disposed exception will be thrown if the pool has been disposed.
-            </exception>
-        </member>
-        <member name="M:Ximura.PoolBase`1.Get(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext,System.Action{`0})">
-            <summary>
-            The Get() method takes an object from the pool, if 
-            there are no objects available the pool will create a new object.
-            </summary>
-            <param name="info">The serialization info.</param>
-            <param name="context">The context.</param>
-            <param name="initializer">This is the object initialization action. This value can be null.</param>
-            <returns>An object of the type defined in the pool.</returns>
-            <exception cref="T:System.ObjectDisposedException">
-            An object disposed exception will be thrown if the pool has been disposed.
-            </exception>
-        </member>
-        <member name="M:Ximura.PoolBase`1.Return(System.Object)">
-            <summary>
-            This method returns an object to the pool as an object and not being of a specific type.
-            </summary>
-            <param name="value">The object to return to the pool.</param>
-        </member>
-        <member name="M:Ximura.PoolBase`1.Return(`0)">
-            <summary>
-            This method returns an object to the pool.
-            </summary>
-            <param name="value">The object to return to the pool.</param>
-        </member>
-        <member name="M:Ximura.PoolBase`1.InternalAvailable">
-            <summary>
-            This method returns the internal available property.
-            </summary>
-            <returns>Returns true if the pool can return objects.</returns>
-        </member>
-        <member name="M:Ximura.PoolBase`1.Clear">
-            <summary>
-            This method is used to clear the pool of all objects.
-            </summary>
-        </member>
-        <member name="M:Ximura.PoolBase`1.ClearInternal">
-            <summary>
-            This method removes all waiting objects in the pool. If the objects support IDisposable
-            the objects will be disposed.
-            </summary>
-        </member>
-        <member name="M:Ximura.PoolBase`1.StatisticsUpdate">
-            <summary>
-            This method will update any performance counters.
-            </summary>
-        </member>
-        <member name="M:Ximura.PoolBase`1.StatisticsInitialize">
-            <summary>
-            This method will initialize any performance counters.
-            </summary>
-        </member>
-        <member name="P:Ximura.PoolBase`1.Available">
-            <summary>
-            This method returns true if there are objects available in the pool.
-            </summary>
-        </member>
-        <member name="P:Ximura.PoolBase`1.Max">
-            <summary>
-            This is the maximum pool size, a value of -1 specifies no maximum size.
-            </summary>
-        </member>
-        <member name="P:Ximura.PoolBase`1.Min">
-            <summary>
-            This is the minimum pool size.
-            </summary>
-        </member>
-        <member name="P:Ximura.PoolBase`1.Prefered">
-            <summary>
-            This is prefered pool size.
-            </summary>
-        </member>
-        <member name="P:Ximura.PoolBase`1.Count">
-            <summary>
-            This property returns the number of active objects.
-            </summary>
-        </member>
-        <member name="P:Ximura.PoolBase`1.IsBuffered">
-            <summary>
-            This property indicates whether the pool is buffered. Buffered pools are shared amongst multiple 
-            clients and do not implement the clear method.
-            </summary>
-        </member>
-        <member name="P:Ximura.PoolBase`1.PoolManager">
-            <summary>
-            If this property is set, it will be passed on to objects that implement the IXimuraPoolManagerDirectAccess
-            interface to allow them to get additional pool objects of different types for their own internal use.
-            </summary>
-        </member>
-        <member name="P:Ximura.PoolBase`1.Stats">
-            <summary>
-            This property returns a summary of the stats for the collection.
-            </summary>
-        </member>
-        <member name="P:Ximura.PoolBase`1.StatsInternalNoLock">
-            <summary>
-            This method returns a string
-            </summary>
-        </member>
-        <member name="F:Ximura.PoolInvocator`1.mRemoteInvocator">
-            <summary>
-            This is the pool invocator that can be used to invoke a new object.
-            </summary>
-        </member>
-        <member name="M:Ximura.PoolInvocator`1.#ctor(System.Func{`0})">
-            <summary>
-            The default constructor.
-            </summary>
-            <param name="remoteInvocator">This delegate can be used to create a new pool object.</param>
-        </member>
-        <member name="M:Ximura.PoolInvocator`1.#ctor(System.Func{`0},System.Int32,System.Int32,System.Int32)">
-            <summary>
-            This is the pool constructor with default arguments.
-            </summary>
-            <param name="min">This is the minimum size.</param>
-            <param name="max">This is the maximum size.</param>
-            <param name="prefer">This is the prefered size.</param>
-            <param name="remoteInvocator">This delegate can be used to create a new pool object.</param>
-        </member>
-        <member name="M:Ximura.PoolInvocator`1.CreateNewPoolObject">
-            <summary>
-            This method creates a new pool object of type T.
-            </summary>
-            <returns>Returns the new object.</returns>
-        </member>
-        <member name="T:Ximura.IXimuraPoolManager">
-            <summary>
-            The pool manager interface is used to provide an interface that allows multiple
-            pool objects to be created around a base object type.
-            </summary>
-        </member>
-        <member name="M:Ximura.IXimuraPoolManager.GetPoolManager(System.Type)">
-            <summary>
-            This method retrieve a pool manage object based on
-            </summary>
-            <param name="objectType">The object type for the pool.</param>
-            <returns>Returns a pool manager for the type specified.</returns>
-        </member>
-        <member name="M:Ximura.IXimuraPoolManager.GetPoolManager(System.Type,System.Boolean)">
-            <summary>
-            This method retrieve a pool manage object based on
-            </summary>
-            <param name="objectType">The object type for the pool.</param>
-            <param name="buffered">A boolean value that specifies whether the pool manager should
-            be buffered. A buffered pool cannot be reset by the receiving party.</param>
-            <returns>Returns a pool manager for the type specified.</returns>
-        </member>
-        <member name="T:Ximura.IXimuraPoolDeserializable">
-            <summary>
-            This interface is used to retrieve an object that support the deserializable interface.
-            </summary>
-        </member>
-        <member name="M:Ximura.IXimuraPoolDeserializable.Get(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <summary>
-            This method returns an object from the pool and deserializes this information in the serialization
-            objects.
-            </summary>
-            <param name="info">The serialization information.</param>
-            <param name="context">The serialization context.</param>
-            <returns>Returns the object specified from the pool.</returns>
-        </member>
-        <member name="P:Ximura.IXimuraPoolDeserializable.SupportsDeserialization">
-            <summary>
-            This boolean property returns true if the object type for the pool supports deserialization.
-            </summary>
-        </member>
-        <member name="T:Ximura.IXimuraPoolDeserializable`1">
-            <summary>
-            This is the generic interface for poolable deserializable objects.
-            </summary>
-            <typeparam name="T">The poolable object type.</typeparam>
-        </member>
-        <member name="M:Ximura.IXimuraPoolDeserializable`1.Get(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <summary>
-            This method returns an object of type T from the pool and deserializes this 
-            information in the serialization objects.
-            </summary>
-            <param name="info">The serialization information.</param>
-            <param name="context">The serialization context.</param>
-            <returns>Returns the object specified from the pool.</returns>
-        </member>
-        <member name="T:Ximura.PoolObjectUnavailableException">
-            <summary>
-            This exception is thrown when the pool is not able to return an object.
-            </summary>
-        </member>
-        <member name="M:Ximura.PoolObjectUnavailableException.#ctor">
-            <summary>
-            Initializes a new instance of the exception class.
-            </summary>
-        </member>
-        <member name="M:Ximura.PoolObjectUnavailableException.#ctor(System.String)">
-            <summary>
-            Initializes a new instance of the exception class.
-            </summary>
-            <param name="message">The error message.</param>
-        </member>
-        <member name="M:Ximura.PoolObjectUnavailableException.#ctor(System.String,System.Exception)">
-            <summary>
-            Initializes a new instance of the exception class.
-            </summary>
-            <param name="message">The error message.</param>
-            <param name="ex">The base exception.</param>
-        </member>
-        <member name="M:Ximura.PoolObjectUnavailableException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <summary>
-            This exception is used for deserialization.
-            </summary>
-            <param name="info">The serialization info.</param>
-            <param name="context">The serialization context.</param>
-        </member>
         <member name="T:Ximura.ThreadingHelper">
             <summary>
             This static class provides threading help.
@@ -5302,11 +4334,6 @@
         <!-- Badly formed XML comment ignored for member "M:Ximura.Collections.ConcurrentDictionarySLC`2.#ctor(System.Collections.Generic.IEqualityComparer{`0},System.Int32,System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{`0,`1}})" -->
         <!-- Badly formed XML comment ignored for member "M:Ximura.Collections.ConcurrentDictionarySLC`2.#ctor(System.Collections.Generic.IEqualityComparer{`0},System.Int32,System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{`0,`1}},System.Boolean)" -->
         <!-- Badly formed XML comment ignored for member "M:Ximura.Collections.ConcurrentDictionarySLC`2.#ctor(Ximura.Collections.ConcurrentDictionary{`0,`1,Ximura.Collections.SkipListClassBasedVertexArray{System.Collections.Generic.KeyValuePair{`0,`1}}}.KeyValueOnlyKeyEqualityComparer{`0,`1},System.Int32,System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{`0,`1}},System.Boolean)" -->
-        <member name="P:Ximura.Communication.IXimuraMessageLoad.CanLoad">
-            <summary>
-            This boolean property determines whether the message can be loaded.
-            </summary>
-        </member>
         <member name="T:Ximura.Tuple`2">
             <summary>
             The tuple structure is used to hold two values, predominantly for fast comparison.
@@ -5956,36 +4983,6 @@
             <summary>
             The progress description.
             </summary>
-        </member>
-        <member name="T:Ximura.PoolObjectInvalidException">
-            <summary>
-            This exception is thrown when the pool is not able to return an object.
-            </summary>
-        </member>
-        <member name="M:Ximura.PoolObjectInvalidException.#ctor">
-            <summary>
-            Initializes a new instance of the exception class.
-            </summary>
-        </member>
-        <member name="M:Ximura.PoolObjectInvalidException.#ctor(System.String)">
-            <summary>
-            Initializes a new instance of the exception class.
-            </summary>
-            <param name="message">The error message.</param>
-        </member>
-        <member name="M:Ximura.PoolObjectInvalidException.#ctor(System.String,System.Exception)">
-            <summary>
-            Initializes a new instance of the exception class.
-            </summary>
-            <param name="message">The error message.</param>
-            <param name="ex">The base exception.</param>
-        </member>
-        <member name="M:Ximura.PoolObjectInvalidException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <summary>
-            This exception is used for deserialization.
-            </summary>
-            <param name="info">The serialization info.</param>
-            <param name="context">The serialization context.</param>
         </member>
         <member name="T:Ximura.XimuraServiceException">
             <summary>
@@ -6646,227 +5643,6 @@
             <param name="commandName">This is the name of the command which is used by the performance counters.</param>
             <param name="objectType">The envelope type to register.</param>
             <param name="objectCallbackType">The envelope callback type to register.</param>
-        </member>
-        <member name="T:Ximura.Reflection">
-            <summary>
-            The reflection helper provides help on creating objects using reflection.
-            </summary>
-        </member>
-        <member name="F:Ximura.Reflection.MemberAccess">
-            <summary>
-            Binding Flags constant to be reused for all Reflection access methods.
-            </summary>
-        </member>
-        <member name="M:Ximura.Reflection.#cctor">
-            <summary>
-            This static constructor creates the Type/string lookup cache.
-            </summary>
-        </member>
-        <member name="M:Ximura.Reflection.CreateObjectFromType(System.String)">
-            <summary>
-            This method will create an instance of a class object from the typeName.
-            </summary>
-            <param name="typeName">The typeName to create an instance of.</param>
-            <returns>The new object.</returns>
-        </member>
-        <member name="M:Ximura.Reflection.CreateObjectFromType(System.String,System.Object[])">
-            <summary>
-            This method will create an instance of a class object from the typeName.
-            </summary>
-            <param name="typeName">The typeName to create an instance of.</param>
-            <param name="parameters">A parameter array of object type for the class constructor</param>
-            <returns>The new object.</returns>
-        </member>
-        <member name="M:Ximura.Reflection.CreateObjectFromType(System.String,System.Object[],System.Type)">
-            <summary>
-            This method will create an instance of a class object from the typeName.
-            </summary>
-            <param name="typeName">The typeName to create an instance of.</param>
-            <param name="parameters">A parameter array of object type for the class constructor</param>
-            <param name="callingType">The calling type. This is used to search referenced assemblies.</param>
-            <returns>The new object.</returns>
-        </member>
-        <member name="M:Ximura.Reflection.CreateTypeFromString(System.String)">
-            <summary>
-            This method returns the relevant type resolved from the nale
-            </summary>
-            <param name="typeName">The type name to resolve.</param>
-            <returns>The type or null if the name cannot be resolved.</returns>
-        </member>
-        <member name="M:Ximura.Reflection.CreateTypeFromString(System.String,System.Type)">
-            <summary>
-            This method returns the relevant type resolved from the nale
-            </summary>
-            <param name="typeName">The type name to resolve.</param>
-            <param name="callingType">The type of the calling object.</param>
-            <returns>The type or null if the name cannot be resolved.</returns>
-        </member>
-        <member name="M:Ximura.Reflection.CreateTypeFromString(System.String,System.Type,System.Boolean)">
-            <summary>
-            This method returns the relevant type resolved from the nale
-            </summary>
-            <param name="typeName">The type name to resolve.</param>
-            <param name="callingType">The type of the calling object.</param>
-            <param name="allowRelative">Set this to true if you allow relative paths to the type, i.e. less specific references.</param>
-            <returns>The Type for the object or null if the type cannot be found.</returns>
-        </member>
-        <member name="M:Ximura.Reflection.CreateTypeFromStringNoCache(System.String,System.Type)">
-            <summary>
-            This method creates an object from the type name passed.
-            </summary>
-            <param name="typeName">The tpye name.</param>
-            <param name="callingType">The calling type used as a reference.</param>
-            <returns>Returns a new object of the required type 
-            or null if the object cannot be resolved.</returns>
-        </member>
-        <member name="M:Ximura.Reflection.CreateObjectFromType(System.Type)">
-            <summary>
-            This method will create an instance of a class object from the class type.
-            </summary>
-            <param name="classType">The class type to create an instance of.</param>
-            <returns>The new object.</returns>
-        </member>
-        <member name="M:Ximura.Reflection.CreateObjectFromType(System.Type,System.Object[])">
-            <summary>
-            This method will create an instance of a class object from the class type.
-            </summary>
-            <param name="classType">The class type to create an instance of.</param>
-            <param name="parameters">A parameter array of object type for the class constructor</param>
-            <returns>The new object.</returns>
-        </member>
-        <member name="M:Ximura.Reflection.CreateObjectFromType(System.Type,System.Object[],System.Type[])">
-            <summary>
-            This method will create an instance of a class object from the class type.
-            </summary>
-            <param name="classType">The class type to create an instance of.</param>
-            <param name="parameters">A parameter array of object type for the class constructor</param>
-            <param name="types">The types collection.</param>
-            <returns>The new object.</returns>
-        </member>
-        <member name="M:Ximura.Reflection.getTypesfromObjectArray(System.Object[])">
-            <summary>
-            This method returns a array of System types corresponsing to the object passed
-            </summary>
-            <param name="theObjects">An array of objects</param>
-            <returns>An array of ooject types</returns>
-        </member>
-        <member name="M:Ximura.Reflection.ValidateInterface(System.Type,System.Type)">
-            <summary>
-            This public static method caches interface implementation for type checking. This is 
-            used to boost performance when checking large amounts of types.
-            </summary>
-            <param name="objectType">The type for the object you wish to check.</param>
-            <param name="interfaceType">The type for the interface you wish to check.</param>
-            <returns>Returns true if the interface is implemented.</returns>
-        </member>
-        <member name="M:Ximura.Reflection.GetProperty(System.Object,System.String)">
-            <summary>
-            Retrieve a property value from an object dynamically. This is a simple version
-            that uses Reflection calls directly. It doesn't support indexers.
-            </summary>
-            <param name="Object">Object to make the call on</param>
-            <param name="Property">Property to retrieve</param>
-            <returns>Object - cast to proper type</returns>
-        </member>
-        <member name="M:Ximura.Reflection.SetProperty(System.Object,System.String,System.Object)">
-            <summary>
-            Sets the property on an object. This is a simple method that uses straight Reflection 
-            and doesn't support indexers.
-            </summary>
-            <param name="Object">Object to set property on</param>
-            <param name="Property">Name of the property to set</param>
-            <param name="Value">value to set it to</param>
-        </member>
-        <member name="M:Ximura.Reflection.GetPropertyEx(System.Object,System.String)">
-            <summary>
-            Returns a property or field value using a base object and sub members including . syntax.
-            For example, you can access: this.oCustomer.oData.Company with (this,"oCustomer.oData.Company")
-            This method also supports indexers in the Property value such as:
-            Customer.DataSet.Tables["Customers"].Rows[0]
-            </summary>
-            <param name="Parent">Parent object to 'start' parsing from. Typically this will be the Page.</param>
-            <param name="Property">The property to retrieve. Example: 'Customer.Entity.Company'</param>
-            <returns></returns>
-        </member>
-        <member name="M:Ximura.Reflection.SetPropertyEx(System.Object,System.String,System.Object)">
-            <summary>
-            Sets a value on an object. Supports . syntax for named properties
-            (ie. Customer.Entity.Company) as well as indexers.
-            </summary>
-            <param name="Object Parent">
-            Object to set the property on.
-            </param>
-            <param name="String Property">
-            Property to set. Can be an object hierarchy with . syntax and can 
-            include indexers. Examples: Customer.Entity.Company, 
-            Customer.DataSet.Tables["Customers"].Rows[0]
-            </param>
-            <param name="Object Value">
-            Value to set the property to
-            </param>
-        </member>
-        <member name="M:Ximura.Reflection.GetPropertyInternal(System.Object,System.String)">
-            <summary>
-            Parses Properties and Fields including Array and Collection references.
-            Used internally for the 'Ex' Reflection methods.
-            </summary>
-            <param name="Parent"></param>
-            <param name="Property"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Ximura.Reflection.SetPropertyInternal(System.Object,System.String,System.Object)">
-            <summary>
-            Parses Properties and Fields including Array and Collection references.
-            </summary>
-            <param name="Parent"></param>
-            <param name="Property"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Ximura.Reflection.CallMethod(System.Object,System.String,System.Object[])">
-            <summary>
-            Calls a method on an object dynamically.
-            </summary>
-            <param name="Params"></param>
-            1st - Method name, 2nd - 1st parameter, 3rd - 2nd parm etc.
-            <returns></returns>
-        </member>
-        <member name="M:Ximura.Reflection.ResourceLoadFromUri(System.Uri)">
-            <summary>
-            This method loads a resource from the xmrres resource location specified.
-            </summary>
-            <param name="location">The location.</param>
-            <returns>Returns a byte array containing the resource.</returns>
-            <exception cref="T:System.ArgumentException">This exception is thrown when the resource cannot be resolved.</exception>
-        </member>
-        <member name="M:Ximura.Reflection.ResourceResolveType(System.Uri)">
-            <summary>
-            This method will return the type specified in the xmrres resource string.
-            </summary>
-            <param name="location">The resource location.</param>
-            <returns>Returns the type specified.</returns>
-        </member>
-        <member name="M:Ximura.Reflection.ResourceCheck(System.Uri)">
-            <summary>
-            This method checks whether the xmrres resource uri is correctly formatted.
-            </summary>
-            <param name="location">The xmrres resource location.</param>
-        </member>
-        <member name="M:Ximura.Reflection.ResourceResolve(System.Type,System.String)">
-            <summary>
-            This method resolves an embedded resource as a byte array.
-            </summary>
-            <param name="locationType">The type</param>
-            <param name="resource">The resource to resolve.</param>
-            <returns>Returns a byte array.</returns>
-            <exception cref="T:System.ArgumentException">This exception is thrown when the resource cannot be resolved.</exception>
-        </member>
-        <member name="M:Ximura.Reflection.ResourceLoadStream(System.String)">
-            <summary>
-            This method reads a binary definition from an assembly based on the resource name.
-            Note: this method will attempt to load the assembly if it is not loaded.
-            </summary>
-            <param name="resourceName">The resource name.</param>
-            <returns>Returns an unmanaged stream containing the data.</returns>
         </member>
         <member name="T:Ximura.BitMaskInt32">
             <summary>
@@ -7681,287 +6457,6 @@
             </summary>
             <exception cref="T:System.NotSupportedException">This exception is thrown.</exception>
         </member>
-        <member name="T:Ximura.PoolBaseParallel`1">
-            <summary>
-            The PoolBaseParallel class is used to hold a collection of object that can be re-used.
-            This class is optimized for multi-threaded parallel execution.
-            </summary>
-            <typeparam name="T">The object pool type.</typeparam>
-        </member>
-        <member name="M:Ximura.PoolBaseParallel`1.ItemGet">
-            <summary>
-            
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Ximura.PoolBaseParallel`1.ItemAdd(`0)">
-            <summary>
-            This method adds a new item to the pool.
-            </summary>
-            <param name="obj">The item to add to the pool.</param>
-        </member>
-        <member name="M:Ximura.PoolBaseParallel`1.ItemReturn(`0,System.Boolean)">
-            <summary>
-            This method returns or adds an object to the pool.
-            </summary>
-            <param name="obj">The pool object to be returned.</param>
-            <param name="initialize">This property specifies whether the pool is being initialized. 
-            If the pool is being initialized, a new item will be added to the pool.</param>
-            <exception cref="T:System.ArgumentNullException">The pool item to be returned is null.</exception>
-        </member>
-        <member name="M:Ximura.PoolBaseParallel`1.#ctor">
-            <summary>
-            The default constructor.
-            </summary>
-        </member>
-        <member name="M:Ximura.PoolBaseParallel`1.#ctor(System.Int32,System.Int32,System.Int32)">
-            <summary>
-            This constructor sets the pool create parameters.
-            </summary>
-            <param name="min">The initial set of objects.</param>
-            <param name="max">The maximum set of object for the pool. Set this to -1 is you do not 
-            wish to set a maximum value.</param>
-            <param name="prefer">The prefered number of object for the pool.</param>
-        </member>
-        <member name="M:Ximura.PoolBaseParallel`1.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)">
-            <summary>
-            This constructor sets the pool create parameters.
-            </summary>
-            <param name="min">The initial set of objects.</param>
-            <param name="max">The maximum set of object for the pool. Set this to -1 is you do not 
-            wish to set a maximum value.</param>
-            <param name="prefer">The prefered number of object for the pool.</param>
-        </member>
-        <member name="M:Ximura.PoolBaseParallel`1.Dispose(System.Boolean)">
-            <summary>
-            This override disposes of the pool.
-            </summary>
-            <param name="disposing"></param>
-        </member>
-        <member name="M:Ximura.PoolBaseParallel`1.CheckStatus">
-            <summary>
-            This method checks the status of the pool.
-            </summary>
-            <exception cref="T:System.ObjectDisposedException">The pool has been disposed.</exception>
-            <exception cref="!:SYstem.NotSupportedException">The pool has not been initialized</exception>
-        </member>
-        <member name="M:Ximura.PoolBaseParallel`1.InitializePool">
-            <summary>
-            This method initiates the object pool with the required number of objects.
-            </summary>
-        </member>
-        <member name="M:Ximura.PoolBaseParallel`1.Get">
-            <summary>
-            The Get() method takes an object from the pool, if 
-            there are no objects available the pool will create a new object.
-            </summary>
-            <returns>An object of the type defined in the pool.</returns>
-            <exception cref="T:System.ObjectDisposedException">
-            An object disposed exception will be thrown if the pool has been disposed.
-            </exception>
-        </member>
-        <member name="M:Ximura.PoolBaseParallel`1.Ximura#IXimuraPool#Get">
-            <summary>
-            This is the default get() accessor.
-            </summary>
-            <returns>An object of the type defined in the pool.</returns>
-        </member>
-        <member name="M:Ximura.PoolBaseParallel`1.Get(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <summary>
-            The Get() method takes an object from the pool, if 
-            there are no objects available the pool will create a new object.
-            </summary>
-            <param name="info">The serialization info.</param>
-            <param name="context">The context.</param>
-            <returns>An object of the type defined in the pool.</returns>
-            <exception cref="T:System.ObjectDisposedException">
-            An object disposed exception will be thrown if the pool has been disposed.
-            </exception>
-        </member>
-        <member name="M:Ximura.PoolBaseParallel`1.Ximura#IXimuraPool#Get(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <summary>
-            The Get() method takes an object from the pool, if 
-            there are no objects available the pool will create a new object.
-            </summary>
-            <param name="info">The serialization info.</param>
-            <param name="context">The context.</param>
-            <returns>An object of the type defined in the pool.</returns>
-            <exception cref="T:System.ObjectDisposedException">
-            An object disposed exception will be thrown if the pool has been disposed.
-            </exception>
-        </member>
-        <member name="M:Ximura.PoolBaseParallel`1.Get(System.Action{`0})">
-            <summary>
-            The Get() method takes an object from the pool, if 
-            there are no objects available the pool will create a new object.
-            </summary>
-            <param name="initializer">This is the object initialization action. This value can be null.</param>
-            <returns>An object of the type defined in the pool.</returns>
-            <exception cref="T:System.ObjectDisposedException">
-            An object disposed exception will be thrown if the pool has been disposed.
-            </exception>
-        </member>
-        <member name="M:Ximura.PoolBaseParallel`1.Get(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext,System.Action{`0})">
-            <summary>
-            The Get() method takes an object from the pool, if 
-            there are no objects available the pool will create a new object.
-            </summary>
-            <param name="info">The serialization info.</param>
-            <param name="context">The context.</param>
-            <param name="initializer">This is the object initialization action. This value can be null.</param>
-            <returns>An object of the type defined in the pool.</returns>
-            <exception cref="T:System.ObjectDisposedException">
-            An object disposed exception will be thrown if the pool has been disposed.
-            </exception>
-        </member>
-        <member name="M:Ximura.PoolBaseParallel`1.GetInternal(System.Action{`0},System.Action{`0})">
-            <summary>
-            This method gets an item from the pool internally.
-            </summary>
-            <param name="initializer">The initialization delegate. Leave this null if not required.</param>
-            <param name="deserializer">The deserialization delegate. Leave this null if not required.</param>
-            <returns>Returns an object from the pool, or default(T) is there are no objects available.</returns>
-            <exception cref="T:Ximura.PoolObjectUnavailableException">This exception is thrown when there are no pool object available and 
-            GetUnavailableThrowException is set to true.</exception>
-        </member>
-        <member name="M:Ximura.PoolBaseParallel`1.Return(`0)">
-            <summary>
-            This method returns an object to the pool.
-            </summary>
-            <param name="value">The object to return to the pool.</param>
-        </member>
-        <member name="M:Ximura.PoolBaseParallel`1.Return(System.Object)">
-            <summary>
-            This method returns an object to the pool as an object and not being of a specific type.
-            </summary>
-            <param name="value">The object to return to the pool.</param>
-        </member>
-        <member name="M:Ximura.PoolBaseParallel`1.CreateNewPoolObject">
-            <summary>
-            This method creates a new pool object of type T.
-            </summary>
-            <returns>Returns the new object.</returns>
-        </member>
-        <member name="M:Ximura.PoolBaseParallel`1.ResetPoolObject(`0)">
-            <summary>
-            This method is used to reset the pool object. You should override this method if
-            you wish to set particular values.
-            </summary>
-            <param name="obj">The object to reset.</param>
-        </member>
-        <member name="M:Ximura.PoolBaseParallel`1.ResetPoolObject(`0,System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <summary>
-            This method is used to reset the pool object from the serialization information.
-            You should override this method if you wish to set particular values.
-            </summary>
-            <param name="obj">The object to reset.</param>
-            <param name="info">The serialization info.</param>
-            <param name="context">The context.</param>
-        </member>
-        <member name="P:Ximura.PoolBaseParallel`1.Disposed">
-            <summary>
-            This boolean property identifies whether the pool has been disposed.
-            </summary>
-        </member>
-        <member name="P:Ximura.PoolBaseParallel`1.Initialized">
-            <summary>
-            This boolean property identifies whether the pool has been initialized.
-            </summary>
-        </member>
-        <member name="P:Ximura.PoolBaseParallel`1.GetUnavailableThrowException">
-            <summary>
-            This property specifies whether the pool should throw an exception if there are no object available. 
-            This is useful when the object is a value type and does not return null.
-            The default is false when T is a class type and true when T is a value type. This value is set in the constructor.
-            </summary>
-        </member>
-        <member name="P:Ximura.PoolBaseParallel`1.Available">
-            <summary>
-            This method returns the internal available property.
-            </summary>
-            <returns>Returns true if the pool can return objects.</returns>
-        </member>
-        <member name="P:Ximura.PoolBaseParallel`1.Count">
-            <summary>
-            This property returns the number of active objects.
-            </summary>
-        </member>
-        <member name="P:Ximura.PoolBaseParallel`1.Churn">
-            <summary>
-            This property returns the number of Gets performed by the pool.
-            </summary>
-        </member>
-        <member name="P:Ximura.PoolBaseParallel`1.Stats">
-            <summary>
-            This property returns a summary of the stats for the collection.
-            </summary>
-        </member>
-        <member name="P:Ximura.PoolBaseParallel`1.Max">
-            <summary>
-            This is the maximum pool size, a value of -1 specifies no maximum size.
-            </summary>
-        </member>
-        <member name="P:Ximura.PoolBaseParallel`1.Min">
-            <summary>
-            This is the minimum pool size.
-            </summary>
-        </member>
-        <member name="P:Ximura.PoolBaseParallel`1.Prefered">
-            <summary>
-            This is prefered pool size.
-            </summary>
-        </member>
-        <member name="P:Ximura.PoolBaseParallel`1.Overbite">
-            <summary>
-            This is allowable increase over the maximum value. This may be useful in multi-processor machines.
-            </summary>
-        </member>
-        <member name="P:Ximura.PoolBaseParallel`1.IsBuffered">
-            <summary>
-            This property indicates whether the pool is buffered. Buffered pools are shared amongst multiple 
-            clients and do not implement the clear method.
-            </summary>
-        </member>
-        <member name="P:Ximura.PoolBaseParallel`1.PoolManager">
-            <summary>
-            If this property is set, it will be passed on to objects that implement the IXimuraPoolManagerDirectAccess
-            interface to allow them to get additional pool objects of different types for their own internal use.
-            </summary>
-        </member>
-        <member name="T:Ximura.PoolBaseParallel`1.PoolItem`1">
-            <summary>
-            This internal class is used to store the pool data.
-            </summary>
-            <typeparam name="U"></typeparam>
-        </member>
-        <member name="M:Ximura.PoolBaseParallel`1.PoolItem`1.#ctor(`1)">
-            <summary>
-            This is the default constructor and creates a new PoolItem.
-            </summary>
-            <param name="val">The item value.</param>
-        </member>
-        <member name="M:Ximura.PoolBaseParallel`1.PoolItem`1.#ctor(`1,Ximura.PoolBaseParallel{`0}.PoolItem{`1})">
-            <summary>
-            This constructor creates a new PoolItem and also sets the next item in the chain.
-            </summary>
-            <param name="val">The item value.</param>
-            <param name="next">The next item in the chain.</param>
-        </member>
-        <member name="P:Ximura.Communication.IXimuraMessageTermination.IsTerminator">
-            <summary>
-            This property specifies whether the fragment byte array has reached the termination requirements
-            </summary>
-        </member>
-        <member name="T:Ximura.XMLHelper">
-            <summary>
-            The XML Helper library is used to provide a set of reusable methods for manipulation XML Document information.
-            </summary>
-        </member>
-        <member name="T:Ximura.AttributeHelper">
-            <summary>
-            Provide special functionality to deal with Attribute.
-            </summary>
-        </member>
         <member name="T:Ximura.BitHelper">
             <summary>
             This static class provides bit mapping functionality for primitive types.
@@ -8202,6 +6697,53 @@
             <param name="mask"></param>
             <returns></returns>
         </member>
+        <member name="T:Ximura.XimuraServiceStatusAction">
+            <summary>
+            This enumerations is used to signal an action for the collection
+            </summary>
+        </member>
+        <member name="F:Ximura.XimuraServiceStatusAction.Start">
+            <summary>
+            Start the collection
+            </summary>
+        </member>
+        <member name="F:Ximura.XimuraServiceStatusAction.Stop">
+            <summary>
+            Stop the collection
+            </summary>
+        </member>
+        <member name="F:Ximura.XimuraServiceStatusAction.Pause">
+            <summary>
+            Pause the collection
+            </summary>
+        </member>
+        <member name="F:Ximura.XimuraServiceStatusAction.Continue">
+            <summary>
+            Continue the collection
+            </summary>
+        </member>
+        <member name="T:Ximura.ServiceEventArgs">
+            <summary>
+            The ServiceEventArgs class is used by the component to pass notification 
+            of the service status
+            </summary>
+        </member>
+        <member name="M:Ximura.ServiceEventArgs.#ctor">
+            <summary>
+            The default constructor. The service is defined as Undefined
+            </summary>
+        </member>
+        <member name="M:Ximura.ServiceEventArgs.#ctor(Ximura.XimuraServiceStatus)">
+            <summary>
+            The main constructor.
+            </summary>
+            <param name="status">The status of the service.</param>
+        </member>
+        <member name="P:Ximura.ServiceEventArgs.Status">
+            <summary>
+            The status of the service
+            </summary>
+        </member>
         <member name="T:Ximura.XimuraAppContainerEventArgs">
             <summary>
             This object contains the argument passed when a component id added or removed.
@@ -8425,72 +6967,6 @@
         <member name="P:Ximura.IXimuraRQRSEnvelope.Response">
             <summary>
             The Response property
-            </summary>
-        </member>
-        <member name="T:Ximura.PoolManager">
-            <summary>
-            The pool manager is a static class which controls system wide object pooling within the 
-            current AppDomain.
-            </summary>
-        </member>
-        <member name="F:Ximura.PoolManager.mPoolManagers">
-            <summary>
-            This collection contains the specific pool managers that hold a collection of poolable object.
-            </summary>
-        </member>
-        <member name="M:Ximura.PoolManager.#ctor">
-            <summary>
-            This is the default static constructor.
-            </summary>
-        </member>
-        <member name="M:Ximura.PoolManager.#ctor(System.Boolean)">
-            <summary>
-            This is the buffered output option for the pool manager. With a buffered output the pool object is abstracted
-            using a buffer object which does not allow the calling party to clear the pool.
-            </summary>
-            <param name="useBuffer">Set this to true if you wish the pool manager to output a buffered output.</param>
-        </member>
-        <member name="M:Ximura.PoolManager.CheckDisposed">
-            <summary>
-            This method checks whether the pool manager has been disposed, and if so throws an exception.
-            </summary>
-        </member>
-        <member name="T:Ximura.PoolManager.PoolManagerContainer">
-            <summary>
-            The PoolManagerContainer is a private class that is used to hold the pool and the buffered pool.
-            </summary>
-        </member>
-        <member name="M:Ximura.PoolManager.PoolManagerContainer.#ctor(System.Type,Ximura.IXimuraPoolManager)">
-            <summary>
-            This is the default constructor for the the PoolManagerContainer.
-            </summary>
-            <param name="poolManager">The pool manager to contain.</param>
-        </member>
-        <member name="M:Ximura.PoolManager.PoolManagerContainer.CreatePool(System.Type,Ximura.IXimuraPoolManager)">
-            <summary>
-            This method uses generics to create the specific type of context pool.
-            </summary>
-            <param name="objectType">The context type.</param>
-            <returns>Returns the pool.</returns>
-        </member>
-        <member name="M:Ximura.PoolManager.PoolManagerContainer.CheckDisposed">
-            <summary>
-            This method checks whether the pool manager has been disposed, and if so throws an exception.
-            </summary>
-        </member>
-        <member name="M:Ximura.PoolManager.PoolManagerContainer.Dispose">
-            <summary>
-            This is the dispose method for the class.
-            </summary>
-        </member>
-        <member name="P:Ximura.PoolManager.PoolManagerContainer.Pool">
-            <summary>
-            The pool.
-            </summary>
-        </member>
-        <member name="P:Ximura.PoolManager.PoolManagerContainer.PoolBuffered">
-            <summary>
-            The buffered pool.
             </summary>
         </member>
         <member name="T:Ximura.XimuraComponentBaseHelper">
@@ -9323,38 +7799,6 @@
             This property is the pool tracking ID.
             </summary>
         </member>
-        <member name="T:Ximura.PoolBuffer`1">
-            <summary>
-            The pool buffer allow multiple clients to connect to the same underlying pool, but removes direct
-            access to the underlying pool allowing more stable support.
-            </summary>
-        </member>
-        <member name="M:Ximura.PoolBuffer`1.#ctor(Ximura.IXimuraPool)">
-            <summary>
-            This is the internal constructor. The pool buffer can only be accessed by the pool manager.
-            </summary>
-            <param name="pool">The internal pool.</param>
-        </member>
-        <member name="M:Ximura.PoolBuffer`1.Dispose">
-            <summary>
-            This method disposes the pool buffer class.
-            </summary>
-        </member>
-        <member name="M:Ximura.PoolBuffer`1.DisposedCheck">
-            <summary>
-            This method checks whether the pool buffer has been disposed.
-            </summary>
-        </member>
-        <member name="M:Ximura.PoolBuffer`1.DisconnectCheck">
-            <summary>
-            This method checks whether the buffer has been disconnected from the pool.
-            </summary>
-        </member>
-        <member name="M:Ximura.PoolBuffer`1.Disconnect">
-            <summary>
-            This method disconnects the buffer from the pool.
-            </summary>
-        </member>
         <member name="T:Ximura.LockableMarkableWrapper`1">
             <summary>
             The lockable base class is for objects that require fine-grained locking.
@@ -9553,64 +7997,10 @@
             This property determines whether the vertex is a sentinel, i.e. a vertex without any child vertexes.
             </summary>
         </member>
-        <member name="T:Ximura.Data.IXimuraBinarySerialize">
+        <member name="T:Ximura.ServiceEvent">
             <summary>
-            Provides custom implementation for user-defined type (UDT) and user-defined aggregate serialization and deserialization.
+            This delegate is used by the Services to report back progress
             </summary>
-        </member>
-        <member name="M:Ximura.Data.IXimuraBinarySerialize.Read(System.IO.BinaryReader)">
-            <summary>
-            Generates a user-defined type (UDT) or user-defined aggregate from its binary form.
-            </summary>
-            <param name="r">The System.IO.BinaryReader stream from which the object is deserialized.</param>
-        </member>
-        <member name="M:Ximura.Data.IXimuraBinarySerialize.Write(System.IO.BinaryWriter)">
-            <summary>
-            Converts a user-defined type (UDT) or user-defined aggregate into its binary format.
-            </summary>
-            <param name="w">The System.IO.BinaryWriter stream to which the UDT or user-defined aggregate is serialized.</param>
-        </member>
-        <member name="T:Ximura.DateTimeHelper">
-            <summary>
-            Provide special functionality to deal with DateTime
-            </summary>
-        </member>
-        <member name="M:Ximura.DateTimeHelper.GetWeekNumberInMonth(System.DateTime)">
-            <summary>
-            Obtain the week number of the date in the current month.
-            </summary>
-            <param name="dateTime"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Ximura.DateTimeHelper.GetWeekOccuranceInMonth(System.DateTime)">
-            <summary>
-            Obtain the week occurance number in current month.
-            </summary>
-            <param name="dateTime"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Ximura.DateTimeHelper.GetLastWeekNumberInMonth(System.DateTime)">
-            <summary>
-            Obtain the last week number of the current day of week in the current month
-            </summary>
-            <param name="dateTime"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Ximura.DateTimeHelper.GetLastWeekOccuranceInMonth(System.DateTime)">
-            <summary>
-            Obtain the last week occurance number of the current day of week in current month
-            </summary>
-            <param name="dateTime"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Ximura.DateTimeHelper.InBetween(System.DateTime,System.DateTime,System.DateTime)">
-            <summary>
-            Check if the verify date is equal or in between the interval start and end date.
-            </summary>
-            <param name="comparer"></param>
-            <param name="intervalStart"></param>
-            <param name="internalEnd"></param>
-            <returns></returns>
         </member>
         <member name="T:Ximura.Collections.ConcurrentPriorityQueue`1">
             <summary>
@@ -9745,75 +8135,75 @@
             This property is not supported.
             </summary>
         </member>
-        <member name="T:Ximura.IXimuraPoolManagerDirectAccess">
+        <member name="T:Ximura.XimuraServiceStatus">
             <summary>
-            This method is for poolable objects that require access to the base pool manager, so that they can retrieve
-            additional internal objects from the pool.
+            The CatalogProcessStatus shows the current status of the Catalog Process.
             </summary>
         </member>
-        <member name="M:Ximura.IXimuraPoolManagerDirectAccess.PoolGet(System.Type)">
+        <member name="F:Ximura.XimuraServiceStatus.Undefined">
             <summary>
-            This method returns the specific pool manager for the type.
-            </summary>
-            <param name="objectType"></param>
-            <returns>Returns the pool for the object type.</returns>
-        </member>
-        <member name="M:Ximura.IXimuraPoolManagerDirectAccess.PoolGetObject(System.Type)">
-            <summary>
-            Returns a new object of the type specified.
-            </summary>
-            <param name="objectType">The object type required.</param>
-            <returns>Returns a poolable object of the type defined.</returns>
-        </member>
-        <member name="M:Ximura.IXimuraPoolManagerDirectAccess.PoolGetReturn(System.Object)">
-            <summary>
-            This method returns the object to the appropriate pool.
-            </summary>
-            <param name="poolObject">The object to return.</param>
-        </member>
-        <member name="P:Ximura.IXimuraPoolManagerDirectAccess.PoolManager">
-            <summary>
-            This is the pool manager for the object.
+            The status is undefined.
             </summary>
         </member>
-        <member name="T:Ximura.Command">
+        <member name="F:Ximura.XimuraServiceStatus.NotStarted">
             <summary>
-            The <b>Common</b> class includes a number of useful utilities.
+            The process has not started.
             </summary>
         </member>
-        <member name="M:Ximura.Command.ParseArgs(System.String[])">
+        <member name="F:Ximura.XimuraServiceStatus.Starting">
             <summary>
-            
+            The process is starting up.
             </summary>
-            <param name="Args"></param>
-            <returns>Returns a dictionary containing the collection of parameters and values.</returns>
         </member>
-        <member name="M:Ximura.Command.ParseArgs(System.String[],System.Boolean)">
+        <member name="F:Ximura.XimuraServiceStatus.Started">
             <summary>
-            
+            The process is processing.
             </summary>
-            <param name="Args"></param>
-            <param name="throwErrors"></param>
-            <returns>Returns a dictionary containing the collection of parameters and values.</returns>
         </member>
-        <member name="M:Ximura.Command.ParseArgs(System.String[],System.String,System.Boolean)">
+        <member name="F:Ximura.XimuraServiceStatus.Pausing">
             <summary>
-            
+            The process is pausing.
             </summary>
-            <param name="Args"></param>
-            <param name="strStart"></param>
-            <param name="throwErrors"></param>
-            <returns>Returns a dictionary containing the collection of parameters and values.</returns>
         </member>
-        <member name="M:Ximura.Command.ParseArgs(System.String[],System.String,System.String,System.Boolean)">
+        <member name="F:Ximura.XimuraServiceStatus.Paused">
             <summary>
-            
+            The process is paused.
             </summary>
-            <param name="Args"></param>
-            <param name="strStart"></param>
-            <param name="strDelim"></param>
-            <param name="throwErrors"></param>
-            <returns>Returns a dictionary containing the collection of parameters and values.</returns>
+        </member>
+        <member name="F:Ximura.XimuraServiceStatus.Resuming">
+            <summary>
+            The process is resuming.
+            </summary>
+        </member>
+        <member name="F:Ximura.XimuraServiceStatus.Stopping">
+            <summary>
+            The process is stopping.
+            </summary>
+        </member>
+        <member name="F:Ximura.XimuraServiceStatus.Stopped">
+            <summary>
+            The process has stopped.
+            </summary>
+        </member>
+        <member name="F:Ximura.XimuraServiceStatus.Completed">
+            <summary>
+            The process has completed.
+            </summary>
+        </member>
+        <member name="F:Ximura.XimuraServiceStatus.Resumed">
+            <summary>
+            The process has resumed.
+            </summary>
+        </member>
+        <member name="F:Ximura.XimuraServiceStatus.Failed">
+            <summary>
+            The service has failed to start.
+            </summary>
+        </member>
+        <member name="F:Ximura.XimuraServiceStatus.Disabled">
+            <summary>
+            The service is disabled.
+            </summary>
         </member>
         <member name="T:Ximura.Collections.LockFreeRedBlackTree`2">
             <summary>
@@ -10018,60 +8408,6 @@
         <member name="P:Ximura.IXimuraLogging.IndentSize">
             <summary>
             Gets or sets the number of spaces in an indent.
-            </summary>
-        </member>
-        <member name="T:Ximura.Pool`1">
-            <summary>
-            This is the base object pool.
-            </summary>
-            <typeparam name="T">The pool type.</typeparam>
-        </member>
-        <member name="M:Ximura.Pool`1.#ctor">
-            <summary>
-            The default constructor.
-            </summary>
-        </member>
-        <member name="M:Ximura.Pool`1.#ctor(System.Func{`0})">
-            <summary>
-            The default constructor.
-            </summary>
-            <param name="remoteInvocator">This delegate can be used to create a new pool object.</param>
-        </member>
-        <member name="M:Ximura.Pool`1.#ctor(System.Int32,System.Int32,System.Int32)">
-            <summary>
-            This is the pool constructor with default arguments.
-            </summary>
-            <param name="min">This is the minimum size.</param>
-            <param name="max">This is the maximum size.</param>
-            <param name="prefer">This is the prefered size.</param>
-        </member>
-        <member name="M:Ximura.Pool`1.#ctor(System.Func{`0},System.Int32,System.Int32,System.Int32)">
-            <summary>
-            This is the pool constructor with default arguments.
-            </summary>
-            <param name="min">This is the minimum size.</param>
-            <param name="max">This is the maximum size.</param>
-            <param name="prefer">This is the prefered size.</param>
-            <param name="remoteInvocator">This delegate can be used to create a new pool object.</param>
-        </member>
-        <member name="M:Ximura.Pool`1.CreateNewPoolObject">
-            <summary>
-            This method creates a new pool object of type T.
-            </summary>
-            <returns>Returns the new object.</returns>
-        </member>
-        <member name="T:Ximura.PoolableObjectPoolManagerDirectAccess">
-            <summary>
-            This object is an example of an object that implements the IXimuraPoolManagerDirectAccess interface.
-            This interface allows a poolable object to use other object from the base pool manager. This
-            is useful for poolable object that need to create a large number of child objects. The functionality
-            for this is implemented in the base class, but is only activated if the pool manager detects 
-            that the object implements this interface.
-            </summary>
-        </member>
-        <member name="M:Ximura.PoolableObjectPoolManagerDirectAccess.#ctor">
-            <summary>
-            The default constructor.
             </summary>
         </member>
         <member name="T:Ximura.XimuraServiceContainer">
@@ -10290,136 +8626,1789 @@
             This property specifies that the data item is a sentinel.
             </summary>
         </member>
-        <member name="T:Ximura.IXimuraServiceParentSettings">
+        <member name="T:Ximura.PoolManager">
             <summary>
-            This interface is implemented by commands that can be nested in other commands.
+            The pool manager is a static class which controls system wide object pooling within the 
+            current AppDomain.
             </summary>
         </member>
-        <member name="P:Ximura.IXimuraServiceParentSettings.ParentCommandName">
+        <member name="T:Ximura.IXimuraPoolManager">
             <summary>
-            The parent command service name.
+            The pool manager interface is used to provide an interface that allows multiple
+            pool objects to be created around a base object type.
             </summary>
         </member>
-        <member name="T:Ximura.ServiceEvent">
+        <member name="M:Ximura.IXimuraPoolManager.GetPoolManager(System.Type)">
             <summary>
-            This delegate is used by the Services to report back progress
+            This method retrieve a pool manage object based on
+            </summary>
+            <param name="objectType">The object type for the pool.</param>
+            <returns>Returns a pool manager for the type specified.</returns>
+        </member>
+        <member name="M:Ximura.IXimuraPoolManager.GetPoolManager(System.Type,System.Boolean)">
+            <summary>
+            This method retrieve a pool manage object based on
+            </summary>
+            <param name="objectType">The object type for the pool.</param>
+            <param name="buffered">A boolean value that specifies whether the pool manager should
+            be buffered. A buffered pool cannot be reset by the receiving party.</param>
+            <returns>Returns a pool manager for the type specified.</returns>
+        </member>
+        <member name="F:Ximura.PoolManager.mPoolManagers">
+            <summary>
+            This collection contains the specific pool managers that hold a collection of poolable object.
             </summary>
         </member>
-        <member name="T:Ximura.XimuraServiceStatus">
+        <member name="M:Ximura.PoolManager.#ctor">
             <summary>
-            The CatalogProcessStatus shows the current status of the Catalog Process.
+            This is the default static constructor.
             </summary>
         </member>
-        <member name="F:Ximura.XimuraServiceStatus.Undefined">
+        <member name="M:Ximura.PoolManager.#ctor(System.Boolean)">
             <summary>
-            The status is undefined.
+            This is the buffered output option for the pool manager. With a buffered output the pool object is abstracted
+            using a buffer object which does not allow the calling party to clear the pool.
+            </summary>
+            <param name="useBuffer">Set this to true if you wish the pool manager to output a buffered output.</param>
+        </member>
+        <member name="M:Ximura.PoolManager.CheckDisposed">
+            <summary>
+            This method checks whether the pool manager has been disposed, and if so throws an exception.
             </summary>
         </member>
-        <member name="F:Ximura.XimuraServiceStatus.NotStarted">
+        <member name="T:Ximura.PoolManager.PoolManagerContainer">
             <summary>
-            The process has not started.
+            The PoolManagerContainer is a private class that is used to hold the pool and the buffered pool.
             </summary>
         </member>
-        <member name="F:Ximura.XimuraServiceStatus.Starting">
+        <member name="M:Ximura.PoolManager.PoolManagerContainer.#ctor(System.Type,Ximura.IXimuraPoolManager)">
             <summary>
-            The process is starting up.
+            This is the default constructor for the the PoolManagerContainer.
+            </summary>
+            <param name="poolManager">The pool manager to contain.</param>
+        </member>
+        <member name="M:Ximura.PoolManager.PoolManagerContainer.CreatePool(System.Type,Ximura.IXimuraPoolManager)">
+            <summary>
+            This method uses generics to create the specific type of context pool.
+            </summary>
+            <param name="objectType">The context type.</param>
+            <returns>Returns the pool.</returns>
+        </member>
+        <member name="M:Ximura.PoolManager.PoolManagerContainer.CheckDisposed">
+            <summary>
+            This method checks whether the pool manager has been disposed, and if so throws an exception.
             </summary>
         </member>
-        <member name="F:Ximura.XimuraServiceStatus.Started">
+        <member name="M:Ximura.PoolManager.PoolManagerContainer.Dispose">
             <summary>
-            The process is processing.
+            This is the dispose method for the class.
             </summary>
         </member>
-        <member name="F:Ximura.XimuraServiceStatus.Pausing">
+        <member name="P:Ximura.PoolManager.PoolManagerContainer.Pool">
             <summary>
-            The process is pausing.
+            The pool.
             </summary>
         </member>
-        <member name="F:Ximura.XimuraServiceStatus.Paused">
+        <member name="P:Ximura.PoolManager.PoolManagerContainer.PoolBuffered">
             <summary>
-            The process is paused.
+            The buffered pool.
             </summary>
         </member>
-        <member name="F:Ximura.XimuraServiceStatus.Resuming">
+        <member name="T:Ximura.Pool`1">
             <summary>
-            The process is resuming.
+            This is the base object pool.
+            </summary>
+            <typeparam name="T">The pool type.</typeparam>
+        </member>
+        <member name="T:Ximura.PoolInvocator`1">
+            <summary>
+            This is the base object pool. 
+            </summary>
+            <typeparam name="T">The pool type.</typeparam>
+        </member>
+        <member name="T:Ximura.PoolBase`1">
+            <summary>
+            The PoolBase class is used to hold a collection of objects that can be re-used.
+            </summary>
+            <typeparam name="T">The object pool type.</typeparam>
+        </member>
+        <member name="T:Ximura.IXimuraPool`1">
+            <summary>
+            This interface is implemented by the generic object pool
             </summary>
         </member>
-        <member name="F:Ximura.XimuraServiceStatus.Stopping">
+        <member name="T:Ximura.IXimuraPool">
             <summary>
-            The process is stopping.
+            This interface is implemented by the object pool
             </summary>
         </member>
-        <member name="F:Ximura.XimuraServiceStatus.Stopped">
+        <member name="M:Ximura.IXimuraPool.Get">
             <summary>
-            The process has stopped.
+            This method returns an object of the specified type.
+            </summary>
+            <returns>An object of the pool type.</returns>
+        </member>
+        <member name="M:Ximura.IXimuraPool.Get(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            This method returns an object of the specified type, with the deserialized data.
+            </summary>
+            <param name="info">The serialization info.</param>
+            <param name="context">The serialization context.</param>
+            <returns>An object of the pool type.</returns>
+        </member>
+        <member name="M:Ximura.IXimuraPool.Return(System.Object)">
+            <summary>
+            This method returns an object to the pool.
+            </summary>
+            <param name="value">The object to return to the pool.</param>
+        </member>
+        <member name="P:Ximura.IXimuraPool.Available">
+            <summary>
+            This method returns true if there are objects available in the pool.
             </summary>
         </member>
-        <member name="F:Ximura.XimuraServiceStatus.Completed">
+        <member name="P:Ximura.IXimuraPool.Max">
             <summary>
-            The process has completed.
+            This is the maximum pool size, a value of -1 specifies no maximum size.
             </summary>
         </member>
-        <member name="F:Ximura.XimuraServiceStatus.Resumed">
+        <member name="P:Ximura.IXimuraPool.Min">
             <summary>
-            The process has resumed.
+            This is the minimum pool size.
             </summary>
         </member>
-        <member name="F:Ximura.XimuraServiceStatus.Failed">
+        <member name="P:Ximura.IXimuraPool.Prefered">
             <summary>
-            The service has failed to start.
+            This is prefered pool size.
             </summary>
         </member>
-        <member name="F:Ximura.XimuraServiceStatus.Disabled">
+        <member name="P:Ximura.IXimuraPool.Count">
             <summary>
-            The service is disabled.
+            This property returns the number of active objects.
             </summary>
         </member>
-        <member name="T:Ximura.XimuraServiceStatusAction">
+        <member name="P:Ximura.IXimuraPool.IsBuffered">
             <summary>
-            This enumerations is used to signal an action for the collection
+            This property indicates whether the pool is buffered. Buffered pools are shared amongst multiple 
+            clients and do not expose the PoolManager.
             </summary>
         </member>
-        <member name="F:Ximura.XimuraServiceStatusAction.Start">
+        <member name="P:Ximura.IXimuraPool.PoolManager">
             <summary>
-            Start the collection
+            This property is used to set the pool manager for the specific pool.
             </summary>
         </member>
-        <member name="F:Ximura.XimuraServiceStatusAction.Stop">
+        <member name="M:Ximura.IXimuraPool`1.Get">
             <summary>
-            Stop the collection
+            The Get() method takes an object from the pool, if 
+            there are no objects available the pool will create a new object.
+            </summary>
+            <returns>An object of the type defined in the pool definition.</returns>
+        </member>
+        <member name="M:Ximura.IXimuraPool`1.Get(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            The Get() method takes an object from the pool, if 
+            there are no objects available the pool will create a new object.
+            </summary>
+            <param name="info">The serialization info.</param>
+            <param name="context">The serialization context.</param>
+            <returns>An object of the type defined in the pool definition, with the serialization data.</returns>
+        </member>
+        <member name="M:Ximura.IXimuraPool`1.Return(`0)">
+            <summary>
+            This method returns an object to the pool.
+            </summary>
+            <param name="value">The object to return to the pool.</param>
+        </member>
+        <member name="M:Ximura.IXimuraPoolInitialize`1.Get(System.Action{`0})">
+            <summary>
+            The Get() method takes an object from the pool, if 
+            there are no objects available the pool will create a new object.
+            </summary>
+            <returns>An object of the type defined in the pool definition.</returns>
+        </member>
+        <member name="M:Ximura.IXimuraPoolInitialize`1.Get(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext,System.Action{`0})">
+            <summary>
+            The Get() method takes an object from the pool, if 
+            there are no objects available the pool will create a new object.
+            </summary>
+            <param name="info">The serialization info.</param>
+            <param name="context">The serialization context.</param>
+            <returns>An object of the type defined in the pool definition, with the serialization data.</returns>
+        </member>
+        <member name="F:Ximura.PoolBase`1.mAvailable">
+            <summary>
+            This queue contains a list of available object waiting to be assigned.
             </summary>
         </member>
-        <member name="F:Ximura.XimuraServiceStatusAction.Pause">
+        <member name="M:Ximura.PoolBase`1.#ctor">
             <summary>
-            Pause the collection
+            The default constructor.
             </summary>
         </member>
-        <member name="F:Ximura.XimuraServiceStatusAction.Continue">
+        <member name="M:Ximura.PoolBase`1.#ctor(System.Int32,System.Int32,System.Int32)">
             <summary>
-            Continue the collection
+            This constructor sets the pool create parameters.
+            </summary>
+            <param name="min">The initial set of objects.</param>
+            <param name="max">The maximum set of object for the pool. Set this to -1 is you do not 
+            wish to set a maximum value.</param>
+            <param name="prefer">The prefered number of object for the pool.</param>
+        </member>
+        <member name="M:Ximura.PoolBase`1.InitializePool">
+            <summary>
+            This method initiates the object pool with the required number of objects.
             </summary>
         </member>
-        <member name="T:Ximura.ServiceEventArgs">
+        <member name="M:Ximura.PoolBase`1.Dispose(System.Boolean)">
             <summary>
-            The ServiceEventArgs class is used by the component to pass notification 
-            of the service status
+            This is the component model Dispose method.
+            </summary>
+            <param name="disposing"></param>
+        </member>
+        <member name="M:Ximura.PoolBase`1.CreateNewPoolObject">
+            <summary>
+            This method creates a new pool object of type T.
+            </summary>
+            <returns>Returns the new object.</returns>
+        </member>
+        <member name="M:Ximura.PoolBase`1.ResetPoolObject(`0)">
+            <summary>
+            This method is used to reset the pool object. You should override this method if
+            you wish to set particular values.
+            </summary>
+            <param name="obj">The object to reset.</param>
+        </member>
+        <member name="M:Ximura.PoolBase`1.ResetPoolObject(`0,System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            This method is used to reset the pool object from the serialization information.
+            You should override this method if you wish to set particular values.
+            </summary>
+            <param name="obj">The object to reset.</param>
+            <param name="info">The serialization info.</param>
+            <param name="context">The context.</param>
+        </member>
+        <member name="M:Ximura.PoolBase`1.Ximura#IXimuraPool#Get">
+            <summary>
+            This is the default get() accessor.
+            </summary>
+            <returns>An object of the type defined in the pool.</returns>
+        </member>
+        <member name="M:Ximura.PoolBase`1.Get">
+            <summary>
+            The Get() method takes an object from the pool, if 
+            there are no objects available the pool will create a new object.
+            </summary>
+            <returns>An object of the type defined in the pool.</returns>
+            <exception cref="T:System.ObjectDisposedException">
+            An object disposed exception will be thrown if the pool has been disposed.
+            </exception>
+        </member>
+        <member name="M:Ximura.PoolBase`1.Get(System.Action{`0})">
+            <summary>
+            The Get() method takes an object from the pool, if 
+            there are no objects available the pool will create a new object.
+            </summary>
+            <param name="initializer">This is the object initialization action. This value can be null.</param>
+            <returns>An object of the type defined in the pool.</returns>
+            <exception cref="T:System.ObjectDisposedException">
+            An object disposed exception will be thrown if the pool has been disposed.
+            </exception>
+        </member>
+        <member name="M:Ximura.PoolBase`1.Get(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            The Get() method takes an object from the pool, if 
+            there are no objects available the pool will create a new object.
+            </summary>
+            <param name="info">The serialization info.</param>
+            <param name="context">The context.</param>
+            <returns>An object of the type defined in the pool.</returns>
+            <exception cref="T:System.ObjectDisposedException">
+            An object disposed exception will be thrown if the pool has been disposed.
+            </exception>
+        </member>
+        <member name="M:Ximura.PoolBase`1.Get(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext,System.Action{`0})">
+            <summary>
+            The Get() method takes an object from the pool, if 
+            there are no objects available the pool will create a new object.
+            </summary>
+            <param name="info">The serialization info.</param>
+            <param name="context">The context.</param>
+            <param name="initializer">This is the object initialization action. This value can be null.</param>
+            <returns>An object of the type defined in the pool.</returns>
+            <exception cref="T:System.ObjectDisposedException">
+            An object disposed exception will be thrown if the pool has been disposed.
+            </exception>
+        </member>
+        <member name="M:Ximura.PoolBase`1.Return(System.Object)">
+            <summary>
+            This method returns an object to the pool as an object and not being of a specific type.
+            </summary>
+            <param name="value">The object to return to the pool.</param>
+        </member>
+        <member name="M:Ximura.PoolBase`1.Return(`0)">
+            <summary>
+            This method returns an object to the pool.
+            </summary>
+            <param name="value">The object to return to the pool.</param>
+        </member>
+        <member name="M:Ximura.PoolBase`1.InternalAvailable">
+            <summary>
+            This method returns the internal available property.
+            </summary>
+            <returns>Returns true if the pool can return objects.</returns>
+        </member>
+        <member name="M:Ximura.PoolBase`1.Clear">
+            <summary>
+            This method is used to clear the pool of all objects.
             </summary>
         </member>
-        <member name="M:Ximura.ServiceEventArgs.#ctor">
+        <member name="M:Ximura.PoolBase`1.ClearInternal">
             <summary>
-            The default constructor. The service is defined as Undefined
+            This method removes all waiting objects in the pool. If the objects support IDisposable
+            the objects will be disposed.
             </summary>
         </member>
-        <member name="M:Ximura.ServiceEventArgs.#ctor(Ximura.XimuraServiceStatus)">
+        <member name="M:Ximura.PoolBase`1.StatisticsUpdate">
             <summary>
-            The main constructor.
+            This method will update any performance counters.
             </summary>
-            <param name="status">The status of the service.</param>
         </member>
-        <member name="P:Ximura.ServiceEventArgs.Status">
+        <member name="M:Ximura.PoolBase`1.StatisticsInitialize">
             <summary>
-            The status of the service
+            This method will initialize any performance counters.
+            </summary>
+        </member>
+        <member name="P:Ximura.PoolBase`1.Available">
+            <summary>
+            This method returns true if there are objects available in the pool.
+            </summary>
+        </member>
+        <member name="P:Ximura.PoolBase`1.Max">
+            <summary>
+            This is the maximum pool size, a value of -1 specifies no maximum size.
+            </summary>
+        </member>
+        <member name="P:Ximura.PoolBase`1.Min">
+            <summary>
+            This is the minimum pool size.
+            </summary>
+        </member>
+        <member name="P:Ximura.PoolBase`1.Prefered">
+            <summary>
+            This is prefered pool size.
+            </summary>
+        </member>
+        <member name="P:Ximura.PoolBase`1.Count">
+            <summary>
+            This property returns the number of active objects.
+            </summary>
+        </member>
+        <member name="P:Ximura.PoolBase`1.IsBuffered">
+            <summary>
+            This property indicates whether the pool is buffered. Buffered pools are shared amongst multiple 
+            clients and do not implement the clear method.
+            </summary>
+        </member>
+        <member name="P:Ximura.PoolBase`1.PoolManager">
+            <summary>
+            If this property is set, it will be passed on to objects that implement the IXimuraPoolManagerDirectAccess
+            interface to allow them to get additional pool objects of different types for their own internal use.
+            </summary>
+        </member>
+        <member name="P:Ximura.PoolBase`1.Stats">
+            <summary>
+            This property returns a summary of the stats for the collection.
+            </summary>
+        </member>
+        <member name="P:Ximura.PoolBase`1.StatsInternalNoLock">
+            <summary>
+            This method returns a string
+            </summary>
+        </member>
+        <member name="F:Ximura.PoolInvocator`1.mRemoteInvocator">
+            <summary>
+            This is the pool invocator that can be used to invoke a new object.
+            </summary>
+        </member>
+        <member name="M:Ximura.PoolInvocator`1.#ctor(System.Func{`0})">
+            <summary>
+            The default constructor.
+            </summary>
+            <param name="remoteInvocator">This delegate can be used to create a new pool object.</param>
+        </member>
+        <member name="M:Ximura.PoolInvocator`1.#ctor(System.Func{`0},System.Int32,System.Int32,System.Int32)">
+            <summary>
+            This is the pool constructor with default arguments.
+            </summary>
+            <param name="min">This is the minimum size.</param>
+            <param name="max">This is the maximum size.</param>
+            <param name="prefer">This is the prefered size.</param>
+            <param name="remoteInvocator">This delegate can be used to create a new pool object.</param>
+        </member>
+        <member name="M:Ximura.PoolInvocator`1.CreateNewPoolObject">
+            <summary>
+            This method creates a new pool object of type T.
+            </summary>
+            <returns>Returns the new object.</returns>
+        </member>
+        <member name="M:Ximura.Pool`1.#ctor">
+            <summary>
+            The default constructor.
+            </summary>
+        </member>
+        <member name="M:Ximura.Pool`1.#ctor(System.Func{`0})">
+            <summary>
+            The default constructor.
+            </summary>
+            <param name="remoteInvocator">This delegate can be used to create a new pool object.</param>
+        </member>
+        <member name="M:Ximura.Pool`1.#ctor(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            This is the pool constructor with default arguments.
+            </summary>
+            <param name="min">This is the minimum size.</param>
+            <param name="max">This is the maximum size.</param>
+            <param name="prefer">This is the prefered size.</param>
+        </member>
+        <member name="M:Ximura.Pool`1.#ctor(System.Func{`0},System.Int32,System.Int32,System.Int32)">
+            <summary>
+            This is the pool constructor with default arguments.
+            </summary>
+            <param name="min">This is the minimum size.</param>
+            <param name="max">This is the maximum size.</param>
+            <param name="prefer">This is the prefered size.</param>
+            <param name="remoteInvocator">This delegate can be used to create a new pool object.</param>
+        </member>
+        <member name="M:Ximura.Pool`1.CreateNewPoolObject">
+            <summary>
+            This method creates a new pool object of type T.
+            </summary>
+            <returns>Returns the new object.</returns>
+        </member>
+        <member name="T:Ximura.PoolBaseParallel`1">
+            <summary>
+            The PoolBaseParallel class is used to hold a collection of object that can be re-used.
+            This class is optimized for multi-threaded parallel execution.
+            </summary>
+            <typeparam name="T">The object pool type.</typeparam>
+        </member>
+        <member name="M:Ximura.PoolBaseParallel`1.#ctor">
+            <summary>
+            The default constructor.
+            </summary>
+        </member>
+        <member name="M:Ximura.PoolBaseParallel`1.#ctor(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            This constructor sets the pool create parameters.
+            </summary>
+            <param name="min">The initial set of objects.</param>
+            <param name="max">The maximum set of object for the pool. Set this to -1 is you do not 
+            wish to set a maximum value.</param>
+            <param name="prefer">The prefered number of object for the pool.</param>
+        </member>
+        <member name="M:Ximura.PoolBaseParallel`1.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            This constructor sets the pool create parameters.
+            </summary>
+            <param name="min">The initial set of objects.</param>
+            <param name="max">The maximum set of object for the pool. Set this to -1 is you do not 
+            wish to set a maximum value.</param>
+            <param name="prefer">The prefered number of object for the pool.</param>
+        </member>
+        <member name="M:Ximura.PoolBaseParallel`1.Dispose(System.Boolean)">
+            <summary>
+            This override disposes of the pool.
+            </summary>
+            <param name="disposing"></param>
+        </member>
+        <member name="M:Ximura.PoolBaseParallel`1.CheckStatus">
+            <summary>
+            This method checks the status of the pool.
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">The pool has been disposed.</exception>
+            <exception cref="!:SYstem.NotSupportedException">The pool has not been initialized</exception>
+        </member>
+        <member name="M:Ximura.PoolBaseParallel`1.InitializePool">
+            <summary>
+            This method initiates the object pool with the required number of objects.
+            </summary>
+        </member>
+        <member name="M:Ximura.PoolBaseParallel`1.Get">
+            <summary>
+            The Get() method takes an object from the pool, if 
+            there are no objects available the pool will create a new object.
+            </summary>
+            <returns>An object of the type defined in the pool.</returns>
+            <exception cref="T:System.ObjectDisposedException">
+            An object disposed exception will be thrown if the pool has been disposed.
+            </exception>
+        </member>
+        <member name="M:Ximura.PoolBaseParallel`1.Ximura#IXimuraPool#Get">
+            <summary>
+            This is the default get() accessor.
+            </summary>
+            <returns>An object of the type defined in the pool.</returns>
+        </member>
+        <member name="M:Ximura.PoolBaseParallel`1.Get(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            The Get() method takes an object from the pool, if 
+            there are no objects available the pool will create a new object.
+            </summary>
+            <param name="info">The serialization info.</param>
+            <param name="context">The context.</param>
+            <returns>An object of the type defined in the pool.</returns>
+            <exception cref="T:System.ObjectDisposedException">
+            An object disposed exception will be thrown if the pool has been disposed.
+            </exception>
+        </member>
+        <member name="M:Ximura.PoolBaseParallel`1.Ximura#IXimuraPool#Get(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            The Get() method takes an object from the pool, if 
+            there are no objects available the pool will create a new object.
+            </summary>
+            <param name="info">The serialization info.</param>
+            <param name="context">The context.</param>
+            <returns>An object of the type defined in the pool.</returns>
+            <exception cref="T:System.ObjectDisposedException">
+            An object disposed exception will be thrown if the pool has been disposed.
+            </exception>
+        </member>
+        <member name="M:Ximura.PoolBaseParallel`1.Get(System.Action{`0})">
+            <summary>
+            The Get() method takes an object from the pool, if 
+            there are no objects available the pool will create a new object.
+            </summary>
+            <param name="initializer">This is the object initialization action. This value can be null.</param>
+            <returns>An object of the type defined in the pool.</returns>
+            <exception cref="T:System.ObjectDisposedException">
+            An object disposed exception will be thrown if the pool has been disposed.
+            </exception>
+        </member>
+        <member name="M:Ximura.PoolBaseParallel`1.Get(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext,System.Action{`0})">
+            <summary>
+            The Get() method takes an object from the pool, if 
+            there are no objects available the pool will create a new object.
+            </summary>
+            <param name="info">The serialization info.</param>
+            <param name="context">The context.</param>
+            <param name="initializer">This is the object initialization action. This value can be null.</param>
+            <returns>An object of the type defined in the pool.</returns>
+            <exception cref="T:System.ObjectDisposedException">
+            An object disposed exception will be thrown if the pool has been disposed.
+            </exception>
+        </member>
+        <member name="M:Ximura.PoolBaseParallel`1.GetInternal(System.Action{`0},System.Action{`0})">
+            <summary>
+            This method gets an item from the pool internally.
+            </summary>
+            <param name="initializer">The initialization delegate. Leave this null if not required.</param>
+            <param name="deserializer">The deserialization delegate. Leave this null if not required.</param>
+            <returns>Returns an object from the pool, or default(T) is there are no objects available.</returns>
+            <exception cref="T:Ximura.PoolObjectUnavailableException">This exception is thrown when there are no pool object available and 
+            GetUnavailableThrowException is set to true.</exception>
+        </member>
+        <member name="M:Ximura.PoolBaseParallel`1.Return(`0)">
+            <summary>
+            This method returns an object to the pool.
+            </summary>
+            <param name="value">The object to return to the pool.</param>
+        </member>
+        <member name="M:Ximura.PoolBaseParallel`1.Return(System.Object)">
+            <summary>
+            This method returns an object to the pool as an object and not being of a specific type.
+            </summary>
+            <param name="value">The object to return to the pool.</param>
+        </member>
+        <member name="M:Ximura.PoolBaseParallel`1.CreateNewPoolObject">
+            <summary>
+            This method creates a new pool object of type T.
+            </summary>
+            <returns>Returns the new object.</returns>
+        </member>
+        <member name="M:Ximura.PoolBaseParallel`1.ResetPoolObject(`0)">
+            <summary>
+            This method is used to reset the pool object. You should override this method if
+            you wish to set particular values.
+            </summary>
+            <param name="obj">The object to reset.</param>
+        </member>
+        <member name="M:Ximura.PoolBaseParallel`1.ResetPoolObject(`0,System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            This method is used to reset the pool object from the serialization information.
+            You should override this method if you wish to set particular values.
+            </summary>
+            <param name="obj">The object to reset.</param>
+            <param name="info">The serialization info.</param>
+            <param name="context">The context.</param>
+        </member>
+        <member name="M:Ximura.PoolBaseParallel`1.ItemGet">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ximura.PoolBaseParallel`1.ItemAdd(`0)">
+            <summary>
+            This method adds a new item to the pool.
+            </summary>
+            <param name="obj">The item to add to the pool.</param>
+        </member>
+        <member name="M:Ximura.PoolBaseParallel`1.ItemReturn(`0,System.Boolean)">
+            <summary>
+            This method returns or adds an object to the pool.
+            </summary>
+            <param name="obj">The pool object to be returned.</param>
+            <param name="initialize">This property specifies whether the pool is being initialized. 
+            If the pool is being initialized, a new item will be added to the pool.</param>
+            <exception cref="T:System.ArgumentNullException">The pool item to be returned is null.</exception>
+        </member>
+        <member name="P:Ximura.PoolBaseParallel`1.Disposed">
+            <summary>
+            This boolean property identifies whether the pool has been disposed.
+            </summary>
+        </member>
+        <member name="P:Ximura.PoolBaseParallel`1.Initialized">
+            <summary>
+            This boolean property identifies whether the pool has been initialized.
+            </summary>
+        </member>
+        <member name="P:Ximura.PoolBaseParallel`1.GetUnavailableThrowException">
+            <summary>
+            This property specifies whether the pool should throw an exception if there are no object available. 
+            This is useful when the object is a value type and does not return null.
+            The default is false when T is a class type and true when T is a value type. This value is set in the constructor.
+            </summary>
+        </member>
+        <member name="P:Ximura.PoolBaseParallel`1.Available">
+            <summary>
+            This method returns the internal available property.
+            </summary>
+            <returns>Returns true if the pool can return objects.</returns>
+        </member>
+        <member name="P:Ximura.PoolBaseParallel`1.Count">
+            <summary>
+            This property returns the number of active objects.
+            </summary>
+        </member>
+        <member name="P:Ximura.PoolBaseParallel`1.Churn">
+            <summary>
+            This property returns the number of Gets performed by the pool.
+            </summary>
+        </member>
+        <member name="P:Ximura.PoolBaseParallel`1.Stats">
+            <summary>
+            This property returns a summary of the stats for the collection.
+            </summary>
+        </member>
+        <member name="P:Ximura.PoolBaseParallel`1.Max">
+            <summary>
+            This is the maximum pool size, a value of -1 specifies no maximum size.
+            </summary>
+        </member>
+        <member name="P:Ximura.PoolBaseParallel`1.Min">
+            <summary>
+            This is the minimum pool size.
+            </summary>
+        </member>
+        <member name="P:Ximura.PoolBaseParallel`1.Prefered">
+            <summary>
+            This is prefered pool size.
+            </summary>
+        </member>
+        <member name="P:Ximura.PoolBaseParallel`1.Overbite">
+            <summary>
+            This is allowable increase over the maximum value. This may be useful in multi-processor machines.
+            </summary>
+        </member>
+        <member name="P:Ximura.PoolBaseParallel`1.IsBuffered">
+            <summary>
+            This property indicates whether the pool is buffered. Buffered pools are shared amongst multiple 
+            clients and do not implement the clear method.
+            </summary>
+        </member>
+        <member name="P:Ximura.PoolBaseParallel`1.PoolManager">
+            <summary>
+            If this property is set, it will be passed on to objects that implement the IXimuraPoolManagerDirectAccess
+            interface to allow them to get additional pool objects of different types for their own internal use.
+            </summary>
+        </member>
+        <member name="T:Ximura.PoolBaseParallel`1.PoolItem`1">
+            <summary>
+            This internal class is used to store the pool data.
+            </summary>
+            <typeparam name="U"></typeparam>
+        </member>
+        <member name="M:Ximura.PoolBaseParallel`1.PoolItem`1.#ctor(`1)">
+            <summary>
+            This is the default constructor and creates a new PoolItem.
+            </summary>
+            <param name="val">The item value.</param>
+        </member>
+        <member name="M:Ximura.PoolBaseParallel`1.PoolItem`1.#ctor(`1,Ximura.PoolBaseParallel{`0}.PoolItem{`1})">
+            <summary>
+            This constructor creates a new PoolItem and also sets the next item in the chain.
+            </summary>
+            <param name="val">The item value.</param>
+            <param name="next">The next item in the chain.</param>
+        </member>
+        <member name="T:Ximura.PoolBuffer`1">
+            <summary>
+            The pool buffer allow multiple clients to connect to the same underlying pool, but removes direct
+            access to the underlying pool allowing more stable support.
+            </summary>
+        </member>
+        <member name="T:Ximura.IXimuraPoolBuffer">
+            <summary>
+            This is the pool buffer interface. This interface is used by the pool managers 
+            to reset the references when closing down.
+            </summary>
+        </member>
+        <member name="M:Ximura.IXimuraPoolBuffer.ResetBuffer">
+            <summary>
+            This method resets the buffer and it's connection to the underlying object pool.
+            </summary>
+        </member>
+        <member name="M:Ximura.PoolBuffer`1.#ctor(Ximura.IXimuraPool)">
+            <summary>
+            This is the internal constructor. The pool buffer can only be accessed by the pool manager.
+            </summary>
+            <param name="pool">The internal pool.</param>
+        </member>
+        <member name="M:Ximura.PoolBuffer`1.Dispose">
+            <summary>
+            This method disposes the pool buffer class.
+            </summary>
+        </member>
+        <member name="M:Ximura.PoolBuffer`1.DisposedCheck">
+            <summary>
+            This method checks whether the pool buffer has been disposed.
+            </summary>
+        </member>
+        <member name="M:Ximura.PoolBuffer`1.DisconnectCheck">
+            <summary>
+            This method checks whether the buffer has been disconnected from the pool.
+            </summary>
+        </member>
+        <member name="M:Ximura.PoolBuffer`1.Disconnect">
+            <summary>
+            This method disconnects the buffer from the pool.
+            </summary>
+        </member>
+        <member name="T:Ximura.IXimuraPoolDeserializable">
+            <summary>
+            This interface is used to retrieve an object that support the deserializable interface.
+            </summary>
+        </member>
+        <member name="M:Ximura.IXimuraPoolDeserializable.Get(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            This method returns an object from the pool and deserializes this information in the serialization
+            objects.
+            </summary>
+            <param name="info">The serialization information.</param>
+            <param name="context">The serialization context.</param>
+            <returns>Returns the object specified from the pool.</returns>
+        </member>
+        <member name="P:Ximura.IXimuraPoolDeserializable.SupportsDeserialization">
+            <summary>
+            This boolean property returns true if the object type for the pool supports deserialization.
+            </summary>
+        </member>
+        <member name="T:Ximura.IXimuraPoolDeserializable`1">
+            <summary>
+            This is the generic interface for poolable deserializable objects.
+            </summary>
+            <typeparam name="T">The poolable object type.</typeparam>
+        </member>
+        <member name="M:Ximura.IXimuraPoolDeserializable`1.Get(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            This method returns an object of type T from the pool and deserializes this 
+            information in the serialization objects.
+            </summary>
+            <param name="info">The serialization information.</param>
+            <param name="context">The serialization context.</param>
+            <returns>Returns the object specified from the pool.</returns>
+        </member>
+        <member name="T:Ximura.IXimuraPoolManagerDirectAccess">
+            <summary>
+            This method is for poolable objects that require access to the base pool manager, so that they can retrieve
+            additional internal objects from the pool.
+            </summary>
+        </member>
+        <member name="M:Ximura.IXimuraPoolManagerDirectAccess.PoolGet(System.Type)">
+            <summary>
+            This method returns the specific pool manager for the type.
+            </summary>
+            <param name="objectType"></param>
+            <returns>Returns the pool for the object type.</returns>
+        </member>
+        <member name="M:Ximura.IXimuraPoolManagerDirectAccess.PoolGetObject(System.Type)">
+            <summary>
+            Returns a new object of the type specified.
+            </summary>
+            <param name="objectType">The object type required.</param>
+            <returns>Returns a poolable object of the type defined.</returns>
+        </member>
+        <member name="M:Ximura.IXimuraPoolManagerDirectAccess.PoolGetReturn(System.Object)">
+            <summary>
+            This method returns the object to the appropriate pool.
+            </summary>
+            <param name="poolObject">The object to return.</param>
+        </member>
+        <member name="P:Ximura.IXimuraPoolManagerDirectAccess.PoolManager">
+            <summary>
+            This is the pool manager for the object.
+            </summary>
+        </member>
+        <member name="T:Ximura.PoolObjectInvalidException">
+            <summary>
+            This exception is thrown when the pool is not able to return an object.
+            </summary>
+        </member>
+        <member name="M:Ximura.PoolObjectInvalidException.#ctor">
+            <summary>
+            Initializes a new instance of the exception class.
+            </summary>
+        </member>
+        <member name="M:Ximura.PoolObjectInvalidException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the exception class.
+            </summary>
+            <param name="message">The error message.</param>
+        </member>
+        <member name="M:Ximura.PoolObjectInvalidException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the exception class.
+            </summary>
+            <param name="message">The error message.</param>
+            <param name="ex">The base exception.</param>
+        </member>
+        <member name="M:Ximura.PoolObjectInvalidException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            This exception is used for deserialization.
+            </summary>
+            <param name="info">The serialization info.</param>
+            <param name="context">The serialization context.</param>
+        </member>
+        <member name="T:Ximura.PoolObjectUnavailableException">
+            <summary>
+            This exception is thrown when the pool is not able to return an object.
+            </summary>
+        </member>
+        <member name="M:Ximura.PoolObjectUnavailableException.#ctor">
+            <summary>
+            Initializes a new instance of the exception class.
+            </summary>
+        </member>
+        <member name="M:Ximura.PoolObjectUnavailableException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the exception class.
+            </summary>
+            <param name="message">The error message.</param>
+        </member>
+        <member name="M:Ximura.PoolObjectUnavailableException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the exception class.
+            </summary>
+            <param name="message">The error message.</param>
+            <param name="ex">The base exception.</param>
+        </member>
+        <member name="M:Ximura.PoolObjectUnavailableException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            This exception is used for deserialization.
+            </summary>
+            <param name="info">The serialization info.</param>
+            <param name="context">The serialization context.</param>
+        </member>
+        <member name="T:Ximura.PoolableObjectPoolManagerDirectAccess">
+            <summary>
+            This object is an example of an object that implements the IXimuraPoolManagerDirectAccess interface.
+            This interface allows a poolable object to use other object from the base pool manager. This
+            is useful for poolable object that need to create a large number of child objects. The functionality
+            for this is implemented in the base class, but is only activated if the pool manager detects 
+            that the object implements this interface.
+            </summary>
+        </member>
+        <member name="M:Ximura.PoolableObjectPoolManagerDirectAccess.#ctor">
+            <summary>
+            The default constructor.
+            </summary>
+        </member>
+        <member name="T:Ximura.Data.IXimuraBinarySerialize">
+            <summary>
+            Provides custom implementation for user-defined type (UDT) and user-defined aggregate serialization and deserialization.
+            </summary>
+        </member>
+        <member name="M:Ximura.Data.IXimuraBinarySerialize.Read(System.IO.BinaryReader)">
+            <summary>
+            Generates a user-defined type (UDT) or user-defined aggregate from its binary form.
+            </summary>
+            <param name="r">The System.IO.BinaryReader stream from which the object is deserialized.</param>
+        </member>
+        <member name="M:Ximura.Data.IXimuraBinarySerialize.Write(System.IO.BinaryWriter)">
+            <summary>
+            Converts a user-defined type (UDT) or user-defined aggregate into its binary format.
+            </summary>
+            <param name="w">The System.IO.BinaryWriter stream to which the UDT or user-defined aggregate is serialized.</param>
+        </member>
+        <member name="P:Ximura.Communication.IXimuraMessageTermination.IsTerminator">
+            <summary>
+            This property specifies whether the fragment byte array has reached the termination requirements
+            </summary>
+        </member>
+        <member name="P:Ximura.Communication.IXimuraMessageLoad.CanLoad">
+            <summary>
+            This boolean property determines whether the message can be loaded.
+            </summary>
+        </member>
+        <member name="T:Ximura.Common">
+            <summary>
+            The <b>Common</b> class includes a number of useful utilities.
+            </summary>
+            <summary>
+            The <b>Common</b> class includes a number of useful utilities.
+            </summary>
+            <summary>
+            The <b>Common</b> class includes a number of useful utilities.
+            </summary>
+            <summary>
+            The <b>Common</b> class includes a number of useful utilities.
+            </summary>
+            <summary>
+            The <b>Common</b> class includes a number of useful utilities.
+            </summary>
+            <summary>
+            The <b>Common</b> class includes a number of useful utilities.
+            </summary>
+            <summary>
+            The <b>Common</b> class includes a number of useful utilities.
+            </summary>
+        </member>
+        <member name="M:Ximura.Common.ASCByt(System.String)">
+            <summary>
+            This converts a string in to an ASCII byte array. This method
+            adds a CRLF at the end of the string by default.
+            </summary>
+            <param name="strData">The string you wish to convert.</param>
+            <returns>A byte array containing an ASCII representation of the string.</returns>
+        </member>
+        <member name="M:Ximura.Common.ASCByt(System.String,System.Boolean)">
+            <summary>
+            This converts a string in to an ASCII byte array.
+            </summary>
+            <param name="strData">The string you wish to convert.</param>
+            <param name="blnAddCRLF">Select true if you want a new line appended at the end.</param>
+            <returns>A byte array containing an ASCII representation of the string.</returns>
+        </member>
+        <member name="M:Ximura.Common.IsNumeric(System.String)">
+            <summary>
+            This method tests whether a string is numeric.
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ximura.Common.CreatePasswordHash(System.String,System.String)">
+            <summary>
+            This method creates a password hash from a byte64 encoded text seed and plain text password
+            </summary>
+            <param name="Seed"></param>
+            <param name="Pass"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ximura.Common.SplitOnChars``2(System.String,System.Converter{System.String,``0},System.Converter{System.String,``1},System.Char[],System.Char[])">
+            <summary>
+            This method is used to split string pairs.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="U"></typeparam>
+            <param name="toSplit"></param>
+            <param name="convertT"></param>
+            <param name="convertU"></param>
+            <param name="split1"></param>
+            <param name="split2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ximura.Common.SplitOnCharsUnique``2(System.String,System.Converter{System.String,``0},System.Converter{System.String,``1},System.Char[],System.Char[])">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="U"></typeparam>
+            <param name="toSplit"></param>
+            <param name="convertT"></param>
+            <param name="convertU"></param>
+            <param name="split1"></param>
+            <param name="split2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ximura.Common.ConvertHexStringToBase64(System.String)">
+            <summary>
+            Converting a hex string to base 64 string
+            </summary>
+            <param name="HexString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ximura.Common.ConvertBase64ToHexString(System.String)">
+            <summary>
+            Converts a Base64 string in to a hex string.
+            </summary>
+            <param name="base64String">The base64 string.</param>
+            <returns>The hex string.</returns>
+        </member>
+        <member name="M:Ximura.Common.ConvertStringToByte(System.String)">
+            <summary>
+            Converting a string to byte[] using UTF8 encoding
+            </summary>
+            <param name="stringToHash"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ximura.Common.ComputeHash(System.String)">
+            <summary>
+            Function to hash a string by default hash algorithm (MD5)
+            </summary>
+            <param name="stringToHash">String to hash</param>
+            <returns>Hashed string</returns>
+        </member>
+        <member name="M:Ximura.Common.ComputeHash(System.String,Ximura.Common.HashAlgorithmType)">
+            <summary>
+            Function to hash a string by specific hash algorithm
+            </summary>
+            <param name="stringToHash">String to hash</param>
+            <param name="hashType">Hash Algorithm Type</param>
+            <returns>Hashed string</returns>
+        </member>
+        <member name="M:Ximura.Common.ComputeHash(System.Byte[])">
+            <summary>
+            Function to hash a byte[] by default hash algorithm (MD5) 
+            </summary>
+            <param name="HashValue">Byte[] to hash</param>
+            <returns>Hashed byte[]</returns>
+        </member>
+        <member name="M:Ximura.Common.ComputeHash(System.Byte[],Ximura.Common.HashAlgorithmType)">
+            <summary>
+            Function to hash a byte[] by specific hash algorithm
+            </summary>
+            <param name="HashValue">Byte[] to hash</param>
+            <param name="hashType">Hash Algorithm Type</param>
+            <returns>Hashed byte[]</returns>
+        </member>
+        <member name="M:Ximura.Common.CompareByteArray(System.Byte[],System.Byte[])">
+            <summary>
+            This method compares two byte arrays and returns true is the two are equal.
+            </summary>
+            <param name="Array1"></param>
+            <param name="Array2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ximura.Common.ConcatenateByteArray(System.Byte[],System.Byte[])">
+            <summary>
+            This method concatenates two byte arrays and returns the concatenation.
+            </summary>
+            <param name="Array1"></param>
+            <param name="Array2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ximura.Common.CreateSeedHash(System.String,System.String)">
+            <summary>
+            Create a salted password given the salt value.
+            </summary>
+            <param name="seedValue">The seed as a byte array</param>
+            <param name="unsaltedPassword">The password as a string</param>
+            <returns>A hash byte array</returns>
+        </member>
+        <member name="M:Ximura.Common.CreateSeedHash(System.Byte[],System.Byte[])">
+            <summary>
+            Create a salted password given the salt value.
+            </summary>
+            <param name="seedValue">The seed as a byte array</param>
+            <param name="unsaltedPassword">The password as a UTF-8 byte array</param>
+            <returns>A hash byte array</returns>
+        </member>
+        <member name="M:Ximura.Common.SelectHashAlgorithm(System.String)">
+            <summary>
+            This method selects the appropriate hash algorithm based on the value submitted.
+            </summary>
+            <param name="hashType">The hash algorithm identifier.</param>
+            <returns>Returns the selected hash algorithm.</returns>
+        </member>
+        <member name="M:Ximura.Common.IsDateTime(System.String)">
+            <summary>
+            This method tests whether a string is a DateTime.
+            </summary>
+            <param name="dateValue">The date value.</param>
+            <returns>Returns true if the string is a date.</returns>
+        </member>
+        <member name="M:Ximura.Common.IsDateTime(System.String,System.String)">
+            <summary>
+            This method tests whether a string is a DateTime.
+            </summary>
+            <param name="dateValue">The date value.</param>
+            <param name="timeValue">The time value.</param>
+            <returns>Returns true if the string is a date.</returns>
+        </member>
+        <member name="M:Ximura.Common.IsDateTime(System.String,System.String,System.Nullable{System.DateTime}@)">
+            <summary>
+            This method tests whether a string is a DateTime.
+            </summary>
+            <param name="dateValue">The date value.</param>
+            <param name="timeValue">The time value.</param>
+            <returns>Returns true if the string is a date.</returns>
+        </member>
+        <member name="M:Ximura.Common.ConvertToRFC1123DateString(System.DateTime)">
+            <summary>
+            This method converts a datetime parameter to an RFC1123 string formar.
+            </summary>
+            <param name="dt">The date time.</param>
+            <returns>The string representation.</returns>
+        </member>
+        <member name="M:Ximura.Common.ToRFC1123String(System.DateTime)">
+            <summary>
+            This method converts a datetime parameter to an RFC1123 string formar.
+            </summary>
+            <param name="dt">The date time.</param>
+            <returns>The string representation.</returns>
+        </member>
+        <member name="M:Ximura.Common.ConvertToISO8601DateString(System.String)">
+            <summary>
+            Function to convert string to ISO8601 datetime string yyyy-MM-ddTHH:mm:ss
+            </summary>
+            <param name="strDateTime">string in special format ( yyyyMMdd | yyyyMMddHH | yyyyMMddHHmm | yyyyMMddHHmmss</param>		
+            <returns>ISO8601 datetime string</returns>
+        </member>
+        <member name="M:Ximura.Common.ConvertToISO8601DateString(System.DateTime)">
+            <summary>
+            Function to convert datetime to ISO8601 datetime string yyyy-MM-ddTHH:mm:ss
+            </summary>
+            <param name="dtDateTime">datetime</param>		
+            <returns>ISO8601 datetime string</returns>
+        </member>
+        <member name="M:Ximura.Common.AdjustCentury(System.String)">
+            <summary>
+            This method adjusts the incoming 6 digit date to a 8 digit date with the century included.
+            </summary>
+            <param name="strDate">date</param>		
+            <returns>8-digit string</returns>
+        </member>
+        <member name="M:Ximura.Common.GuessYear(System.Int32)">
+            <summary>
+            Guess the Year based on the Month and the Current Year
+            </summary>
+            <param name="Month">Month</param>
+            <returns>Year</returns>
+        </member>
+        <member name="M:Ximura.Common.GuessCentury(System.Int32)">
+            <summary>
+            Guess the Century of the 2-digit Year, calculated based on the current century +/- 50 years
+            </summary>
+            <param name="Year">Year</param>
+            <returns>Century</returns>
+        </member>
+        <member name="M:Ximura.Common.GetWeekNumberInMonth(System.DateTime)">
+            <summary>
+            Obtain the week number of the date in the current month.
+            </summary>
+            <param name="dateTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ximura.Common.GetWeekOccuranceInMonth(System.DateTime)">
+            <summary>
+            Obtain the week occurance number in current month.
+            </summary>
+            <param name="dateTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ximura.Common.GetLastWeekNumberInMonth(System.DateTime)">
+            <summary>
+            Obtain the last week number of the current day of week in the current month
+            </summary>
+            <param name="dateTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ximura.Common.GetLastWeekOccuranceInMonth(System.DateTime)">
+            <summary>
+            Obtain the last week occurance number of the current day of week in current month
+            </summary>
+            <param name="dateTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ximura.Common.InBetween(System.DateTime,System.DateTime,System.DateTime)">
+            <summary>
+            Check if the verify date is equal or in between the interval start and end date.
+            </summary>
+            <param name="comparer"></param>
+            <param name="intervalStart"></param>
+            <param name="internalEnd"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ximura.Common.Enc_EncodeByteToHex(System.Byte[])">
+            <summary>
+            This function converts a binary array in to a hexadecimal string.
+            </summary>
+            <param name="data">The byte array to convert.</param>
+            <returns>A string that represents the byte array as hexadecimal</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">This exception 
+            is thrown if the offset and the length and greater than the 
+            binary array length.</exception>
+        </member>
+        <member name="M:Ximura.Common.Enc_EncodeByteToHex(System.Byte[],System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            This function converts a binary array in to a hexadecimal string.
+            </summary>
+            <param name="data">The byte array to convert.</param>
+            <param name="offset">The starting point in the byte array.</param>
+            <param name="length">The number of bytes to convert.</param>
+            <returns>A string that represents the byte array as hexadecimal</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">This exception 
+            is thrown if the offset and the length and greater than the 
+            binary array length.</exception>
+        </member>
+        <member name="M:Ximura.Common.Enc_DecodeHexAsByte(System.String,System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            This method decodes a hex string and inserts it into a byte array.
+            </summary>
+            <param name="HexString">The hex string that you wish to parse.</param>
+            <param name="data">The byte array that you wish to be updated</param>
+            <param name="offset">The point within the byte array that the method should start inserting encoded data.</param>
+            <param name="length">The number of decoded bytes that the method should insert in the byte array.</param>
+            <exception cref="T:System.ArgumentException">This exception is thrown if the hex 
+            string is not divisible by 2. All strings should be left padded with 0 to ensure
+            that they are divisible by 2.</exception>
+        </member>
+        <member name="M:Ximura.Common.Enc_DecodeHexString(System.String)">
+            <summary>
+            This method decodes a hex string and returns it as a byte array.
+            </summary>
+            <param name="HexString">The hex string to decode.</param>
+            <returns>A byte array containing the bytes corresponding to the decoded string.</returns>
+            <exception cref="T:System.ArgumentException">This exception is thrown if the hex 
+            string is not divisible by 2. All strings should be left padded with 0 to ensure
+            that they are divisible by 2.</exception>
+        </member>
+        <member name="M:Ximura.Common.XmlDecode(System.String)">
+            <summary>
+            Handle the special xml decode.
+            </summary>
+            <param name="source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ximura.Common.StringToTypedValue(System.String,System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            Turns a string into a typed value. Useful for auto-conversion routines
+            like form variable or XML parsers.
+            <seealso>Class wwUtils</seealso>
+            </summary>
+            <param name="SourceString">
+            The string to convert from
+            </param>
+            <param name="TargetType">
+            The type to convert to
+            </param>
+            <param name="Culture">
+            Culture used for numeric and datetime values.
+            </param>
+            <returns>object. Throws exception if it cannot be converted.</returns>
+        </member>
+        <member name="M:Ximura.Common.StringToTypedValue(System.String,System.Type)">
+            <summary>
+            Turns a string into a typed value. Useful for auto-conversion routines
+            like form variable or XML parsers.
+            </summary>
+            <param name="SourceString">The input string to convert</param>
+            <param name="TargetType">The Type to convert it to</param>
+            <returns>object reference. Throws Exception if type can not be converted</returns>
+        </member>
+        <member name="M:Ximura.Common.CommandArgsParse(System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="Args"></param>
+            <returns>Returns a dictionary containing the collection of parameters and values.</returns>
+        </member>
+        <member name="M:Ximura.Common.CommandArgsParse(System.String[],System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="Args"></param>
+            <param name="throwErrors"></param>
+            <returns>Returns a dictionary containing the collection of parameters and values.</returns>
+        </member>
+        <member name="M:Ximura.Common.CommandArgsParse(System.String[],System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="Args"></param>
+            <param name="strStart"></param>
+            <param name="throwErrors"></param>
+            <returns>Returns a dictionary containing the collection of parameters and values.</returns>
+        </member>
+        <member name="M:Ximura.Common.CommandArgsParse(System.String[],System.String,System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="Args"></param>
+            <param name="strStart"></param>
+            <param name="strDelim"></param>
+            <param name="throwErrors"></param>
+            <returns>Returns a dictionary containing the collection of parameters and values.</returns>
+        </member>
+        <member name="T:Ximura.Common.HTTPCodes">
+            <summary>
+            This class provides shortcuts to the HTTP codes.
+            </summary>
+        </member>
+        <member name="M:Ximura.Common.HTTPCodes.IsHTTPError(System.String)">
+            <summary>
+            This method returns true if the status is an HTTP error.
+            </summary>
+            <param name="status">The status to check.</param>
+            <returns>Returns true if the status code denotes an error.</returns>
+        </member>
+        <member name="M:Ximura.Common.HTTPCodes.IsServerError(System.String)">
+            <summary>
+            This method returns true if the status code is an error.
+            </summary>
+            <param name="status">The status to check.</param>
+            <returns>Returns true if the status code denotes an error.</returns>
+        </member>
+        <member name="P:Ximura.Common.HTTPCodes.Continue_100">
+            <summary>
+            100: Continue
+            </summary>
+        </member>
+        <member name="P:Ximura.Common.HTTPCodes.SwitchingProtocols_101">
+            <summary>
+            101: Switching Protocols
+            </summary>
+        </member>
+        <member name="P:Ximura.Common.HTTPCodes.OK_200">
+            <summary>
+            200: OK
+            </summary>
+        </member>
+        <member name="P:Ximura.Common.HTTPCodes.Created_201">
+            <summary>
+            201: Created
+            </summary>
+        </member>
+        <member name="P:Ximura.Common.HTTPCodes.Accepted_202">
+            <summary>
+            202: Accepted
+            </summary>
+        </member>
+        <member name="P:Ximura.Common.HTTPCodes.NonAuthoritative_203">
+            <summary>
+            203: Non Authoritative
+            </summary>
+        </member>
+        <member name="P:Ximura.Common.HTTPCodes.NoContent_204">
+            <summary>
+            204: No Content
+            </summary>
+        </member>
+        <member name="P:Ximura.Common.HTTPCodes.ResetContent_205">
+            <summary>
+            205: Reset Content
+            </summary>
+        </member>
+        <member name="P:Ximura.Common.HTTPCodes.PartialContent_206">
+            <summary>
+            206: Partial Content
+            </summary>
+        </member>
+        <member name="P:Ximura.Common.HTTPCodes.MultipleChoices_300">
+            <summary>
+            300: Multiple Choices
+            </summary>
+        </member>
+        <member name="P:Ximura.Common.HTTPCodes.MovedPermanently_301">
+            <summary>
+            301: Moved Permanently
+            </summary>
+        </member>
+        <member name="P:Ximura.Common.HTTPCodes.Found_302">
+            <summary>
+            302: Found
+            </summary>
+        </member>
+        <member name="P:Ximura.Common.HTTPCodes.SeeOther_303">
+            <summary>
+            303: See Other
+            </summary>
+        </member>
+        <member name="P:Ximura.Common.HTTPCodes.NotModified_304">
+            <summary>
+            304: Not Modified
+            </summary>
+        </member>
+        <member name="P:Ximura.Common.HTTPCodes.UseProxy_305">
+            <summary>
+            305: Use Proxy
+            </summary>
+        </member>
+        <member name="P:Ximura.Common.HTTPCodes.ReDirectionCommandNotUsed_306">
+            <summary>
+            306: Redirection Command Not Used
+            </summary>
+        </member>
+        <member name="P:Ximura.Common.HTTPCodes.MovedTemporarily_307">
+            <summary>
+            307: Moved Temporarily
+            </summary>
+        </member>
+        <member name="P:Ximura.Common.HTTPCodes.BadRequest_400">
+            <summary>
+            400: Bad Request
+            </summary>
+        </member>
+        <member name="P:Ximura.Common.HTTPCodes.Unauthorized_401">
+            <summary>
+            401: Unauthorized
+            </summary>
+        </member>
+        <member name="P:Ximura.Common.HTTPCodes.PaymentRequired_402">
+            <summary>
+            402: Payment Required
+            </summary>
+        </member>
+        <member name="P:Ximura.Common.HTTPCodes.Forbidden_403">
+            <summary>
+            403: Forbidden
+            </summary>
+        </member>
+        <member name="P:Ximura.Common.HTTPCodes.NotFound_404">
+            <summary>
+            404: Not Found
+            </summary>
+        </member>
+        <member name="P:Ximura.Common.HTTPCodes.MethodNotAllowed_405">
+            <summary>
+            405: Method Not Allowed
+            </summary>
+        </member>
+        <member name="P:Ximura.Common.HTTPCodes.NotAcceptable_406">
+            <summary>
+            406: Not Acceptable
+            </summary>
+        </member>
+        <member name="P:Ximura.Common.HTTPCodes.ProxyAuthenticationRequired_407">
+            <summary>
+            407: Proxy Authentication Required
+            </summary>
+        </member>
+        <member name="P:Ximura.Common.HTTPCodes.RequestTimeout_408">
+            <summary>
+            408: Request Timeout
+            </summary>
+        </member>
+        <member name="P:Ximura.Common.HTTPCodes.Conflict_409">
+            <summary>
+            409: Conflict
+            </summary>
+        </member>
+        <member name="P:Ximura.Common.HTTPCodes.Gone_410">
+            <summary>
+            410: Gone
+            </summary>
+        </member>
+        <member name="P:Ximura.Common.HTTPCodes.LengthRequired_411">
+            <summary>
+            411: Length Required
+            </summary>
+        </member>
+        <member name="P:Ximura.Common.HTTPCodes.PreconditionFailed_412">
+            <summary>
+            412: Precondition Failed
+            </summary>
+        </member>
+        <member name="P:Ximura.Common.HTTPCodes.RequestEntityTooLarge_413">
+            <summary>
+            413: Request Entity Too Large
+            </summary>
+        </member>
+        <member name="P:Ximura.Common.HTTPCodes.RequestURITooLong_414">
+            <summary>
+            414: Request URI Too Long
+            </summary>
+        </member>
+        <member name="P:Ximura.Common.HTTPCodes.UnsupportedMediaType_415">
+            <summary>
+            415: Unsupported Media Type
+            </summary>
+        </member>
+        <member name="P:Ximura.Common.HTTPCodes.RequestedRangeNotSatisfiable_416">
+            <summary>
+            416: Requested Range Not Satisfiable
+            </summary>
+        </member>
+        <member name="P:Ximura.Common.HTTPCodes.ExpectationFailed_417">
+            <summary>
+            417: Expectation Failed
+            </summary>
+        </member>
+        <member name="P:Ximura.Common.HTTPCodes.InternalServerError_500">
+            <summary>
+            500: Internal Server Error
+            </summary>
+        </member>
+        <member name="P:Ximura.Common.HTTPCodes.NotImplemented_501">
+            <summary>
+            501: Not Implemented
+            </summary>
+        </member>
+        <member name="P:Ximura.Common.HTTPCodes.BadGateway_502">
+            <summary>
+            502: Bad Gateway
+            </summary>
+        </member>
+        <member name="P:Ximura.Common.HTTPCodes.ServiceUnavailable_503">
+            <summary>
+            503: Service Unavailable
+            </summary>
+        </member>
+        <member name="P:Ximura.Common.HTTPCodes.GatewayTimeout_504">
+            <summary>
+            504: Gateway Timeout
+            </summary>
+        </member>
+        <member name="P:Ximura.Common.HTTPCodes.VersionNotSupported_505">
+            <summary>
+            505: Version No tSupported
+            </summary>
+        </member>
+        <member name="T:Ximura.Common.HashAlgorithmType">
+            <summary>
+            Enumeration list for hash algorithms
+            </summary>
+        </member>
+        <member name="T:Ximura.Reflection">
+            <summary>
+            The reflection helper provides help on creating objects using reflection.
+            </summary>
+        </member>
+        <member name="F:Ximura.Reflection.MemberAccess">
+            <summary>
+            Binding Flags constant to be reused for all Reflection access methods.
+            </summary>
+        </member>
+        <member name="M:Ximura.Reflection.#cctor">
+            <summary>
+            This static constructor creates the Type/string lookup cache.
+            </summary>
+        </member>
+        <member name="M:Ximura.Reflection.CreateObjectFromType(System.String)">
+            <summary>
+            This method will create an instance of a class object from the typeName.
+            </summary>
+            <param name="typeName">The typeName to create an instance of.</param>
+            <returns>The new object.</returns>
+        </member>
+        <member name="M:Ximura.Reflection.CreateObjectFromType(System.String,System.Object[])">
+            <summary>
+            This method will create an instance of a class object from the typeName.
+            </summary>
+            <param name="typeName">The typeName to create an instance of.</param>
+            <param name="parameters">A parameter array of object type for the class constructor</param>
+            <returns>The new object.</returns>
+        </member>
+        <member name="M:Ximura.Reflection.CreateObjectFromType(System.String,System.Object[],System.Type)">
+            <summary>
+            This method will create an instance of a class object from the typeName.
+            </summary>
+            <param name="typeName">The typeName to create an instance of.</param>
+            <param name="parameters">A parameter array of object type for the class constructor</param>
+            <param name="callingType">The calling type. This is used to search referenced assemblies.</param>
+            <returns>The new object.</returns>
+        </member>
+        <member name="M:Ximura.Reflection.CreateTypeFromString(System.String)">
+            <summary>
+            This method returns the relevant type resolved from the nale
+            </summary>
+            <param name="typeName">The type name to resolve.</param>
+            <returns>The type or null if the name cannot be resolved.</returns>
+        </member>
+        <member name="M:Ximura.Reflection.CreateTypeFromString(System.String,System.Type)">
+            <summary>
+            This method returns the relevant type resolved from the nale
+            </summary>
+            <param name="typeName">The type name to resolve.</param>
+            <param name="callingType">The type of the calling object.</param>
+            <returns>The type or null if the name cannot be resolved.</returns>
+        </member>
+        <member name="M:Ximura.Reflection.CreateTypeFromString(System.String,System.Type,System.Boolean)">
+            <summary>
+            This method returns the relevant type resolved from the nale
+            </summary>
+            <param name="typeName">The type name to resolve.</param>
+            <param name="callingType">The type of the calling object.</param>
+            <param name="allowRelative">Set this to true if you allow relative paths to the type, i.e. less specific references.</param>
+            <returns>The Type for the object or null if the type cannot be found.</returns>
+        </member>
+        <member name="M:Ximura.Reflection.CreateTypeFromStringNoCache(System.String,System.Type)">
+            <summary>
+            This method creates an object from the type name passed.
+            </summary>
+            <param name="typeName">The tpye name.</param>
+            <param name="callingType">The calling type used as a reference.</param>
+            <returns>Returns a new object of the required type 
+            or null if the object cannot be resolved.</returns>
+        </member>
+        <member name="M:Ximura.Reflection.CreateObjectFromType(System.Type)">
+            <summary>
+            This method will create an instance of a class object from the class type.
+            </summary>
+            <param name="classType">The class type to create an instance of.</param>
+            <returns>The new object.</returns>
+        </member>
+        <member name="M:Ximura.Reflection.CreateObjectFromType(System.Type,System.Object[])">
+            <summary>
+            This method will create an instance of a class object from the class type.
+            </summary>
+            <param name="classType">The class type to create an instance of.</param>
+            <param name="parameters">A parameter array of object type for the class constructor</param>
+            <returns>The new object.</returns>
+        </member>
+        <member name="M:Ximura.Reflection.CreateObjectFromType(System.Type,System.Object[],System.Type[])">
+            <summary>
+            This method will create an instance of a class object from the class type.
+            </summary>
+            <param name="classType">The class type to create an instance of.</param>
+            <param name="parameters">A parameter array of object type for the class constructor</param>
+            <param name="types">The types collection.</param>
+            <returns>The new object.</returns>
+        </member>
+        <member name="M:Ximura.Reflection.getTypesfromObjectArray(System.Object[])">
+            <summary>
+            This method returns a array of System types corresponsing to the object passed
+            </summary>
+            <param name="theObjects">An array of objects</param>
+            <returns>An array of ooject types</returns>
+        </member>
+        <member name="M:Ximura.Reflection.ValidateInterface(System.Type,System.Type)">
+            <summary>
+            This public static method caches interface implementation for type checking. This is 
+            used to boost performance when checking large amounts of types.
+            </summary>
+            <param name="objectType">The type for the object you wish to check.</param>
+            <param name="interfaceType">The type for the interface you wish to check.</param>
+            <returns>Returns true if the interface is implemented.</returns>
+        </member>
+        <member name="M:Ximura.Reflection.GetProperty(System.Object,System.String)">
+            <summary>
+            Retrieve a property value from an object dynamically. This is a simple version
+            that uses Reflection calls directly. It doesn't support indexers.
+            </summary>
+            <param name="Object">Object to make the call on</param>
+            <param name="Property">Property to retrieve</param>
+            <returns>Object - cast to proper type</returns>
+        </member>
+        <member name="M:Ximura.Reflection.SetProperty(System.Object,System.String,System.Object)">
+            <summary>
+            Sets the property on an object. This is a simple method that uses straight Reflection 
+            and doesn't support indexers.
+            </summary>
+            <param name="Object">Object to set property on</param>
+            <param name="Property">Name of the property to set</param>
+            <param name="Value">value to set it to</param>
+        </member>
+        <member name="M:Ximura.Reflection.GetPropertyEx(System.Object,System.String)">
+            <summary>
+            Returns a property or field value using a base object and sub members including . syntax.
+            For example, you can access: this.oCustomer.oData.Company with (this,"oCustomer.oData.Company")
+            This method also supports indexers in the Property value such as:
+            Customer.DataSet.Tables["Customers"].Rows[0]
+            </summary>
+            <param name="Parent">Parent object to 'start' parsing from. Typically this will be the Page.</param>
+            <param name="Property">The property to retrieve. Example: 'Customer.Entity.Company'</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ximura.Reflection.SetPropertyEx(System.Object,System.String,System.Object)">
+            <summary>
+            Sets a value on an object. Supports . syntax for named properties
+            (ie. Customer.Entity.Company) as well as indexers.
+            </summary>
+            <param name="Object Parent">
+            Object to set the property on.
+            </param>
+            <param name="String Property">
+            Property to set. Can be an object hierarchy with . syntax and can 
+            include indexers. Examples: Customer.Entity.Company, 
+            Customer.DataSet.Tables["Customers"].Rows[0]
+            </param>
+            <param name="Object Value">
+            Value to set the property to
+            </param>
+        </member>
+        <member name="M:Ximura.Reflection.GetPropertyInternal(System.Object,System.String)">
+            <summary>
+            Parses Properties and Fields including Array and Collection references.
+            Used internally for the 'Ex' Reflection methods.
+            </summary>
+            <param name="Parent"></param>
+            <param name="Property"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ximura.Reflection.SetPropertyInternal(System.Object,System.String,System.Object)">
+            <summary>
+            Parses Properties and Fields including Array and Collection references.
+            </summary>
+            <param name="Parent"></param>
+            <param name="Property"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ximura.Reflection.CallMethod(System.Object,System.String,System.Object[])">
+            <summary>
+            Calls a method on an object dynamically.
+            </summary>
+            <param name="Params"></param>
+            1st - Method name, 2nd - 1st parameter, 3rd - 2nd parm etc.
+            <returns></returns>
+        </member>
+        <member name="M:Ximura.Reflection.ResourceLoadFromUri(System.Uri)">
+            <summary>
+            This method loads a resource from the xmrres resource location specified.
+            </summary>
+            <param name="location">The location.</param>
+            <returns>Returns a byte array containing the resource.</returns>
+            <exception cref="T:System.ArgumentException">This exception is thrown when the resource cannot be resolved.</exception>
+        </member>
+        <member name="M:Ximura.Reflection.ResourceResolveType(System.Uri)">
+            <summary>
+            This method will return the type specified in the xmrres resource string.
+            </summary>
+            <param name="location">The resource location.</param>
+            <returns>Returns the type specified.</returns>
+        </member>
+        <member name="M:Ximura.Reflection.ResourceCheck(System.Uri)">
+            <summary>
+            This method checks whether the xmrres resource uri is correctly formatted.
+            </summary>
+            <param name="location">The xmrres resource location.</param>
+        </member>
+        <member name="M:Ximura.Reflection.ResourceResolve(System.Type,System.String)">
+            <summary>
+            This method resolves an embedded resource as a byte array.
+            </summary>
+            <param name="locationType">The type</param>
+            <param name="resource">The resource to resolve.</param>
+            <returns>Returns a byte array.</returns>
+            <exception cref="T:System.ArgumentException">This exception is thrown when the resource cannot be resolved.</exception>
+        </member>
+        <member name="M:Ximura.Reflection.ResourceLoadStream(System.String)">
+            <summary>
+            This method reads a binary definition from an assembly based on the resource name.
+            Note: this method will attempt to load the assembly if it is not loaded.
+            </summary>
+            <param name="resourceName">The resource name.</param>
+            <returns>Returns an unmanaged stream containing the data.</returns>
+        </member>
+        <member name="T:Ximura.AttributeHelper">
+            <summary>
+            Provide special functionality to deal with Attribute.
+            </summary>
+        </member>
+        <member name="T:Ximura.Binary">
+            <summary>
+            The <b>Common</b> class includes a number of useful utilities.
             </summary>
         </member>
     </members>

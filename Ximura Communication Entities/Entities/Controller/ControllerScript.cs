@@ -15,7 +15,6 @@ using Ximura;
 using Ximura.Data;
 using Ximura.Communication;
 using CH = Ximura.Common;
-using XH = Ximura.XMLHelper;
 #endregion // using
 namespace Ximura.Communication
 {
@@ -218,8 +217,6 @@ namespace Ximura.Communication
             return nodeAuth.InnerText;
         }
         #endregion // ResolveAuthType(string realm)
-
-
 
         #region ReferenceScripts
         /// <summary>
@@ -491,6 +488,5 @@ namespace Ximura.Communication
             set { XmlMappingSet(XPSc("r", "scriptname"), value); }
         }
         #endregion // DCPublisher
-
     }
 }
