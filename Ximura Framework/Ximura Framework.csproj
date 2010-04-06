@@ -226,6 +226,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\ConfigurationLocation.cs" />
+    <Compile Include="Attributes\XimuraAppConfigurationAttribute.cs" />
+    <Compile Include="Attributes\XimuraAppConfigurationExternalAttribute.cs" />
+    <Compile Include="Attributes\XimuraAppModuleAttribute.cs" />
+    <Compile Include="Attributes\XimuraAppModuleConfigAttribute.cs" />
     <Compile Include="Command Container\CommandContainer.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -313,6 +318,7 @@
     <Compile Include="Delegates\CommandRequestCallback.cs" />
     <Compile Include="Delegates\CompletionJobCallBack.cs" />
     <Compile Include="Delegates\Delegates.cs" />
+    <Compile Include="Interfaces\IXimuraConfigSH.cs" />
     <Compile Include="Security\Permission.cs" />
     <Compile Include="Security\Realm.cs" />
     <Compile Include="Security\Role.cs" />

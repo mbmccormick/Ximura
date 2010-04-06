@@ -186,15 +186,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Attributes\ConfigurationLocation.cs" />
-    <Compile Include="Attributes\XimuraAppConfigurationAttribute.cs" />
-    <Compile Include="Attributes\XimuraAppConfigurationExternalAttribute.cs" />
-    <Compile Include="Attributes\XimuraAppModuleAttribute.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Attributes\XimuraAppModuleConfigAttribute.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Collections\Collection Wrappers\CollectionWrapperBase.cs" />
     <Compile Include="Collections\Collection Wrappers\CollectionWrapperCourseGrained.cs" />
     <Compile Include="Collections\Collection Wrappers\CollectionWrapperInterlocked.cs" />
@@ -277,8 +268,15 @@
     <Compile Include="Component\Helper\XimuraComponentServiceHelper.cs" />
     <Compile Include="Component\Interfaces\IXimuraAppSite.cs" />
     <Compile Include="Component\Interfaces\IXimuraComponentBase.cs" />
+    <Compile Include="Component\Interfaces\IXimuraComponentService.cs" />
     <Compile Include="Component\Interfaces\IXimuraSecurityDescriptor.cs" />
+    <Compile Include="Component\Interfaces\IXimuraService.cs" />
     <Compile Include="Component\Interfaces\IXimuraServiceContainer.cs" />
+    <Compile Include="Component\Interfaces\IXimuraServiceParentSettings.cs" />
+    <Compile Include="Component\Interfaces\IXimuraServiceWithEvent.cs" />
+    <Compile Include="Component\Interfaces\ServiceEventArgs.cs" />
+    <Compile Include="Component\Interfaces\XimuraServiceStatus.cs" />
+    <Compile Include="Component\Interfaces\XimuraServiceStatusAction.cs" />
     <Compile Include="Component\XimuraComponentBase.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -346,19 +344,10 @@
     <Compile Include="Helper\Reflection.cs" />
     <Compile Include="Helper\String.cs" />
     <Compile Include="Helper\XML.cs" />
-    <Compile Include="Interfaces\Config\IXimuraConfigSH.cs" />
     <Compile Include="Interfaces\Messaging\IXimuraBinarySerialize.cs" />
     <Compile Include="Interfaces\Messaging\IXimuraMessageLoad.cs" />
     <Compile Include="Interfaces\Messaging\IXimuraMessageLoadData.cs" />
     <Compile Include="Interfaces\Messaging\IXimuraMessageTermination.cs" />
-    <Compile Include="Interfaces\Service\ICDSSettingsService.cs" />
-    <Compile Include="Interfaces\Service\IXimuraComponentService.cs" />
-    <Compile Include="Interfaces\Service\IXimuraService.cs" />
-    <Compile Include="Interfaces\Service\IXimuraServiceParentSettings.cs" />
-    <Compile Include="Interfaces\Service\IXimuraServiceWithEvent.cs" />
-    <Compile Include="Interfaces\Service\ServiceEventArgs.cs" />
-    <Compile Include="Interfaces\Service\XimuraServiceStatus.cs" />
-    <Compile Include="Interfaces\Service\XimuraServiceStatusAction.cs" />
     <Compile Include="Pooling\Exception\PoolObjectInvalidException.cs" />
     <Compile Include="Pooling\Exception\PoolObjectUnavailableException.cs" />
     <Compile Include="Pooling\Interfaces\IXimuraPool.cs" />

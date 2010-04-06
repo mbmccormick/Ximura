@@ -187,8 +187,6 @@ namespace Ximura.Framework
         where EXTCONF : CommandConfiguration, new() //Internal Configuration which contains the settings for the internal commands
     {
 		#region Declarations
-
-        ICDSSettingsService mCDSSettings = null;
 		/// <summary>
 		/// This is the session that the process command will run under.
 		/// </summary>
@@ -201,7 +199,6 @@ namespace Ximura.Framework
 		/// The Command Process Settings
 		/// </summary>
 		protected IXimuraCommandProcessConfigSH mSettings = null;
-
 		#endregion
 		#region Constructors
 		/// <summary>
@@ -265,8 +262,6 @@ namespace Ximura.Framework
 		/// </summary>
 		protected override void ServicesDereference()
 		{
-			mCDSSettings = null;
-
 			mSessionMan = null;
 
 			base.ServicesDereference ();
