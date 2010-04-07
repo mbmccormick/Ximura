@@ -67,7 +67,6 @@ namespace Ximura.Data
         }
         #endregion
 
-
         #region CanPool
         /// <summary>
         /// This method indicates whether the object can be pooled. By default this is set to true. 

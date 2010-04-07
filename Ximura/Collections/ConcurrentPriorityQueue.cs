@@ -25,7 +25,6 @@ using System.Security.Permissions;
 using System.Threading;
 
 using Ximura;
-
 #endregion // using
 namespace Ximura.Collections
 {
@@ -131,9 +130,9 @@ namespace Ximura.Collections
         /// <param name="isFixedSize">The collection is fixed to the size passed in the capacity parameter.</param>
         public ConcurrentPriorityQueue(IEqualityComparer<T> comparer, int capacity, IEnumerable<T> collection, bool isFixedSize)
         {
-//#if (PROFILING)
-//            ProfilingSetup();
-//#endif
+            //#if (PROFILING)
+            //            ProfilingSetup();
+            //#endif
             mCount = 0;
             mVersion = int.MinValue;
 
@@ -146,7 +145,7 @@ namespace Ximura.Collections
 
         protected override void Dispose(bool disposing)
         {
-            
+
         }
 
         #region Enqueue(T item)

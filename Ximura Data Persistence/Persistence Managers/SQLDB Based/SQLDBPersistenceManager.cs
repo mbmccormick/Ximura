@@ -126,7 +126,7 @@ namespace Ximura.Data
 
         protected virtual byte[] ParseEntity(Content data)
         {
-            return Content.SerializeEntity(data);
+            return data.Serialize();
         }
 
         protected virtual byte[] ParseAttributes(Content data, TypeConverter conv)

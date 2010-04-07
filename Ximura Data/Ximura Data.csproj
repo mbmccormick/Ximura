@@ -140,7 +140,6 @@
     <Compile Include="ContentDataStore\Interfaces\CDSResponse.cs" />
     <Compile Include="ContentDataStore\Interfaces\ICDSHelper.cs" />
     <Compile Include="ContentDataStore\Interfaces\ICDSHelperLegacy.cs" />
-    <Compile Include="ContentHelper.cs" />
     <Compile Include="ContentHolder.cs" />
     <Compile Include="Content_Attributes.cs" />
     <Compile Include="Content_Cache.cs" />
@@ -152,7 +151,6 @@
     <Compile Include="Content_Pooling.cs" />
     <Compile Include="Content_Properties.cs" />
     <Compile Include="Content_Serialization.cs" />
-    <Compile Include="Content_Static.cs" />
     <Compile Include="Data\DataContent\Interfaces\DataContentLinkType.cs" />
     <Compile Include="Data\DataContent\Interfaces\DataContentSummaryType.cs" />
     <Compile Include="Data\DataContent\Interfaces\IDataContentSummary.cs" />
@@ -230,12 +228,16 @@
     </Compile>
     <Compile Include="Data\XmlContent\XmlContent_Serialization.cs">
     </Compile>
+    <Compile Include="ExtensionMethods\ContentHelper.cs" />
+    <Compile Include="ExtensionMethods\ContentHelper_Deserialization.cs" />
+    <Compile Include="ExtensionMethods\ContentHelper_Formatter.cs" />
+    <Compile Include="ExtensionMethods\ContentHelper_Serialization.cs" />
     <Compile Include="Interfaces\IXimuraContent.cs" />
     <Compile Include="Interfaces\IXimuraContentEntityFragment.cs" />
     <Compile Include="Interfaces\IXimuraContentEntityPersistence.cs" />
     <Compile Include="Interfaces\IXimuraContentFormatterCapabilities.cs" />
     <Compile Include="Interfaces\IXimuraContentSerializationReaderWriter.cs" />
-    <Compile Include="IXimuraFormatter.cs" />
+    <Compile Include="Interfaces\IXimuraFormatter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Serialization\ContentFormatter.cs" />
     <Compile Include="Serialization\ContentFormatterCapabilities.cs" />

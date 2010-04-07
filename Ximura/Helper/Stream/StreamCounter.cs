@@ -29,11 +29,22 @@ namespace Ximura
     /// </summary>
     public class StreamCounter : Stream
     {
+        #region Enum --> CounterDirection
+        /// <summary>
+        /// This enumeration determines which direction the stream is working.
+        /// </summary>
         public enum CounterDirection
         {
+            /// <summary>
+            /// The stream is being written to.
+            /// </summary>
             Write,
+            /// <summary>
+            /// The stream is being read from.
+            /// </summary>
             Read
         }
+        #endregion // Enum --> CounterDirection
 
         #region Declarations
         private object syncObj = new object();
@@ -128,10 +139,10 @@ namespace Ximura
             }
         }
 
-        public override System.Runtime.Remoting.ObjRef CreateObjRef(Type requestedType)
-        {
-            return baseStream.CreateObjRef(requestedType);
-        }
+        //public override System.Runtime.Remoting.ObjRef CreateObjRef(Type requestedType)
+        //{
+        //    return baseStream.CreateObjRef(requestedType);
+        //}
 
 
 

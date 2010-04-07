@@ -500,7 +500,7 @@ namespace Ximura.Data
             if (mIsInterned && data is Content)
             {
                 mItem = null;
-                mBlob = Content.SerializeEntity(data);
+                mBlob = data.Serialize();
             }
             else
                 mItem = data;
@@ -540,7 +540,7 @@ namespace Ximura.Data
                 CacheHitInternal();
 
                 if (IsInterned)
-                    return (C)Content.DeserializeEntity(this.Blob, pMan);
+                    return (C)ContentHelper.DeserializeToContent(this.Blob, pMan);
                 else
                     return (C)mItem.Clone();
             }

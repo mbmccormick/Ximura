@@ -34,7 +34,7 @@ namespace Ximura.Data
     /// <summary>
     /// This class provides extension methods for classes that implement IXimuraContent.
     /// </summary>
-    public static class ContentHelper
+    public static partial class ContentHelper
     {
         #region CDSAttributesRetrieve(IXimuraContent data, TypeConverter conv)
         /// <summary>
@@ -73,6 +73,7 @@ namespace Ximura.Data
             }
         }
         #endregion
+
         #region CDSReferencesRetrieve(IXimuraContent data, TypeConverter conv)
         /// <summary>
         /// This method retrieves a set of reference attributes from a class.

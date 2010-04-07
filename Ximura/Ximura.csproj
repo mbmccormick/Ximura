@@ -197,11 +197,13 @@
     <Compile Include="Collections\Collections\ConcurrentCollectionBase.cs" />
     <Compile Include="Collections\Collections\ConcurrentList.cs" />
     <Compile Include="Collections\Collections\ConcurrentPool.cs" />
-    <Compile Include="Collections\Collections\ConcurrentPriorityQueue.cs" />
     <Compile Include="Collections\Collections\ConcurrentStack.cs" />
     <Compile Include="Collections\ConcurrentDictionary.cs" />
     <Compile Include="Collections\ConcurrentList.cs" />
     <Compile Include="Collections\ConcurrentHashSet.cs" />
+    <Compile Include="Collections\ConcurrentPool.cs" />
+    <Compile Include="Collections\ConcurrentPriorityQueue.cs" />
+    <Compile Include="Collections\ConcurrentQueue.cs" />
     <Compile Include="Collections\Exceptions\PoolObjectInvalidException.cs" />
     <Compile Include="Collections\Exceptions\PoolObjectUnavailableException.cs" />
     <Compile Include="Collections\Graphs\Data\Edge.cs" />
