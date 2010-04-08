@@ -87,7 +87,7 @@ namespace Ximura.Data
         }
         #endregion // Static Constructor
 
-        #region GetContentTypeAttributeID(Type itemType)
+        #region GetContentTypeAttributeID()
         /// <summary>
         /// This method returns the content Type ID for the current content.
         /// </summary>
@@ -107,7 +107,6 @@ namespace Ximura.Data
             return GetContentTypeAttributeKeyPair(GetType()).Value;
         }
         #endregion // GetContentTypeID(Type itemType)
-
         #region GetContentTypeAttributeID(Type itemType)
         /// <summary>
         /// This method returns the content Type ID from the itemType.

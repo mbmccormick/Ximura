@@ -19,13 +19,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Diagnostics;
-
 using System.Text;
 
 using Ximura;
 using Ximura.Data;
-using Ximura.Data;
-
 using CH = Ximura.Common;
 using AH = Ximura.AttributeHelper;
 #endregion // using
@@ -56,6 +53,24 @@ namespace Ximura.Data
         protected Guid mIDVersion = Guid.Empty;
         #endregion // Declarations
 
+        #region IDType
+        /// <summary>
+        /// This is the type ID of the content. If not specified in the constructor the type ID 
+        /// will be taken from the XimuraContentTypeID Attribute.
+        /// </summary>
+        [Browsable(false)]
+        public virtual Guid IDType
+        {
+            get
+            {
+               return GetContentTypeAttributeID();
+            }
+            protected set
+            {
+                throw new NotSupportedException("TypeID set is not supported as this is implemented by use of the XimuraContentTypeID attribute.");
+            }
+        }
+        #endregion // TypeID
         #region IDContent
         /// <summary>
         /// This is the ID of the Entity.
@@ -95,24 +110,6 @@ namespace Ximura.Data
             }
         }
         #endregion // Version
-        #region IDType
-        /// <summary>
-        /// This is the type ID of the content. If not specified in the constructor the type ID 
-        /// will be taken from the XimuraContentTypeID Attribute.
-        /// </summary>
-        [Browsable(false)]
-        public virtual Guid IDType
-        {
-            get
-            {
-               return GetContentTypeAttributeID();
-            }
-            protected set
-            {
-                throw new NotSupportedException("TypeID set is not supported as this is implemented by use of the XimuraContentTypeID attribute.");
-            }
-        }
-        #endregion // TypeID
 
         #region Dirty
         /// <summary>

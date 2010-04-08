@@ -114,6 +114,7 @@
     <Compile Include="Attributes\XimuraDataContentVersionMappingAttribute.cs" />
     <Compile Include="Attributes\XimuraSchemaAttribute.cs" />
     <Compile Include="Content.cs" />
+    <Compile Include="ContentBase.cs" />
     <Compile Include="ContentDataStore\CDSHelper.cs" />
     <Compile Include="ContentDataStore\CDSHelper_Browse.cs" />
     <Compile Include="ContentDataStore\CDSHelper_Create.cs" />
