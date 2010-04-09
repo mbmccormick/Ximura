@@ -70,5 +70,15 @@ namespace Ximura.Data
         }
 
         #endregion
+
+        public override void OnDeserialization(object sender)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override byte[] ContentBody
+        {
+            get { throw new NotImplementedException(); }
+        }
     }
 }

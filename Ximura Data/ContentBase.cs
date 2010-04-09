@@ -28,7 +28,10 @@ using AH = Ximura.AttributeHelper;
 #endregion // using
 namespace Ximura.Data
 {
-    public abstract class ContentBase: IXimuraContent
+    /// <summary>
+    /// This class is is the base abstract class for both Content and ContentHolder.
+    /// </summary>
+    public abstract partial class ContentBase: IXimuraContent
     {
         #region Declarations
         /// <summary>
@@ -40,6 +43,13 @@ namespace Ximura.Data
         /// </summary>
         protected Guid mIDVersion = Guid.Empty;
         #endregion 
+
+        #region Constructor
+        /// <summary>
+        /// This is the default constructor.
+        /// </summary>
+        public ContentBase() { }
+        #endregion // Constructor
 
         #region Static Declarations
         private static object syncIDCollection = new object();
@@ -232,12 +242,5 @@ namespace Ximura.Data
             }
         }
         #endregion // Version
-
-        #region ICloneable Members
-        /// <summary>
-        /// This method is abstract in the base class.
-        /// </summary>
-        public abstract object Clone();
-        #endregion
     }
 }

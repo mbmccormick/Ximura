@@ -19,30 +19,55 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Diagnostics;
-
 using System.Text;
 
 using Ximura;
 using Ximura.Data;
-using Ximura.Data;
-
 using CH = Ximura.Common;
+using AH = Ximura.AttributeHelper;
 using RH = Ximura.Reflection;
 #endregion // using
 namespace Ximura.Data
 {
-    public abstract partial class Content
+    public abstract partial class ContentBase : ISerializable, IDeserializationCallback
     {
+        #region Declarations
+        /// <summary>
+        /// This is the deserialization information
+        /// </summary>
+        protected SerializationInfo mInfo = null;
+        #endregion // Declarations
+
         #region Serialization Constructor
         /// <summary>
         /// This is the deserialization constructor. 
         /// </summary>
         /// <param name="info">The Serialization info object that contains all the relevant data.</param>
         /// <param name="context">The serialization context.</param>
-        public Content(SerializationInfo info, StreamingContext context): this()
+        public ContentBase(SerializationInfo info, StreamingContext context)
         {
             DeserializeIncoming(info, context);
         }
+        #endregion
+        #region DeserializeIncoming(SerializationInfo info, StreamingContext context)
+        /// <summary>
+        /// This protected method can be overriden by inherited data classes to handle the deserialization
+        /// process without the need to add code within the constructor method.
+        /// </summary>
+        /// <param name="info">The Serialization info object that contains all the relevant data.</param>
+        /// <param name="context">The serialization context.</param>
+        protected virtual void DeserializeIncoming(SerializationInfo info, StreamingContext context)
+        {
+            mInfo = info;
+        }
+        #endregion
+
+        #region OnDeserialization(object sender) --> Abstract
+        /// <summary>
+        /// This method is called to complete the deserialization.
+        /// </summary>
+        /// <param name="sender">The sender object.</param>
+        public abstract void OnDeserialization(object sender);
         #endregion
 
         #region GetObjectData(SerializationInfo info, StreamingContext context)
@@ -53,7 +78,7 @@ namespace Ximura.Data
         /// </summary>
         /// <param name="info"></param>
         /// <param name="context"></param>
-        public override void GetObjectData(SerializationInfo info, StreamingContext context)
+        public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             if (info == null)
                 throw new ArgumentNullException("info", "info cannot be null");
@@ -61,9 +86,42 @@ namespace Ximura.Data
             info.AddValue("cid", this.IDContent);
             info.AddValue("vid", this.IDVersion);
             info.AddValue("tid", this.IDType);
-            info.AddValue("dirty", this.IsDirty());
 
             GetBodyData(info, context);
+        }
+        #endregion
+        #region GetBodyData(SerializationInfo info, StreamingContext context)
+        /// <summary>
+        /// This is the default constructor. It does not include any content.
+        /// </summary>
+        /// <param name="info">The Serialization info.</param>
+        /// <param name="context">The serialization context.</param>
+        protected virtual void GetBodyData(SerializationInfo info, StreamingContext context)
+        {
+            //By default we do not include any body.
+            byte[] body = ContentBody;
+            info.AddValue("bodycount", (int)(body != null ? 1 : 0));
+            if (body != null)
+                info.AddValue("body0", body);
+            return;
+        }
+        #endregion
+
+        #region ContentBody --> Abstract
+        /// <summary>
+        /// This property gets the content body as a byte array.
+        /// </summary>
+        protected abstract byte[] ContentBody{get;}
+        #endregion // ContentBody
+
+        #region ToArray()
+        /// <summary>
+        /// This method returns the content body as a byte array.
+        /// </summary>
+        /// <returns>Returns the content as a byte array.</returns>
+        public virtual byte[] ToArray()
+        {
+            return ContentBody;
         }
         #endregion
 
@@ -77,7 +135,7 @@ namespace Ximura.Data
         /// You can override this method to provide more efficient cloning for custom object.
         /// </summary>
         /// <returns>Returns a copy of the current object.</returns>
-        public override object Clone()
+        public virtual object Clone()
         {
             try
             {
@@ -86,13 +144,7 @@ namespace Ximura.Data
 
                 this.GetObjectData(info, context);
 
-                object newContent;
-                if (this.ObjectPool == null)
-                    newContent = RH.CreateObjectFromType(GetType(), new object[] { info, context });
-                else
-                    newContent = ObjectPool.Get(info, context);
-
-                return newContent;
+                return RH.CreateObjectFromType(GetType(), new object[] { info, context });
             }
             catch (Exception ex)
             {
@@ -101,6 +153,5 @@ namespace Ximura.Data
         }
 
         #endregion
-
     }
 }
