@@ -43,73 +43,7 @@ namespace Ximura.Data
         /// This is the entity subtype string.
         /// </summary>
         protected string mEntitySubType = "";
-        /// <summary>
-        /// This is the protected property that stores the content instance ID
-        /// </summary>
-        protected Guid mIDContent = Guid.Empty;
-        /// <summary>
-        /// This is the protected property that stores the version ID of the Entity.
-        /// </summary>
-        protected Guid mIDVersion = Guid.Empty;
         #endregion // Declarations
-
-        #region IDType
-        /// <summary>
-        /// This is the type ID of the content. If not specified in the constructor the type ID 
-        /// will be taken from the XimuraContentTypeID Attribute.
-        /// </summary>
-        [Browsable(false)]
-        public virtual Guid IDType
-        {
-            get
-            {
-               return GetContentTypeAttributeID();
-            }
-            protected set
-            {
-                throw new NotSupportedException("TypeID set is not supported as this is implemented by use of the XimuraContentTypeID attribute.");
-            }
-        }
-        #endregion // TypeID
-        #region IDContent
-        /// <summary>
-        /// This is the ID of the Entity.
-        /// </summary>
-        [Browsable(false)]
-        public virtual Guid IDContent
-        {
-            get
-            {
-                Guid? idAttr = GetContentAttributeID();
-                if (!idAttr.HasValue)
-                    return mIDContent;
-
-                return idAttr.Value;
-            }
-            set
-            {
-                if (!GetContentAttributeID().HasValue)
-                    mIDContent = value;
-            }
-        }
-        #endregion // ID
-        #region IDVersion
-        /// <summary>
-        /// This is the version ID of the entity.
-        /// </summary>
-        [Browsable(false)]
-        public virtual Guid IDVersion
-        {
-            get
-            {
-                return mIDVersion;
-            }
-            set
-            {
-                mIDVersion = value;
-            }
-        }
-        #endregion // Version
 
         #region Dirty
         /// <summary>

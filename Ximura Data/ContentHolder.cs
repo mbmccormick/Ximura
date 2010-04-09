@@ -32,7 +32,7 @@ namespace Ximura.Data
     /// The content holder is used to manage non-standard entities within the persistence framework.
     /// </summary>
     /// <typeparam name="T">The core entity type.</typeparam>
-    public class ContentHolder<T>: IXimuraContent
+    public class ContentHolder<T>: ContentBase
         where T : class
     {
         #region Declarations
@@ -62,31 +62,9 @@ namespace Ximura.Data
             return typeof(T).IsSerializable || ((obj is ISerializable) || (Attribute.IsDefined(typeof(T), typeof(SerializableAttribute))));
         }
 
-
-        #region IXimuraContent Members
-
-        public Guid IDType
-        {
-            get { throw new NotImplementedException(); }
-        }
-
-        public Guid IDContent
-        {
-            get;
-            set;
-        }
-
-        public Guid IDVersion
-        {
-            get;
-            set;
-        }
-
-        #endregion
-
         #region ICloneable Members
 
-        public object Clone()
+        public override object Clone()
         {
             throw new NotImplementedException();
         }

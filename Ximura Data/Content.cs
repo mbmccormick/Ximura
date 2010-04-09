@@ -34,7 +34,7 @@ namespace Ximura.Data
 	/// This is the base abstract Ximura Content object. 
 	/// </summary>
 	[XimuraContentSerialization("Ximura.Data.ContentFormatter, XimuraData")]
-    public abstract partial class Content : IDisposable  
+    public abstract partial class Content : ContentBase, IDisposable  
 	{
 		#region Constructor
 		/// <summary>

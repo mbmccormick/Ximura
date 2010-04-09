@@ -138,7 +138,7 @@ namespace Ximura.Data
         /// You can override this method to provide more efficient cloning for custom object.
         /// </summary>
         /// <returns>Returns a copy of the current object.</returns>
-        public virtual object Clone()
+        public override object Clone()
         {
             try
             {
