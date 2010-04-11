@@ -33,7 +33,6 @@ namespace Ximura.Data
     /// </summary>
     /// <typeparam name="T">The core entity type.</typeparam>
     public class ContentHolder<T>: ContentBase
-        where T : class
     {
         #region Declarations
         /// <summary>
@@ -45,31 +44,56 @@ namespace Ximura.Data
         /// <summary>
         /// This is the default constructor.
         /// </summary>
-        /// <param name="data">The internal data</param>
-        public ContentHolder(T data)
+        public ContentHolder()
         {
-            if (!IsSerializable(data))
+            if (!IsSerializable())
                 throw new ArgumentOutOfRangeException(
-                    string.Format("The object type \"{0}\" must implements ISerializable or support the Serializable Attribute", 
+                    string.Format("The object type \"{0}\" must implements ISerializable or support the Serializable Attribute",
                         typeof(T).Name));
+        }
+        /// <summary>
+        /// This is the default constructor.
+        /// </summary>
+        /// <param name="data">The internal data</param>
+        public ContentHolder(T data):this()
+        {
+            Value = data;
+        }
+        #endregion
 
-            mData = data;
+        #region Value
+        /// <summary>
+        /// This method holds the internal value.
+        /// </summary>
+        public virtual T Value
+        {
+            get
+            {
+                return mData;
+            }
+            set
+            {
+                mData = value;
+                TIDUpdate(value);
+            }
         }
         #endregion 
 
-        public static bool IsSerializable(T obj)
+        protected virtual void TIDUpdate(T data)
         {
-            return typeof(T).IsSerializable || ((obj is ISerializable) || (Attribute.IsDefined(typeof(T), typeof(SerializableAttribute))));
+
         }
 
-        #region ICloneable Members
-
-        public override object Clone()
+        public static bool IsSerializable(Type objType)
         {
-            throw new NotImplementedException();
+            return objType.IsSerializable || Attribute.IsDefined(objType, typeof(SerializableAttribute));// || ((obj is ISerializable));
         }
 
-        #endregion
+        public virtual bool IsSerializable()
+        {
+            return IsSerializable(typeof(T));
+        }
+
 
         public override void OnDeserialization(object sender)
         {

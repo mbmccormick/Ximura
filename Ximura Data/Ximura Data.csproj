@@ -115,6 +115,7 @@
     <Compile Include="Attributes\XimuraSchemaAttribute.cs" />
     <Compile Include="Content.cs" />
     <Compile Include="ContentBase.cs" />
+    <Compile Include="ContentBase_Attributes.cs" />
     <Compile Include="ContentBase_IEquatable.cs" />
     <Compile Include="ContentBase_Serialization.cs" />
     <Compile Include="ContentDataStore\CDSHelper.cs" />

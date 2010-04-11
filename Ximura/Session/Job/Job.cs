@@ -19,7 +19,6 @@ using System.Collections;
 using System.Threading;
 
 using Ximura;
-
 using Ximura.Framework;
 using CH=Ximura.Common;
 #endregion // using

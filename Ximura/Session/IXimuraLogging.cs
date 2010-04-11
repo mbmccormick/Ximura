@@ -25,6 +25,7 @@ namespace Ximura
     /// </summary>
     public interface IXimuraLogging : IDisposable
     {
+        #region AcceptCategory(string category, EventLogEntryType type)
         /// <summary>
         /// This method inform the Logging Manager whether it will accept the 
         /// category for logging.
@@ -32,21 +33,27 @@ namespace Ximura
         /// <param name="category">The logging category.</param>
         /// <returns>A boolean value. True indicated the category is accepted.</returns>
         bool AcceptCategory(string category, EventLogEntryType type);
+        #endregion 
+        #region Name
         /// <summary>
         /// Gets or sets a name for this LoggingProvider.
         /// </summary>
         string Name { get;set;}
+        #endregion 
 
-
+        #region Close()
         /// <summary>
         /// Flushes the output buffer and then closes the Listeners.
         /// </summary>
         void Close();
+        #endregion 
+        #region Flush()
         /// <summary>
         /// Flushes the output buffer and causes buffered data to write to the Listeners
         /// collection.
         /// </summary>
         void Flush();
+        #endregion 
 
         #region Fail
         /// <summary>
@@ -62,14 +69,18 @@ namespace Ximura
         void Fail(System.String message);
         #endregion
 
+        #region Indent
         /// <summary>
         /// Increases the current IndentLevel by one.
         /// </summary>
         void Indent();
+        #endregion 
+        #region Unindent()
         /// <summary>
         /// Decreases the current IndentLevel by one.
         /// </summary>
         void Unindent();
+        #endregion 
 
         #region Write
         /// <summary>
@@ -127,18 +138,24 @@ namespace Ximura
         void WriteLine(System.String message);
         #endregion
 
+        #region AutoFlush
         /// <summary>
         /// Gets or sets a value indicating whether Flush should be called on the 
         /// Listeners after every write.
         /// </summary>
         bool AutoFlush { get; set;}
+        #endregion 
+        #region IndentLevel
         /// <summary>
         /// Gets or sets the indent level.
         /// </summary>
         int IndentLevel { get;set;}
+        #endregion 
+        #region IndentSize
         /// <summary>
         /// Gets or sets the number of spaces in an indent.
         /// </summary>
         int IndentSize { get;set;}
+        #endregion 
     }
 }

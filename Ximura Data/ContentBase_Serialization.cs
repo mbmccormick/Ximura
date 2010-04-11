@@ -62,7 +62,7 @@ namespace Ximura.Data
         }
         #endregion
 
-        #region OnDeserialization(object sender) --> Abstract
+        #region Abstract --> OnDeserialization(object sender)
         /// <summary>
         /// This method is called to complete the deserialization.
         /// </summary>
@@ -107,7 +107,7 @@ namespace Ximura.Data
         }
         #endregion
 
-        #region ContentBody --> Abstract
+        #region Abstract --> ContentBody
         /// <summary>
         /// This property gets the content body as a byte array.
         /// </summary>
