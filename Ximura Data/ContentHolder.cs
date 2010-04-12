@@ -74,12 +74,17 @@ namespace Ximura.Data
             set
             {
                 mData = value;
-                TIDUpdate(value);
+                IDUpdate(value);
             }
         }
         #endregion 
 
-        protected virtual void TIDUpdate(T data)
+        public override Guid GetContentTypeAttributeID()
+        {
+            return base.GetContentTypeAttributeID();
+        }
+
+        protected virtual void IDUpdate(T data)
         {
 
         }

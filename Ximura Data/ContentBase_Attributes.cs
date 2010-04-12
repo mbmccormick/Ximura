@@ -46,7 +46,7 @@ namespace Ximura.Data
         /// This method returns the content Type ID for the current content.
         /// </summary>
         /// <returns>Returns the content type ID.</returns>
-        public Guid GetContentTypeAttributeID()
+        public virtual Guid GetContentTypeAttributeID()
         {
             return GetContentTypeAttributeKeyPair(GetType()).Key;
         }
