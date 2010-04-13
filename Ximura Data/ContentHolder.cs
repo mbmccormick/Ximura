@@ -86,19 +86,35 @@ namespace Ximura.Data
 
         protected virtual void IDUpdate(T data)
         {
+            if (data is IXimuraContent)
+            {
 
+            }
         }
 
+        #region IsSerializable(Type objType)
+        /// <summary>
+        /// This static method checks whether the object type is serializable.
+        /// </summary>
+        /// <param name="objType">The object type to check.</param>
+        /// <returns>Returns true if the object can be natively serialized.</returns>
         public static bool IsSerializable(Type objType)
         {
             return objType.IsSerializable || Attribute.IsDefined(objType, typeof(SerializableAttribute));// || ((obj is ISerializable));
         }
-
+        #endregion 
+        #region IsSerializable()
+        /// <summary>
+        /// This public property specifies whether the container object type is natively serializable.
+        /// </summary>
+        /// <returns>Returns true if the template type can be natively serialized.</returns>
         public virtual bool IsSerializable()
         {
             return IsSerializable(typeof(T));
         }
+        #endregion 
 
+        
 
         public override void OnDeserialization(object sender)
         {

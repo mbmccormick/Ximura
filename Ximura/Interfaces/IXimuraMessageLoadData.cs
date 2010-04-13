@@ -28,14 +28,14 @@ namespace Ximura.Communication
     /// </summary>
     public interface IXimuraMessageLoadData
     {
-        int Load(byte[] buffer, int offset, int count);
-
-        int Load(Stream data);
-
         int Load(string data);
 
         int Load(string data, Encoding encoding);
-    }
+
+        int Load(byte[] buffer, int offset, int count);
+
+        int Load(Stream data);
+   }
 
     public interface IXimuraMessageLoadData<TERM>
         where TERM : IXimuraMessageTermination
