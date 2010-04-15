@@ -150,7 +150,9 @@ namespace Ximura.Data
         /// <returns>Returns true if the object can be natively serialized.</returns>
         public static bool IsSerializable(Type objType)
         {
-            return objType.IsSerializable || Attribute.IsDefined(objType, typeof(SerializableAttribute));// || ((obj is ISerializable));
+            return objType.IsSerializable
+                || Attribute.IsDefined(objType, typeof(SerializableAttribute))
+                || Attribute.IsDefined(objType, typeof(DataContractAttribute));// || ((obj is ISerializable));
         }
         #endregion 
         #region IsSerializable()

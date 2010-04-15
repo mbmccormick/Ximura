@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Xml;
+using System.Runtime.Serialization;
 
 using Ximura;
 using Ximura.Data;
@@ -17,13 +18,16 @@ namespace Ximura.UnitTest.Data
     [TestClass]
     public class ContentHolder
     {
+        #region Constructor
         public ContentHolder()
         {
             //
             // TODO: Add constructor logic here
             //
-        }
+        } 
+        #endregion
 
+        #region TestContext
         /// <summary>
         ///Gets or sets the test context which provides
         ///information about and functionality for the current test run.
@@ -32,7 +36,8 @@ namespace Ximura.UnitTest.Data
         {
             get;
             set;
-        }
+        } 
+        #endregion
 
         #region Additional test attributes
         //
@@ -56,6 +61,29 @@ namespace Ximura.UnitTest.Data
         //
         #endregion
 
+        #region Struct -> StructTest
+        [Serializable]
+        private struct StructTest
+        {
+            public string Data;
+            public int Count;
+            public Guid? ID;
+        } 
+        #endregion
+
+        #region Class -> ClassTest
+        [DataContract]
+        public class ClassTest
+        {
+            [DataMember]
+            public string Data;
+            [DataMember]
+            public int Count;
+            [DataMember]
+            public Guid? ID;
+        }     
+        #endregion
+
         [TestMethod]
         public void ContentHolder1()
         {
@@ -69,7 +97,12 @@ namespace Ximura.UnitTest.Data
             blob2[0] = 3;
             ContentHolder<byte[]> byteHolder2 = new ContentHolder<byte[]>(blob2);
 
-          
+            StructTest t1 = new StructTest() { Data = "78", Count = 8 };
+            ContentHolder<StructTest> byteHolder3 = new ContentHolder<StructTest>(t1);
+
+            ClassTest t2 = new ClassTest() { Data = "78", Count = 8 };
+            ContentHolder<ClassTest> byteHolder4 = new ContentHolder<ClassTest>(t2);
+
         }
     }
 }
