@@ -1,0 +1,641 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D944608C-F5EA-4F48-9F8A-C9523EFCCA03}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Ximura.Communication</RootNamespace>
+    <AssemblyName>XimuraComm</AssemblyName>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>ximura.snk</AssemblyOriginatorKeyFile>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>XimuraComm.XML</DocumentationFile>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'SQL|AnyCPU' ">
+    <OutputPath>bin\SQL\</OutputPath>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'SQLBudubu|AnyCPU' ">
+    <OutputPath>bin\SQLBudubu\</OutputPath>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>bin\x86\Debug\XimuraComm.xml</DocumentationFile>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'SQL|x86' ">
+    <OutputPath>bin\x86\SQL\</OutputPath>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'SQLBudubu|x86' ">
+    <OutputPath>bin\x86\SQLBudubu\</OutputPath>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>XIMSComm.XML</DocumentationFile>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'SQL|x64' ">
+    <OutputPath>bin\x64\SQL\</OutputPath>
+    <PlatformTarget>x64</PlatformTarget>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'SQLBudubu|x64' ">
+    <OutputPath>bin\x64\SQLBudubu\</OutputPath>
+    <PlatformTarget>x64</PlatformTarget>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'XSSocNet x64 Release|AnyCPU' ">
+    <OutputPath>bin\XSSocNet x64 Release\</OutputPath>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'XSSocNet x64 Release|x86' ">
+    <OutputPath>bin\x86\XSSocNet x64 Release\</OutputPath>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'XSSocNet x64 Release|x64' ">
+    <OutputPath>bin\x64\XSSocNet x64 Release\</OutputPath>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'XSSocNet x86 Release|AnyCPU' ">
+    <OutputPath>bin\XSSocNet x86 Release\</OutputPath>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'XSSocNet x86 Release|x86' ">
+    <OutputPath>bin\x86\XSSocNet x86 Release\</OutputPath>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'XSSocNet x86 Release|x64' ">
+    <OutputPath>bin\x64\XSSocNet x86 Release\</OutputPath>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Remoting" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Commands\ContentCompiler\Configuration\ContentCompilerConfiguration.cs">
+    </Compile>
+    <Compile Include="Commands\ContentCompiler\ContentCompilerCommand.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\ContentCompiler\ContentCompilerContext.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\ContentCompiler\ContentCompilerSettings.cs" />
+    <Compile Include="Commands\ContentCompiler\Contract\ContentCompilerRequest.cs" />
+    <Compile Include="Commands\ContentCompiler\Contract\ContentCompilerResponse.cs" />
+    <Compile Include="Commands\ContentCompiler\Exceptions\ContextCompilerException.cs" />
+    <Compile Include="Commands\ContentCompiler\Exceptions\InvalidOutputCCException.cs" />
+    <Compile Include="Commands\ContentCompiler\Exceptions\InvalidStylesheetCCException.cs" />
+    <Compile Include="Commands\ContentCompiler\Exceptions\InvalidTemplateCCException.cs" />
+    <Compile Include="Commands\ContentCompiler\Messages\ContentCompilerMessageFragmentBody.cs" />
+    <Compile Include="Commands\ContentCompiler\Performance\ContentCompilerPerformance.cs" />
+    <Compile Include="Commands\ContentCompiler\States\ContentCompilerState.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\ContentCompiler\States\FinishCCState.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\ContentCompiler\States\ModelDataTemplateCompilerCCState.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\ContentCompiler\States\OutputBaseCCState.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\ContentCompiler\States\OutputMultipartMIMECCState.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\ContentCompiler\States\OutputSelectorCCState.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\ContentCompiler\States\OutputTransformCCState.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\ContentCompiler\States\OutputXPathCCState.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\ContentCompiler\States\PreTransformInsertionCCState.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\ContentCompiler\States\StartCCState.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\InternetServer\Configuration\InternetServerConfiguration.cs">
+    </Compile>
+    <Compile Include="Exceptions\ResponseStatusException.cs" />
+    <Compile Include="Persistence\InternetServerCDSCommand.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\InternetServer\InternetServerCommand.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\ResourceManager\Configuration\ResourceManagerConfiguration.cs">
+    </Compile>
+    <Compile Include="Commands\ResourceManager\Contract\ResourceManagerRequest.cs" />
+    <Compile Include="Commands\ResourceManager\Contract\ResourceManagerResponse.cs" />
+    <Compile Include="Commands\ResourceManager\Exceptions\ResourceManagerException.cs" />
+    <Compile Include="Commands\ResourceManager\Messages\ResourceManagerMessageFragmentBody.cs" />
+    <Compile Include="Commands\ResourceManager\Performance\ResourceManagerPerformance.cs" />
+    <Compile Include="Commands\ResourceManager\ResourceManagerCommand.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\ResourceManager\ResourceManagerContext.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\ResourceManager\ResourceManagerSettings.cs" />
+    <Compile Include="Commands\ResourceManager\States\ETagCacheFlushRMState.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\ResourceManager\States\FinishRMState.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\ResourceManager\States\OutputCDSRMState.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\ResourceManager\States\OutputFileRMState.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\ResourceManager\States\OutputResourceRMState.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\ResourceManager\States\OutputRMState.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\ResourceManager\States\OutputSelectorRMState.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\ResourceManager\States\ResourceManagerState.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\ResourceManager\States\StartRMState.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\SiteControllerLogger\Configuration\SiteControllerLoggerConfiguration.cs">
+    </Compile>
+    <Compile Include="Commands\SiteControllerLogger\Configuration\SiteControllerRequestInfo.cs" />
+    <Compile Include="Commands\SiteControllerLogger\Contracts\SiteControllerLoggerRequest.cs" />
+    <Compile Include="Commands\SiteControllerLogger\Contracts\SiteControllerLoggerResponse.cs" />
+    <Compile Include="Commands\SiteControllerLogger\Interfaces\ISiteControllerLogger.cs" />
+    <Compile Include="Commands\SiteControllerLogger\IPLocationResolver\IPLocationNode\BinaryDepthNode.cs" />
+    <Compile Include="Commands\SiteControllerLogger\IPLocationResolver\IPLocationNode\IPLocationNode.cs" />
+    <Compile Include="Commands\SiteControllerLogger\IPLocationResolver\IPLocationNode\RegistryRecordParser.cs" />
+    <Compile Include="Commands\SiteControllerLogger\IPLocationResolver\IPLocationResolver.cs" />
+    <Compile Include="Commands\SiteControllerLogger\IPLocationResolver\IPLocationResolver_Cache.cs" />
+    <Compile Include="Commands\SiteControllerLogger\IPLocationResolver\IPLocationResolver_Load.cs" />
+    <Compile Include="Commands\SiteControllerLogger\SiteControllerLoggerCommand.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\SiteController\Attributes\SiteControllerRootScriptAttribute.cs" />
+    <Compile Include="Commands\SiteController\ComponentBase\SiteControllerComponentBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\SiteController\Configuration\SiteControllerConfiguration.cs">
+    </Compile>
+    <Compile Include="Commands\SiteController\Contract\SiteControllerRequest.cs" />
+    <Compile Include="Commands\SiteController\Contract\SiteControllerRequestCallback.cs" />
+    <Compile Include="Commands\SiteController\Contract\SiteControllerResponse.cs" />
+    <Compile Include="Commands\SiteController\Contract\SiteControllerResponseCallback.cs" />
+    <Compile Include="Commands\SiteController\Exceptions\SiteControllerException.cs" />
+    <Compile Include="Commands\SiteController\Exceptions\SiteControllerTooBusyException.cs" />
+    <Compile Include="Commands\SiteController\Logging\W3CExtendedLogger.cs" />
+    <Compile Include="Commands\SiteController\Performance\SiteControllerPerformance.cs" />
+    <Compile Include="Commands\SiteController\SiteControllerCommand.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\SiteController\SiteControllerContext.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\SiteController\SiteControllerSettings.cs" />
+    <Compile Include="Commands\SiteController\States\Authentication\AuthManager.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\SiteController\States\Authentication\BasicAuthManager.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\SiteController\States\Authentication\DigestAuthManager.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\SiteController\States\Protocol\ProtocolBaseState.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\SiteController\States\Protocol\ProtocolEmailState.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\SiteController\States\Protocol\ProtocolHTTPState.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\SiteController\States\Protocol\ProtocolSIPState.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\SiteController\States\Protocol\ProtocolSMTPState.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\SiteController\States\Resolver\ResolverState.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\SiteController\States\Response\ResponseHTTPRedirectState.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\SiteController\States\Response\ResponseResourceRetrieveState.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\SiteController\States\Response\ResponseViewBuildState.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\SiteController\States\SiteControllerState.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\SiteController\States\StartState.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\SiteServer\AuthHandler\AuthHandler.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\SiteServer\AuthHandler\AuthHandlerExtender.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\SiteServer\AuthHandler\AuthHandlerMetadataContainer.cs" />
+    <Compile Include="Commands\SiteServer\AuthHandler\IXIMSAuthHandler.cs" />
+    <Compile Include="Commands\SiteServer\Configuration\SiteServerConfiguration.cs">
+    </Compile>
+    <Compile Include="Commands\SiteServer\Contract\SiteServerRQ.cs" />
+    <Compile Include="Commands\SiteServer\Contract\SiteServerRS.cs" />
+    <Compile Include="Commands\SiteServer\Data\ContractInterfaces.cs" />
+    <Compile Include="Commands\SiteServer\Data\IPEndPointExtended.cs" />
+    <Compile Include="Commands\SiteServer\Data\ProtocolConnectionIdentifiers.cs" />
+    <Compile Include="Commands\SiteServer\Data\RQServer.cs" />
+    <Compile Include="Commands\SiteServer\Data\ServerCallbackRQRS.cs" />
+    <Compile Include="Commands\SiteServer\Exceptions\ServerCallbackException.cs" />
+    <Compile Include="Commands\SiteServer\Exceptions\ServerException.cs" />
+    <Compile Include="Commands\SiteServer\Interfaces\IXIMSServerContext.cs" />
+    <Compile Include="Commands\SiteServer\Interfaces\IXIMSServerSettings.cs" />
+    <Compile Include="Commands\SiteServer\Interfaces\IXIMSServerState.cs" />
+    <Compile Include="Commands\SiteServer\MessageResolver\Extender\MessageResolverExtender.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\SiteServer\MessageResolver\Extender\MessageResolverMetadataContainer.cs" />
+    <Compile Include="Commands\SiteServer\MessageResolver\MessageResolver.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\SiteServer\Performance\SiteServerPerformance.cs" />
+    <Compile Include="Commands\SiteServer\SiteServerCommand.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\SiteServer\SiteServerContext.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\SiteServer\SiteServerSettings.cs" />
+    <Compile Include="Commands\SiteServer\States\CloseSiteServerState.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\SiteServer\States\ListenBaseSiteServerState.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\SiteServer\States\ListenConnectionfulSSState.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\SiteServer\States\ListenConnectionlessSSState.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\SiteServer\States\SiteServerState.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\SiteServer\States\StartSiteServerState.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\Transport\Configuration\TransportConfiguration.cs">
+    </Compile>
+    <Compile Include="Commands\Transport\Contract\TransportCommandCBRequest.cs" />
+    <Compile Include="Commands\Transport\Contract\TransportCommandCBResponse.cs" />
+    <Compile Include="Commands\Transport\Contract\TransportCommandRequest.cs" />
+    <Compile Include="Commands\Transport\Contract\TransportCommandResponse.cs" />
+    <Compile Include="Commands\Transport\Enumerations\TransportConnectionType.cs" />
+    <Compile Include="Commands\Transport\Enumerations\TransportFlowControl.cs" />
+    <Compile Include="Commands\Transport\Exceptions\TransportClosedException.cs" />
+    <Compile Include="Commands\Transport\Exceptions\TransportException.cs" />
+    <Compile Include="Commands\Transport\Exceptions\TransportRequestException.cs" />
+    <Compile Include="Commands\Transport\Helper\SyncQueue.cs" />
+    <Compile Include="Commands\Transport\Interfaces\IXIMSTransportRequest.cs" />
+    <Compile Include="Commands\Transport\Interfaces\IXIMSTransportResponse.cs" />
+    <Compile Include="Commands\Transport\Performance\TransportPerformance.cs" />
+    <Compile Include="Commands\Transport\States\StartTransportState.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\Transport\States\TransportState.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\Transport\TransportCommand.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\Transport\TransportContext.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\Transport\TransportSettings.cs" />
+    <Compile Include="Common\CommunicationActionEnums.cs" />
+    <Compile Include="Common\CommunicationExtenderBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Common\CommunicationMetadataContainer.cs" />
+    <Compile Include="Common\ConnectionContextBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Common\ConnectionFSMBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Common\ConnectionInfo.cs" />
+    <Compile Include="Common\ConnectionSettingsBase.cs" />
+    <Compile Include="Common\MessageProcessingCommand.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Common\ProtocolShortcuts.cs" />
+    <Compile Include="Persistence\Managers\Binary\BinaryPM.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Persistence\Managers\Binary\BinaryResourcePM.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Persistence\Managers\Binary\ResourceBinaryPersistenceManager.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Persistence\Managers\ControllerScript\ControllerScriptPM.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Persistence\Managers\ControllerSession\ControllerSessionPM.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Persistence\Managers\Email\EmailTemplatePM.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Persistence\Managers\Stylesheet\StylesheetPM.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Persistence\Managers\Stylesheet\StylesheetPMXsltResolver.cs" />
+    <Compile Include="Persistence\Managers\Stylesheet\StylesheetResourcePM.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Protocols\HTTP\Contract\HTTPSiteServerRQ.cs" />
+    <Compile Include="Protocols\HTTP\Contract\HTTPSiteServerRS.cs" />
+    <Compile Include="Protocols\HTTP\HTTPSiteServerCommand.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Protocols\HTTP\States\AwaitRequestHTTPSSState.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Protocols\HTTP\States\ConnectionHTTPSSState.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Protocols\HTTP\States\HTTPSSState.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Protocols\HTTP\States\ProcessDataHTTPSSState.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Server\CommAppServer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Transports\IP\TransportContextIP.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Transports\NamedPipes\TransportCommandNamedPipes.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Transports\NamedPipes\TransportContextNamedPipes.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Transports\TCPIP\States\CloseTCPIPTransportState.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Transports\TCPIP\States\ListenTCPIPTransportState.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Transports\TCPIP\States\OpenTCPIPTransportState.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Transports\TCPIP\TransportCommandTCPIP.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Transports\TCPIP\TransportContextTCPIP.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Transports\IP\TransportCommandIPBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Transports\UDP\TransportCommandUDP.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Transports\UDP\TransportContextUDP.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Resources\CommunicationResourcePlaceholder.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Connection.bmp" />
+    <EmbeddedResource Include="Resources\Context.bmp" />
+    <EmbeddedResource Include="Resources\Controller.bmp" />
+    <EmbeddedResource Include="Resources\Protocol.bmp" />
+    <EmbeddedResource Include="Resources\State.bmp" />
+    <EmbeddedResource Include="Resources\Transport.bmp" />
+    <EmbeddedResource Include="Resources\Verb.bmp" />
+    <EmbeddedResource Include="Resources\VerbExtender.bmp" />
+    <EmbeddedResource Include="Resources\VerbParser.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Commands\ResourceManager\Configuration\ResourceManagerConfiguration.xsd" />
+    <EmbeddedResource Include="Commands\ContentCompiler\Configuration\ContentCompilerConfiguration.xsd" />
+    <EmbeddedResource Include="Commands\SiteController\Configuration\SiteControllerConfiguration.xsd" />
+    <EmbeddedResource Include="Commands\SiteServer\Configuration\SiteServerConfiguration.xsd" />
+    <EmbeddedResource Include="Commands\Transport\Configuration\TransportConfiguration.xsd" />
+    <None Include="Commands\SiteServer\_Documentation\02ssl.ppt" />
+    <None Include="Commands\SiteServer\_Documentation\Introduction to SSL - MDC.mht" />
+    <None Include="Commands\SiteServer\_Documentation\paper-ssl-revised.pdf" />
+    <None Include="Commands\SiteServer\_Documentation\SSL.docx" />
+    <None Include="ximura.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Commands\ResourceManager\ResourceManagerCommand.resx">
+      <DependentUpon>ResourceManagerCommand.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\ResourceManager\Configuration\ResourceManagerConfiguration_Default.xml" />
+    <EmbeddedResource Include="Commands\ContentCompiler\Configuration\ContentCompilerConfiguration_Default.xml" />
+    <EmbeddedResource Include="Commands\SiteController\Configuration\SiteControllerConfiguration_Default.xml" />
+    <EmbeddedResource Include="Commands\SiteControllerLogger\Configuration\SiteControllerLoggerConfiguration_Default.xml" />
+    <Content Include="Commands\SiteControllerLogger\IPLocationResolver\_Documentation\RIR-Statistics-Exchange-Format.txt" />
+    <EmbeddedResource Include="Commands\SiteServer\Configuration\SiteServerConfiguration_Default.xml" />
+    <EmbeddedResource Include="Commands\Transport\Configuration\TransportConfiguration_Default.xml" />
+    <Content Include="Commands\SiteServer\_Documentation\rfc4680.txt" />
+    <Content Include="Commands\SiteServer\_Documentation\rfc5077.txt" />
+    <Content Include="Commands\SiteServer\_Documentation\rfc5246.txt" />
+    <Content Include="Properties\epl-v10.html" />
+    <Content Include="Properties\Release Notes.txt" />
+    <EmbeddedResource Include="Protocols\HTTP\Configuration\HTTPSiteServerConfiguration_Production.xml" />
+    <EmbeddedResource Include="Protocols\HTTP\Configuration\HTTPSiteServerConfiguration_Debug.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ximura Communication Entities\Ximura Communication Entities %284.0%29.csproj">
+      <Project>{039133D4-A947-405C-A441-71DF106C9EE5}</Project>
+      <Name>Ximura Communication Entities %284.0%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ximura Communication Messaging\Ximura Communication Messaging %284.0%29.csproj">
+      <Project>{4EB77EFC-5E84-446B-AA1A-C3121DEF7082}</Project>
+      <Name>Ximura Communication Messaging %284.0%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ximura Data Persistence\Ximura Data Persistence %284.0%29.csproj">
+      <Project>{79C7BB97-6ABB-4E63-829D-5B5F7A76F987}</Project>
+      <Name>Ximura Data Persistence %284.0%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ximura Data\Ximura Data %284.0%29.csproj">
+      <Project>{7727E180-73B7-474B-84F6-BF0C6FFB181E}</Project>
+      <Name>Ximura Data %284.0%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ximura Framework Server\Ximura Framework Server %284.0%29.csproj">
+      <Project>{405721B9-1085-48DB-BBAA-3DF005169B96}</Project>
+      <Name>Ximura Framework Server %284.0%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ximura Framework\Ximura Framework %284.0%29.csproj">
+      <Project>{218ED92E-5D40-40DF-B6A2-11DEF3133589}</Project>
+      <Name>Ximura Framework %284.0%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ximura\Ximura %284.0%29.csproj">
+      <Project>{7C2684DD-A055-4A7A-88D6-EC5BAE28AEB2}</Project>
+      <Name>Ximura %284.0%29</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Commands\SiteControllerLogger\Data\" />
+    <Folder Include="Transports\NamedPipes\States\" />
+    <Folder Include="Transports\UDP\States\" />
+    <Folder Include="_Documentation\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

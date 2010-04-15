@@ -58,7 +58,5 @@ namespace Ximura.Data
         { 
         }
 		#endregion
-
-
     }
 }

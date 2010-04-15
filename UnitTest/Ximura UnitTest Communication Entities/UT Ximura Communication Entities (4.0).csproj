@@ -5,15 +5,14 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{D9A6D00E-00EB-40C2-BDF3-D1D82C818532}</ProjectGuid>
+    <ProjectGuid>{CB25D110-8967-4CBE-91B6-C3D4E4C1BCC8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Ximura.Samples.SocialNetworking</RootNamespace>
-    <AssemblyName>XSSocNetCommon</AssemblyName>
+    <RootNamespace>Ximura.UnitTest.Communication</RootNamespace>
+    <AssemblyName>XimuraUTCommEntities</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>xssocnet.snk</AssemblyOriginatorKeyFile>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>3.5</OldToolsVersion>
@@ -33,7 +32,6 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -72,105 +70,45 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'XSSocNet x64 Release|AnyCPU' ">
-    <OutputPath>bin\XSSocNet x64 Release\</OutputPath>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'XSSocNet x64 Release|x86' ">
-    <OutputPath>bin\x86\XSSocNet x64 Release\</OutputPath>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'XSSocNet x86 Release|AnyCPU' ">
-    <OutputPath>bin\XSSocNet x86 Release\</OutputPath>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'XSSocNet x86 Release|x86' ">
-    <OutputPath>bin\x86\XSSocNet x86 Release\</OutputPath>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x64\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
-    <OutputPath>bin\x64\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'XSSocNet x64 Release|x64' ">
-    <OutputPath>bin\x64\XSSocNet x64 Release\</OutputPath>
-    <PlatformTarget>x64</PlatformTarget>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'XSSocNet x86 Release|x64' ">
-    <OutputPath>bin\x64\XSSocNet x86 Release\</OutputPath>
-    <PlatformTarget>x64</PlatformTarget>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="msmdvbanet, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="System.Xml.Linq">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
+    <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
+    <Reference Include="System.XML" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Ximura Communication Entities\Ximura Communication Entities.csproj">
+    <ProjectReference Include="..\..\Ximura Communication Entities\Ximura Communication Entities.csproj">
       <Project>{039133D4-A947-405C-A441-71DF106C9EE5}</Project>
       <Name>Ximura Communication Entities</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Ximura Communication\Ximura Communication.csproj">
-      <Project>{D944608C-F5EA-4F48-9F8A-C9523EFCCA03}</Project>
-      <Name>Ximura Communication</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Ximura Data\Ximura Data.csproj">
+    <ProjectReference Include="..\..\Ximura Data\Ximura Data.csproj">
       <Project>{7727E180-73B7-474B-84F6-BF0C6FFB181E}</Project>
       <Name>Ximura Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Ximura Framework Server\Ximura Framework Server.csproj">
-      <Project>{405721B9-1085-48DB-BBAA-3DF005169B96}</Project>
-      <Name>Ximura Framework Server</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Ximura Framework\Ximura Framework.csproj">
-      <Project>{218ED92E-5D40-40DF-B6A2-11DEF3133589}</Project>
-      <Name>Ximura Framework</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Ximura\Ximura.csproj">
+    <ProjectReference Include="..\..\Ximura\Ximura.csproj">
       <Project>{7C2684DD-A055-4A7A-88D6-EC5BAE28AEB2}</Project>
       <Name>Ximura</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Entities\XS SocialNetworking Entities.csproj">
-      <Project>{4913989D-87D9-4709-A5E5-E90842DD52BD}</Project>
-      <Name>XS SocialNetworking Entities</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Properties\epl-v10.html" />
-    <Content Include="Properties\Release Notes.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="xssocnet.snk" />
-  </ItemGroup>
-  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
@@ -179,7 +117,7 @@
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5 SP1</ProductName>
-      <Install>true</Install>
+      <Install>false</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
       <Visible>False</Visible>
@@ -187,7 +125,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

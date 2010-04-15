@@ -1,0 +1,232 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{039133D4-A947-405C-A441-71DF106C9EE5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Ximura.Communication</RootNamespace>
+    <AssemblyName>XimuraCommEntities</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>ximura.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\XimuraCommEntities.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>bin\Debug\XimuraCommEntities.XML</DocumentationFile>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'XSSocNet x64 Release|AnyCPU' ">
+    <OutputPath>bin\XSSocNet x64 Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'XSSocNet x64 Release|x86' ">
+    <OutputPath>bin\x86\XSSocNet x64 Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'XSSocNet x86 Release|AnyCPU' ">
+    <OutputPath>bin\XSSocNet x86 Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'XSSocNet x86 Release|x86' ">
+    <OutputPath>bin\x86\XSSocNet x86 Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>bin\Debug\XimuraCommEntities.XML</DocumentationFile>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'XSSocNet x64 Release|x64' ">
+    <OutputPath>bin\x64\XSSocNet x64 Release\</OutputPath>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'XSSocNet x86 Release|x64' ">
+    <OutputPath>bin\x64\XSSocNet x86 Release\</OutputPath>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Entities\Atom\AtomBase.cs">
+    </Compile>
+    <Compile Include="Entities\Atom\AtomEntry.cs">
+    </Compile>
+    <Compile Include="Entities\Atom\AtomFeed.cs">
+    </Compile>
+    <Compile Include="Entities\Atom\AtomFeedOpenSearch.cs">
+    </Compile>
+    <Compile Include="Entities\Atom\AtomPPBase.cs">
+    </Compile>
+    <Compile Include="Entities\Atom\AtomPPCategoryDocument.cs">
+    </Compile>
+    <Compile Include="Entities\Atom\AtomPPServiceDocument.cs">
+    </Compile>
+    <Compile Include="Entities\Atom\Interfaces\AtomLinkRelation.cs" />
+    <Compile Include="Entities\Binary\BinaryContent.cs">
+    </Compile>
+    <Compile Include="Entities\Binary\CSSBinaryContent.cs">
+    </Compile>
+    <Compile Include="Entities\Binary\ImageBinaryContent.cs">
+    </Compile>
+    <Compile Include="Entities\Binary\ScriptBinaryContent.cs">
+    </Compile>
+    <Compile Include="Entities\Controller\ControllerRequest.cs">
+    </Compile>
+    <Compile Include="Entities\Controller\ControllerScript.cs">
+    </Compile>
+    <Compile Include="Entities\Controller\ControllerSession.cs">
+    </Compile>
+    <Compile Include="Entities\Controller\IAuthUser.cs" />
+    <Compile Include="Entities\Controller\Mapping.cs" />
+    <Compile Include="Entities\Controller\RealmAuthentication.cs" />
+    <Compile Include="Entities\DublinCore\DublinCore.cs">
+    </Compile>
+    <Compile Include="Entities\Messaging\EmailPriority.cs" />
+    <Compile Include="Entities\Messaging\EmailTemplate.cs">
+    </Compile>
+    <Compile Include="Entities\Messaging\MessageTemplateBase.cs">
+    </Compile>
+    <Compile Include="Entities\Model\ModelData.cs">
+    </Compile>
+    <Compile Include="Entities\Model\ModelTemplate.cs">
+    </Compile>
+    <Compile Include="Entities\SEO\SiteIndex.cs">
+    </Compile>
+    <Compile Include="Entities\SEO\SiteMap.cs">
+    </Compile>
+    <Compile Include="Entities\Stylesheet\Stylesheet.cs">
+    </Compile>
+    <Compile Include="Entities\Stylesheet\StylesheetBase.cs">
+    </Compile>
+    <Compile Include="Entities\XHTML\XHTMLDocument.cs">
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Entities\Atom\_Documentation\RFC 4287 %28rfc4287%29 - The Atom Syndication Format.mht" />
+    <EmbeddedResource Include="Resources\SiteMap.xsd" />
+    <EmbeddedResource Include="Resources\OpenSocial.xsd" />
+    <EmbeddedResource Include="Resources\Facebook.xsd" />
+    <EmbeddedResource Include="Resources\OpenSearch.xsd" />
+    <EmbeddedResource Include="Resources\DublinCore.xsd" />
+    <EmbeddedResource Include="Resources\Atom.xsd" />
+    <None Include="Resources\Atom.xsx">
+      <DependentUpon>Atom.xsd</DependentUpon>
+    </None>
+    <EmbeddedResource Include="Resources\AtomPublishingProtocol.xsd" />
+    <EmbeddedResource Include="Resources\ControllerRequest.xsd" />
+    <EmbeddedResource Include="Resources\ControllerScript.xsd" />
+    <EmbeddedResource Include="Resources\ControllerScriptResolver.xsd" />
+    <EmbeddedResource Include="Resources\ControllerSession.xsd" />
+    <None Include="Resources\DublinCore.xsx">
+      <DependentUpon>DublinCore.xsd</DependentUpon>
+    </None>
+    <EmbeddedResource Include="Resources\GeoEncoding.xsd" />
+    <None Include="Resources\GeoEncoding.xsx">
+      <DependentUpon>GeoEncoding.xsd</DependentUpon>
+    </None>
+    <EmbeddedResource Include="Resources\Model.xsd" />
+    <EmbeddedResource Include="Resources\MessageTemplate.xsd" />
+    <None Include="Resources\OpenSearch.xsx">
+      <DependentUpon>OpenSearch.xsd</DependentUpon>
+    </None>
+    <None Include="ximura.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ximura Data\Ximura Data %283.5%29.csproj">
+      <Project>{7727E180-73B7-474B-84F6-BF0C6FFB181E}</Project>
+      <Name>Ximura Data %283.5%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ximura\Ximura %283.5%29.csproj">
+      <Project>{7C2684DD-A055-4A7A-88D6-EC5BAE28AEB2}</Project>
+      <Name>Ximura %283.5%29</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Entities\Atom\Examples\atomXML1.xml" />
+    <Content Include="Entities\Atom\Examples\atomXML2.xml" />
+    <Content Include="Entities\Atom\Examples\atomXML3.xml" />
+    <Content Include="Entities\Atom\Examples\Orkut1.xml" />
+    <Content Include="Entities\Atom\Examples\Orkut2.xml" />
+    <Content Include="Entities\Atom\Examples\Orkut3.xml" />
+    <Content Include="Entities\Atom\Examples\Orkut4.xml" />
+    <Content Include="Properties\epl-v10.html" />
+    <Content Include="Properties\Release Notes.txt" />
+    <EmbeddedResource Include="Resources\ControllerRequest_DefaultData.xml" />
+    <EmbeddedResource Include="Resources\ControllerSession_NewData.xml" />
+    <EmbeddedResource Include="Resources\SiteMap_NewData.xml" />
+    <EmbeddedResource Include="Resources\SiteIndex_NewData.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Entities\Facebook\" />
+    <Folder Include="Entities\OpenSearch\" />
+    <Folder Include="Entities\OpenSocial\" />
+    <Folder Include="Entities\SOAP\" />
+    <Folder Include="Entities\WSDL\" />
+    <Folder Include="_Documentation\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -48,6 +48,8 @@ namespace Ximura.Windows
                 action();
             else
                 control.Dispatcher.BeginInvoke(action);
+
+
         }
     }
 }

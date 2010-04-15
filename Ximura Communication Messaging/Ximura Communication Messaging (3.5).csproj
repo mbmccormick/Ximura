@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4EB77EFC-5E84-446B-AA1A-C3121DEF7082}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Ximura.Communication</RootNamespace>
+    <AssemblyName>XimuraCommMessaging</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>Properties\ximura.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Exceptions\MaxSizeMessageException.cs" />
+    <Compile Include="Exceptions\MessageException.cs" />
+    <Compile Include="Exceptions\MessageLoadException.cs" />
+    <Compile Include="FileBasedStorageMessage.cs" />
+    <Compile Include="Fragments\BodyFragment.cs" />
+    <Compile Include="Fragments\FileBasedStorageMessageFragment.cs" />
+    <Compile Include="Fragments\InstructionFragmentBase.cs" />
+    <Compile Include="Fragments\InternetMessageFragmentBody.cs" />
+    <Compile Include="Fragments\RequestHeaderFragment.cs" />
+    <Compile Include="Fragments\ResponseHeaderFragment.cs" />
+    <Compile Include="Header\HeaderBodyMessage.cs" />
+    <Compile Include="Header\HeaderFragment.cs" />
+    <Compile Include="Header\HeaderFragmentMultiPart.cs" />
+    <Compile Include="Helper\ContentType.cs" />
+    <Compile Include="Helper\MessageTemplate.cs" />
+    <Compile Include="Interfaces\IXimuraHeaderFragment.cs" />
+    <Compile Include="Interfaces\IXimuraMessage.cs" />
+    <Compile Include="Interfaces\IXimuraMessageFileStreamLoad.cs" />
+    <Compile Include="Interfaces\IXimuraMessageLoadInitialize.cs" />
+    <Compile Include="Interfaces\IXimuraMessageStream.cs" />
+    <Compile Include="Interfaces\IXimuraMessageStreamAsync.cs" />
+    <Compile Include="Interfaces\IXimuraMessageStreamFeedback.cs" />
+    <Compile Include="Interfaces\IXimuraMessageStreamLoad.cs" />
+    <Compile Include="Interfaces\IXimuraMimeMessageInitialize.cs" />
+    <Compile Include="InternetMessage\InternetMessage.cs" />
+    <Compile Include="InternetMessage\InternetMessageRequest.cs" />
+    <Compile Include="InternetMessage\InternetMessageResponse.cs" />
+    <Compile Include="InternetMessage\RequestMessage.cs" />
+    <Compile Include="InternetMessage\ResponseMessage.cs" />
+    <Compile Include="Message.cs" />
+    <Compile Include="MessageBase.cs" />
+    <Compile Include="MessageCRLFFragment.cs" />
+    <Compile Include="MessageDirection.cs" />
+    <Compile Include="MessageFragment.cs" />
+    <Compile Include="MessageStreamBase.cs" />
+    <Compile Include="MIMEMessage\Body\MimeMessageBody.cs" />
+    <Compile Include="MIMEMessage\Body\MultipartAlternativeMimeMessageBody.cs" />
+    <Compile Include="MIMEMessage\Body\MultipartDigestMimeMessageBody.cs" />
+    <Compile Include="MIMEMessage\Body\MultipartEncryptedMimeMessageBody.cs" />
+    <Compile Include="MIMEMessage\Body\MultipartFormDataMessageBody.cs" />
+    <Compile Include="MIMEMessage\Body\MultipartMediaMimeMessageBody.cs" />
+    <Compile Include="MIMEMessage\Body\MultipartMixedMimeMessageBody.cs" />
+    <Compile Include="MIMEMessage\Body\MultipartParallelMimeMessageBody.cs" />
+    <Compile Include="MIMEMessage\Body\MultipartRelatedMimeMessageBody.cs" />
+    <Compile Include="MIMEMessage\Body\MultipartReportMimeMessageBody.cs" />
+    <Compile Include="MIMEMessage\Body\MultipartSignedMimeMessageBody.cs" />
+    <Compile Include="MIMEMessage\Fragments\MimeHeaderFragment.cs" />
+    <Compile Include="MIMEMessage\Fragments\MimeMessageFragment.cs" />
+    <Compile Include="MIMEMessage\Fragments\MimeMessageFragmentBody.cs" />
+    <Compile Include="MIMEMessage\Fragments\PreambleMimeMessageFragment.cs" />
+    <Compile Include="MIMEMessage\Fragments\Termination\MimeMatchCollectionState.cs" />
+    <Compile Include="MIMEMessage\Fragments\Termination\MimeMessageTerminator.cs" />
+    <Compile Include="MIMEMessage\MimeMessage.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Protocols\HTTP\Fragments\HTMLBodyFragment.cs" />
+    <Compile Include="Protocols\HTTP\Fragments\HTMLErrorBodyFragment.cs" />
+    <Compile Include="Protocols\HTTP\Fragments\HTTPRequestHeaderFragment.cs" />
+    <Compile Include="Protocols\HTTP\Fragments\HTTPResponseHeaderFragment.cs" />
+    <Compile Include="Protocols\HTTP\Fragments\WWWFormUrlEncodedBodyFragment.cs" />
+    <Compile Include="Protocols\HTTP\HTTPRequestMessage.cs" />
+    <Compile Include="Protocols\HTTP\HTTPResponseMessage.cs" />
+    <Compile Include="Protocols\POP3\POP3RequestMessage.cs" />
+    <Compile Include="Protocols\POP3\POP3ResponseMessage.cs" />
+    <Compile Include="Protocols\POP3\POP3StatusCodes.cs" />
+    <Compile Include="Protocols\SIP\SIPInternetMessage.cs" />
+    <Compile Include="Protocols\SMTP\Fragments\MailBodyBlobFragment.cs" />
+    <Compile Include="Protocols\SMTP\SMTPDataMessage.cs" />
+    <Compile Include="Protocols\SMTP\SMTPDataRequestMessage.cs" />
+    <Compile Include="Protocols\SMTP\SMTPDataResponseMessage.cs" />
+    <Compile Include="Protocols\SMTP\SMTPEnvelopeMessage.cs" />
+    <Compile Include="Protocols\SMTP\SMTPMailMessage.cs" />
+    <Compile Include="Protocols\SMTP\SMTPMailMessageEnvelope.cs" />
+    <Compile Include="Protocols\SMTP\SMTPRequestMessage.cs" />
+    <Compile Include="Protocols\SMTP\SMTPResponseMessage.cs" />
+    <Compile Include="Protocols\SMTP\SMTPStatusCodes.cs" />
+    <Compile Include="Protocols\Telnet\TelnetRequestMessage.cs" />
+    <Compile Include="Protocols\Telnet\TelnetRequestPasswordMessage.cs" />
+    <Compile Include="Protocols\Telnet\TelnetRequestUsernameMessage.cs" />
+    <Compile Include="Protocols\Telnet\TelnetResponseMessage.cs" />
+    <Compile Include="Termination\FragmentTerminationType.cs" />
+    <Compile Include="Termination\MessageGenericTerminatorBase.cs" />
+    <Compile Include="Termination\MessageTerminatorBase.cs" />
+    <Compile Include="Termination\MessageTerminatorCRLFFolding.cs" />
+    <Compile Include="Termination\MessageTerminatorCRLFNoFolding.cs" />
+    <Compile Include="Termination\State\CRLFMatchCollectionState.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Properties\epl-v10.html" />
+    <Content Include="Properties\Release Notes.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\ximura.snk" />
+    <None Include="_Documentation\RFC 2045 - MIME Part 1 - Format of Internet Message Bodies.mht" />
+    <None Include="_Documentation\RFC 2046 - MIME Part 2 - Media Types.mht" />
+    <None Include="_Documentation\RFC 2047 - MIME Part 3 - Message Header Extensions for Non-ASCII Text.mht" />
+    <None Include="_Documentation\RFC 2048 - MIME Part 4 - Registration Procedures.mht" />
+    <None Include="_Documentation\RFC 2049 - MIME Part 5 - Conformance Criteria and Examples.mht" />
+    <None Include="_Documentation\RFC 2388 - Returning Values from Forms multipart-form-data.mht" />
+    <None Include="_Documentation\RFC 2822 - Internet Message Format.mht" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ximura\Ximura %283.5%29.csproj">
+      <Project>{7C2684DD-A055-4A7A-88D6-EC5BAE28AEB2}</Project>
+      <Name>Ximura %283.5%29</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

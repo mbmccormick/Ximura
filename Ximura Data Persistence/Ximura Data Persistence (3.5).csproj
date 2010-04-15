@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{79C7BB97-6ABB-4E63-829D-5B5F7A76F987}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Ximura.Data</RootNamespace>
+    <AssemblyName>XimuraDataPersistence</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>Properties\ximura.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Attributes\CDSStateActionPermitAttribute.cs" />
+    <Compile Include="Attributes\CDSStateTypePermitAttribute.cs" />
+    <Compile Include="Configuration\CDSConfigSH.cs" />
+    <Compile Include="Configuration\CDSConfiguration.cs" />
+    <Compile Include="Configuration\CDSSettings.cs" />
+    <Compile Include="Configuration\PersistenceManagerConfigSH.cs" />
+    <Compile Include="ContentDataStore.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ContentDataStoreContainer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Context\CDSContext.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Data\ResourceCatalog\ResourceCatalog.cs" />
+    <Compile Include="Enumerations\CDSSelfCall.cs" />
+    <Compile Include="Enumerations\CDSStatePriorityGroup.cs" />
+    <Compile Include="Enumerations\ContentDataStoreSubCommand.cs" />
+    <Compile Include="Exceptions\CDSStateException.cs" />
+    <Compile Include="Exceptions\ContentDataStoreException.cs" />
+    <Compile Include="Exceptions\InvalidCommandCDSException.cs" />
+    <Compile Include="Helper\CacheCollectionHelperUriTID.cs" />
+    <Compile Include="Helper\CacheItemContainer.cs" />
+    <Compile Include="Helper\CDSHelperDirect.cs" />
+    <Compile Include="Helper\ContentIdentifier.cs" />
+    <Compile Include="Interfaces\ICDSCacheManagerBridge.cs" />
+    <Compile Include="Interfaces\ICDSConfigSH.cs" />
+    <Compile Include="Interfaces\ICDSManagerConfigSH.cs" />
+    <Compile Include="Interfaces\ICDSState.cs" />
+    <Compile Include="Interfaces\IPersistenceContext.cs" />
+    <Compile Include="Interfaces\IPersistenceState.cs" />
+    <Compile Include="Interfaces\IXimuraStorageFileSystem.cs" />
+    <Compile Include="Interfaces\IXimuraStorageSQLServerConnectivity.cs" />
+    <Compile Include="Performance\CDSPerformance.cs" />
+    <Compile Include="Performance\CDSPMPerformance.cs" />
+    <Compile Include="Performance\CDSStatePerformance.cs" />
+    <Compile Include="Persistence Managers\Cache Manager\CacheManagerCDSState.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Persistence Managers\Cache Manager\CDSCacheManagerBridge.cs" />
+    <Compile Include="Persistence Managers\Cache Manager\Configuration\CacheManagerCDSConfiguration.cs" />
+    <Compile Include="Persistence Managers\Cache Manager\ICDSCacheManager.cs" />
+    <Compile Include="Persistence Managers\Collection Based\CollectionBasePersistenceManager.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Persistence Managers\Converter\ConverterPMCDSState.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Persistence Managers\File Based\FileSystemBasePMCDSState.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Persistence Managers\File Based\FileSystemPersistenceManager.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Persistence Managers\File Based\IsolatedStoragePersistenceManager.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Persistence Managers\PersistenceManagerCDSState.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Persistence Managers\Resource Based\ResourceBasePersistenceManager.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Persistence Managers\Resource Based\ResourceCatalogPersistenceManager.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Persistence Managers\SQLDB Based\Configuration\SQLDBPMCDSConfiguration.cs" />
+    <Compile Include="Persistence Managers\SQLDB Based\Configuration\SQLDBPMConfigSH.cs" />
+    <Compile Include="Persistence Managers\SQLDB Based\SQLDBPersistenceManager.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Persistence Managers\SQLDB Based\SQLDBPersistenceManager_Browse.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Persistence Managers\SQLDB Based\SQLDBPersistenceManager_Create.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Persistence Managers\SQLDB Based\SQLDBPersistenceManager_Delete.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Persistence Managers\SQLDB Based\SQLDBPersistenceManager_Read.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Persistence Managers\SQLDB Based\SQLDBPersistenceManager_ResolveReference.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Persistence Managers\SQLDB Based\SQLDBPersistenceManager_Restore.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Persistence Managers\SQLDB Based\SQLDBPersistenceManager_Update.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Persistence Managers\SQLDB Based\SQLDBPersistenceManager_VersionCheck.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Persistence Managers\SQLDB Relational Based\SQLDBRelationalBasedPersistenceManager.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="States\BaseCDSState.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="States\CDSState.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="States\FinishCDSState.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="States\StartCDSState.cs">
+      <SubType>Component</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ximura Communication Entities\Ximura Communication Entities %283.5%29.csproj">
+      <Project>{039133D4-A947-405C-A441-71DF106C9EE5}</Project>
+      <Name>Ximura Communication Entities %283.5%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ximura Communication Messaging\Ximura Communication Messaging %283.5%29.csproj">
+      <Project>{4EB77EFC-5E84-446B-AA1A-C3121DEF7082}</Project>
+      <Name>Ximura Communication Messaging %283.5%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ximura Data\Ximura Data %283.5%29.csproj">
+      <Project>{7727E180-73B7-474B-84F6-BF0C6FFB181E}</Project>
+      <Name>Ximura Data %283.5%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ximura Framework\Ximura Framework %283.5%29.csproj">
+      <Project>{218ED92E-5D40-40DF-B6A2-11DEF3133589}</Project>
+      <Name>Ximura Framework %283.5%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ximura\Ximura %283.5%29.csproj">
+      <Project>{7C2684DD-A055-4A7A-88D6-EC5BAE28AEB2}</Project>
+      <Name>Ximura %283.5%29</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Configuration\CDSConfiguration_Default.xml" />
+    <Content Include="Data\ResourceCatalog\DataSet\ResourceCatalog_NewData.xml" />
+    <Content Include="Properties\epl-v10.html" />
+    <Content Include="Properties\Release Notes.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Configuration\CDSConfiguration.xsd" />
+    <EmbeddedResource Include="Data\ResourceCatalog\DataSet\ResourceCatalog.xsd" />
+    <None Include="Properties\ximura.snk" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
