@@ -59,12 +59,17 @@ namespace Ximura.UnitTest.Data
         [TestMethod]
         public void ContentHolder1()
         {
-            XmlDocument doc = new XmlDocument();
+            string strData = "A bit fat hairy bloke.";
+            ContentHolder<string> stringHolder = new ContentHolder<string>(strData);
 
-            ContentHolder<XmlDocument> xmlHolder = new ContentHolder<XmlDocument>(doc);
+            byte[] blob1 = new byte[1000];
+            ContentHolder<byte[]> byteHolder1 = new ContentHolder<byte[]>(blob1);
 
-            
-            
+            byte[] blob2 = new byte[1000];
+            blob2[0] = 3;
+            ContentHolder<byte[]> byteHolder2 = new ContentHolder<byte[]>(blob2);
+
+          
         }
     }
 }

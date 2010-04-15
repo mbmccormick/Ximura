@@ -41,6 +41,7 @@ namespace Ximura.Data
         #region Static Constructor
         static ContentHolder()
         {
+            lockTypeIds = new object();
             sTypeIds = new Dictionary<Type, Guid>();
         }
         #endregion // Static constructor
@@ -98,7 +99,7 @@ namespace Ximura.Data
         public override Guid GetContentTypeAttributeID()
         {
             KeyValuePair<Guid?, Guid?> keyPair = GetContentTypeAttributeKeyPair(GetType());
-            if (!keyPair.Key.HasValue)
+            if (keyPair.Key.HasValue)
                 return keyPair.Key.Value;
             else
             {
@@ -111,7 +112,7 @@ namespace Ximura.Data
                     if (sTypeIds.ContainsKey(thisType))
                         return sTypeIds[thisType];
 
-                    Guid typeID = StringConvertToGuid(typeof(T).Name);
+                    Guid typeID = StringConvertToGuid(typeof(T).FullName);
                     sTypeIds.Add(thisType, typeID);
 
                     return typeID;
@@ -225,6 +226,5 @@ namespace Ximura.Data
             }
         }
         #endregion // ContentBody
-
     }
 }
