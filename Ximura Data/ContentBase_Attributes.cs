@@ -25,6 +25,7 @@ using Ximura;
 using Ximura.Data;
 using CH = Ximura.Common;
 using AH = Ximura.AttributeHelper;
+using RH = Ximura.Reflection;
 #endregion // using
 namespace Ximura.Data
 {
@@ -32,12 +33,12 @@ namespace Ximura.Data
     {
         #region Static Declarations
         private static object syncIDCollection = new object();
-        private static Dictionary<Type, KeyValuePair<Guid, Guid?>> sTypeGuidDictionary;
+        private static Dictionary<Type, KeyValuePair<Guid?, Guid?>> sTypeGuidDictionary;
         #endregion // Static Declarations
         #region Static Constructor
         static ContentBase()
         {
-            sTypeGuidDictionary = new Dictionary<Type, KeyValuePair<Guid, Guid?>>();
+            sTypeGuidDictionary = new Dictionary<Type, KeyValuePair<Guid?, Guid?>>();
         }
         #endregion // Static Constructor
 
@@ -48,7 +49,7 @@ namespace Ximura.Data
         /// <returns>Returns the content type ID.</returns>
         public virtual Guid GetContentTypeAttributeID()
         {
-            return GetContentTypeAttributeKeyPair(GetType()).Key;
+            return GetContentTypeAttributeID(GetType());
         }
         #endregion
         #region GetContentTypeAttributeID(Type itemType)
@@ -59,7 +60,11 @@ namespace Ximura.Data
         /// <returns>Returns the content type ID.</returns>
         public static Guid GetContentTypeAttributeID(Type itemType)
         {
-            return GetContentTypeAttributeKeyPair(itemType).Key;
+            Guid? key = GetContentTypeAttributeKeyPair(itemType).Key;
+            if (!key.HasValue)
+                throw new ArgumentException("The content type does not have a XimuraContentTypeID attribute defined.");
+
+            return key.Value;
         }
         #endregion // GetContentTypeID(Type itemType)
         #region GetContentTypeAttributeID<T>()
@@ -68,9 +73,9 @@ namespace Ximura.Data
         /// </summary>
         /// <typeparam name="T">The Content type.</typeparam>
         /// <returns>Returns a Guid containing the content type.</returns>
-        public static Guid GetContentTypeAttributeID<T>() where T : Content
+        public static Guid GetContentTypeAttributeID<T>() where T : IXimuraContent
         {
-            return GetContentTypeAttributeKeyPairInternal(typeof(T)).Key;
+            return GetContentTypeAttributeID(typeof(T));
         }
         #endregion // GetContentTypeAttributeID<T>()
 
@@ -81,14 +86,14 @@ namespace Ximura.Data
         /// </summary>
         /// <param name="itemType"></param>
         /// <returns></returns>
-        public static KeyValuePair<Guid, Guid?> GetContentTypeAttributeKeyPair(Type itemType)
+        public static KeyValuePair<Guid?, Guid?> GetContentTypeAttributeKeyPair(Type itemType)
         {
             if (itemType == null)
                 throw new ArgumentNullException("itemType cannot be null.");
 
-            if (!itemType.IsSubclassOf(typeof(Content)))
-                throw new ArgumentOutOfRangeException("itemType must derive from Content");
-
+            if (!RH.ValidateInterface(itemType, typeof(IXimuraContent)))
+                throw new ArgumentOutOfRangeException("itemType must implement IXimuraContent");
+            
             return GetContentTypeAttributeKeyPairInternal(itemType);
         }
         #endregion // GetContentTypeAttributeKeyPair(Type itemType)
@@ -98,7 +103,7 @@ namespace Ximura.Data
         /// </summary>
         /// <param name="itemType">The object type.</param>
         /// <returns>Returns the keyvalue pair.</returns>
-        private static KeyValuePair<Guid, Guid?> GetContentTypeAttributeKeyPairInternal(Type itemType)
+        private static KeyValuePair<Guid?, Guid?> GetContentTypeAttributeKeyPairInternal(Type itemType)
         {
             if (itemType == null)
                 throw new ArgumentNullException("itemType cannot be null.");
@@ -114,15 +119,14 @@ namespace Ximura.Data
                 XimuraContentTypeIDAttribute contentTypeIDAttr =
                     AH.GetAttribute<XimuraContentTypeIDAttribute>(itemType);
 
-                if (contentTypeIDAttr == null)
-                    throw new ArgumentException("The content type does not have a XimuraContentTypeID attribute defined.");
-
                 XimuraContentIDAttribute contentIDAttr =
                     AH.GetAttribute<XimuraContentIDAttribute>(itemType);
 
-                KeyValuePair<Guid, Guid?> newPair =
-                    new KeyValuePair<Guid, Guid?>(contentTypeIDAttr.ID,
-                    contentIDAttr == null ? (Guid?)null : (Guid?)contentIDAttr.ID);
+                KeyValuePair<Guid?, Guid?> newPair =
+                    new KeyValuePair<Guid?, Guid?>(
+                     contentTypeIDAttr == null ? (Guid?)null : (Guid?)contentTypeIDAttr.ID
+                    ,contentIDAttr == null ? (Guid?)null : (Guid?)contentIDAttr.ID
+                    );
 
                 sTypeGuidDictionary.Add(itemType, newPair);
 

@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Diagnostics;
 using System.Text;
+using System.Security.Cryptography;
 
 using Ximura;
 using Ximura.Data;
@@ -108,5 +109,25 @@ namespace Ximura.Data
             }
         }
         #endregion // Version
+
+        #region StringConvertToGuid(string ID)
+        /// <summary>
+        /// This method converts a string in to a new Guid. This can be used to ensure that the same string always 
+        /// transforms in to the same Guid.
+        /// </summary>
+        /// <param name="ID">The string to convert.</param>
+        /// <returns>Returns a Guid.</returns>
+        protected Guid StringConvertToGuid(string ID)
+        {
+            byte[] blob = null;
+
+            using (HashAlgorithm hash = new MD5CryptoServiceProvider())
+            {
+                blob = hash.ComputeHash(Encoding.UTF8.GetBytes(ID));
+            }
+
+            return new Guid(blob);
+        }
+        #endregion
     }
 }
