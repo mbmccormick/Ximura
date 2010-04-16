@@ -107,7 +107,7 @@
             This override resets the context to its original state.
             </summary>
         </member>
-        <member name="M:Ximura.Communication.TransportContext.PurgeQueue(System.Collections.Generic.Queue{Ximura.Data.IXimuraMessageStream})">
+        <member name="M:Ximura.Communication.TransportContext.PurgeQueue(System.Collections.Generic.Queue{Ximura.Communication.IXimuraMessageStream})">
             <summary>
             This method removes any items still in the message queue and returns them to the object pool.
             </summary>
@@ -126,7 +126,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Ximura.Communication.TransportContext.ListenRequest(Ximura.Server.SecurityManagerJob,Ximura.Command.RQRSContract{Ximura.Communication.TransportCommandRequest,Ximura.Communication.TransportCommandResponse})">
+        <member name="M:Ximura.Communication.TransportContext.ListenRequest(Ximura.Framework.SecurityManagerJob,Ximura.RQRSContract{Ximura.Communication.TransportCommandRequest,Ximura.Communication.TransportCommandResponse})">
             <summary>
             The method initializes a listen request.
             </summary>
@@ -134,7 +134,7 @@
             <param name="Data">The request data.</param>
             <returns>Returns true if the context should be reset and returned to the pool.</returns>
         </member>
-        <member name="M:Ximura.Communication.TransportContext.ListenConfirm(Ximura.Server.SecurityManagerJob,Ximura.Command.RQRSContract{Ximura.Communication.TransportCommandRequest,Ximura.Communication.TransportCommandResponse})">
+        <member name="M:Ximura.Communication.TransportContext.ListenConfirm(Ximura.Framework.SecurityManagerJob,Ximura.RQRSContract{Ximura.Communication.TransportCommandRequest,Ximura.Communication.TransportCommandResponse})">
             <summary>
             The method confirms the listening request and starts listening.
             </summary>
@@ -142,7 +142,7 @@
             <param name="Data">The request data.</param>
             <returns>Returns true if the context should be reset and returned to the pool.</returns>
         </member>
-        <member name="M:Ximura.Communication.TransportContext.OpenRequest(Ximura.Server.SecurityManagerJob,Ximura.Command.RQRSContract{Ximura.Communication.TransportCommandRequest,Ximura.Communication.TransportCommandResponse})">
+        <member name="M:Ximura.Communication.TransportContext.OpenRequest(Ximura.Framework.SecurityManagerJob,Ximura.RQRSContract{Ximura.Communication.TransportCommandRequest,Ximura.Communication.TransportCommandResponse})">
             <summary>
             This method starts an open request.
             </summary>
@@ -150,7 +150,7 @@
             <param name="Data">The request data.</param>
             <returns>Returns true if the context should be reset and returned to the pool.</returns>
         </member>
-        <member name="M:Ximura.Communication.TransportContext.OpenConfirm(Ximura.Server.SecurityManagerJob,Ximura.Command.RQRSContract{Ximura.Communication.TransportCommandRequest,Ximura.Communication.TransportCommandResponse})">
+        <member name="M:Ximura.Communication.TransportContext.OpenConfirm(Ximura.Framework.SecurityManagerJob,Ximura.RQRSContract{Ximura.Communication.TransportCommandRequest,Ximura.Communication.TransportCommandResponse})">
             <summary>
             This method start the connection and confirms the open request.
             </summary>
@@ -158,7 +158,7 @@
             <param name="Data">The request data.</param>
             <returns>Returns true if the context should be reset and returned to the pool.</returns>
         </member>
-        <member name="M:Ximura.Communication.TransportContext.Transmit(Ximura.Server.SecurityManagerJob,Ximura.Command.RQRSContract{Ximura.Communication.TransportCommandRequest,Ximura.Communication.TransportCommandResponse})">
+        <member name="M:Ximura.Communication.TransportContext.Transmit(Ximura.Framework.SecurityManagerJob,Ximura.RQRSContract{Ximura.Communication.TransportCommandRequest,Ximura.Communication.TransportCommandResponse})">
             <summary>
             This method transits a message to the remote party.
             </summary>
@@ -166,7 +166,7 @@
             <param name="Data">The request data.</param>
             <returns>Returns true if the context should be reset and returned to the pool.</returns>
         </member>
-        <member name="M:Ximura.Communication.TransportContext.Close(Ximura.Server.SecurityManagerJob,Ximura.Command.RQRSContract{Ximura.Communication.TransportCommandRequest,Ximura.Communication.TransportCommandResponse})">
+        <member name="M:Ximura.Communication.TransportContext.Close(Ximura.Framework.SecurityManagerJob,Ximura.RQRSContract{Ximura.Communication.TransportCommandRequest,Ximura.Communication.TransportCommandResponse})">
             <summary>
             This method closes a context.
             </summary>
@@ -185,7 +185,7 @@
             </summary>
             <returns>Return null if the type cannot be resolved, or the pool is empty.</returns>
         </member>
-        <member name="M:Ximura.Communication.TransportContext.MessageTransmit(Ximura.Data.IXimuraMessageStream)">
+        <member name="M:Ximura.Communication.TransportContext.MessageTransmit(Ximura.Communication.IXimuraMessageStream)">
             <summary>
             This method adds a message in to the outgoing send queue.
             </summary>
@@ -319,7 +319,7 @@
             </summary>
             <param name="container">The container</param>
         </member>
-        <member name="M:Ximura.Communication.SiteServerState`2.Close(Ximura.Communication.SiteServerContext{`0,`1},Ximura.Server.SecurityManagerJob,Ximura.Command.RQRSContract{Ximura.Communication.RQCallbackServer,Ximura.Communication.RSCallbackServer})">
+        <member name="M:Ximura.Communication.SiteServerState`2.Close(Ximura.Communication.SiteServerContext{`0,`1},Ximura.Framework.SecurityManagerJob,Ximura.RQRSContract{Ximura.Communication.RQCallbackServer,Ximura.Communication.RSCallbackServer})">
             <summary>
             This method switches the context to the close state and then calls the correct close method.
             </summary>
@@ -369,7 +369,7 @@
             </summary>
             <param name="context"></param>
         </member>
-        <member name="M:Ximura.Communication.StartSiteServerState`2.ConnectionRequest(Ximura.Communication.SiteServerContext{`0,`1},Ximura.Server.SecurityManagerJob,Ximura.Command.RQRSContract{Ximura.Communication.RQCallbackServer,Ximura.Communication.RSCallbackServer})">
+        <member name="M:Ximura.Communication.StartSiteServerState`2.ConnectionRequest(Ximura.Communication.SiteServerContext{`0,`1},Ximura.Framework.SecurityManagerJob,Ximura.RQRSContract{Ximura.Communication.RQCallbackServer,Ximura.Communication.RSCallbackServer})">
             <summary>
             This method is called when a listening context passes the request to a new context for processing.
             </summary>
@@ -417,7 +417,7 @@
             </summary>
             <param name="container">The container</param>
         </member>
-        <member name="M:Ximura.Communication.CloseSiteServerState`2.Close(Ximura.Communication.SiteServerContext{`0,`1},Ximura.Server.SecurityManagerJob,Ximura.Command.RQRSContract{Ximura.Communication.RQCallbackServer,Ximura.Communication.RSCallbackServer})">
+        <member name="M:Ximura.Communication.CloseSiteServerState`2.Close(Ximura.Communication.SiteServerContext{`0,`1},Ximura.Framework.SecurityManagerJob,Ximura.RQRSContract{Ximura.Communication.RQCallbackServer,Ximura.Communication.RSCallbackServer})">
             <summary>
             This close method is called by the remote transport in response to a transport close.
             </summary>
@@ -778,7 +778,7 @@
             </summary>
             <param name="container">The container</param>
         </member>
-        <member name="M:Ximura.Communication.TransportState.Close(Ximura.Communication.TransportContext,Ximura.Server.SecurityManagerJob,Ximura.Command.RQRSContract{Ximura.Communication.TransportCommandRequest,Ximura.Communication.TransportCommandResponse})">
+        <member name="M:Ximura.Communication.TransportState.Close(Ximura.Communication.TransportContext,Ximura.Framework.SecurityManagerJob,Ximura.RQRSContract{Ximura.Communication.TransportCommandRequest,Ximura.Communication.TransportCommandResponse})">
             <summary>
             This base method switches any close request to the Close State.
             </summary>
@@ -867,7 +867,7 @@
             </summary>
             <param name="container">The container</param>
         </member>
-        <member name="M:Ximura.Communication.ListenConnectionfulSSState`2.ConnectionRequest(Ximura.Communication.SiteServerContext{`0,`1},Ximura.Server.SecurityManagerJob,Ximura.Command.RQRSContract{Ximura.Communication.RQCallbackServer,Ximura.Communication.RSCallbackServer})">
+        <member name="M:Ximura.Communication.ListenConnectionfulSSState`2.ConnectionRequest(Ximura.Communication.SiteServerContext{`0,`1},Ximura.Framework.SecurityManagerJob,Ximura.RQRSContract{Ximura.Communication.RQCallbackServer,Ximura.Communication.RSCallbackServer})">
             <summary>
             This method processes an incoming connection request and assigns it to a new context.
             </summary>
@@ -1393,6 +1393,45 @@
             This is the ID passed through an ETagFlush Request.
             </summary>
         </member>
+        <member name="T:Ximura.Communication.ResponseStatusException">
+            <summary>
+            This base exception class allows exceptions to be thrown with an additional Status and Substatus message.
+            </summary>
+        </member>
+        <member name="M:Ximura.Communication.ResponseStatusException.#ctor(System.String,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="status"></param>
+            <param name="subStatus"></param>
+        </member>
+        <member name="M:Ximura.Communication.ResponseStatusException.#ctor(System.String,System.String,System.String,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="status"></param>
+            <param name="subStatus"></param>
+            <param name="ex"></param>
+        </member>
+        <member name="M:Ximura.Communication.ResponseStatusException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            This exception is used for deserialization.
+            </summary>
+            <param name="info">The serialization info.</param>
+            <param name="context">The serialization context.</param>
+        </member>
+        <member name="P:Ximura.Communication.ResponseStatusException.Status">
+            <summary>
+            This is the error status.
+            </summary>
+        </member>
+        <member name="P:Ximura.Communication.ResponseStatusException.SubStatus">
+            <summary>
+            This is the error substatus.
+            </summary>
+        </member>
         <member name="T:Ximura.Communication.OutputSelectorCCState">
             <summary>
             This state selects the appropraite output method state.
@@ -1473,7 +1512,7 @@
             </summary>
             <param name="container">The container</param>
         </member>
-        <member name="M:Ximura.Communication.CloseTCPIPTransportState.Close(Ximura.Communication.TransportContext,Ximura.Server.SecurityManagerJob,Ximura.Command.RQRSContract{Ximura.Communication.TransportCommandRequest,Ximura.Communication.TransportCommandResponse})">
+        <member name="M:Ximura.Communication.CloseTCPIPTransportState.Close(Ximura.Communication.TransportContext,Ximura.Framework.SecurityManagerJob,Ximura.RQRSContract{Ximura.Communication.TransportCommandRequest,Ximura.Communication.TransportCommandResponse})">
             <summary>
             This close method is initiated by the remote server.
             </summary>
@@ -1979,7 +2018,7 @@
             </summary>
             <param name="container">The container</param>
         </member>
-        <member name="M:Ximura.Communication.ProcessDataHTTPSSState.Receive(Ximura.Communication.SiteServerContext{Ximura.Communication.HTTPSiteServerRQ,Ximura.Communication.HTTPSiteServerRS},Ximura.Server.SecurityManagerJob,Ximura.Command.RQRSContract{Ximura.Communication.RQCallbackServer,Ximura.Communication.RSCallbackServer})">
+        <member name="M:Ximura.Communication.ProcessDataHTTPSSState.Receive(Ximura.Communication.SiteServerContext{Ximura.Communication.HTTPSiteServerRQ,Ximura.Communication.HTTPSiteServerRS},Ximura.Framework.SecurityManagerJob,Ximura.RQRSContract{Ximura.Communication.RQCallbackServer,Ximura.Communication.RSCallbackServer})">
             <summary>
             This method receives requests from the HTTP agent and passes the request to the Site Controller.
             </summary>
@@ -1999,14 +2038,14 @@
             </summary>
             <param name="container">The container</param>
         </member>
-        <member name="M:Ximura.Communication.StylesheetPM`2.Read(Ximura.Persistence.CDSContext)">
+        <member name="M:Ximura.Communication.StylesheetPM`2.Read(Ximura.Data.CDSContext)">
             <summary>
             This override compiles the stylesheet before it leaves the persistence manager,
             </summary>
             <param name="context"></param>
             <returns></returns>
         </member>
-        <member name="M:Ximura.Communication.StylesheetPM`2.ResolveReference(Ximura.Persistence.CDSContext)">
+        <member name="M:Ximura.Communication.StylesheetPM`2.ResolveReference(Ximura.Data.CDSContext)">
             <summary>
             This method resolves the stylesheet reference
             </summary>
@@ -2281,7 +2320,7 @@
             </summary>
             <param name="container">The container</param>
         </member>
-        <member name="M:Ximura.Communication.ListenTCPIPTransportState.ListenRequest(Ximura.Communication.TransportContext,Ximura.Server.SecurityManagerJob,Ximura.Command.RQRSContract{Ximura.Communication.TransportCommandRequest,Ximura.Communication.TransportCommandResponse})">
+        <member name="M:Ximura.Communication.ListenTCPIPTransportState.ListenRequest(Ximura.Communication.TransportContext,Ximura.Framework.SecurityManagerJob,Ximura.RQRSContract{Ximura.Communication.TransportCommandRequest,Ximura.Communication.TransportCommandResponse})">
             <summary>
             This method sets the transport context server connection parameters.
             </summary>
@@ -2290,7 +2329,7 @@
             <param name="Data">The data.</param>
             <returns>Returns false as this context should be accepted.</returns>
         </member>
-        <member name="M:Ximura.Communication.ListenTCPIPTransportState.ListenConfirm(Ximura.Communication.TransportContext,Ximura.Server.SecurityManagerJob,Ximura.Command.RQRSContract{Ximura.Communication.TransportCommandRequest,Ximura.Communication.TransportCommandResponse})">
+        <member name="M:Ximura.Communication.ListenTCPIPTransportState.ListenConfirm(Ximura.Communication.TransportContext,Ximura.Framework.SecurityManagerJob,Ximura.RQRSContract{Ximura.Communication.TransportCommandRequest,Ximura.Communication.TransportCommandResponse})">
             <summary>
             This method is called after the transport-server handshake is confirmed. This method starts the listening process.
             </summary>
@@ -2370,7 +2409,7 @@
             <param name="context">The current context.</param>
             <returns>Returns true if the server accepted the connection request.</returns>
         </member>
-        <member name="M:Ximura.Communication.StartTransportState.OpenRequest(Ximura.Communication.TransportContext,Ximura.Server.SecurityManagerJob,Ximura.Command.RQRSContract{Ximura.Communication.TransportCommandRequest,Ximura.Communication.TransportCommandResponse})">
+        <member name="M:Ximura.Communication.StartTransportState.OpenRequest(Ximura.Communication.TransportContext,Ximura.Framework.SecurityManagerJob,Ximura.RQRSContract{Ximura.Communication.TransportCommandRequest,Ximura.Communication.TransportCommandResponse})">
             <summary>
             This method swaps to the open state and calls the corresponding method.
             </summary>
@@ -2379,7 +2418,7 @@
             <param name="Data">The request/response data.</param>
             <returns></returns>
         </member>
-        <member name="M:Ximura.Communication.StartTransportState.ListenRequest(Ximura.Communication.TransportContext,Ximura.Server.SecurityManagerJob,Ximura.Command.RQRSContract{Ximura.Communication.TransportCommandRequest,Ximura.Communication.TransportCommandResponse})">
+        <member name="M:Ximura.Communication.StartTransportState.ListenRequest(Ximura.Communication.TransportContext,Ximura.Framework.SecurityManagerJob,Ximura.RQRSContract{Ximura.Communication.TransportCommandRequest,Ximura.Communication.TransportCommandResponse})">
             <summary>
             This method changes the context to the listen state.
             </summary>
@@ -2443,45 +2482,6 @@
             override this method to add your own shorcuts.
             </summary>
             <param name="mappingShortcuts">The mapping shorcut collection.</param>
-        </member>
-        <member name="T:Ximura.Communication.ResponseStatusException">
-            <summary>
-            This base exception class allows exceptions to be thrown with an additional Status and Substatus message.
-            </summary>
-        </member>
-        <member name="M:Ximura.Communication.ResponseStatusException.#ctor(System.String,System.String,System.String)">
-            <summary>
-            
-            </summary>
-            <param name="message"></param>
-            <param name="status"></param>
-            <param name="subStatus"></param>
-        </member>
-        <member name="M:Ximura.Communication.ResponseStatusException.#ctor(System.String,System.String,System.String,System.Exception)">
-            <summary>
-            
-            </summary>
-            <param name="message"></param>
-            <param name="status"></param>
-            <param name="subStatus"></param>
-            <param name="ex"></param>
-        </member>
-        <member name="M:Ximura.Communication.ResponseStatusException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <summary>
-            This exception is used for deserialization.
-            </summary>
-            <param name="info">The serialization info.</param>
-            <param name="context">The serialization context.</param>
-        </member>
-        <member name="P:Ximura.Communication.ResponseStatusException.Status">
-            <summary>
-            This is the error status.
-            </summary>
-        </member>
-        <member name="P:Ximura.Communication.ResponseStatusException.SubStatus">
-            <summary>
-            This is the error substatus.
-            </summary>
         </member>
         <member name="M:Ximura.Communication.SiteServerSettings`1.#ctor">
             <summary>
@@ -2711,7 +2711,7 @@
             </summary>
             <param name="context">The request context.</param>
         </member>
-        <member name="M:Ximura.Communication.SiteControllerCommand.ProcessRequestFailed(System.String,System.String,Ximura.Server.SecurityManagerJob,Ximura.Command.RQRSContract{Ximura.Communication.SiteControllerRequest,Ximura.Communication.SiteControllerResponse})">
+        <member name="M:Ximura.Communication.SiteControllerCommand.ProcessRequestFailed(System.String,System.String,Ximura.Framework.SecurityManagerJob,Ximura.RQRSContract{Ximura.Communication.SiteControllerRequest,Ximura.Communication.SiteControllerResponse})">
             <summary>
             This override should place the appropriate HTML error response in the response object.
             </summary>
@@ -2850,11 +2850,6 @@
             This constructor is called by the FSM when initiating the settings.
             </summary>
         </member>
-        <member name="P:Ximura.Communication.ContentCompilerSettings.CDSHelperProcess">
-            <summary>
-            This is the Command Session used to retrieve system data.
-            </summary>
-        </member>
         <member name="T:Ximura.Communication.TransportCommand`1">
             <summary>
             This command provides the base functionality for all transport providers.
@@ -2877,7 +2872,7 @@
             </summary>
             <param name="container">The container that the transport should be added to.</param>
         </member>
-        <member name="M:Ximura.Communication.TransportCommand`1.ProcessRequest(Ximura.Server.SecurityManagerJob,Ximura.Command.RQRSContract{Ximura.Communication.TransportCommandRequest,Ximura.Communication.TransportCommandResponse})">
+        <member name="M:Ximura.Communication.TransportCommand`1.ProcessRequest(Ximura.Framework.SecurityManagerJob,Ximura.RQRSContract{Ximura.Communication.TransportCommandRequest,Ximura.Communication.TransportCommandResponse})">
             <summary>
             This method processes the requests from the protocol servers.
             </summary>
@@ -2928,7 +2923,7 @@
             </summary>
             <param name="container">The container</param>
         </member>
-        <member name="M:Ximura.Communication.ConnectionHTTPSSState.ConnectionRequest(Ximura.Communication.SiteServerContext{Ximura.Communication.HTTPSiteServerRQ,Ximura.Communication.HTTPSiteServerRS},Ximura.Server.SecurityManagerJob,Ximura.Command.RQRSContract{Ximura.Communication.RQCallbackServer,Ximura.Communication.RSCallbackServer})">
+        <member name="M:Ximura.Communication.ConnectionHTTPSSState.ConnectionRequest(Ximura.Communication.SiteServerContext{Ximura.Communication.HTTPSiteServerRQ,Ximura.Communication.HTTPSiteServerRS},Ximura.Framework.SecurityManagerJob,Ximura.RQRSContract{Ximura.Communication.RQCallbackServer,Ximura.Communication.RSCallbackServer})">
             <summary>
             This state manages connection requests from HTTP browsers.
             </summary>
@@ -3082,14 +3077,14 @@
             This method is called when the close request is received from the application.
             </summary>
         </member>
-        <member name="M:Ximura.Communication.SiteServerCommand`2.ProcessRequest(Ximura.Server.SecurityManagerJob,Ximura.Command.RQRSContract{`0,`1})">
+        <member name="M:Ximura.Communication.SiteServerCommand`2.ProcessRequest(Ximura.Framework.SecurityManagerJob,Ximura.RQRSContract{`0,`1})">
             <summary>
             This method processes
             </summary>
             <param name="job"></param>
             <param name="Data"></param>
         </member>
-        <member name="M:Ximura.Communication.SiteServerCommand`2.ProcessCallback(Ximura.Server.SecurityManagerJob,Ximura.Command.RQRSContract{Ximura.Communication.RQCallbackServer,Ximura.Communication.RSCallbackServer})">
+        <member name="M:Ximura.Communication.SiteServerCommand`2.ProcessCallback(Ximura.Framework.SecurityManagerJob,Ximura.RQRSContract{Ximura.Communication.RQCallbackServer,Ximura.Communication.RSCallbackServer})">
             <summary>
             This method processes the callbacks from the Protocol commands.
             </summary>
@@ -3637,21 +3632,21 @@
             This method initializes the context.
             </summary>
         </member>
-        <member name="M:Ximura.Communication.SiteServerContext`2.ConnectionRequest(Ximura.Server.SecurityManagerJob,Ximura.Command.RQRSContract{Ximura.Communication.RQCallbackServer,Ximura.Communication.RSCallbackServer})">
+        <member name="M:Ximura.Communication.SiteServerContext`2.ConnectionRequest(Ximura.Framework.SecurityManagerJob,Ximura.RQRSContract{Ximura.Communication.RQCallbackServer,Ximura.Communication.RSCallbackServer})">
             <summary>
             This method processes the incoming connection request.
             </summary>
             <param name="job">The current job request.</param>
             <returns>Returns true of the session should be reset.</returns>
         </member>
-        <member name="M:Ximura.Communication.SiteServerContext`2.GetContract(Ximura.Server.SecurityManagerJob)">
+        <member name="M:Ximura.Communication.SiteServerContext`2.GetContract(Ximura.Framework.SecurityManagerJob)">
             <summary>
             The contract for the summary.
             </summary>
             <param name="job"></param>
             <returns></returns>
         </member>
-        <member name="M:Ximura.Communication.SiteServerContext`2.GetContractCallback(Ximura.Server.SecurityManagerJob)">
+        <member name="M:Ximura.Communication.SiteServerContext`2.GetContractCallback(Ximura.Framework.SecurityManagerJob)">
             <summary>
             The contract for the summary.
             </summary>
@@ -3672,7 +3667,7 @@
             <param name="listenOn"></param>
             <returns></returns>
         </member>
-        <member name="M:Ximura.Communication.SiteServerContext`2.FormatSCRequest(System.String,System.Uri,Ximura.Data.Message,System.String,System.Action{Ximura.Command.RQRSContract{Ximura.Communication.SiteControllerRequest,Ximura.Communication.SiteControllerResponse}})">
+        <member name="M:Ximura.Communication.SiteServerContext`2.FormatSCRequest(System.String,System.Uri,Ximura.Communication.Message,System.String,System.Action{Ximura.RQRSContract{Ximura.Communication.SiteControllerRequest,Ximura.Communication.SiteControllerResponse}})">
             <summary>
             This command provides an easy way to format a request to SiteControllerCommand
             </summary>
@@ -3683,7 +3678,7 @@
             <param name="action">Any additional action.</param>
             <returns>Returns the envelpoe containing the request data.</returns>
         </member>
-        <member name="M:Ximura.Communication.SiteServerContext`2.FormatSCRequestMessage(System.String,System.Uri,System.String,System.Action{Ximura.Data.Message},System.Action{Ximura.Command.RQRSContract{Ximura.Communication.SiteControllerRequest,Ximura.Communication.SiteControllerResponse}})">
+        <member name="M:Ximura.Communication.SiteServerContext`2.FormatSCRequestMessage(System.String,System.Uri,System.String,System.Action{Ximura.Communication.Message},System.Action{Ximura.RQRSContract{Ximura.Communication.SiteControllerRequest,Ximura.Communication.SiteControllerResponse}})">
             <summary>
             This command provides an easy way to format a request to SiteControllerCommand
             </summary>
@@ -3699,7 +3694,7 @@
             This method sets the expiry time for the context.
             </summary>
         </member>
-        <member name="M:Ximura.Communication.SiteServerContext`2.CreateSystemRequest(Ximura.Command.EnvelopeAddress)">
+        <member name="M:Ximura.Communication.SiteServerContext`2.CreateSystemRequest(Ximura.EnvelopeAddress)">
             <summary>
             This method creates the system request.
             </summary>
@@ -3974,42 +3969,42 @@
             <param name="commandID">This is the explicitly set command id, leave this as null if you want to use the default id.</param>
             <param name="container">The container to be added to</param>
         </member>
-        <member name="M:Ximura.Communication.SiteControllerLoggerCommand.ProcessRequest(Ximura.Server.SecurityManagerJob,Ximura.Command.RQRSContract{Ximura.Communication.SiteControllerLoggerRequest,Ximura.Communication.SiteControllerLoggerResponse})">
+        <member name="M:Ximura.Communication.SiteControllerLoggerCommand.ProcessRequest(Ximura.Framework.SecurityManagerJob,Ximura.RQRSContract{Ximura.Communication.SiteControllerLoggerRequest,Ximura.Communication.SiteControllerLoggerResponse})">
             <summary>
             This method processes the incoming requests.
             </summary>
             <param name="job">The current job.</param>
             <param name="Data">The request/response data to process.</param>
         </member>
-        <member name="M:Ximura.Communication.SiteControllerLoggerCommand.PR_ResolveAddress(Ximura.Server.SecurityManagerJob,Ximura.Command.RQRSContract{Ximura.Communication.SiteControllerLoggerRequest,Ximura.Communication.SiteControllerLoggerResponse})">
+        <member name="M:Ximura.Communication.SiteControllerLoggerCommand.PR_ResolveAddress(Ximura.Framework.SecurityManagerJob,Ximura.RQRSContract{Ximura.Communication.SiteControllerLoggerRequest,Ximura.Communication.SiteControllerLoggerResponse})">
             <summary>
             This method resolves the IPAddress passed to it.
             </summary>
             <param name="job">the current job.</param>
             <param name="Data">The data to process</param>
         </member>
-        <member name="M:Ximura.Communication.SiteControllerLoggerCommand.PR_PruneCache(Ximura.Server.SecurityManagerJob,Ximura.Command.RQRSContract{Ximura.Communication.SiteControllerLoggerRequest,Ximura.Communication.SiteControllerLoggerResponse})">
+        <member name="M:Ximura.Communication.SiteControllerLoggerCommand.PR_PruneCache(Ximura.Framework.SecurityManagerJob,Ximura.RQRSContract{Ximura.Communication.SiteControllerLoggerRequest,Ximura.Communication.SiteControllerLoggerResponse})">
             <summary>
             This method prunes the cache in the resolver.
             </summary>
             <param name="job">the current job.</param>
             <param name="Data">The data to process</param>
         </member>
-        <member name="M:Ximura.Communication.SiteControllerLoggerCommand.PR_DBUpdate(Ximura.Server.SecurityManagerJob,Ximura.Command.RQRSContract{Ximura.Communication.SiteControllerLoggerRequest,Ximura.Communication.SiteControllerLoggerResponse})">
+        <member name="M:Ximura.Communication.SiteControllerLoggerCommand.PR_DBUpdate(Ximura.Framework.SecurityManagerJob,Ximura.RQRSContract{Ximura.Communication.SiteControllerLoggerRequest,Ximura.Communication.SiteControllerLoggerResponse})">
             <summary>
             This method is not implemented. You should override this method in your own command.
             </summary>
             <param name="job">The job.</param>
             <param name="Data">The job data,</param>
         </member>
-        <member name="M:Ximura.Communication.SiteControllerLoggerCommand.PR_DBLogQueue(Ximura.Server.SecurityManagerJob,Ximura.Command.RQRSContract{Ximura.Communication.SiteControllerLoggerRequest,Ximura.Communication.SiteControllerLoggerResponse})">
+        <member name="M:Ximura.Communication.SiteControllerLoggerCommand.PR_DBLogQueue(Ximura.Framework.SecurityManagerJob,Ximura.RQRSContract{Ximura.Communication.SiteControllerLoggerRequest,Ximura.Communication.SiteControllerLoggerResponse})">
             <summary>
             This method is not implemented. You should override this method in your own command.
             </summary>
             <param name="job">The job.</param>
             <param name="Data">The job data,</param>
         </member>
-        <member name="M:Ximura.Communication.SiteControllerLoggerCommand.PR_DataReload(Ximura.Server.SecurityManagerJob,Ximura.Command.RQRSContract{Ximura.Communication.SiteControllerLoggerRequest,Ximura.Communication.SiteControllerLoggerResponse})">
+        <member name="M:Ximura.Communication.SiteControllerLoggerCommand.PR_DataReload(Ximura.Framework.SecurityManagerJob,Ximura.RQRSContract{Ximura.Communication.SiteControllerLoggerRequest,Ximura.Communication.SiteControllerLoggerResponse})">
             <summary>
             This request reloads the NIC registry data from the remote NIC registries.
             </summary>
@@ -4297,7 +4292,7 @@
             </summary>
             <param name="container">The container</param>
         </member>
-        <member name="M:Ximura.Communication.AwaitRequestHTTPSSState.Receive(Ximura.Communication.SiteServerContext{Ximura.Communication.HTTPSiteServerRQ,Ximura.Communication.HTTPSiteServerRS},Ximura.Server.SecurityManagerJob,Ximura.Command.RQRSContract{Ximura.Communication.RQCallbackServer,Ximura.Communication.RSCallbackServer})">
+        <member name="M:Ximura.Communication.AwaitRequestHTTPSSState.Receive(Ximura.Communication.SiteServerContext{Ximura.Communication.HTTPSiteServerRQ,Ximura.Communication.HTTPSiteServerRS},Ximura.Framework.SecurityManagerJob,Ximura.RQRSContract{Ximura.Communication.RQCallbackServer,Ximura.Communication.RSCallbackServer})">
             <summary>
             This method receives requests from the HTTP agent and passes the request to the Site Controller.
             </summary>
@@ -4484,14 +4479,14 @@
             </summary>
             <param name="container">The container</param>
         </member>
-        <member name="M:Ximura.Communication.ControllerSessionPM.Read(Ximura.Persistence.CDSContext)">
+        <member name="M:Ximura.Communication.ControllerSessionPM.Read(Ximura.Data.CDSContext)">
             <summary>
             This method returns the standard document.
             </summary>
             <param name="context"></param>
             <returns></returns>
         </member>
-        <member name="M:Ximura.Communication.ControllerSessionPM.Delete(Ximura.Persistence.CDSContext)">
+        <member name="M:Ximura.Communication.ControllerSessionPM.Delete(Ximura.Data.CDSContext)">
             <summary>
             This method deletes an active session from the collection.
             </summary>
@@ -4603,7 +4598,7 @@
             </summary>
             <param name="container">The container.</param>
         </member>
-        <member name="M:Ximura.Communication.MessageResolverExtender.Resolve(Ximura.Data.IXimuraMessageStream)">
+        <member name="M:Ximura.Communication.MessageResolverExtender.Resolve(Ximura.Communication.IXimuraMessageStream)">
             <summary>
             This method attempts to resolve the relevant context based on the message contents.
             </summary>
@@ -5399,14 +5394,14 @@
             </summary>
             <param name="container">The container</param>
         </member>
-        <member name="M:Ximura.Communication.StylesheetResourcePM`2.Read(Ximura.Persistence.CDSContext)">
+        <member name="M:Ximura.Communication.StylesheetResourcePM`2.Read(Ximura.Data.CDSContext)">
             <summary>
             This override reads the stylesheet and compiles the data.
             </summary>
             <param name="context">the current context.</param>
             <returns>Returns true.</returns>
         </member>
-        <member name="M:Ximura.Communication.StylesheetResourcePM`2.PrepareData(Ximura.Persistence.CDSContext,System.Collections.Generic.KeyValuePair{System.String,System.String},System.Uri,`0)">
+        <member name="M:Ximura.Communication.StylesheetResourcePM`2.PrepareData(Ximura.Data.CDSContext,System.Collections.Generic.KeyValuePair{System.String,System.String},System.Uri,`0)">
             <summary>
             This method prepares the stylesheet and sets the name and the content ID and VersionID.
             </summary>
@@ -5484,7 +5479,7 @@
             </summary>
             <typeparam name="ST">The state type.</typeparam>
         </member>
-        <member name="M:Ximura.Communication.IXimuraServerSettings`7.InitializeSettings(Ximura.Communication.AuthHandlerExtender,Ximura.IXimuraCommand,Ximura.IXimuraApplicationDefinition,Ximura.Command.StateExtender{`0},Ximura.IXimuraPoolManager,Ximura.Server.IXimuraSessionManager)">
+        <member name="M:Ximura.Communication.IXimuraServerSettings`7.InitializeSettings(Ximura.Communication.AuthHandlerExtender,Ximura.IXimuraCommand,Ximura.IXimuraApplicationDefinition,Ximura.Framework.StateExtender{`0},Ximura.IXimuraPoolManager,Ximura.Framework.IXimuraSessionManager)">
             <summary>
             This method is used to initialize the Server settings object.
             </summary>
@@ -5599,13 +5594,13 @@
             <param name="NSM">The namespace manager.</param>
             <param name="subCommand">The subcommand object.</param>
         </member>
-        <member name="M:Ximura.Communication.SiteControllerTimerPollJob.FormatCachePrune(Ximura.Command.RQRSFolder)">
+        <member name="M:Ximura.Communication.SiteControllerTimerPollJob.FormatCachePrune(Ximura.RQRSFolder)">
             <summary>
             This method sets the request properties for the cache prune timer poll job.
             </summary>
             <param name="folder">The request folder to configure.</param>
         </member>
-        <member name="M:Ximura.Communication.SiteControllerTimerPollJob.FormatDataReload(Ximura.Command.RQRSFolder)">
+        <member name="M:Ximura.Communication.SiteControllerTimerPollJob.FormatDataReload(Ximura.RQRSFolder)">
             <summary>
             This method sets the properties for the NIC data reload timer poll job.
             </summary>

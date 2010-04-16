@@ -25,6 +25,7 @@ using Ximura;
 using Ximura.Data;
 using CH = Ximura.Common;
 using AH = Ximura.AttributeHelper;
+using System.Runtime.Serialization.Formatters.Binary;
 #endregion // using
 namespace Ximura.Data
 {
@@ -83,7 +84,7 @@ namespace Ximura.Data
             {
                 return mData;
             }
-            set
+            protected set
             {
                 mData = value;
                 IDUpdate(value);
@@ -135,12 +136,34 @@ namespace Ximura.Data
             }
             else
             {
-                int code = mData.GetHashCode();
-                IDContent = StringConvertToGuid(string.Format("{0}:{1}", IDType, code));
-                IDVersion = IDContent;
+                IDContent = IDContentConvert();
+                IDVersion = IDVersionConvert();
             }
         }
         #endregion // IDUpdate(T data)
+
+        #region IDContentConvert()
+        /// <summary>
+        /// This method converts the incoming data in to a Guid based upon the IDType and the hashcode of the object.
+        /// </summary>
+        /// <returns>Returns a GUID representation of the payload data.</returns>
+        protected virtual Guid IDContentConvert()
+        {
+            int code = mData.GetHashCode();
+            return StringConvertToGuid(string.Format("{0}:{1}", IDType, code));
+        } 
+        #endregion
+        #region IDVersionConvert()
+        /// <summary>
+        /// This method currently returns the same value as the IDContent. You should override
+        /// this value if you require a more finegrained approach.
+        /// </summary>
+        /// <returns>Returns a GUID representation of the payload data.</returns>
+        protected virtual Guid IDVersionConvert()
+        {
+            return IDContent;
+        } 
+        #endregion
 
         #region IsSerializable(Type objType)
         /// <summary>
@@ -206,13 +229,17 @@ namespace Ximura.Data
                 if (!IsSerializable())
                     throw new SerializationException(string.Format("{0} is not marked as serializable. You must provide custom serialization support.", typeof(T).Name));
 
+                //BinaryFormatter bf = new BinaryFormatter();
+                byte[] blob = null;
+
+
                 DataContractSerializer dcSerializer = new DataContractSerializer(typeof(T));
+
                 try
                 {
-                    byte[] blob = null;
-
                     using (MemoryStream ms = new MemoryStream())
                     {
+
                         dcSerializer.WriteObject(ms, mData);
 
                         ms.Flush();
