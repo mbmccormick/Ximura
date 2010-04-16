@@ -1,0 +1,523 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{218ED92E-5D40-40DF-B6A2-11DEF3133589}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>XimuraFramework</AssemblyName>
+    <AssemblyOriginatorKeyFile>Properties\ximura.snk</AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Ximura.Framework</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE;DEBUG;USEJOBPOOLNO;SQLDUMP;</DefineConstants>
+    <DocumentationFile>ximura.xml</DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>XIMS.xml</DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'SQL|AnyCPU' ">
+    <OutputPath>bin\SQL\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'SQLBudubu|AnyCPU' ">
+    <OutputPath>bin\SQLBudubu\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;USEJOBPOOLNO;SQLDUMP;</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <DocumentationFile>XIMS.xml</DocumentationFile>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <DocumentationFile>XIMS.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <FileAlignment>4096</FileAlignment>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'SQL|x86' ">
+    <OutputPath>bin\x86\SQL\</OutputPath>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'SQLBudubu|x86' ">
+    <OutputPath>bin\x86\SQLBudubu\</OutputPath>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;USEJOBPOOLNO;SQLDUMP;</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <DocumentationFile>XIMS.xml</DocumentationFile>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <DocumentationFile>XIMS.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <FileAlignment>4096</FileAlignment>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'SQL|x64' ">
+    <OutputPath>bin\x64\SQL\</OutputPath>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'SQLBudubu|x64' ">
+    <OutputPath>bin\x64\SQLBudubu\</OutputPath>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'XSSocNet x64 Release|AnyCPU' ">
+    <OutputPath>bin\XSSocNet x64 Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'XSSocNet x64 Release|x86' ">
+    <OutputPath>bin\x86\XSSocNet x64 Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'XSSocNet x64 Release|x64' ">
+    <OutputPath>bin\x64\XSSocNet x64 Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'XSSocNet x86 Release|AnyCPU' ">
+    <OutputPath>bin\XSSocNet x86 Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'XSSocNet x86 Release|x86' ">
+    <OutputPath>bin\x86\XSSocNet x86 Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'XSSocNet x86 Release|x64' ">
+    <OutputPath>bin\x64\XSSocNet x86 Release\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Design">
+      <Name>System.Design</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.EnterpriseServices">
+      <Name>System.EnterpriseServices</Name>
+    </Reference>
+    <Reference Include="System.Runtime.Remoting">
+      <Name>System.Runtime.Remoting</Name>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Security">
+      <Name>System.Security</Name>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <ProjectReference Include="..\Ximura Communication Entities\Ximura Communication Entities %283.5%29.csproj">
+      <Project>{039133D4-A947-405C-A441-71DF106C9EE5}</Project>
+      <Name>Ximura Communication Entities %283.5%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ximura Data\Ximura Data %283.5%29.csproj">
+      <Project>{7727E180-73B7-474B-84F6-BF0C6FFB181E}</Project>
+      <Name>Ximura Data %283.5%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ximura\Ximura %283.5%29.csproj">
+      <Project>{7C2684DD-A055-4A7A-88D6-EC5BAE28AEB2}</Project>
+      <Name>Ximura %283.5%29</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Attributes\ConfigurationLocation.cs" />
+    <Compile Include="Attributes\XimuraAppConfigurationAttribute.cs" />
+    <Compile Include="Attributes\XimuraAppConfigurationExternalAttribute.cs" />
+    <Compile Include="Attributes\XimuraAppModuleAttribute.cs" />
+    <Compile Include="Attributes\XimuraAppModuleConfigAttribute.cs" />
+    <Compile Include="Command Container\CommandContainer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Command Container\CommandContainerBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Command Container\FSMCommandContainer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Command\Context\ContextSettings.cs" />
+    <Compile Include="Command\Context\Context_Pooling.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Command\Context\Context_Security.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Command\Context\Context_State.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Command\FiniteStateMachine.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Command\Extenders\FSMExtenderCommand.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Command\Helper\CJobSignature.cs" />
+    <Compile Include="Command\Helper\CommandDefinition.cs" />
+    <Compile Include="Command\Interfaces\IXimuraCommand.cs" />
+    <Compile Include="Command\Interfaces\IXimuraCommandKnownService.cs" />
+    <Compile Include="Command\Interfaces\IXimuraCommandPermissions.cs" />
+    <Compile Include="Command\Interfaces\IXimuraCommandProcessConfigSH.cs" />
+    <Compile Include="Command\Interfaces\IXimuraCommandRQ.cs" />
+    <Compile Include="Command\Interfaces\IXimuraCommandScheduleProcessConfigSH.cs" />
+    <Compile Include="Command\Interfaces\IXimuraFSM.cs" />
+    <Compile Include="Command\Interfaces\IXimuraFSMStateIdentifier.cs" />
+    <Compile Include="Command\Interfaces\IXimuraSchedulerCommandRegister.cs" />
+    <Compile Include="Command\Permission\CommandPermission.cs" />
+    <Compile Include="Command\Permission\CommandPermissionSet.cs" />
+    <Compile Include="Component\AppBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Component\FrameworkComponentBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Configuration\ConfigurationBase.cs">
+    </Compile>
+    <Compile Include="Command\Extenders\CommandMetadataExtender.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Command\Configuration\CommandContainerConfiguration.cs">
+    </Compile>
+    <Compile Include="Command\AppCommandBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Command\AppCommandProcess.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Command\AppCommandStandard.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Command\Configuration\AppCommandConfigHandlerAttribute.cs" />
+    <Compile Include="Command\Configuration\AppCommandConfigSH.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Command\Configuration\AppCommandScheduleProcessConfigSH.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Command\Configuration\CommandConfiguration.cs">
+    </Compile>
+    <Compile Include="Command\Interfaces\IXimuraCommandProcess.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Command\Interfaces\IXimuraCommandBase.cs" />
+    <Compile Include="Command\Interfaces\IXimuraCommandConfiguration.cs" />
+    <Compile Include="Command\Interfaces\IXimuraCommandPerformance.cs" />
+    <Compile Include="Command\Performance\CommandPerformance.cs">
+    </Compile>
+    <Compile Include="Command\Extenders\FSMExtenderStateExtender.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Command\Extenders\StateExtenderService.cs" />
+    <Compile Include="Command\Interfaces\IXimuraStateExtender.cs" />
+    <Compile Include="Command\Interfaces\IXimuraStateExtenderService.cs" />
+    <Compile Include="Configuration\IXimuraConfigurationManager.cs" />
+    <Compile Include="Delegates\CommandRequestCallback.cs" />
+    <Compile Include="Delegates\CompletionJobCallBack.cs" />
+    <Compile Include="Delegates\Delegates.cs" />
+    <Compile Include="Interfaces\IXimuraConfigSH.cs" />
+    <Compile Include="Security\Permission.cs" />
+    <Compile Include="Security\Realm.cs" />
+    <Compile Include="Security\Role.cs" />
+    <Compile Include="Security\SecurityContentBase.cs" />
+    <Compile Include="Security\User.cs" />
+    <Compile Include="Security\UserAuth.cs" />
+    <Compile Include="Security\UserRole.cs" />
+    <Compile Include="Exceptions\CompletionJobPrerequisiteFailureException.cs" />
+    <Compile Include="Exceptions\JobException.cs" />
+    <Compile Include="Exceptions\SCMBaseException.cs" />
+    <Compile Include="Exceptions\SCMCapacityException.cs" />
+    <Compile Include="Interfaces\Agents\IXimuraGatewayAgent.cs" />
+    <Compile Include="Interfaces\Agents\IXimuraServerAgent.cs" />
+    <Compile Include="Interfaces\Agents\IXimuraSessionAgent.cs" />
+    <Compile Include="Interfaces\Agents\IXimuraStorageAgent.cs" />
+    <Compile Include="Interfaces\Application\IXimuraApplication.cs" />
+    <Compile Include="Interfaces\Application\IXimuraApplicationDefinition.cs" />
+    <Compile Include="Interfaces\Application\IXimuraAppServer.cs" />
+    <Compile Include="Interfaces\IXimuraAppServerAgentService.cs" />
+    <Compile Include="Interfaces\IXimuraAppSettings.cs" />
+    <Compile Include="Interfaces\IXimuraCommandBridge.cs" />
+    <Compile Include="Interfaces\IXimuraConfigurationSystemExtended.cs" />
+    <Compile Include="Interfaces\IXimuraGatewayManagerService.cs" />
+    <Compile Include="Interfaces\IXimuraLoggingManagerService.cs" />
+    <Compile Include="Interfaces\IXimuraPerformanceManagerService.cs" />
+    <Compile Include="Interfaces\IXimuraSessionManagerService.cs" />
+    <Compile Include="Interfaces\IXimuraStorage.cs" />
+    <Compile Include="Interfaces\IXimuraStorageManagerService.cs" />
+    <Compile Include="Interfaces\Performance\IXimuraPerformance.cs" />
+    <Compile Include="Interfaces\Performance\IXimuraPerformanceAgent.cs" />
+    <Compile Include="Interfaces\Performance\IXimuraPerformanceCounter.cs" />
+    <Compile Include="Interfaces\Performance\IXimuraPerformanceCounterCollection.cs" />
+    <Compile Include="Interfaces\Performance\IXimuraPerformanceItem.cs" />
+    <Compile Include="Interfaces\Performance\IXimuraPerformanceManager.cs" />
+    <Compile Include="Interfaces\SessionManager\IXimuraSessionManager.cs" />
+    <Compile Include="Interfaces\SessionManager\IXimuraSessionManagerAuth.cs" />
+    <Compile Include="Interfaces\Session\IXimuraSession.cs" />
+    <Compile Include="Interfaces\Session\IXimuraSessionClient.cs" />
+    <Compile Include="Interfaces\Session\IXimuraSessionNegotiate.cs" />
+    <Compile Include="Interfaces\Session\IXimuraSessionNegotiateDigestAuthentication.cs" />
+    <Compile Include="Interfaces\Session\IXimuraSessionNegotiateMD5Hash.cs" />
+    <Compile Include="Interfaces\Session\IXimuraSessionNegotiatePlainText.cs" />
+    <Compile Include="Interfaces\Session\IXimuraSessionSCM.cs" />
+    <Compile Include="Interfaces\Session\IXimuraSessionThread.cs" />
+    <Compile Include="Interfaces\Session\SessionState.cs" />
+    <Compile Include="Interfaces\XimuraServerAgentHolder.cs" />
+    <Compile Include="Jobs\CompletionJob.cs" />
+    <Compile Include="Jobs\CompletionJobWrapperBase.cs" />
+    <Compile Include="Jobs\JobCollection.cs" />
+    <Compile Include="Jobs\SecurityManagerJob.cs" />
+    <Compile Include="Jobs\SessionJob.cs" />
+    <Compile Include="Logging\Agents\LoggerAgentBase.cs" />
+    <Compile Include="Logging\Agents\NullLoggerAgent.cs" />
+    <Compile Include="Logging\Configuration\LoggerConfigSH.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Logging\Configuration\LoggingManagerConfigSH.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component\XimuraComponentPermissionCollection.cs" />
+    <Compile Include="Command\Configuration\FSMCommandConfiguration.cs">
+    </Compile>
+    <Compile Include="Command\Performance\FSMCommandPerformance.cs">
+    </Compile>
+    <Compile Include="Command\Context\Context.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Command\Pool\ContextPool.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Command\Exceptions\FSMException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Command\Exceptions\InvalidStateNameFSMException.cs" />
+    <Compile Include="Command\Extenders\ContextMetadataContainer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Command\Extenders\FSMExtenderBridge.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Command\Interfaces\IXimuraFSMContextExtender.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Command\Interfaces\IXimuraFSMExtenderBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Command\Interfaces\IXimuraFSMExtenderBridge.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Command\Interfaces\IXimuraFSMStateExtender.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Command\Extenders\StateExtender.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Command\Extenders\StateMetadataContainer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Command\FSMCompletionJobContract.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Command\Pool\FSMContextPoolAccess.cs" />
+    <Compile Include="Command\Interfaces\IXimuraConnectionToFSM.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Command\Interfaces\IXimuraFSMConfigSH.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Command\Interfaces\IXimuraFSMContext.cs" />
+    <Compile Include="Command\Interfaces\IXimuraFSMJobContext.cs" />
+    <Compile Include="Command\Interfaces\IXimuraFSMSettings.cs" />
+    <Compile Include="Command\Interfaces\IXimuraFSMState.cs" />
+    <Compile Include="Command\Context\JobContext.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Command\States\State.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Logging\Interfaces\IXimuraLoggerConfigSH.cs" />
+    <Compile Include="Logging\Interfaces\IXimuraLoggingAudit.cs" />
+    <Compile Include="Logging\Interfaces\IXimuraLoggingExtended.cs" />
+    <Compile Include="Logging\Interfaces\IXimuraLoggingManagerConfigSH.cs" />
+    <Compile Include="Logging\Interfaces\IXimuraLoggingProvider.cs" />
+    <Compile Include="Logging\XimuraAppTrace.cs" />
+    <Compile Include="Performance\PerformanceBase.cs" />
+    <Compile Include="Performance\PerformanceCounter.cs" />
+    <Compile Include="Performance\PerformanceCounterCollection.cs" />
+    <Compile Include="Performance\PerformanceCounterNotificationType.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\XIMSResourcePlaceholder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Session\CompletionJobStatus.cs" />
+    <Compile Include="Session\Enumerations\SessionActionType.cs" />
+    <Compile Include="Session\Enumerations\SessionProfileLevel.cs" />
+    <Compile Include="Session\Tokens\SessionAccessToken.cs" />
+    <Compile Include="Session\Tokens\SessionDelegate.cs" />
+    <Compile Include="Session\Tokens\SessionToken.cs" />
+    <EmbeddedResource Include="Command\Configuration\CommandConfiguration.xsd" />
+    <EmbeddedResource Include="Command\Configuration\FSMCommandConfiguration.xsd" />
+    <None Include="Properties\ximura.snk" />
+    <None Include="_Documentation\AppServerStructure.vsd" />
+    <None Include="_Documentation\HTTP-1_1 Status Code Definitions.mht" />
+    <None Include="_Documentation\Integer Programs and Network Models.mht" />
+    <None Include="_Documentation\RFC 2617 %28rfc2617%29 - HTTP Authentication Basic and Digest Access Authenti.mht" />
+    <None Include="_Documentation\RFC 3310 %28rfc3310%29 - Hypertext Transfer Protocol %28HTTP%29 Digest Authenticat.mht" />
+    <None Include="_Documentation\XIMS Diagrams.vsd" />
+    <None Include="_Documentation\XIMURA Framework SDS.doc" />
+    <EmbeddedResource Include="Resources\AppServer.bmp" />
+    <EmbeddedResource Include="Resources\CacheManager.bmp" />
+    <EmbeddedResource Include="Resources\CommandBase.bmp" />
+    <EmbeddedResource Include="Resources\Connection.bmp" />
+    <EmbeddedResource Include="Resources\Content.bmp" />
+    <EmbeddedResource Include="Resources\Context.bmp" />
+    <EmbeddedResource Include="Resources\Controller.bmp" />
+    <EmbeddedResource Include="Resources\Folder.bmp" />
+    <EmbeddedResource Include="Resources\ModelFolder.bmp" />
+    <EmbeddedResource Include="Resources\ModelFolder2.bmp" />
+    <EmbeddedResource Include="Resources\NavActionMan.bmp" />
+    <EmbeddedResource Include="Resources\NavigationAction.bmp" />
+    <EmbeddedResource Include="Resources\PersistenceManager.bmp" />
+    <EmbeddedResource Include="Resources\Protocol.bmp" />
+    <EmbeddedResource Include="Resources\SecurityManager.bmp" />
+    <EmbeddedResource Include="Resources\SessionManager.bmp" />
+    <EmbeddedResource Include="Resources\State.bmp" />
+    <EmbeddedResource Include="Resources\Transport.bmp" />
+    <EmbeddedResource Include="Resources\Verb.bmp" />
+    <EmbeddedResource Include="Resources\VerbExtender.bmp" />
+    <EmbeddedResource Include="Resources\VerbParser.bmp" />
+    <EmbeddedResource Include="Resources\XIMSComponent.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Command\Configuration\CommandConfiguration_Default.xml" />
+    <Content Include="Properties\epl-v10.html" />
+    <Content Include="Properties\Release Notes.txt" />
+    <EmbeddedResource Include="Command\Configuration\FSMCommandConfiguration_Default.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>
