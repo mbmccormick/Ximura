@@ -33,7 +33,7 @@ namespace Ximura.Data
     /// The content holder is used to manage non-standard entities within the persistence framework.
     /// </summary>
     /// <typeparam name="T">The core entity type.</typeparam>
-    public class ContentHolder<T>: ContentBase
+    public partial class ContentHolder<T>: ContentBase
     {
         #region Static Declarations
         private static Dictionary<Type, Guid> sTypeIds;
@@ -165,95 +165,6 @@ namespace Ximura.Data
         } 
         #endregion
 
-        #region IsSerializable(Type objType)
-        /// <summary>
-        /// This static method checks whether the object type is serializable.
-        /// </summary>
-        /// <param name="objType">The object type to check.</param>
-        /// <returns>Returns true if the object can be natively serialized.</returns>
-        public static bool IsSerializable(Type objType)
-        {
-            return objType.IsSerializable
-                || Attribute.IsDefined(objType, typeof(SerializableAttribute))
-                || Attribute.IsDefined(objType, typeof(DataContractAttribute));// || ((obj is ISerializable));
-        }
-        #endregion 
-        #region IsSerializable()
-        /// <summary>
-        /// This public property specifies whether the container object type is natively serializable.
-        /// </summary>
-        /// <returns>Returns true if the template type can be natively serialized.</returns>
-        public virtual bool IsSerializable()
-        {
-            return IsSerializable(typeof(T));
-        }
-        #endregion 
 
-        #region OnDeserialization(object sender)
-        /// <summary>
-        /// This is deserialization callback method , and deserializes the payload entity.
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        public override void OnDeserialization(object sender)
-        {
-            try
-            {
-                if (this.mInfo.GetInt32("bodycount") > 0)
-                {
-                    bool contentDirty = this.mInfo.GetBoolean("dirty");
-                    byte[] blob = (byte[])this.mInfo.GetValue("body0", typeof(byte[]));
-
-                    DataContractSerializer dcSerializer = new DataContractSerializer(typeof(T));
-
-                    using (MemoryStream ms = new MemoryStream(blob))
-                    {
-                        mData = (T)dcSerializer.ReadObject(ms);
-                        IDUpdate(mData);
-                    } 
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-        #endregion
-        #region ContentBody
-        /// <summary>
-        /// This method returns the content holder payload as a serialized blob.
-        /// </summary>
-        protected override byte[] ContentBody
-        {
-            get 
-            {
-                if (!IsSerializable())
-                    throw new SerializationException(string.Format("{0} is not marked as serializable. You must provide custom serialization support.", typeof(T).Name));
-
-                //BinaryFormatter bf = new BinaryFormatter();
-                byte[] blob = null;
-
-
-                DataContractSerializer dcSerializer = new DataContractSerializer(typeof(T));
-
-                try
-                {
-                    using (MemoryStream ms = new MemoryStream())
-                    {
-
-                        dcSerializer.WriteObject(ms, mData);
-
-                        ms.Flush();
-                        blob = ms.ToArray();
-                    }
-
-                    return blob;
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
-            }
-        }
-        #endregion // ContentBody
     }
 }

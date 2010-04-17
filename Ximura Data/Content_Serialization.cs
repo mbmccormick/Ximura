@@ -63,7 +63,7 @@ namespace Ximura.Data
             info.AddValue("tid", this.IDType);
             info.AddValue("dirty", this.IsDirty());
 
-            GetBodyData(info, context);
+            BodyDataAdd(info, context);
         }
         #endregion
 
@@ -81,18 +81,18 @@ namespace Ximura.Data
         {
             try
             {
+                //If this ibject is not connected to an object pool, then use the base clone method.
+                if (this.ObjectPool == null)
+                {
+                    return base.Clone();
+                }
+
                 SerializationInfo info = new SerializationInfo(GetType(), new FormatterConverter());
                 StreamingContext context = new StreamingContext(StreamingContextStates.Clone);
 
                 this.GetObjectData(info, context);
 
-                object newContent;
-                if (this.ObjectPool == null)
-                    newContent = RH.CreateObjectFromType(GetType(), new object[] { info, context });
-                else
-                    newContent = ObjectPool.Get(info, context);
-
-                return newContent;
+                return ObjectPool.Get(info, context);
             }
             catch (Exception ex)
             {
@@ -100,6 +100,20 @@ namespace Ximura.Data
             }
         }
 
+        #endregion
+
+        #region OnDeserialization(object sender)
+        /// <summary>
+        /// This is deserialization callback method.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        public override void OnDeserialization(object sender)
+        {
+            base.OnDeserialization(sender);
+
+            bool contentDirty = this.mInfo.GetBoolean("dirty");
+            this.Dirty = contentDirty;
+        }
         #endregion
     }
 }

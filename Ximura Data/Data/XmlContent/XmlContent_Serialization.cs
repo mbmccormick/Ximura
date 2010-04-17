@@ -86,5 +86,16 @@ namespace Ximura.Data
         }
         #endregion
 
+        #region BodyDataProcess(byte[] blob)
+        /// <summary>
+        /// This method is not used as the OnDeserialization member is overridden.
+        /// </summary>
+        /// <param name="blob"></param>
+        protected override void BodyDataProcess(byte[] blob)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion 
+
     }
 }

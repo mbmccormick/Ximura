@@ -43,9 +43,9 @@ namespace Ximura.Data
             }
         }
 
-        public override void OnDeserialization(object sender)
+        protected override void BodyDataProcess(byte[] blob)
         {
-            throw new NotImplementedException("The method or operation is not implemented.");
+            throw new NotImplementedException();
         }
     }
 }

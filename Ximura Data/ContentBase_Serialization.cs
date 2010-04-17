@@ -62,13 +62,43 @@ namespace Ximura.Data
         }
         #endregion
 
-        #region Abstract --> OnDeserialization(object sender)
+        #region OnDeserialization(object sender)
         /// <summary>
         /// This method is called to complete the deserialization.
         /// </summary>
         /// <param name="sender">The sender object.</param>
-        public abstract void OnDeserialization(object sender);
+        public virtual void OnDeserialization(object sender)
+        {
+            this.IDContent = (Guid)mInfo.GetValue("cid", typeof(Guid));
+            this.IDVersion = (Guid)mInfo.GetValue("vid", typeof(Guid));
+            if (this.IDType != (Guid)mInfo.GetValue("tid", typeof(Guid)))
+                throw new SerializationException("The type ID is the wrong value: " + ((Guid)mInfo.GetValue("tid", typeof(Guid))).ToString());
+
+            BodyDataSet();
+        }
         #endregion
+        #region BodyDataSet()
+        /// <summary>
+        /// This method strips out the binary body data from the serialization info.
+        /// </summary>
+        protected virtual void BodyDataSet()
+        {
+            if (this.mInfo.GetInt32("bodycount") > 0)
+            {
+                byte[] blob = (byte[])this.mInfo.GetValue("body0", typeof(byte[]));
+
+                BodyDataProcess(blob);
+            }
+        }
+        #endregion
+
+        #region Abstract -> BodyDataProcess(byte[] blob)
+        /// <summary>
+        /// This abstract method is used to process the body data.
+        /// </summary>
+        /// <param name="blob">The binary data that should be processed.</param>
+        protected abstract void BodyDataProcess(byte[] blob);
+        #endregion 
 
         #region GetObjectData(SerializationInfo info, StreamingContext context)
         /// <summary>
@@ -87,16 +117,16 @@ namespace Ximura.Data
             info.AddValue("vid", this.IDVersion);
             info.AddValue("tid", this.IDType);
 
-            GetBodyData(info, context);
+            BodyDataAdd(info, context);
         }
         #endregion
-        #region GetBodyData(SerializationInfo info, StreamingContext context)
+        #region BodyDataAdd(SerializationInfo info, StreamingContext context)
         /// <summary>
         /// This is the default constructor. It does not include any content.
         /// </summary>
         /// <param name="info">The Serialization info.</param>
         /// <param name="context">The serialization context.</param>
-        protected virtual void GetBodyData(SerializationInfo info, StreamingContext context)
+        protected virtual void BodyDataAdd(SerializationInfo info, StreamingContext context)
         {
             //By default we do not include any body.
             byte[] body = ContentBody;
@@ -111,7 +141,7 @@ namespace Ximura.Data
         /// <summary>
         /// This property gets the content body as a byte array.
         /// </summary>
-        protected abstract byte[] ContentBody{get;}
+        protected abstract byte[] ContentBody { get; }
         #endregion // ContentBody
 
         #region ToArray()
@@ -144,7 +174,11 @@ namespace Ximura.Data
 
                 this.GetObjectData(info, context);
 
-                return RH.CreateObjectFromType(GetType(), new object[] { info, context });
+                ContentBase clone = (ContentBase)RH.CreateObjectFromType(GetType(), new object[] { info, context });
+
+                clone.OnDeserialization(null);
+
+                return clone;
             }
             catch (Exception ex)
             {

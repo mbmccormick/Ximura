@@ -1,4 +1,5 @@
-﻿#region using
+﻿
+#region using
 using System;
 using System.Text;
 using System.Collections.Generic;
@@ -84,25 +85,35 @@ namespace Ximura.UnitTest.Data
         }     
         #endregion
 
+        #region ContentHolder_Test1
+        /// <summary>
+        /// This method tests the basic constructs for the generic content holder class.
+        /// </summary>
         [TestMethod]
-        public void ContentHolder1()
+        public void ContentHolder_Test1()
         {
             string strData = "A bit fat hairy bloke.";
             ContentHolder<string> stringHolder = new ContentHolder<string>(strData);
+            ContentHolder<string> stringHolderds = (ContentHolder<string>)stringHolder.Clone();
 
             byte[] blob1 = new byte[1000];
             ContentHolder<byte[]> byteHolder1 = new ContentHolder<byte[]>(blob1);
+            ContentHolder<byte[]> byteHolder1ds = (ContentHolder<byte[]>)byteHolder1.Clone();
 
             byte[] blob2 = new byte[1000];
             blob2[0] = 3;
             ContentHolder<byte[]> byteHolder2 = new ContentHolder<byte[]>(blob2);
+            ContentHolder<byte[]> byteHolder2ds = (ContentHolder<byte[]>)byteHolder2.Clone();
 
             StructTest t1 = new StructTest() { Data = "78", Count = 8 };
             ContentHolder<StructTest> byteHolder3 = new ContentHolder<StructTest>(t1);
+            ContentHolder<StructTest> byteHolder3ds = (ContentHolder<StructTest>)byteHolder3.Clone();
 
             ClassTest t2 = new ClassTest() { Data = "78", Count = 8 };
             ContentHolder<ClassTest> byteHolder4 = new ContentHolder<ClassTest>(t2);
+            ContentHolder<ClassTest> byteHolder4ds = (ContentHolder<ClassTest>)byteHolder4.Clone();
 
-        }
+        } 
+        #endregion
     }
 }

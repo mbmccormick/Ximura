@@ -67,7 +67,7 @@ namespace Ximura.Communication
         /// </summary>
         protected override string NamespaceDefaultShortName
         {
-            get{return "r";}
+            get { return "r"; }
         }
         #endregion // NamespaceDefaultShortName
 
@@ -91,8 +91,8 @@ namespace Ximura.Communication
         public virtual byte[] Data
         {
             get { return XmlMappingGetToByteArray(XPSc("r", "data")); }
-            set 
-            { 
+            set
+            {
                 XmlMappingSet(XPSc("r", "data"), value);
                 Length = value.Length;
                 ETag = GetETag(value);
@@ -118,10 +118,10 @@ namespace Ximura.Communication
         [CDSAttribute("Binary", "Length")]
         public virtual long Length
         {
-            get 
-            { 
+            get
+            {
                 long? length = XmlMappingGetToInt64Nullable(XPSc("r", "length"));
-                return (length.HasValue)?length.Value:0; 
+                return (length.HasValue) ? length.Value : 0;
             }
             protected set { XmlMappingSet(XPSc("r", "length"), value); }
 
@@ -131,7 +131,7 @@ namespace Ximura.Communication
         /// <summary>
         /// This abstract method should be overriden by all base classes.
         /// </summary>
-        [CDSAttribute("Binary","MimeType")]
+        [CDSAttribute("Binary", "MimeType")]
         public virtual string MimeType
         {
             get { return XmlMappingGetToString(XPSc("r", "mimetype")); }
@@ -200,7 +200,7 @@ namespace Ximura.Communication
             get
             {
                 XmlNodeList nodeProperties =
-                    this.XmlDataDoc.SelectNodes(XPSc("r", "properties","property"), NSM);
+                    this.XmlDataDoc.SelectNodes(XPSc("r", "properties", "property"), NSM);
 
                 foreach (XmlNode node in nodeProperties)
                 {
@@ -237,7 +237,7 @@ namespace Ximura.Communication
         /// <returns>Returns true if the property exists.</returns>
         public bool PropertyExists(string key)
         {
-            return PropertyNode(key)!=null;
+            return PropertyNode(key) != null;
         }
         #endregion // PropertyExists(string key)
         #region PropertyRemove(string key)
@@ -433,47 +433,26 @@ namespace Ximura.Communication
         }
         #endregion // ContentBody
 
-        #region OnDeserialization(object sender)
+        #region BodyDataProcess(byte[] blob)
         /// <summary>
-        /// This is deserialization callback method.
+        /// This method sets the specific properties from the binary data.
         /// </summary>
-        /// <param name="sender">The sender.</param>
-        public override void OnDeserialization(object sender)
+        /// <param name="blob">The data.</param>
+        protected override void BodyDataProcess(byte[] blob)
         {
-            //ProcessSchemaAttribute(true, false);
-
-            try
+            using (MemoryStream ms = new MemoryStream(blob))
             {
-                if (this.mInfo.GetInt32("bodycount") > 0)
+                using (BinaryReader br = new BinaryReader(ms, Encoding.UTF8))
                 {
-                    bool contentDirty = this.mInfo.GetBoolean("dirty");
-                    byte[] blob = (byte[])this.mInfo.GetValue("body0", typeof(byte[]));
+                    mFileName = br.ReadString();
+                    mMimeType = br.ReadString();
+                    mETag = br.ReadString();
 
-                    using (MemoryStream ms = new MemoryStream(blob))
-                    {
-                        using (BinaryReader br = new BinaryReader(ms, Encoding.UTF8))
-                        {
-                            mFileName = br.ReadString();
-                            mMimeType = br.ReadString();
-                            mETag = br.ReadString();
-
-                            Load(ms);
-                        }
-                    }
-
-                    this.IDContent = (Guid)mInfo.GetValue("cid", typeof(Guid));
-                    this.IDVersion = (Guid)mInfo.GetValue("vid", typeof(Guid));
-                    if (this.IDType != (Guid)mInfo.GetValue("tid", typeof(Guid)))
-                        throw new SerializationException("The type ID is the wrong value: " + ((Guid)mInfo.GetValue("tid", typeof(Guid))).ToString());
-                    this.Dirty = contentDirty;
+                    Load(ms);
                 }
             }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
         }
-        #endregion
+        #endregion 
 
         #region ETag
         /// <summary>
@@ -599,6 +578,8 @@ namespace Ximura.Communication
             return blob;
         }
         #endregion // ToArray()
+
+
     }
     #endregion // BinaryContentRaw
 }

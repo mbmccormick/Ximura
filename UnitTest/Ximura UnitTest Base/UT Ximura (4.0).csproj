@@ -108,22 +108,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Collections\Test_Collections.cs" />
+    <Compile Include="Collections\Test_Collections_Data.cs" />
+    <Compile Include="Collections\Test_Collections_Dictionary.cs" />
+    <Compile Include="Collections\Test_Collections_SkipList.cs" />
+    <Compile Include="Collections\Test_Collections_Trees.cs" />
+    <Compile Include="Collections\Test_Collection_Base.cs" />
+    <Compile Include="Collections\Test_Collection_Base_Static.cs" />
     <Compile Include="TestFunctions.cs" />
-    <Compile Include="Helper\Collection\Test_Collections_Dictionary.cs" />
-    <Compile Include="Helper\Collection\Test_Collections_SkipList.cs" />
-    <Compile Include="Helper\Collection\Test_Collection_Base.cs" />
-    <Compile Include="Helper\Collection\Test_Collection_Base_Static.cs" />
     <Compile Include="Helper\Test_Helper_BitHelper.cs" />
     <Compile Include="Helper\Linq\Test_Helper_Linq_Currying.cs" />
     <Compile Include="Helper\Linq\Test_Helper_Linq_Folding.cs" />
-    <Compile Include="Helper\Collection\Test_Collections.cs" />
     <Compile Include="Helper\Linq\Test_Helper_Linq.cs" />
     <Compile Include="Helper\Linq\Test_Helper_Linq_Unfolding.cs" />
     <Compile Include="Collections\Test_Misc.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Collections\Test_Helper_Threading.cs" />
-    <Compile Include="Helper\Collection\Test_Collections_Trees.cs" />
-    <Compile Include="Helper\Collection\Test_Collections_Data.cs" />
     <Compile Include="Helper\Linq\Test_Helper_Linq_Stream.cs" />
   </ItemGroup>
   <ItemGroup>

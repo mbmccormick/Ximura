@@ -27,5 +27,10 @@ namespace Ximura.Security
         {
             get { throw new NotImplementedException(); }
         }
+
+        protected override void BodyDataProcess(byte[] blob)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
