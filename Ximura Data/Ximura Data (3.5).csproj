@@ -148,6 +148,7 @@
     <Compile Include="ContentDataStore\Interfaces\ICDSHelper.cs" />
     <Compile Include="ContentDataStore\Interfaces\ICDSHelperLegacy.cs" />
     <Compile Include="ContentHolder.cs" />
+    <Compile Include="ContentHolder_Serialization.cs" />
     <Compile Include="Content_Attributes.cs" />
     <Compile Include="Content_Cache.cs" />
     <Compile Include="Content_Fragmentation.cs" />
