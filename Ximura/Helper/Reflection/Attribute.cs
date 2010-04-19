@@ -43,7 +43,7 @@ namespace Ximura
                 .FirstOrDefault();
         }
 
-        public static IEnumerable<A> Attributes<A>(this Type baseType) where A : Attribute
+        public static IEnumerable<A> Attributes<A>(this Type baseType) where A:Attribute
         {
             return baseType
                 .GetCustomAttributes(typeof(A), true)

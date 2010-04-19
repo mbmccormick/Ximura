@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- -*- Relax NG -*- -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+           elementFormDefault="qualified" 
+           targetNamespace="http://www.w3.org/2005/Atom" 
+           xmlns:atom="http://www.w3.org/2005/Atom">
+  <xs:import namespace="http://www.w3.org/XML/1998/namespace" />
+  <xs:import namespace="http://schema.ximura.org/core" />
+  <!-- Attribute definitions -->
+  <xs:attributeGroup name="atomCommonAttributes">
+    <xs:attribute ref="xml:base" />
+    <xs:attribute ref="xml:lang" />
+  </xs:attributeGroup>
+  <xs:attributeGroup name="atomVersionAttribute">
+    <xs:attribute name="version" use="required" />
+  </xs:attributeGroup>
+  <!-- Common Atom Constructs -->
+  <xs:complexType name="atomContentConstruct" mixed="true">
+    <xs:group minOccurs="0" maxOccurs="unbounded" ref="atom:anyElement" />
+    <xs:attributeGroup ref="atom:atomCommonAttributes" />
+    <xs:attribute name="type" />
+    <xs:attribute name="mode">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="xml" />
+          <xs:enumeration value="escaped" />
+          <xs:enumeration value="base64" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="atomPersonConstruct">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element ref="atom:name" />
+      <xs:element ref="atom:url" />
+      <xs:element ref="atom:email" />
+    </xs:choice>
+    <xs:attributeGroup ref="atom:atomCommonAttributes" />
+  </xs:complexType>
+  <xs:element name="name" type="xs:string" />
+  <xs:element name="url" type="xs:string" />
+  <xs:element name="email" type="xs:string" />
+  <xs:complexType name="atomDateConstruct">
+    <xs:simpleContent>
+      <xs:extension base="xs:dateTime">
+        <xs:attributeGroup ref="atom:atomCommonAttributes" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:attributeGroup name="atomLinkConstruct">
+    <xs:attributeGroup ref="atom:atomCommonAttributes" />
+    <xs:attribute name="rel" use="required">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="alternate" />
+          <xs:enumeration value="start" />
+          <xs:enumeration value="next" />
+          <xs:enumeration value="prev" />
+          <xs:enumeration value="service.edit" />
+          <xs:enumeration value="service.post" />
+          <xs:enumeration value="service.feed" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="type" use="required" />
+    <xs:attribute name="href" use="required" />
+    <xs:attribute name="hreflang" />
+    <xs:attribute name="title" />
+  </xs:attributeGroup>
+  <!--
+    atom:feed
+    TODO: Test for multiple atom:link/@rel='alternate' with the same @type
+    The following tests are simple to do, but my validator is giving me trouble.
+    TODO: Debug and add them back
+          Test for at least one atom:link/@rel='alternate'
+          Test for atom:author or all atom:entry have atom:author
+  -->
+  <xs:element name="feed">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="atom:title" />
+        <xs:element ref="atom:link" />
+        <xs:element ref="atom:author" />
+        <xs:element ref="atom:contributor" />
+        <xs:element ref="atom:tagline" />
+        <xs:element ref="atom:id" />
+        <xs:element ref="atom:generator" />
+        <xs:element ref="atom:copyright" />
+        <xs:element ref="atom:info" />
+        <xs:element ref="atom:modified" />
+        <xs:element ref="atom:entry" />
+        <xs:group ref="atom:anyElement" />
+      </xs:choice>
+      <xs:attributeGroup ref="atom:atomCommonAttributes" />
+      <xs:attributeGroup ref="atom:atomVersionAttribute" />
+    </xs:complexType>
+  </xs:element>
+  <!-- atom:title -->
+  <xs:element name="title" type="atom:atomContentConstruct" />
+  <!-- atom:link -->
+  <xs:element name="link">
+    <xs:complexType>
+      <xs:attributeGroup ref="atom:atomLinkConstruct" />
+    </xs:complexType>
+  </xs:element>
+  <!-- atom:author -->
+  <xs:element name="author" type="atom:atomPersonConstruct" />
+  <!-- atom:contributor -->
+  <xs:element name="contributor" type="atom:atomPersonConstruct" />
+  <!-- atom:tagline -->
+  <xs:element name="tagline" type="atom:atomContentConstruct" />
+  <!-- atom:id -->
+  <xs:element name="id" type="xs:string" />
+  <!-- atom:generator -->
+  <xs:element name="generator">
+    <xs:complexType mixed="true">
+      <xs:attributeGroup ref="atom:atomCommonAttributes" />
+      <xs:attribute name="version" />
+      <xs:attribute name="url" />
+    </xs:complexType>
+  </xs:element>
+  <!-- atom:copyright -->
+  <xs:element name="copyright" type="atom:atomContentConstruct" />
+  <!-- atom:info -->
+  <xs:element name="info" type="atom:atomContentConstruct" />
+  <!--
+    atom:modified
+    TODO: Test for a timezone that SHOULD be UTC
+  -->
+  <xs:element name="modified" type="atom:atomDateConstruct" />
+  <!--
+    atom:entry
+    TODO: Test for multiple atom:link @rel='alternate' with the same @type
+  -->
+  <xs:element name="entry">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="atom:title" />
+        <xs:element ref="atom:link" />
+        <xs:element ref="atom:author" />
+        <xs:element ref="atom:contributor" />
+        <xs:element ref="atom:id" />
+        <xs:element ref="atom:modified" />
+        <xs:element ref="atom:issued" />
+        <xs:element ref="atom:created" />
+        <xs:element ref="atom:summary" />
+        <xs:element ref="atom:content" />
+        <xs:element ref="atom:copyright" />
+        <xs:group ref="atom:anyElement" />
+      </xs:choice>
+      <xs:attributeGroup ref="atom:atomCommonAttributes" />
+      <xs:attribute name="version" />
+    </xs:complexType>
+  </xs:element>
+  <!-- atom:issued -->
+  <xs:element name="issued" type="atom:atomDateConstruct" />
+  <!--
+    atom:created
+    TODO: Test for a timezone that SHOULD be UTC
+  -->
+  <xs:element name="created" type="atom:atomDateConstruct" />
+  <!-- atom:summary -->
+  <xs:element name="summary" type="atom:atomContentConstruct" />
+  <!-- atom:content -->
+  <xs:element name="content" type="atom:atomContentConstruct" />
+  <!-- Low-level simple types -->
+  <!-- TODO: can anything more specific be said about these types? -->
+  <!-- Extensibility -->
+  <xs:group name="anyForeignElement">
+    <xs:sequence>
+      <xs:any namespace="##other" processContents="skip" />
+    </xs:sequence>
+  </xs:group>
+  <xs:attributeGroup name="anyForeignAttribute">
+    <xs:anyAttribute processContents="skip" />
+  </xs:attributeGroup>
+  <xs:group name="anyElement">
+    <xs:sequence>
+      <xs:group ref="local" />
+    </xs:sequence>
+  </xs:group>
+</xs:schema>

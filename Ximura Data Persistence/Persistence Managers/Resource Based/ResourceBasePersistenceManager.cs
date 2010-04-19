@@ -137,7 +137,7 @@ namespace Ximura.Data
         {
             Guid? typeID = context.Request.DataTypeID;
             if (!typeID.HasValue)
-                typeID = Content.GetContentTypeAttributeID(context.Request.DataType);
+                typeID = context.Request.DataType.GetContentTypeAttributeID();
 
             //Get the unique identifier for the context data object.
             ContentIdentifier? id;
@@ -175,7 +175,7 @@ namespace Ximura.Data
         {
             Guid? tid = context.Request.DataTypeID;
             if (!tid.HasValue)
-                tid = Content.GetContentTypeAttributeID(context.Request.DataType);
+                tid = context.Request.DataType.GetContentTypeAttributeID();
 
             Guid? cid, vid;
             string response = CH.HTTPCodes.NotFound_404;

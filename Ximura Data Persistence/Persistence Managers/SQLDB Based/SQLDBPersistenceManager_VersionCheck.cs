@@ -54,7 +54,7 @@ namespace Ximura.Data
             string strConn = SQLConnectionResolve(context);
             Guid? typeID = context.Request.DataTypeID;
             if (!typeID.HasValue)
-                typeID = Content.GetContentTypeAttributeID(context.Request.DataType);
+                typeID = context.Request.DataType.GetContentTypeAttributeID();
 
             try
             {

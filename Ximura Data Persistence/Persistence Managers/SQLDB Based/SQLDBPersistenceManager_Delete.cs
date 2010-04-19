@@ -43,7 +43,7 @@ namespace Ximura.Data
             Guid? IDType = context.Request.DataTypeID;
 
             if (!IDType.HasValue)
-                IDType = Content.GetContentTypeAttributeID(context.Request.DataType);
+                IDType = context.Request.DataType.GetContentTypeAttributeID();
 
             if (!context.Request.DataVersionID.HasValue || !context.Request.DataContentID.HasValue)
             {

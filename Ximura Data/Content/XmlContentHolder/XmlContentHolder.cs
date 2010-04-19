@@ -10,39 +10,38 @@
 //     Paul Stancer - initial implementation
 // *******************************************************************************
 #endregion
-﻿#region using
+#region using
 using System;
-using System.Data;
-using System.Linq;
-using System.Collections;
-using System.Collections.Generic;
+using System.IO;
 using System.ComponentModel;
 using System.ComponentModel.Design;
-using System.ComponentModel.Design.Serialization;
+using System.Collections;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Diagnostics;
-using System.IO;
-using System.Reflection;
+using System.Text;
+using System.Xml.XPath;
+using System.Runtime.Serialization.Formatters.Binary;
 
 using Ximura;
 using Ximura.Data;
 using CH = Ximura.Common;
+using AH = Ximura.AttributeHelper;
 #endregion // using
 namespace Ximura.Data
 {
-    /// <summary>
-    /// This is the base XML content class using the new .NET 3.5 Linq XML classes.
-    /// </summary>
-    public partial class XContent : Content
+    public class XmlContentHolder<T> : ContentHolder<T>, IXPathNavigable
+        where T : class, IXPathNavigable
     {
-        protected override byte[] ContentBody
+
+
+        #region IXPathNavigable Members
+
+        public XPathNavigator CreateNavigator()
         {
-            get
-            {
-                return null;
-            }
+            return mData.CreateNavigator();
         }
 
-
+        #endregion
     }
 }

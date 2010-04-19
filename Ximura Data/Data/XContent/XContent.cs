@@ -25,6 +25,7 @@ using System.IO;
 using System.Reflection;
 using System.Xml;
 using System.Xml.Linq;
+using System.Xml.XPath;
 
 using Ximura;
 using Ximura.Data;
@@ -35,10 +36,10 @@ namespace Ximura.Data
     /// <summary>
     /// This is the base XML content class using the new .NET 3.5 Linq XML classes.
     /// </summary>
-    public partial class XContent : Content
+    public partial class XContent : Content, IXPathNavigable
     {
         #region Declarations
-        private XDocument internalXDataDoc;
+        private XDocument mData;
         private Dictionary<string, string> mXMLMappingShortcuts = null;
         private Dictionary<string, XNamespace> mNSM = null;
         #endregion // Declarations
@@ -88,11 +89,11 @@ namespace Ximura.Data
         {
             get
             {
-                return internalXDataDoc;
+                return mData;
             }
             set
             {
-                internalXDataDoc = value;
+                mData = value;
 
                 if (value != null)
                     mNSM.Clear();
@@ -102,5 +103,15 @@ namespace Ximura.Data
         }
         #endregion // XmlDataDoc
 
+
+
+        #region IXPathNavigable Members
+
+        public XPathNavigator CreateNavigator()
+        {
+            return mData.CreateNavigator();
+        }
+
+        #endregion
     }
 }

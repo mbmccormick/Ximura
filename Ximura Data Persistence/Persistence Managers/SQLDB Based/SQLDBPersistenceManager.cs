@@ -64,7 +64,7 @@ namespace Ximura.Data
             public RQType(CDSRequestFolder Request)
             {
                 EntityType = Request.DataType;
-                Tid = Content.GetContentTypeAttributeID(EntityType);
+                Tid = EntityType.GetContentTypeAttributeID();
                 Cid = Request.DataContentID;
                 Vid = Request.DataVersionID;
             }

@@ -438,7 +438,7 @@ namespace Ximura.Communication
         /// This method sets the specific properties from the binary data.
         /// </summary>
         /// <param name="blob">The data.</param>
-        protected override void BodyDataProcess(byte[] blob)
+        protected virtual void BodyDataProcess(byte[] blob)
         {
             using (MemoryStream ms = new MemoryStream(blob))
             {
@@ -578,8 +578,6 @@ namespace Ximura.Communication
             return blob;
         }
         #endregion // ToArray()
-
-
     }
     #endregion // BinaryContentRaw
 }

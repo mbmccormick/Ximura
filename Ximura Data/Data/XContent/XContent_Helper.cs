@@ -37,18 +37,18 @@ namespace Ximura.Data
     /// </summary>
     public partial class XContent : Content
     {
-        #region DumpXML
-        /// <summary>
-        /// This method is used in debug to dump the internal contents of the xml object to a file
-        /// </summary>
-        /// <param name="filename">The filename to save the file to.</param>
-        public override string DumpXML(string filename)
-        {
-            this.XDataDoc.Save(filename);
-            //Debug.WriteLine(filename);
-            return filename;
-        }
-        #endregion // DumpXML()
+        //#region DumpXML
+        ///// <summary>
+        ///// This method is used in debug to dump the internal contents of the xml object to a file
+        ///// </summary>
+        ///// <param name="filename">The filename to save the file to.</param>
+        //public override string DumpXML(string filename)
+        //{
+        //    this.XDataDoc.Save(filename);
+        //    //Debug.WriteLine(filename);
+        //    return filename;
+        //}
+        //#endregion // DumpXML()
 
         #region XPScBuild()
         /// <summary>

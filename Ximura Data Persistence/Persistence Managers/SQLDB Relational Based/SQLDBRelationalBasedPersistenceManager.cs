@@ -84,7 +84,7 @@ namespace Ximura.Data
             {
                 string refType = context.Request.DataReferenceType;
                 string refValue = context.Request.DataReferenceValue;
-                Guid tid = Content.GetContentTypeAttributeID(context.Request.DataType);
+                Guid tid = context.Request.DataType.GetContentTypeAttributeID();
                 Guid? cid, vid;
 
                 if (!ResolveID(context, tid, refType, refValue, out cid, out vid))
@@ -121,7 +121,7 @@ namespace Ximura.Data
             try
             {
                 Guid? cid, vid;
-                Guid tid = Content.GetContentTypeAttributeID(context.Request.DataType);
+                Guid tid = context.Request.DataType.GetContentTypeAttributeID();
 
                 cid = context.Request.DataContentID;
                 vid = context.Request.DataVersionID;
@@ -176,7 +176,7 @@ namespace Ximura.Data
         protected override bool Read(CDSContext context)
         {
             Guid? cid, vid;
-            Guid tid = Content.GetContentTypeAttributeID(context.Request.DataType);
+            Guid tid = context.Request.DataType.GetContentTypeAttributeID();
             cid = context.Request.DataContentID;
             vid = context.Request.DataVersionID;
 

@@ -62,7 +62,7 @@ namespace Ximura.Data
         public static Guid ExtractTypeID(Type contentType)
         {
             //if (contentType.
-            return Content.GetContentTypeAttributeID(contentType); ;
+            return contentType.GetContentTypeAttributeID(); ;
         }
         #endregion // ExtractTypeID
         #region ExtractContentID

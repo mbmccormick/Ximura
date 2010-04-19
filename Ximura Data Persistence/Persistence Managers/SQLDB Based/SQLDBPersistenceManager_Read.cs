@@ -43,7 +43,7 @@ namespace Ximura.Data
             SqlConnection sqlConn, Guid ID, bool IDIsVersion, out int response)
             where T : Content
         {
-            Guid TypeID = Content.GetContentTypeAttributeID(typeof(T));
+            Guid TypeID = typeof(T).GetContentTypeAttributeID();
 
             SqlCommand sqlCmd = new SqlCommand("EntityRead", sqlConn);
             sqlCmd.CommandType = CommandType.StoredProcedure;
@@ -164,7 +164,7 @@ namespace Ximura.Data
             Guid? typeID = context.Request.DataTypeID;
 
             if (!typeID.HasValue)
-                typeID = Content.GetContentTypeAttributeID(context.Request.DataType);
+                typeID = context.Request.DataType.GetContentTypeAttributeID();
 
             if (!context.Request.DataVersionID.HasValue && !context.Request.DataContentID.HasValue)
             {

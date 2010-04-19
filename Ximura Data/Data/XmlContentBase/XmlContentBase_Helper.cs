@@ -41,19 +41,6 @@ namespace Ximura.Data
     /// </summary>
     public partial class XmlContentBase
     {
-        #region DumpXML
-        /// <summary>
-        /// This method is used in debug to dump the internal contents of the xml object to a file
-        /// </summary>
-        /// <param name="filename">The filename to save the file to.</param>
-        public override string DumpXML(string filename)
-        {
-            this.XmlDataDoc.Save(filename);
-            //Debug.WriteLine(filename);
-            return filename;
-        }
-        #endregion // DumpXML()
-
         #region XmlAttributeAdd
         protected void XmlAttributeAdd(XmlElement elem, string field, string data)
         {
@@ -319,5 +306,45 @@ namespace Ximura.Data
             }
         }
         #endregion // FragmentSet(string xPath, bool append, XmlDocumentFragment frag)
+
+#if (DEBUG)
+        #region DumpXML  
+        /// <summary>
+        /// This random generator is used to assist export the content with a unique id.
+        /// </summary>
+        private static Random rndUse = new Random();
+
+        /// <summary>
+        /// This method dumps xml to the current user's desktop folder.
+        /// </summary>
+        public virtual string DumpXML()
+        {
+            string id = this.IDContent.ToString() + "_" + this.IDVersion.ToString() + "_" + rndUse.Next(100).ToString();
+
+            return DumpXML(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), id + ".xml"));
+        }
+        ///// <summary>
+        ///// This method is used in debug to dump the internal contents of the xml object to a file
+        ///// </summary>
+        ///// <param name="filename">The filename to save the file to.</param>
+        //public virtual string DumpXML(string filename)
+        //{
+        //    File.WriteAllBytes(filename, ContentBody);
+        //    //Debug.WriteLine(filename);
+        //    return filename;
+        //}
+
+        /// <summary>
+        /// This method is used in debug to dump the internal contents of the xml object to a file
+        /// </summary>
+        /// <param name="filename">The filename to save the file to.</param>
+        public virtual string DumpXML(string filename)
+        {
+            this.XmlDataDoc.Save(filename);
+            //Debug.WriteLine(filename);
+            return filename;
+        }
+        #endregion
+#endif
     }
 }

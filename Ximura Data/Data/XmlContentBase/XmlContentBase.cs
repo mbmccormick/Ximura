@@ -40,7 +40,7 @@ namespace Ximura.Data
     public abstract partial class XmlContentBase : Content, IXPathNavigable
     {
         #region Declarations
-        private XmlDocument internalXmlDataDoc;
+        private XmlDocument mData;
         private Dictionary<string, string> mXMLMappingShortcuts = null;
         private XmlNamespaceManager mNSM;
         #endregion // Declarations
@@ -73,11 +73,11 @@ namespace Ximura.Data
         {
             get
             {
-                return internalXmlDataDoc;
+                return mData;
             }
             set
             {
-                internalXmlDataDoc = value;
+                mData = value;
 
                 if (value == null)
                     mNSM = null;
@@ -89,9 +89,9 @@ namespace Ximura.Data
 
         #region IXPathNavigable Members
 
-        XPathNavigator IXPathNavigable.CreateNavigator()
+        public virtual XPathNavigator CreateNavigator()
         {
-            return internalXmlDataDoc.CreateNavigator();
+            return mData.CreateNavigator();
         }
 
         #endregion
