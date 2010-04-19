@@ -37,35 +37,54 @@ namespace Ximura.Data
     /// <typeparam name="T">An XML object that implements IXPathNavigable.</typeparam>
     public abstract partial class XmlContentHolder<T>
     {
-        #region Declarations
+        #region Reset()
         /// <summary>
-        /// This is the Schema attribute.
+        /// This method resets the data content.
         /// </summary>
-        protected XimuraDataContentSchemaAttribute attrSchemaPrimary;
-        /// <summary>
-        /// This is the default data attribute.
-        /// </summary>
-        protected XimuraDataContentDefaultAttribute attrDefaultData;
-        /// <summary>
-        /// This is the collection of reference schemas for the object.
-        /// </summary>
-        protected XimuraDataContentSchemaReferenceAttribute[] attrsSchemaReference;
-        #endregion // Declarations
-
-        #region SetAttributes()
-        /// <summary>
-        /// This protected method sets the mapping attributes for the content.
-        /// </summary>
-        protected override void SetAttributes()
+        public override void Reset()
         {
-            base.SetAttributes();
+            Payload = null;
+            base.Reset();
 
-            attrDefaultData = AH.GetAttribute<XimuraDataContentDefaultAttribute>(GetType());
-
-            attrSchemaPrimary = AH.GetAttribute<XimuraDataContentSchemaAttribute>(GetType());
-
-            attrsSchemaReference = AH.GetAttributes<XimuraDataContentSchemaReferenceAttribute>(GetType());
+            ResetAutoLoadCheck();
         }
-        #endregion
+        #endregion // Reset()
+
+        #region Dispose(bool disposing)
+        private bool mDisposed = false;
+        /// <summary>
+        /// This is the dispose override.
+        /// </summary>
+        /// <param name="disposing">True when this is called by the dispose method.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (!mDisposed)
+            {
+                if (disposing)
+                {
+                    Payload = null;
+
+                    base.Dispose(disposing);
+                }
+                mDisposed = true;
+            }
+        }
+        #endregion // Dispose(bool disposing)
+
+        #region ResetAutoLoadCheck()
+        /// <summary>
+        /// This method will autoload the content object based on the Default Data set in the 
+        /// attribute when the content is reset. If you want to change this behaviour, you can
+        /// override this method.
+        /// </summary>
+        protected virtual void ResetAutoLoadCheck()
+        {
+            //If the content is set to autoload, then go ahead.
+            if (attrDefaultData != null && attrDefaultData.AutoLoad)
+            {
+                Load();
+            }
+        }
+        #endregion // ResetAutoLoadCheck()
     }
 }

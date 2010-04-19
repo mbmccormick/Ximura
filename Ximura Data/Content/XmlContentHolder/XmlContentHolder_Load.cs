@@ -12,20 +12,18 @@
 #endregion
 #region using
 using System;
-using System.Data;
-using System.Collections;
-using System.Collections.Generic;
+using System.IO;
 using System.ComponentModel;
 using System.ComponentModel.Design;
-using System.ComponentModel.Design.Serialization;
+using System.Collections;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Diagnostics;
-using System.IO;
+using System.Text;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml;
 using System.Xml.Schema;
 using System.Xml.XPath;
-using System.Xml.Xsl;
-using System.Reflection;
 
 using Ximura;
 using Ximura.Data;
@@ -35,9 +33,10 @@ using AH = Ximura.AttributeHelper;
 namespace Ximura.Data
 {
     /// <summary>
-    /// This abstract class contains support for XML schema caching.
+    /// This abstract class wraps a content based entity around a XML base object.
     /// </summary>
-    public partial class XmlDocumentContentBase
+    /// <typeparam name="T">An XML object that implements IXPathNavigable.</typeparam>
+    public abstract partial class XmlContentHolder<T>
     {
         #region Load()
         /// <summary>

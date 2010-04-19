@@ -127,7 +127,7 @@ namespace Ximura.Communication
         public virtual void OpenSearchEntryAdd(int relevance, Guid version, string createDate, 
             string title, string atomID, int? score, string ep1, string ep2, string ep3)
         {
-            XmlDocumentFragment frag = this.XmlDataDoc.CreateDocumentFragment();
+            XmlDocumentFragment frag = this.Payload.CreateDocumentFragment();
             StringBuilder sb = new StringBuilder();
             XmlWriterSettings settings = new XmlWriterSettings();
             settings.OmitXmlDeclaration = true;
@@ -191,7 +191,7 @@ namespace Ximura.Communication
 
             frag.InnerXml = sb.ToString();
 
-            XmlNode rootNode = this.XmlDataDoc.SelectSingleNode(XPSc("r"), NSM);
+            XmlNode rootNode = this.Payload.SelectSingleNode(XPSc("r"), NSM);
             rootNode.AppendChild(frag);
 
         }
@@ -216,7 +216,7 @@ namespace Ximura.Communication
         {
             XmlNode node = null;
             string path = "//r:feed/r:entry[osmeta:osrelevance='" + relevance.ToString() + "']";
-            node = XmlDataDoc.SelectSingleNode(path, NSM);
+            node = Payload.SelectSingleNode(path, NSM);
 
             if (node != null)
                 return new EntryHolder(node, NSM);
@@ -228,7 +228,7 @@ namespace Ximura.Communication
         {
             XmlNode node = null;
             string path = "//r:feed/r:entry[osmeta:osversion='" + versionID.ToString().ToUpperInvariant() + "']";
-            node = XmlDataDoc.SelectSingleNode(path, NSM);
+            node = Payload.SelectSingleNode(path, NSM);
 
             if (node != null)
                 return new EntryHolder(node, NSM);
@@ -242,7 +242,7 @@ namespace Ximura.Communication
             {
                 XmlNodeList nodes = null;
                 string path = "//r:feed/r:entry";
-                nodes = XmlDataDoc.SelectNodes(path, NSM);
+                nodes = Payload.SelectNodes(path, NSM);
 
                 foreach (XmlNode node in nodes)
                     yield return new EntryHolder(node, NSM);

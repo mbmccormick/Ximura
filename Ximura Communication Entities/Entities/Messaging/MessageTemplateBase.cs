@@ -82,9 +82,9 @@ namespace Ximura.Communication
         {
             try
             {
-                XmlNode parent = this.XmlDataDoc.SelectSingleNode(XPSc("m", "mtemp:Parameters"), NSM);
+                XmlNode parent = this.Payload.SelectSingleNode(XPSc("m", "mtemp:Parameters"), NSM);
 
-                XmlElement elem = XmlDataDoc.CreateElement("mtemp", "Parameter", "http://schema.ximura.org/messagetemplate/1.0");
+                XmlElement elem = Payload.CreateElement("mtemp", "Parameter", "http://schema.ximura.org/messagetemplate/1.0");
 
                 elem.Attributes.Append(XmlAttributeCreate("type", type));
 
@@ -110,7 +110,7 @@ namespace Ximura.Communication
         public bool ParameterRemove(string type)
         {
 
-            XmlNode node = (XmlElement)this.XmlDataDoc.SelectSingleNode(XPSc("m", "mtemp:Parameters",
+            XmlNode node = (XmlElement)this.Payload.SelectSingleNode(XPSc("m", "mtemp:Parameters",
                 string.Format("mtemp:Parameter[@type='{0}']", type)), NSM);
 
             if (node == null)
@@ -129,7 +129,7 @@ namespace Ximura.Communication
         /// <returns>Returns the parameter as a string.</returns>
         public string ParameterGet(string type)
         {
-            XmlNode node = (XmlElement)this.XmlDataDoc.SelectSingleNode(XPSc("m", "mtemp:Parameters",
+            XmlNode node = (XmlElement)this.Payload.SelectSingleNode(XPSc("m", "mtemp:Parameters",
                 string.Format("mtemp:Parameter[@type='{0}']", type)), NSM);
 
             if (node == null)

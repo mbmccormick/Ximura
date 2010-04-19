@@ -65,7 +65,7 @@ namespace Ximura.Communication
         {
             try
             {
-                XmlNode node = this.XmlDataDoc.SelectSingleNode(xPath, NSM);
+                XmlNode node = this.Payload.SelectSingleNode(xPath, NSM);
                 if (node == null)
                     return null;
                 return node.InnerXml;
@@ -85,7 +85,7 @@ namespace Ximura.Communication
         public IEnumerable<XmlElement> DataNodes()
         {
             XmlNodeList nodeInserts =
-                XmlDataDoc.SelectNodes(
+                Payload.SelectNodes(
                     @"//r:model/r:data[@type='entity' and @action='insert']", NSM);
             foreach (XmlNode node in nodeInserts)
                 yield return node as XmlElement;

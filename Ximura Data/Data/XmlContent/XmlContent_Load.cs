@@ -55,10 +55,10 @@ namespace Ximura.Data
             {
                 try
                 {
-                    XmlDataDoc = new XmlDocument();
+                    Payload = new XmlDocument();
                     XmlReader xmlSchemaReader = XmlReader.Create(ms, SchemaXmlReaderSettings);
 
-                    XmlDataDoc.Load(xmlSchemaReader);
+                    Payload.Load(xmlSchemaReader);
 
                 }
                 catch (Exception ex)
@@ -80,7 +80,7 @@ namespace Ximura.Data
         /// <param name="replace">This method will replace the dataset.</param>
         public virtual void Load(XmlDocument doc, bool replace)
         {
-            XmlDataDoc = doc;
+            Payload = doc;
             mCanLoad = false;
         }
         #endregion // EntityLoad(DataSet data, bool replace)

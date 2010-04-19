@@ -56,7 +56,7 @@ namespace Ximura.Data
             //        internalDataContentSet = value;
             //    }
             //}
-            get { return ((XmlDataDocument)XmlDataDoc).DataSet; }
+            get { return ((XmlDataDocument)Payload).DataSet; }
             //set
             //{
             //    lock (syncDataContent)
@@ -86,7 +86,7 @@ namespace Ximura.Data
         /// <param name="replace">This method will replace the dataset.</param>
         public virtual void Load(DataSet data, bool replace)
         {
-            XmlDataDoc = new XmlDataDocument(data);
+            Payload = new XmlDataDocument(data);
             mCanLoad = false;
 
         }
@@ -109,24 +109,24 @@ namespace Ximura.Data
             {
                 try
                 {
-                    XmlDataDoc = new XmlDataDocument();
+                    Payload = new XmlDataDocument();
                     XmlReader xmlSchema = XmlTextReader.Create(ms, SchemaXmlReaderSettings);
                     mDataContentSet.EnforceConstraints = false;
                     mDataContentSet.ReadXmlSchema(xmlSchema);
 
                     ms.Position = 0;
                     XmlReader xmlData = XmlReader.Create(ms, SchemaXmlReaderSettings);
-                    XmlDataDoc.Load(xmlData);
+                    Payload.Load(xmlData);
                 }
                 catch (Exception ex)
                 {
                     try
                     {
-                        XmlDataDoc = new XmlDataDocument();
+                        Payload = new XmlDataDocument();
 
                         ms.Position = 0;
                         XmlReader xmlData = XmlReader.Create(ms, SchemaXmlReaderSettings);
-                        XmlDataDoc.Load(xmlData);
+                        Payload.Load(xmlData);
                     }
                     catch (Exception ex2)
                     {
@@ -147,7 +147,7 @@ namespace Ximura.Data
         /// <param name="replace">This method will replace the dataset.</param>
         public virtual void Load(XmlDataDocument doc, bool replace)
         {
-            XmlDataDoc = doc;
+            Payload = doc;
             mCanLoad = false;
         }
         #endregion // EntityLoad(DataSet data, bool replace)

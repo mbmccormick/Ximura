@@ -417,7 +417,7 @@ namespace Ximura.Framework
                 mPollJobs = new List<TimerPollJob>();
                 try
                 {
-                    XmlNodeList nl = this.XmlDataDoc.SelectNodes("//comconf:timerpoll/comconf:polljob", NSM);
+                    XmlNodeList nl = this.Payload.SelectNodes("//comconf:timerpoll/comconf:polljob", NSM);
 
                     foreach (XmlElement node in nl)
                         TimerPollJobCreate(jobs, node);
@@ -574,7 +574,7 @@ namespace Ximura.Framework
         /// <returns>Returns the setting value, or null if the setting cannot be found or is undefined.</returns>
         public virtual string SettingGet(string id)
         {
-            XmlNode node = XmlDataDoc.SelectSingleNode(XPSc("r", "comconf:settings"), NSM);
+            XmlNode node = Payload.SelectSingleNode(XPSc("r", "comconf:settings"), NSM);
             if (node == null)
                 return null;
 

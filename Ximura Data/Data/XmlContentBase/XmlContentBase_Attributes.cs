@@ -38,7 +38,7 @@ namespace Ximura.Data
     /// <summary>
     /// This abstract class contains support for XML schema caching.
     /// </summary>
-    public partial class XmlContentBase
+    public partial class XmlDocumentContentBase
     {
         #region Declarations
         /// <summary>

@@ -111,11 +111,11 @@ namespace Ximura.Communication
             set 
             {
                 string xPath = XPSc("r", "dublin:contributor");
-                XmlNode toSet = this.XmlDataDoc.SelectSingleNode(xPath, NSM);
+                XmlNode toSet = this.Payload.SelectSingleNode(xPath, NSM);
                 if (toSet == null)
                 {
-                    XmlNode before = XmlDataDoc.SelectSingleNode(XPSc("r", "dublin:publisher"), NSM);
-                    XmlElement elem = XmlDataDoc.CreateElement("contributor", "http://purl.org/dc/elements/1.1/");
+                    XmlNode before = Payload.SelectSingleNode(XPSc("r", "dublin:publisher"), NSM);
+                    XmlElement elem = Payload.CreateElement("contributor", "http://purl.org/dc/elements/1.1/");
                     elem.InnerText = value;
                     before.ParentNode.InsertAfter(elem, before);
                     return;

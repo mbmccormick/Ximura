@@ -36,7 +36,7 @@ using CH = Ximura.Common;
 #endregion // using
 namespace Ximura.Data
 {
-    public partial class XmlContentBase
+    public partial class XmlDocumentContentBase
     {
         #region short
         protected short XmlMappingGetToInt16(string xPath)
@@ -207,7 +207,7 @@ namespace Ximura.Data
         #region XmlMappingGet
         protected T XmlMappingGet<T>(string xPath, Converter<string, T> convert)
         {
-            XmlNode node = XmlDataDoc.SelectSingleNode(xPath, NSM);
+            XmlNode node = Payload.SelectSingleNode(xPath, NSM);
 
             if (node == null)
                 return default(T);
@@ -224,7 +224,7 @@ namespace Ximura.Data
         #region XmlMappingSet
         protected bool XmlMappingSet<T>(string xPath, T input)
         {
-            XmlNode node = XmlDataDoc.SelectSingleNode(xPath, NSM);
+            XmlNode node = Payload.SelectSingleNode(xPath, NSM);
             return XmlMappingSet<T>(node, input, delegate(T inputData) { return inputData.ToString(); });
         }
 
@@ -235,7 +235,7 @@ namespace Ximura.Data
 
         protected bool XmlMappingSet<T>(string xPath, T input, Converter<T, string> convert)
         {
-            XmlNode toSet = this.XmlDataDoc.SelectSingleNode(xPath, NSM);
+            XmlNode toSet = this.Payload.SelectSingleNode(xPath, NSM);
             return XmlMappingSet<T>(toSet, input, convert);
         }
 

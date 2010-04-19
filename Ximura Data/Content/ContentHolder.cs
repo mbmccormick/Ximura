@@ -96,7 +96,7 @@ namespace Ximura.Data
             {
                 return mData;
             }
-            protected set
+            set
             {
                 mData = value;
                 IDUpdate(value);

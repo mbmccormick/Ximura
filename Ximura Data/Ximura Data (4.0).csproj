@@ -186,6 +186,12 @@
     <Compile Include="Content\Content_Properties.cs" />
     <Compile Include="Content\Content_Serialization.cs" />
     <Compile Include="Content\XmlContentHolder\XmlContentHolder.cs" />
+    <Compile Include="Content\XmlContentHolder\XmlContentHolder_Attributes.cs" />
+    <Compile Include="Content\XmlContentHolder\XmlContentHolder_Load.cs" />
+    <Compile Include="Content\XmlContentHolder\XmlContentHolder_Namespace.cs" />
+    <Compile Include="Content\XmlContentHolder\XmlContentHolder_Pooling.cs" />
+    <Compile Include="Content\XmlContentHolder\XmlContentXsdResolver\XmlContentXsdResolver.cs" />
+    <Compile Include="Content\XmlContentHolder\XmlContentXsdResolver\XmlContentXsdResolver_Static.cs" />
     <Compile Include="Content_ExtensionMethods\ContentHelper.cs" />
     <Compile Include="Content_ExtensionMethods\ContentHelper_Attributes.cs" />
     <Compile Include="Content_ExtensionMethods\ContentHelper_Formatter.cs" />
@@ -196,8 +202,6 @@
     <Compile Include="Data\DataContent\Interfaces\IXimuraDataContentLinkage.cs" />
     <Compile Include="Data\DataContent\Interfaces\IXimuraDataContentLoad.cs" />
     <Compile Include="Data\DataContent\Interfaces\IXimuraDataEntity.cs" />
-    <Compile Include="Data\XmlContentBase\XsdResolver\ContentXsdResolver.cs" />
-    <Compile Include="Data\XmlContentBase\XsdResolver\ContentXsdResolver_Static.cs" />
     <Compile Include="Exceptions\ContentException.cs" />
     <Compile Include="Exceptions\ContentFormatterCapabilitiesException.cs" />
     <Compile Include="Exceptions\ContentFormatterException.cs" />
@@ -327,7 +331,10 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Content\XDocumentContentBase\" />
+    <Folder Include="Content\XmlDocumentContentBase\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

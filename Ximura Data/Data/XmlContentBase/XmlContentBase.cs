@@ -37,7 +37,7 @@ namespace Ximura.Data
     /// <summary>
     /// This abstract class contains support for XML schema caching.
     /// </summary>
-    public abstract partial class XmlContentBase : Content, IXPathNavigable
+    public abstract partial class XmlDocumentContentBase : Content, IXPathNavigable
     {
         #region Declarations
         private XmlDocument mData;
@@ -48,7 +48,7 @@ namespace Ximura.Data
 		/// <summary>
 		/// This is the default constructor for the Content object.
 		/// </summary>
-		public XmlContentBase()
+		public XmlDocumentContentBase()
         {
             XPScBuild();
         }
@@ -58,7 +58,7 @@ namespace Ximura.Data
 		/// </summary>
 		/// <param name="info">The Serialization info object that contains all the relevant data.</param>
 		/// <param name="context">The serialization context.</param>
-        public XmlContentBase(SerializationInfo info, StreamingContext context)
+        public XmlDocumentContentBase(SerializationInfo info, StreamingContext context)
             : base(info, context)
 		{
             XPScBuild();
@@ -69,7 +69,7 @@ namespace Ximura.Data
         /// <summary>
         /// This is the base XML data document.
         /// </summary>
-        public XmlDocument XmlDataDoc
+        public XmlDocument Payload
         {
             get
             {

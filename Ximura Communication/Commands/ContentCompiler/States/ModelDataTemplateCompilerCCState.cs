@@ -123,7 +123,7 @@ namespace Ximura.Communication
                             if (outData != null)
                             {
                                 XmlDocumentFragment frag = element.OwnerDocument.CreateDocumentFragment();
-                                frag.InnerXml = ((XmlContentBase)outData).XmlDataDoc.LastChild.OuterXml;
+                                frag.InnerXml = ((XmlDocumentContentBase)outData).Payload.LastChild.OuterXml;
                                 element.AppendChild(frag);
                             }
                             else if (!insert.PermitError)

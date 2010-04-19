@@ -55,7 +55,7 @@ namespace Ximura.Communication
                 string outputType = context.Request.Settings.OutputColl[0].OutputType;
                 string data;
                 if (path == null || outputType == "xslt")
-                    data = context.ModelData.XmlDataDoc.InnerXml;
+                    data = context.ModelData.Payload.InnerXml;
                 else
                 {
                     data = context.ModelData.ExtractPathData(path);

@@ -66,7 +66,7 @@ namespace Ximura.Data
         {
             get
             {
-                XmlNode node = XmlDataDoc.SelectSingleNode("//ximura:entity/ximura:tid", NSM);
+                XmlNode node = Payload.SelectSingleNode("//ximura:entity/ximura:tid", NSM);
                 if (node != null && node.InnerText != null && node.InnerText != "")
                     return new Guid(node.InnerText);
 
@@ -74,7 +74,7 @@ namespace Ximura.Data
             }
             protected set
             {
-                XmlNode node = XmlDataDoc.SelectSingleNode("//ximura:entity/ximura:tid", NSM);
+                XmlNode node = Payload.SelectSingleNode("//ximura:entity/ximura:tid", NSM);
                 if (node != null)
                     node.InnerText = value.ToString().ToUpperInvariant();
                 else
@@ -90,7 +90,7 @@ namespace Ximura.Data
         {
             get
             {
-                XmlNode node = XmlDataDoc.SelectSingleNode("//ximura:entity/ximura:cid", NSM);
+                XmlNode node = Payload.SelectSingleNode("//ximura:entity/ximura:cid", NSM);
                 if (node != null && node.InnerText != null && node.InnerText != "")
                     return new Guid(node.InnerText);
 
@@ -98,7 +98,7 @@ namespace Ximura.Data
             }
             set
             {
-                XmlNode node = XmlDataDoc.SelectSingleNode("//ximura:entity/ximura:cid", NSM);
+                XmlNode node = Payload.SelectSingleNode("//ximura:entity/ximura:cid", NSM);
                 if (node != null)
                     node.InnerText = value.ToString().ToUpperInvariant();
                 else
@@ -114,7 +114,7 @@ namespace Ximura.Data
         {
             get
             {
-                XmlNode node = XmlDataDoc.SelectSingleNode("//ximura:entity/ximura:vid", NSM);
+                XmlNode node = Payload.SelectSingleNode("//ximura:entity/ximura:vid", NSM);
                 if (node != null && node.InnerText != null && node.InnerText != "")
                     return new Guid(node.InnerText);
 
@@ -122,7 +122,7 @@ namespace Ximura.Data
             }
             set
             {
-                XmlNode node = XmlDataDoc.SelectSingleNode("//ximura:entity/ximura:vid", NSM);
+                XmlNode node = Payload.SelectSingleNode("//ximura:entity/ximura:vid", NSM);
                 if (node != null)
                     node.InnerText = value.ToString().ToUpperInvariant();
                 else
@@ -172,10 +172,10 @@ namespace Ximura.Data
             //bool constraint = XmlDataDoc.DataSet.EnforceConstraints;
             //XmlDataDoc.DataSet.EnforceConstraints = false;
 
-            XmlDocumentFragment frag = XmlDataDoc.CreateDocumentFragment();
+            XmlDocumentFragment frag = Payload.CreateDocumentFragment();
             frag.InnerXml = sb.ToString();
 
-            XmlNode rootNode = XmlDataDoc.SelectSingleNode(XPSc("r"),NSM);
+            XmlNode rootNode = Payload.SelectSingleNode(XPSc("r"),NSM);
             //this is tricky one, but basically the EntityID should be the first item in the document.
             if (rootNode.HasChildNodes)
                 rootNode.InsertBefore(frag, rootNode.FirstChild);

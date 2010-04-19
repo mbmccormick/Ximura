@@ -119,7 +119,7 @@ namespace Ximura.Communication
 
         protected void EmailAddressSet(string xPath, MailAddress address)
         {
-            XmlElement elem = (XmlElement)XmlDataDoc.SelectSingleNode(xPath, NSM);
+            XmlElement elem = (XmlElement)Payload.SelectSingleNode(xPath, NSM);
 
             elem.InnerText = address.DisplayName;
             elem.Attributes["address"].Value = address.Address;
@@ -127,7 +127,7 @@ namespace Ximura.Communication
 
         protected MailAddress EmailAddressGet(string xPath)
         {
-            XmlElement elem = (XmlElement)XmlDataDoc.SelectSingleNode(xPath, NSM);
+            XmlElement elem = (XmlElement)Payload.SelectSingleNode(xPath, NSM);
 
             return EmailAddressGet(elem);
         }
@@ -169,7 +169,7 @@ namespace Ximura.Communication
             //Get the address type shorthand.
             string addressType = EmailDestinationTypeConvert(type);
 
-            XmlNodeList items = this.XmlDataDoc.SelectNodes(XPSc("r", string.Format("Recipients[@type='{0}']", addressType), "Recipient"), NSM);
+            XmlNodeList items = this.Payload.SelectNodes(XPSc("r", string.Format("Recipients[@type='{0}']", addressType), "Recipient"), NSM);
 
             foreach (XmlNode node in items)
             {
@@ -206,7 +206,7 @@ namespace Ximura.Communication
             
             try
             {
-                XmlNode parent = this.XmlDataDoc.SelectSingleNode(XPSc("r", string.Format("Recipients[@type='{0}']", addressType)), NSM);
+                XmlNode parent = this.Payload.SelectSingleNode(XPSc("r", string.Format("Recipients[@type='{0}']", addressType)), NSM);
 
                 XmlElementAdd(parent, "Recipient", destination.DisplayName, XmlAttributeCreate("address", destination.Address));
             }

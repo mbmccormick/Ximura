@@ -39,7 +39,7 @@ namespace Ximura.Data
     /// <summary>
     /// The XMLContent object wraps basic persistence functionality around the XMl Data object.
     /// </summary>
-    public partial class XmlContentBase
+    public partial class XmlDocumentContentBase
     {
         #region XmlAttributeAdd
         protected void XmlAttributeAdd(XmlElement elem, string field, string data)
@@ -50,7 +50,7 @@ namespace Ximura.Data
         #region XmlAttributeCreate
         protected XmlAttribute XmlAttributeCreate(string field, string data)
         {
-            XmlAttribute attr = XmlDataDoc.CreateAttribute(field);
+            XmlAttribute attr = Payload.CreateAttribute(field);
             attr.Value = data;
             return attr;
         }
@@ -81,7 +81,7 @@ namespace Ximura.Data
         #region XmlElementCreate
         protected XmlElement XmlElementCreate(string field, string data, XmlAttribute[] attrs)
         {
-            XmlElement elem = XmlDataDoc.CreateElement(field, NamespaceDefault.ToString());
+            XmlElement elem = Payload.CreateElement(field, NamespaceDefault.ToString());
 
             if (attrs != null)
                 foreach (XmlAttribute attr in attrs)
@@ -110,7 +110,7 @@ namespace Ximura.Data
         {
             //bool constraint = XmlDataDoc.DataSet.EnforceConstraints;
             //XmlDataDoc.DataSet.EnforceConstraints = false;
-            XmlElement elem = XmlDataDoc.CreateElement(field, NamespaceDefault.ToString());
+            XmlElement elem = Payload.CreateElement(field, NamespaceDefault.ToString());
 
             if (attrs != null)
                 foreach (XmlAttribute attr in attrs)
@@ -181,13 +181,13 @@ namespace Ximura.Data
         /// </summary>
         protected virtual void NamespaceManagerBuild()
         {
-            if (XmlDataDoc == null)
+            if (Payload == null)
             {
                 mNSM = null;
                 return;
             }
 
-            XmlNamespaceManager nsm = new XmlNamespaceManager(XmlDataDoc.NameTable);
+            XmlNamespaceManager nsm = new XmlNamespaceManager(Payload.NameTable);
             NamespaceManagerAdd(nsm);
             mNSM = nsm;
         }
@@ -262,7 +262,7 @@ namespace Ximura.Data
         /// <returns>Returns a new element.</returns>
         protected XmlDocumentFragment CreateFragment(CreateFragmentAction action)
         {
-            XmlDocumentFragment frag = XmlDataDoc.CreateDocumentFragment();
+            XmlDocumentFragment frag = Payload.CreateDocumentFragment();
             StringBuilder sb = new StringBuilder();
             XmlWriterSettings settings = new XmlWriterSettings();
             settings.OmitXmlDeclaration = true;
@@ -282,8 +282,8 @@ namespace Ximura.Data
         {
             try
             {
-                XmlNodeList data = XmlDataDoc.SelectNodes(xPath, NSM);
-                XmlNode rootNode = XmlDataDoc.SelectSingleNode(XPSc("r"), NSM);
+                XmlNodeList data = Payload.SelectNodes(xPath, NSM);
+                XmlNode rootNode = Payload.SelectSingleNode(XPSc("r"), NSM);
                 if (rootNode == null)
                     return false;
 
@@ -340,7 +340,7 @@ namespace Ximura.Data
         /// <param name="filename">The filename to save the file to.</param>
         public virtual string DumpXML(string filename)
         {
-            this.XmlDataDoc.Save(filename);
+            this.Payload.Save(filename);
             //Debug.WriteLine(filename);
             return filename;
         }

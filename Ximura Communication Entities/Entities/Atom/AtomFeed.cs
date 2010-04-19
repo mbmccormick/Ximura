@@ -122,20 +122,20 @@ namespace Ximura.Communication
         {
             try
             {
-                XmlDocumentFragment frag = XmlDataDoc.CreateDocumentFragment();
+                XmlDocumentFragment frag = Payload.CreateDocumentFragment();
 
-                XmlNode dataNode = entry.XmlDataDoc.FirstChild;
+                XmlNode dataNode = entry.Payload.FirstChild;
 
                 while (dataNode.NodeType != XmlNodeType.Element)
                     dataNode = dataNode.NextSibling;
 
                 frag.InnerXml = dataNode.OuterXml;
 
-                XmlNodeList data = XmlDataDoc.SelectNodes("//r:entry", NSM);
+                XmlNodeList data = Payload.SelectNodes("//r:entry", NSM);
 
                 if (data.Count == 0)
                 {
-                    XmlNode rootNode = XmlDataDoc.SelectSingleNode(XPSc("r"), NSM);
+                    XmlNode rootNode = Payload.SelectSingleNode(XPSc("r"), NSM);
                     rootNode.AppendChild(frag);
                 }
                 else
@@ -160,7 +160,7 @@ namespace Ximura.Communication
         /// <returns>Returns an entry collection.</returns>
         public IEnumerable<T> EntryCollection<T>(bool objectPoolAutoReturn) where T : AtomEntry
         {
-            XmlNodeList data = XmlDataDoc.SelectNodes("//r:entry", NSM);
+            XmlNodeList data = Payload.SelectNodes("//r:entry", NSM);
             foreach (XmlNode node in data)
             {
                 T entry = EntryCollectionGetEntry<T>(node);
@@ -195,7 +195,7 @@ namespace Ximura.Communication
         public T EntryGet<T>(int ordinal) where T : AtomEntry
         {
             string path = "//r:feed/r:entry[osmeta:osrelevance='" + ordinal.ToString() + "']";
-            XmlNode node = XmlDataDoc.SelectSingleNode(path, NSM);
+            XmlNode node = Payload.SelectSingleNode(path, NSM);
             if (node == null)
                 throw new ArgumentOutOfRangeException("ordinal", string.Format("Ordinal ({0}) is out of range.", ordinal));
             T entry = EntryCollectionGetEntry<T>(node);

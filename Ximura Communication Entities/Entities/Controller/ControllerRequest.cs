@@ -153,7 +153,7 @@ namespace Ximura.Communication
         {
             try
             {
-                XmlNode parent = this.XmlDataDoc.SelectSingleNode(XPSc("rp","headers"), NSM);
+                XmlNode parent = this.Payload.SelectSingleNode(XPSc("rp","headers"), NSM);
                 
                 XmlElementAdd(parent,"value",data,XmlAttributeCreate("type",field.ToLowerInvariant()));
             }
@@ -174,7 +174,7 @@ namespace Ximura.Communication
         {
             try
             {
-                XmlNode parent = this.XmlDataDoc.SelectSingleNode(XPSc("rv"), NSM);
+                XmlNode parent = this.Payload.SelectSingleNode(XPSc("rv"), NSM);
 
                 XmlElementAdd(parent, "value", capture, XmlAttributeCreate("type", parameter));
 
@@ -195,7 +195,7 @@ namespace Ximura.Communication
         {
             try
             {
-                XmlNode parent = this.XmlDataDoc.SelectSingleNode(XPSc("rv", "value") + "[@type='" + parameter + "']", NSM);
+                XmlNode parent = this.Payload.SelectSingleNode(XPSc("rv", "value") + "[@type='" + parameter + "']", NSM);
                 if (parent == null)
                     return null;
                 return parent.InnerText;
@@ -313,7 +313,7 @@ namespace Ximura.Communication
         private void AddParamPairs(string xPath, string elementName, string attrName,
             List<KeyValuePair<string, string>> values, bool append)
         {
-            XmlNode parent = XmlDataDoc.SelectSingleNode(xPath, NSM);
+            XmlNode parent = Payload.SelectSingleNode(xPath, NSM);
 
             if (!append && parent.HasChildNodes)
                 parent.RemoveAll();
@@ -327,7 +327,7 @@ namespace Ximura.Communication
         private string CombineParamPairs(string xPath,
             string itemBreak, string charJoin, Combiner appender)
         {
-            XmlNodeList children = XmlDataDoc.SelectNodes(xPath, NSM);
+            XmlNodeList children = Payload.SelectNodes(xPath, NSM);
 
             if (children.Count==0)
                 return "";
@@ -362,7 +362,7 @@ namespace Ximura.Communication
             {
                 string path = XPSc("rp", "encoding", "value");
 
-                XmlNode comp = XmlDataDoc.SelectSingleNode(path, NSM); ;// XmlMappingGetToString;
+                XmlNode comp = Payload.SelectSingleNode(path, NSM); ;// XmlMappingGetToString;
                 if (comp == null)
                     return null;
 
@@ -490,12 +490,12 @@ namespace Ximura.Communication
         /// </summary>
         private void RequestBodyNodeCheck()
         {
-            XmlNode body = XmlDataDoc.SelectSingleNode(XPSc("rp", "body"),NSM);
+            XmlNode body = Payload.SelectSingleNode(XPSc("rp", "body"),NSM);
 
             if (body != null)
                 return;
 
-            XmlNode parent = XmlDataDoc.SelectSingleNode(XPSc("rp"),NSM);
+            XmlNode parent = Payload.SelectSingleNode(XPSc("rp"),NSM);
             XmlElementAdd(parent, "body", null,
                     new XmlAttribute[] {
                         XmlAttributeCreate("length", ""), 
@@ -696,7 +696,7 @@ namespace Ximura.Communication
             get
             {
                 XmlNodeList nodeCookies =
-                    this.XmlDataDoc.SelectNodes("//r:controllerrequest/r:request/r:protocol/r:headers/r:value[@type='cookie']", NSM);
+                    this.Payload.SelectNodes("//r:controllerrequest/r:request/r:protocol/r:headers/r:value[@type='cookie']", NSM);
 
                 foreach (XmlNode node in nodeCookies)
                 {
@@ -716,7 +716,7 @@ namespace Ximura.Communication
         /// <returns>Returns true if the parameter exists.</returns>
         public bool RequestQueryParameterExists(string parameter)
         {
-            XmlNode node = XmlDataDoc.SelectSingleNode(XPSc("rp", "query", "value") + "[@type='" + parameter + "']", NSM);
+            XmlNode node = Payload.SelectSingleNode(XPSc("rp", "query", "value") + "[@type='" + parameter + "']", NSM);
 
             return node != null;
         }
@@ -730,7 +730,7 @@ namespace Ximura.Communication
         /// <returns>Returns the query parameter value or null if the parameter cannot be found.</returns>
         public string RequestQueryParameterGet(string parameter)
         {
-            XmlNode node = XmlDataDoc.SelectSingleNode(XPSc("rp", "query", "value") + "[@type='" +parameter +"']", NSM);
+            XmlNode node = Payload.SelectSingleNode(XPSc("rp", "query", "value") + "[@type='" +parameter +"']", NSM);
 
             return node == null?null:node.InnerText; 
         }
@@ -744,7 +744,7 @@ namespace Ximura.Communication
         /// <param name="value"></param>
         public void RequestQueryParameterSet(string parameter, string value)
         {
-            XmlNode node = XmlDataDoc.SelectSingleNode(XPSc("rp", "query", "value") + "[@type='" + parameter + "']", NSM);
+            XmlNode node = Payload.SelectSingleNode(XPSc("rp", "query", "value") + "[@type='" + parameter + "']", NSM);
 
             if (node != null)
             {
@@ -752,7 +752,7 @@ namespace Ximura.Communication
                 return;
             }
             //Ok, we need to create the node.
-            node = XmlDataDoc.SelectSingleNode(XPSc("rp", "query"), NSM);
+            node = Payload.SelectSingleNode(XPSc("rp", "query"), NSM);
             XmlElementAdd(node, "value", value, XmlAttributeCreate("type", parameter));
         }
         #endregion // RequestQueryParameter(string parameter)
@@ -778,7 +778,7 @@ namespace Ximura.Communication
             get
             {
                 XmlNodeList nodeCookies =
-                    this.XmlDataDoc.SelectNodes("//r:controllerrequest/r:request/r:protocol/r:headers/r:value", NSM);
+                    this.Payload.SelectNodes("//r:controllerrequest/r:request/r:protocol/r:headers/r:value", NSM);
 
                 foreach (XmlNode node in nodeCookies)
                 {
@@ -797,7 +797,7 @@ namespace Ximura.Communication
             get
             {
                 XmlNodeList nodeCookies =
-                    this.XmlDataDoc.SelectNodes("//r:controllerrequest/r:response/r:protocol/r:headers/r:value", NSM);
+                    this.Payload.SelectNodes("//r:controllerrequest/r:response/r:protocol/r:headers/r:value", NSM);
 
                 foreach (XmlNode node in nodeCookies)
                 {
@@ -952,7 +952,7 @@ namespace Ximura.Communication
         {
             try
             {
-                XmlNode parent = this.XmlDataDoc.SelectSingleNode(XPSc("rr", "protocol", "headers"), NSM);
+                XmlNode parent = this.Payload.SelectSingleNode(XPSc("rr", "protocol", "headers"), NSM);
 
                 XmlElementAdd(parent, "value", data, XmlAttributeCreate("type", field));
             }
@@ -993,7 +993,7 @@ namespace Ximura.Communication
         {
             get 
             {
-                XmlNode node = XmlDataDoc.SelectSingleNode(XPSc("rp", "query","value") + "[@type='raw']", NSM);
+                XmlNode node = Payload.SelectSingleNode(XPSc("rp", "query","value") + "[@type='raw']", NSM);
 
                 return node != null; 
             }
@@ -1008,7 +1008,7 @@ namespace Ximura.Communication
         /// <returns>Returns the realm authentication or null if the realm cannot be found.</returns>
         public RealmAuthentication AuthenticationGet(string realm)
         {
-            XmlNode nodeAuth = XmlDataDoc.SelectSingleNode(
+            XmlNode nodeAuth = Payload.SelectSingleNode(
                 XPSc("ra", "domain[@domainid='" + realm + "']"), NSM);
 
             if (nodeAuth == null)
@@ -1030,12 +1030,12 @@ namespace Ximura.Communication
         /// <returns>Returns true.</returns>
         public bool AuthenticationSet(RealmAuthentication auth)
         {
-            XmlNode nodeAuth = XmlDataDoc.SelectSingleNode(
+            XmlNode nodeAuth = Payload.SelectSingleNode(
                 XPSc("ra", "domain[@domainid='" + auth.Realm + "' and userid='" + auth.Username + "']"), NSM);
 
             if (nodeAuth == null)
             {
-                XmlNode parent = XmlDataDoc.SelectSingleNode(XPSc("ra"), NSM);
+                XmlNode parent = Payload.SelectSingleNode(XPSc("ra"), NSM);
                 XmlElementAdd(parent, "domain", null,
                     new XmlAttribute[] {
                         XmlAttributeCreate("domainid", auth.Realm), 
@@ -1063,12 +1063,12 @@ namespace Ximura.Communication
         /// <param name="cookieValue">The cookie value.</param>
         public void CookieAdd(string cookieName, string cookieValue)
         {
-            XmlNode nodeCookie = XmlDataDoc.SelectSingleNode(
+            XmlNode nodeCookie = Payload.SelectSingleNode(
                 XPSc("rc", "cookie[@id='" + cookieName + "']"), NSM);
 
             if (nodeCookie == null)
             {
-                XmlNode parent = XmlDataDoc.SelectSingleNode(XPSc("rc"), NSM);
+                XmlNode parent = Payload.SelectSingleNode(XPSc("rc"), NSM);
                 XmlElement elem = XmlElementAdd(parent, "cookie", null,
                     new XmlAttribute[] {
                         XmlAttributeCreate("id", cookieName)}
@@ -1089,7 +1089,7 @@ namespace Ximura.Communication
         /// <returns></returns>
         public IEnumerable<Cookie> CookieGet(string cookieName)
         {
-            XmlNodeList nodeCookies = XmlDataDoc.SelectNodes(
+            XmlNodeList nodeCookies = Payload.SelectNodes(
                 XPSc("rc", "cookie[@id='" + cookieName + "']"), NSM);
 
             if (nodeCookies.Count == 0)

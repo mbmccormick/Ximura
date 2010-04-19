@@ -37,7 +37,7 @@ namespace Ximura.Data
     /// <summary>
     /// These are the pooling methods for the XmlContentBase.
     /// </summary>
-    public partial class XmlContentBase
+    public partial class XmlDocumentContentBase
     {
         #region Reset()
         /// <summary>
@@ -45,7 +45,7 @@ namespace Ximura.Data
         /// </summary>
         public override void Reset()
         {
-            XmlDataDoc = null;
+            Payload = null;
             base.Reset();
 
             ResetAutoLoadCheck();
@@ -64,7 +64,7 @@ namespace Ximura.Data
             {
                 if (disposing)
                 {
-                    XmlDataDoc = null;
+                    Payload = null;
 
                     base.Dispose(disposing);
                 }

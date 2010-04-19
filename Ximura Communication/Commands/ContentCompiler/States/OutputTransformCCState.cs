@@ -54,7 +54,7 @@ namespace Ximura.Communication
             {
                 if (context.Request.Data.OutputRawXML)
                 {
-                    string data = context.ModelData.XmlDataDoc.InnerXml; ;
+                    string data = context.ModelData.Payload.InnerXml; ;
                     context.Response.Body = PrepareBody(context, data);
                     context.Response.Body.ContentType = "application/xml; charset=utf-8";
                     context.Response.Status = CH.HTTPCodes.OK_200;

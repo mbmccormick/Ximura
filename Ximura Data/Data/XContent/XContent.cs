@@ -36,7 +36,7 @@ namespace Ximura.Data
     /// <summary>
     /// This is the base XML content class using the new .NET 3.5 Linq XML classes.
     /// </summary>
-    public partial class XContent : Content, IXPathNavigable
+    public partial class XDocumentContentBase : Content, IXPathNavigable
     {
         #region Declarations
         private XDocument mData;
@@ -47,7 +47,7 @@ namespace Ximura.Data
         /// <summary>
         /// This is the default constructor for the Content object.
         /// </summary>
-        public XContent()
+        public XDocumentContentBase()
         { 
             XPScBuild();
         }
@@ -57,7 +57,7 @@ namespace Ximura.Data
         /// </summary>
         /// <param name="info">The Serialization info object that contains all the relevant data.</param>
         /// <param name="context">The serialization context.</param>
-        public XContent(SerializationInfo info, StreamingContext context)
+        public XDocumentContentBase(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
             XPScBuild();
@@ -102,8 +102,6 @@ namespace Ximura.Data
             }
         }
         #endregion // XmlDataDoc
-
-
 
         #region IXPathNavigable Members
 

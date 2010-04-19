@@ -48,7 +48,7 @@ namespace Ximura.Data
         "xmrres://XimuraData/Ximura.Data.DataContent/Ximura.Data.Resources.Ximura.xsd")]
     [XimuraDataContentIDMapping("entity","cid")]
     [XimuraDataContentVersionMapping("entity", "vid")]
-    public partial class DataContent : XmlContentBase, IXimuraDataEntity,
+    public partial class DataContent : XmlDocumentContentBase, IXimuraDataEntity,
         IDataContentSummary, IXimuraDataContentLinkage
 	{
 		#region Declarations

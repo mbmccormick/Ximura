@@ -96,7 +96,7 @@ namespace Ximura.Communication
         {
             lock (syncAuth)
             {
-                XmlNode nodeAuth = XmlDataDoc.SelectSingleNode(
+                XmlNode nodeAuth = Payload.SelectSingleNode(
                     XPSc("ra", "domain[@id='" + userRealm + "']"), NSM);
 
                 if (nodeAuth == null)
@@ -116,7 +116,7 @@ namespace Ximura.Communication
         {
             lock (syncAuth)
             {
-                XmlNode nodeAuth = XmlDataDoc.SelectSingleNode(
+                XmlNode nodeAuth = Payload.SelectSingleNode(
                     XPSc("ra", "domain[@id='" + userRealm + "']"), NSM);
 
                 if (nodeAuth == null)
@@ -142,7 +142,7 @@ namespace Ximura.Communication
             lock (syncAuth)
             {
 
-                XmlNodeList nodeAuths = XmlDataDoc.SelectNodes(
+                XmlNodeList nodeAuths = Payload.SelectNodes(
                     XPSc("ra", "domain[@id='" + userRealm + "']"), NSM);
 
                 foreach (XmlNode node in nodeAuths)
@@ -161,10 +161,10 @@ namespace Ximura.Communication
                 //XmlNode nodeAuth = XmlDataDoc.SelectSingleNode(
                 //    XPSc("ra", "domain[@id='" + userRealm + "' and @userid='" + userID + "']"), NSM);
                 XmlNode nodeAuth = null;
-                XmlNodeList nodeAuthList = XmlDataDoc.SelectNodes(
+                XmlNodeList nodeAuthList = Payload.SelectNodes(
                     XPSc("ra", "domain[@id='" + userRealm + "']"), NSM);
 
-                XmlNode parent = XmlDataDoc.SelectSingleNode(XPSc("ra"), NSM);
+                XmlNode parent = Payload.SelectSingleNode(XPSc("ra"), NSM);
 
                 foreach (XmlNode auth in nodeAuthList)
                 {
@@ -218,7 +218,7 @@ namespace Ximura.Communication
         {
             get
             {
-                    XmlNodeList nodesAuth = XmlDataDoc.SelectNodes(XPSc("ra", "domain"), NSM);
+                    XmlNodeList nodesAuth = Payload.SelectNodes(XPSc("ra", "domain"), NSM);
                     if (nodesAuth == null)
                         yield break;
 

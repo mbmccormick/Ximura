@@ -37,7 +37,7 @@ namespace Ximura.Data
     /// <summary>
     /// The XMLContent object wraps basic persistence functionality around the XMl Data object.
     /// </summary>
-    public partial class XmlContent : XmlContentBase
+    public partial class XmlContent : XmlDocumentContentBase
     {
 		#region Constructors
 		/// <summary>

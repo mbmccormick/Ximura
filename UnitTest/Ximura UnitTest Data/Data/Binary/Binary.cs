@@ -10,7 +10,7 @@ using Ximura.Data;
 #endregion
 namespace Ximura.UnitTest.Data
 {
-    public class BinaryTest : XmlContentBase
+    public class BinaryTest : XmlDocumentContentBase
     {
         public override int Load(byte[] buffer, int offset, int count)
         {

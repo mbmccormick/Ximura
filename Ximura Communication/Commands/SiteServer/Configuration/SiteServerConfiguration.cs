@@ -68,7 +68,7 @@ namespace Ximura.Communication
             get
             {
                 //XmlNodeList nl = this.XmlDataDoc.SelectNodes(XPSc("r", "min", "fsmconf:pool"), NSM);
-                XmlNodeList nl = this.XmlDataDoc.SelectNodes("//r:SiteServerConfiguration/r:listeners/r:listener[@enabled='true']", NSM);
+                XmlNodeList nl = this.Payload.SelectNodes("//r:SiteServerConfiguration/r:listeners/r:listener[@enabled='true']", NSM);
                 foreach (XmlElement elem in nl)
                 {
                     yield return new Uri(elem.Attributes["address"].Value);
@@ -168,7 +168,7 @@ namespace Ximura.Communication
                     writer.WriteEndElement();
                 });
 
-            XmlNode rootNode = XmlDataDoc.SelectSingleNode("//r:SiteServerConfiguration/r:listeners", NSM);
+            XmlNode rootNode = Payload.SelectSingleNode("//r:SiteServerConfiguration/r:listeners", NSM);
 
             rootNode.AppendChild(frag);
         }

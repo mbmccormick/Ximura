@@ -200,7 +200,7 @@ namespace Ximura.Communication
             get
             {
                 XmlNodeList nodeProperties =
-                    this.XmlDataDoc.SelectNodes(XPSc("r", "properties", "property"), NSM);
+                    this.Payload.SelectNodes(XPSc("r", "properties", "property"), NSM);
 
                 foreach (XmlNode node in nodeProperties)
                 {
@@ -225,7 +225,7 @@ namespace Ximura.Communication
                 node.InnerText = value;
             }
 
-            XmlNode parent = this.XmlDataDoc.SelectSingleNode(XPSc("rp"), NSM);
+            XmlNode parent = this.Payload.SelectSingleNode(XPSc("rp"), NSM);
             XmlElementAdd(parent, "property", value, XmlAttributeCreate("id", key));
         }
         #endregion // PropertySet(string key, string value)
@@ -276,7 +276,7 @@ namespace Ximura.Communication
         /// <returns>The specified node or null if the node cannot be found.</returns>
         private XmlNode PropertyNode(string key)
         {
-            return this.XmlDataDoc.SelectSingleNode(XPSc("rp", "property") + "[@id='" + key + "']", NSM);
+            return this.Payload.SelectSingleNode(XPSc("rp", "property") + "[@id='" + key + "']", NSM);
         }
         #endregion // PropertyNode(string key)
     }

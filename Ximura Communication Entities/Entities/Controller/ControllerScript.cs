@@ -147,7 +147,7 @@ namespace Ximura.Communication
             try
             {
                 //Ok, process the mappings.
-                XmlNodeList nlParam = XmlDataDoc.SelectNodes(XPSc("r", "parameters", "parameter"), NSM);
+                XmlNodeList nlParam = Payload.SelectNodes(XPSc("r", "parameters", "parameter"), NSM);
                 foreach (XmlNode node in nlParam)
                 {
                     string key = node.Attributes["id"].Value;
@@ -177,7 +177,7 @@ namespace Ximura.Communication
             int count = 0;
 
             //Ok, process the mappings.
-            XmlNodeList nlMatches = this.XmlDataDoc.SelectNodes(xPath, NSM);
+            XmlNodeList nlMatches = this.Payload.SelectNodes(xPath, NSM);
             if (nlMatches != null)
             {
                 foreach (XmlNode nodeMatch in nlMatches)
@@ -208,7 +208,7 @@ namespace Ximura.Communication
             if (realm == null)
                 throw new ArgumentNullException("realm", "realm cannot be null");
                 
-            XmlElement nodeAuth = (XmlElement)XmlDataDoc.SelectSingleNode(
+            XmlElement nodeAuth = (XmlElement)Payload.SelectSingleNode(
                 XPSc("ra", "realm[@id='" + realm.ToLowerInvariant() + "']"), NSM);
 
             if (nodeAuth == null)

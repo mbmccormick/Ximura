@@ -45,12 +45,12 @@ namespace Ximura.Data
         {
             get
             {
-                if (XmlDataDoc == null)
+                if (Payload == null)
                     return null;
 
                 using (MemoryStream memStream = new MemoryStream())
                 {
-                    XmlDataDoc.Save(memStream);
+                    Payload.Save(memStream);
                     return memStream.ToArray();
                 }
             }

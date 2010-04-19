@@ -35,7 +35,7 @@ namespace Ximura.Data
     /// <summary>
     /// This is the base XML content class using the new .NET 3.5 Linq XML classes.
     /// </summary>
-    public partial class XContent : Content
+    public partial class XDocumentContentBase : Content
     {
         //#region DumpXML
         ///// <summary>
