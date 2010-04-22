@@ -166,8 +166,7 @@ namespace Ximura.Data
             AtomAuthorAdd(name, uri, email, null, null);
         }
 
-        public void AtomAuthorAdd(string name, Uri uri, MailAddress email,
-            string baseUri, string lang)
+        public void AtomAuthorAdd(string name, Uri uri, MailAddress email, string baseUri, string lang)
         {
             AtomPersonConstructSet("author", name, uri, email, baseUri, lang, true);
         }
@@ -178,8 +177,7 @@ namespace Ximura.Data
             AtomContributorAdd(name, uri, email, null, null);
         }
 
-        public void AtomContributorAdd(string name, Uri uri, MailAddress email,
-            string baseUri, string lang)
+        public void AtomContributorAdd(string name, Uri uri, MailAddress email, string baseUri, string lang)
         {
             AtomPersonConstructSet("contributor", name, uri, email, baseUri, lang, true);
         }

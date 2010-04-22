@@ -35,8 +35,8 @@ namespace Ximura.Data
     /// This abstract class wraps a content based entity around a XML base object.
     /// </summary>
     /// <typeparam name="T">An XML object that implements IXPathNavigable.</typeparam>
-    public abstract partial class XmlContentHolder<T> : ContentHolder<T>, IXPathNavigable
-        where T : class, IXPathNavigable
+    public abstract partial class XmlContentHolder<T> : ContentHolder<T>//, IXPathNavigable
+        where T : class//, IXPathNavigable
     {
         #region Declarations
         /// <summary>
@@ -50,14 +50,14 @@ namespace Ximura.Data
         #endregion
 
         #region IXPathNavigable Members
-        /// <summary>
-        /// This method creates a navigator from the XML base object.
-        /// </summary>
-        /// <returns>Returns an XPath navigator.</returns>
-        public XPathNavigator CreateNavigator()
-        {
-            return mData.CreateNavigator();
-        }
+        ///// <summary>
+        ///// This method creates a navigator from the XML base object.
+        ///// </summary>
+        ///// <returns>Returns an XPath navigator.</returns>
+        //public XPathNavigator CreateNavigator()
+        //{
+        //    return mData.CreateNavigator();
+        //}
 
         #endregion
 

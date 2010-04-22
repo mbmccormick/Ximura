@@ -185,6 +185,10 @@
     <Compile Include="Content\Content_Pooling.cs" />
     <Compile Include="Content\Content_Properties.cs" />
     <Compile Include="Content\Content_Serialization.cs" />
+    <Compile Include="Content\XDocumentContentBase\XDocumentContentBase.cs" />
+    <Compile Include="Content\XDocumentContentBase\XDocumentContentBase_Helper.cs" />
+    <Compile Include="Content\XDocumentContentBase\XDocumentContentBase_Load.cs" />
+    <Compile Include="Content\XDocumentContentBase\XDocumentContentBase_Serialization.cs" />
     <Compile Include="Content\XmlContentHolder\XmlContentHolder.cs" />
     <Compile Include="Content\XmlContentHolder\XmlContentHolder_Attributes.cs" />
     <Compile Include="Content\XmlContentHolder\XmlContentHolder_Load.cs" />
@@ -241,16 +245,6 @@
     </Compile>
     <Compile Include="Data\DataContent\Events\DataChangedEventArgs.cs" />
     <Compile Include="Data\DataContent\Interfaces\IXimuraDataEntityServer.cs" />
-    <Compile Include="Data\XContent\XContent.cs">
-    </Compile>
-    <Compile Include="Data\XContent\XContent_Attributes.cs">
-    </Compile>
-    <Compile Include="Data\XContent\XContent_Helper.cs">
-    </Compile>
-    <Compile Include="Data\XContent\XContent_Load.cs">
-    </Compile>
-    <Compile Include="Data\XContent\XContent_Serialization.cs">
-    </Compile>
     <Compile Include="Data\XimuraCore\XimuraCore.cs">
     </Compile>
     <Compile Include="Data\XmlContentBase\XmlContentBase.cs">
@@ -332,7 +326,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Content\XDocumentContentBase\" />
     <Folder Include="Content\XmlDocumentContentBase\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

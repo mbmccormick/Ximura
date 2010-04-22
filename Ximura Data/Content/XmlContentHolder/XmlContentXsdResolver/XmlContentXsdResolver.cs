@@ -35,6 +35,9 @@ using AH = Ximura.AttributeHelper;
 #endregion // using
 namespace Ximura.Data
 {
+    /// <summary>
+    /// This class is used to resolve the XSD 
+    /// </summary>
     public partial class XmlContentXsdResolver : XmlResolver
     {
         #region Declarations
@@ -83,6 +86,7 @@ namespace Ximura.Data
             {
                 throw new XmlException("Xml_UnsupportedClass");
             }
+
             return GetStream(absoluteUri);
         }
 

@@ -125,8 +125,7 @@ namespace Ximura.Data
         {
             AtomSubtitleSet(type, text, null, null);
         }
-        public void AtomSubtitleSet(AtomTextType type, string text,
-            string baseUri, string lang)
+        public void AtomSubtitleSet(AtomTextType type, string text, string baseUri, string lang)
         {
             AtomTextConstructSet("subtitle", type, text, baseUri, lang);
         }
