@@ -36,7 +36,7 @@ namespace Ximura.Data
     /// <summary>
     /// This is the base XML content class using the new .NET 3.5 Linq XML classes.
     /// </summary>
-    public partial class XDocumentContentBase : XmlContentHolder<XDocument>, IXPathNavigable
+    public partial class XDocumentContentBase : XmlContentHolder<XDocument>
     {
         #region Declarations
         private Dictionary<string, XNamespace> mNSM = null;
@@ -101,14 +101,6 @@ namespace Ximura.Data
         }
         #endregion // XmlDataDoc
 
-        #region IXPathNavigable Members
-
-        public XPathNavigator CreateNavigator()
-        {
-            return mData.CreateNavigator();
-        }
-
-        #endregion
 
         protected override XmlNamespaceManager NamespaceManagerCreate()
         {
