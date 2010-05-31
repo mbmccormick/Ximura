@@ -25,7 +25,6 @@ namespace Ximura.UnitTest.Data
         {
         }
         #endregion 
-
         #region TestContext
         /// <summary>
         ///Gets or sets the test context which provides
@@ -60,15 +59,30 @@ namespace Ximura.UnitTest.Data
         //
         #endregion
 
-        [TestMethod]
-        public void PersistenceTestContainerGeneric()
+        #region CDSInitialize()
+        /// <summary>
+        /// This helper class creates the CDS container.
+        /// </summary>
+        /// <returns>Returns the container.</returns>
+        private ContentDataStoreContainer CDSInitialize()
         {
-            ContentDataStoreContainer<BinaryTestCDS> cont = 
-                new ContentDataStoreContainer<BinaryTestCDS>(
-                    new KeyValuePair<string,ICDSState>[] 
-                    { 
-                        new KeyValuePair<string,ICDSState>("BinaryTest",new BinaryPersistenceAgent())
-                    });
+            return new ContentDataStoreContainer(
+                new KeyValuePair<string, ICDSState>[] 
+                { 
+                    new KeyValuePair<string,ICDSState>("BinaryTest",new BinaryTestPersistenceAgent())
+                });
+        }
+        #endregion 
+
+        #region CDS_BinaryTest_Construct
+        /// <summary>
+        /// This is a generic test to validate that the persistence agent can be added to the container,
+        /// and that the simple create action can be performed.
+        /// </summary>
+        [TestMethod]
+        public void CDS_BinaryTest_Construct()
+        {
+            ContentDataStoreContainer cont = CDSInitialize();        
 
             try
             {
@@ -76,6 +90,8 @@ namespace Ximura.UnitTest.Data
 
                 BinaryTest bt;
                 CDSResponse res = cont.CDSConstruct<BinaryTest>(out bt);
+
+                Assert.IsTrue(res == CDSResponse.OK);
 
             }
             catch (Exception ex)
@@ -87,5 +103,44 @@ namespace Ximura.UnitTest.Data
                 cont.Stop();
             }
         }
+        #endregion 
+
+        #region CDS_BinaryTest_CreateRead
+        /// <summary>
+        /// This is a generic test to validate that the persistence agent can be added to the container,
+        /// and that the simple create action can be performed.
+        /// </summary>
+        [TestMethod]
+        public void CDS_BinaryTest_CreateRead()
+        {
+            ContentDataStoreContainer cont = CDSInitialize();
+
+            try
+            {
+                cont.Start();
+
+                BinaryTest bt = new BinaryTest();
+                //bt.Body
+                CDSResponse res = cont.CDSCreate(bt);
+
+                Assert.IsTrue(res == CDSResponse.OK, "Create failed.");
+
+                BinaryTest bt2;
+                CDSResponse res2 = cont.CDSRead<BinaryTest>(bt.IDContent, null, out bt2);
+                Assert.IsTrue(res2 == CDSResponse.OK, "Read failed.");
+
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                cont.Stop();
+            }
+        }
+        #endregion 
+
     }
 }

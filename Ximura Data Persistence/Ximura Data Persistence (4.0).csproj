@@ -88,10 +88,8 @@
   <ItemGroup>
     <Compile Include="Attributes\CDSStateActionPermitAttribute.cs" />
     <Compile Include="Attributes\CDSStateTypePermitAttribute.cs" />
-    <Compile Include="Configuration\CDSConfigSH.cs" />
     <Compile Include="Configuration\CDSConfiguration.cs" />
     <Compile Include="Configuration\CDSSettings.cs" />
-    <Compile Include="Configuration\PersistenceManagerConfigSH.cs" />
     <Compile Include="ContentDataStore.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -248,6 +246,9 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Persistence Managers\SQLDB Based\SQL\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

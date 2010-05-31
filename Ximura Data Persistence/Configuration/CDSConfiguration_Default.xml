@@ -20,8 +20,18 @@
   </commandconfig>
 
   <timerpoll xmlns="http://schema.ximura.org/configuration/command/1.0" 
-    enabled="true" polltimeenabled="true" autostart="true" polltimerepeatvalue ="5" polltimerepeattype ="s">
-    <polljob id="CacheManagersPoll" type="ContentDataStoreSubCommand" polltimeautostart="false" polltimeenabled ="true" polltimerepeatvalue="5" polltimerepeattype ="s"/>
+    enabled="true" 
+    polltimeenabled="true" 
+    autostart="true" 
+    polltimerepeatvalue ="5" 
+    polltimerepeattype ="s">
+    <polljob 
+      id="CacheManagersPoll" 
+      type="ContentDataStoreSubCommand" 
+      polltimeautostart="false" 
+      polltimeenabled ="true" 
+      polltimerepeatvalue="5" 
+      polltimerepeattype ="s"/>
   </timerpoll>
 
   <fsm:pool min="5" prefer="50" max="200" />

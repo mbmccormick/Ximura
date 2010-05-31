@@ -11,6 +11,9 @@ using Ximura.Data;
 #endregion
 namespace Ximura.UnitTest.Data
 {
+    /// <summary>
+    /// This persistence agent manages the BinaryTest object.
+    /// </summary>
     [CDSStateActionPermit(CDSAction.Construct)]
     [CDSStateActionPermit(CDSAction.Create)]
     [CDSStateActionPermit(CDSAction.Read)]
@@ -18,23 +21,29 @@ namespace Ximura.UnitTest.Data
     [CDSStateActionPermit(CDSAction.Delete)]
     [CDSStateActionPermit(CDSAction.VersionCheck)]
     [CDSStateActionPermit(CDSAction.ResolveReference)]
-    public class BinaryPersistenceAgent : PersistenceManagerCDSState<BinaryTest, BinaryTest, SQLDBPMCDSConfiguration>
+    public class BinaryTestPersistenceAgent : PersistenceManagerCDSState<BinaryTest, BinaryTest, SQLDBPMCDSConfiguration>
     {
         #region Constructors
         /// <summary>
         /// This is the default constructor.
         /// </summary>
-        public BinaryPersistenceAgent() : this(null) { }
+        public BinaryTestPersistenceAgent() : this(null) { }
         /// <summary>
         /// This is the component model constructor.
         /// </summary>
         /// <param name="container">The container</param>
-        public BinaryPersistenceAgent(IContainer container)
+        public BinaryTestPersistenceAgent(IContainer container)
             : base(container)
         {
         }
         #endregion // Constructors
 
+        #region Construct(CDSContext context)
+        /// <summary>
+        /// Constructs the BinaryTest object and adds it to the persistence context.
+        /// </summary>
+        /// <param name="context">The persistence context.</param>
+        /// <returns>Returns true to indicate a successful operation.</returns>
         protected override bool Construct(CDSContext context)
         {
             context.Response.Data = new BinaryTest();
@@ -42,6 +51,8 @@ namespace Ximura.UnitTest.Data
 
             return true;
         }
+        #endregion 
+
 
         
     }

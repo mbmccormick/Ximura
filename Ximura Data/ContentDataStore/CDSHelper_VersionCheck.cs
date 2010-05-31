@@ -36,7 +36,7 @@ namespace Ximura.Data
     public static partial class CDSHelper
     {
         /// <summary>
-        /// This method initializes the entity from the persistence store.
+        /// This method verifies the entity from the persistence store.
         /// </summary>
         /// <typeparam name="E">The entity type.</typeparam>
         /// <param name="svc">The persistence service.</param>
@@ -47,6 +47,16 @@ namespace Ximura.Data
             return SessionRQ.CDSExecute<T>(CDSData.Get(CDSAction.VersionCheck, refType, refValue), out cid, out vid);
         }
 
+        /// <summary>
+        /// This method verifies the entity from the persistence store.
+        /// </summary>
+        /// <typeparam name="T">The entity type parameter</typeparam>
+        /// <param name="SessionRQ">The session RQ.</param>
+        /// <param name="CID">The CID.</param>
+        /// <param name="VID">The VID.</param>
+        /// <param name="cid">The cid.</param>
+        /// <param name="vid">The vid.</param>
+        /// <returns></returns>
         public static CDSResponse CDSVersionCheck<T>(this IXimuraSessionRQ SessionRQ, Guid? CID, Guid? VID, 
             out Guid? cid, out Guid? vid) where T : Content
         {

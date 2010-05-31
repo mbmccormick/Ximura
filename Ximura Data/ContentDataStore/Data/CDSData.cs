@@ -44,6 +44,7 @@ namespace Ximura.Data
         {
             return Get(action, CID, VID, JobPriority.Normal);
         }
+
         /// <summary>
         /// This factory method can be used to Get a request object and set its 
         /// parameters

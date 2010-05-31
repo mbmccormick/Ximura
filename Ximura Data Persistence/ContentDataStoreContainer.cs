@@ -44,10 +44,10 @@ namespace Ximura.Data
         {
         }
         /// <summary>
-        /// This is the state extension constructor.
+        /// This is the state extension constructor. You can add custom persistence managers manually through the constructor.
         /// </summary>
-        /// <param name="states">A collection of states to add to the finite state machine.</param>
-        public ContentDataStoreContainer(IEnumerable<KeyValuePair<string,ICDSState>> states):base(states)
+        /// <param name="states">A collection of persistence states to add to the baser finite state machine collection.</param>
+        public ContentDataStoreContainer(IEnumerable<KeyValuePair<string, ICDSState>> states):base(states)
         {
         }
         #endregion 
@@ -66,7 +66,48 @@ namespace Ximura.Data
             base.Dispose(disposing);
         }
         #endregion 
-
-
     }
+
+    #region ContentDataStoreContainer
+    /// <summary>
+    /// This class encapsulates the Content Data Store for use in standalone projects that 
+    /// does not use the Ximura Framework.
+    /// </summary>
+    public class ContentDataStoreContainer : ContentDataStoreContainer<ContentDataStore>
+    {
+        #region Constructor
+        /// <summary>
+        /// This is the default constructor.
+        /// </summary>
+        public ContentDataStoreContainer()
+            : base(null)
+        {
+        }
+        /// <summary>
+        /// This is the state extension constructor. You can add custom persistence managers manually through the constructor.
+        /// </summary>
+        /// <param name="states">A collection of persistence states to add to the baser finite state machine collection.</param>
+        public ContentDataStoreContainer(IEnumerable<KeyValuePair<string, ICDSState>> states)
+            : base(states)
+        {
+        }
+        #endregion
+
+        #region Dispose(bool disposing)
+        /// <summary>
+        /// This override stops the service before it is disposed.
+        /// </summary>
+        /// <param name="disposing"></param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                Stop();
+            }
+            base.Dispose(disposing);
+        }
+        #endregion
+    }
+    #endregion 
+
 }

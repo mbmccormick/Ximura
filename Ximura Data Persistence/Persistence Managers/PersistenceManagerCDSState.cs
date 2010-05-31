@@ -166,7 +166,5 @@ namespace Ximura.Data
         }
         #endregion // PermitType(Type objectType)
 
-
-
     }
 }
