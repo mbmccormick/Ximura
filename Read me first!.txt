@@ -11,3 +11,5 @@ Mar 21st 2009
 
 The project is being reorganised to allow parts of the system to be used without importing the whole framework.
 
+This project now supports VS2010 and is currently depreciating VS2008.
+
