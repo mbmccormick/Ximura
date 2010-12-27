@@ -32,7 +32,10 @@ namespace Ximura
     /// <summary>
     /// The lockable base class is for objects that require fine-grained locking.
     /// </summary>
-    [Serializable, StructLayout(LayoutKind.Sequential)]
+#if (!SILVERLIGHT)
+    [Serializable]
+#endif
+    [StructLayout(LayoutKind.Sequential)]
     public struct LockableMarkableWrapper<T>
     {
         #region Declarations

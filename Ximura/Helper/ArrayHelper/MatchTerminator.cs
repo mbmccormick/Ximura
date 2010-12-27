@@ -20,7 +20,7 @@ using System.Text;
 namespace Ximura
 {
     /// <summary>
-    /// This structure is used to hold the matching array.
+    /// This structure is used to hold the termination array.
     /// </summary>
     public abstract class MatchTerminator<TSource, TMatch>
     {

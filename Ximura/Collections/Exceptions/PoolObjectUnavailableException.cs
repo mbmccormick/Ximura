@@ -44,11 +44,13 @@ namespace Ximura
         /// <param name="message">The error message.</param>
         /// <param name="ex">The base exception.</param>
         public PoolObjectUnavailableException(string message, Exception ex) : base(message, ex) { }
+#if (!SILVERLIGHT)
         /// <summary>
         /// This exception is used for deserialization.
         /// </summary>
         /// <param name="info">The serialization info.</param>
         /// <param name="context">The serialization context.</param>
         protected PoolObjectUnavailableException(SerializationInfo info, StreamingContext context) : base(info, context) { }
+#endif
     }
 }

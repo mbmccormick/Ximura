@@ -35,6 +35,7 @@ namespace Ximura
         /// </summary>
         /// <returns>An object of the pool type.</returns>
         object Get();
+#if (!SILVERLIGHT)
         /// <summary>
         /// This method returns an object of the specified type, with the deserialized data.
         /// </summary>
@@ -42,6 +43,7 @@ namespace Ximura
         /// <param name="context">The serialization context.</param>
         /// <returns>An object of the pool type.</returns>
         object Get(SerializationInfo info, StreamingContext context);
+#endif
 
         /// <summary>
         /// This method returns an object to the pool.
@@ -95,6 +97,7 @@ namespace Ximura
         /// </summary>
         /// <returns>An object of the type defined in the pool definition.</returns>
         T Get();
+#if (!SILVERLIGHT)
         /// <summary>
         /// The Get() method takes an object from the pool, if 
         /// there are no objects available the pool will create a new object.
@@ -103,6 +106,7 @@ namespace Ximura
         /// <param name="context">The serialization context.</param>
         /// <returns>An object of the type defined in the pool definition, with the serialization data.</returns>
         T Get(SerializationInfo info, StreamingContext context);
+#endif
         /// <summary>
         /// This method returns an object to the pool.
         /// </summary>
@@ -111,35 +115,5 @@ namespace Ximura
 
     }
 
-    public interface IXimuraPoolInitialize<T> : IXimuraPool<T>
-        where T : IXimuraPoolableObject
-    {
-        /// <summary>
-        /// The Get() method takes an object from the pool, if 
-        /// there are no objects available the pool will create a new object.
-        /// </summary>
-        /// <returns>An object of the type defined in the pool definition.</returns>
-        T Get(Action<T> initializer);
-        /// <summary>
-        /// The Get() method takes an object from the pool, if 
-        /// there are no objects available the pool will create a new object.
-        /// </summary>
-        /// <param name="info">The serialization info.</param>
-        /// <param name="context">The serialization context.</param>
-        /// <returns>An object of the type defined in the pool definition, with the serialization data.</returns>
-        T Get(SerializationInfo info, StreamingContext context, Action<T> initializer);
-    }
 
-    /// <summary>
-    /// This is the pool buffer interface. This interface is used by the pool managers 
-    /// to reset the references when closing down.
-    /// </summary>
-    public interface IXimuraPoolBuffer
-    {
-        /// <summary>
-        /// This method resets the buffer and it's connection to the underlying object pool.
-        /// </summary>
-        void ResetBuffer();
-
-    }
 }

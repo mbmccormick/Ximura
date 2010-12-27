@@ -31,11 +31,28 @@ namespace Ximura
 {
     public static partial class ArrayHelper
     {
+        #region FindCharCaseInsensitive(byte[] byData, byte byteSearch, int intStart)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="byData"></param>
+        /// <param name="byteSearch"></param>
+        /// <param name="intStart"></param>
+        /// <returns></returns>
         private static int FindCharCaseInsensitive(byte[] byData, byte byteSearch, int intStart)
         {
             return FindCharCaseInsensitive(byData,byteSearch, intStart, false);
         }
-
+        #endregion  
+        #region FindCharCaseInsensitive(byte[] byData, byte byteSearch, int intStart, bool blnCaseInsensitive)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="byData"></param>
+        /// <param name="byteSearch"></param>
+        /// <param name="intStart"></param>
+        /// <param name="blnCaseInsensitive"></param>
+        /// <returns></returns>
         private static int FindCharCaseInsensitive(byte[] byData, byte byteSearch, int intStart, bool blnCaseInsensitive)
         {
             if (!blnCaseInsensitive)
@@ -60,17 +77,45 @@ namespace Ximura
             }
 
         }
+        #endregion  
 
+        #region BinarySearchExt(this byte[] byData, byte[] bySearch, int intSearchPosition)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="byData"></param>
+        /// <param name="bySearch"></param>
+        /// <param name="intSearchPosition"></param>
+        /// <returns></returns>
         public static int BinarySearchExt(this byte[] byData, byte[] bySearch, int intSearchPosition)
         {
             return byData.BinarySearchExt(bySearch, intSearchPosition, byData.Length, false);
         }
-
+        #endregion  
+        #region BinarySearchExt(this byte[] byData, byte[] bySearch, int intSearchPosition, int intLength)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="byData"></param>
+        /// <param name="bySearch"></param>
+        /// <param name="intSearchPosition"></param>
+        /// <param name="intLength"></param>
+        /// <returns></returns>
         public static int BinarySearchExt(this byte[] byData, byte[] bySearch, int intSearchPosition, int intLength)
         {
             return byData.BinarySearchExt(bySearch, intSearchPosition, intLength, false);
         }
-
+        #endregion  
+        #region BinarySearchExt(this byte[] byData, byte[] bySearch, int intSearchPosition, int intLength, bool blnIgnoreCase)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="byData"></param>
+        /// <param name="bySearch"></param>
+        /// <param name="intSearchPosition"></param>
+        /// <param name="intLength"></param>
+        /// <param name="blnIgnoreCase"></param>
+        /// <returns></returns>
         public static int BinarySearchExt(this byte[] byData, byte[] bySearch, int intSearchPosition, int intLength, bool blnIgnoreCase)
         {
 
@@ -130,6 +175,6 @@ namespace Ximura
 
             return intPointer;
         }
-
+        #endregion  
     }
 }

@@ -33,7 +33,10 @@ namespace Ximura.Collections.Data
     /// This structure is used to hold the item in the collection.
     /// </summary>
     /// <typeparam name="T">The container object.</typeparam>
-    [Serializable, StructLayout(LayoutKind.Sequential)]
+#if (!SILVERLIGHT)
+    [Serializable]
+#endif
+    [StructLayout(LayoutKind.Sequential)]
     public struct CollectionVertexStruct<T> : ICollectionVertex<T>, IEquatable<CollectionVertexStruct<T>>
     {
         #region Constants

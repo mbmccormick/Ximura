@@ -13,11 +13,8 @@
 #region using
 using System;
 using System.Threading;
-using System.Timers;
 using System.Collections;
 using System.ComponentModel;
-using System.ComponentModel.Design;
-using System.ComponentModel.Design.Serialization;
 using System.Reflection;
 using System.Diagnostics;
 

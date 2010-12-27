@@ -67,8 +67,10 @@ namespace Ximura
         /// <summary>
         /// This is the object pool that the message belongs to.
         /// </summary>
+#if (!SILVERLIGHT)
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+#endif
         public IXimuraPool ObjectPool
         {
             get
@@ -85,8 +87,10 @@ namespace Ximura
         /// <summary>
         /// This property specifices whether the object can be returns to the pool.
         /// </summary>
+#if (!SILVERLIGHT)        
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+#endif        
         public bool ObjectPoolCanReturn
         {
             get { return mPool != null; }

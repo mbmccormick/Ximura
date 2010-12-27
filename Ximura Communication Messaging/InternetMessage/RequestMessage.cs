@@ -14,12 +14,9 @@
 using System;
 using System.Threading;
 using System.Text;
-using System.Timers;
 using System.Collections.Generic;
 using System.Collections;
 using System.ComponentModel;
-using System.ComponentModel.Design;
-using System.ComponentModel.Design.Serialization;
 using System.Reflection;
 using System.Diagnostics;
 

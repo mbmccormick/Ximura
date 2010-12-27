@@ -12,7 +12,6 @@
 #endregion
 #region using
 using System;
-using System.Runtime.Remoting;
 using System.Runtime.Serialization;
 #endregion // using
 namespace Ximura
@@ -20,7 +19,9 @@ namespace Ximura
 	/// <summary>
 	/// XimuraException is the root exception object for the Ximura system.
 	/// </summary>
+#if (!SILVERLIGHT)
 	[Serializable()]
+#endif
 	public class XimuraException : System.Exception
 	{
 		#region Constructors
@@ -39,47 +40,48 @@ namespace Ximura
 		/// <param name="message">The error message.</param>
 		/// <param name="ex">The base exception.</param>
 		public XimuraException(string message,Exception ex):base(message,ex){}
-
+		#endregion // Constructors
+#if (!SILVERLIGHT)
 		/// <summary>
 		/// This exception is used for deserialization.
 		/// </summary>
 		/// <param name="info">The serialization info.</param>
 		/// <param name="context">The serialization context.</param>
 		protected XimuraException(SerializationInfo info, StreamingContext context) : base(info, context) {}
-		#endregion // Constructors
 
-        #region GetObjectData
-        /// <summary>Provides serialization functionality.</summary>
-        /// <param name="info">Serialization information.</param>
-        /// <param name="context">Streaming context.</param>
-        public override void GetObjectData(SerializationInfo info, StreamingContext context)
-        {
-            base.GetObjectData(info, context);
-        } 
-        #endregion
+		#region GetObjectData
+		/// <summary>Provides serialization functionality.</summary>
+		/// <param name="info">Serialization information.</param>
+		/// <param name="context">Streaming context.</param>
+		public override void GetObjectData(SerializationInfo info, StreamingContext context)
+		{
+			base.GetObjectData(info, context);
+		} 
+		#endregion
 
-        #region LogException
-        /// <summary>
-        /// This is a shortcut to log the exception message to the Ximura Logging provider. 
-        /// This may be overriden in derived classes to provide a more detailed breakdown.
-        /// </summary>
-        /// <param name="provider">The Ximura logging provider to log to.</param>
-        /// <returns>A boolean value. True indicated that the message was successfully logged.</returns>
-        public virtual bool LogException(IXimuraLogging provider)
-        {
-            if (provider == null) return false;
+		#region LogException
+		/// <summary>
+		/// This is a shortcut to log the exception message to the Ximura Logging provider. 
+		/// This may be overriden in derived classes to provide a more detailed breakdown.
+		/// </summary>
+		/// <param name="provider">The Ximura logging provider to log to.</param>
+		/// <returns>A boolean value. True indicated that the message was successfully logged.</returns>
+		public virtual bool LogException(IXimuraLogging provider)
+		{
+			if (provider == null) return false;
 
-            try
-            {
-                provider.WriteLine(this.Message);
-            }
-            catch
-            {
-                return false;
-            }
+			try
+			{
+				provider.WriteLine(this.Message);
+			}
+			catch
+			{
+				return false;
+			}
 
-            return true;
-        } 
-        #endregion
+			return true;
+		} 
+		#endregion
+#endif
 	}
 }

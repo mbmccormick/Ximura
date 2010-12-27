@@ -34,7 +34,10 @@ namespace Ximura.Collections
     /// This is the lock-free implementation of the List class using a hash-table based array.
     /// </summary>
     /// <typeparam name="T">The collection item type.</typeparam>
-    [DebuggerDisplay("Count = {Count}"), HostProtection(SecurityAction.LinkDemand, MayLeakOnAbort = true)]
+    [DebuggerDisplay("Count = {Count}")]
+#if (!SILVERLIGHT)
+    [HostProtection(SecurityAction.LinkDemand, MayLeakOnAbort = true)]
+#endif
     public sealed class ConcurrentList<T> : ConcurrentList<T, HashTableStructBasedVertexArrayV2<T>>
     {
         #region Constructor
@@ -121,12 +124,14 @@ namespace Ximura.Collections
     }
     #endregion // ConcurrentList
 
+#if (!SILVERLIGHT)
     #region ConcurrentListSLC
     /// <summary>
     /// This is the lock-free implementation of the List class using a skip-list class based array.
     /// </summary>
     /// <typeparam name="T">The collection item type.</typeparam>
-    [DebuggerDisplay("Count = {Count}"), HostProtection(SecurityAction.LinkDemand, MayLeakOnAbort = true)]
+    [DebuggerDisplay("Count = {Count}")]
+    [HostProtection(SecurityAction.LinkDemand, MayLeakOnAbort = true)]
     public sealed class ConcurrentListSLC<T> : ConcurrentList<T, SkipListClassBasedVertexArray<T>>
     {
         #region Constructor
@@ -218,7 +223,8 @@ namespace Ximura.Collections
     /// This is the lock-free implementation of the List class using a skip-list class based array.
     /// </summary>
     /// <typeparam name="T">The collection item type.</typeparam>
-    [DebuggerDisplay("Count = {Count}"), HostProtection(SecurityAction.LinkDemand, MayLeakOnAbort = true)]
+    [DebuggerDisplay("Count = {Count}")]
+    [HostProtection(SecurityAction.LinkDemand, MayLeakOnAbort = true)]
     public sealed class ConcurrentListSLS<T> : ConcurrentList<T, SkipListStructBasedVertexArray<T>>
     {
         #region Constructor
@@ -304,4 +310,5 @@ namespace Ximura.Collections
         #endregion // Constructor
     }
     #endregion
+#endif
 }

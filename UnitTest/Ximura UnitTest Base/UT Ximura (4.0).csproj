@@ -115,6 +115,7 @@
     <Compile Include="Collections\Test_Collections_Trees.cs" />
     <Compile Include="Collections\Test_Collection_Base.cs" />
     <Compile Include="Collections\Test_Collection_Base_Static.cs" />
+    <Compile Include="Messaging\CSV\CSV.cs" />
     <Compile Include="TestFunctions.cs" />
     <Compile Include="Helper\Test_Helper_BitHelper.cs" />
     <Compile Include="Helper\Linq\Test_Helper_Linq_Currying.cs" />
@@ -161,6 +162,12 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Messaging\CSV\Examples\stop_times.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Messaging\CSV\Examples\TestRFC4180.csv" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

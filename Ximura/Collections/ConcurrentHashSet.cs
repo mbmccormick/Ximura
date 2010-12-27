@@ -36,7 +36,10 @@ namespace Ximura.Collections
     /// This is the lock-free implementation of the HashSet class using a hash-table based array.
     /// </summary>
     /// <typeparam name="T">The collection item type.</typeparam>
-    [DebuggerDisplay("Count = {Count}"), HostProtection(SecurityAction.LinkDemand, MayLeakOnAbort = true)]
+    [DebuggerDisplay("Count = {Count}")]
+#if (!SILVERLIGHT)
+    [HostProtection(SecurityAction.LinkDemand, MayLeakOnAbort = true)]
+#endif
     public sealed class ConcurrentHashSet<T> : ConcurrentHashSet<T, HashTableStructBasedVertexArrayV3<T>>
     {
         #region Constructor
@@ -128,7 +131,10 @@ namespace Ximura.Collections
     /// This is the lock-free implementation of the HashSet class using a hash-table based array.
     /// </summary>
     /// <typeparam name="T">The collection item type.</typeparam>
-    [DebuggerDisplay("Count = {Count}"), HostProtection(SecurityAction.LinkDemand, MayLeakOnAbort = true)]
+    [DebuggerDisplay("Count = {Count}")]
+#if (!SILVERLIGHT)
+    [HostProtection(SecurityAction.LinkDemand, MayLeakOnAbort = true)]
+#endif
     public sealed class ConcurrentHashSetHTC<T> : ConcurrentHashSet<T, HashTableClassBasedVertexArray<T>>
     {
         #region Constructor
@@ -215,12 +221,14 @@ namespace Ximura.Collections
     }
     #endregion // ConcurrentHashSetHTC
 
+#if (!SILVERLIGHT)
     #region ConcurrentHashSetSLC
     /// <summary>
     /// This is the lock-free implementation of the HashSet class using a skip-list class based array.
     /// </summary>
     /// <typeparam name="T">The collection item type.</typeparam>
-    [DebuggerDisplay("Count = {Count}"), HostProtection(SecurityAction.LinkDemand, MayLeakOnAbort = true)]
+    [DebuggerDisplay("Count = {Count}")]
+    [HostProtection(SecurityAction.LinkDemand, MayLeakOnAbort = true)]
     public sealed class ConcurrentHashSetSLC<T> : ConcurrentHashSet<T, SkipListClassBasedVertexArray<T>>
     {
         #region Constructor
@@ -306,13 +314,16 @@ namespace Ximura.Collections
         #endregion // Constructor
     }
     #endregion // ConcurrentHashSetSLC
+#endif
 
+#if (!SILVERLIGHT)
     #region ConcurrentHashSetSLS
     /// <summary>
     /// This is the lock-free implementation of the HashSet class using a hash-table based array.
     /// </summary>
     /// <typeparam name="T">The collection item type.</typeparam>
-    [DebuggerDisplay("Count = {Count}"), HostProtection(SecurityAction.LinkDemand, MayLeakOnAbort = true)]
+    [DebuggerDisplay("Count = {Count}")]
+    [HostProtection(SecurityAction.LinkDemand, MayLeakOnAbort = true)]
     public sealed class ConcurrentHashSetSLS<T> : ConcurrentHashSet<T, SkipListStructBasedVertexArray<T>>
     {
         #region Constructor
@@ -398,4 +409,5 @@ namespace Ximura.Collections
         #endregion // Constructor
     }
     #endregion
+#endif
 }

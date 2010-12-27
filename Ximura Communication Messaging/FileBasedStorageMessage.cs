@@ -13,7 +13,6 @@
 #region using
 using System;
 using System.Threading;
-using System.Timers;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;

@@ -455,5 +455,32 @@ namespace Ximura
         }
         #endregion // DigestResponseCalculate
         #endregion // Digest Authentication
+
+
+        #region CreatePasswordHash
+        /// <summary>
+        /// This method creates a password hash from a byte64 encoded text seed and plain text password
+        /// </summary>
+        /// <param name="Seed"></param>
+        /// <param name="Pass"></param>
+        /// <returns></returns>
+        public static string CreatePasswordHash(string Seed, string Pass)
+        {
+            byte[] seed = System.Text.UTF8Encoding.UTF8.GetBytes(Seed);
+
+            byte[] pass = System.Text.UTF8Encoding.UTF8.GetBytes(Pass);
+
+            byte[] rawSalted = new byte[pass.Length + seed.Length];
+            pass.CopyTo(rawSalted, 0);
+            seed.CopyTo(rawSalted, pass.Length);
+
+            HashAlgorithm mhash = new MD5CryptoServiceProvider();
+
+            //Create the hash value from the array of bytes.
+            byte[] HashValue = mhash.ComputeHash(rawSalted);
+            return Convert.ToBase64String(HashValue);
+        }
+        #endregion // CreatePasswordHash
+
     }
 }

@@ -19,6 +19,11 @@ using System.Text;
 #endregion
 namespace Ximura
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="TSource"></typeparam>
+    /// <typeparam name="TMatch"></typeparam>
     public class MatchSequenceSkipOrFailTerminator<TSource, TMatch> : MatchTerminator<TSource, TMatch>
     {
         #region Constructor
@@ -36,6 +41,13 @@ namespace Ximura
         }
         #endregion // Constructor
 
+        #region Validate(TSource item, MatchTerminatorResult currentResult)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="item"></param>
+        /// <param name="currentResult"></param>
+        /// <returns></returns>
         protected override MatchTerminatorStatus Validate(TSource item, MatchTerminatorResult currentResult)
         {
             bool result = item.Equals(CurrentTerminator.Current);
@@ -46,11 +58,20 @@ namespace Ximura
             return CurrentTerminator.MoveNext() ?
                 MatchTerminatorStatus.SuccessPartial : MatchTerminatorStatus.Success;
         }
-
+        #endregion  
+        #region ValidateTerminator(MatchTerminatorResult result, Queue<TSource> terminator, TSource currentItem, long length)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="result"></param>
+        /// <param name="terminator"></param>
+        /// <param name="currentItem"></param>
+        /// <param name="length"></param>
+        /// <returns></returns>
         protected override bool ValidateTerminator(MatchTerminatorResult result, Queue<TSource> terminator, TSource currentItem, long length)
         {
             return result.Length > 0;
         }
+        #endregion  
     }
-
 }

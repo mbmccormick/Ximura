@@ -34,7 +34,10 @@ namespace Ximura.Collections
     /// </summary>
     /// <typeparam name="T">The collection item type.</typeparam>
     /// <typeparam name="A">The vertex array type.</typeparam>
-    [DebuggerDisplay("Count = {Count}"), HostProtection(SecurityAction.LinkDemand, MayLeakOnAbort = true)]
+    [DebuggerDisplay("Count = {Count}")]
+#if (!SILVERLIGHT)
+    [HostProtection(SecurityAction.LinkDemand, MayLeakOnAbort = true)]
+#endif
     public class ConcurrentList<T, A> : ConcurrentCollectionBase<T, A>, ICollection<T>
         where A : VertexArray<T>,new()
     {

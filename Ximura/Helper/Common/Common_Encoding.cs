@@ -60,7 +60,7 @@ namespace Ximura
         public static string Enc_EncodeByteToHex(byte[] data, int offset, int length, bool lower)
         {
             if (data.Length < offset + length)
-                throw new ArgumentOutOfRangeException("length", length, "Length is too long.");
+                throw new ArgumentOutOfRangeException("length", string.Format("Length [{0}] is too long.", length));
 
             StringBuilder output = new StringBuilder(length * 2);
             string id;

@@ -37,7 +37,10 @@ namespace Ximura.Collections
     /// </summary>
     /// <typeparam name="K">The key type.</typeparam>
     /// <typeparam name="U">The valuw type.</typeparam>
-    [Serializable, StructLayout(LayoutKind.Sequential)]
+#if (!SILVERLIGHT)
+    [Serializable]
+#endif
+    [StructLayout(LayoutKind.Sequential)]
     public struct RedBlackTreeVertexStruct<K, V>
     {
         #region Constructor

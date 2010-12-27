@@ -24,6 +24,7 @@ namespace Ximura
     /// </summary>
     public static partial class ArrayHelper
     {
+        #region MatchSequence<TSource, TMatch>(this IEnumerable<TSource> source, IEnumerable<TMatch> match, MatchState<TSource> state)
         /// <summary>
         /// This method matches the sequence against the source array.
         /// </summary>
@@ -42,7 +43,17 @@ namespace Ximura
 
             return sourceEnum.MatchSequence(match, validate, state);
         }
-
+        #endregion  
+        #region MatchSequence<TSource, TMatch>(this IEnumerator<TSource> sourceEnum, IEnumerable<TMatch> match, MatchState<TSource> state)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TSource"></typeparam>
+        /// <typeparam name="TMatch"></typeparam>
+        /// <param name="sourceEnum"></param>
+        /// <param name="match"></param>
+        /// <param name="state"></param>
+        /// <returns></returns>
         public static MatchState<TSource> MatchSequence<TSource, TMatch>(
             this IEnumerator<TSource> sourceEnum, IEnumerable<TMatch> match, MatchState<TSource> state)
         {
@@ -50,7 +61,8 @@ namespace Ximura
 
             return sourceEnum.MatchSequence(match, predicate, state);
         }
-
+        #endregion  
+        #region MatchSequence<TSource, TMatch>(this IEnumerable<TSource> source, IEnumerable<TMatch> match, Func<TSource, TMatch, bool> predicate, MatchState<TSource> state)
         /// <summary>
         /// This method matches the sequence against the source array.
         /// </summary>
@@ -68,7 +80,18 @@ namespace Ximura
             IEnumerator<TSource> sourceEnum = source.GetEnumerator();
             return sourceEnum.MatchSequence(match, predicate, state);
         }
-
+        #endregion  
+        #region MatchSequence<TSource, TMatch>(this IEnumerator<TSource> sourceEnum, IEnumerable<TMatch> match, Func<TSource, TMatch, bool> predicate, MatchState<TSource> state)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TSource"></typeparam>
+        /// <typeparam name="TMatch"></typeparam>
+        /// <param name="sourceEnum"></param>
+        /// <param name="match"></param>
+        /// <param name="predicate"></param>
+        /// <param name="state"></param>
+        /// <returns></returns>
         public static MatchState<TSource> MatchSequence<TSource, TMatch>(
             this IEnumerator<TSource> sourceEnum, IEnumerable<TMatch> match, Func<TSource, TMatch, bool> predicate, MatchState<TSource> state)
         {
@@ -169,6 +192,6 @@ namespace Ximura
                 throw ex;
             }
         }
-
+        #endregion  
     }
 }

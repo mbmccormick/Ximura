@@ -19,6 +19,11 @@ using System.Text;
 #endregion
 namespace Ximura
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="TSource"></typeparam>
+    /// <typeparam name="TMatch"></typeparam>
     public class MatchSkipTerminator<TSource, TMatch> : MatchTerminator<TSource, TMatch>
     {
         #region Constructor
@@ -37,12 +42,19 @@ namespace Ximura
         }
         #endregion // Constructor
 
+        #region Validate(TSource item, MatchTerminatorResult currentResult)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="item"></param>
+        /// <param name="currentResult"></param>
+        /// <returns></returns>
         protected override MatchTerminatorStatus Validate(TSource item, MatchTerminatorResult currentResult)
         {
             bool result = Terminator.Contains(t => t.Equals(item));
 
             return result ? MatchTerminatorStatus.SuccessPartial : MatchTerminatorStatus.SuccessNoLength;
         }
-
+        #endregion  
     }
 }

@@ -78,7 +78,7 @@ namespace Ximura
             return str.StreamRead<T>(conv);
         }
         #endregion
-        #region StreamRead<T>(this Stream str, Func<BinaryReader, T> conv)
+        #region StreamRead<T>(this Stream str, Func<Stream, T> conv)
         /// <summary>
         /// This method reads a set of items from a stream, based on the type parameter.
         /// </summary>

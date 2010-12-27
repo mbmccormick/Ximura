@@ -14,10 +14,8 @@
 using System;
 using System.Runtime.Serialization;
 using System.IO;
-using System.IO.Compression;
 using System.Security.Cryptography;
 using System.Text;
-using System.Data;
 
 using Ximura;
 using CH = Ximura.Common;
@@ -164,10 +162,6 @@ namespace Ximura
             }
         }
 
-        public override object InitializeLifetimeService()
-        {
-            return baseStream.InitializeLifetimeService();
-        }
 
         public override long Length
         {

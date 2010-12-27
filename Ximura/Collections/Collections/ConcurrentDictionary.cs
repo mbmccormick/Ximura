@@ -35,7 +35,10 @@ namespace Ximura.Collections
     /// <typeparam name="TKey">The dictionary key type.</typeparam>
     /// <typeparam name="TValue">The dictionary value type.</typeparam>
     /// <typeparam name="A">The vertex array type.</typeparam>
-    [DebuggerDisplay("Count = {Count}"), HostProtection(SecurityAction.LinkDemand, MayLeakOnAbort = true)]
+    [DebuggerDisplay("Count = {Count}")]
+#if (!SILVERLIGHT)
+    [HostProtection(SecurityAction.LinkDemand, MayLeakOnAbort = true)]
+#endif
     public class ConcurrentDictionary<TKey, TValue, A> : CollectionHelperBase<KeyValuePair<TKey, TValue>, A>, IDictionary<TKey, TValue>
         where A : VertexArray<KeyValuePair<TKey, TValue>>, new()
     {

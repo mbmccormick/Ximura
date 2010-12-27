@@ -23,7 +23,6 @@ using System.Text;
 
 using Ximura;
 using Ximura.Data;
-using Ximura.Communication;
 using CH = Ximura.Common;
 #endregion // using
 namespace Ximura.Data

@@ -14,10 +14,8 @@
 using System;
 using System.Runtime.Serialization;
 using System.IO;
-using System.IO.Compression;
 using System.Security.Cryptography;
 using System.Text;
-using System.Data;
 
 using Ximura;
 using CH = Ximura.Common;
@@ -25,7 +23,7 @@ using CH = Ximura.Common;
 namespace Ximura
 {
     [CLSCompliant(false)]
-    public static class StreamHelper
+    public static partial class StreamHelper
     {
         #region bool
         public static bool ReadBool(Stream str)

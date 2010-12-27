@@ -43,7 +43,10 @@ namespace Ximura.Collections
         /// The vertex window structure holds the search results from a scan.
         /// </summary>
         /// <typeparam name="D">The structure data type.</typeparam>
-        [Serializable, StructLayout(LayoutKind.Sequential)]
+#if (!SILVERLIGHT)
+        [Serializable]
+#endif
+        [StructLayout(LayoutKind.Sequential)]
         private struct StructBasedVertexWindowV3<D>
         {
             #region Declarations

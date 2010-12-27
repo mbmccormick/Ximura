@@ -23,10 +23,10 @@ using System.Resources;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Ximura")]
 [assembly: AssemblyProduct("Ximura Framework")]
-[assembly: AssemblyCopyright("\x00a9 Paul Stancer 2000-2010")]
+[assembly: AssemblyCopyright("\x00a9 Paul Stancer 2000-2011")]
 [assembly: AssemblyTrademark("")]
 
-[assembly: AssemblyVersion("3.0.0.*")]
+[assembly: AssemblyVersion("4.0.0")]
 
 [assembly: CLSCompliant(true)]
 

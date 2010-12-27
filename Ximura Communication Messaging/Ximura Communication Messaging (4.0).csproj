@@ -88,9 +88,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Exceptions\MaxSizeMessageException.cs" />
-    <Compile Include="Exceptions\MessageException.cs" />
-    <Compile Include="Exceptions\MessageLoadException.cs" />
     <Compile Include="FileBasedStorageMessage.cs" />
     <Compile Include="Fragments\BodyFragment.cs" />
     <Compile Include="Fragments\FileBasedStorageMessageFragment.cs" />
@@ -103,26 +100,12 @@
     <Compile Include="Header\HeaderFragmentMultiPart.cs" />
     <Compile Include="Helper\ContentType.cs" />
     <Compile Include="Helper\MessageTemplate.cs" />
-    <Compile Include="Interfaces\IXimuraHeaderFragment.cs" />
-    <Compile Include="Interfaces\IXimuraMessage.cs" />
-    <Compile Include="Interfaces\IXimuraMessageFileStreamLoad.cs" />
-    <Compile Include="Interfaces\IXimuraMessageLoadInitialize.cs" />
-    <Compile Include="Interfaces\IXimuraMessageStream.cs" />
-    <Compile Include="Interfaces\IXimuraMessageStreamAsync.cs" />
-    <Compile Include="Interfaces\IXimuraMessageStreamFeedback.cs" />
-    <Compile Include="Interfaces\IXimuraMessageStreamLoad.cs" />
     <Compile Include="Interfaces\IXimuraMimeMessageInitialize.cs" />
     <Compile Include="InternetMessage\InternetMessage.cs" />
     <Compile Include="InternetMessage\InternetMessageRequest.cs" />
     <Compile Include="InternetMessage\InternetMessageResponse.cs" />
     <Compile Include="InternetMessage\RequestMessage.cs" />
     <Compile Include="InternetMessage\ResponseMessage.cs" />
-    <Compile Include="Message.cs" />
-    <Compile Include="MessageBase.cs" />
-    <Compile Include="MessageCRLFFragment.cs" />
-    <Compile Include="MessageDirection.cs" />
-    <Compile Include="MessageFragment.cs" />
-    <Compile Include="MessageStreamBase.cs" />
     <Compile Include="MIMEMessage\Body\MimeMessageBody.cs" />
     <Compile Include="MIMEMessage\Body\MultipartAlternativeMimeMessageBody.cs" />
     <Compile Include="MIMEMessage\Body\MultipartDigestMimeMessageBody.cs" />
@@ -167,12 +150,6 @@
     <Compile Include="Protocols\Telnet\TelnetRequestPasswordMessage.cs" />
     <Compile Include="Protocols\Telnet\TelnetRequestUsernameMessage.cs" />
     <Compile Include="Protocols\Telnet\TelnetResponseMessage.cs" />
-    <Compile Include="Termination\FragmentTerminationType.cs" />
-    <Compile Include="Termination\MessageGenericTerminatorBase.cs" />
-    <Compile Include="Termination\MessageTerminatorBase.cs" />
-    <Compile Include="Termination\MessageTerminatorCRLFFolding.cs" />
-    <Compile Include="Termination\MessageTerminatorCRLFNoFolding.cs" />
-    <Compile Include="Termination\State\CRLFMatchCollectionState.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\epl-v10.html" />

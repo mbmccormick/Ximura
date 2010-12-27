@@ -35,7 +35,10 @@ namespace Ximura.Collections
     /// </summary>
     /// <typeparam name="TKey">The dictionary key type.</typeparam>
     /// <typeparam name="TValue">The dictionary value type.</typeparam>
-    [DebuggerDisplay("Count = {Count}"), HostProtection(SecurityAction.LinkDemand, MayLeakOnAbort = true)]
+    [DebuggerDisplay("Count = {Count}")]
+#if (!SILVERLIGHT)
+    [HostProtection(SecurityAction.LinkDemand, MayLeakOnAbort = true)]
+#endif
     public sealed class ConcurrentDictionary<TKey, TValue> : ConcurrentDictionary<TKey, TValue, HashTableStructBasedVertexArrayV2<KeyValuePair<TKey, TValue>>>
     {
         #region Constructor
@@ -135,13 +138,15 @@ namespace Ximura.Collections
     }
     #endregion // ConcurrentDictionary
 
+#if (!SILVERLIGHT)
     #region ConcurrentDictionarySLC
     /// <summary>
     /// This class is a concurrent lock-free implementation of the IDictionary interface using a skip-list class based array.
     /// </summary>
     /// <typeparam name="TKey">The dictionary key type.</typeparam>
     /// <typeparam name="TValue">The dictionary value type.</typeparam>
-    [DebuggerDisplay("Count = {Count}"), HostProtection(SecurityAction.LinkDemand, MayLeakOnAbort = true)]
+    [DebuggerDisplay("Count = {Count}")]
+    [HostProtection(SecurityAction.LinkDemand, MayLeakOnAbort = true)]
     public sealed class ConcurrentDictionarySLC<TKey, TValue> : ConcurrentDictionary<TKey, TValue, SkipListClassBasedVertexArray<KeyValuePair<TKey, TValue>>>
     {
         #region Constructor
@@ -240,4 +245,6 @@ namespace Ximura.Collections
         #endregion // Constructor
     }
     #endregion // ConcurrentDictionarySLC
+#endif
+
 }

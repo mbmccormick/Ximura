@@ -22,6 +22,11 @@ using Ximura.Data;
 #endregion
 namespace Ximura
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="TSource"></typeparam>
+    /// <typeparam name="TMatch"></typeparam>
     public abstract class MatchCollectionState<TSource, TMatch> : IEnumerable<MatchTerminator<TSource, TMatch>>
     {
         #region Declarations

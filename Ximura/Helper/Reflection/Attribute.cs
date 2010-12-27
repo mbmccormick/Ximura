@@ -33,84 +33,58 @@ namespace Ximura
     /// <summary>
     /// Provide special functionality to deal with Attribute.
     /// </summary>
-    public static class AttributeHelper
+    public static partial class AttributeHelper
     {
+        #region Attribute<A>(this Type baseType)
+        /// <summary>
+        /// This extension method returns the first attribute of the specified type.
+        /// </summary>
+        /// <typeparam name="A">The attribute type.</typeparam>
+        /// <param name="baseType">The base type to search.</param>
+        /// <returns>Returns the first attribute or null if no attribute can be found.</returns>
         public static A Attribute<A>(this Type baseType) where A:Attribute
         {
             return baseType
-                .GetCustomAttributes(typeof(A), true)
-                .OfType<A>()
+                .Attributes<A>()
                 .FirstOrDefault();
         }
-
+        #endregion  
+        #region Attributes<A>(this Type baseType)
+        /// <summary>
+        /// This extension method returns a list of the specified attribute for the base type specified.
+        /// </summary>
+        /// <typeparam name="A">The attribute type.</typeparam>
+        /// <param name="baseType">The base type to search.</param>
+        /// <returns>Returns a list of attributes.</returns>
         public static IEnumerable<A> Attributes<A>(this Type baseType) where A:Attribute
         {
             return baseType
                 .GetCustomAttributes(typeof(A), true)
                 .OfType<A>();
         }
-
-        public static T GetAttribute<T>(Type baseType)
+        #endregion  
+   
+        #region PropertyAttributes<T>(Type baseType)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="baseType"></param>
+        /// <returns></returns>
+        public static IEnumerable<KeyValuePair<PropertyInfo, T>> PropertyAttributes<T>(this Type baseType)
             where T : Attribute
         {
-            object[] attrs = baseType.GetCustomAttributes(typeof(T), true);
-            if (attrs.Length == 0)
-                return null;
-
-            Attribute attrToReturn = null;
-
-            foreach (object attr in attrs)
+            foreach (PropertyInfo pi in baseType.GetProperties())
             {
-                if (attr.GetType() != typeof(T))
-                    continue;
-                return (T)attr;
-            }
-
-            return null;
-        }
-
-        public static T[] GetAttributes<T>(Type baseType)
-            where T : Attribute
-        {
-            object[] attrs = baseType.GetCustomAttributes(typeof(T), true);
-
-            List<T> attrsToReturn = new List<T>();
-
-            foreach (object attr in attrs)
-            {
-                if (attr.GetType() != typeof(T))
-                    continue;
-                attrsToReturn.Add((T)attr);
-            }
-
-            return attrsToReturn.ToArray();
-        }
-
-        public static List<KeyValuePair<PropertyInfo, T>> GetPropertyAttributes<T>(Type baseType)
-            where T : Attribute
-        {
-            List<KeyValuePair<PropertyInfo, T>> data = new List<KeyValuePair<PropertyInfo, T>>();
-            try
-            {
-                foreach (PropertyInfo pi in baseType.GetProperties())
+                foreach (Attribute attr in pi.GetCustomAttributes(typeof(T), true))
                 {
-                    foreach (Attribute attr in pi.GetCustomAttributes(typeof(T), true))
-                    {
-                        if (attr.GetType() != typeof(T))
-                            continue;
-                        data.Add(new KeyValuePair<PropertyInfo, T>(pi, attr as T));
-                    }
+                    if (attr.GetType() != typeof(T))
+                        continue;
+
+                    yield return new KeyValuePair<PropertyInfo, T>(pi, attr as T);
                 }
             }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-            return data;
         }
-
-
-
+        #endregion  
     }
 }

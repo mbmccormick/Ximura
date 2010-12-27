@@ -19,11 +19,26 @@ using System.Text;
 #endregion
 namespace Ximura
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public struct MatchTerminatorResult
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public int Length;
+        /// <summary>
+        /// 
+        /// </summary>
         public bool CanContinue;
+        /// <summary>
+        /// 
+        /// </summary>
         public bool IsTerminator;
+        /// <summary>
+        /// 
+        /// </summary>
         public MatchTerminatorStatus Status;
     }
 }

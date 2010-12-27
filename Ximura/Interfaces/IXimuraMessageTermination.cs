@@ -22,7 +22,7 @@ using Ximura;
 
 using Ximura.Data;
 #endregion
-namespace Ximura.Communication
+namespace Ximura
 {
     public interface IXimuraMessageTermination : IXimuraPoolReturnable
     {

@@ -1,0 +1,249 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{28E2E204-A156-42E5-BE9A-6A518B4C9694}</ProjectGuid>
+    <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Ximura</RootNamespace>
+    <AssemblyName>XimuraSilverlight4</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <TargetFrameworkProfile>WindowsPhone</TargetFrameworkProfile>
+    <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
+    <SilverlightApplication>false</SilverlightApplication>
+    <ValidateXaml>true</ValidateXaml>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>Bin\Debug\XimuraSilverlight4.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System.Device" />
+    <Reference Include="System.Observable" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Windows" />
+    <Reference Include="system" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml.Serialization" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Collections\Collections\CollectionHelperBase.cs" />
+    <Compile Include="Collections\Collections\CollectionHelperBase_Debug.cs" />
+    <Compile Include="Collections\Collections\ConcurrentCollectionBase.cs" />
+    <Compile Include="Collections\Collections\ConcurrentDictionary.cs" />
+    <Compile Include="Collections\Collections\ConcurrentHashSet.cs" />
+    <Compile Include="Collections\Collections\ConcurrentList.cs" />
+    <Compile Include="Collections\ConcurrentDictionary.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Collections\ConcurrentHashSet.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Collections\ConcurrentList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Collections\Exceptions\PoolObjectInvalidException.cs" />
+    <Compile Include="Collections\Exceptions\PoolObjectUnavailableException.cs" />
+    <Compile Include="Collections\Interfaces\ICollectionBase.cs" />
+    <Compile Include="Collections\Interfaces\ICollectionState.cs" />
+    <Compile Include="Collections\Interfaces\ICollectionVertex.cs" />
+    <Compile Include="Collections\Interfaces\ICollectionWrapper.cs" />
+    <Compile Include="Collections\Interfaces\IFineGrainedLockArray.cs" />
+    <Compile Include="Collections\Interfaces\IGraph.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Collections\Interfaces\IPool.cs" />
+    <Compile Include="Collections\Interfaces\IPoolInitialization.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Collections\Interfaces\IPriorityQueue.cs" />
+    <Compile Include="Collections\Interfaces\IStack.cs" />
+    <Compile Include="Collections\Interfaces\IVertexWindow.cs" />
+    <Compile Include="Collections\Interfaces\IXimuraBinarySerializable.cs" />
+    <Compile Include="Collections\Interfaces\IXimuraPool.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Collections\Interfaces\IXimuraPoolableObject.cs" />
+    <Compile Include="Collections\Interfaces\IXimuraPoolableObjectDeserializable.cs" />
+    <Compile Include="Collections\Interfaces\IXimuraPoolBuffer.cs" />
+    <Compile Include="Collections\Interfaces\IXimuraPoolInitialize.cs" />
+    <Compile Include="Collections\Interfaces\IXimuraPoolManager.cs" />
+    <Compile Include="Collections\Interfaces\IXimuraPoolManagerDirectAccess.cs" />
+    <Compile Include="Collections\Interfaces\IXimuraPoolReturnable.cs" />
+    <Compile Include="Collections\Pool\Object\PoolableObjectBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Collections\Pool\Object\PoolableReturnableObjectBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Collections\VertexArrays\ClassBasedVertexArray.cs" />
+    <Compile Include="Collections\VertexArrays\DataClass\ClassBasedVertexWindow.cs" />
+    <Compile Include="Collections\VertexArrays\DataClass\CollectionVertexClass.cs" />
+    <Compile Include="Collections\VertexArrays\DataClass\CollectionVertexClassBase.cs" />
+    <Compile Include="Collections\VertexArrays\DataClass\CollectionVertexClassData.cs" />
+    <Compile Include="Collections\VertexArrays\DataClass\CollectionVertexClassDataSentinel.cs" />
+    <Compile Include="Collections\VertexArrays\DataClass\CollectionVertexClassSentinel.cs" />
+    <Compile Include="Collections\VertexArrays\DataStruct\CollectionVertexStruct.cs" />
+    <Compile Include="Collections\VertexArrays\DataStruct\RedBlackTreeVertexStruct.cs" />
+    <Compile Include="Collections\VertexArrays\HashTable\HashTableClassBasedVertexArray.cs" />
+    <Compile Include="Collections\VertexArrays\HashTable\HashTableStructBasedVertexArrayV2.cs" />
+    <Compile Include="Collections\VertexArrays\HashTable\HashTableStructBasedVertexArrayV3.cs" />
+    <Compile Include="Collections\VertexArrays\HashTable\HashTableStructBasedVertexArrayV3_VertexWindow.cs" />
+    <Compile Include="Collections\VertexArrays\MultiLevelBucketStructBasedVertexArray.cs" />
+    <Compile Include="Collections\VertexArrays\MultiLevelClassBasedVertexArray.cs" />
+    <Compile Include="Collections\VertexArrays\StructBasedVertexArray.cs" />
+    <Compile Include="Collections\VertexArrays\VertexArray.cs" />
+    <Compile Include="Component\DisposableBase.cs" />
+    <Compile Include="Exceptions\MaxSizeMessageException.cs" />
+    <Compile Include="Exceptions\MessageException.cs" />
+    <Compile Include="Exceptions\MessageLoadException.cs" />
+    <Compile Include="Exceptions\XimuraException.cs" />
+    <Compile Include="Helper\ArrayHelper\ArrayHelper.cs" />
+    <Compile Include="Helper\ArrayHelper\ArrayHelper_Binary.cs" />
+    <Compile Include="Helper\ArrayHelper\ArrayHelper_FindFirstPosition.cs" />
+    <Compile Include="Helper\ArrayHelper\ArrayHelper_MatchAny.cs" />
+    <Compile Include="Helper\ArrayHelper\ArrayHelper_MatchCollection.cs" />
+    <Compile Include="Helper\ArrayHelper\ArrayHelper_MatchSequence.cs" />
+    <Compile Include="Helper\ArrayHelper\ArrayHelper_MatchSkip.cs" />
+    <Compile Include="Helper\ArrayHelper\MatchCollection.cs" />
+    <Compile Include="Helper\ArrayHelper\MatchCollectionState.cs" />
+    <Compile Include="Helper\ArrayHelper\MatchExceptionTerminator.cs" />
+    <Compile Include="Helper\ArrayHelper\MatchSequenceSkipOrFailTerminator.cs" />
+    <Compile Include="Helper\ArrayHelper\MatchSequenceTerminator.cs" />
+    <Compile Include="Helper\ArrayHelper\MatchSkipTerminator.cs" />
+    <Compile Include="Helper\ArrayHelper\MatchState.cs" />
+    <Compile Include="Helper\ArrayHelper\MatchTerminator.cs" />
+    <Compile Include="Helper\ArrayHelper\MatchTerminatorResult.cs" />
+    <Compile Include="Helper\ArrayHelper\MatchTerminatorStatus.cs" />
+    <Compile Include="Helper\Bit\BitHelper.cs" />
+    <Compile Include="Helper\Bit\BitMask.cs" />
+    <Compile Include="Helper\Common\Common.cs" />
+    <Compile Include="Helper\Common\Common_Encoding.cs" />
+    <Compile Include="Helper\Common\Common_String.cs" />
+    <Compile Include="Helper\Linq\Linq.cs" />
+    <Compile Include="Helper\Linq\Linq_Compare.cs" />
+    <Compile Include="Helper\Linq\Linq_Convert.cs" />
+    <Compile Include="Helper\Linq\Linq_Currying.cs" />
+    <Compile Include="Helper\Linq\Linq_Folding.cs" />
+    <Compile Include="Helper\Linq\Linq_Forward_Reverse.cs" />
+    <Compile Include="Helper\Linq\Linq_Insert.cs" />
+    <Compile Include="Helper\Linq\Linq_Range.cs" />
+    <Compile Include="Helper\Linq\Linq_Stream.cs" />
+    <Compile Include="Helper\Linq\Linq_Unfolding.cs" />
+    <Compile Include="Helper\Linq\Tuple.cs" />
+    <Compile Include="Helper\Locking\ILockable.cs" />
+    <Compile Include="Helper\Locking\LockableBase.cs" />
+    <Compile Include="Helper\Locking\LockableMarkableWrapper.cs" />
+    <Compile Include="Helper\Locking\LockableNullableWrapper.cs" />
+    <Compile Include="Helper\Locking\LockableWrapper.cs" />
+    <Compile Include="Helper\Reflection\Attribute.cs" />
+    <Compile Include="Helper\Reflection\Reflection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Helper\Reflection\Reflection_Assembly.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Helper\Reflection\Reflection_Creation.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Helper\Reflection\Reflection_Properties.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Helper\Reflection\Reflection_Resource.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Helper\Reflection\Reflection_Stream.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Helper\Reflection\Reflection_Type.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Helper\Stream\StreamCounter.cs" />
+    <Compile Include="Helper\Stream\StreamHelper.cs" />
+    <Compile Include="Helper\Threading.cs" />
+    <Compile Include="Interfaces\IXimuraBinarySerialize.cs" />
+    <Compile Include="Interfaces\IXimuraMessageLoad.cs" />
+    <Compile Include="Interfaces\IXimuraMessageLoadData.cs" />
+    <Compile Include="Interfaces\IXimuraMessageTermination.cs" />
+    <Compile Include="Messaging\CSVMessage\CSVMessage.cs" />
+    <Compile Include="Messaging\CSVMessage\Fragments\CSVBaseFragment.cs" />
+    <Compile Include="Messaging\CSVMessage\Fragments\CSVDataFragment.cs" />
+    <Compile Include="Messaging\CSVMessage\Fragments\CSVHeaderFragment.cs" />
+    <Compile Include="Messaging\CSVMessage\Fragments\Terminator\MessageTerminatorCSV.cs" />
+    <Compile Include="Messaging\Interfaces\ISupportInitialize.cs" />
+    <Compile Include="Messaging\Interfaces\IXimuraHeaderFragment.cs" />
+    <Compile Include="Messaging\Interfaces\IXimuraMessage.cs" />
+    <Compile Include="Messaging\Interfaces\IXimuraMessageFileStreamLoad.cs" />
+    <Compile Include="Messaging\Interfaces\IXimuraMessageLoadInitialize.cs" />
+    <Compile Include="Messaging\Interfaces\IXimuraMessageStream.cs" />
+    <Compile Include="Messaging\Interfaces\IXimuraMessageStreamAsync.cs" />
+    <Compile Include="Messaging\Interfaces\IXimuraMessageStreamLoad.cs" />
+    <Compile Include="Messaging\Message.cs" />
+    <Compile Include="Messaging\MessageBase.cs" />
+    <Compile Include="Messaging\MessageCRLFFragment.cs" />
+    <Compile Include="Messaging\MessageDirection.cs" />
+    <Compile Include="Messaging\MessageFragment.cs" />
+    <Compile Include="Messaging\MessageStreamBase.cs" />
+    <Compile Include="Messaging\Termination\FragmentTerminationType.cs" />
+    <Compile Include="Messaging\Termination\MessageGenericTerminatorBase.cs" />
+    <Compile Include="Messaging\Termination\MessageTerminatorBase.cs" />
+    <Compile Include="Messaging\Termination\MessageTerminatorCRLFFolding.cs" />
+    <Compile Include="Messaging\Termination\MessageTerminatorCRLFNoFolding.cs" />
+    <Compile Include="Messaging\Termination\State\CRLFMatchCollectionState.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Collections\_Documentation\CodeProject Articles\_ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Collections\_Documentation\CodeProject Articles\Concurrent Object Pooling.docx" />
+    <None Include="Collections\_Documentation\CodeProject Articles\Concurrent Priority Queue.docx" />
+    <None Include="Collections\_Documentation\CodeProject Articles\Concurrent Stack.docx" />
+    <None Include="Collections\_Documentation\CodeProject Articles\Drawing2.vsd" />
+    <None Include="Collections\_Documentation\CodeProject Articles\HashTable Algorithm.docx" />
+    <None Include="Collections\_Documentation\CodeProject Articles\Introduction.docx" />
+    <None Include="Collections\_Documentation\CodeProject Articles\SkipList Algorithm.docx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Collections\_Documentation\Reference\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
+  <ProjectExtensions />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

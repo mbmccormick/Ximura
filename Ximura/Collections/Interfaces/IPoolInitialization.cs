@@ -34,6 +34,7 @@ namespace Ximura.Collections
     /// <typeparam name="T">The pool object type.</typeparam>
     public interface IPoolInitialization<T> : IPool<T>
     {
+#if (!SILVERLIGHT)
         /// <summary>
         /// The Get() method takes an object from the pool, if 
         /// there are no objects available the pool will create a new object.
@@ -51,7 +52,7 @@ namespace Ximura.Collections
         /// <param name="value">An object of the type defined in the pool definition, with the serialization data.</param>
         /// <returns>Returns true if an item has been returned from the pool.</returns>
         bool TryGet(SerializationInfo info, StreamingContext context, out T value);
-
+#endif
         /// <summary>
         /// The Get() method takes an object from the pool, if 
         /// there are no objects available the pool will create a new object.
@@ -68,6 +69,7 @@ namespace Ximura.Collections
         /// <returns>Returns true if an item has been returned from the pool.</returns>
         bool TryGet(Action<T> initializer, out T value);
 
+#if (!SILVERLIGHT)
         /// <summary>
         /// The Get() method takes an object from the pool, if 
         /// there are no objects available the pool will create a new object.
@@ -87,5 +89,6 @@ namespace Ximura.Collections
         /// <param name="value">An object of the type defined in the pool definition, with the serialization data.</param>
         /// <returns>Returns true if an item has been returned from the pool.</returns>
         bool TryGet(SerializationInfo info, StreamingContext context, Action<T> initializer, out T value);
+#endif
     }
 }

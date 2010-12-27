@@ -22,7 +22,7 @@ using Ximura;
 
 using Ximura.Data;
 #endregion
-namespace Ximura.Communication
+namespace Ximura
 {
     /// <summary>
     /// This interface specifies whether the entity can be loaded.

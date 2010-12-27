@@ -24,6 +24,16 @@ namespace Ximura
     /// </summary>
     public static partial class ArrayHelper
     {
+        #region MatchState<TSource> MatchAny<TSource, TMatch>(this IEnumerable<TSource> source, IEnumerable<TMatch> match, MatchState<TSource> state)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TSource"></typeparam>
+        /// <typeparam name="TMatch"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="match"></param>
+        /// <param name="state"></param>
+        /// <returns></returns>
         public static MatchState<TSource> MatchAny<TSource, TMatch>(
             this IEnumerable<TSource> source, IEnumerable<TMatch> match, MatchState<TSource> state)
         {
@@ -31,13 +41,37 @@ namespace Ximura
 
             return source.MatchAny(match, validate, state);
         }
-
+        #endregion  
+        #region MatchState<TSource> MatchAny<TSource, TMatch>(this IEnumerable<TSource> source, IEnumerable<TMatch> match, Func<TSource, TMatch, bool> predicate, MatchState<TSource> state)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TSource"></typeparam>
+        /// <typeparam name="TMatch"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="match"></param>
+        /// <param name="predicate"></param>
+        /// <param name="state"></param>
+        /// <returns></returns>
         public static MatchState<TSource> MatchAny<TSource, TMatch>(
             this IEnumerable<TSource> source, IEnumerable<TMatch> match, Func<TSource, TMatch, bool> predicate, MatchState<TSource> state)
         {
             return source.MatchAny(match, predicate, state, false);
         }
+        #endregion  
 
+        #region MatchAny<TSource, TMatch>(this IEnumerable<TSource> source, IEnumerable<TMatch> match, Func<TSource, TMatch, bool> predicate, MatchState<TSource> state, bool isMultipartMatch)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TSource"></typeparam>
+        /// <typeparam name="TMatch"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="match"></param>
+        /// <param name="predicate"></param>
+        /// <param name="state"></param>
+        /// <param name="isMultipartMatch"></param>
+        /// <returns></returns>
         public static MatchState<TSource> MatchAny<TSource, TMatch>(
             this IEnumerable<TSource> source, IEnumerable<TMatch> match, Func<TSource, TMatch, bool> predicate, MatchState<TSource> state, bool isMultipartMatch)
         {
@@ -45,11 +79,25 @@ namespace Ximura
 
             return sourceEnum.MatchAny(match, predicate, state, isMultipartMatch);
         }
-
+        #endregion  
+        #region MatchAny<TSource, TMatch>(this IEnumerator<TSource> sourceEnum, IEnumerable<TMatch> match, Func<TSource, TMatch, bool> predicate, MatchState<TSource> state, bool isMultipartMatch)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TSource"></typeparam>
+        /// <typeparam name="TMatch"></typeparam>
+        /// <param name="sourceEnum"></param>
+        /// <param name="match"></param>
+        /// <param name="predicate"></param>
+        /// <param name="state"></param>
+        /// <param name="isMultipartMatch"></param>
+        /// <returns></returns>
         public static MatchState<TSource> MatchAny<TSource, TMatch>(
             this IEnumerator<TSource> sourceEnum, IEnumerable<TMatch> match, Func<TSource, TMatch, bool> predicate, MatchState<TSource> state, bool isMultipartMatch)
         {
+            //TODO: this needs to be completed.
             return null;
         }
+        #endregion  
     }
 }

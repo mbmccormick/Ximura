@@ -44,7 +44,10 @@ namespace Ximura.Collections
         /// The vertex window structure holds the search results from a scan.
         /// </summary>
         /// <typeparam name="T">The collection type.</typeparam>
-        [Serializable, StructLayout(LayoutKind.Sequential)]
+#if (!SILVERLIGHT)
+        [Serializable]
+#endif
+        [StructLayout(LayoutKind.Sequential)]
         internal struct StructBasedVertexWindowV2<T> : IVertexWindow<T>
         {
             #region Declarations
@@ -409,7 +412,10 @@ namespace Ximura.Collections
         /// The vertex window structure holds the search results from a scan.
         /// </summary>
         /// <typeparam name="T">The collection type.</typeparam>
-        [Serializable, StructLayout(LayoutKind.Sequential)]
+#if (!SILVERLIGHT)
+        [Serializable]
+#endif
+        [StructLayout(LayoutKind.Sequential)]
         internal struct StructBasedVertexWindowV2b<T> : IVertexWindow<T>
         {
             #region Declarations

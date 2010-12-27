@@ -24,6 +24,7 @@ namespace Ximura
     /// </summary>
     public static partial class ArrayHelper
     {
+        #region FindFirstPosition<TSource>(this IList<TSource> source, Func<TSource, bool> predicate)
         /// <summary>
         /// This extension method will find the first position in the list based on the predicate.
         /// </summary>
@@ -35,6 +36,8 @@ namespace Ximura
         {
             return FindPositionInternal<TSource>(source, 0, source.Count, predicate);
         }
+        #endregion  
+        #region FindFirstPosition<TSource>(this IList<TSource> source, int offset, int count, Func<TSource, bool> predicate)
         /// <summary>
         /// This extension method will find the first position in the list based on the predicate.
         /// </summary>
@@ -48,7 +51,18 @@ namespace Ximura
         {
             return FindPositionInternal<TSource>(source, offset, count, predicate);
         }
+        #endregion  
 
+        #region FindPositionInternal<TSource>(IList<TSource> source, int offset, int count, Func<TSource, bool> predicate)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TSource"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="offset"></param>
+        /// <param name="count"></param>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
         static int FindPositionInternal<TSource>(IList<TSource> source, int offset, int count, Func<TSource, bool> predicate)
         {
             int num = offset + count;
@@ -62,5 +76,6 @@ namespace Ximura
 
             return i == num ? -1 : i;
         }
+        #endregion  
     }
 }

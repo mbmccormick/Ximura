@@ -24,6 +24,15 @@ namespace Ximura
 {
     public static partial class ArrayHelper
     {
+        #region MatchCollection<TSource, TMatch>(this IEnumerable<TSource> source, MatchCollectionState<TSource, TMatch> matchCollectionState)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TSource"></typeparam>
+        /// <typeparam name="TMatch"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="matchCollectionState"></param>
+        /// <returns></returns>
         public static MatchCollectionState<TSource, TMatch> MatchCollection<TSource, TMatch>(
             this IEnumerable<TSource> source, MatchCollectionState<TSource, TMatch> matchCollectionState)
         {
@@ -31,7 +40,16 @@ namespace Ximura
             sourceEnum.MoveNext();
             return sourceEnum.MatchCollection(matchCollectionState);
         }
-
+        #endregion
+        #region MatchCollection<TSource, TMatch>(this IEnumerator<TSource> sourceEnum, MatchCollectionState<TSource, TMatch> state)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TSource"></typeparam>
+        /// <typeparam name="TMatch"></typeparam>
+        /// <param name="sourceEnum"></param>
+        /// <param name="state"></param>
+        /// <returns></returns>
         public static MatchCollectionState<TSource, TMatch> MatchCollection<TSource, TMatch>(
             this IEnumerator<TSource> sourceEnum, MatchCollectionState<TSource, TMatch> state)
         {
@@ -218,6 +236,6 @@ namespace Ximura
 #endif
             }
         }
-
+        #endregion  
     }
 }

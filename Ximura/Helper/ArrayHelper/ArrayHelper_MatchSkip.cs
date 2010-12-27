@@ -24,13 +24,35 @@ namespace Ximura
     /// </summary>
     public static partial class ArrayHelper
     {
+        #region MatchSkip<TSource, TMatch>(this IEnumerable<TSource> source, IEnumerable<TMatch> match, MatchState<TSource> state)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TSource"></typeparam>
+        /// <typeparam name="TMatch"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="match"></param>
+        /// <param name="state"></param>
+        /// <returns></returns>
         public static MatchState<TSource> MatchSkip<TSource, TMatch>(
             this IEnumerable<TSource> source, IEnumerable<TMatch> match, MatchState<TSource> state)
         {
             Func<TSource, TMatch, bool> predicate = (x, y) => x.Equals(y);
             return source.MatchSkip(match, predicate, state, false);
         }
-
+        #endregion  
+        #region MatchSkip<TSource, TMatch>(this IEnumerable<TSource> source,IEnumerable<TMatch> match, Func<TSource, TMatch, bool> predicate, MatchState<TSource> state, bool isMultipartMatch)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TSource"></typeparam>
+        /// <typeparam name="TMatch"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="match"></param>
+        /// <param name="predicate"></param>
+        /// <param name="state"></param>
+        /// <param name="isMultipartMatch"></param>
+        /// <returns></returns>
         public static MatchState<TSource> MatchSkip<TSource, TMatch>(
             this IEnumerable<TSource> source,
             IEnumerable<TMatch> match, Func<TSource, TMatch, bool> predicate, MatchState<TSource> state, bool isMultipartMatch)
@@ -39,7 +61,18 @@ namespace Ximura
 
             return sourceEnum.MatchSkip(match, predicate, state, isMultipartMatch);
         }
-
+        #endregion  
+        #region MatchSkip<TSource, TMatch>(this IEnumerator<TSource> sourceEnum,IEnumerable<TMatch> match, MatchState<TSource> state, bool isMultipartMatch)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TSource"></typeparam>
+        /// <typeparam name="TMatch"></typeparam>
+        /// <param name="sourceEnum"></param>
+        /// <param name="match"></param>
+        /// <param name="state"></param>
+        /// <param name="isMultipartMatch"></param>
+        /// <returns></returns>
         public static MatchState<TSource> MatchSkip<TSource, TMatch>(
             this IEnumerator<TSource> sourceEnum,
             IEnumerable<TMatch> match, MatchState<TSource> state, bool isMultipartMatch)
@@ -47,12 +80,25 @@ namespace Ximura
             Func<TSource, TMatch, bool> predicate = (x, y) => x.Equals(y);
             return sourceEnum.MatchSkip(match, predicate, state, isMultipartMatch); ;
         }
-
+        #endregion  
+        #region MatchSkip<TSource, TMatch>(this IEnumerator<TSource> sourceEnum,IEnumerable<TMatch> match, Func<TSource, TMatch, bool> predicate, MatchState<TSource> state, bool isMultipartMatch)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TSource"></typeparam>
+        /// <typeparam name="TMatch"></typeparam>
+        /// <param name="sourceEnum"></param>
+        /// <param name="match"></param>
+        /// <param name="predicate"></param>
+        /// <param name="state"></param>
+        /// <param name="isMultipartMatch"></param>
+        /// <returns></returns>
         public static MatchState<TSource> MatchSkip<TSource, TMatch>(
             this IEnumerator<TSource> sourceEnum,
             IEnumerable<TMatch> match, Func<TSource, TMatch, bool> predicate, MatchState<TSource> state, bool isMultipartMatch)
         {
             return null;
         }
+        #endregion  
     }
 }

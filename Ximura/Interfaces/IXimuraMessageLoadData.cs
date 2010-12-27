@@ -21,7 +21,7 @@ using System.Text;
 using Ximura;
 using Ximura.Data;
 #endregion
-namespace Ximura.Communication
+namespace Ximura
 {
     /// <summary>
     /// This interface is used to provide a consistent interface for initializing an entity from a byte stream or array.

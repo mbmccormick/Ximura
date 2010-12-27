@@ -35,7 +35,10 @@ namespace Ximura.Collections
     /// <summary>
     /// This structure is used to hold the item in the collection.
     /// </summary>
-    [Serializable, StructLayout(LayoutKind.Sequential)]
+#if (!SILVERLIGHT)
+    [Serializable]
+#endif
+    [StructLayout(LayoutKind.Sequential)]
     public struct SkipListSentinelVertexStruct
     {
         #region Constants
