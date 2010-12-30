@@ -123,16 +123,25 @@ namespace Ximura
         }
         #endregion // ResourceResolve(Type locationType, string resource)
 
+        #region ResourceAsStream(this Type locationType, string resource)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="locationType"></param>
+        /// <param name="resource"></param>
+        /// <returns></returns>
         public static Stream ResourceAsStream(this Type locationType, string resource)
         {
-            Stream data = locationType.Assembly.GetManifestResourceStream(resource);
-
-            if (data == null)
-                throw new ArgumentException(@"The resource """ + resource + @""" cannot be resolved.");
-
-            return data;
+            return ResourceResolveAsStream(locationType, resource);
         }
-
+        #endregion
+        #region ResourceResolveAsStream(Type locationType, string resource)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="locationType"></param>
+        /// <param name="resource"></param>
+        /// <returns></returns>
         public static Stream ResourceResolveAsStream(Type locationType, string resource)
         {
             Stream data = locationType.Assembly.GetManifestResourceStream(resource);
@@ -142,8 +151,14 @@ namespace Ximura
 
             return data;
         }
+        #endregion
 
 #if (!SILVERLIGHT)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="resourceName"></param>
+        /// <returns></returns>
         public static Stream ResolveResourceFromName(string resourceName)
         {
             Stream toReturn = null;

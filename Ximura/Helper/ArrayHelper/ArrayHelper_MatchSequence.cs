@@ -24,6 +24,25 @@ namespace Ximura
     /// </summary>
     public static partial class ArrayHelper
     {
+        #region MatchSequence<TSource, TMatch>(this IEnumerable<TSource> source, IEnumerable<TMatch> match)
+        /// <summary>
+        /// This method matches the sequence against the source array.
+        /// </summary>
+        /// <typeparam name="TSource">The source array type.</typeparam>
+        /// <typeparam name="TMatch">The match array type.</typeparam>
+        /// <param name="source">The source array.</param>
+        /// <param name="match">The source array.</param>
+        /// <returns>The outgoing match state. This will indicate whether the match was successful or partially successful, i.e. there
+        /// is a partial match at the end of the array that cannot be fully resolved.</returns>
+        public static MatchState<TSource> MatchSequence<TSource, TMatch>(
+            this IEnumerable<TSource> source, IEnumerable<TMatch> match)
+        {
+            Func<TSource, TMatch, bool> validate = (x, y) => x.Equals(y);
+            IEnumerator<TSource> sourceEnum = source.GetEnumerator();
+
+            return sourceEnum.MatchSequence(match, validate, null);
+        }
+        #endregion  
         #region MatchSequence<TSource, TMatch>(this IEnumerable<TSource> source, IEnumerable<TMatch> match, MatchState<TSource> state)
         /// <summary>
         /// This method matches the sequence against the source array.
@@ -126,6 +145,9 @@ namespace Ximura
                 while (sourceEnum.MoveNext())
                 {
                     TSource item = sourceEnum.Current;
+                    //This method logs the data item from the current enumeration if this state is set to record it.
+                    stateInternal.DataLog(item);
+
                     //OK, do we have a match?
                     bool isMatch = predicate(item, matchItem);
 

@@ -338,7 +338,7 @@ namespace Ximura
                 throw new ArgumentException("Invalid length.");
             }
         }
-        #endregion // ByteBufferChecks(byte[] buffer, int offset, int count)
+        #endregion
 
         #region Load()
         /// <summary>
@@ -367,6 +367,11 @@ namespace Ximura
         #endregion
 
         #region Load(Stream data)
+        /// <summary>
+        /// This method loads the message from a stream.
+        /// </summary>
+        /// <param name="data">The data stream to read from.</param>
+        /// <returns>Returns the number of bytes read from the stream.</returns>
         public virtual int Load(Stream data)
         {
             throw new NotImplementedException("The method or operation is not implemented.");

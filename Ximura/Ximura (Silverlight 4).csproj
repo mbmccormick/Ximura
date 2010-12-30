@@ -129,26 +129,31 @@
     <Compile Include="Exceptions\XimuraException.cs" />
     <Compile Include="Helper\ArrayHelper\ArrayHelper.cs" />
     <Compile Include="Helper\ArrayHelper\ArrayHelper_Binary.cs" />
+    <Compile Include="Helper\ArrayHelper\ArrayHelper_Contains.cs" />
     <Compile Include="Helper\ArrayHelper\ArrayHelper_FindFirstPosition.cs" />
-    <Compile Include="Helper\ArrayHelper\ArrayHelper_MatchAny.cs" />
     <Compile Include="Helper\ArrayHelper\ArrayHelper_MatchCollection.cs" />
     <Compile Include="Helper\ArrayHelper\ArrayHelper_MatchSequence.cs" />
-    <Compile Include="Helper\ArrayHelper\ArrayHelper_MatchSkip.cs" />
-    <Compile Include="Helper\ArrayHelper\MatchCollection.cs" />
-    <Compile Include="Helper\ArrayHelper\MatchCollectionState.cs" />
-    <Compile Include="Helper\ArrayHelper\MatchExceptionTerminator.cs" />
-    <Compile Include="Helper\ArrayHelper\MatchSequenceSkipOrFailTerminator.cs" />
-    <Compile Include="Helper\ArrayHelper\MatchSequenceTerminator.cs" />
-    <Compile Include="Helper\ArrayHelper\MatchSkipTerminator.cs" />
-    <Compile Include="Helper\ArrayHelper\MatchState.cs" />
-    <Compile Include="Helper\ArrayHelper\MatchTerminator.cs" />
-    <Compile Include="Helper\ArrayHelper\MatchTerminatorResult.cs" />
-    <Compile Include="Helper\ArrayHelper\MatchTerminatorStatus.cs" />
+    <Compile Include="Helper\ArrayHelper\ArrayHelper_Range.cs" />
+    <Compile Include="Helper\ArrayHelper\ArrayHelper_SlidingWindow.cs" />
+    <Compile Include="Helper\ArrayHelper\MatchCollection\MatchCollection.cs" />
+    <Compile Include="Helper\ArrayHelper\MatchCollection\MatchCollectionState.cs" />
+    <Compile Include="Helper\ArrayHelper\MatchCollection\Terminators\MatchExceptionTerminator.cs" />
+    <Compile Include="Helper\ArrayHelper\MatchCollection\Terminators\MatchSequenceSkipOrFailTerminator.cs" />
+    <Compile Include="Helper\ArrayHelper\MatchCollection\Terminators\MatchSequenceTerminator.cs" />
+    <Compile Include="Helper\ArrayHelper\MatchCollection\Terminators\MatchSkipTerminator.cs" />
+    <Compile Include="Helper\ArrayHelper\MatchCollection\Terminators\MatchTerminator.cs" />
+    <Compile Include="Helper\ArrayHelper\MatchCollection\Terminators\MatchTerminatorResult.cs" />
+    <Compile Include="Helper\ArrayHelper\MatchCollection\Terminators\MatchTerminatorStatus.cs" />
+    <Compile Include="Helper\ArrayHelper\MatchSequence\MatchState.cs" />
     <Compile Include="Helper\Bit\BitHelper.cs" />
     <Compile Include="Helper\Bit\BitMask.cs" />
     <Compile Include="Helper\Common\Common.cs" />
     <Compile Include="Helper\Common\Common_Encoding.cs" />
     <Compile Include="Helper\Common\Common_String.cs" />
+    <Compile Include="Helper\Enumerators\CSV\CSVRowItem.cs" />
+    <Compile Include="Helper\Enumerators\CSV\CSVStreamEnumerator.cs" />
+    <Compile Include="Helper\Enumerators\IntermediateObjectEnumerator.cs" />
+    <Compile Include="Helper\Enumerators\ObjectEnumerator.cs" />
     <Compile Include="Helper\Linq\Linq.cs" />
     <Compile Include="Helper\Linq\Linq_Compare.cs" />
     <Compile Include="Helper\Linq\Linq_Convert.cs" />
@@ -189,6 +194,7 @@
     </Compile>
     <Compile Include="Helper\Stream\StreamCounter.cs" />
     <Compile Include="Helper\Stream\StreamHelper.cs" />
+    <Compile Include="Helper\Stream\StreamHelper_Enum.cs" />
     <Compile Include="Helper\Threading.cs" />
     <Compile Include="Interfaces\IXimuraBinarySerialize.cs" />
     <Compile Include="Interfaces\IXimuraMessageLoad.cs" />
@@ -199,7 +205,7 @@
     <Compile Include="Messaging\CSVMessage\Fragments\CSVDataFragment.cs" />
     <Compile Include="Messaging\CSVMessage\Fragments\CSVHeaderFragment.cs" />
     <Compile Include="Messaging\CSVMessage\Fragments\Terminator\MessageTerminatorCSV.cs" />
-    <Compile Include="Messaging\Interfaces\ISupportInitialize.cs" />
+    <Compile Include="Messaging\CSVMessage\Fragments\Terminator\State\CSVTerminationMatchCollectionState.cs" />
     <Compile Include="Messaging\Interfaces\IXimuraHeaderFragment.cs" />
     <Compile Include="Messaging\Interfaces\IXimuraMessage.cs" />
     <Compile Include="Messaging\Interfaces\IXimuraMessageFileStreamLoad.cs" />
@@ -220,6 +226,7 @@
     <Compile Include="Messaging\Termination\MessageTerminatorCRLFNoFolding.cs" />
     <Compile Include="Messaging\Termination\State\CRLFMatchCollectionState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Silverlight\ISupportInitialize.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Collections\_Documentation\CodeProject Articles\_ReadMe.txt" />
@@ -232,6 +239,8 @@
     <None Include="Collections\_Documentation\CodeProject Articles\HashTable Algorithm.docx" />
     <None Include="Collections\_Documentation\CodeProject Articles\Introduction.docx" />
     <None Include="Collections\_Documentation\CodeProject Articles\SkipList Algorithm.docx" />
+    <None Include="Messaging\CSVMessage\_Documentation\RFC 2234 - Augmented BNF for Syntax Specifications ABNF.mht" />
+    <None Include="Messaging\CSVMessage\_Documentation\RFC 4180 - Common Format and MIME Type for Comma-Separated Values %28CSV%29 Files.mht" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Collections\_Documentation\Reference\" />

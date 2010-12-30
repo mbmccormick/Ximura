@@ -19,7 +19,6 @@ using System.Reflection;
 using System.ComponentModel;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using System.Diagnostics;
 using System.Globalization;
 using System.Runtime.CompilerServices;
@@ -30,25 +29,27 @@ using Ximura;
 #endregion // using
 namespace Ximura
 {
-    public static partial class LinqHelper
+    public static partial class ArrayHelper
     {
-        #region Convert<T, U>(this IEnumerable<T> items, Func<T, U> convert)
+        #region Contains<T>(this IEnumerable<T> items, Predicate<T> action)
         /// <summary>
-        /// This method converts an enumerable collection in to a collection of converted items.
+        /// This method scans a collection and returns true when an item is matched.
         /// </summary>
-        /// <typeparam name="T">The type to convert.</typeparam>
-        /// <typeparam name="U">The output type.</typeparam>
-        /// <param name="items">The collection to convert.</param>
-        /// <param name="convert">The conversion function.</param>
-        /// <returns>Returns a enumeration of converted items.</returns>
-        public static IEnumerable<U> Convert<T, U>(this IEnumerable<T> items, Func<T, U> convert)
+        /// <typeparam name="T">The collection type.</typeparam>
+        /// <param name="items">The enumeration.</param>
+        /// <param name="predic">The predicate that returns true when there is a match.</param>
+        /// <returns>Returns true if an item is matched in the collection.</returns>
+        public static bool Contains<T>(this IEnumerable<T> items, Predicate<T> predic)
         {
-            if (items == null) throw new ArgumentNullException("items", "items enumeration is null");
-            if (convert == null) throw new ArgumentNullException("convert", "convert function is null");
+            if (items == null) throw new ArgumentNullException("items");
+            if (predic == null) throw new ArgumentNullException("action");
 
-            foreach (var item in items)
-                yield return convert(item);
+            foreach (T item in items)
+                if (predic(item))
+                    return true;
+
+            return false;
         }
-        #endregion
+        #endregion  
     }
 }

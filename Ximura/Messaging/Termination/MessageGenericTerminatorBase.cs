@@ -31,8 +31,11 @@ namespace Ximura
         where STATE: MatchCollectionState<byte, byte>
     {
         #region Declarations
+        /// <summary>
+        /// This is the match state.
+        /// </summary>
         protected MatchCollectionState<byte, byte> mState = null;
-        #endregion // Declarations
+        #endregion
         #region Constructor
         /// <summary>
         /// The default constructor
@@ -53,7 +56,7 @@ namespace Ximura
             Initialized = false;
             base.Reset();
         }
-        #endregion // Reset()
+        #endregion
 
         #region Initialized
         /// <summary>
@@ -74,7 +77,7 @@ namespace Ximura
         {
             get { return mState.IsTerminator; }
         }
-        #endregion // IsTerminator
+        #endregion
         #region CarryOver
         /// <summary>
         /// The number of carry over bytes in the buffer.
@@ -86,7 +89,7 @@ namespace Ximura
                 return mState.SlidingWindow.Count; 
             }
         }
-        #endregion // CarryOver
+        #endregion
 
         #region Match(byte[] buffer, int offset, int count, out long length, out long? bodyLength)
         /// <summary>
@@ -97,23 +100,35 @@ namespace Ximura
         /// <param name="count">The number of bytes that can be read.</param>
         /// <param name="length">The length of the bytes read.</param>
         /// <returns>Returns true if a match has been found.</returns>
-        public bool Match(byte[] buffer, int offset, int count, out int length, out long? bodyLength)
+        public virtual bool Match(byte[] buffer, int offset, int count, out int length, out long? bodyLength)
         {
             if (!Initialized)
                 throw new NotSupportedException("Match is not supported without Initialization.");
 
+            //Get the current start position so that we can calculate the offset later.
             int lengthStart = mState.Length;
-            mState = buffer.Range(offset, count).MatchCollection(mState);
 
+            //OK, match against the specified buffer range.
+            mState = buffer
+                .Range(offset, count)
+                .MatchCollection(mState);
+
+            //OK, calculate the number of bytes scanned.
             length = mState.Length - lengthStart;
 
+            //OK, do we have a match?
             if (mState.Status.HasValue && (mState.Status.Value & MatchTerminatorStatus.Success) > 0)
+            {
+                //Yes, so calculate the actual body length.
                 bodyLength = mState.MatchPosition - mState.Start;
-            else
-                bodyLength = null;
+                return true;
+            }
 
-            return (mState.Status & MatchTerminatorStatus.Success) > 0;
+            //OK, we don't have a match.
+            bodyLength = null;
+
+            return false;
         }
-        #endregion // Match(byte[] buffer, int offset, int count, out int length)
+        #endregion
     }
 }

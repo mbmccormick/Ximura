@@ -1,6 +1,6 @@
 ﻿#region Copyright
 // *******************************************************************************
-// Copyright (c) 2000-2009 Paul Stancer.
+// Copyright (c) 2000-2011 Paul Stancer.
 // All rights reserved. This program and the accompanying materials
 // are made available under the terms of the Eclipse Public License v1.0
 // which accompanies this distribution, and is available at
@@ -23,7 +23,7 @@ using Ximura.Data;
 namespace Ximura
 {
     /// <summary>
-    /// 
+    /// This static class provides array based matching logic.
     /// </summary>
     public static partial class ArrayHelper
     {
@@ -71,11 +71,11 @@ namespace Ximura
 
         #region DequeueRemove<T>(this Queue<T> queue, int count)
         /// <summary>
-        /// 
+        /// This method will remove and discard the number of items specified from the queue.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="queue"></param>
-        /// <param name="count"></param>
+        /// <typeparam name="T">The queue type.</typeparam>
+        /// <param name="queue">The queue.</param>
+        /// <param name="count">The number of items to remove.</param>
         public static void DequeueRemove<T>(this Queue<T> queue, int count)
         {
             while (count-- > 0 && queue.Count > 0)
@@ -83,159 +83,19 @@ namespace Ximura
         }
         #endregion  
 
-        #region ValidateCollectionSlidingWindow<TSource, TMatch>(MatchCollectionState<TSource, TMatch> state, bool deQueue)
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <typeparam name="TSource"></typeparam>
-        /// <typeparam name="TMatch"></typeparam>
-        /// <param name="state"></param>
-        /// <param name="deQueue"></param>
-        /// <returns></returns>
-        private static MatchCollectionState<TSource, TMatch> ValidateCollectionSlidingWindow<TSource, TMatch>(
-            MatchCollectionState<TSource, TMatch> state, bool deQueue)
+        #region MatchStateDebugLog<TSource, TMatch>(MatchCollectionState<TSource, TMatch> state, string type)
+        private static void MatchStateDebugLog<TSource, TMatch>(MatchCollectionState<TSource, TMatch> state, string type)
         {
-            //Remove the first item from the collection.
-            if (deQueue)
-            {
-                state.SlidingWindow.Dequeue();
-                state.Length++;
-                state.Length -= state.SlidingWindow.Count;
-            }
-
-#if (DEBUG)
             if (state.DebugTrace)
                 state.DebugTraceCollection.Add(
-                    string.Format("Recurse -> {0} Q={1}, ({2})", state.DebugTraceRecursion,
-                    state.SlidingWindow == null ? "null" : state.SlidingWindow.Count.ToString(),
-                        !state.Status.HasValue ? "null" : state.Status.Value.ToString()));
-#endif
+                    string.Format("{0} <- {1} Q={2}, ({3})"
+                    , type
+                    , state.DebugTraceRecursion
+                    , state.SlidingWindow == null ? "null" : state.SlidingWindow.Count.ToString()
+                    , !state.Status.HasValue ? "null" : state.Status.Value.ToString())
+                    );
 
-            //Ok, check whether the queue is empty. This can happen when the queue only contained
-            //1 item and was called recursively.
-            if (state.SlidingWindow.Count == 0)
-            {
-                state.Status = MatchTerminatorStatus.NotSet;
-                return state;
-            }
-
-            Queue<TSource> window = state.SlidingWindow;
-
-            state.CurrentEnumerator.Reset();
-            state.CurrentEnumerator.MoveNext();
-            state.SlidingWindow = new Queue<TSource>();
-            //OK, we recursively call the window to allow the queue to 
-            //be processed.
-
-            return window.MatchCollection(state);
-        }
-        #endregion  
-        #region ValidateSlidingWindow<TSource, TMatch>(MatchState<TSource> state, IEnumerator<TMatch> matchEnum, Func<TSource, TMatch, bool> predicate)
-        /// <summary>
-        /// This method validates the sliding windows of previous records. This is needed because
-        /// there may be partial matches in the previous array records. This is especially important
-        /// when the match array is long.
-        /// </summary>
-        /// <typeparam name="TSource">The source array type.</typeparam>
-        /// <typeparam name="TMatch">The match array type.</typeparam>
-        /// <param name="state">The current match state.</param>
-        /// <param name="matchEnum">The match enumerator.</param>
-        /// <param name="predicate">The predicate used to validate the source and match items.</param>
-        /// <returns>The match position or 0 if there is no match.</returns>
-        private static int ValidateSlidingWindow<TSource, TMatch>(MatchState<TSource> state, IEnumerator<TMatch> matchEnum,
-            Func<TSource, TMatch, bool> predicate)
-        {
-            int posMatch;
-
-            //Remove the start of the previous point.
-            state.SlidingWindow.Dequeue();
-
-            //OK, no match so reset the match buffer to its default position
-            while (state.SlidingWindow.Count > 0 && !SlidingWindowMatch(predicate, state.SlidingWindow, matchEnum))
-                state.SlidingWindow.Dequeue();
-
-            posMatch = state.SlidingWindow.Count;
-            //Reset the match enumerator to its initial position.
-            if (posMatch == 0)
-            {
-                matchEnum.Reset();
-                matchEnum.MoveNext();
-            }
-
-            return posMatch;
-        }
-        #endregion // ValidateSlidingWindow
-        #region SlidingWindowMatch
-        /// <summary>
-        /// This method matches the sliding window with the match.
-        /// </summary>
-        /// <typeparam name="TSource">The source array type.</typeparam>
-        /// <typeparam name="TMatch">The match array type.</typeparam>
-        /// <param name="predicate">The predicate used to validate the source and match items.</param>
-        /// <param name="queue">The sliding window queue.</param>
-        /// <param name="matchEnum">The match enumerator.</param>
-        /// <returns>Returns true if there is a partial match.</returns>
-        private static bool SlidingWindowMatch<TSource, TMatch>(Func<TSource, TMatch, bool> predicate,
-            Queue<TSource> queue, IEnumerator<TMatch> matchEnum)
-        {
-            matchEnum.Reset();
-            matchEnum.MoveNext();
-
-            TMatch match;
-
-            foreach (TSource item in queue)
-            {
-                match = matchEnum.Current;
-                if (!predicate(item, match))
-                {
-                    return false;
-                }
-                //Ok, move to the next item in the match enumeration.
-                if (!matchEnum.MoveNext())
-                    throw new Exception("ArrayHelper/SlidingWindowMatch --> matchEnum.MoveNext() was not successful. This should not happen.");
-            }
-
-            return true;
-        }
-        #endregion // SlidingWindowMatch
-
-        #region Contains<T>(this IEnumerable<T> items, Predicate<T> action)
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="items"></param>
-        /// <param name="action"></param>
-        /// <returns></returns>
-        public static bool Contains<T>(this IEnumerable<T> items, Predicate<T> action)
-        {
-            if (items == null) throw new ArgumentNullException("items");
-            if (action == null) throw new ArgumentNullException("action");
-
-            foreach (T item in items)
-                if (action(item))
-                    return true;
-
-            return false;
-        }
-        #endregion  
-
-        #region Range<TSource>(this IList<TSource> source, int offset, int count)
-        /// <summary>
-        /// This extension selects a range of array values based on the offset and the count value.
-        /// </summary>
-        /// <typeparam name="TSource">This extension method can be applied to any object that implements the IList interface.</typeparam>
-        /// <param name="source">The array source.</param>
-        /// <param name="offset">The offset value.</param>
-        /// <param name="count">The number of records to process.</param>
-        /// <returns>Returns a enumerable collection containing the records.</returns>
-        public static IEnumerable<TSource> Range<TSource>(this IList<TSource> source, int offset, int count)
-        {
-            int num = offset + count;
-            for (int i = offset; i < num; i++)
-            {
-                yield return source[i];
-            }
+            state.DebugTraceRecursion--;
         }
         #endregion  
     }

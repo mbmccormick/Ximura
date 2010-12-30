@@ -824,17 +824,25 @@
             This static class provides a number of extension method for array objects.
             </summary>
             <summary>
-            This static class provides a number of extension method for array objects.
+            This static class provides array based matching logic.
             </summary>
             <summary>
             This static class provides a number of extension method for array objects.
             </summary>
             <summary>
-            
-            </summary>
-            <summary>
             This static class provides a number of extension method for array objects.
             </summary>
+        </member>
+        <member name="M:Ximura.ArrayHelper.MatchSequence``2(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1})">
+            <summary>
+            This method matches the sequence against the source array.
+            </summary>
+            <typeparam name="TSource">The source array type.</typeparam>
+            <typeparam name="TMatch">The match array type.</typeparam>
+            <param name="source">The source array.</param>
+            <param name="match">The source array.</param>
+            <returns>The outgoing match state. This will indicate whether the match was successful or partially successful, i.e. there
+            is a partial match at the end of the array that cannot be fully resolved.</returns>
         </member>
         <member name="M:Ximura.ArrayHelper.MatchSequence``2(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1},Ximura.MatchState{``0})">
             <summary>
@@ -884,104 +892,6 @@
             <param name="state"></param>
             <returns></returns>
         </member>
-        <member name="M:Ximura.ArrayHelper.MatchSkip``2(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1},Ximura.MatchState{``0})">
-            <summary>
-            
-            </summary>
-            <typeparam name="TSource"></typeparam>
-            <typeparam name="TMatch"></typeparam>
-            <param name="source"></param>
-            <param name="match"></param>
-            <param name="state"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Ximura.ArrayHelper.MatchSkip``2(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1},System.Func{``0,``1,System.Boolean},Ximura.MatchState{``0},System.Boolean)">
-            <summary>
-            
-            </summary>
-            <typeparam name="TSource"></typeparam>
-            <typeparam name="TMatch"></typeparam>
-            <param name="source"></param>
-            <param name="match"></param>
-            <param name="predicate"></param>
-            <param name="state"></param>
-            <param name="isMultipartMatch"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Ximura.ArrayHelper.MatchSkip``2(System.Collections.Generic.IEnumerator{``0},System.Collections.Generic.IEnumerable{``1},Ximura.MatchState{``0},System.Boolean)">
-            <summary>
-            
-            </summary>
-            <typeparam name="TSource"></typeparam>
-            <typeparam name="TMatch"></typeparam>
-            <param name="sourceEnum"></param>
-            <param name="match"></param>
-            <param name="state"></param>
-            <param name="isMultipartMatch"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Ximura.ArrayHelper.MatchSkip``2(System.Collections.Generic.IEnumerator{``0},System.Collections.Generic.IEnumerable{``1},System.Func{``0,``1,System.Boolean},Ximura.MatchState{``0},System.Boolean)">
-            <summary>
-            
-            </summary>
-            <typeparam name="TSource"></typeparam>
-            <typeparam name="TMatch"></typeparam>
-            <param name="sourceEnum"></param>
-            <param name="match"></param>
-            <param name="predicate"></param>
-            <param name="state"></param>
-            <param name="isMultipartMatch"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Ximura.ArrayHelper.MatchAny``2(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1},Ximura.MatchState{``0})">
-            <summary>
-            
-            </summary>
-            <typeparam name="TSource"></typeparam>
-            <typeparam name="TMatch"></typeparam>
-            <param name="source"></param>
-            <param name="match"></param>
-            <param name="state"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Ximura.ArrayHelper.MatchAny``2(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1},System.Func{``0,``1,System.Boolean},Ximura.MatchState{``0})">
-            <summary>
-            
-            </summary>
-            <typeparam name="TSource"></typeparam>
-            <typeparam name="TMatch"></typeparam>
-            <param name="source"></param>
-            <param name="match"></param>
-            <param name="predicate"></param>
-            <param name="state"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Ximura.ArrayHelper.MatchAny``2(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1},System.Func{``0,``1,System.Boolean},Ximura.MatchState{``0},System.Boolean)">
-            <summary>
-            
-            </summary>
-            <typeparam name="TSource"></typeparam>
-            <typeparam name="TMatch"></typeparam>
-            <param name="source"></param>
-            <param name="match"></param>
-            <param name="predicate"></param>
-            <param name="state"></param>
-            <param name="isMultipartMatch"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Ximura.ArrayHelper.MatchAny``2(System.Collections.Generic.IEnumerator{``0},System.Collections.Generic.IEnumerable{``1},System.Func{``0,``1,System.Boolean},Ximura.MatchState{``0},System.Boolean)">
-            <summary>
-            
-            </summary>
-            <typeparam name="TSource"></typeparam>
-            <typeparam name="TMatch"></typeparam>
-            <param name="sourceEnum"></param>
-            <param name="match"></param>
-            <param name="predicate"></param>
-            <param name="state"></param>
-            <param name="isMultipartMatch"></param>
-            <returns></returns>
-        </member>
         <member name="M:Ximura.ArrayHelper.GetGenericEnumerator``1(System.Collections.Generic.IEnumerable{``0})">
             <summary>
             
@@ -1002,84 +912,33 @@
         </member>
         <member name="M:Ximura.ArrayHelper.DequeueRemove``1(System.Collections.Generic.Queue{``0},System.Int32)">
             <summary>
-            
+            This method will remove and discard the number of items specified from the queue.
             </summary>
-            <typeparam name="T"></typeparam>
-            <param name="queue"></param>
-            <param name="count"></param>
-        </member>
-        <member name="M:Ximura.ArrayHelper.ValidateCollectionSlidingWindow``2(Ximura.MatchCollectionState{``0,``1},System.Boolean)">
-            <summary>
-            
-            </summary>
-            <typeparam name="TSource"></typeparam>
-            <typeparam name="TMatch"></typeparam>
-            <param name="state"></param>
-            <param name="deQueue"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Ximura.ArrayHelper.ValidateSlidingWindow``2(Ximura.MatchState{``0},System.Collections.Generic.IEnumerator{``1},System.Func{``0,``1,System.Boolean})">
-            <summary>
-            This method validates the sliding windows of previous records. This is needed because
-            there may be partial matches in the previous array records. This is especially important
-            when the match array is long.
-            </summary>
-            <typeparam name="TSource">The source array type.</typeparam>
-            <typeparam name="TMatch">The match array type.</typeparam>
-            <param name="state">The current match state.</param>
-            <param name="matchEnum">The match enumerator.</param>
-            <param name="predicate">The predicate used to validate the source and match items.</param>
-            <returns>The match position or 0 if there is no match.</returns>
-        </member>
-        <member name="M:Ximura.ArrayHelper.SlidingWindowMatch``2(System.Func{``0,``1,System.Boolean},System.Collections.Generic.Queue{``0},System.Collections.Generic.IEnumerator{``1})">
-            <summary>
-            This method matches the sliding window with the match.
-            </summary>
-            <typeparam name="TSource">The source array type.</typeparam>
-            <typeparam name="TMatch">The match array type.</typeparam>
-            <param name="predicate">The predicate used to validate the source and match items.</param>
-            <param name="queue">The sliding window queue.</param>
-            <param name="matchEnum">The match enumerator.</param>
-            <returns>Returns true if there is a partial match.</returns>
-        </member>
-        <member name="M:Ximura.ArrayHelper.Contains``1(System.Collections.Generic.IEnumerable{``0},System.Predicate{``0})">
-            <summary>
-            
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="items"></param>
-            <param name="action"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Ximura.ArrayHelper.Range``1(System.Collections.Generic.IList{``0},System.Int32,System.Int32)">
-            <summary>
-            This extension selects a range of array values based on the offset and the count value.
-            </summary>
-            <typeparam name="TSource">This extension method can be applied to any object that implements the IList interface.</typeparam>
-            <param name="source">The array source.</param>
-            <param name="offset">The offset value.</param>
-            <param name="count">The number of records to process.</param>
-            <returns>Returns a enumerable collection containing the records.</returns>
+            <typeparam name="T">The queue type.</typeparam>
+            <param name="queue">The queue.</param>
+            <param name="count">The number of items to remove.</param>
         </member>
         <member name="M:Ximura.ArrayHelper.MatchCollection``2(System.Collections.Generic.IEnumerable{``0},Ximura.MatchCollectionState{``0,``1})">
             <summary>
-            
+            This method matches the source enumeration against the state collection, this is to allow pattern
+            matching over multiple byte blocks.
             </summary>
-            <typeparam name="TSource"></typeparam>
-            <typeparam name="TMatch"></typeparam>
-            <param name="source"></param>
-            <param name="matchCollectionState"></param>
-            <returns></returns>
+            <typeparam name="TSource">The source type.</typeparam>
+            <typeparam name="TMatch">The match type.</typeparam>
+            <param name="source">The enumerable source.</param>
+            <param name="state">The incoming match state.</param>
+            <returns>Returns the updated match state.</returns>
         </member>
         <member name="M:Ximura.ArrayHelper.MatchCollection``2(System.Collections.Generic.IEnumerator{``0},Ximura.MatchCollectionState{``0,``1})">
             <summary>
-            
+            This method matches the source enumeration against the state collection, this is to allow pattern
+            matching over multiple byte blocks.
             </summary>
-            <typeparam name="TSource"></typeparam>
-            <typeparam name="TMatch"></typeparam>
-            <param name="sourceEnum"></param>
-            <param name="state"></param>
-            <returns></returns>
+            <typeparam name="TSource">The source type.</typeparam>
+            <typeparam name="TMatch">The match type.</typeparam>
+            <param name="sourceEnum">The source enumeration data.</param>
+            <param name="state">The incoming match state.</param>
+            <returns>Returns the updated match state.</returns>
         </member>
         <member name="M:Ximura.ArrayHelper.FindFirstPosition``1(System.Collections.Generic.IList{``0},System.Func{``0,System.Boolean})">
             <summary>
@@ -1103,14 +962,15 @@
         </member>
         <member name="M:Ximura.ArrayHelper.FindPositionInternal``1(System.Collections.Generic.IList{``0},System.Int32,System.Int32,System.Func{``0,System.Boolean})">
             <summary>
-            
+            This extension method will find the first position in the list based on the predicate and the 
+            boundary fields passed.
             </summary>
-            <typeparam name="TSource"></typeparam>
-            <param name="source"></param>
-            <param name="offset"></param>
-            <param name="count"></param>
-            <param name="predicate"></param>
-            <returns></returns>
+            <typeparam name="TSource">The source item type.</typeparam>
+            <param name="source">The source list.</param>
+            <param name="offset">The list search start offset.</param>
+            <param name="count">The number of items to check.</param>
+            <param name="predicate">The predicate function to check for equality.</param>
+            <returns>Returns the position of the item that matched.</returns>
         </member>
         <member name="M:Ximura.ArrayHelper.FindCharCaseInsensitive(System.Byte[],System.Byte,System.Int32)">
             <summary>
@@ -1160,6 +1020,59 @@
             <param name="intLength"></param>
             <param name="blnIgnoreCase"></param>
             <returns></returns>
+        </member>
+        <member name="M:Ximura.ArrayHelper.Range``1(System.Collections.Generic.IList{``0},System.Int32,System.Int32)">
+            <summary>
+            This extension selects a range of array values based on the offset and the count value.
+            </summary>
+            <typeparam name="TSource">This extension method can be applied to any object that implements the IList interface.</typeparam>
+            <param name="source">The array source.</param>
+            <param name="offset">The offset value.</param>
+            <param name="count">The number of records to process.</param>
+            <returns>Returns a enumerable collection containing the records.</returns>
+        </member>
+        <member name="M:Ximura.ArrayHelper.Contains``1(System.Collections.Generic.IEnumerable{``0},System.Predicate{``0})">
+            <summary>
+            This method scans a collection and returns true when an item is matched.
+            </summary>
+            <typeparam name="T">The collection type.</typeparam>
+            <param name="items">The enumeration.</param>
+            <param name="predic">The predicate that returns true when there is a match.</param>
+            <returns>Returns true if an item is matched in the collection.</returns>
+        </member>
+        <member name="M:Ximura.ArrayHelper.ValidateCollectionSlidingWindow``2(Ximura.MatchCollectionState{``0,``1},System.Boolean)">
+            <summary>
+            This method validates the state sliding window.
+            </summary>
+            <typeparam name="TSource"></typeparam>
+            <typeparam name="TMatch"></typeparam>
+            <param name="state">The match collection state.</param>
+            <param name="deQueue"></param>
+            <returns>Returns the updated match state.</returns>
+        </member>
+        <member name="M:Ximura.ArrayHelper.ValidateSlidingWindow``2(Ximura.MatchState{``0},System.Collections.Generic.IEnumerator{``1},System.Func{``0,``1,System.Boolean})">
+            <summary>
+            This method validates the sliding windows of previous records. This is needed because
+            there may be partial matches in the previous array records. This is especially important
+            when the match array is long.
+            </summary>
+            <typeparam name="TSource">The source array type.</typeparam>
+            <typeparam name="TMatch">The match array type.</typeparam>
+            <param name="state">The current match state.</param>
+            <param name="matchEnum">The match enumerator.</param>
+            <param name="predicate">The predicate used to validate the source and match items.</param>
+            <returns>The match position or 0 if there is no match.</returns>
+        </member>
+        <member name="M:Ximura.ArrayHelper.SlidingWindowMatch``2(System.Func{``0,``1,System.Boolean},System.Collections.Generic.Queue{``0},System.Collections.Generic.IEnumerator{``1})">
+            <summary>
+            This method matches the sliding window with the match.
+            </summary>
+            <typeparam name="TSource">The source array type.</typeparam>
+            <typeparam name="TMatch">The match array type.</typeparam>
+            <param name="predicate">The predicate used to validate the source and match items.</param>
+            <param name="queue">The sliding window queue.</param>
+            <param name="matchEnum">The match enumerator.</param>
+            <returns>Returns true if there is a partial match.</returns>
         </member>
         <member name="T:Ximura.XimuraComponentBase">
             <summary>
@@ -4711,94 +4624,6 @@
             <param name="info">Serialization information.</param>
             <param name="context">Streaming context.</param>
         </member>
-        <member name="T:Ximura.MatchTerminatorResult">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Ximura.MatchTerminatorResult.Length">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Ximura.MatchTerminatorResult.CanContinue">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Ximura.MatchTerminatorResult.IsTerminator">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Ximura.MatchTerminatorResult.Status">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="T:Ximura.MatchCollectionState`2">
-            <summary>
-            
-            </summary>
-            <typeparam name="TSource"></typeparam>
-            <typeparam name="TMatch"></typeparam>
-        </member>
-        <member name="M:Ximura.MatchCollectionState`2.#ctor">
-            <summary>
-            The default constructor.
-            </summary>
-        </member>
-        <member name="M:Ximura.MatchCollectionState`2.ResetMatchCounters">
-            <summary>
-            This method resets the match counter between calls to the MatchCollection method.
-            </summary>
-        </member>
-        <member name="P:Ximura.MatchCollectionState`2.SlidingWindow">
-            <summary>
-            The sliding window queue.
-            </summary>
-        </member>
-        <member name="P:Ximura.MatchCollectionState`2.IsTerminator">
-            <summary>
-            Indicates whether the match is a terminator. This additional functionality is needed for complex matches.
-            </summary>
-        </member>
-        <member name="P:Ximura.MatchCollectionState`2.Status">
-            <summary>
-            Identifies when there is a match.
-            </summary>
-        </member>
-        <member name="P:Ximura.MatchCollectionState`2.DebugTrace">
-            <summary>
-            Identifies when there is a match.
-            </summary>
-        </member>
-        <member name="P:Ximura.MatchCollectionState`2.DebugTraceCollection">
-            <summary>
-            This collection should be used to debug the tract route for the collection.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="P:Ximura.MatchCollectionState`2.Start">
-            <summary>
-            Identifies the start of a match.
-            </summary>
-        </member>
-        <member name="P:Ximura.MatchCollectionState`2.Length">
-            <summary>
-            Identifies the position in the data, including the terminator.
-            </summary>
-        </member>
-        <member name="P:Ximura.MatchCollectionState`2.MatchPosition">
-            <summary>
-            This is the match position for the collection.
-            </summary>
-        </member>
-        <member name="P:Ximura.MatchCollectionState`2.CurrentEnumerator">
-            <summary>
-            This method holds the current enumerator during a partial match
-            </summary>
-        </member>
         <member name="T:Ximura.PoolBaseParallel`1">
             <summary>
             The PoolBaseParallel class is used to hold a collection of object that can be re-used.
@@ -5187,66 +5012,6 @@
         <member name="F:Ximura.SCMJobCompletionType.SignalOrTimeout">
             <summary>
             This property specifies 
-            </summary>
-        </member>
-        <member name="T:Ximura.MatchTerminatorStatus">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Ximura.MatchTerminatorStatus.NotSet">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Ximura.MatchTerminatorStatus.Fail">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Ximura.MatchTerminatorStatus.FailNoLength">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Ximura.MatchTerminatorStatus.Success">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Ximura.MatchTerminatorStatus.SuccessReset">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Ximura.MatchTerminatorStatus.SuccessNoLength">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Ximura.MatchTerminatorStatus.SuccessNoLengthReset">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Ximura.MatchTerminatorStatus.SuccessPartial">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Ximura.MatchTerminatorStatus.NoLength">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Ximura.MatchTerminatorStatus.Exception">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Ximura.MatchTerminatorStatus.Reset">
-            <summary>
-            
             </summary>
         </member>
         <member name="T:Ximura.Collections.HashTableStructBasedVertexArrayV2`1">
@@ -5948,68 +5713,6 @@
             Returns true if the item is locked.
             </summary>
             <returns>Returns true if the item is locked.</returns>
-        </member>
-        <member name="T:Ximura.MatchTerminator`2">
-            <summary>
-            This structure is used to hold the termination array.
-            </summary>
-        </member>
-        <member name="M:Ximura.MatchTerminator`2.Match(System.Collections.Generic.IEnumerator{`0},System.Collections.Generic.Queue{`0},System.Int64)">
-            <summary>
-            The predicate used to match the source and the match collection. By the default the equals parameter is passed.
-            </summary>
-        </member>
-        <member name="M:Ximura.MatchTerminator`2.Reset">
-            <summary>
-            This method resets the terminator to the beginning.
-            </summary>
-        </member>
-        <member name="P:Ximura.MatchTerminator`2.Terminator">
-            <summary>
-            This is the current terminator.
-            </summary>
-        </member>
-        <member name="P:Ximura.MatchTerminator`2.CurrentTerminator">
-            <summary>
-            This is the current terminator.
-            </summary>
-        </member>
-        <member name="P:Ximura.MatchTerminator`2.CanScan">
-            <summary>
-            This property determines whether the terminator can scan through the source 
-            for a match.
-            </summary>
-        </member>
-        <member name="T:Ximura.MatchSequenceTerminator`2">
-            <summary>
-            
-            </summary>
-            <typeparam name="TSource"></typeparam>
-            <typeparam name="TMatch"></typeparam>
-        </member>
-        <member name="M:Ximura.MatchSequenceTerminator`2.#ctor(System.Collections.Generic.IEnumerable{`1},System.Boolean)">
-            <summary>
-            go8
-            </summary>
-            <param name="Terminator"></param>
-            <param name="CanScan"></param>
-        </member>
-        <member name="M:Ximura.MatchSequenceTerminator`2.#ctor(System.Collections.Generic.IEnumerable{`1},System.Boolean,System.Func{`0,Ximura.MatchTerminatorResult,Ximura.MatchTerminatorStatus},System.Func{Ximura.MatchTerminatorResult,System.Collections.Generic.Queue{`0},`0,System.Int64,System.Boolean})">
-            <summary>
-            
-            </summary>
-            <param name="Terminator"></param>
-            <param name="CanScan"></param>
-            <param name="Predicate"></param>
-            <param name="PredicateTerminator"></param>
-        </member>
-        <member name="M:Ximura.MatchSequenceTerminator`2.Validate(`0,Ximura.MatchTerminatorResult)">
-            <summary>
-            
-            </summary>
-            <param name="item"></param>
-            <param name="currentResult"></param>
-            <returns></returns>
         </member>
         <member name="T:Ximura.IXimuraServiceParentSettings">
             <summary>
@@ -7382,31 +7085,6 @@
             The job type is a straight call back.
             </summary>
         </member>
-        <member name="T:Ximura.MatchSequenceSkipOrFailTerminator`2">
-            <summary>
-            
-            </summary>
-            <typeparam name="TSource"></typeparam>
-            <typeparam name="TMatch"></typeparam>
-        </member>
-        <member name="M:Ximura.MatchSequenceSkipOrFailTerminator`2.Validate(`0,Ximura.MatchTerminatorResult)">
-            <summary>
-            
-            </summary>
-            <param name="item"></param>
-            <param name="currentResult"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Ximura.MatchSequenceSkipOrFailTerminator`2.ValidateTerminator(Ximura.MatchTerminatorResult,System.Collections.Generic.Queue{`0},`0,System.Int64)">
-            <summary>
-            
-            </summary>
-            <param name="result"></param>
-            <param name="terminator"></param>
-            <param name="currentItem"></param>
-            <param name="length"></param>
-            <returns></returns>
-        </member>
         <member name="T:Ximura.Collections.MultiLevelClassBasedVertexArray`1">
             <summary>
             This is the base class for class based data arrays.
@@ -8302,36 +7980,6 @@
             Specifies whether the wrapper contains a value.
             </summary>
         </member>
-        <member name="T:Ximura.MatchSkipTerminator`2">
-            <summary>
-            
-            </summary>
-            <typeparam name="TSource"></typeparam>
-            <typeparam name="TMatch"></typeparam>
-        </member>
-        <member name="M:Ximura.MatchSkipTerminator`2.Validate(`0,Ximura.MatchTerminatorResult)">
-            <summary>
-            
-            </summary>
-            <param name="item"></param>
-            <param name="currentResult"></param>
-            <returns></returns>
-        </member>
-        <member name="T:Ximura.MatchExceptionTerminator`2">
-            <summary>
-            
-            </summary>
-            <typeparam name="TSource"></typeparam>
-            <typeparam name="TMatch"></typeparam>
-        </member>
-        <member name="M:Ximura.MatchExceptionTerminator`2.Validate(`0,Ximura.MatchTerminatorResult)">
-            <summary>
-            
-            </summary>
-            <param name="item"></param>
-            <param name="currentResult"></param>
-            <returns></returns>
-        </member>
         <member name="T:Ximura.Collections.ConcurrentPriorityQueue`1">
             <summary>
             This class is an implementation of a concurrent scalable queue.
@@ -8463,136 +8111,6 @@
         <member name="P:Ximura.Collections.ConcurrentPriorityQueue`1.SyncRoot">
             <summary>
             This property is not supported.
-            </summary>
-        </member>
-        <member name="T:Ximura.MatchState`1">
-            <summary>
-            This class contains the match state.
-            </summary>
-            <typeparam name="TSource">The source type.</typeparam>
-        </member>
-        <member name="M:Ximura.MatchState`1.#ctor">
-            <summary>
-            The default constructor.
-            </summary>
-        </member>
-        <member name="M:Ximura.MatchState`1.#ctor(System.Int32,System.Int32)">
-            <summary>
-            The constructor.
-            </summary>
-            <param name="Position">The current position.</param>
-            <param name="CarryOver">The current carry over position.</param>
-        </member>
-        <member name="M:Ximura.MatchState`1.SetMatch(System.Int32)">
-            <summary>
-            This method sets the match at the specific position.
-            </summary>
-            <param name="Position">The position in the source array.</param>
-        </member>
-        <member name="M:Ximura.MatchState`1.SetPartialMatch(System.Int32,System.Int32)">
-            <summary>
-            This method sets a partial match.
-            </summary>
-            <param name="Position">The position in the source array.</param>
-            <param name="CarryOver">The carry over position.</param>
-        </member>
-        <member name="P:Ximura.MatchState`1.SlidingWindow">
-            <summary>
-            The sliding window queue.
-            </summary>
-        </member>
-        <member name="P:Ximura.MatchState`1.MatchPosition">
-            <summary>
-            The match position in the source array
-            </summary>
-        </member>
-        <member name="P:Ximura.MatchState`1.Position">
-            <summary>
-            The match position in the source array
-            </summary>
-        </member>
-        <member name="P:Ximura.MatchState`1.Length">
-            <summary>
-            The length of the match. This is needed because some matches are of a variable length.
-            </summary>
-        </member>
-        <member name="P:Ximura.MatchState`1.CarryOver">
-            <summary>
-            The number of carry over position in the match array.
-            </summary>
-        </member>
-        <member name="P:Ximura.MatchState`1.MultipartMatch">
-            <summary>
-            The multipart match informs the routine that this is only part of a maultiple match.
-            </summary>
-        </member>
-        <member name="P:Ximura.MatchState`1.Success">
-            <summary>
-            Indicates whether the match is a success.
-            </summary>
-        </member>
-        <member name="P:Ximura.MatchState`1.IsTerminator">
-            <summary>
-            Indicates whether the match is a terminator. This additional functionality is needed for complex matches.
-            </summary>
-        </member>
-        <member name="P:Ximura.MatchState`1.IsPartialMatch">
-            <summary>
-            Indicates whether we are currently processing a partial match.
-            </summary>
-        </member>
-        <member name="P:Ximura.MatchState`1.IsMatch">
-            <summary>
-            Identifies when there is a match.
-            </summary>
-        </member>
-        <member name="T:Ximura.MatchCollection`2">
-            <summary>
-            This structure is used to hold the match terminator collection.
-            </summary>
-        </member>
-        <member name="M:Ximura.MatchCollection`2.#ctor(System.Collections.Generic.IEnumerator{Ximura.MatchTerminator{`0,`1}})">
-            <summary>
-            This protected constructor initializes the collection.
-            </summary>
-            <param name="terminators">The terminators enumerator.</param>
-        </member>
-        <member name="M:Ximura.MatchCollection`2.Dispose">
-            <summary>
-            This method disposes the collection.
-            </summary>
-        </member>
-        <member name="M:Ximura.MatchCollection`2.MoveNext">
-            <summary>
-            This method moves the enumerator to the next position.
-            </summary>
-            <returns>Returns true if successful, or false if the end of the collection has been reached.</returns>
-        </member>
-        <member name="M:Ximura.MatchCollection`2.Reset">
-            <summary>
-            This method resets the collection to before the first record.
-            </summary>
-        </member>
-        <member name="P:Ximura.MatchCollection`2.Current">
-            <summary>
-            This property returns the current record.
-            </summary>
-        </member>
-        <member name="P:Ximura.MatchCollection`2.Position">
-            <summary>
-            This is the current position in the match collection.
-            </summary>
-        </member>
-        <member name="P:Ximura.MatchCollection`2.Item(System.Int32)">
-            <summary>
-            This method returns the specified item for the collection. You should override this indexer.
-            </summary>
-            <param name="index">The position index.</param>
-            <returns></returns>
-        </member>
-        <member name="P:Ximura.MatchCollection`2.Count">
-            <summary>
-            This property returns the number of items in the collection. You should override this property.
             </summary>
         </member>
         <member name="T:Ximura.IXimuraAppSite">
@@ -10003,6 +9521,29 @@
             <returns>Returns a byte array.</returns>
             <exception cref="T:System.ArgumentException">This exception is thrown when the resource cannot be resolved.</exception>
         </member>
+        <member name="M:Ximura.Reflection.ResourceAsStream(System.Type,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="locationType"></param>
+            <param name="resource"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ximura.Reflection.ResourceResolveAsStream(System.Type,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="locationType"></param>
+            <param name="resource"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ximura.Reflection.ResolveResourceFromName(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="resourceName"></param>
+            <returns></returns>
+        </member>
         <member name="M:Ximura.Reflection.ResourceLoadStream(System.String)">
             <summary>
             This method reads a binary definition from an assembly based on the resource name.
@@ -11148,6 +10689,13 @@
             </summary>
             <param name="maxSize">The amximum permissible size for the message base.</param>
         </member>
+        <member name="M:Ximura.MessageStreamBase.Load(System.IO.Stream)">
+            <summary>
+            This method loads the message from a stream.
+            </summary>
+            <param name="data">The data stream to read from.</param>
+            <returns>Returns the number of bytes read from the stream.</returns>
+        </member>
         <member name="M:Ximura.MessageStreamBase.Load(System.String)">
             <summary>
             This method initializes the fragment with the default string data.
@@ -11274,6 +10822,15 @@
             This method is called by the object reset. Any poolable child objects should be returned to the pool.
             </summary>
         </member>
+        <member name="M:Ximura.Message.Write(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            This method writes bytes to the message.
+            </summary>
+            <param name="buffer">The buffer to read from.</param>
+            <param name="offset">The buffer offset.</param>
+            <param name="count">The number of bytes to read from the buffer.</param>
+            <returns>Returns the number of bytes read from the buffer.</returns>
+        </member>
         <member name="M:Ximura.Message.Close">
             <summary>
             Close returns this object to the pool. You should not reference this object after you have closed it.
@@ -11357,6 +10914,16 @@
             </summary>
             <param name="fragmentType">The fragment type.</param>
             <returns>Returns fragment object.</returns>
+        </member>
+        <member name="P:Ximura.Message.CanRead">
+            <summary>
+            This method indicates whether data can be read from the message.
+            </summary>
+        </member>
+        <member name="P:Ximura.Message.CanWrite">
+            <summary>
+            This boolean property indicates whether data can be written to the message.
+            </summary>
         </member>
         <member name="P:Ximura.Message.Length">
             <summary>
@@ -11453,6 +11020,13 @@
             </summary>
             <param name="length">The full length.</param>
             <returns>Returns the length rounded up to the nearest growth factor.</returns>
+        </member>
+        <member name="M:Ximura.MessageFragment`1.ShrinkCapacityToFit">
+            <summary>
+            This method shrinks the buffer size to the actual size of the data.
+            This can be useful when the message is not shortlived and does not live in a pool.
+            </summary>
+            <returns>Returns true if the buffer has been shrunk.</returns>
         </member>
         <member name="M:Ximura.MessageFragment`1.ResetTerminator">
             <summary>
@@ -11642,6 +11216,11 @@
             This class is the base class used for matching message fragment termination in byte based arrays.
             </summary>
             <typeparam name="STATE">The state used for matching termination.</typeparam>
+        </member>
+        <member name="F:Ximura.MessageGenericTerminatorBase`1.mState">
+            <summary>
+            This is the match state.
+            </summary>
         </member>
         <member name="M:Ximura.MessageGenericTerminatorBase`1.#ctor">
             <summary>
@@ -11895,6 +11474,74 @@
             This class matches on CRLF
             </summary>
         </member>
+        <member name="T:Ximura.MatchCollectionState`2">
+            <summary>
+            This class is used to match the two collections.
+            </summary>
+            <typeparam name="TSource">The source type.</typeparam>
+            <typeparam name="TMatch">The match type.</typeparam>
+        </member>
+        <member name="M:Ximura.MatchCollectionState`2.#ctor">
+            <summary>
+            The default constructor.
+            </summary>
+        </member>
+        <member name="M:Ximura.MatchCollectionState`2.ResetMatchCounters">
+            <summary>
+            This method resets the match counter between calls to the MatchCollection method.
+            </summary>
+        </member>
+        <member name="P:Ximura.MatchCollectionState`2.SlidingWindow">
+            <summary>
+            The sliding window queue.
+            </summary>
+        </member>
+        <member name="P:Ximura.MatchCollectionState`2.IsTerminator">
+            <summary>
+            Indicates whether the match is a terminator. This additional functionality is needed for complex matches.
+            </summary>
+        </member>
+        <member name="P:Ximura.MatchCollectionState`2.Status">
+            <summary>
+            Identifies when there is a match.
+            </summary>
+        </member>
+        <member name="P:Ximura.MatchCollectionState`2.DebugTrace">
+            <summary>
+            Identifies when there is a match.
+            </summary>
+        </member>
+        <member name="P:Ximura.MatchCollectionState`2.DebugTraceCollection">
+            <summary>
+            This collection should be used to debug the tract route for the collection.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Ximura.MatchCollectionState`2.Start">
+            <summary>
+            Identifies the start of a match.
+            </summary>
+        </member>
+        <member name="P:Ximura.MatchCollectionState`2.Length">
+            <summary>
+            Identifies the position in the data, including the terminator.
+            </summary>
+        </member>
+        <member name="P:Ximura.MatchCollectionState`2.MatchPosition">
+            <summary>
+            This is the match position for the collection.
+            </summary>
+        </member>
+        <member name="P:Ximura.MatchCollectionState`2.CurrentEnumerator">
+            <summary>
+            This method holds the current enumerator during a partial match
+            </summary>
+        </member>
+        <member name="P:Ximura.MatchCollectionState`2.ActualEnumerator">
+            <summary>
+            This property gets the CurrentEnumerator or creates a new enumerator if that is null.
+            </summary>
+        </member>
         <member name="M:Ximura.CRLFMatchCollectionState.#ctor">
             <summary>
             This is the default constructor.
@@ -11915,6 +11562,66 @@
         <member name="T:Ximura.CRLFMatchCollectionState.CRLFFoldingMatchCollection">
             <summary>
             The class contains the match terminators.
+            </summary>
+        </member>
+        <member name="T:Ximura.MatchCollection`2">
+            <summary>
+            This structure is used to hold the match terminator collection.
+            </summary>
+        </member>
+        <member name="M:Ximura.MatchCollection`2.#ctor(System.Collections.Generic.IEnumerator{Ximura.MatchTerminator{`0,`1}})">
+            <summary>
+            This protected constructor initializes the collection.
+            </summary>
+            <param name="terminators">The terminators enumerator.</param>
+        </member>
+        <member name="M:Ximura.MatchCollection`2.Dispose">
+            <summary>
+            This method disposes the collection.
+            </summary>
+        </member>
+        <member name="M:Ximura.MatchCollection`2.Dispose(System.Boolean)">
+            <summary>
+            This method disposes of any resources held open by the class.
+            </summary>
+            <param name="disposing"></param>
+        </member>
+        <member name="M:Ximura.MatchCollection`2.MoveNext">
+            <summary>
+            This method moves the enumerator to the next position.
+            </summary>
+            <returns>Returns true if successful, or false if the end of the collection has been reached.</returns>
+        </member>
+        <member name="M:Ximura.MatchCollection`2.Reset">
+            <summary>
+            This method resets the collection to before the first record.
+            </summary>
+        </member>
+        <member name="P:Ximura.MatchCollection`2.Current">
+            <summary>
+            This property returns the current record.
+            </summary>
+        </member>
+        <member name="P:Ximura.MatchCollection`2.System#Collections#IEnumerator#Current">
+            <summary>
+            This is the default enumerator.
+            </summary>
+        </member>
+        <member name="P:Ximura.MatchCollection`2.Position">
+            <summary>
+            This is the current position in the match collection.
+            </summary>
+        </member>
+        <member name="P:Ximura.MatchCollection`2.Item(System.Int32)">
+            <summary>
+            This method returns the specified item for the collection. You should override this indexer.
+            </summary>
+            <param name="index">The position index.</param>
+            <returns></returns>
+        </member>
+        <member name="P:Ximura.MatchCollection`2.Count">
+            <summary>
+            This property returns the number of items in the collection. You should override this property.
             </summary>
         </member>
         <member name="M:Ximura.CRLFMatchCollectionState.CRLFFoldingMatchCollection.#ctor(System.Boolean)">
@@ -11946,6 +11653,118 @@
             This termination class specifically matches on CRLF and resets the match buffer when
             a termination character has been found.
             </summary>
+        </member>
+        <member name="T:Ximura.MatchSequenceTerminator`2">
+            <summary>
+            
+            </summary>
+            <typeparam name="TSource"></typeparam>
+            <typeparam name="TMatch"></typeparam>
+        </member>
+        <member name="T:Ximura.MatchTerminator`2">
+            <summary>
+            This structure is used to hold the termination array.
+            </summary>
+        </member>
+        <member name="F:Ximura.MatchTerminator`2.mCurrentTerminator">
+            <summary>
+            The current terminator.
+            </summary>
+        </member>
+        <member name="F:Ximura.MatchTerminator`2.mPredicate">
+            <summary>
+            The match status function.
+            </summary>
+        </member>
+        <member name="F:Ximura.MatchTerminator`2.mPredicateTerminator">
+            <summary>
+            The match predicate.
+            </summary>
+        </member>
+        <member name="M:Ximura.MatchTerminator`2.#ctor(System.Collections.Generic.IEnumerable{`1},System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="Terminator">This is the current terminator.</param>
+            <param name="CanScan">This property determines whether the terminator can scan through the source 
+            for a match.</param>
+        </member>
+        <member name="M:Ximura.MatchTerminator`2.#ctor(System.Collections.Generic.IEnumerable{`1},System.Boolean,System.Func{`0,Ximura.MatchTerminatorResult,Ximura.MatchTerminatorStatus},System.Func{Ximura.MatchTerminatorResult,System.Collections.Generic.Queue{`0},`0,System.Int64,System.Boolean})">
+            <summary>
+            
+            </summary>
+            <param name="Terminator">This is the current terminator.</param>
+            <param name="CanScan">This property determines whether the terminator can scan through the source for a match.</param>
+            <param name="Predicate"></param>
+            <param name="PredicateTerminator"></param>
+        </member>
+        <member name="M:Ximura.MatchTerminator`2.Match(System.Collections.Generic.IEnumerator{`0},System.Collections.Generic.Queue{`0},System.Int64)">
+            <summary>
+            The predicate used to match the source and the match collection. By the default the equals parameter is passed.
+            </summary>
+        </member>
+        <member name="M:Ximura.MatchTerminator`2.Reset">
+            <summary>
+            This method resets the terminator to the beginning.
+            </summary>
+        </member>
+        <member name="M:Ximura.MatchTerminator`2.Validate(`0,Ximura.MatchTerminatorResult)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <param name="currentResult"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ximura.MatchTerminator`2.ValidateTerminator(Ximura.MatchTerminatorResult,System.Collections.Generic.Queue{`0},`0,System.Int64)">
+            <summary>
+            
+            </summary>
+            <param name="result"></param>
+            <param name="terminator"></param>
+            <param name="currentItem"></param>
+            <param name="length"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Ximura.MatchTerminator`2.Terminator">
+            <summary>
+            This is the current terminator.
+            </summary>
+        </member>
+        <member name="P:Ximura.MatchTerminator`2.CurrentTerminator">
+            <summary>
+            This is the current terminator.
+            </summary>
+        </member>
+        <member name="P:Ximura.MatchTerminator`2.CanScan">
+            <summary>
+            This property determines whether the terminator can scan through the source 
+            for a match.
+            </summary>
+        </member>
+        <member name="M:Ximura.MatchSequenceTerminator`2.#ctor(System.Collections.Generic.IEnumerable{`1},System.Boolean)">
+            <summary>
+            go8
+            </summary>
+            <param name="Terminator">The terminator enumeration.</param>
+            <param name="CanScan"></param>
+        </member>
+        <member name="M:Ximura.MatchSequenceTerminator`2.#ctor(System.Collections.Generic.IEnumerable{`1},System.Boolean,System.Func{`0,Ximura.MatchTerminatorResult,Ximura.MatchTerminatorStatus},System.Func{Ximura.MatchTerminatorResult,System.Collections.Generic.Queue{`0},`0,System.Int64,System.Boolean})">
+            <summary>
+            
+            </summary>
+            <param name="Terminator"></param>
+            <param name="CanScan"></param>
+            <param name="Predicate"></param>
+            <param name="PredicateTerminator"></param>
+        </member>
+        <member name="M:Ximura.MatchSequenceTerminator`2.Validate(`0,Ximura.MatchTerminatorResult)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <param name="currentResult"></param>
+            <returns></returns>
         </member>
         <member name="M:Ximura.CRLFMatchCollectionState.CRLFTerminatorWithReset.#ctor">
             <summary>
@@ -11981,8 +11800,8 @@
             <summary>
             This method reads from the stream and loads in the incoming data.
             </summary>
-            <param name="data"></param>
-            <returns></returns>
+            <param name="data">The stream data to read from.</param>
+            <returns>Returns the number of items read from the stream.</returns>
         </member>
         <member name="M:Ximura.CSVMessage.FragmentSetNext">
             <summary>
@@ -12025,9 +11844,34 @@
             The default constructor
             </summary>
         </member>
+        <member name="M:Ximura.CSVBaseFragment.Write(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            This override writes the data and also shrinks the buffer to fit the actual size of the data
+            as this will generally not be participating as part of a pool.
+            </summary>
+            <param name="buffer">The buffer to read from.</param>
+            <param name="offset">The byte offset.</param>
+            <param name="count">The number of bytes to read.</param>
+            <returns>Returns the number of bytes read from the incoming buffer.</returns>
+        </member>
+        <member name="M:Ximura.CSVBaseFragment.Reset">
+            <summary>
+            This override resets the default encoding.
+            </summary>
+        </member>
         <member name="P:Ximura.CSVBaseFragment.Items">
             <summary>
             This enumeration returns the items in the CSV line.
+            </summary>
+        </member>
+        <member name="P:Ximura.CSVBaseFragment.DataString">
+            <summary>
+            This is the string representation of the data using the default encoding.
+            </summary>
+        </member>
+        <member name="P:Ximura.CSVBaseFragment.DefaultEncoding">
+            <summary>
+            This is the default encoding for the message
             </summary>
         </member>
         <member name="M:Ximura.CSVHeaderFragment.#ctor">
@@ -12058,6 +11902,472 @@
         <member name="M:Ximura.MessageTerminatorCSV.Reset">
             <summary>
             This method resets the terminator.
+            </summary>
+        </member>
+        <member name="T:Ximura.CSVTerminationMatchCollectionState">
+            <summary>
+            This states matches on the end of line for the CSV file line. It also allows line folding where the 
+            line is wrapped within speech marks.
+            </summary>
+        </member>
+        <member name="M:Ximura.CSVTerminationMatchCollectionState.#ctor">
+            <summary>
+            This is the default constructor.
+            </summary>
+        </member>
+        <member name="M:Ximura.CSVTerminationMatchCollectionState.#ctor(System.Boolean)">
+            <summary>
+            This is the extended constructor.
+            </summary>
+            <param name="boundary"></param>
+        </member>
+        <member name="M:Ximura.CSVTerminationMatchCollectionState.GetEnumerator">
+            <summary>
+            This method returns a new CRLFFoldingMatchCollection enumerator.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Ximura.CSVTerminationMatchCollectionState.CSVMatchCollection">
+            <summary>
+            The class contains the match terminators.
+            </summary>
+        </member>
+        <member name="M:Ximura.CSVTerminationMatchCollectionState.CSVMatchCollection.#ctor(System.Boolean)">
+            <summary>
+            This constructor initializes the collection with the boundary.
+            </summary>
+            <param name="boundary"></param>
+        </member>
+        <member name="M:Ximura.CSVTerminationMatchCollectionState.CSVMatchCollection.Dispose(System.Boolean)">
+            <summary>
+            This method disposes the collection.
+            </summary>
+            <param name="disposing"></param>
+        </member>
+        <member name="P:Ximura.CSVTerminationMatchCollectionState.CSVMatchCollection.Item(System.Int32)">
+            <summary>
+            This method returns the specified item for the collection. You should override this indexer.
+            </summary>
+            <param name="index">The position index.</param>
+            <returns></returns>
+        </member>
+        <member name="P:Ximura.CSVTerminationMatchCollectionState.CSVMatchCollection.Count">
+            <summary>
+            This property returns the number of items in the collection. You should override this property.
+            </summary>
+        </member>
+        <member name="T:Ximura.CSVTerminationMatchCollectionState.CRLFTerminatorWithReset">
+            <summary>
+            This termination class specifically matches on CRLF and resets the match buffer when
+            a termination character has been found.
+            </summary>
+        </member>
+        <member name="M:Ximura.CSVTerminationMatchCollectionState.CRLFTerminatorWithReset.#ctor">
+            <summary>
+            This is the default constructor.
+            </summary>
+        </member>
+        <member name="M:Ximura.CSVTerminationMatchCollectionState.CRLFTerminatorWithReset.Validate(System.Byte,Ximura.MatchTerminatorResult)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <param name="currentResult"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Ximura.MatchExceptionTerminator`2">
+            <summary>
+            
+            </summary>
+            <typeparam name="TSource"></typeparam>
+            <typeparam name="TMatch"></typeparam>
+        </member>
+        <member name="M:Ximura.MatchExceptionTerminator`2.Validate(`0,Ximura.MatchTerminatorResult)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <param name="currentResult"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Ximura.MatchTerminatorResult">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Ximura.MatchTerminatorResult.Length">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Ximura.MatchTerminatorResult.CanContinue">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Ximura.MatchTerminatorResult.IsTerminator">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Ximura.MatchTerminatorResult.Status">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Ximura.MatchTerminatorStatus">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Ximura.MatchTerminatorStatus.NotSet">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Ximura.MatchTerminatorStatus.Fail">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Ximura.MatchTerminatorStatus.FailNoLength">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Ximura.MatchTerminatorStatus.Success">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Ximura.MatchTerminatorStatus.SuccessReset">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Ximura.MatchTerminatorStatus.SuccessNoLength">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Ximura.MatchTerminatorStatus.SuccessNoLengthReset">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Ximura.MatchTerminatorStatus.SuccessPartial">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Ximura.MatchTerminatorStatus.NoLength">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Ximura.MatchTerminatorStatus.Exception">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Ximura.MatchTerminatorStatus.Reset">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Ximura.MatchSequenceSkipOrFailTerminator`2">
+            <summary>
+            
+            </summary>
+            <typeparam name="TSource">The source type.</typeparam>
+            <typeparam name="TMatch">The match type.</typeparam>
+        </member>
+        <member name="M:Ximura.MatchSequenceSkipOrFailTerminator`2.#ctor(System.Collections.Generic.IEnumerable{`1})">
+            <summary>
+            The default constructor.
+            </summary>
+            <param name="Terminator">The sequence to match on.</param>
+        </member>
+        <member name="M:Ximura.MatchSequenceSkipOrFailTerminator`2.#ctor(System.Collections.Generic.IEnumerable{`1},System.Boolean,System.Func{`0,Ximura.MatchTerminatorResult,Ximura.MatchTerminatorStatus},System.Func{Ximura.MatchTerminatorResult,System.Collections.Generic.Queue{`0},`0,System.Int64,System.Boolean})">
+            <summary>
+            This is the extended constructor.
+            </summary>
+            <param name="Terminator"></param>
+            <param name="CanScan"></param>
+            <param name="Predicate"></param>
+            <param name="PredicateTerminator"></param>
+        </member>
+        <member name="M:Ximura.MatchSequenceSkipOrFailTerminator`2.Validate(`0,Ximura.MatchTerminatorResult)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <param name="currentResult"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ximura.MatchSequenceSkipOrFailTerminator`2.ValidateTerminator(Ximura.MatchTerminatorResult,System.Collections.Generic.Queue{`0},`0,System.Int64)">
+            <summary>
+            
+            </summary>
+            <param name="result"></param>
+            <param name="terminator"></param>
+            <param name="currentItem"></param>
+            <param name="length"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Ximura.MatchSkipTerminator`2">
+            <summary>
+            This terminator is used to skip items in a collection up to a certain criteria.
+            </summary>
+            <typeparam name="TSource"></typeparam>
+            <typeparam name="TMatch"></typeparam>
+        </member>
+        <member name="M:Ximura.MatchSkipTerminator`2.#ctor(System.Collections.Generic.IEnumerable{`1},System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="Terminator"></param>
+            <param name="CanScan"></param>
+        </member>
+        <member name="M:Ximura.MatchSkipTerminator`2.#ctor(System.Collections.Generic.IEnumerable{`1},System.Boolean,System.Func{`0,Ximura.MatchTerminatorResult,Ximura.MatchTerminatorStatus},System.Func{Ximura.MatchTerminatorResult,System.Collections.Generic.Queue{`0},`0,System.Int64,System.Boolean})">
+            <summary>
+            
+            </summary>
+            <param name="Terminator"></param>
+            <param name="CanScan"></param>
+            <param name="Predicate"></param>
+            <param name="PredicateTerminator"></param>
+        </member>
+        <member name="M:Ximura.MatchSkipTerminator`2.Validate(`0,Ximura.MatchTerminatorResult)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <param name="currentResult"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Ximura.MatchState`1">
+            <summary>
+            This class contains the match state.
+            </summary>
+            <typeparam name="TSource">The source type.</typeparam>
+        </member>
+        <member name="M:Ximura.MatchState`1.#ctor">
+            <summary>
+            The default constructor.
+            </summary>
+        </member>
+        <member name="M:Ximura.MatchState`1.#ctor(System.Int32,System.Int32)">
+            <summary>
+            The constructor.
+            </summary>
+            <param name="Position">The current position.</param>
+            <param name="CarryOver">The current carry over position.</param>
+        </member>
+        <member name="M:Ximura.MatchState`1.SetMatch(System.Int32)">
+            <summary>
+            This method sets the match at the specific position.
+            </summary>
+            <param name="Position">The position in the source array.</param>
+        </member>
+        <member name="M:Ximura.MatchState`1.SetPartialMatch(System.Int32,System.Int32)">
+            <summary>
+            This method sets a partial match.
+            </summary>
+            <param name="Position">The position in the source array.</param>
+            <param name="CarryOver">The carry over position.</param>
+        </member>
+        <member name="P:Ximura.MatchState`1.SlidingWindow">
+            <summary>
+            The sliding window queue.
+            </summary>
+        </member>
+        <member name="P:Ximura.MatchState`1.MatchPosition">
+            <summary>
+            The match position in the source array
+            </summary>
+        </member>
+        <member name="P:Ximura.MatchState`1.Position">
+            <summary>
+            The match position in the source array
+            </summary>
+        </member>
+        <member name="P:Ximura.MatchState`1.Length">
+            <summary>
+            The length of the match. This is needed because some matches are of a variable length.
+            </summary>
+        </member>
+        <member name="P:Ximura.MatchState`1.CarryOver">
+            <summary>
+            The number of carry over position in the match array.
+            </summary>
+        </member>
+        <member name="P:Ximura.MatchState`1.MultipartMatch">
+            <summary>
+            The multipart match informs the routine that this is only part of a maultiple match.
+            </summary>
+        </member>
+        <member name="P:Ximura.MatchState`1.Success">
+            <summary>
+            Indicates whether the match is a success.
+            </summary>
+        </member>
+        <member name="P:Ximura.MatchState`1.IsTerminator">
+            <summary>
+            Indicates whether the match is a terminator. This additional functionality is needed for complex matches.
+            </summary>
+        </member>
+        <member name="P:Ximura.MatchState`1.IsPartialMatch">
+            <summary>
+            Indicates whether we are currently processing a partial match.
+            </summary>
+        </member>
+        <member name="P:Ximura.MatchState`1.IsMatch">
+            <summary>
+            Identifies when there is a match.
+            </summary>
+        </member>
+        <member name="T:Ximura.ObjectEnumerator`2">
+            <summary>
+            This generic class is used to convert a data source (D) in to a set of discrete data items (O).
+            </summary>
+            <typeparam name="D">The source data type, i.e. stream</typeparam>
+            <typeparam name="O">The output record data type, i.e. int</typeparam>
+        </member>
+        <member name="F:Ximura.ObjectEnumerator`2.mData">
+            <summary>
+            This is the data source.
+            </summary>
+        </member>
+        <member name="F:Ximura.ObjectEnumerator`2.mParse">
+            <summary>
+            This is the parsing function that converts the data collection in to a record.
+            </summary>
+        </member>
+        <member name="M:Ximura.ObjectEnumerator`2.#ctor(`0,System.Func{`0,System.Nullable{Ximura.Tuple{`1,`0}}})">
+            <summary>
+            This is the protected constructor.
+            </summary>
+            <param name="data">The data source.</param>
+            <param name="parse">The parsing function.</param>
+        </member>
+        <member name="M:Ximura.ObjectEnumerator`2.Parse(`0)">
+            <summary>
+            This method can be used to parse the data instead of using a function.
+            </summary>
+            <param name="data">The data.</param>
+            <returns>Returns an individual record.</returns>
+        </member>
+        <member name="M:Ximura.ObjectEnumerator`2.GetEnumerator">
+            <summary>
+            This is the default object enumerator.
+            </summary>
+            <returns>Returns the object collection.</returns>
+        </member>
+        <member name="T:Ximura.IntermediateObjectEnumerator`3">
+            <summary>
+            This method is used to parse the data stream with an intermediate data type prior to conversion.
+            </summary>
+            <typeparam name="D">The source data type, i.e. stream</typeparam>
+            <typeparam name="I">The intermediate data type.</typeparam>
+            <typeparam name="O">The output record data type, i.e. int</typeparam>
+        </member>
+        <member name="F:Ximura.IntermediateObjectEnumerator`3.mConvert">
+            <summary>
+            This function is used to convert the intermediate type in to the output type.
+            </summary>
+        </member>
+        <member name="F:Ximura.IntermediateObjectEnumerator`3.mParse">
+            <summary>
+            This function is used to convert the data in to the intermediate data type.
+            </summary>
+        </member>
+        <member name="F:Ximura.IntermediateObjectEnumerator`3.mIntermediateOE">
+            <summary>
+            This enumerator encapsulates the base object with the intermediate type.
+            </summary>
+        </member>
+        <member name="M:Ximura.IntermediateObjectEnumerator`3.#ctor(`0,System.Func{`0,System.Nullable{Ximura.Tuple{`1,`0}}},System.Func{`1,`2})">
+            <summary>
+            This is the protected constructor.
+            </summary>
+            <param name="data">The data source.</param>
+            <param name="parse">The parsing function.</param>
+            <param name="convert">The conversion function to convert the intermediate type in to the output type.</param>
+        </member>
+        <member name="M:Ximura.IntermediateObjectEnumerator`3.Parse(`0)">
+            <summary>
+            This method can be used to parse the data instead of using a function.
+            </summary>
+            <param name="data">The data.</param>
+            <returns>Returns an individual record.</returns>
+        </member>
+        <member name="M:Ximura.IntermediateObjectEnumerator`3.Convert(`1)">
+            <summary>
+            This method converts an intermediate item in to the output item.
+            </summary>
+            <param name="item">The intermediate item to convert.</param>
+            <returns>Returns a converted output record.</returns>
+        </member>
+        <member name="M:Ximura.IntermediateObjectEnumerator`3.GetEnumerator">
+            <summary>
+            This enumerator returns the converted objects.
+            </summary>
+            <returns>returns a collection of converted objects.</returns>
+        </member>
+        <member name="T:Ximura.CSVStreamEnumerator">
+            <summary>
+            This is the default CSV parser class.
+            </summary>
+        </member>
+        <member name="T:Ximura.CSVStreamEnumerator`1">
+            <summary>
+            This class 
+            </summary>
+            <typeparam name="O">The output item type.</typeparam>
+        </member>
+        <member name="M:Ximura.CSVStreamEnumerator`1.#ctor(System.IO.Stream,System.Boolean,System.Func{Ximura.CSVRowItem,`0})">
+            <summary>
+            This is the default constructor for the CSV enumerator.
+            </summary>
+            <param name="data">The data stream which will be read from.</param>
+            <param name="headerInFirstRow">A boolean value that indicates whether the headers are in the first row.</param>
+            <param name="convert">A function to convert the CSVRowItem structure in to the output structure.</param>
+        </member>
+        <member name="M:Ximura.CSVStreamEnumerator`1.HeadersParse(Ximura.CSVRowItem)">
+            <summary>
+            This method parses the headers and creates a header collection.
+            </summary>
+            <param name="headers">The csv items from the first row.</param>
+            <returns>The dictionary of headers.</returns>
+        </member>
+        <member name="M:Ximura.CSVStreamEnumerator`1.Parse(System.IO.Stream)">
+            <summary>
+            This method converts the stream data in to an individual row item.
+            </summary>
+            <param name="data">The stream to read from.</param>
+            <returns>Returns the intermediate item or null if not more items can be read.</returns>
+        </member>
+        <member name="P:Ximura.CSVStreamEnumerator`1.Headers">
+            <summary>
+            This enumeration will return a header collection enumeration.
+            </summary>
+        </member>
+        <member name="M:Ximura.CSVStreamEnumerator.#ctor(System.IO.Stream,System.Boolean)">
+            <summary>
+            This is the default constructor for the CSV enumerator.
+            </summary>
+            <param name="data">The data stream which will be read from.</param>
+            <param name="headerInFirstRow">A boolean value that indicates whether the headers are in the first row.</param>
+        </member>
+        <member name="T:Ximura.CSVMatchCollectionState">
+            <summary>
+            This collection state is used to parse an indvidual line in a CSV file.
+            </summary>
+        </member>
+        <member name="M:Ximura.CSVMatchCollectionState.#ctor">
+            <summary>
+            This is the default constructor.
             </summary>
         </member>
     </members>

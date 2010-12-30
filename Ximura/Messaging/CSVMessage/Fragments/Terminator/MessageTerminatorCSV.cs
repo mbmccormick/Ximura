@@ -28,7 +28,7 @@ namespace Ximura
     /// <summary>
     /// This class is used to identify the termination of a CSV line and is coded to be in accordance with RFC 4180.
     /// </summary>
-    public class MessageTerminatorCSV : MessageGenericTerminatorBase<CRLFMatchCollectionState>
+    public class MessageTerminatorCSV : MessageGenericTerminatorBase<CSVTerminationMatchCollectionState>
     {
         #region Constructor
         /// <summary>
@@ -48,11 +48,16 @@ namespace Ximura
         {
             base.Reset();
             Initialized = true;
-            mState = new CRLFMatchCollectionState(true);
+            mState = new CSVTerminationMatchCollectionState(true);
 #if (DEBUG)
             mState.DebugTrace = true;
 #endif
         }
         #endregion // Reset()
+
+        public override bool Match(byte[] buffer, int offset, int count, out int length, out long? bodyLength)
+        {
+            return base.Match(buffer, offset, count, out length, out bodyLength);
+        }
     }
 }

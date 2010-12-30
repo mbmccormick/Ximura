@@ -55,14 +55,15 @@ namespace Ximura
 
         #region FindPositionInternal<TSource>(IList<TSource> source, int offset, int count, Func<TSource, bool> predicate)
         /// <summary>
-        /// 
+        /// This extension method will find the first position in the list based on the predicate and the 
+        /// boundary fields passed.
         /// </summary>
-        /// <typeparam name="TSource"></typeparam>
-        /// <param name="source"></param>
-        /// <param name="offset"></param>
-        /// <param name="count"></param>
-        /// <param name="predicate"></param>
-        /// <returns></returns>
+        /// <typeparam name="TSource">The source item type.</typeparam>
+        /// <param name="source">The source list.</param>
+        /// <param name="offset">The list search start offset.</param>
+        /// <param name="count">The number of items to check.</param>
+        /// <param name="predicate">The predicate function to check for equality.</param>
+        /// <returns>Returns the position of the item that matched.</returns>
         static int FindPositionInternal<TSource>(IList<TSource> source, int offset, int count, Func<TSource, bool> predicate)
         {
             int num = offset + count;

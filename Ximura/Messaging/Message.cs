@@ -19,7 +19,6 @@ using System.Collections.Generic;
 using System.Text;
 
 using Ximura;
-
 using Ximura.Data;
 using CH = Ximura.Common;
 using RH = Ximura.Reflection;
@@ -147,6 +146,9 @@ namespace Ximura
         #endregion // Unused Stream methods and properties
 
         #region CanRead
+        /// <summary>
+        /// This method indicates whether data can be read from the message.
+        /// </summary>
         public override bool CanRead
         {
             get
@@ -201,6 +203,9 @@ namespace Ximura
         #endregion // Read(byte[] buffer, int offset, int count)
 
         #region CanWrite
+        /// <summary>
+        /// This boolean property indicates whether data can be written to the message.
+        /// </summary>
         public override bool CanWrite
         {
             get
@@ -221,6 +226,13 @@ namespace Ximura
         }
         #endregion // CanWrite
         #region Write(byte[] buffer, int offset, int count)
+        /// <summary>
+        /// This method writes bytes to the message.
+        /// </summary>
+        /// <param name="buffer">The buffer to read from.</param>
+        /// <param name="offset">The buffer offset.</param>
+        /// <param name="count">The number of bytes to read from the buffer.</param>
+        /// <returns>Returns the number of bytes read from the buffer.</returns>
         public override int Write(byte[] buffer, int offset, int count)
         {
             if (!CanWrite)

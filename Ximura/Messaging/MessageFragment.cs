@@ -140,6 +140,7 @@ namespace Ximura
             }
         }
         #endregion // InternalBuffer
+
         #region EnsureCapacity(int length)
         /// <summary>
         /// This method ensures that the internal buffer has the necessary write capacity.
@@ -195,6 +196,35 @@ namespace Ximura
             return newSize;
         }
         #endregion // EnsureCapacity(int length)
+        #region ShrinkCapacityToFit()
+        /// <summary>
+        /// This method shrinks the buffer size to the actual size of the data.
+        /// This can be useful when the message is not shortlived and does not live in a pool.
+        /// </summary>
+        /// <returns>Returns true if the buffer has been shrunk.</returns>
+        protected virtual bool ShrinkCapacityToFit()
+        {
+            try
+            {
+                lock (this)
+                {
+                    if (mBuffer.Length >= Length)
+                    {
+                        byte[] newBuffer = new byte[Length];
+                        Buffer.BlockCopy(mBuffer, 0, newBuffer, 0, (int)Length);
+                        mBuffer = newBuffer;
+                        return true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
+            return true;
+        }
+        #endregion 
 
         #region ResetTerminator()/ResetTerminator(IXimuraMessageTermination newTerminator)
         /// <summary>
@@ -575,6 +605,5 @@ namespace Ximura
             disposed = true;
         }
         #endregion // Dispose(bool disposing)
-
     }
 }

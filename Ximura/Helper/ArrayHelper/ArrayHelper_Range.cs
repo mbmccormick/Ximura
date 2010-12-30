@@ -24,6 +24,7 @@ namespace Ximura
     /// </summary>
     public static partial class ArrayHelper
     {
+        #region Range<TSource>(this IList<TSource> source, int offset, int count)
         /// <summary>
         /// This extension selects a range of array values based on the offset and the count value.
         /// </summary>
@@ -40,5 +41,6 @@ namespace Ximura
                 yield return source[i];
             }
         }
+        #endregion  
     }
 }

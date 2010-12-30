@@ -26,32 +26,36 @@ namespace Ximura
     {
         #region MatchCollection<TSource, TMatch>(this IEnumerable<TSource> source, MatchCollectionState<TSource, TMatch> matchCollectionState)
         /// <summary>
-        /// 
+        /// This method matches the source enumeration against the state collection, this is to allow pattern
+        /// matching over multiple byte blocks.
         /// </summary>
-        /// <typeparam name="TSource"></typeparam>
-        /// <typeparam name="TMatch"></typeparam>
-        /// <param name="source"></param>
-        /// <param name="matchCollectionState"></param>
-        /// <returns></returns>
+        /// <typeparam name="TSource">The source type.</typeparam>
+        /// <typeparam name="TMatch">The match type.</typeparam>
+        /// <param name="source">The enumerable source.</param>
+        /// <param name="state">The incoming match state.</param>
+        /// <returns>Returns the updated match state.</returns>
         public static MatchCollectionState<TSource, TMatch> MatchCollection<TSource, TMatch>(
-            this IEnumerable<TSource> source, MatchCollectionState<TSource, TMatch> matchCollectionState)
+            this IEnumerable<TSource> source
+            , MatchCollectionState<TSource, TMatch> state)
         {
             IEnumerator<TSource> sourceEnum = source.GetEnumerator();
             sourceEnum.MoveNext();
-            return sourceEnum.MatchCollection(matchCollectionState);
+            return sourceEnum.MatchCollection(state);
         }
         #endregion
         #region MatchCollection<TSource, TMatch>(this IEnumerator<TSource> sourceEnum, MatchCollectionState<TSource, TMatch> state)
         /// <summary>
-        /// 
+        /// This method matches the source enumeration against the state collection, this is to allow pattern
+        /// matching over multiple byte blocks.
         /// </summary>
-        /// <typeparam name="TSource"></typeparam>
-        /// <typeparam name="TMatch"></typeparam>
-        /// <param name="sourceEnum"></param>
-        /// <param name="state"></param>
-        /// <returns></returns>
+        /// <typeparam name="TSource">The source type.</typeparam>
+        /// <typeparam name="TMatch">The match type.</typeparam>
+        /// <param name="sourceEnum">The source enumeration data.</param>
+        /// <param name="state">The incoming match state.</param>
+        /// <returns>Returns the updated match state.</returns>
         public static MatchCollectionState<TSource, TMatch> MatchCollection<TSource, TMatch>(
-            this IEnumerator<TSource> sourceEnum, MatchCollectionState<TSource, TMatch> state)
+            this IEnumerator<TSource> sourceEnum
+            , MatchCollectionState<TSource, TMatch> state)
         {
             if (state == null)
                 throw new ArgumentNullException("state cannot be null.");
@@ -61,39 +65,24 @@ namespace Ximura
 #endif
             try
             {
-#if (DEBUG)
-                if (state.DebugTrace)
-                    state.DebugTraceCollection.Add(
-                        string.Format("Enter -> {0} Q={1}, ({2})", state.DebugTraceRecursion,
-                        state.SlidingWindow == null ? "null" : state.SlidingWindow.Count.ToString(),
-                        !state.Status.HasValue ? "null" : state.Status.Value.ToString()));
+#if (DEBUG) 
+                MatchStateDebugLog(state,"Entry"); 
 #endif
                 //Ok, have we already matched in which case return the current state unchanged.
                 if (state.Status.HasValue && ((state.Status.Value & MatchTerminatorStatus.Success) > 0))
                     return state;
 
+                //Initialize the state.
                 if (!state.Status.HasValue)
                 {
                     state.Start = state.Length;
                     state.Status = MatchTerminatorStatus.NotSet;
                 }
 
-                //OK, get the MatchTerminator enumerator.
-                IEnumerator<MatchTerminator<TSource, TMatch>> currentEnum;
-                if (state.CurrentEnumerator != null)
-                {
-                    currentEnum = state.CurrentEnumerator;
-                }
-                else
-                {
-                    currentEnum = state.GetEnumerator();
-                    currentEnum.Reset();
-                    currentEnum.MoveNext();
-                    state.CurrentEnumerator = currentEnum;
-                }
+                //OK, get the MatchTerminator current enumerator or create a new one if it is null.
+                IEnumerator<MatchTerminator<TSource, TMatch>> currentEnum = state.ActualEnumerator;
 
-                //Check whether there is any data from the sliding window
-                //and if so process it first.
+                //Check whether there is any data from the sliding window and if so process it first.
                 if (state.SlidingWindow.Count > 0 && state.Status == MatchTerminatorStatus.NotSet)
                     state = ValidateCollectionSlidingWindow(state, false);
 
@@ -101,6 +90,7 @@ namespace Ximura
                 if ((state.Status & MatchTerminatorStatus.Success) > 0)
                     return state;
 
+                //Ok, let's start the match.
                 MatchTerminatorResult result;
                 bool reset = false;
                 do
@@ -115,6 +105,7 @@ namespace Ximura
                             string.Format("Match ({0})={1} [{2:X}]", term.GetType().Name, result.Status, state.Length));
 #endif
                     state.IsTerminator |= result.IsTerminator;
+
                     switch (result.Status)
                     {
                         case MatchTerminatorStatus.Fail:
@@ -205,12 +196,12 @@ namespace Ximura
                         default:
                             throw new ArgumentOutOfRangeException("Unknown MatchTerminatorStatus value.");
                     }
-
                 }
                 while (result.CanContinue && currentEnum.MoveNext() && !reset);
 
                 //OK, we have completed. Either we have failed or succeeded
                 state.Status = result.Status;
+
                 //OK, time to do some tidy up.
                 if ((result.Status & MatchTerminatorStatus.Success) > 0)
                 {
@@ -218,21 +209,13 @@ namespace Ximura
                     state.SlidingWindow.DequeueRemove(extra);
                     state.CurrentEnumerator = null;
                 }
-                //Get the match array enumerator at the correct position.
-                //IEnumerator<MatchTerminator<TSource, TMatch>> matchEnum = match.GetEnumeratorAtPosition(state.MatchCollectionPosition);
 
                 return state;
             }
             finally
             {
-#if (DEBUG)
-                if (state.DebugTrace)
-                    state.DebugTraceCollection.Add(
-                        string.Format("Exit <- {0} Q={1}, ({2})", state.DebugTraceRecursion,
-                        state.SlidingWindow == null ? "null" : state.SlidingWindow.Count.ToString(),
-                        !state.Status.HasValue ? "null" : state.Status.Value.ToString()));
-
-                state.DebugTraceRecursion--;
+#if (DEBUG) 
+                MatchStateDebugLog(state, "Exit"); 
 #endif
             }
         }

@@ -24,19 +24,24 @@ using CH = Ximura.Common;
 namespace Ximura
 {
     /// <summary>
-    /// This class holds the header information for the CSV class.
+    /// This collection state is used to parse an indvidual line in a CSV file.
     /// </summary>
-    public class CSVHeaderFragment : CSVBaseFragment
+    public class CSVMatchCollectionState : MatchCollectionState<byte, byte>
     {
         #region Constructor
         /// <summary>
-        /// The default constructor
+        /// This is the default constructor.
         /// </summary>
-        public CSVHeaderFragment()
-            : base()
+        public CSVMatchCollectionState()
         {
 
         }
-        #endregion
+        #endregion  
+
+    
+        public override IEnumerator<MatchTerminator<byte, byte>> GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

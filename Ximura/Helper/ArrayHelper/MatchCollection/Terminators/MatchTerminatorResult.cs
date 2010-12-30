@@ -12,31 +12,33 @@
 #endregion
 #region using
 using System;
-using System.IO;
-using System.Runtime.Serialization;
-using System.Text;
+using System.Linq;
+using System.Collections;
 using System.Collections.Generic;
-using Ximura;
-
-using Ximura.Data;
-using CH = Ximura.Common;
+using System.Text;
 #endregion
 namespace Ximura
 {
     /// <summary>
-    /// This class holds the header information for the CSV class.
+    /// 
     /// </summary>
-    public class CSVHeaderFragment : CSVBaseFragment
+    public struct MatchTerminatorResult
     {
-        #region Constructor
         /// <summary>
-        /// The default constructor
+        /// 
         /// </summary>
-        public CSVHeaderFragment()
-            : base()
-        {
-
-        }
-        #endregion
+        public int Length;
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool CanContinue;
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool IsTerminator;
+        /// <summary>
+        /// 
+        /// </summary>
+        public MatchTerminatorStatus Status;
     }
 }

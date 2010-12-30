@@ -89,8 +89,8 @@ namespace Ximura
         /// <summary>
         /// This method reads from the stream and loads in the incoming data.
         /// </summary>
-        /// <param name="data"></param>
-        /// <returns></returns>
+        /// <param name="data">The stream data to read from.</param>
+        /// <returns>Returns the number of items read from the stream.</returns>
         public override int Load(Stream data)
         {
             Load();
