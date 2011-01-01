@@ -9841,6 +9841,25 @@
             </summary>
             <param name="w">The System.IO.BinaryWriter stream to which the UDT or user-defined aggregate is serialized.</param>
         </member>
+        <member name="M:Ximura.StreamHelper.Enum(System.IO.Stream)">
+            <summary>
+            This method turns a stream in to an enumerable byte array.
+            </summary>
+            <param name="data">The stream to read from.</param>
+            <returns>Returns a stream of bytes from the stream.</returns>
+        </member>
+        <member name="M:Ximura.StreamHelper.Enum(System.IO.Stream,System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            This method turns a stream in to an enumerable byte array. 
+            This method also inserts an byte buffer before the stream in enumerated. This may be useful when reading from a readonly stream
+            when bytes have already been read.
+            </summary>
+            <param name="data">The stream to read from.</param>
+            <param name="buffer">A data buffer to insert before the stream.</param>
+            <param name="start">The buffer offset.</param>
+            <param name="length">The number of bytes to read from the buffer.</param>
+            <returns>Returns a stream of bytes from the byte array and then the stream.</returns>
+        </member>
         <member name="T:Ximura.Framework.JobHolder">
             <summary>
             The job holder class is used to reference the requests in the completion job.
@@ -12157,12 +12176,24 @@
             The default constructor.
             </summary>
         </member>
+        <member name="M:Ximura.MatchState`1.#ctor(System.Boolean)">
+            <summary>
+            This constructor is used to inform the match sequence logic to copy the matched data to the data array.
+            </summary>
+            <param name="copyData">Set this to true if you wish the matched data to be copied to the array.</param>
+        </member>
         <member name="M:Ximura.MatchState`1.#ctor(System.Int32,System.Int32)">
             <summary>
             The constructor.
             </summary>
             <param name="Position">The current position.</param>
             <param name="CarryOver">The current carry over position.</param>
+        </member>
+        <member name="M:Ximura.MatchState`1.DataLog(`0)">
+            <summary>
+            This method saves the data element in the array and moves the position forward.
+            </summary>
+            <param name="item">The item to log.</param>
         </member>
         <member name="M:Ximura.MatchState`1.SetMatch(System.Int32)">
             <summary>
@@ -12176,6 +12207,21 @@
             </summary>
             <param name="Position">The position in the source array.</param>
             <param name="CarryOver">The carry over position.</param>
+        </member>
+        <member name="P:Ximura.MatchState`1.DataCopy">
+            <summary>
+            This public property identifies whether the data that has been read will be copied to the array.
+            </summary>
+        </member>
+        <member name="P:Ximura.MatchState`1.Data">
+            <summary>
+            This is the data array.
+            </summary>
+        </member>
+        <member name="P:Ximura.MatchState`1.DataPosition">
+            <summary>
+            This is the current position within the data array,
+            </summary>
         </member>
         <member name="P:Ximura.MatchState`1.SlidingWindow">
             <summary>
@@ -12322,7 +12368,7 @@
         </member>
         <member name="T:Ximura.CSVStreamEnumerator`1">
             <summary>
-            This class 
+            This class enumerates a CSV data stream and returns a set of data objects for each individual row record.
             </summary>
             <typeparam name="O">The output item type.</typeparam>
         </member>
@@ -12359,6 +12405,96 @@
             </summary>
             <param name="data">The data stream which will be read from.</param>
             <param name="headerInFirstRow">A boolean value that indicates whether the headers are in the first row.</param>
+        </member>
+        <member name="T:Ximura.CSVRowItem">
+            <summary>
+            This is the CSV row item structure.
+            </summary>
+        </member>
+        <member name="M:Ximura.CSVRowItem.SkipPreamble(System.Byte[],System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            This method checks whether the data contains an encoding preamble at the begining and if so it strips them out.
+            </summary>
+            <param name="preAmb">The encoding preamble.</param>
+            <param name="buffer">The byte buffer.</param>
+            <param name="start">The start position.</param>
+            <param name="length">The available bytes.</param>
+            <returns>Returns true if the preamble should be skipped, false otherwise.</returns>
+        </member>
+        <member name="M:Ximura.CSVRowItem.PositionSet(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            This method sets the start and end positions of the various line items.
+            </summary>
+            <param name="item">The item number.</param>
+            <param name="start">The start position.</param>
+            <param name="length">The length in characters.</param>
+        </member>
+        <member name="M:Ximura.CSVRowItem.PositionGet(System.Int32,System.Int32@,System.Int32@)">
+            <summary>
+            This method retrieves the item positions with the particular array.
+            </summary>
+            <param name="item">The item position.</param>
+            <param name="start">The start position in the char array.</param>
+            <param name="length">The number of characters in the array.</param>
+            <returns>Returns true if the item exists.</returns>
+        </member>
+        <member name="M:Ximura.CSVRowItem.#ctor(System.Collections.Generic.Dictionary{System.String,System.Int32},System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            This is the byte constructor. The data will be converted in to a string using UTF8 encoding.
+            </summary>
+            <param name="buffer">The byte buffer.</param>
+            <param name="start">The start position.</param>
+            <param name="length">The data length.</param>
+        </member>
+        <member name="M:Ximura.CSVRowItem.#ctor(System.Collections.Generic.Dictionary{System.String,System.Int32},System.Text.Encoding,System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            This is the byte constructor using a custom encoding method.
+            </summary>
+            <param name="enc">The byte encoding used to transform the data in to a string.</param>
+            <param name="buffer">The byte buffer.</param>
+            <param name="start">The start position.</param>
+            <param name="length">The data length.</param>
+        </member>
+        <member name="M:Ximura.CSVRowItem.#ctor(System.Collections.Generic.Dictionary{System.String,System.Int32},System.String)">
+            <summary>
+            This is the string constructor.
+            </summary>
+            <param name="data">The CSV data line.</param>
+        </member>
+        <member name="M:Ximura.CSVRowItem.BuildItems">
+            <summary>
+            This method is used to parse and build the items from the data string.
+            </summary>
+        </member>
+        <member name="M:Ximura.CSVRowItem.GetEnumerator">
+            <summary>
+            This enumerator returns the data values.
+            </summary>
+            <returns>A string collection containing the individual items.</returns>
+        </member>
+        <member name="P:Ximura.CSVRowItem.Data">
+            <summary>
+            This is the raw data from the string.
+            </summary>
+        </member>
+        <member name="P:Ximura.CSVRowItem.HeadersSupported">
+            <summary>
+            This property identifies whether there is a header collection available.
+            </summary>
+        </member>
+        <member name="P:Ximura.CSVRowItem.Item(System.String)">
+            <summary>
+            This iterator returns an item based on it's column name.
+            </summary>
+            <param name="header">The header name which is case sensitive.</param>
+            <returns>Returns the value of the item or null if the header is not found.</returns>
+        </member>
+        <member name="P:Ximura.CSVRowItem.Item(System.Int32)">
+            <summary>
+            This iterator returns an item based on it's column position.
+            </summary>
+            <param name="header">The header position.</param>
+            <returns>Returns the value of the item or null if the header is not found.</returns>
         </member>
         <member name="T:Ximura.CSVMatchCollectionState">
             <summary>

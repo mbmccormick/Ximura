@@ -42,12 +42,23 @@ namespace Ximura
     }
     #endregion  
 
+    #region CSVStreamEnumerator<O>
     /// <summary>
-    /// This class 
+    /// This class enumerates a CSV data stream and returns a set of data objects for each individual row record.
     /// </summary>
     /// <typeparam name="O">The output item type.</typeparam>
     public class CSVStreamEnumerator<O> : IntermediateObjectEnumerator<Stream, CSVRowItem, O>
     {
+        #region Unicode byte markers
+        private static readonly byte[] cnUTF8    = new byte[] { 0xEF, 0xBB, 0xBF };
+
+        private static readonly byte[] cnUTF16BE = new byte[] { 0xFE, 0xFF };
+        private static readonly byte[] cnUTF16LE = new byte[] { 0xFF, 0xFE };
+
+        private static readonly byte[] cnUTF32BE = new byte[] { 0x00, 0x00, 0xFE, 0xFF };
+        private static readonly byte[] cnUTF32LE = new byte[] { 0xFF, 0xFE, 0x00, 0x00 };
+        #endregion  
+
         #region Declarations
         private Dictionary<string, int> mHeaders;
         #endregion 
@@ -116,15 +127,17 @@ namespace Ximura
         {
             MatchState<byte> matchState = new MatchState<byte>(true);
 
+            //TODO: Naive interpretation - should match on CRLF and LF and not CRLF/LF in speech marks.
             var match = data.Enum().MatchSequence(new byte[] { 13, 10 }, matchState);
 
             if (match.IsMatch)
                 return new Tuple<CSVRowItem, Stream>(
-                    new CSVRowItem(matchState.Data, 0, matchState.DataPosition + 1)
+                    new CSVRowItem(mHeaders, matchState.Data, 0, matchState.DataPosition + 1)
                     , data);
 
             return null;
         }
         #endregion  
     }
+    #endregion  
 }
