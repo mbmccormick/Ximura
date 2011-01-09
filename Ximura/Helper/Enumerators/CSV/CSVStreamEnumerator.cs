@@ -35,7 +35,7 @@ namespace Ximura
         /// <param name="data">The data stream which will be read from.</param>
         /// <param name="headerInFirstRow">A boolean value that indicates whether the headers are in the first row.</param>
         public CSVStreamEnumerator(Stream data, bool headerInFirstRow)
-            : base(data, headerInFirstRow, (i) => i)
+            : base(data, headerInFirstRow, Encoding.UTF8, (i) => i)
         {
 
         }
@@ -49,29 +49,34 @@ namespace Ximura
     /// <typeparam name="O">The output item type.</typeparam>
     public class CSVStreamEnumerator<O> : IntermediateObjectEnumerator<Stream, CSVRowItem, O>
     {
-        #region Unicode byte markers
-        private static readonly byte[] cnUTF8    = new byte[] { 0xEF, 0xBB, 0xBF };
-
-        private static readonly byte[] cnUTF16BE = new byte[] { 0xFE, 0xFF };
-        private static readonly byte[] cnUTF16LE = new byte[] { 0xFF, 0xFE };
-
-        private static readonly byte[] cnUTF32BE = new byte[] { 0x00, 0x00, 0xFE, 0xFF };
-        private static readonly byte[] cnUTF32LE = new byte[] { 0xFF, 0xFE, 0x00, 0x00 };
-        #endregion  
-
         #region Declarations
         private Dictionary<string, int> mHeaders;
+
+        private Encoding mEncoding;
+        private bool mScanPreamble;
         #endregion 
+
         #region Constructor
         /// <summary>
         /// This is the default constructor for the CSV enumerator.
         /// </summary>
         /// <param name="data">The data stream which will be read from.</param>
         /// <param name="headerInFirstRow">A boolean value that indicates whether the headers are in the first row.</param>
+        /// <param name="enc">The character encoding. If this is null, then it will be set to UTF8.</param>
         /// <param name="convert">A function to convert the CSVRowItem structure in to the output structure.</param>
-        public CSVStreamEnumerator(Stream data, bool headerInFirstRow, Func<CSVRowItem, O> convert)
+        public CSVStreamEnumerator(Stream data, bool headerInFirstRow, 
+            Encoding enc, Func<CSVRowItem, O> convert)
             : base(data, null, convert)
         {
+            if (enc == null)
+                mEncoding = Encoding.UTF8;
+            else
+                mEncoding = enc;
+
+            //Set the preamble flag.
+            byte[] preAmb = enc.GetPreamble();
+            mScanPreamble = preAmb != null & preAmb.Length > 0;
+
             if (headerInFirstRow)
             {
                 Tuple<CSVRowItem, Stream>? result = Parse(data);
@@ -117,6 +122,32 @@ namespace Ximura
         }
         #endregion  
 
+        #region SkipPreamble(byte[] preAmb, byte[] buffer, int start, int length)
+        /// <summary>
+        /// This method checks whether the data contains an encoding preamble at the begining and if so it strips them out.
+        /// </summary>
+        /// <param name="preAmb">The encoding preamble.</param>
+        /// <param name="buffer">The byte buffer.</param>
+        /// <param name="start">The start position.</param>
+        /// <param name="length">The available bytes.</param>
+        /// <returns>Returns true if the preamble should be skipped, false otherwise.</returns>
+        private static bool SkipPreamble(byte[] preAmb, byte[] buffer, int start, int length)
+        {
+            //Do the boundary checks
+            if (length < preAmb.Length)
+                return false;
+
+            //We need to check the preamble
+            for (int i = 0; i < preAmb.Length; i++)
+            {
+                if (preAmb[i] != buffer[start + i])
+                    return false;
+            }
+
+            return true;
+        }
+        #endregion  
+
         #region Parse(Stream data)
         /// <summary>
         /// This method converts the stream data in to an individual row item.
@@ -125,8 +156,23 @@ namespace Ximura
         /// <returns>Returns the intermediate item or null if not more items can be read.</returns>
         protected override Tuple<CSVRowItem, Stream>? Parse(Stream data)
         {
-            MatchState<byte> matchState = new MatchState<byte>(true);
+            if (!data.CanRead)
+                return null;
 
+            //if (mScanPreamble)
+            //{
+            //    byte[] preAmb = enc.GetPreamble();
+            //    int preAmbLength = preAmb.Length;
+            //    while (data.CanRead && preAmbLength > 0)
+            //    {
+                    
+            //    }
+
+            //    mScanPreamble = false;
+            //}
+
+            MatchState<byte> matchState = new MatchState<byte>(true);
+            
             //TODO: Naive interpretation - should match on CRLF and LF and not CRLF/LF in speech marks.
             var match = data.Enum().MatchSequence(new byte[] { 13, 10 }, matchState);
 

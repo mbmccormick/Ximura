@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ximura (Silverlight 4)", "X
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ximura Communication Messaging (Silverlight 4)", "Ximura Communication Messaging\Ximura Communication Messaging (Silverlight 4).csproj", "{EB504849-8840-4414-A145-7641086089F4}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Unit Test", "Unit Test", "{770AE2F6-1F21-4621-81A5-7FD8127FF415}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

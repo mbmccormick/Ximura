@@ -115,6 +115,10 @@
     <Compile Include="Collections\Test_Collections_Trees.cs" />
     <Compile Include="Collections\Test_Collection_Base.cs" />
     <Compile Include="Collections\Test_Collection_Base_Static.cs" />
+    <Compile Include="Helper\ArrayHelper\MatchCollection.cs" />
+    <Compile Include="Helper\ArrayHelper\MatchSequence.cs" />
+    <Compile Include="Helper\Enumerators\CharEnumerator.cs" />
+    <Compile Include="Helper\Enumerators\CSVRowItem.cs" />
     <Compile Include="Messaging\CSV\CSV.cs" />
     <Compile Include="TestFunctions.cs" />
     <Compile Include="Helper\Test_Helper_BitHelper.cs" />
@@ -135,6 +139,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Component\" />
+    <Folder Include="Helper\ArrayHelper\Data\" />
     <Folder Include="Helper\Binary\" />
     <Folder Include="Helper\Common\" />
     <Folder Include="Helper\Locking\" />

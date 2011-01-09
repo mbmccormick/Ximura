@@ -42,9 +42,16 @@ namespace Ximura.UnitTest
         {
             CSVMessage message = new CSVMessage(true);
 
-            using (Stream data = GetType().ResourceAsStream("Ximura.UnitTest.Messaging.CSV.Examples.TestRFC4180.csv"))
+            try
             {
-                message.Load(data);
+                using (Stream data = GetType().ResourceAsStream("Ximura.UnitTest.Messaging.CSV.Examples.TestRFC4180.csv"))
+                {
+                    message.Load(data);
+                }
+            }
+            catch (Exception ex) 
+            {
+                throw ex;
             }
         }
         #endregion

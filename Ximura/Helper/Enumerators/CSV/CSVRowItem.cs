@@ -61,7 +61,7 @@ namespace Ximura
 
             return true;
         }
-        #endregion  
+        #endregion
 
         #region PositionSet(int item, int start, int lenght)
         /// <summary>
@@ -106,7 +106,6 @@ namespace Ximura
         }
         #endregion  
  
-
         #region Constructors
         /// <summary>
         /// This is the byte constructor. The data will be converted in to a string using UTF8 encoding.

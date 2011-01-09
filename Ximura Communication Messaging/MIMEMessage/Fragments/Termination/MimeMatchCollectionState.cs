@@ -81,14 +81,21 @@ namespace Ximura.Communication
 
             static MimeMatchCollection()
             {
-                mTerminatorDashRequired = new MatchSequenceTerminator<byte, byte>(
-                    new byte[] { (byte)'-', (byte)'-' }, true);
-                mTerminatorDashOptionalTerminator = new MatchSequenceSkipOrFailTerminator<byte, byte>(
-                    new byte[] { (byte)'-', (byte)'-' }, false, null, null);
-                mTerminatorWHTSPSkip = new MatchSkipTerminator<byte, byte>(
-                    new byte[] { 9, 32 }, true);
-                mTerminatorCRLF = new MatchSequenceTerminator<byte, byte>(
-                    new byte[] { 13, 10 }, false);
+                mTerminatorDashRequired = 
+                    new MatchSequenceTerminator<byte, byte>(
+                        new byte[] { (byte)'-', (byte)'-' }, true);
+
+                mTerminatorDashOptionalTerminator = 
+                    new MatchSequenceSkipOrFailTerminator<byte, byte>(
+                        new byte[] { (byte)'-', (byte)'-' }, false, null, null);
+
+                mTerminatorWHTSPSkip = 
+                    new MatchSkipTerminator<byte, byte>(
+                        new byte[] { 9, 32 }, true);
+
+                mTerminatorCRLF = 
+                    new MatchSequenceTerminator<byte, byte>(
+                        new byte[] { 13, 10 }, false);
             }
             #endregion // Static constructor and declarations
             #region Declarations
