@@ -4432,23 +4432,20 @@
             This is the CSV row item structure.
             </summary>
         </member>
-        <member name="M:Ximura.CSVRowItem.SkipPreamble(System.Byte[],System.Byte[],System.Int32,System.Int32)">
+        <member name="M:Ximura.CSVRowItem.#ctor(System.Collections.Generic.Dictionary{System.String,System.Int32},System.Char[],System.Collections.Generic.KeyValuePair{System.Int32,System.Int32}[])">
             <summary>
-            This method checks whether the data contains an encoding preamble at the begining and if so it strips them out.
+            This is the byte constructor using a custom encoding method.
             </summary>
-            <param name="preAmb">The encoding preamble.</param>
-            <param name="buffer">The byte buffer.</param>
+            <param name="enc">The byte encoding used to transform the data in to a string.</param>
+            <param name="data">The character collection.</param>
             <param name="start">The start position.</param>
-            <param name="length">The available bytes.</param>
-            <returns>Returns true if the preamble should be skipped, false otherwise.</returns>
+            <param name="length">The data length.</param>
         </member>
-        <member name="M:Ximura.CSVRowItem.PositionSet(System.Int32,System.Int32,System.Int32)">
+        <member name="M:Ximura.CSVRowItem.GetEnumerator">
             <summary>
-            This method sets the start and end positions of the various line items.
+            This enumerator returns the data values.
             </summary>
-            <param name="item">The item number.</param>
-            <param name="start">The start position.</param>
-            <param name="length">The length in characters.</param>
+            <returns>A string collection containing the individual items.</returns>
         </member>
         <member name="M:Ximura.CSVRowItem.PositionGet(System.Int32,System.Int32@,System.Int32@)">
             <summary>
@@ -4458,40 +4455,6 @@
             <param name="start">The start position in the char array.</param>
             <param name="length">The number of characters in the array.</param>
             <returns>Returns true if the item exists.</returns>
-        </member>
-        <member name="M:Ximura.CSVRowItem.#ctor(System.Collections.Generic.Dictionary{System.String,System.Int32},System.Byte[],System.Int32,System.Int32)">
-            <summary>
-            This is the byte constructor. The data will be converted in to a string using UTF8 encoding.
-            </summary>
-            <param name="buffer">The byte buffer.</param>
-            <param name="start">The start position.</param>
-            <param name="length">The data length.</param>
-        </member>
-        <member name="M:Ximura.CSVRowItem.#ctor(System.Collections.Generic.Dictionary{System.String,System.Int32},System.Text.Encoding,System.Byte[],System.Int32,System.Int32)">
-            <summary>
-            This is the byte constructor using a custom encoding method.
-            </summary>
-            <param name="enc">The byte encoding used to transform the data in to a string.</param>
-            <param name="buffer">The byte buffer.</param>
-            <param name="start">The start position.</param>
-            <param name="length">The data length.</param>
-        </member>
-        <member name="M:Ximura.CSVRowItem.#ctor(System.Collections.Generic.Dictionary{System.String,System.Int32},System.String)">
-            <summary>
-            This is the string constructor.
-            </summary>
-            <param name="data">The CSV data line.</param>
-        </member>
-        <member name="M:Ximura.CSVRowItem.BuildItems">
-            <summary>
-            This method is used to parse and build the items from the data string.
-            </summary>
-        </member>
-        <member name="M:Ximura.CSVRowItem.GetEnumerator">
-            <summary>
-            This enumerator returns the data values.
-            </summary>
-            <returns>A string collection containing the individual items.</returns>
         </member>
         <member name="P:Ximura.CSVRowItem.Data">
             <summary>
@@ -4516,6 +4479,11 @@
             </summary>
             <param name="header">The header position.</param>
             <returns>Returns the value of the item or null if the header is not found.</returns>
+        </member>
+        <member name="P:Ximura.CSVRowItem.Count">
+            <summary>
+            This is the number of items in the csv line.
+            </summary>
         </member>
         <member name="T:Ximura.Common">
             <summary>
@@ -6391,20 +6359,75 @@
             <typeparam name="I">The intermediate data type.</typeparam>
             <typeparam name="O">The output record data type, i.e. int</typeparam>
         </member>
-        <member name="F:Ximura.IntermediateObjectEnumerator`3.mConvert">
+        <member name="T:Ximura.IntermediateObjectEnumerator`4">
+            <summary>
+            This method is used to parse the data stream with an intermediate data type prior to conversion.
+            </summary>
+            <typeparam name="D">The source data type, i.e. stream</typeparam>
+            <typeparam name="C">The converted source data type, i.e. stream</typeparam>
+            <typeparam name="I">The intermediate data type.</typeparam>
+            <typeparam name="O">The output record data type, i.e. int</typeparam>
+        </member>
+        <member name="F:Ximura.IntermediateObjectEnumerator`4.mConvertOutput">
             <summary>
             This function is used to convert the intermediate type in to the output type.
             </summary>
         </member>
-        <member name="F:Ximura.IntermediateObjectEnumerator`3.mParse">
+        <member name="F:Ximura.IntermediateObjectEnumerator`4.mParse">
             <summary>
             This function is used to convert the data in to the intermediate data type.
             </summary>
         </member>
-        <member name="F:Ximura.IntermediateObjectEnumerator`3.mIntermediateOE">
+        <member name="F:Ximura.IntermediateObjectEnumerator`4.mIntermediateOE">
             <summary>
             This enumerator encapsulates the base object with the intermediate type.
             </summary>
+        </member>
+        <member name="F:Ximura.IntermediateObjectEnumerator`4.mDataSource">
+            <summary>
+            The original data source.
+            </summary>
+        </member>
+        <member name="F:Ximura.IntermediateObjectEnumerator`4.mDataConverted">
+            <summary>
+            The converted data source.
+            </summary>
+        </member>
+        <member name="M:Ximura.IntermediateObjectEnumerator`4.#ctor(`0,System.Func{`1,System.Nullable{Ximura.Tuple{`2,`1}}},System.Func{`2,`3},System.Func{`0,`1})">
+            <summary>
+            This is the protected constructor.
+            </summary>
+            <param name="data">The data source.</param>
+            <param name="parse">The parsing function.</param>
+            <param name="convertOutput">The conversion function to convert the intermediate type in to the output type.</param>
+            <param name="convertSource">The conversion function to convert the incoming data source in to the outgoing data source.</param>
+        </member>
+        <member name="M:Ximura.IntermediateObjectEnumerator`4.Parse(`1)">
+            <summary>
+            This method can be used to parse the data instead of using a function.
+            </summary>
+            <param name="data">The data.</param>
+            <returns>Returns an individual record.</returns>
+        </member>
+        <member name="M:Ximura.IntermediateObjectEnumerator`4.ConvertOutput(`2)">
+            <summary>
+            This method converts an intermediate item in to the output item.
+            </summary>
+            <param name="item">The intermediate item to convert.</param>
+            <returns>Returns a converted output record.</returns>
+        </member>
+        <member name="M:Ximura.IntermediateObjectEnumerator`4.ConvertSource(`0)">
+            <summary>
+            This method converts one data source in to another.
+            </summary>
+            <param name="data">The data source to convert.</param>
+            <returns>Returns a converted data source.</returns>
+        </member>
+        <member name="M:Ximura.IntermediateObjectEnumerator`4.GetEnumerator">
+            <summary>
+            This enumerator returns the converted objects.
+            </summary>
+            <returns>returns a collection of converted objects.</returns>
         </member>
         <member name="M:Ximura.IntermediateObjectEnumerator`3.#ctor(`0,System.Func{`0,System.Nullable{Ximura.Tuple{`1,`0}}},System.Func{`1,`2})">
             <summary>
@@ -6414,25 +6437,37 @@
             <param name="parse">The parsing function.</param>
             <param name="convert">The conversion function to convert the intermediate type in to the output type.</param>
         </member>
-        <member name="M:Ximura.IntermediateObjectEnumerator`3.Parse(`0)">
+        <member name="T:Ximura.UnicodeCharEnumerator">
             <summary>
-            This method can be used to parse the data instead of using a function.
+            This class is used to convert a byte stream in to a set of unicode characters.
             </summary>
-            <param name="data">The data.</param>
-            <returns>Returns an individual record.</returns>
         </member>
-        <member name="M:Ximura.IntermediateObjectEnumerator`3.Convert(`1)">
+        <member name="M:Ximura.UnicodeCharEnumerator.#ctor(System.IO.Stream)">
             <summary>
-            This method converts an intermediate item in to the output item.
+            This is the default constructor.
             </summary>
-            <param name="item">The intermediate item to convert.</param>
-            <returns>Returns a converted output record.</returns>
+            <param name="data">The stream to read from.</param>
         </member>
-        <member name="M:Ximura.IntermediateObjectEnumerator`3.GetEnumerator">
+        <member name="M:Ximura.UnicodeCharEnumerator.#ctor(System.IO.Stream,System.Text.Encoding)">
             <summary>
-            This enumerator returns the converted objects.
+            This is the default constructor.
             </summary>
-            <returns>returns a collection of converted objects.</returns>
+            <param name="data">The stream to read from.</param>
+            <param name="enc">The encoding type for the file.</param>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Ximura.UnicodeCharEnumerator.Parse(System.IO.Stream)" -->
+        <member name="M:Ximura.UnicodeCharEnumerator.SkipPreamble(System.IO.Stream,System.Int32@)">
+            <summary>
+            This method skips any encoding preamble bytes at the start of the stream.
+            </summary>
+            <param name="data">The data stream.</param>
+            <param name="item">The first character after the preamble.</param>
+            <returns>Returns true if the enumeration can proceed. False if the end of the stream has been reached.</returns>
+        </member>
+        <member name="P:Ximura.UnicodeCharEnumerator.Enc">
+            <summary>
+            This is the encoding used for the char enumerator.
+            </summary>
         </member>
         <member name="T:Ximura.PoolBaseParallel`1">
             <summary>
@@ -9300,6 +9335,11 @@
             </summary>
             <typeparam name="O">The output item type.</typeparam>
         </member>
+        <member name="F:Ximura.CSVStreamEnumerator`1.ARRAYGROWTHFACTOR">
+            <summary>
+            This is the default char array growth factor
+            </summary>
+        </member>
         <member name="M:Ximura.CSVStreamEnumerator`1.#ctor(System.IO.Stream,System.Boolean,System.Text.Encoding,System.Func{Ximura.CSVRowItem,`0})">
             <summary>
             This is the default constructor for the CSV enumerator.
@@ -9309,6 +9349,13 @@
             <param name="enc">The character encoding. If this is null, then it will be set to UTF8.</param>
             <param name="convert">A function to convert the CSVRowItem structure in to the output structure.</param>
         </member>
+        <member name="M:Ximura.CSVStreamEnumerator`1.ConvertSource(System.IO.Stream)">
+            <summary>
+            This method converts the incoming byte stream in to a unicode char enumerator.
+            </summary>
+            <param name="data">The incoming byte stream.</param>
+            <returns>The character enumerator.</returns>
+        </member>
         <member name="M:Ximura.CSVStreamEnumerator`1.HeadersParse(Ximura.CSVRowItem)">
             <summary>
             This method parses the headers and creates a header collection.
@@ -9316,17 +9363,16 @@
             <param name="headers">The csv items from the first row.</param>
             <returns>The dictionary of headers.</returns>
         </member>
-        <member name="M:Ximura.CSVStreamEnumerator`1.SkipPreamble(System.Byte[],System.Byte[],System.Int32,System.Int32)">
+        <member name="M:Ximura.CSVStreamEnumerator`1.WriteChar(System.Char[]@,System.Int32,System.Char)">
             <summary>
-            This method checks whether the data contains an encoding preamble at the begining and if so it strips them out.
+            This method is used to set the value and to 
+            autogrow the the char array.
             </summary>
-            <param name="preAmb">The encoding preamble.</param>
-            <param name="buffer">The byte buffer.</param>
-            <param name="start">The start position.</param>
-            <param name="length">The available bytes.</param>
-            <returns>Returns true if the preamble should be skipped, false otherwise.</returns>
+            <param name="data">The array</param>
+            <param name="position">The char position.</param>
+            <param name="value">The value to set.</param>
         </member>
-        <member name="M:Ximura.CSVStreamEnumerator`1.Parse(System.IO.Stream)">
+        <member name="M:Ximura.CSVStreamEnumerator`1.Parse(Ximura.UnicodeCharEnumerator)">
             <summary>
             This method converts the stream data in to an individual row item.
             </summary>
@@ -9336,6 +9382,11 @@
         <member name="P:Ximura.CSVStreamEnumerator`1.Headers">
             <summary>
             This enumeration will return a header collection enumeration.
+            </summary>
+        </member>
+        <member name="P:Ximura.CSVStreamEnumerator`1.Enc">
+            <summary>
+            This is the encoding used by the stream enumerator.
             </summary>
         </member>
         <member name="M:Ximura.CSVStreamEnumerator.#ctor(System.IO.Stream,System.Boolean)">
@@ -12517,24 +12568,5 @@
             This class supports a fast search algorithm
             </summary>
         </member>
-        <member name="T:Ximura.Helper.UnicodeCharEnumerator">
-            <summary>
-            This class is used to convert a byte stream in to a set of unicode characters.
-            </summary>
-        </member>
-        <member name="M:Ximura.Helper.UnicodeCharEnumerator.#ctor(System.IO.Stream)">
-            <summary>
-            This is the default constructor.
-            </summary>
-            <param name="data">The stream to read from.</param>
-        </member>
-        <member name="M:Ximura.Helper.UnicodeCharEnumerator.#ctor(System.IO.Stream,System.Text.Encoding)">
-            <summary>
-            This is the default constructor.
-            </summary>
-            <param name="data">The stream to read from.</param>
-            <param name="enc">The encoding type for the file.</param>
-        </member>
-        <!-- Badly formed XML comment ignored for member "M:Ximura.Helper.UnicodeCharEnumerator.Parse(System.IO.Stream)" -->
     </members>
 </doc>

@@ -5,7 +5,7 @@ using System.Text;
 
 using Ximura;
 #endregion  
-namespace Ximura.Helper
+namespace Ximura
 {
     /// <summary>
     /// This class is used to convert a byte stream in to a set of unicode characters.
@@ -23,14 +23,12 @@ namespace Ximura.Helper
         #endregion  
 
         #region Declarations
-        private Encoding mEnc;
-
         private bool mPreambleRead;
         //The maximum number of bytes for a character.
         byte[] mBuffer = new byte[4];
         int mBufferPosition = 0;
 
-        #endregion  
+        #endregion 
         #region Constructor
         /// <summary>
         /// This is the default constructor.
@@ -47,12 +45,12 @@ namespace Ximura.Helper
             : base(data, null) 
         {
             if (enc == null)
-                mEnc = Encoding.UTF8;
+                Enc = Encoding.UTF8;
             else
-                mEnc = enc;
+                Enc = enc;
 
             //Set whether a preamble is required.
-            byte[] preA = mEnc.GetPreamble();
+            byte[] preA = Enc.GetPreamble();
             mPreambleRead = preA != null && preA.Length > 0;
         }
         #endregion  
@@ -85,7 +83,7 @@ namespace Ximura.Helper
             mBuffer[mBufferPosition] = (byte)item;
             mBufferPosition++;
 
-            while (mEnc.GetDecoder().GetCharCount(mBuffer, 0, mBufferPosition) == 0)
+            while (Enc.GetDecoder().GetCharCount(mBuffer, 0, mBufferPosition) == 0)
             {
                 item = data.ReadByte();
 
@@ -96,13 +94,20 @@ namespace Ximura.Helper
                 mBufferPosition++;
             }
             
-            char[] cItems = mEnc.GetChars(mBuffer, 0, mBufferPosition);
+            char[] cItems = Enc.GetChars(mBuffer, 0, mBufferPosition);
             mBufferPosition = 0;
 
             return new Tuple<char, Stream>(cItems[0], data);
         }
         #endregion  
 
+        #region SkipPreamble(Stream data, out int item)
+        /// <summary>
+        /// This method skips any encoding preamble bytes at the start of the stream.
+        /// </summary>
+        /// <param name="data">The data stream.</param>
+        /// <param name="item">The first character after the preamble.</param>
+        /// <returns>Returns true if the enumeration can proceed. False if the end of the stream has been reached.</returns>
         private bool SkipPreamble(Stream data, out int item)
         {
             item = data.ReadByte();
@@ -110,7 +115,7 @@ namespace Ximura.Helper
                 return false;
 
             int pos = 0;
-            byte[] preA = mEnc.GetPreamble();
+            byte[] preA = Enc.GetPreamble();
             //Skip any preamble bytes. We will not save these bytes for the moment.
             while (pos<preA.Length)
             {
@@ -129,5 +134,13 @@ namespace Ximura.Helper
 
             return true;
         }
+        #endregion  
+
+        #region Enc
+        /// <summary>
+        /// This is the encoding used for the char enumerator.
+        /// </summary>
+        public Encoding Enc { get; private set; }
+        #endregion  
     }
 }

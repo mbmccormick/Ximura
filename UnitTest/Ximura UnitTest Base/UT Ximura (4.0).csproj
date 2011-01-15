@@ -119,6 +119,7 @@
     <Compile Include="Helper\ArrayHelper\MatchSequence.cs" />
     <Compile Include="Helper\Enumerators\CharEnumerator.cs" />
     <Compile Include="Helper\Enumerators\CSVRowItem.cs" />
+    <Compile Include="Helper\Enumerators\CSVStreamEnumerator.cs" />
     <Compile Include="Messaging\CSV\CSV.cs" />
     <Compile Include="TestFunctions.cs" />
     <Compile Include="Helper\Test_Helper_BitHelper.cs" />

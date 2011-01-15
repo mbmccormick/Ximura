@@ -47,15 +47,18 @@ namespace Ximura
     /// This class enumerates a CSV data stream and returns a set of data objects for each individual row record.
     /// </summary>
     /// <typeparam name="O">The output item type.</typeparam>
-    public class CSVStreamEnumerator<O> : IntermediateObjectEnumerator<Stream, CSVRowItem, O>
+    public class CSVStreamEnumerator<O> : IntermediateObjectEnumerator<Stream, UnicodeCharEnumerator, CSVRowItem, O>
     {
+        #region Static declaration
+        /// <summary>
+        /// This is the default char array growth factor
+        /// </summary>
+        public static readonly int ARRAYGROWTHFACTOR = 20;
+        #endregion  
+
         #region Declarations
         private Dictionary<string, int> mHeaders;
-
-        private Encoding mEncoding;
-        private bool mScanPreamble;
-        #endregion 
-
+        #endregion
         #region Constructor
         /// <summary>
         /// This is the default constructor for the CSV enumerator.
@@ -66,20 +69,17 @@ namespace Ximura
         /// <param name="convert">A function to convert the CSVRowItem structure in to the output structure.</param>
         public CSVStreamEnumerator(Stream data, bool headerInFirstRow, 
             Encoding enc, Func<CSVRowItem, O> convert)
-            : base(data, null, convert)
+            : base(data, null, convert, null)
         {
             if (enc == null)
-                mEncoding = Encoding.UTF8;
+                Enc = Encoding.UTF8;
             else
-                mEncoding = enc;
+                Enc = enc;
 
-            //Set the preamble flag.
-            byte[] preAmb = enc.GetPreamble();
-            mScanPreamble = preAmb != null & preAmb.Length > 0;
 
             if (headerInFirstRow)
             {
-                Tuple<CSVRowItem, Stream>? result = Parse(data);
+                Tuple<CSVRowItem, UnicodeCharEnumerator>? result = Parse(mDataConverted);
                 if (!result.HasValue)
                     throw new ArgumentOutOfRangeException("The headers cannot be read from the stream.");
 
@@ -87,6 +87,18 @@ namespace Ximura
             }
             else
                 mHeaders = null;
+        }
+        #endregion
+
+        #region ConvertSource(Stream data)
+        /// <summary>
+        /// This method converts the incoming byte stream in to a unicode char enumerator.
+        /// </summary>
+        /// <param name="data">The incoming byte stream.</param>
+        /// <returns>The character enumerator.</returns>
+        protected override UnicodeCharEnumerator ConvertSource(Stream data)
+        {
+            return new UnicodeCharEnumerator(data, Enc);
         }
         #endregion
 
@@ -122,68 +134,132 @@ namespace Ximura
         }
         #endregion  
 
-        #region SkipPreamble(byte[] preAmb, byte[] buffer, int start, int length)
+        #region WriteChar(ref char[] data, int position, char value)
         /// <summary>
-        /// This method checks whether the data contains an encoding preamble at the begining and if so it strips them out.
+        /// This method is used to set the value and to 
+        /// autogrow the the char array.
         /// </summary>
-        /// <param name="preAmb">The encoding preamble.</param>
-        /// <param name="buffer">The byte buffer.</param>
-        /// <param name="start">The start position.</param>
-        /// <param name="length">The available bytes.</param>
-        /// <returns>Returns true if the preamble should be skipped, false otherwise.</returns>
-        private static bool SkipPreamble(byte[] preAmb, byte[] buffer, int start, int length)
+        /// <param name="data">The array</param>
+        /// <param name="position">The char position.</param>
+        /// <param name="value">The value to set.</param>
+        private int WriteChar(ref char[] data, int position, char value)
         {
-            //Do the boundary checks
-            if (length < preAmb.Length)
-                return false;
+            if (position >= data.Length)
+                Array.Resize(ref data, position + 1);
 
-            //We need to check the preamble
-            for (int i = 0; i < preAmb.Length; i++)
-            {
-                if (preAmb[i] != buffer[start + i])
-                    return false;
-            }
+            data[position] = value;
 
-            return true;
+            return position + 1;
         }
         #endregion  
 
-        #region Parse(Stream data)
         /// <summary>
         /// This method converts the stream data in to an individual row item.
         /// </summary>
         /// <param name="data">The stream to read from.</param>
         /// <returns>Returns the intermediate item or null if not more items can be read.</returns>
-        protected override Tuple<CSVRowItem, Stream>? Parse(Stream data)
+        protected override Tuple<CSVRowItem, UnicodeCharEnumerator>? Parse(UnicodeCharEnumerator data)
         {
-            if (!data.CanRead)
+            char[] cData = new char[10];
+            IEnumerator<char> enChar = data.GetEnumerator();
+            
+            //Check that we can get a new character from the stream.
+            if (!enChar.MoveNext())
                 return null;
 
-            //if (mScanPreamble)
-            //{
-            //    byte[] preAmb = enc.GetPreamble();
-            //    int preAmbLength = preAmb.Length;
-            //    while (data.CanRead && preAmbLength > 0)
-            //    {
-                    
-            //    }
+            //Ok, set the initial state.
+            int start;
+            int scanStart;
+            //This is the character position in the char array.
+            int pos = 0;
+            int item = 0;
+            bool inData = false;
+            bool inSpeechMarks = false;
+            bool firstSpeech = false;
+            bool isLastCharSpeech = false;
+            bool scan = true;
+            try
+            {
+                //OK, we will scan through the characters for the boundary markers.
+                do
+                {
+                    char current = enChar.Current;
 
-            //    mScanPreamble = false;
-            //}
+                    switch (current)
+                    {
+                        case '\"':
+                            if (!inSpeechMarks)
+                            {
+                                inSpeechMarks = true;
+                                start = pos + 1;
+                                scanStart = start;
+                            }
+                            //Is this a double speech mark within existing speech marks?
+                            else if (firstSpeech)
+                            {
+                                //First check if this is a double speech mark
+                                //if (pos+1 < mData.Length -1)
 
-            MatchState<byte> matchState = new MatchState<byte>(true);
-            
-            //TODO: Naive interpretation - should match on CRLF and LF and not CRLF/LF in speech marks.
-            var match = data.Enum().MatchSequence(new byte[] { 13, 10 }, matchState);
+                            }
+                            else
+                                firstSpeech = true;
+                            break;
 
-            if (match.IsMatch)
-                return new Tuple<CSVRowItem, Stream>(
-                    new CSVRowItem(mHeaders, matchState.Data, 0, matchState.DataPosition + 1)
-                    , data);
+                        case ',':
+                            if (!inSpeechMarks)
+                            {
+                                //PositionSet(item, start, pos - start);
+                                item++;
+                                start = pos + 1;
+                                scanStart = start;
+                            }
+                            break;
 
-            return null;
+                        case '\r':
+                        case '\n':
+                            if (inSpeechMarks)
+                                pos = WriteChar(ref cData, pos, current);
+                            else
+                                scan = false;
+                            break;
+
+                        default:
+                            pos = WriteChar(ref cData, pos, current);
+                            break;
+                    }
+
+                }
+                while (scan && enChar.MoveNext());
+            }
+            catch (Exception ex)
+            {
+                //Not sure what we would be catching here, but put a breakpoint in first.
+                throw ex;
+            }
+            finally
+            {
+                //OK, we need to check for a boundary condition where a line ends
+                //without a carriage return. This can happed
+                //mHeaderCount = item;
+            }
+
+            return new Tuple<CSVRowItem,UnicodeCharEnumerator>(
+                new CSVRowItem(mHeaders, cData, positions),data);
+        }
+         
+
+
+        #region Enc
+        /// <summary>
+        /// This is the encoding used by the stream enumerator.
+        /// </summary>
+        public Encoding Enc
+        {
+            get;
+            private set;
         }
         #endregion  
+
     }
     #endregion  
 }
