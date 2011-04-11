@@ -243,8 +243,9 @@ namespace Ximura
                 //mHeaderCount = item;
             }
 
-            return new Tuple<CSVRowItem,UnicodeCharEnumerator>(
-                new CSVRowItem(mHeaders, cData, positions),data);
+            return null;
+            //return new Tuple<CSVRowItem,UnicodeCharEnumerator>(
+            //    new CSVRowItem(mHeaders, cData, positions),data);
         }
          
 
