@@ -45,6 +45,10 @@
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>bin\Debug\</OutputPath>
@@ -505,14 +509,12 @@
     <None Include="Collections\_Documentation\CodeProject Articles\HashTable Algorithm.docx" />
     <None Include="Collections\_Documentation\CodeProject Articles\Introduction.docx" />
     <None Include="Collections\_Documentation\CodeProject Articles\SkipList Algorithm.docx" />
-    <None Include="Collections\_Documentation\Reference\CLR Inside Out 9 Reusable Parallel Data Structures and Algorithms.mht" />
-    <None Include="Collections\_Documentation\Reference\ScaleNet.pdf" />
-    <None Include="Collections\_Documentation\Reference\Stack.docx" />
     <None Include="Messaging\CSVMessage\_Documentation\RFC 2234 - Augmented BNF for Syntax Specifications ABNF.mht" />
     <None Include="Messaging\CSVMessage\_Documentation\RFC 4180 - Common Format and MIME Type for Comma-Separated Values %28CSV%29 Files.mht" />
     <None Include="Properties\ximura.snk" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Collections\_Documentation\Reference\" />
     <Folder Include="_Documentation\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

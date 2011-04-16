@@ -34,6 +34,10 @@
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -288,13 +292,7 @@
     <EmbeddedResource Include="Resources\Atom.xsd">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <None Include="Resources\Ximura.xsx">
-      <DependentUpon>Ximura.xsd</DependentUpon>
-    </None>
     <EmbeddedResource Include="Resources\Xml.xsd" />
-    <None Include="Resources\Xml.xsx">
-      <DependentUpon>Xml.xsd</DependentUpon>
-    </None>
     <None Include="Properties\ximura.snk" />
     <None Include="_Documentation\Building a LINQ Provider.mht" />
   </ItemGroup>

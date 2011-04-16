@@ -153,6 +153,7 @@ namespace Ximura
         }
         #endregion  
 
+        #region Parse(UnicodeCharEnumerator data)
         /// <summary>
         /// This method converts the stream data in to an individual row item.
         /// </summary>
@@ -173,10 +174,8 @@ namespace Ximura
             //This is the character position in the char array.
             int pos = 0;
             int item = 0;
-            bool inData = false;
             bool inSpeechMarks = false;
             bool firstSpeech = false;
-            bool isLastCharSpeech = false;
             bool scan = true;
             try
             {
@@ -247,8 +246,7 @@ namespace Ximura
             //return new Tuple<CSVRowItem,UnicodeCharEnumerator>(
             //    new CSVRowItem(mHeaders, cData, positions),data);
         }
-         
-
+        #endregion
 
         #region Enc
         /// <summary>

@@ -1,14 +1,16 @@
-﻿using System;
+﻿#region using
+using System;
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ximura;
 using System.IO;
-namespace Ximura.UnitTest.Helper.Enumerators
+#endregion // using
+namespace Ximura.UnitTest
 {
     [TestClass]
-    public class CharEnumerator
+    public class Test_CharEnumerator
     {
         [TestMethod]
         public void TestMethod1()

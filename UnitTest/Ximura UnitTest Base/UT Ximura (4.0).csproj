@@ -32,6 +32,10 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -117,8 +121,9 @@
     <Compile Include="Collections\Test_Collection_Base_Static.cs" />
     <Compile Include="Helper\ArrayHelper\MatchCollection.cs" />
     <Compile Include="Helper\ArrayHelper\MatchSequence.cs" />
-    <Compile Include="Helper\Enumerators\CharEnumerator.cs" />
-    <Compile Include="Helper\Enumerators\CSVRowItem.cs" />
+    <Compile Include="Helper\Enumerators\Test_CharEnumerator.cs" />
+    <Compile Include="Helper\Enumerators\Test_CSVRowItem.cs" />
+    <Compile Include="Helper\Enumerators\Test_CSVStreamEnumerator.cs" />
     <Compile Include="Messaging\CSV\CSV.cs" />
     <Compile Include="TestFunctions.cs" />
     <Compile Include="Helper\Test_Helper_BitHelper.cs" />

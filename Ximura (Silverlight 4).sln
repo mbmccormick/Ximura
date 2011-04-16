@@ -8,6 +8,18 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Unit Test", "Unit Test", "{770AE2F6-1F21-4621-81A5-7FD8127FF415}"
 EndProject
 Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://pc-e1whome:8080/tfs/ximura
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Ximura\u0020Communication\u0020Messaging\\Ximura\u0020Communication\u0020Messaging\u0020(Silverlight\u00204).csproj
+		SccProjectName1 = Ximura\u0020Communication\u0020Messaging
+		SccLocalPath1 = Ximura\u0020Communication\u0020Messaging
+		SccProjectUniqueName2 = Ximura\\Ximura\u0020(Silverlight\u00204).csproj
+		SccProjectName2 = Ximura
+		SccLocalPath2 = Ximura
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU

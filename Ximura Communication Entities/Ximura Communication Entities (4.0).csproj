@@ -34,6 +34,10 @@
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -198,26 +202,14 @@
     <EmbeddedResource Include="Resources\OpenSearch.xsd" />
     <EmbeddedResource Include="Resources\DublinCore.xsd" />
     <EmbeddedResource Include="Resources\Atom.xsd" />
-    <None Include="Resources\Atom.xsx">
-      <DependentUpon>Atom.xsd</DependentUpon>
-    </None>
     <EmbeddedResource Include="Resources\AtomPublishingProtocol.xsd" />
     <EmbeddedResource Include="Resources\ControllerRequest.xsd" />
     <EmbeddedResource Include="Resources\ControllerScript.xsd" />
     <EmbeddedResource Include="Resources\ControllerScriptResolver.xsd" />
     <EmbeddedResource Include="Resources\ControllerSession.xsd" />
-    <None Include="Resources\DublinCore.xsx">
-      <DependentUpon>DublinCore.xsd</DependentUpon>
-    </None>
     <EmbeddedResource Include="Resources\GeoEncoding.xsd" />
-    <None Include="Resources\GeoEncoding.xsx">
-      <DependentUpon>GeoEncoding.xsd</DependentUpon>
-    </None>
     <EmbeddedResource Include="Resources\Model.xsd" />
     <EmbeddedResource Include="Resources\MessageTemplate.xsd" />
-    <None Include="Resources\OpenSearch.xsx">
-      <DependentUpon>OpenSearch.xsd</DependentUpon>
-    </None>
     <None Include="ximura.snk" />
   </ItemGroup>
   <ItemGroup>
