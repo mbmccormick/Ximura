@@ -3,9 +3,11 @@ using System;
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Ximura;
 using System.IO;
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+using Ximura;
 #endregion // using
 namespace Ximura.UnitTest
 {
@@ -23,7 +25,7 @@ namespace Ximura.UnitTest
                 CSVStreamEnumerator enumCSV = new CSVStreamEnumerator(data, true);
 
                 int items = 0;
-                foreach (var item in enumCSV)
+                foreach (CSVRowItem item in enumCSV)
                 {
                     string line = item.ToString();
 

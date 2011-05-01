@@ -12,15 +12,23 @@ namespace Ximura.UnitTest
     [TestClass]
     public class Test_CSVRowItem
     {
-        //[TestMethod]
-        //public void TestCSVRowItem_SimpleLine()
-        //{
-        //    CSVRowItem item1 = new CSVRowItem(null, "123,456,789,101112\r\n");
+        [TestMethod]
+        public void TestCSVRowItem_SimpleLine()
+        {
+            CSVRowItem item1 = new CSVRowItem(null
+                , "123,456,789,101112\r\n".ToCharArray()
+                , new KeyValuePair<int,int>[]
+                {
+                     new KeyValuePair<int,int>(0,3)
+                    ,new KeyValuePair<int,int>(4,3)
+                    ,new KeyValuePair<int,int>(8,3)
+                    ,new KeyValuePair<int,int>(12,6)
+                });
 
-        //    string[] items = item1.ToArray();
+            string[] items = item1.ToArray();
 
-        //    Assert.IsTrue(items.Length == 4);
-        //}
+            Assert.IsTrue(items.Length == 4);
+        }
 
         //[TestMethod]
         //public void TestCSVRowItem_SimpleLineUnixLinefeed()

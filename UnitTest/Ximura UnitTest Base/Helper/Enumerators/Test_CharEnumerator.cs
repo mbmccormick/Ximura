@@ -30,8 +30,6 @@ namespace Ximura.UnitTest
 
                 output = uchEnum.ToArray();
             }
-
-
         }
     }
 }
