@@ -31,6 +31,7 @@ namespace Ximura
         #region Declarations
         private char[] mData;
         private Dictionary<string, int> mHeaders;
+        private char mSeperator;
 
         private int[] mStarts;
         private int[] mLengths;
@@ -44,10 +45,11 @@ namespace Ximura
         /// <param name="data">The character collection.</param>
         /// <param name="start">The start position.</param>
         /// <param name="length">The data length.</param>
-        public CSVRowItem(Dictionary<string, int> headers, char[] data, IEnumerable<KeyValuePair<int,int>> positions)
+        public CSVRowItem(char seperator, Dictionary<string, int> headers, char[] data, IEnumerable<KeyValuePair<int,int>> positions)
         {
             mHeaders = headers;
             mData = data;
+            mSeperator = seperator;
 
             int headerCount = headers==null?-1:headers.Count;
             int[] starts    = headerCount == -1 ? null : new int[headerCount];
@@ -191,5 +193,37 @@ namespace Ximura
             }
         }
         #endregion  
+
+        #region ToString()
+        /// <summary>
+        /// This override returns the string representation of the line.
+        /// </summary>
+        /// <returns>Returns a string with the data.</returns>
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            for (int i = 0; i < Count; i++)
+            {
+                int start, length;
+
+                if (!PositionGet(i, out start, out length))
+                    throw new ArgumentOutOfRangeException("The header identifier is greater than the number of available columns.");
+
+                if (length > 0)
+                {
+                    sb.Append(mData, start, length);
+
+                    if ((Count - i) > 1)
+                    {
+                        sb.Append(mSeperator);
+                    }
+                }
+            }
+
+            return sb.ToString();
+        }
+        #endregion // ToString()
+
     }
 }

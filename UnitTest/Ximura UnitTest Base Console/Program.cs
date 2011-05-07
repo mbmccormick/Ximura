@@ -29,8 +29,6 @@ namespace Ximura.UnitTest
             Console.WriteLine(timeRaw.ToString());
             Console.WriteLine(timeRaw2.ToString());
 
-
-
             //Action<int, int> fnOutput = (total, start) =>
             //    Enumerable.Range(start, total).ForEach(i => Console.WriteLine(i));
 

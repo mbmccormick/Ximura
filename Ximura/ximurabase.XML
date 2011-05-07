@@ -4432,7 +4432,7 @@
             This is the CSV row item structure.
             </summary>
         </member>
-        <member name="M:Ximura.CSVRowItem.#ctor(System.Collections.Generic.Dictionary{System.String,System.Int32},System.Char[],System.Collections.Generic.KeyValuePair{System.Int32,System.Int32}[])">
+        <member name="M:Ximura.CSVRowItem.#ctor(System.Char,System.Collections.Generic.Dictionary{System.String,System.Int32},System.Char[],System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.Int32,System.Int32}})">
             <summary>
             This is the byte constructor using a custom encoding method.
             </summary>
@@ -4455,6 +4455,12 @@
             <param name="start">The start position in the char array.</param>
             <param name="length">The number of characters in the array.</param>
             <returns>Returns true if the item exists.</returns>
+        </member>
+        <member name="M:Ximura.CSVRowItem.ToString">
+            <summary>
+            This override returns the string representation of the line.
+            </summary>
+            <returns>Returns a string with the data.</returns>
         </member>
         <member name="P:Ximura.CSVRowItem.Data">
             <summary>
@@ -9340,14 +9346,30 @@
             This is the default char array growth factor
             </summary>
         </member>
-        <member name="M:Ximura.CSVStreamEnumerator`1.#ctor(System.IO.Stream,System.Boolean,System.Text.Encoding,System.Func{Ximura.CSVRowItem,`0})">
+        <member name="F:Ximura.CSVStreamEnumerator`1.mHeaders">
+            <summary>
+            This is the header collection for the CSV file.
+            </summary>
+        </member>
+        <member name="F:Ximura.CSVStreamEnumerator`1.mOverflow">
+            <summary>
+            This is the overflow character. This is held when looking ahead in the data stream.
+            </summary>
+        </member>
+        <member name="M:Ximura.CSVStreamEnumerator`1.#ctor(System.IO.Stream,System.Func{Ximura.CSVRowItem,`0})">
             <summary>
             This is the default constructor for the CSV enumerator.
             </summary>
             <param name="data">The data stream which will be read from.</param>
-            <param name="headerInFirstRow">A boolean value that indicates whether the headers are in the first row.</param>
-            <param name="enc">The character encoding. If this is null, then it will be set to UTF8.</param>
             <param name="convert">A function to convert the CSVRowItem structure in to the output structure.</param>
+        </member>
+        <member name="M:Ximura.CSVStreamEnumerator`1.#ctor(System.IO.Stream,System.Func{Ximura.CSVRowItem,`0},Ximura.CSVStreamEnumeratorOptions)">
+            <summary>
+            This is the default constructor for the CSV enumerator.
+            </summary>
+            <param name="data">The data stream which will be read from.</param>
+            <param name="convert">A function to convert the CSVRowItem structure in to the output structure.</param>
+            <param name="options">This is the enumerator options.</param>
         </member>
         <member name="M:Ximura.CSVStreamEnumerator`1.ConvertSource(System.IO.Stream)">
             <summary>
@@ -9363,7 +9385,7 @@
             <param name="headers">The csv items from the first row.</param>
             <returns>The dictionary of headers.</returns>
         </member>
-        <member name="M:Ximura.CSVStreamEnumerator`1.WriteChar(System.Char[]@,System.Int32,System.Char)">
+        <member name="M:Ximura.CSVStreamEnumerator`1.WriteValueAutoGrow``1(``0[]@,System.Int32,``0)">
             <summary>
             This method is used to set the value and to 
             autogrow the the char array.
@@ -9376,7 +9398,7 @@
             <summary>
             This method converts the stream data in to an individual row item.
             </summary>
-            <param name="data">The stream to read from.</param>
+            <param name="data">The unicode enumerator to read from.</param>
             <returns>Returns the intermediate item or null if not more items can be read.</returns>
         </member>
         <member name="P:Ximura.CSVStreamEnumerator`1.Headers">
@@ -9389,12 +9411,19 @@
             This is the encoding used by the stream enumerator.
             </summary>
         </member>
-        <member name="M:Ximura.CSVStreamEnumerator.#ctor(System.IO.Stream,System.Boolean)">
+        <member name="M:Ximura.CSVStreamEnumerator.#ctor(System.IO.Stream)">
             <summary>
             This is the default constructor for the CSV enumerator.
             </summary>
             <param name="data">The data stream which will be read from.</param>
             <param name="headerInFirstRow">A boolean value that indicates whether the headers are in the first row.</param>
+        </member>
+        <member name="M:Ximura.CSVStreamEnumerator.#ctor(System.IO.Stream,Ximura.CSVStreamEnumeratorOptions)">
+            <summary>
+            This is the default constructor for the CSV enumerator.
+            </summary>
+            <param name="data">The data stream which will be read from.</param>
+            <param name="options">This is the parse options for the CSV file..</param>
         </member>
         <member name="T:Ximura.XimuraServiceStatus">
             <summary>
@@ -12567,6 +12596,102 @@
             <summary>
             This class supports a fast search algorithm
             </summary>
+        </member>
+        <member name="T:Ximura.CSVStreamEnumeratorOptions">
+            <summary>
+            This structure holds the enumerator options.
+            </summary>
+        </member>
+        <member name="F:Ximura.CSVStreamEnumeratorOptions.Encoding">
+            <summary>
+            This is the encoding used by the stream enumerator.
+            </summary>
+        </member>
+        <member name="F:Ximura.CSVStreamEnumeratorOptions.HeadersInFirstRow">
+            <summary>
+            This property specifies whether headers are in the first row.
+            </summary>
+        </member>
+        <member name="F:Ximura.CSVStreamEnumeratorOptions.CSVSeperator">
+            <summary>
+            This is the CSV seperator character.
+            </summary>
+        </member>
+        <member name="F:Ximura.CSVStreamEnumeratorOptions.SkipEmptyRows">
+            <summary>
+            This identifies whether empty rows will be skipped.
+            </summary>
+        </member>
+        <member name="F:Ximura.CSVStreamEnumeratorOptions.SkipCharacters">
+            <summary>
+            This method can be used to remove invalid characters from the CSV stream.
+            </summary>
+        </member>
+        <member name="F:Ximura.CSVStreamEnumeratorOptions.Default">
+            <summary>
+            This is the empty job signature.
+            </summary>
+        </member>
+        <member name="M:Ximura.CSVStreamEnumeratorOptions.#cctor">
+            <summary>
+            This is the static constructor.
+            </summary>
+        </member>
+        <member name="M:Ximura.CSVStreamEnumeratorOptions.#ctor(System.Boolean,System.Boolean)">
+            <summary>
+            This is the options constructor.
+            </summary>
+            <param name="HeadersInFirstRow">This boolean values specifies whether the headers are in the first row.</param>
+            <param name="SkipEmptyRows">This property specifies whether empty rows should be skipped.</param>
+        </member>
+        <member name="M:Ximura.CSVStreamEnumeratorOptions.#ctor(System.Char,System.Boolean,System.Boolean)">
+            <summary>
+            This is the options constructor.
+            </summary>
+            <param name="CSVSeperator">This is the CSV seperator character.</param>
+            <param name="HeadersInFirstRow">This boolean values specifies whether the headers are in the first row.</param>
+            <param name="SkipEmptyRows">This property specifies whether empty rows should be skipped.</param>
+        </member>
+        <member name="M:Ximura.CSVStreamEnumeratorOptions.#ctor(System.Text.Encoding,System.Char,System.Boolean,System.Boolean,System.Predicate{System.Char})">
+            <summary>
+            This is the options constructor.
+            </summary>
+            <param name="encoding">This is the character encoding for the stream.</param>
+            <param name="CSVSeperator">This is the CSV seperator character.</param>
+            <param name="HeadersInFirstRow">This boolean values specifies whether the headers are in the first row.</param>
+            <param name="SkipEmptyRows">This property specifies whether empty rows should be skipped.</param>
+            <param name="skipCharacters">This predicate can be used to remove invalid characters from the incoming stream. 
+            By default if this is left null all characters are processed.</param>
+        </member>
+        <member name="T:Ximura.CSVStreamEnumeratorException">
+            <summary>
+            This is the base exception class for the CSV enumerator.
+            </summary>
+        </member>
+        <member name="M:Ximura.CSVStreamEnumeratorException.#ctor">
+            <summary>
+            Initializes a new instance of the XimuraException class.
+            </summary>
+        </member>
+        <member name="M:Ximura.CSVStreamEnumeratorException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the XimuraException class.
+            </summary>
+            <param name="message">The error message.</param>
+        </member>
+        <member name="M:Ximura.CSVStreamEnumeratorException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the XimuraException class.
+            </summary>
+            <param name="message">The error message.</param>
+            <param name="ex">The base exception.</param>
+        </member>
+        <member name="M:Ximura.CSVStreamEnumeratorException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            This exception is used for deserialization.
+            </summary>
+            <param name="info">The serialization info.</param>
+            <param name="context">The serialization context.</param>
         </member>
     </members>
 </doc>

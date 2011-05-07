@@ -179,6 +179,27 @@
   <ItemGroup>
     <EmbeddedResource Include="Messaging\CSV\Examples\TestRFC4180.csv" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Helper\Enumerators\Data\Test1.csv" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Helper\Enumerators\Data\Test2.csv" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Helper\Enumerators\Data\Test3.csv" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Helper\Enumerators\Data\Test4.csv" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Helper\Enumerators\Data\Test5.csv" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Helper\Enumerators\Data\stop_times.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Helper\Enumerators\Data\Test6.csv" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

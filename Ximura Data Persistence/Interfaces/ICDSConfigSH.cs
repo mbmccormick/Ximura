@@ -17,8 +17,6 @@ using System.Collections.Generic;
 using System.Xml;
 using System.Configuration;
 
-using Ximura.Framework;
-using Ximura.Framework;
 using CH = Ximura.Common;
 using RH = Ximura.Reflection;
 #endregion // using

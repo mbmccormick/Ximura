@@ -580,21 +580,9 @@
       <Project>{4EB77EFC-5E84-446B-AA1A-C3121DEF7082}</Project>
       <Name>Ximura Communication Messaging %284.0%29</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Ximura Data Persistence\Ximura Data Persistence %284.0%29.csproj">
-      <Project>{79C7BB97-6ABB-4E63-829D-5B5F7A76F987}</Project>
-      <Name>Ximura Data Persistence %284.0%29</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Ximura Data\Ximura Data %284.0%29.csproj">
       <Project>{7727E180-73B7-474B-84F6-BF0C6FFB181E}</Project>
       <Name>Ximura Data %284.0%29</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Ximura Framework Server\Ximura Framework Server %284.0%29.csproj">
-      <Project>{405721B9-1085-48DB-BBAA-3DF005169B96}</Project>
-      <Name>Ximura Framework Server %284.0%29</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Ximura Framework\Ximura Framework %284.0%29.csproj">
-      <Project>{218ED92E-5D40-40DF-B6A2-11DEF3133589}</Project>
-      <Name>Ximura Framework %284.0%29</Name>
     </ProjectReference>
     <ProjectReference Include="..\Ximura\Ximura %284.0%29.csproj">
       <Project>{7C2684DD-A055-4A7A-88D6-EC5BAE28AEB2}</Project>

@@ -15,7 +15,7 @@ namespace Ximura.UnitTest
         [TestMethod]
         public void TestCSVRowItem_SimpleLine()
         {
-            CSVRowItem item1 = new CSVRowItem(null
+            CSVRowItem item1 = new CSVRowItem(',', null
                 , "123,456,789,101112\r\n".ToCharArray()
                 , new KeyValuePair<int,int>[]
                 {

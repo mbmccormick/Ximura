@@ -6,7 +6,6 @@ using System.Text;
 
 using Ximura;
 using Ximura.Data;
-using Ximura.Data;
 #endregion
 namespace Ximura.Data
 {

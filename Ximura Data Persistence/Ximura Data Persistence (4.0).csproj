@@ -94,15 +94,9 @@
     <Compile Include="Attributes\CDSStateTypePermitAttribute.cs" />
     <Compile Include="Configuration\CDSConfiguration.cs" />
     <Compile Include="Configuration\CDSSettings.cs" />
-    <Compile Include="ContentDataStore.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="ContentDataStoreContainer.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Context\CDSContext.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="ContentDataStore.cs" />
+    <Compile Include="ContentDataStoreContainer.cs" />
+    <Compile Include="Context\CDSContext.cs" />
     <Compile Include="Data\ResourceCatalog\ResourceCatalog.cs" />
     <Compile Include="Enumerations\CDSSelfCall.cs" />
     <Compile Include="Enumerations\CDSStatePriorityGroup.cs" />
@@ -125,81 +119,35 @@
     <Compile Include="Performance\CDSPerformance.cs" />
     <Compile Include="Performance\CDSPMPerformance.cs" />
     <Compile Include="Performance\CDSStatePerformance.cs" />
-    <Compile Include="Persistence Managers\Cache Manager\CacheManagerCDSState.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Persistence Managers\Cache Manager\CacheManagerCDSState.cs" />
     <Compile Include="Persistence Managers\Cache Manager\CDSCacheManagerBridge.cs" />
     <Compile Include="Persistence Managers\Cache Manager\Configuration\CacheManagerCDSConfiguration.cs" />
     <Compile Include="Persistence Managers\Cache Manager\ICDSCacheManager.cs" />
-    <Compile Include="Persistence Managers\Collection Based\CollectionBasePersistenceManager.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Persistence Managers\Converter\ConverterPMCDSState.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Persistence Managers\File Based\FileSystemBasePMCDSState.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Persistence Managers\File Based\FileSystemPersistenceManager.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Persistence Managers\File Based\IsolatedStoragePersistenceManager.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Persistence Managers\PersistenceManagerCDSState.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Persistence Managers\Resource Based\ResourceBasePersistenceManager.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Persistence Managers\Resource Based\ResourceCatalogPersistenceManager.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Persistence Managers\Collection Based\CollectionBasePersistenceManager.cs" />
+    <Compile Include="Persistence Managers\Converter\ConverterPMCDSState.cs" />
+    <Compile Include="Persistence Managers\File Based\FileSystemBasePMCDSState.cs" />
+    <Compile Include="Persistence Managers\File Based\FileSystemPersistenceManager.cs" />
+    <Compile Include="Persistence Managers\File Based\IsolatedStoragePersistenceManager.cs" />
+    <Compile Include="Persistence Managers\PersistenceManagerCDSState.cs" />
+    <Compile Include="Persistence Managers\Resource Based\ResourceBasePersistenceManager.cs" />
+    <Compile Include="Persistence Managers\Resource Based\ResourceCatalogPersistenceManager.cs" />
     <Compile Include="Persistence Managers\SQLDB Based\Configuration\SQLDBPMCDSConfiguration.cs" />
     <Compile Include="Persistence Managers\SQLDB Based\Configuration\SQLDBPMConfigSH.cs" />
-    <Compile Include="Persistence Managers\SQLDB Based\SQLDBPersistenceManager.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Persistence Managers\SQLDB Based\SQLDBPersistenceManager_Browse.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Persistence Managers\SQLDB Based\SQLDBPersistenceManager_Create.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Persistence Managers\SQLDB Based\SQLDBPersistenceManager_Delete.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Persistence Managers\SQLDB Based\SQLDBPersistenceManager_Read.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Persistence Managers\SQLDB Based\SQLDBPersistenceManager_ResolveReference.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Persistence Managers\SQLDB Based\SQLDBPersistenceManager_Restore.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Persistence Managers\SQLDB Based\SQLDBPersistenceManager_Update.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Persistence Managers\SQLDB Based\SQLDBPersistenceManager_VersionCheck.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Persistence Managers\SQLDB Relational Based\SQLDBRelationalBasedPersistenceManager.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Persistence Managers\SQLDB Based\SQLDBPersistenceManager.cs" />
+    <Compile Include="Persistence Managers\SQLDB Based\SQLDBPersistenceManager_Browse.cs" />
+    <Compile Include="Persistence Managers\SQLDB Based\SQLDBPersistenceManager_Create.cs" />
+    <Compile Include="Persistence Managers\SQLDB Based\SQLDBPersistenceManager_Delete.cs" />
+    <Compile Include="Persistence Managers\SQLDB Based\SQLDBPersistenceManager_Read.cs" />
+    <Compile Include="Persistence Managers\SQLDB Based\SQLDBPersistenceManager_ResolveReference.cs" />
+    <Compile Include="Persistence Managers\SQLDB Based\SQLDBPersistenceManager_Restore.cs" />
+    <Compile Include="Persistence Managers\SQLDB Based\SQLDBPersistenceManager_Update.cs" />
+    <Compile Include="Persistence Managers\SQLDB Based\SQLDBPersistenceManager_VersionCheck.cs" />
+    <Compile Include="Persistence Managers\SQLDB Relational Based\SQLDBRelationalBasedPersistenceManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="States\BaseCDSState.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="States\CDSState.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="States\FinishCDSState.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="States\StartCDSState.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="States\BaseCDSState.cs" />
+    <Compile Include="States\CDSState.cs" />
+    <Compile Include="States\FinishCDSState.cs" />
+    <Compile Include="States\StartCDSState.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ximura Communication Entities\Ximura Communication Entities %284.0%29.csproj">
@@ -213,10 +161,6 @@
     <ProjectReference Include="..\Ximura Data\Ximura Data %284.0%29.csproj">
       <Project>{7727E180-73B7-474B-84F6-BF0C6FFB181E}</Project>
       <Name>Ximura Data %284.0%29</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Ximura Framework\Ximura Framework %284.0%29.csproj">
-      <Project>{218ED92E-5D40-40DF-B6A2-11DEF3133589}</Project>
-      <Name>Ximura Framework %284.0%29</Name>
     </ProjectReference>
     <ProjectReference Include="..\Ximura\Ximura %284.0%29.csproj">
       <Project>{7C2684DD-A055-4A7A-88D6-EC5BAE28AEB2}</Project>

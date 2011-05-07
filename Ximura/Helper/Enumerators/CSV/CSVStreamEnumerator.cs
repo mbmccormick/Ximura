@@ -34,8 +34,18 @@ namespace Ximura
         /// </summary>
         /// <param name="data">The data stream which will be read from.</param>
         /// <param name="headerInFirstRow">A boolean value that indicates whether the headers are in the first row.</param>
-        public CSVStreamEnumerator(Stream data, bool headerInFirstRow)
-            : base(data, headerInFirstRow, Encoding.UTF8, (i) => i)
+        public CSVStreamEnumerator(Stream data)
+            : this(data, CSVStreamEnumeratorOptions.Default)
+        {
+
+        }
+        /// <summary>
+        /// This is the default constructor for the CSV enumerator.
+        /// </summary>
+        /// <param name="data">The data stream which will be read from.</param>
+        /// <param name="options">This is the parse options for the CSV file..</param>
+        public CSVStreamEnumerator(Stream data, CSVStreamEnumeratorOptions options)
+            : base(data, (i) => i, options)
         {
 
         }
@@ -57,43 +67,42 @@ namespace Ximura
         #endregion  
 
         #region Declarations
+        /// <summary>
+        /// This is the header collection for the CSV file.
+        /// </summary>
         private Dictionary<string, int> mHeaders;
 
+        /// <summary>
+        /// This is the overflow character. This is held when looking ahead in the data stream.
+        /// </summary>
         private char? mOverflow;
+
+        private CSVStreamEnumeratorOptions mOptions;
+
+        private long mCurrentLine;
         #endregion
         #region Constructor
         /// <summary>
         /// This is the default constructor for the CSV enumerator.
         /// </summary>
         /// <param name="data">The data stream which will be read from.</param>
-        /// <param name="headerInFirstRow">A boolean value that indicates whether the headers are in the first row.</param>
-        /// <param name="enc">The character encoding. If this is null, then it will be set to UTF8.</param>
         /// <param name="convert">A function to convert the CSVRowItem structure in to the output structure.</param>
-        public CSVStreamEnumerator(Stream data, bool headerInFirstRow, 
-            Encoding enc, Func<CSVRowItem, O> convert):this(data, headerInFirstRow, false, enc, convert)
-        {
-
-        }
+        public CSVStreamEnumerator(Stream data, Func<CSVRowItem, O> convert)
+            : this(data, convert, CSVStreamEnumeratorOptions.Default){}
         /// <summary>
         /// This is the default constructor for the CSV enumerator.
         /// </summary>
         /// <param name="data">The data stream which will be read from.</param>
-        /// <param name="headerInFirstRow">A boolean value that indicates whether the headers are in the first row.</param>
-        /// <param name="skipEmptyRows">This boolean value indicates whether empty rows can be skipped without throwing an error.</param>
-        /// <param name="enc">The character encoding. If this is null, then it will be set to UTF8.</param>
         /// <param name="convert">A function to convert the CSVRowItem structure in to the output structure.</param>
-        public CSVStreamEnumerator(Stream data, bool headerInFirstRow, bool skipEmptyRows,
-            Encoding enc, Func<CSVRowItem, O> convert)
+        /// <param name="options">This is the enumerator options.</param>
+        public CSVStreamEnumerator(Stream data, Func<CSVRowItem, O> convert, CSVStreamEnumeratorOptions options)
             : base(data, null, convert, null)
         {
-            if (enc == null)
-                Enc = Encoding.UTF8;
-            else
-                Enc = enc;
-
             mOverflow = null;
-
-            if (headerInFirstRow)
+            mOptions = options;
+            mCurrentLine = 0;
+            //If the headers are in the first row then parse the first line.
+            if (options.HeadersInFirstRow)
             {
                 Tuple<CSVRowItem, UnicodeCharEnumerator>? result = Parse(mDataConverted);
                 if (!result.HasValue)
@@ -155,7 +164,7 @@ namespace Ximura
         /// <param name="data">The array</param>
         /// <param name="position">The char position.</param>
         /// <param name="value">The value to set.</param>
-        private int WriteChar(ref char[] data, int position, char value)
+        private int WriteValueAutoGrow<I>(ref I[] data, int position, I value) where I: struct
         {
             if (position >= data.Length)
                 Array.Resize(ref data, position + ARRAYGROWTHFACTOR);
@@ -166,6 +175,8 @@ namespace Ximura
         }
         #endregion  
 
+ 
+        
         #region Parse(UnicodeCharEnumerator data)
         /// <summary>
         /// This method converts the stream data in to an individual row item.
@@ -182,12 +193,14 @@ namespace Ximura
 
             //Ok, set the initial state.
             int pos = 0, item = 0, start = 0;
+
             //Create the character array to hold the data.
             char[] cData = new char[ARRAYGROWTHFACTOR];
             List<KeyValuePair<int, int>> positions = new List<KeyValuePair<int, int>>();
 
             bool inSpeechMarks = false, firstSpeech = false, scan = true;
-
+            bool discardWhitespace = false;
+            
             try
             {
                 char val;
@@ -195,76 +208,108 @@ namespace Ximura
                 do
                 {
                     if (mOverflow.HasValue)
+                    {
                         val = mOverflow.Value;
+                        mOverflow = null;
+                    }
                     else
                         val = enChar.Current;
 
-                    switch (val)
+                    if (val == mOptions.CSVSeperator)
                     {
-                        case '\"':
-                            if (!inSpeechMarks)
-                                inSpeechMarks = true;
-                            //Is this a double speech mark within existing speech marks?
-                            else if (firstSpeech)
-                            {
-                                pos = WriteChar(ref cData, pos, val);
+                        if (!inSpeechMarks || (inSpeechMarks && firstSpeech))
+                        {
+                            //PositionSet(item, start, pos - start);
+                            positions.Add(new KeyValuePair<int, int>(start, pos - start));
+                            inSpeechMarks = false;
+                            firstSpeech = false;
+                            item++;
+                            start = pos;
+                        }
+                        else
+                            pos = WriteValueAutoGrow(ref cData, pos, val);
+
+                        firstSpeech = false;
+                    }
+                    else if (!(discardWhitespace && char.IsWhiteSpace(val)))
+                        switch (val)
+                        {
+                            case '\"':
+                                if (!inSpeechMarks)
+                                {
+                                    inSpeechMarks = true;
+                                }
+                                //Is this a double speech mark within existing speech marks?
+                                else if (firstSpeech)
+                                {
+                                    pos = WriteValueAutoGrow(ref cData, pos, val);
+                                    firstSpeech = false;
+                                }
+                                else
+                                    firstSpeech = true;
+
+                                break;
+
+                            case '\r':
+                            case '\n':
+                                if (inSpeechMarks)
+                                    pos = WriteValueAutoGrow(ref cData, pos, val);
+                                else
+                                {
+                                    scan = false;
+                                    mCurrentLine++;
+                                    mOverflow = ScanAhead(enChar);
+
+                                    if (mOverflow.HasValue
+                                        && mOverflow.Value == '\n')
+                                        mOverflow = null;
+                                }
+
                                 firstSpeech = false;
-                            }
-                            else
-                                firstSpeech = true;
-                            break;
+                                break;
 
-                        case ',':
-                            if (!inSpeechMarks)
-                            {
-                                //PositionSet(item, start, pos - start);
-                                positions.Add(new KeyValuePair<int, int>(start, pos-start));
-                                item++;
-                                start = pos;
-                            }
-                            else
-                                pos = WriteChar(ref cData, pos, val);
-                            break;
-
-                        case '\r':
-                        case '\n':
-                            if (inSpeechMarks)
-                                pos = WriteChar(ref cData, pos, val);
-                            else
-                            {
-                                scan = false;
-                            }
-                            break;
-
-                        default:
-                            pos = WriteChar(ref cData, pos, val);
-                            break;
-                    }
-
-                    if (mOverflow.HasValue)
-                    {
-                        mOverflow = null;
-                    }
+                            default:
+                                pos = WriteValueAutoGrow(ref cData, pos, val);
+                                firstSpeech = false;
+                                break;
+                        }
+                    else
+                        //We are in a strange state.
+                        throw new Exception();
                 }
-                while (scan && enChar.MoveNext());
+                while (scan && (mOverflow.HasValue || enChar.MoveNext()));
             }
             catch (Exception ex)
             {
                 //Not sure what we would be catching here, but put a breakpoint in first.
                 throw ex;
             }
-            finally
-            {
-                //OK, we need to check for a boundary condition where a line ends
-                //without a carriage return. This can happed
-                //mHeaderCount = item;
-            }
+            //finally
+            //{
+            //    //OK, we need to check for a boundary condition where a line ends
+            //    //without a carriage return. This can happed
+            //    //mHeaderCount = item;
+            //}
 
-            CSVRowItem line = new CSVRowItem(null, cData, positions);
+
+            positions.Add(new KeyValuePair<int, int>(start, pos - start));
+            item++;
+
+            CSVRowItem line = new CSVRowItem(mOptions.CSVSeperator, null, cData, positions);
 
             return new Tuple<CSVRowItem, UnicodeCharEnumerator>(line, data);
         }
         #endregion
+
+        private char? ScanAhead(IEnumerator<char> enChar)
+        {
+            if (!enChar.MoveNext())
+            {
+                return null;
+            }
+
+            return enChar.Current;
+        }
 
         #region Enc
         /// <summary>
@@ -272,11 +317,9 @@ namespace Ximura
         /// </summary>
         public Encoding Enc
         {
-            get;
-            private set;
+            get{return mOptions.Encoding;}
         }
         #endregion  
-
     }
     #endregion  
 }
