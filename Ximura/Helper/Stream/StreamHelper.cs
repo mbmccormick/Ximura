@@ -18,7 +18,6 @@ using System.Security.Cryptography;
 using System.Text;
 
 using Ximura;
-using CH = Ximura.Common;
 #endregion // using
 namespace Ximura
 {

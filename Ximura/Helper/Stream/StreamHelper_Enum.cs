@@ -18,7 +18,6 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 
 using Ximura;
-using CH = Ximura.Common;
 #endregion // using
 namespace Ximura
 {

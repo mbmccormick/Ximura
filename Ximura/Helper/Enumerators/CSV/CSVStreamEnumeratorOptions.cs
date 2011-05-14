@@ -19,7 +19,6 @@ using System.Collections.Generic;
 using System.Text;
 
 using Ximura;
-using Ximura.Data;
 #endregion
 namespace Ximura
 {
@@ -28,7 +27,6 @@ namespace Ximura
     /// </summary>
     public struct CSVStreamEnumeratorOptions
     {
-
         /// <summary>
         /// This is the encoding used by the stream enumerator.
         /// </summary>
@@ -112,6 +110,5 @@ namespace Ximura
             this.SkipCharacters = skipCharacters;
         }
         #endregion
-
     }
 }

@@ -18,7 +18,6 @@ using System.Collections.Generic;
 using System.Text;
 
 using Ximura;
-using Ximura.Data;
 #endregion
 namespace Ximura
 {
@@ -46,6 +45,7 @@ namespace Ximura
     }
     #endregion  
 
+    #region IntermediateObjectEnumerator<D, C, I, O>
     /// <summary>
     /// This method is used to parse the data stream with an intermediate data type prior to conversion.
     /// </summary>
@@ -169,4 +169,5 @@ namespace Ximura
         }
         #endregion
     }
+    #endregion
 }

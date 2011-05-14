@@ -98,6 +98,12 @@ namespace Ximura.UnitTest
 
 
         [TestMethod]
+        public void TestCSV_Error1()
+        {
+            double average = TestCSVFile("Ximura.UnitTest.Helper.Enumerators.Data.Error1.csv", null, null);
+        }
+
+        [TestMethod]
         public void TestCSV_Problem1()
         {
             double average = TestCSVFile("Ximura.UnitTest.Helper.Enumerators.Data.Test1.csv", null, null);

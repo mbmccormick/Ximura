@@ -19,7 +19,6 @@ using System.Collections.Generic;
 using System.Text;
 
 using Ximura;
-using Ximura.Data;
 #endregion
 namespace Ximura
 {
@@ -57,7 +56,8 @@ namespace Ximura
     /// This class enumerates a CSV data stream and returns a set of data objects for each individual row record.
     /// </summary>
     /// <typeparam name="O">The output item type.</typeparam>
-    public class CSVStreamEnumerator<O> : IntermediateObjectEnumerator<Stream, UnicodeCharEnumerator, CSVRowItem, O>
+    public class CSVStreamEnumerator<O> : 
+        IntermediateObjectEnumerator<Stream, UnicodeCharEnumerator, CSVRowItem, O>
     {
         #region Static declaration
         /// <summary>
@@ -80,6 +80,7 @@ namespace Ximura
         private CSVStreamEnumeratorOptions mOptions;
 
         private long mCurrentLine;
+
         #endregion
         #region Constructor
         /// <summary>
@@ -174,8 +175,6 @@ namespace Ximura
             return position + 1;
         }
         #endregion  
-
- 
         
         #region Parse(UnicodeCharEnumerator data)
         /// <summary>
@@ -301,6 +300,12 @@ namespace Ximura
         }
         #endregion
 
+        #region ScanAhead(IEnumerator<char> enChar)
+        /// <summary>
+        /// This generic method is used to scana ahead of a byte stream.
+        /// </summary>
+        /// <param name="enChar">The character enumerator.</param>
+        /// <returns></returns>
         private char? ScanAhead(IEnumerator<char> enChar)
         {
             if (!enChar.MoveNext())
@@ -310,6 +315,7 @@ namespace Ximura
 
             return enChar.Current;
         }
+        #endregion // ScanAhead(IEnumerator<char> enChar)
 
         #region Enc
         /// <summary>
@@ -320,6 +326,7 @@ namespace Ximura
             get{return mOptions.Encoding;}
         }
         #endregion  
+
     }
     #endregion  
 }

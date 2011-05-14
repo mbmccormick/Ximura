@@ -19,14 +19,13 @@ using System.Collections;
 using System.Text;
 
 using Ximura;
-using Ximura.Data;
 #endregion
 namespace Ximura
 {
     /// <summary>
     /// This is the base exception class for the CSV enumerator.
     /// </summary>
-    public class CSVStreamEnumeratorException: XimuraException
+    public class CSVStreamEnumeratorException: Exception
     {
         /// <summary>
         /// Initializes a new instance of the XimuraException class.
