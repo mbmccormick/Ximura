@@ -24,7 +24,7 @@ namespace Ximura
 {
     #region CSVStreamEnumerator
     /// <summary>
-    /// This is the default CSV parser class.
+    /// This is the CSV stream enumerator class.
     /// </summary>
     public class CSVStreamEnumerator : CSVStreamEnumerator<CSVRowItem>
     {
@@ -32,7 +32,6 @@ namespace Ximura
         /// This is the default constructor for the CSV enumerator.
         /// </summary>
         /// <param name="data">The data stream which will be read from.</param>
-        /// <param name="headerInFirstRow">A boolean value that indicates whether the headers are in the first row.</param>
         public CSVStreamEnumerator(Stream data)
             : this(data, CSVStreamEnumeratorOptions.Default)
         {
@@ -42,7 +41,7 @@ namespace Ximura
         /// This is the default constructor for the CSV enumerator.
         /// </summary>
         /// <param name="data">The data stream which will be read from.</param>
-        /// <param name="options">This is the parse options for the CSV file..</param>
+        /// <param name="options">This is the configuration options for the CSV file.</param>
         public CSVStreamEnumerator(Stream data, CSVStreamEnumeratorOptions options)
             : base(data, (i) => i, options)
         {
@@ -326,7 +325,6 @@ namespace Ximura
             get{return mOptions.Encoding;}
         }
         #endregion  
-
     }
     #endregion  
 }

@@ -156,6 +156,8 @@
     <Compile Include="Helper\Common\Common_String.cs" />
     <Compile Include="Helper\Enumerators\CSV\CSVRowItem.cs" />
     <Compile Include="Helper\Enumerators\CSV\CSVStreamEnumerator.cs" />
+    <Compile Include="Helper\Enumerators\CSV\CSVStreamEnumeratorOptions.cs" />
+    <Compile Include="Helper\Enumerators\CSV\Exceptions\CSVStreamEnumeratorException.cs" />
     <Compile Include="Helper\Enumerators\CSV\UnicodeCharEnumerator.cs" />
     <Compile Include="Helper\Enumerators\IntermediateObjectEnumerator.cs" />
     <Compile Include="Helper\Enumerators\ObjectEnumerator.cs" />
