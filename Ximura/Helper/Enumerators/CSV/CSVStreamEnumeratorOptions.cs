@@ -36,6 +36,10 @@ namespace Ximura
         /// This property specifies whether headers are in the first row.
         /// </summary>
         public bool HeadersInFirstRow;
+        /// <summary>
+        /// This is the header collection. This must be supplied if HeadersInFirstRow is set to false;
+        /// </summary>
+        public Dictionary<string,int> Headers;
 
         /// <summary>
         /// This is the CSV seperator character.
@@ -66,6 +70,7 @@ namespace Ximura
             Default = new CSVStreamEnumeratorOptions();
 
             Default.HeadersInFirstRow = true;
+            Default.Headers = null;
             Default.CSVSeperator = ',';
             Default.SkipEmptyRows = false;
             Default.Encoding = Encoding.UTF8;
@@ -80,7 +85,7 @@ namespace Ximura
         /// <param name="HeadersInFirstRow">This boolean values specifies whether the headers are in the first row.</param>
         /// <param name="SkipEmptyRows">This property specifies whether empty rows should be skipped.</param>
         public CSVStreamEnumeratorOptions(bool HeadersInFirstRow, bool SkipEmptyRows)
-            :this (Encoding.UTF8, ',', HeadersInFirstRow, SkipEmptyRows, null){}
+            :this (Encoding.UTF8, ',', HeadersInFirstRow, SkipEmptyRows, null, null){}
 
         /// <summary>
         /// This is the options constructor.
@@ -89,7 +94,7 @@ namespace Ximura
         /// <param name="HeadersInFirstRow">This boolean values specifies whether the headers are in the first row.</param>
         /// <param name="SkipEmptyRows">This property specifies whether empty rows should be skipped.</param>
         public CSVStreamEnumeratorOptions(char CSVSeperator, bool HeadersInFirstRow, bool SkipEmptyRows)
-            : this(Encoding.UTF8, CSVSeperator, HeadersInFirstRow, SkipEmptyRows, null){}
+            : this(Encoding.UTF8, CSVSeperator, HeadersInFirstRow, SkipEmptyRows, null, null){}
         
         /// <summary>
         /// This is the options constructor.
@@ -101,13 +106,14 @@ namespace Ximura
         /// <param name="skipCharacters">This predicate can be used to remove invalid characters from the incoming stream. 
         /// By default if this is left null all characters are processed.</param>
         public CSVStreamEnumeratorOptions(Encoding encoding, char CSVSeperator,
-            bool HeadersInFirstRow, bool SkipEmptyRows, Predicate<char> skipCharacters)
+            bool HeadersInFirstRow, bool SkipEmptyRows, Predicate<char> skipCharacters, Dictionary<string,int> Headers)
         {
             this.HeadersInFirstRow = HeadersInFirstRow;
             this.CSVSeperator = CSVSeperator;
             this.SkipEmptyRows = SkipEmptyRows;
             this.Encoding = encoding;
             this.SkipCharacters = skipCharacters;
+            this.Headers = Headers;
         }
         #endregion
     }

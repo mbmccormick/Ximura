@@ -140,7 +140,11 @@ namespace Ximura
         /// <summary>
         /// This is the encoding used for the char enumerator.
         /// </summary>
-        public Encoding Enc { get; private set; }
+        public Encoding Enc 
+        { 
+            get; 
+            private set; 
+        }
         #endregion  
     }
 }

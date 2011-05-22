@@ -69,7 +69,7 @@ namespace Ximura
         /// <summary>
         /// This is the header collection for the CSV file.
         /// </summary>
-        private Dictionary<string, int> mHeaders;
+        private Dictionary<string,int> mHeaders;
 
         /// <summary>
         /// This is the overflow character. This is held when looking ahead in the data stream.
@@ -96,7 +96,7 @@ namespace Ximura
         /// <param name="convert">A function to convert the CSVRowItem structure in to the output structure.</param>
         /// <param name="options">This is the enumerator options.</param>
         public CSVStreamEnumerator(Stream data, Func<CSVRowItem, O> convert, CSVStreamEnumeratorOptions options)
-            : base(data, null, convert, null)
+            : base(data, null, convert, (d) => { return new UnicodeCharEnumerator(data, options.Encoding); })
         {
             mOverflow = null;
             mOptions = options;
@@ -111,19 +111,7 @@ namespace Ximura
                 mHeaders = HeadersParse(result.Value.Item1);
             }
             else
-                mHeaders = null;
-        }
-        #endregion
-
-        #region ConvertSource(Stream data)
-        /// <summary>
-        /// This method converts the incoming byte stream in to a unicode char enumerator.
-        /// </summary>
-        /// <param name="data">The incoming byte stream.</param>
-        /// <returns>The character enumerator.</returns>
-        protected override UnicodeCharEnumerator ConvertSource(Stream data)
-        {
-            return new UnicodeCharEnumerator(data, Enc);
+                mHeaders = options.Headers;
         }
         #endregion
 
@@ -250,8 +238,10 @@ namespace Ximura
 
                             case '\r':
                             case '\n':
-                                if (inSpeechMarks)
+                                if (inSpeechMarks && !firstSpeech)
+                                {
                                     pos = WriteValueAutoGrow(ref cData, pos, val);
+                                }
                                 else
                                 {
                                     scan = false;
@@ -261,9 +251,10 @@ namespace Ximura
                                     if (mOverflow.HasValue
                                         && mOverflow.Value == '\n')
                                         mOverflow = null;
+                                    inSpeechMarks = false;
                                 }
 
-                                firstSpeech = false;
+                                firstSpeech = false;                            
                                 break;
 
                             default:
@@ -293,7 +284,7 @@ namespace Ximura
             positions.Add(new KeyValuePair<int, int>(start, pos - start));
             item++;
 
-            CSVRowItem line = new CSVRowItem(mOptions.CSVSeperator, null, cData, positions);
+            CSVRowItem line = new CSVRowItem(mOptions.CSVSeperator, mHeaders, cData, positions);
 
             return new Tuple<CSVRowItem, UnicodeCharEnumerator>(line, data);
         }
