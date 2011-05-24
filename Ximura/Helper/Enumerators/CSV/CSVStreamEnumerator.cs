@@ -115,6 +115,21 @@ namespace Ximura
         }
         #endregion
 
+        #region Dispose(bool disposing)
+        /// <summary>
+        /// This method checks cleans up anu large properties.
+        /// </summary>
+        /// <param name="disposing">Set to true if being disposed for the first time.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                mHeaders = null;
+            }
+            base.Dispose(disposing);
+        }
+        #endregion
+
         #region HeadersParse(CSVRowItem headers)
         /// <summary>
         /// This method parses the headers and creates a header collection.
@@ -139,6 +154,7 @@ namespace Ximura
         {
             get
             {
+                DisposedCheck();
                 return mHeaders;
             }
         }
@@ -169,7 +185,8 @@ namespace Ximura
         /// </summary>
         /// <param name="data">The unicode enumerator to read from.</param>
         /// <returns>Returns the intermediate item or null if not more items can be read.</returns>
-        protected override Tuple<CSVRowItem, UnicodeCharEnumerator>? Parse(UnicodeCharEnumerator data)
+        protected override Tuple<CSVRowItem, UnicodeCharEnumerator>? 
+            Parse(UnicodeCharEnumerator data)
         {
             IEnumerator<char> enChar = data.GetEnumerator();
             
@@ -313,9 +330,27 @@ namespace Ximura
         /// </summary>
         public Encoding Enc
         {
-            get{return mOptions.Encoding;}
+            get
+            {
+                DisposedCheck();
+                return mOptions.Encoding;
+            }
         }
         #endregion  
+
+        #region DataSource
+        /// <summary>
+        /// This is the data source stream for the enumerator.
+        /// </summary>
+        public virtual Stream DataSource
+        {
+            get
+            {
+                DisposedCheck();
+                return base.mDataSource;
+            }
+        }
+        #endregion
     }
     #endregion  
 }

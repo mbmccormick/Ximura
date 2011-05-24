@@ -53,7 +53,7 @@ namespace Ximura
     /// <typeparam name="C">The converted source data type, i.e. stream</typeparam>
     /// <typeparam name="I">The intermediate data type.</typeparam>
     /// <typeparam name="O">The output record data type, i.e. int</typeparam>
-    public abstract class IntermediateObjectEnumerator<D, C, I, O> : IEnumerable<O>
+    public abstract class IntermediateObjectEnumerator<D, C, I, O> : DisposableBase, IEnumerable<O>
     {
         #region Declarations
         /// <summary>
@@ -117,6 +117,25 @@ namespace Ximura
 
         }
         #endregion
+        #region Dispose(bool disposing)
+        /// <summary>
+        /// This method checks cleans up anu large properties.
+        /// </summary>
+        /// <param name="disposing">Set to true if being disposed for the first time.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (mIntermediateOE != null)
+                {
+                    mIntermediateOE.Dispose();
+                    mIntermediateOE = null;
+                }
+                mConvertOutput = null;
+                mParse = null;
+            }
+        }
+        #endregion
 
         #region Parse(C data)
         /// <summary>
@@ -160,11 +179,13 @@ namespace Ximura
         /// <returns>returns a collection of converted objects.</returns>
         public IEnumerator<O> GetEnumerator()
         {
+            DisposedCheck();
             return mIntermediateOE.Convert(mConvertOutput).GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
+            DisposedCheck();
             return GetEnumerator();
         }
         #endregion

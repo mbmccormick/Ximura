@@ -26,7 +26,7 @@ namespace Ximura
     /// </summary>
     /// <typeparam name="D">The source data type, i.e. stream</typeparam>
     /// <typeparam name="O">The output record data type, i.e. int</typeparam>
-    public class ObjectEnumerator<D, O> : IEnumerable<O>
+    public class ObjectEnumerator<D, O> : DisposableBase, IEnumerable<O>
     {
         #region Declarations
         /// <summary>
@@ -55,6 +55,22 @@ namespace Ximura
                 mParse = parse;
         }
         #endregion
+        #region Dispose(bool disposing)
+        /// <summary>
+        /// This method checks cleans up and 
+        /// </summary>
+        /// <param name="disposing"></param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (!mData.Equals(default(D)) && mData is IDisposable)
+                    ((IDisposable)mData).Dispose();
+                mData = default(D);
+                mParse = null;
+            }
+        }
+        #endregion
 
         #region Parse(S data)
         /// <summary>
@@ -75,13 +91,16 @@ namespace Ximura
         /// <returns>Returns the object collection.</returns>
         public virtual IEnumerator<O> GetEnumerator()
         {
+            DisposedCheck();
             return mData.Unfold(mParse).GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
+            DisposedCheck();
             return GetEnumerator();
         }
         #endregion
+
     }
 }

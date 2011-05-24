@@ -44,7 +44,8 @@ namespace Ximura
         /// <param name="data">The character collection.</param>
         /// <param name="start">The start position.</param>
         /// <param name="length">The data length.</param>
-        public CSVRowItem(char seperator, Dictionary<string, int> headers, char[] data, IEnumerable<KeyValuePair<int,int>> positions)
+        public CSVRowItem(char seperator, Dictionary<string, int> headers, 
+            char[] data, IEnumerable<KeyValuePair<int,int>> positions)
         {
             mHeaders = headers;
             mData = data;
