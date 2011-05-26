@@ -28,62 +28,46 @@ namespace Ximura
     public struct CSVRowItem: IEnumerable<string>
     {        
         #region Declarations
-        private char[] mData;
-        private Dictionary<string, int> mHeaders;
-        private char mSeperator;
+        /// <summary>
+        /// This class holds the configuration options for the CSV files.
+        /// </summary>
+        private CSVStreamEnumeratorOptions mOptions;
 
-        private int[] mStarts;
-        private int[] mLengths;
-        private int mHeaderCount;
+        /// <summary>
+        /// This array holds the decoded character data for the specific line number.
+        /// </summary>
+        private char[] mData;
+
+        /// <summary>
+        /// This array holds the start position for the specific header. 
+        /// The last value is the end position of the last value. This is needed
+        /// as the char array may be bigger than the actual data for the line item.
+        /// </summary>
+        private int[] mPositions;
+
+        /// <summary>
+        /// This is the line ID.
+        /// </summary>
+        private long mLineID;
         #endregion  
         #region Constructors
         /// <summary>
-        /// This is the byte constructor using a custom encoding method.
+        /// This is the default constructor.
         /// </summary>
-        /// <param name="enc">The byte encoding used to transform the data in to a string.</param>
-        /// <param name="data">The character collection.</param>
-        /// <param name="start">The start position.</param>
-        /// <param name="length">The data length.</param>
-        public CSVRowItem(char seperator, Dictionary<string, int> headers, 
-            char[] data, IEnumerable<KeyValuePair<int,int>> positions)
+        /// <param name="options">The enumeration options.</param>
+        /// <param name="data">The character data array.</param>
+        /// <param name="positions">The positions collection.</param>
+        public CSVRowItem(CSVStreamEnumeratorOptions options,
+            char[] data, int[] positions, long lineID)
         {
-            mHeaders = headers;
+            mOptions = options;
             mData = data;
-            mSeperator = seperator;
 
-            int headerCount = headers==null?-1:headers.Count;
-            int[] starts    = headerCount == -1 ? null : new int[headerCount];
-            int[] lengths   = headerCount == -1 ? null : new int[headerCount];
+            mLineID = lineID;
 
-            //The the char boundaries for the items.
-            positions
-                .OrderBy(k => k.Key)
-                .ForIndex((i, k) =>
-                {
-                    if (i >= headerCount)
-                    {
-                        headerCount = i + 1;
-                        Array.Resize(ref starts, headerCount);
-                        Array.Resize(ref lengths, headerCount);
-                    }
-
-                    starts[i] = k.Key;
-                    lengths[i] = k.Value;
-                }
-                );
-
-            mStarts = starts;
-            mLengths = lengths;
-            mHeaderCount = headerCount;
+            mPositions = positions;
         }
         #endregion
-
-        #region Data
-        /// <summary>
-        /// This is the raw data from the string.
-        /// </summary>
-        public string Data { get { return new string(mData); } }
-        #endregion  
 
         #region GetEnumerator()
         /// <summary>
@@ -110,7 +94,7 @@ namespace Ximura
         {
             get
             {
-                return mHeaders != null;
+                return mOptions.Headers != null;
             }
         }
         #endregion  
@@ -128,10 +112,10 @@ namespace Ximura
                 if (!HeadersSupported)
                     throw new NotSupportedException("Headers are not available in the structure.");
 
-                if (!mHeaders.ContainsKey(header))
+                if (!mOptions.Headers.ContainsKey(header))
                     return null;
 
-                return this[mHeaders[header]];
+                return this[mOptions.Headers[header]];
             }
         }
         #endregion  
@@ -158,6 +142,40 @@ namespace Ximura
         }
         #endregion  
 
+        #region Length(int header)
+        /// <summary>
+        /// This is the length of the specific fiels.
+        /// </summary>
+        /// <param name="header">The header position.</param>
+        /// <returns>Returns the number of characters for the field.</returns>
+        public int Length(int header)
+        {
+            int start, length;
+
+            if (!PositionGet(header, out start, out length))
+                throw new ArgumentOutOfRangeException("The header identifier is greater than the number of available columns.");
+
+            return length;
+        }
+        #endregion
+        #region Length(string header)
+        /// <summary>
+        /// This method returns the length of the specific named header.
+        /// </summary>
+        /// <param name="header">The header name.</param>
+        /// <returns>The length of the specific header.</returns>
+        public int Length(string header)
+        {
+            if (!HeadersSupported)
+                throw new NotSupportedException("Headers are not available in the structure.");
+
+            if (!mOptions.Headers.ContainsKey(header))
+                throw new ArgumentOutOfRangeException("The header is not recognized.");
+
+            return Length(mOptions.Headers[header]);
+        }
+        #endregion
+
         #region PositionGet(int item, out int start, out int length)
         /// <summary>
         /// This method retrieves the item positions with the particular array.
@@ -171,11 +189,19 @@ namespace Ximura
             start = -1;
             length = -1;
 
-            if (item >= mHeaderCount)
+            if (item >= mPositions.Length)
                 return false;
 
-            start = mStarts[item];
-            length = mLengths[item];
+            if (item == 0)
+            {
+                start = 0;
+                length = mPositions[0];
+            }
+            else
+            {
+                start = mPositions[item - 1];
+                length = mPositions[item] - start;
+            }
 
             return true;
         }
@@ -189,10 +215,29 @@ namespace Ximura
         {
             get
             {
-                return mStarts.Length;
+                return mPositions.Length;
+            }
+        }
+        #endregion
+        #region CharCount
+        /// <summary>
+        /// This is the number of characters in the CSV line.
+        /// </summary>
+        public int CharCount
+        {
+            get
+            {
+                return mPositions[mPositions.Length - 1];
             }
         }
         #endregion  
+
+        #region LineID
+        /// <summary>
+        /// This is the CSV line ID.
+        /// </summary>
+        public long LineID { get { return mLineID; } }
+        #endregion
 
         #region ToString()
         /// <summary>
@@ -216,14 +261,13 @@ namespace Ximura
 
                     if ((Count - i) > 1)
                     {
-                        sb.Append(mSeperator);
+                        sb.Append(mOptions.CSVSeperator);
                     }
                 }
             }
 
             return sb.ToString();
         }
-        #endregion // ToString()
-
+        #endregion
     }
 }

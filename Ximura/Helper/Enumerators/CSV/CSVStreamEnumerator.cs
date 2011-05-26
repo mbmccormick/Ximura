@@ -80,6 +80,8 @@ namespace Ximura
 
         private long mCurrentLine;
 
+        private long mCharacterTotal;
+
         #endregion
         #region Constructor
         /// <summary>
@@ -160,7 +162,7 @@ namespace Ximura
         }
         #endregion  
 
-        #region WriteChar(ref char[] data, int position, char value)
+        #region WriteValueAutoGrow<I>(ref I[] data, int position, I value)
         /// <summary>
         /// This method is used to set the value and to 
         /// autogrow the the char array.
@@ -168,10 +170,28 @@ namespace Ximura
         /// <param name="data">The array</param>
         /// <param name="position">The char position.</param>
         /// <param name="value">The value to set.</param>
-        private int WriteValueAutoGrow<I>(ref I[] data, int position, I value) where I: struct
+        /// <returns>Returns the new position in the array.</returns>
+        private int WriteValueAutoGrow<I>(ref I[] data, int position, I value) where I : struct
+        {
+            return WriteValueAutoGrow<I>(ref data, position, value, null);
+        }
+        /// <summary>
+        /// This method is used to set the value and to 
+        /// autogrow the the char array.
+        /// </summary>
+        /// <param name="data">The array</param>
+        /// <param name="position">The char position.</param>
+        /// <param name="value">The value to set.</param>
+        /// <param name="toGrow">The array growth amount. If null then the default settings will be used.</param>
+        /// <returns>Returns the new position in the array.</returns>
+        private int WriteValueAutoGrow<I>(ref I[] data, int position, I value, int? toGrow) where I : struct
         {
             if (position >= data.Length)
-                Array.Resize(ref data, position + ARRAYGROWTHFACTOR);
+            {
+                int growBy = data.Length / 10;
+                Array.Resize(ref data, position + (growBy > ARRAYGROWTHFACTOR ? growBy : ARRAYGROWTHFACTOR));
+            }
+            //Array.Resize(ref data, position + ARRAYGROWTHFACTOR);
 
             data[position] = value;
 
@@ -179,7 +199,25 @@ namespace Ximura
         }
         #endregion  
         
-        #region Parse(UnicodeCharEnumerator data)
+        #region CharArrayCreate()
+        /// <summary>
+        /// This method creates the character array to its default size.
+        /// </summary>
+        /// <returns>Returns a new character array.</returns>
+        private char[] CharArrayCreate()
+        {
+            char[] cData;
+            long average = (mCurrentLine == 0) ? ARRAYGROWTHFACTOR : mCharacterTotal / mCurrentLine;
+
+            if (average < ARRAYGROWTHFACTOR)
+                cData = new char[ARRAYGROWTHFACTOR];
+            else
+                cData = new char[average + average / 10];
+
+            return cData;
+        }
+        #endregion // CharArrayCreate()
+        #region ParseV2(UnicodeCharEnumerator data)
         /// <summary>
         /// This method converts the stream data in to an individual row item.
         /// </summary>
@@ -189,27 +227,30 @@ namespace Ximura
             Parse(UnicodeCharEnumerator data)
         {
             IEnumerator<char> enChar = data.GetEnumerator();
-            
+
             //Check that we can get a new character from the stream.
             if (!mOverflow.HasValue && !enChar.MoveNext())
                 return null;
 
-            //Ok, set the initial state.
-            int pos = 0, item = 0, start = 0;
-
             //Create the character array to hold the data.
-            char[] cData = new char[ARRAYGROWTHFACTOR];
-            List<KeyValuePair<int, int>> positions = new List<KeyValuePair<int, int>>();
+            char[] cData = CharArrayCreate();
+
+            //Ok, set the initial state.
+            int pos = 0, start = 0;
 
             bool inSpeechMarks = false, firstSpeech = false, scan = true;
             bool discardWhitespace = false;
-            
+
+            int headerPos = 0;
+            int[] posEnds = new int[mOptions.Headers.Count];
+
             try
             {
                 char val;
                 //OK, we will scan through the characters for the boundary markers.
                 do
                 {
+                    //Do we have an overflow character from a previous line look-ahead.
                     if (mOverflow.HasValue)
                     {
                         val = mOverflow.Value;
@@ -218,15 +259,15 @@ namespace Ximura
                     else
                         val = enChar.Current;
 
+                    //Seperator character
                     if (val == mOptions.CSVSeperator)
                     {
                         if (!inSpeechMarks || (inSpeechMarks && firstSpeech))
                         {
-                            //PositionSet(item, start, pos - start);
-                            positions.Add(new KeyValuePair<int, int>(start, pos - start));
+                            headerPos = WriteValueAutoGrow(ref posEnds, headerPos, pos, 1);
+
                             inSpeechMarks = false;
                             firstSpeech = false;
-                            item++;
                             start = pos;
                         }
                         else
@@ -235,8 +276,10 @@ namespace Ximura
                         firstSpeech = false;
                     }
                     else if (!(discardWhitespace && char.IsWhiteSpace(val)))
+                    {
                         switch (val)
                         {
+                            //Speechmark
                             case '\"':
                                 if (!inSpeechMarks)
                                 {
@@ -252,7 +295,7 @@ namespace Ximura
                                     firstSpeech = true;
 
                                 break;
-
+                            //EOL
                             case '\r':
                             case '\n':
                                 if (inSpeechMarks && !firstSpeech)
@@ -271,17 +314,15 @@ namespace Ximura
                                     inSpeechMarks = false;
                                 }
 
-                                firstSpeech = false;                            
+                                firstSpeech = false;
                                 break;
-
+                            //Valid character
                             default:
                                 pos = WriteValueAutoGrow(ref cData, pos, val);
                                 firstSpeech = false;
                                 break;
                         }
-                    else
-                        //We are in a strange state.
-                        throw new Exception();
+                    }
                 }
                 while (scan && (mOverflow.HasValue || enChar.MoveNext()));
             }
@@ -290,22 +331,17 @@ namespace Ximura
                 //Not sure what we would be catching here, but put a breakpoint in first.
                 throw ex;
             }
-            //finally
-            //{
-            //    //OK, we need to check for a boundary condition where a line ends
-            //    //without a carriage return. This can happed
-            //    //mHeaderCount = item;
-            //}
 
+            headerPos = WriteValueAutoGrow(ref posEnds, headerPos, pos, 1);
 
-            positions.Add(new KeyValuePair<int, int>(start, pos - start));
-            item++;
+            CSVRowItem line = new CSVRowItem(mOptions, cData, posEnds, mCurrentLine);
 
-            CSVRowItem line = new CSVRowItem(mOptions.CSVSeperator, mHeaders, cData, positions);
+            mCharacterTotal += line.CharCount;
 
             return new Tuple<CSVRowItem, UnicodeCharEnumerator>(line, data);
         }
         #endregion
+
 
         #region ScanAhead(IEnumerator<char> enChar)
         /// <summary>
@@ -342,7 +378,7 @@ namespace Ximura
         /// <summary>
         /// This is the data source stream for the enumerator.
         /// </summary>
-        public virtual Stream DataSource
+        public virtual Stream BaseStream
         {
             get
             {

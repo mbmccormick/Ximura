@@ -371,6 +371,7 @@
     <Compile Include="Helper\Common\Common_Security.cs" />
     <Compile Include="Helper\Common\Common_String.cs" />
     <Compile Include="Helper\Common\Common_XML.cs" />
+    <Compile Include="Helper\Enumerators\CSV\CSVHeaderItem.cs" />
     <Compile Include="Helper\Enumerators\CSV\CSVStreamEnumeratorOptions.cs" />
     <Compile Include="Helper\Enumerators\CSV\Exceptions\CSVStreamEnumeratorException.cs" />
     <Compile Include="Helper\Enumerators\CSV\UnicodeCharEnumerator.cs" />

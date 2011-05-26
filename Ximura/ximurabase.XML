@@ -1519,6 +1519,36 @@
             <param name="convert">The conversion function.</param>
             <returns>Returns a enumeration of converted items.</returns>
         </member>
+        <member name="T:Ximura.CSVStreamEnumeratorException">
+            <summary>
+            This is the base exception class for the CSV enumerator.
+            </summary>
+        </member>
+        <member name="M:Ximura.CSVStreamEnumeratorException.#ctor">
+            <summary>
+            Initializes a new instance of the XimuraException class.
+            </summary>
+        </member>
+        <member name="M:Ximura.CSVStreamEnumeratorException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the XimuraException class.
+            </summary>
+            <param name="message">The error message.</param>
+        </member>
+        <member name="M:Ximura.CSVStreamEnumeratorException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the XimuraException class.
+            </summary>
+            <param name="message">The error message.</param>
+            <param name="ex">The base exception.</param>
+        </member>
+        <member name="M:Ximura.CSVStreamEnumeratorException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            This exception is used for deserialization.
+            </summary>
+            <param name="info">The serialization info.</param>
+            <param name="context">The serialization context.</param>
+        </member>
         <member name="T:Ximura.BitHelper">
             <summary>
             This static class provides bit mapping functionality for primitive types.
@@ -2616,6 +2646,39 @@
             <typeparam name="D">The source data type, i.e. stream</typeparam>
             <typeparam name="O">The output record data type, i.e. int</typeparam>
         </member>
+        <member name="T:Ximura.DisposableBase">
+            <summary>
+            This base class implements the IDisposable interface.
+            </summary>
+        </member>
+        <member name="F:Ximura.DisposableBase.mDisposed">
+            <summary>
+            This variables determines whether the collection has been disposed.
+            </summary>
+        </member>
+        <member name="M:Ximura.DisposableBase.Finalize">
+            <summary>
+            This is the finalizer for the collection.
+            </summary>
+        </member>
+        <member name="M:Ximura.DisposableBase.DisposedCheck">
+            <summary>
+            This method identifies when the collection has been disposed and throws an ObjectDisposedException.
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">This exception is thrown when the collection has been disposed.</exception>
+        </member>
+        <member name="M:Ximura.DisposableBase.Dispose">
+            <summary>
+            This method disposes of the collection.
+            </summary>
+        </member>
+        <member name="M:Ximura.DisposableBase.Dispose(System.Boolean)">
+            <summary>
+            This method disposes of the data in the collection. You should override this method if you need to add
+            custom dispose logic to your collection.
+            </summary>
+            <param name="disposing">The class is disposing, i.e. this is called by Dispose and not the finalizer.</param>
+        </member>
         <member name="F:Ximura.ObjectEnumerator`2.mData">
             <summary>
             This is the data source.
@@ -2632,6 +2695,12 @@
             </summary>
             <param name="data">The data source.</param>
             <param name="parse">The parsing function.</param>
+        </member>
+        <member name="M:Ximura.ObjectEnumerator`2.Dispose(System.Boolean)">
+            <summary>
+            This method checks cleans up and 
+            </summary>
+            <param name="disposing"></param>
         </member>
         <member name="M:Ximura.ObjectEnumerator`2.Parse(`0)">
             <summary>
@@ -4109,39 +4178,6 @@
             </summary>
             <typeparam name="T">The collection object type.</typeparam>
         </member>
-        <member name="T:Ximura.DisposableBase">
-            <summary>
-            This base class implements the IDisposable interface.
-            </summary>
-        </member>
-        <member name="F:Ximura.DisposableBase.mDisposed">
-            <summary>
-            This variables determines whether the collection has been disposed.
-            </summary>
-        </member>
-        <member name="M:Ximura.DisposableBase.Finalize">
-            <summary>
-            This is the finalizer for the collection.
-            </summary>
-        </member>
-        <member name="M:Ximura.DisposableBase.DisposedCheck">
-            <summary>
-            This method identifies when the collection has been disposed and throws an ObjectDisposedException.
-            </summary>
-            <exception cref="T:System.ObjectDisposedException">This exception is thrown when the collection has been disposed.</exception>
-        </member>
-        <member name="M:Ximura.DisposableBase.Dispose">
-            <summary>
-            This method disposes of the collection.
-            </summary>
-        </member>
-        <member name="M:Ximura.DisposableBase.Dispose(System.Boolean)">
-            <summary>
-            This method disposes of the data in the collection. You should override this method if you need to add
-            custom dispose logic to your collection.
-            </summary>
-            <param name="disposing">The class is disposing, i.e. this is called by Dispose and not the finalizer.</param>
-        </member>
         <member name="F:Ximura.Collections.CollectionHelperBase`2.mData">
             <summary>
             This array holds both the data.
@@ -4432,14 +4468,38 @@
             This is the CSV row item structure.
             </summary>
         </member>
-        <member name="M:Ximura.CSVRowItem.#ctor(System.Char,System.Collections.Generic.Dictionary{System.String,System.Int32},System.Char[],System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.Int32,System.Int32}})">
+        <member name="F:Ximura.CSVRowItem.mOptions">
             <summary>
-            This is the byte constructor using a custom encoding method.
+            This class holds the configuration options for the CSV files.
             </summary>
-            <param name="enc">The byte encoding used to transform the data in to a string.</param>
-            <param name="data">The character collection.</param>
-            <param name="start">The start position.</param>
-            <param name="length">The data length.</param>
+        </member>
+        <member name="F:Ximura.CSVRowItem.mData">
+            <summary>
+            This array holds the decoded character data for the specific line number.
+            </summary>
+        </member>
+        <member name="F:Ximura.CSVRowItem.mPositions">
+            <summary>
+            This array holds the start position for the specific header. 
+            The last value is the end position of the last value. This is needed
+            as the char array may be bigger than the actual data for the line item.
+            </summary>
+        </member>
+        <member name="M:Ximura.CSVRowItem.#ctor(Ximura.CSVStreamEnumeratorOptions,System.Char[],System.Int32[])">
+            <summary>
+            This is the default constructor.
+            </summary>
+            <param name="options">The enumeration options.</param>
+            <param name="data">The character data array.</param>
+            <param name="positions">The positions collection.</param>
+        </member>
+        <member name="M:Ximura.CSVRowItem.#ctor(Ximura.CSVStreamEnumeratorOptions,System.Char[],System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.Int32,System.Int32}})">
+            <summary>
+            This is the default constructor.
+            </summary>
+            <param name="options">The enumeration options.</param>
+            <param name="data">The character data array.</param>
+            <param name="positions">The positions collection.</param>
         </member>
         <member name="M:Ximura.CSVRowItem.GetEnumerator">
             <summary>
@@ -4461,11 +4521,6 @@
             This override returns the string representation of the line.
             </summary>
             <returns>Returns a string with the data.</returns>
-        </member>
-        <member name="P:Ximura.CSVRowItem.Data">
-            <summary>
-            This is the raw data from the string.
-            </summary>
         </member>
         <member name="P:Ximura.CSVRowItem.HeadersSupported">
             <summary>
@@ -6407,6 +6462,12 @@
             <param name="parse">The parsing function.</param>
             <param name="convertOutput">The conversion function to convert the intermediate type in to the output type.</param>
             <param name="convertSource">The conversion function to convert the incoming data source in to the outgoing data source.</param>
+        </member>
+        <member name="M:Ximura.IntermediateObjectEnumerator`4.Dispose(System.Boolean)">
+            <summary>
+            This method checks cleans up anu large properties.
+            </summary>
+            <param name="disposing">Set to true if being disposed for the first time.</param>
         </member>
         <member name="M:Ximura.IntermediateObjectEnumerator`4.Parse(`1)">
             <summary>
@@ -9332,7 +9393,7 @@
         </member>
         <member name="T:Ximura.CSVStreamEnumerator">
             <summary>
-            This is the default CSV parser class.
+            This is the CSV stream enumerator class.
             </summary>
         </member>
         <member name="T:Ximura.CSVStreamEnumerator`1">
@@ -9371,12 +9432,11 @@
             <param name="convert">A function to convert the CSVRowItem structure in to the output structure.</param>
             <param name="options">This is the enumerator options.</param>
         </member>
-        <member name="M:Ximura.CSVStreamEnumerator`1.ConvertSource(System.IO.Stream)">
+        <member name="M:Ximura.CSVStreamEnumerator`1.Dispose(System.Boolean)">
             <summary>
-            This method converts the incoming byte stream in to a unicode char enumerator.
+            This method checks cleans up anu large properties.
             </summary>
-            <param name="data">The incoming byte stream.</param>
-            <returns>The character enumerator.</returns>
+            <param name="disposing">Set to true if being disposed for the first time.</param>
         </member>
         <member name="M:Ximura.CSVStreamEnumerator`1.HeadersParse(Ximura.CSVRowItem)">
             <summary>
@@ -9401,6 +9461,13 @@
             <param name="data">The unicode enumerator to read from.</param>
             <returns>Returns the intermediate item or null if not more items can be read.</returns>
         </member>
+        <member name="M:Ximura.CSVStreamEnumerator`1.ScanAhead(System.Collections.Generic.IEnumerator{System.Char})">
+            <summary>
+            This generic method is used to scana ahead of a byte stream.
+            </summary>
+            <param name="enChar">The character enumerator.</param>
+            <returns></returns>
+        </member>
         <member name="P:Ximura.CSVStreamEnumerator`1.Headers">
             <summary>
             This enumeration will return a header collection enumeration.
@@ -9411,19 +9478,23 @@
             This is the encoding used by the stream enumerator.
             </summary>
         </member>
+        <member name="P:Ximura.CSVStreamEnumerator`1.BaseStream">
+            <summary>
+            This is the data source stream for the enumerator.
+            </summary>
+        </member>
         <member name="M:Ximura.CSVStreamEnumerator.#ctor(System.IO.Stream)">
             <summary>
             This is the default constructor for the CSV enumerator.
             </summary>
             <param name="data">The data stream which will be read from.</param>
-            <param name="headerInFirstRow">A boolean value that indicates whether the headers are in the first row.</param>
         </member>
         <member name="M:Ximura.CSVStreamEnumerator.#ctor(System.IO.Stream,Ximura.CSVStreamEnumeratorOptions)">
             <summary>
             This is the default constructor for the CSV enumerator.
             </summary>
             <param name="data">The data stream which will be read from.</param>
-            <param name="options">This is the parse options for the CSV file..</param>
+            <param name="options">This is the configuration options for the CSV file.</param>
         </member>
         <member name="T:Ximura.XimuraServiceStatus">
             <summary>
@@ -10392,6 +10463,77 @@
         <member name="P:Ximura.MessageTerminatorBase.TerminatorHolder.ActionType">
             <summary>
             The action type.
+            </summary>
+        </member>
+        <member name="T:Ximura.CSVStreamEnumeratorOptions">
+            <summary>
+            This structure holds the enumerator options.
+            </summary>
+        </member>
+        <member name="F:Ximura.CSVStreamEnumeratorOptions.Default">
+            <summary>
+            This is the empty job signature.
+            </summary>
+        </member>
+        <member name="M:Ximura.CSVStreamEnumeratorOptions.#cctor">
+            <summary>
+            This is the static constructor.
+            </summary>
+        </member>
+        <member name="M:Ximura.CSVStreamEnumeratorOptions.#ctor(System.Boolean,System.Boolean)">
+            <summary>
+            This is the options constructor.
+            </summary>
+            <param name="HeadersInFirstRow">This boolean values specifies whether the headers are in the first row.</param>
+            <param name="SkipEmptyRows">This property specifies whether empty rows should be skipped.</param>
+        </member>
+        <member name="M:Ximura.CSVStreamEnumeratorOptions.#ctor(System.Char,System.Boolean,System.Boolean)">
+            <summary>
+            This is the options constructor.
+            </summary>
+            <param name="CSVSeperator">This is the CSV seperator character.</param>
+            <param name="HeadersInFirstRow">This boolean values specifies whether the headers are in the first row.</param>
+            <param name="SkipEmptyRows">This property specifies whether empty rows should be skipped.</param>
+        </member>
+        <member name="M:Ximura.CSVStreamEnumeratorOptions.#ctor(System.Text.Encoding,System.Char,System.Boolean,System.Boolean,System.Predicate{System.Char},System.Collections.Generic.Dictionary{System.String,System.Int32})">
+            <summary>
+            This is the options constructor.
+            </summary>
+            <param name="encoding">This is the character encoding for the stream.</param>
+            <param name="CSVSeperator">This is the CSV seperator character.</param>
+            <param name="HeadersInFirstRow">This boolean values specifies whether the headers are in the first row.</param>
+            <param name="SkipEmptyRows">This property specifies whether empty rows should be skipped.</param>
+            <param name="skipCharacters">This predicate can be used to remove invalid characters from the incoming stream. 
+            By default if this is left null all characters are processed.</param>
+        </member>
+        <member name="P:Ximura.CSVStreamEnumeratorOptions.Encoding">
+            <summary>
+            This is the encoding used by the stream enumerator.
+            </summary>
+        </member>
+        <member name="P:Ximura.CSVStreamEnumeratorOptions.HeadersInFirstRow">
+            <summary>
+            This property specifies whether headers are in the first row.
+            </summary>
+        </member>
+        <member name="P:Ximura.CSVStreamEnumeratorOptions.Headers">
+            <summary>
+            This is the header collection. This must be supplied if HeadersInFirstRow is set to false;
+            </summary>
+        </member>
+        <member name="P:Ximura.CSVStreamEnumeratorOptions.CSVSeperator">
+            <summary>
+            This is the CSV seperator character.
+            </summary>
+        </member>
+        <member name="P:Ximura.CSVStreamEnumeratorOptions.SkipEmptyRows">
+            <summary>
+            This identifies whether empty rows will be skipped.
+            </summary>
+        </member>
+        <member name="P:Ximura.CSVStreamEnumeratorOptions.SkipCharacters">
+            <summary>
+            This method can be used to remove invalid characters from the CSV stream.
             </summary>
         </member>
         <member name="T:Ximura.IXimuraAppSite">
@@ -12596,102 +12738,6 @@
             <summary>
             This class supports a fast search algorithm
             </summary>
-        </member>
-        <member name="T:Ximura.CSVStreamEnumeratorOptions">
-            <summary>
-            This structure holds the enumerator options.
-            </summary>
-        </member>
-        <member name="F:Ximura.CSVStreamEnumeratorOptions.Encoding">
-            <summary>
-            This is the encoding used by the stream enumerator.
-            </summary>
-        </member>
-        <member name="F:Ximura.CSVStreamEnumeratorOptions.HeadersInFirstRow">
-            <summary>
-            This property specifies whether headers are in the first row.
-            </summary>
-        </member>
-        <member name="F:Ximura.CSVStreamEnumeratorOptions.CSVSeperator">
-            <summary>
-            This is the CSV seperator character.
-            </summary>
-        </member>
-        <member name="F:Ximura.CSVStreamEnumeratorOptions.SkipEmptyRows">
-            <summary>
-            This identifies whether empty rows will be skipped.
-            </summary>
-        </member>
-        <member name="F:Ximura.CSVStreamEnumeratorOptions.SkipCharacters">
-            <summary>
-            This method can be used to remove invalid characters from the CSV stream.
-            </summary>
-        </member>
-        <member name="F:Ximura.CSVStreamEnumeratorOptions.Default">
-            <summary>
-            This is the empty job signature.
-            </summary>
-        </member>
-        <member name="M:Ximura.CSVStreamEnumeratorOptions.#cctor">
-            <summary>
-            This is the static constructor.
-            </summary>
-        </member>
-        <member name="M:Ximura.CSVStreamEnumeratorOptions.#ctor(System.Boolean,System.Boolean)">
-            <summary>
-            This is the options constructor.
-            </summary>
-            <param name="HeadersInFirstRow">This boolean values specifies whether the headers are in the first row.</param>
-            <param name="SkipEmptyRows">This property specifies whether empty rows should be skipped.</param>
-        </member>
-        <member name="M:Ximura.CSVStreamEnumeratorOptions.#ctor(System.Char,System.Boolean,System.Boolean)">
-            <summary>
-            This is the options constructor.
-            </summary>
-            <param name="CSVSeperator">This is the CSV seperator character.</param>
-            <param name="HeadersInFirstRow">This boolean values specifies whether the headers are in the first row.</param>
-            <param name="SkipEmptyRows">This property specifies whether empty rows should be skipped.</param>
-        </member>
-        <member name="M:Ximura.CSVStreamEnumeratorOptions.#ctor(System.Text.Encoding,System.Char,System.Boolean,System.Boolean,System.Predicate{System.Char})">
-            <summary>
-            This is the options constructor.
-            </summary>
-            <param name="encoding">This is the character encoding for the stream.</param>
-            <param name="CSVSeperator">This is the CSV seperator character.</param>
-            <param name="HeadersInFirstRow">This boolean values specifies whether the headers are in the first row.</param>
-            <param name="SkipEmptyRows">This property specifies whether empty rows should be skipped.</param>
-            <param name="skipCharacters">This predicate can be used to remove invalid characters from the incoming stream. 
-            By default if this is left null all characters are processed.</param>
-        </member>
-        <member name="T:Ximura.CSVStreamEnumeratorException">
-            <summary>
-            This is the base exception class for the CSV enumerator.
-            </summary>
-        </member>
-        <member name="M:Ximura.CSVStreamEnumeratorException.#ctor">
-            <summary>
-            Initializes a new instance of the XimuraException class.
-            </summary>
-        </member>
-        <member name="M:Ximura.CSVStreamEnumeratorException.#ctor(System.String)">
-            <summary>
-            Initializes a new instance of the XimuraException class.
-            </summary>
-            <param name="message">The error message.</param>
-        </member>
-        <member name="M:Ximura.CSVStreamEnumeratorException.#ctor(System.String,System.Exception)">
-            <summary>
-            Initializes a new instance of the XimuraException class.
-            </summary>
-            <param name="message">The error message.</param>
-            <param name="ex">The base exception.</param>
-        </member>
-        <member name="M:Ximura.CSVStreamEnumeratorException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <summary>
-            This exception is used for deserialization.
-            </summary>
-            <param name="info">The serialization info.</param>
-            <param name="context">The serialization context.</param>
         </member>
     </members>
 </doc>

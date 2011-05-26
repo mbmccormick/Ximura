@@ -15,19 +15,20 @@ namespace Ximura.UnitTest
         [TestMethod]
         public void TestCSVRowItem_SimpleLine()
         {
-            CSVRowItem item1 = new CSVRowItem(',', null
-                , "123,456,789,101112\r\n".ToCharArray()
+            CSVRowItem item1 = new CSVRowItem(CSVStreamEnumeratorOptions.Default
+                , "123456789ABCDEFG".ToCharArray()
                 , new KeyValuePair<int,int>[]
                 {
-                     new KeyValuePair<int,int>(0,3)
+                     new KeyValuePair<int,int>(0,0)
+                    ,new KeyValuePair<int,int>(0,4)
                     ,new KeyValuePair<int,int>(4,3)
-                    ,new KeyValuePair<int,int>(8,3)
-                    ,new KeyValuePair<int,int>(12,6)
+                    ,new KeyValuePair<int,int>(7,3)
+                    ,new KeyValuePair<int,int>(10,6)
                 });
 
             string[] items = item1.ToArray();
 
-            Assert.IsTrue(items.Length == 4);
+            Assert.IsTrue(items.Length == 5);
         }
 
         //[TestMethod]
