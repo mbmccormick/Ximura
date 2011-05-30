@@ -17,6 +17,7 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using System.Diagnostics;
 
 using Ximura;
 #endregion
@@ -25,6 +26,7 @@ namespace Ximura
     /// <summary>
     /// This is the CSV row item structure.
     /// </summary>
+    [DebuggerDisplay("Count = {Count}")]
     public struct CSVRowItem: IEnumerable<string>
     {        
         #region Declarations
@@ -269,5 +271,16 @@ namespace Ximura
             return sb.ToString();
         }
         #endregion
+
+        public IEnumerable<KeyValuePair<string, string>> Data
+        {
+            get
+            {
+                string[] keys = new string[Count];
+                mOptions.Headers.Keys.CopyTo(keys, 0);
+                for (int i = 0; i < Count; i++)
+                    yield return new KeyValuePair<string, string>(keys[i], this[i]);
+            }
+        }
     }
 }

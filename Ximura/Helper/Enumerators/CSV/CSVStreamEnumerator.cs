@@ -28,6 +28,7 @@ namespace Ximura
     /// </summary>
     public class CSVStreamEnumerator : CSVStreamEnumerator<CSVRowItem>
     {
+        #region Constructors
         /// <summary>
         /// This is the default constructor for the CSV enumerator.
         /// </summary>
@@ -47,6 +48,7 @@ namespace Ximura
         {
 
         }
+        #endregion
     }
     #endregion  
 
@@ -97,14 +99,16 @@ namespace Ximura
         /// <param name="data">The data stream which will be read from.</param>
         /// <param name="convert">A function to convert the CSVRowItem structure in to the output structure.</param>
         /// <param name="options">This is the enumerator options.</param>
-        public CSVStreamEnumerator(Stream data, Func<CSVRowItem, O> convert, CSVStreamEnumeratorOptions options)
+        public CSVStreamEnumerator(Stream data
+            , Func<CSVRowItem, O> convert
+            , CSVStreamEnumeratorOptions options)
             : base(data, null, convert, (d) => { return new UnicodeCharEnumerator(data, options.Encoding); })
         {
             mOverflow = null;
             mOptions = options;
             mCurrentLine = 0;
             //If the headers are in the first row then parse the first line.
-            if (options.HeadersInFirstRow)
+            if (options.HeadersInData)
             {
                 Tuple<CSVRowItem, UnicodeCharEnumerator>? result = Parse(mDataConverted);
                 if (!result.HasValue)
@@ -217,7 +221,7 @@ namespace Ximura
             return cData;
         }
         #endregion // CharArrayCreate()
-        #region ParseV2(UnicodeCharEnumerator data)
+        #region Parse(UnicodeCharEnumerator data)
         /// <summary>
         /// This method converts the stream data in to an individual row item.
         /// </summary>
@@ -341,7 +345,6 @@ namespace Ximura
             return new Tuple<CSVRowItem, UnicodeCharEnumerator>(line, data);
         }
         #endregion
-
 
         #region ScanAhead(IEnumerator<char> enChar)
         /// <summary>

@@ -23,6 +23,7 @@ namespace Ximura
 {
     public static partial class StreamHelper
     {
+        #region Enum(this Stream data)
         /// <summary>
         /// This method turns a stream in to an enumerable byte array.
         /// </summary>
@@ -41,7 +42,8 @@ namespace Ximura
                     break;
             }
         }
-
+        #endregion
+        #region Enum(this Stream data, byte[] buffer, int start, int length)
         /// <summary>
         /// This method turns a stream in to an enumerable byte array. 
         /// This method also inserts an byte buffer before the stream in enumerated. This may be useful when reading from a readonly stream
@@ -67,6 +69,6 @@ namespace Ximura
             foreach(var item in data.Enum())
                 yield return item;
         }
-
+        #endregion // Enum(this Stream data, byte[] buffer, int start, int length)
     }
 }

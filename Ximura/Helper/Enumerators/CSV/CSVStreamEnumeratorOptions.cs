@@ -40,7 +40,7 @@ namespace Ximura
         {
             Default = new CSVStreamEnumeratorOptions();
 
-            Default.HeadersInFirstRow = true;
+            Default.HeadersInData = true;
             Default.Headers = null;
 
             Default.CSVSeperator = ',';
@@ -54,10 +54,12 @@ namespace Ximura
         #endregion
 
         #region Constructor
-        private CSVStreamEnumeratorOptions()
-        {
+        /// <summary>
+        /// This is the default constructor for the class.
+        /// </summary>
+        public CSVStreamEnumeratorOptions() :
+            this(Encoding.UTF8, ',', true, false, null, null) { }
 
-        }
         /// <summary>
         /// This is the options constructor.
         /// </summary>
@@ -79,20 +81,29 @@ namespace Ximura
         /// This is the options constructor.
         /// </summary>
         /// <param name="encoding">This is the character encoding for the stream.</param>
-        /// <param name="CSVSeperator">This is the CSV seperator character.</param>
-        /// <param name="HeadersInFirstRow">This boolean values specifies whether the headers are in the first row.</param>
-        /// <param name="SkipEmptyRows">This property specifies whether empty rows should be skipped.</param>
+        /// <param name="csvSeperator">This is the CSV seperator character.</param>
+        /// <param name="headersInData">This boolean values specifies whether the headers should be parsed from the CSV data.</param>
+        /// <param name="ignoreEmptyRows">This property specifies whether empty rows should be skipped.</param>
         /// <param name="skipCharacters">This predicate can be used to remove invalid characters from the incoming stream. 
         /// By default if this is left null all characters are processed.</param>
-        public CSVStreamEnumeratorOptions(Encoding encoding, char CSVSeperator,
-            bool HeadersInFirstRow, bool SkipEmptyRows, Predicate<char> skipCharacters, Dictionary<string, int> Headers)
+        public CSVStreamEnumeratorOptions(
+              Encoding encoding
+            , char csvSeperator
+            , bool headersInData
+            , bool ignoreEmptyRows
+            , Predicate<char> skipCharacters
+            , Dictionary<string, int> headers)
         {
-            this.HeadersInFirstRow = HeadersInFirstRow;
-            this.CSVSeperator = CSVSeperator;
-            this.IgnoreEmptyDataRows = SkipEmptyRows;
+            this.HeadersInData = headersInData;
+            this.CSVSeperator = csvSeperator;
+            this.IgnoreEmptyDataRows = ignoreEmptyRows;
             this.Encoding = encoding;
             this.SkipCharacters = skipCharacters;
-            this.Headers = Headers;
+            this.Headers = headers;
+
+            this.HeaderRowsToSkip = 0;
+            this.DataRowsToSkip = 0;
+            this.TextDelimiter = '"';
         }
         #endregion
 
@@ -103,33 +114,35 @@ namespace Ximura
         public Encoding Encoding
         {
             get;
-            private set;
+            set;
         }
-        #endregion // Encoding
+        #endregion
 
         #region HeaderRowsToSkip
         /// <summary>
         /// This is the number of header rows that should be skipped before the header row is processed.
         /// </summary>
-        public int HeaderRowsToSkip { get; private set; }
+        public int HeaderRowsToSkip { get; set; }
         #endregion
         #region DataRowsToSkip
         /// <summary>
         /// This is the number of data rows after the header rows that should be skipped before data is returned.
         /// </summary>
-        public int DataRowsToSkip { get; private set; }
+        public int DataRowsToSkip { get; set; }
         #endregion
 
-        #region HeadersInFirstRow
+        #region HeadersInData
         /// <summary>
-        /// This property specifies whether headers are in the first row.
+        /// This property specifies whether headers are in the csv data.
+        /// The headers will be parsed after the number of rows specified in the 
+        /// 'HeaderRowsToSkip' field have been skipped.
         /// </summary>
-        public bool HeadersInFirstRow
+        public bool HeadersInData
         {
             get;
-            private set;
+            set;
         }
-        #endregion // HeadersInFirstRow
+        #endregion
 
         #region Headers
         /// <summary>
@@ -138,7 +151,7 @@ namespace Ximura
         public Dictionary<string,int> Headers
         {
             get;
-            private set;
+            set;
         }
         #endregion // Headers
 
@@ -149,7 +162,7 @@ namespace Ximura
         public char CSVSeperator
         {
             get;
-            private set;
+            set;
         }
         #endregion // CSVSeperator
 
@@ -160,7 +173,7 @@ namespace Ximura
         public char TextDelimiter
         {
             get;
-            private set;
+            set;
         }
         #endregion
 
@@ -171,7 +184,7 @@ namespace Ximura
         public bool IgnoreEmptyDataRows
         {
             get;
-            private set;
+            set;
         }
         #endregion // SkipEmptyRows
 
@@ -182,9 +195,8 @@ namespace Ximura
         public Predicate<char> SkipCharacters
         {
             get;
-            private set;
+            set;
         }
         #endregion // SkipCharacters
-
     }
 }
