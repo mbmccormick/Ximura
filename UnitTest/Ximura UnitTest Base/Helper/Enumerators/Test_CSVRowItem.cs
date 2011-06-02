@@ -15,7 +15,7 @@ namespace Ximura.UnitTest
         [TestMethod]
         public void TestCSVRowItem_SimpleLine()
         {
-            CSVRowItem item1 = new CSVRowItem(CSVStreamEnumeratorOptions.Default
+            CSVRowItem item1 = new CSVRowItem(CSVStreamOptions.Default
                 , "123456789ABCDEFG".ToCharArray()
                 , new KeyValuePair<int,int>[]
                 {
