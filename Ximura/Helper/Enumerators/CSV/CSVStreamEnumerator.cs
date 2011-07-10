@@ -230,6 +230,7 @@ namespace Ximura
         protected override Tuple<CSVRowItem, UnicodeCharEnumerator>? 
             Parse(UnicodeCharEnumerator data)
         {
+            KeyValuePair<int, int>[] positions = null;
             IEnumerator<char> enChar = data.GetEnumerator();
 
             //Check that we can get a new character from the stream.

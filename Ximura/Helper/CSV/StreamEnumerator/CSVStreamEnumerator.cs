@@ -115,6 +115,7 @@ namespace Ximura
                     throw new ArgumentOutOfRangeException("The headers cannot be read from the stream.");
 
                 mHeaders = HeadersParse(result.Value.Item1);
+                options.Headers = mHeaders;
             }
             else
                 mHeaders = options.Headers;
@@ -192,8 +193,18 @@ namespace Ximura
         {
             if (position >= data.Length)
             {
-                int growBy = data.Length / 10;
-                Array.Resize(ref data, position + (growBy > ARRAYGROWTHFACTOR ? growBy : ARRAYGROWTHFACTOR));
+                int growBy;
+
+                if (toGrow.HasValue)
+                    growBy = toGrow.Value;
+                else
+                {
+                    growBy = data.Length / 10;
+                    if (growBy < ARRAYGROWTHFACTOR)
+                        growBy = ARRAYGROWTHFACTOR;
+                }
+
+                Array.Resize(ref data, position + growBy);
             }
             //Array.Resize(ref data, position + ARRAYGROWTHFACTOR);
 
@@ -246,7 +257,12 @@ namespace Ximura
             bool discardWhitespace = false;
 
             int headerPos = 0;
-            int[] posEnds = new int[mOptions.Headers.Count];
+
+            int[] posEnds;
+            if (mOptions.Headers == null)
+                posEnds = new int[1];
+            else
+                posEnds = new int[mOptions.Headers.Count];
 
             try
             {
