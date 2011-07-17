@@ -23,7 +23,7 @@ using System.Reflection;
 using System.Threading;
 using System.Runtime.Serialization;
 using System.Runtime.InteropServices;
-using System.Security.Cryptography;
+
 using System.Text;
 using System.IO;
 

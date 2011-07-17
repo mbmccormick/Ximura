@@ -23,7 +23,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Runtime.CompilerServices;
-using System.Security.Cryptography;
+
 using System.Threading;
 
 using Ximura;
@@ -48,6 +48,7 @@ namespace Ximura
         }
         #endregion
 
+#if (!PORTABLE)
         #region Func<Action, Thread> fnActionExecute
         /// <summary>
         /// This function creates a new thread and executes the action on that thread.
@@ -60,6 +61,7 @@ namespace Ximura
                 return t;
             };
         #endregion // Func<Action, Thread> fnActionExecute
+#endif
 
         #region ExecuteParallel(IEnumerable<Action> ts, int maxThreads)
         /// <summary>

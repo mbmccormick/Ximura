@@ -16,7 +16,9 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Resources;
 
+#if (WIN)
 [assembly: ComVisible(false)]
+#endif
 
 [assembly: AssemblyTitle("Ximura")]
 [assembly: AssemblyDescription("")]

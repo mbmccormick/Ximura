@@ -21,10 +21,13 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.Serialization;
-using System.Security.Permissions;
 using System.Threading;
 
 using Ximura;
+
+#if (!SILVERLIGHT)
+using System.Security.Permissions;
+#endif
 
 #endregion // using
 namespace Ximura.Collections

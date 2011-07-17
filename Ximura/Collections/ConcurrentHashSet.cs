@@ -21,7 +21,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.Serialization;
+#if (!SILVERLIGHT)
 using System.Security.Permissions;
+#endif
 using System.Threading;
 
 using Ximura;

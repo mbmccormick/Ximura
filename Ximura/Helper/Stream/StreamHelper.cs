@@ -14,7 +14,7 @@
 using System;
 using System.Runtime.Serialization;
 using System.IO;
-using System.Security.Cryptography;
+
 using System.Text;
 
 using Ximura;

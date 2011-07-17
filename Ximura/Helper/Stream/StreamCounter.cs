@@ -14,7 +14,7 @@
 using System;
 using System.Runtime.Serialization;
 using System.IO;
-using System.Security.Cryptography;
+
 using System.Text;
 
 using Ximura;
@@ -128,6 +128,7 @@ namespace Ximura
             }
         }
 
+#if (!PORTABLE)
         public override void Close()
         {
             lock (syncObj)
@@ -135,6 +136,7 @@ namespace Ximura
                 baseStream.Close();
             }
         }
+#endif
 
         //public override System.Runtime.Remoting.ObjRef CreateObjRef(Type requestedType)
         //{
