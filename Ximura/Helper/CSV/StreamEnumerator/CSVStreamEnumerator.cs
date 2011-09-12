@@ -358,6 +358,12 @@ namespace Ximura
 
             mCharacterTotal += line.CharCount;
 
+            if (mOptions.IgnoreEmptyDataRows &&
+                line.CharCount == 0)
+            {
+                return null;
+            }
+
             return new Tuple<CSVRowItem, UnicodeCharEnumerator>(line, data);
         }
         #endregion
