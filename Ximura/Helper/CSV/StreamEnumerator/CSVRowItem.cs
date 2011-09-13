@@ -283,7 +283,7 @@ namespace Ximura
                 string[] keys = new string[Count];
                 mOptions.Headers.Keys.CopyTo(keys, 0);
                 for (int i = 0; i < Count; i++)
-                    yield return new KeyValuePair<string, string>(keys[i], this[i]);
+                    yield return new KeyValuePair<string, string>(keys[i], this[i].Trim());
             }
         }
         #endregion
